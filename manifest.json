@@ -3,6 +3,12 @@
     "name": "LeetTube",
     "version": "1.0",
     "description": "LeetTube is a Chrome extension that injects the Youtube solution into the Leetcode 'Solutions' tab.",
+    "icons": {
+        "16": "images/icon-16.png",
+        "32": "images/icon-32.png",
+        "48": "images/icon-48.png",
+        "128": "images/icon-128.png"
+    },
     "content_scripts": [
         {
             "matches": [
@@ -18,10 +24,5 @@
     ],
     "background": {
         "service_worker": "background.js"
-    },
-    "icons": {
-        "16": "/icons/icon-16.png",
-        "48": "/icons/icon-48.png",
-        "128": "/icons/icon-128.png"
     }
 }

@@ -1,2 +1,3 @@
-# leettube-chrome-extension
-Adds the youtube solution to 'Solutions' tab in Leetcode. 
+# LeetTube
+
+## Injects the youtube solution to Leetcode problem under the 'Solutions' tab.

@@ -36,7 +36,7 @@ for question in data["questions"][last_index + 1 : last_index + 11]:
     # Find the first video with a channel name of "Neetcode"
     video_id = None
     for search_result in search_response.get("items", []):
-        if search_result["snippet"]["channelTitle"] == "Neetcode":
+        if search_result["snippet"]["channelTitle"] == "NeetCode":
             video_id = search_result["id"]["videoId"]
             break
 
@@ -47,7 +47,11 @@ for question in data["questions"][last_index + 1 : last_index + 11]:
     # Get the embedded video URL
     if video_id:
         embedded_url = f"https://www.youtube.com/embed/{video_id}"
-        print("Found video for {}!".format(question["title"]))
+        print(
+            "Found video for {}".format(question["title"])
+            + " from channel "
+            + search_result["snippet"]["channelTitle"]
+        )
         question["embedded_url"] = embedded_url
 
 # Save the updated JSON file

@@ -1,7 +1,7 @@
 import json
 
 # Load the JSON object from the input file
-with open("leetcode_problems.json", "r") as f:
+with open("problems.json", "r") as f:
     data = json.load(f)
 
 # Extract the list of question titles, IDs, and frontend IDs

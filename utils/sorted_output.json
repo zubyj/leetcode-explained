@@ -3,182 +3,152 @@
     {
       "title": "Two Sum",
       "id": 1,
-      "frontend_id": 1,
-      "embedded_url": "https://www.youtube.com/embed/KLlXCFG5TnA"
+      "frontend_id": 1
     },
     {
       "title": "Add Two Numbers",
       "id": 2,
-      "frontend_id": 2,
-      "embedded_url": "https://www.youtube.com/embed/wgFPrzTjm7s"
+      "frontend_id": 2
     },
     {
       "title": "Longest Substring Without Repeating Characters",
       "id": 3,
-      "frontend_id": 3,
-      "embedded_url": "https://www.youtube.com/embed/wiGpQwVHdE0"
+      "frontend_id": 3
     },
     {
       "title": "Median of Two Sorted Arrays",
       "id": 4,
-      "frontend_id": 4,
-      "embedded_url": "https://www.youtube.com/embed/q6IEA26hvXc"
+      "frontend_id": 4
     },
     {
       "title": "Longest Palindromic Substring",
       "id": 5,
-      "frontend_id": 5,
-      "embedded_url": "https://www.youtube.com/embed/XYQecbcd6_c"
+      "frontend_id": 5
     },
     {
       "title": "Zigzag Conversion",
       "id": 6,
-      "frontend_id": 6,
-      "embedded_url": "https://www.youtube.com/embed/Q2Tw6gcVEwc"
+      "frontend_id": 6
     },
     {
       "title": "Reverse Integer",
       "id": 7,
-      "frontend_id": 7,
-      "embedded_url": "https://www.youtube.com/embed/HAgLH58IgJQ"
+      "frontend_id": 7
     },
     {
       "title": "String to Integer (atoi)",
       "id": 8,
-      "frontend_id": 8,
-      "embedded_url": "https://www.youtube.com/embed/2I9XO8jwZCA"
+      "frontend_id": 8
     },
     {
       "title": "Palindrome Number",
       "id": 9,
-      "frontend_id": 9,
-      "embedded_url": "https://www.youtube.com/embed/yubRKwixN-U"
+      "frontend_id": 9
     },
     {
       "title": "Regular Expression Matching",
       "id": 10,
-      "frontend_id": 10,
-      "embedded_url": "https://www.youtube.com/embed/HAA8mgxlov8"
+      "frontend_id": 10
     },
     {
       "title": "Container With Most Water",
       "id": 11,
-      "frontend_id": 11,
-      "embedded_url": "https://www.youtube.com/embed/UuiTKBwPgAo"
+      "frontend_id": 11
     },
     {
       "title": "Integer to Roman",
       "id": 12,
-      "frontend_id": 12,
-      "embedded_url": "https://www.youtube.com/embed/ohBNdSJyLh8"
+      "frontend_id": 12
     },
     {
       "title": "Roman to Integer",
       "id": 13,
-      "frontend_id": 13,
-      "embedded_url": "https://www.youtube.com/embed/3jdxYj3DD98"
+      "frontend_id": 13
     },
     {
       "title": "Longest Common Prefix",
       "id": 14,
-      "frontend_id": 14,
-      "embedded_url": "https://www.youtube.com/embed/0sWShKIJoo4"
+      "frontend_id": 14
     },
     {
       "title": "3Sum",
       "id": 15,
-      "frontend_id": 15,
-      "embedded_url": "https://www.youtube.com/embed/jzZsG8n2R9A"
+      "frontend_id": 15
     },
     {
       "title": "3Sum Closest",
       "id": 16,
-      "frontend_id": 16,
-      "embedded_url": "https://www.youtube.com/embed/qBr2hq4daWE"
+      "frontend_id": 16
     },
     {
       "title": "Letter Combinations of a Phone Number",
       "id": 17,
-      "frontend_id": 17,
-      "embedded_url": "https://www.youtube.com/embed/0snEunUacZY"
+      "frontend_id": 17
     },
     {
       "title": "4Sum",
       "id": 18,
-      "frontend_id": 18,
-      "embedded_url": "https://www.youtube.com/embed/EYeR-_1NRlQ"
+      "frontend_id": 18
     },
     {
       "title": "Remove Nth Node From End of List",
       "id": 19,
-      "frontend_id": 19,
-      "embedded_url": "https://www.youtube.com/embed/XVuQxVej6y8"
+      "frontend_id": 19
     },
     {
       "title": "Valid Parentheses",
       "id": 20,
-      "frontend_id": 20,
-      "embedded_url": "https://www.youtube.com/embed/WTzjTskDFMg"
+      "frontend_id": 20
     },
     {
       "title": "Merge Two Sorted Lists",
       "id": 21,
-      "frontend_id": 21,
-      "embedded_url": "https://www.youtube.com/embed/XIdigk956u0"
+      "frontend_id": 21
     },
     {
       "title": "Generate Parentheses",
       "id": 22,
-      "frontend_id": 22,
-      "embedded_url": "https://www.youtube.com/embed/s9fokUqJ76A"
+      "frontend_id": 22
     },
     {
       "title": "Merge k Sorted Lists",
       "id": 23,
-      "frontend_id": 23,
-      "embedded_url": "https://www.youtube.com/embed/q5a5OiGbT6Q"
+      "frontend_id": 23
     },
     {
       "title": "Swap Nodes in Pairs",
       "id": 24,
-      "frontend_id": 24,
-      "embedded_url": "https://www.youtube.com/embed/o811TZLAWOo"
+      "frontend_id": 24
     },
     {
       "title": "Reverse Nodes in k-Group",
       "id": 25,
-      "frontend_id": 25,
-      "embedded_url": "https://www.youtube.com/embed/1UOPsfP85V4"
+      "frontend_id": 25
     },
     {
       "title": "Remove Duplicates from Sorted Array",
       "id": 26,
-      "frontend_id": 26,
-      "embedded_url": "https://www.youtube.com/embed/DEJAZBq0FDA"
+      "frontend_id": 26
     },
     {
       "title": "Remove Element",
       "id": 27,
-      "frontend_id": 27,
-      "embedded_url": "https://www.youtube.com/embed/Pcd1ii9P9ZI"
+      "frontend_id": 27
     },
     {
       "title": "Find the Index of the First Occurrence in a String",
       "id": 28,
-      "frontend_id": 28,
-      "embedded_url": "https://www.youtube.com/embed/Gjkhm1gYIMw"
+      "frontend_id": 28
     },
     {
       "title": "Divide Two Integers",
       "id": 29,
-      "frontend_id": 29,
-      "embedded_url": "https://www.youtube.com/embed/m4L_5qG4vG8"
+      "frontend_id": 29
     },
     {
       "title": "Substring with Concatenation of All Words",
       "id": 30,
-      "frontend_id": 30,
-      "embedded_url": "https://www.youtube.com/embed/Bbu4Qjzf7A0"
+      "frontend_id": 30
     },
     {
       "title": "Next Permutation",

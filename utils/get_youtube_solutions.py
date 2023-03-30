@@ -8,7 +8,7 @@ YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
 # Load the JSON file
-with open("problems.json") as f:
+with open("leetcode_problems.json") as f:
     data = json.load(f)
 
 # Get the index of the last processed question
@@ -47,8 +47,9 @@ for question in data["questions"][last_index + 1 : last_index + 11]:
     # Get the embedded video URL
     if video_id:
         embedded_url = f"https://www.youtube.com/embed/{video_id}"
+        print("Found video for {}!".format(question["title"]))
         question["embedded_url"] = embedded_url
 
 # Save the updated JSON file
-with open("problems.json", "w") as f:
+with open("leetcode_problems.json", "w") as f:
     json.dump(data, f)

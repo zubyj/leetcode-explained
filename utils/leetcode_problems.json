@@ -10,7 +10,7 @@
             "title": "Add Two Numbers",
             "id": 2,
             "frontend_id": 2,
-            "embedded_url": "https://www.youtube.com/embed/aM4Iv7eEr2o"
+            "embedded_url": "https://www.youtube.com/embed/wgFPrzTjm7s"
         },
         {
             "title": "Longest Substring Without Repeating Characters",
@@ -40,7 +40,7 @@
             "title": "Reverse Integer",
             "id": 7,
             "frontend_id": 7,
-            "embedded_url": "https://www.youtube.com/embed/CRgXG1vK-wg"
+            "embedded_url": "https://www.youtube.com/embed/HAgLH58IgJQ"
         },
         {
             "title": "String to Integer (atoi)",
@@ -123,102 +123,122 @@
         {
             "title": "Merge Two Sorted Lists",
             "id": 21,
-            "frontend_id": 21
+            "frontend_id": 21,
+            "embedded_url": "https://www.youtube.com/embed/XIdigk956u0"
         },
         {
             "title": "Generate Parentheses",
             "id": 22,
-            "frontend_id": 22
+            "frontend_id": 22,
+            "embedded_url": "https://www.youtube.com/embed/s9fokUqJ76A"
         },
         {
             "title": "Merge k Sorted Lists",
             "id": 23,
-            "frontend_id": 23
+            "frontend_id": 23,
+            "embedded_url": "https://www.youtube.com/embed/q5a5OiGbT6Q"
         },
         {
             "title": "Swap Nodes in Pairs",
             "id": 24,
-            "frontend_id": 24
+            "frontend_id": 24,
+            "embedded_url": "https://www.youtube.com/embed/o811TZLAWOo"
         },
         {
             "title": "Reverse Nodes in k-Group",
             "id": 25,
-            "frontend_id": 25
+            "frontend_id": 25,
+            "embedded_url": "https://www.youtube.com/embed/1UOPsfP85V4"
         },
         {
             "title": "Remove Duplicates from Sorted Array",
             "id": 26,
-            "frontend_id": 26
+            "frontend_id": 26,
+            "embedded_url": "https://www.youtube.com/embed/DEJAZBq0FDA"
         },
         {
             "title": "Remove Element",
             "id": 27,
-            "frontend_id": 27
+            "frontend_id": 27,
+            "embedded_url": "https://www.youtube.com/embed/Pcd1ii9P9ZI"
         },
         {
             "title": "Find the Index of the First Occurrence in a String",
             "id": 28,
-            "frontend_id": 28
+            "frontend_id": 28,
+            "embedded_url": "https://www.youtube.com/embed/OWaZ6AosS30"
         },
         {
             "title": "Divide Two Integers",
             "id": 29,
-            "frontend_id": 29
+            "frontend_id": 29,
+            "embedded_url": "https://www.youtube.com/embed/m4L_5qG4vG8"
         },
         {
             "title": "Substring with Concatenation of All Words",
             "id": 30,
-            "frontend_id": 30
+            "frontend_id": 30,
+            "embedded_url": "https://www.youtube.com/embed/Bbu4Qjzf7A0"
         },
         {
             "title": "Next Permutation",
             "id": 31,
-            "frontend_id": 31
+            "frontend_id": 31,
+            "embedded_url": "https://www.youtube.com/embed/quAS1iydq7U"
         },
         {
             "title": "Longest Valid Parentheses",
             "id": 32,
-            "frontend_id": 32
+            "frontend_id": 32,
+            "embedded_url": "https://www.youtube.com/embed/q56S5NIqjdE"
         },
         {
             "title": "Search in Rotated Sorted Array",
             "id": 33,
-            "frontend_id": 33
+            "frontend_id": 33,
+            "embedded_url": "https://www.youtube.com/embed/U8XENwh8Oy8"
         },
         {
             "title": "Find First and Last Position of Element in Sorted Array",
             "id": 34,
-            "frontend_id": 34
+            "frontend_id": 34,
+            "embedded_url": "https://www.youtube.com/embed/4sQL7R5ySUU"
         },
         {
             "title": "Search Insert Position",
             "id": 35,
-            "frontend_id": 35
+            "frontend_id": 35,
+            "embedded_url": "https://www.youtube.com/embed/0A40XJH_VvE"
         },
         {
             "title": "Valid Sudoku",
             "id": 36,
-            "frontend_id": 36
+            "frontend_id": 36,
+            "embedded_url": "https://www.youtube.com/embed/TjFXEUCMqI8"
         },
         {
             "title": "Sudoku Solver",
             "id": 37,
-            "frontend_id": 37
+            "frontend_id": 37,
+            "embedded_url": "https://www.youtube.com/embed/G_UYXzGuqvM"
         },
         {
             "title": "Count and Say",
             "id": 38,
-            "frontend_id": 38
+            "frontend_id": 38,
+            "embedded_url": "https://www.youtube.com/embed/-wB1xj-kOe0"
         },
         {
             "title": "Combination Sum",
             "id": 39,
-            "frontend_id": 39
+            "frontend_id": 39,
+            "embedded_url": "https://www.youtube.com/embed/GBKI9VSKdGg"
         },
         {
             "title": "Combination Sum II",
             "id": 40,
-            "frontend_id": 40
+            "frontend_id": 40,
+            "embedded_url": "https://www.youtube.com/embed/rSA3t6BDDwg"
         },
         {
             "title": "First Missing Positive",

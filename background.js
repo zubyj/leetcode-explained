@@ -7,3 +7,18 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         }, 500);
     }
 });
+
+// In your background service worker
+chrome.runtime.onInstalled.addListener(() => {
+    const jsonUrl = chrome.runtime.getURL('data/leetcode_problems.json');
+
+    fetch(jsonUrl)
+        .then(response => response.json())
+        .then(data => {
+            // Store the JSON data in a global variable or a storage API
+            console.log(data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+});

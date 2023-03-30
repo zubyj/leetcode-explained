@@ -1,5 +1,3 @@
-
-
 function injectVideo(title) {
     const solutionsTab = document.querySelectorAll('div.w-full.flex-col.overflow-auto')[1];
     if (solutionsTab) {

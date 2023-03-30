@@ -1,3 +1,11 @@
+// Inject the CSS file
+const link = document.createElement('link');
+link.href = chrome.runtime.getURL('styles.css');
+link.type = 'text/css';
+link.rel = 'stylesheet';
+document.head.appendChild(link);
+
+
 // Injects the embedded youtube solution into the solutions tab of the Leetcode problem
 function injectVideo(title) {
     // Get the solutions tab
@@ -22,9 +30,6 @@ function injectVideo(title) {
             // Create an iframe element and set its attributes
             const iframe = document.createElement('iframe');
             iframe.src = problem.embedded_url;
-            iframe.style.width = '100%';
-            iframe.style.height = '100%';
-            iframe.style.margin = 'auto';
             iframe.allow = 'encrypted-media; picture-in-picture';
             iframe.allowFullscreen = true;
 

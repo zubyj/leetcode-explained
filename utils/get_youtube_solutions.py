@@ -18,7 +18,7 @@ for i, question in enumerate(data["questions"]):
         last_index = i
 
 # Process the next 10 questions that haven't already had the embedded URL property inserted
-for question in data["questions"][last_index + 1 : last_index + 11]:
+for question in data["questions"][last_index + 1 : last_index + 21]:
     # Check if the embedded_url property already exists
     if "embedded_url" in question:
         continue
@@ -53,6 +53,7 @@ for question in data["questions"][last_index + 1 : last_index + 11]:
             + search_result["snippet"]["channelTitle"]
         )
         question["embedded_url"] = embedded_url
+        question["channel"] = search_result["snippet"]["channelTitle"]
 
 # Save the updated JSON file
 with open("leetcode_problems.json", "w") as f:

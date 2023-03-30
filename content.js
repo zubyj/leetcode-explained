@@ -7,13 +7,17 @@ function injectVideo(title) {
             chrome.storage.local.get(['leetcodeProblems'], (result) => {
                 const problems = result.leetcodeProblems.questions;
                 const problem = problems.find((problem) => problem.title === title);
-                if (problem) {
+                // check if the problem has the embedded_url
+                if (problem && problem.embedded_url) {
                     const iframe = document.createElement("iframe");
                     iframe.src = problem.embedded_url;
-                    iframe.width = "100%";
-                    iframe.height = "100%";
+                    iframe.style.width = "100%";
+                    iframe.style.height = "100%";
+                    iframe.style.margin = "auto";
+                    // set width and height to 100% to make it responsive
                     iframe.allow =
                         "encrypted-media; picture-in-picture";
+                    // allow iframe to be resized
                     iframe.allowFullscreen = true;
                     solutionsTab.parentElement.insertBefore(iframe, solutionsTab);
                 } else {
@@ -31,4 +35,3 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         injectVideo(title);
     }
 });
-

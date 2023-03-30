@@ -4,281 +4,241 @@
             "title": "Two Sum",
             "id": 1,
             "frontend_id": 1,
-            "embedded_url": "https://www.youtube.com/embed/KLlXCFG5TnA",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/KLlXCFG5TnA"
         },
         {
             "title": "Add Two Numbers",
             "id": 2,
             "frontend_id": 2,
-            "embedded_url": "https://www.youtube.com/embed/wgFPrzTjm7s",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/wgFPrzTjm7s"
         },
         {
             "title": "Longest Substring Without Repeating Characters",
             "id": 3,
             "frontend_id": 3,
-            "embedded_url": "https://www.youtube.com/embed/wiGpQwVHdE0",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/wiGpQwVHdE0"
         },
         {
             "title": "Median of Two Sorted Arrays",
             "id": 4,
             "frontend_id": 4,
-            "embedded_url": "https://www.youtube.com/embed/q6IEA26hvXc",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/q6IEA26hvXc"
         },
         {
             "title": "Longest Palindromic Substring",
             "id": 5,
             "frontend_id": 5,
-            "embedded_url": "https://www.youtube.com/embed/XYQecbcd6_c",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/XYQecbcd6_c"
         },
         {
             "title": "Zigzag Conversion",
             "id": 6,
             "frontend_id": 6,
-            "embedded_url": "https://www.youtube.com/embed/Q2Tw6gcVEwc",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/Q2Tw6gcVEwc"
         },
         {
             "title": "Reverse Integer",
             "id": 7,
             "frontend_id": 7,
-            "embedded_url": "https://www.youtube.com/embed/HAgLH58IgJQ",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/HAgLH58IgJQ"
         },
         {
             "title": "String to Integer (atoi)",
             "id": 8,
             "frontend_id": 8,
-            "embedded_url": "https://www.youtube.com/embed/2I9XO8jwZCA",
-            "channel": "TECH DOSE"
+            "embedded_url": "https://www.youtube.com/embed/2I9XO8jwZCA"
         },
         {
             "title": "Palindrome Number",
             "id": 9,
             "frontend_id": 9,
-            "embedded_url": "https://www.youtube.com/embed/yubRKwixN-U",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/yubRKwixN-U"
         },
         {
             "title": "Regular Expression Matching",
             "id": 10,
             "frontend_id": 10,
-            "embedded_url": "https://www.youtube.com/embed/HAA8mgxlov8",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/HAA8mgxlov8"
         },
         {
             "title": "Container With Most Water",
             "id": 11,
             "frontend_id": 11,
-            "embedded_url": "https://www.youtube.com/embed/UuiTKBwPgAo",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/UuiTKBwPgAo"
         },
         {
             "title": "Integer to Roman",
             "id": 12,
             "frontend_id": 12,
-            "embedded_url": "https://www.youtube.com/embed/ohBNdSJyLh8",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/ohBNdSJyLh8"
         },
         {
             "title": "Roman to Integer",
             "id": 13,
             "frontend_id": 13,
-            "embedded_url": "https://www.youtube.com/embed/3jdxYj3DD98",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/3jdxYj3DD98"
         },
         {
             "title": "Longest Common Prefix",
             "id": 14,
             "frontend_id": 14,
-            "embedded_url": "https://www.youtube.com/embed/0sWShKIJoo4",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/0sWShKIJoo4"
         },
         {
             "title": "3Sum",
             "id": 15,
             "frontend_id": 15,
-            "embedded_url": "https://www.youtube.com/embed/jzZsG8n2R9A",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/jzZsG8n2R9A"
         },
         {
             "title": "3Sum Closest",
             "id": 16,
             "frontend_id": 16,
-            "embedded_url": "https://www.youtube.com/embed/qBr2hq4daWE",
-            "channel": "Nick White"
+            "embedded_url": "https://www.youtube.com/embed/qBr2hq4daWE"
         },
         {
             "title": "Letter Combinations of a Phone Number",
             "id": 17,
             "frontend_id": 17,
-            "embedded_url": "https://www.youtube.com/embed/0snEunUacZY",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/0snEunUacZY"
         },
         {
             "title": "4Sum",
             "id": 18,
             "frontend_id": 18,
-            "embedded_url": "https://www.youtube.com/embed/EYeR-_1NRlQ",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/EYeR-_1NRlQ"
         },
         {
             "title": "Remove Nth Node From End of List",
             "id": 19,
             "frontend_id": 19,
-            "embedded_url": "https://www.youtube.com/embed/XVuQxVej6y8",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/XVuQxVej6y8"
         },
         {
             "title": "Valid Parentheses",
             "id": 20,
             "frontend_id": 20,
-            "embedded_url": "https://www.youtube.com/embed/WTzjTskDFMg",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/WTzjTskDFMg"
         },
         {
             "title": "Merge Two Sorted Lists",
             "id": 21,
             "frontend_id": 21,
-            "embedded_url": "https://www.youtube.com/embed/XIdigk956u0",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/XIdigk956u0"
         },
         {
             "title": "Generate Parentheses",
             "id": 22,
             "frontend_id": 22,
-            "embedded_url": "https://www.youtube.com/embed/s9fokUqJ76A",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/s9fokUqJ76A"
         },
         {
             "title": "Merge k Sorted Lists",
             "id": 23,
             "frontend_id": 23,
-            "embedded_url": "https://www.youtube.com/embed/q5a5OiGbT6Q",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/q5a5OiGbT6Q"
         },
         {
             "title": "Swap Nodes in Pairs",
             "id": 24,
             "frontend_id": 24,
-            "embedded_url": "https://www.youtube.com/embed/o811TZLAWOo",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/o811TZLAWOo"
         },
         {
             "title": "Reverse Nodes in k-Group",
             "id": 25,
             "frontend_id": 25,
-            "embedded_url": "https://www.youtube.com/embed/1UOPsfP85V4",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/1UOPsfP85V4"
         },
         {
             "title": "Remove Duplicates from Sorted Array",
             "id": 26,
             "frontend_id": 26,
-            "embedded_url": "https://www.youtube.com/embed/DEJAZBq0FDA",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/DEJAZBq0FDA"
         },
         {
             "title": "Remove Element",
             "id": 27,
             "frontend_id": 27,
-            "embedded_url": "https://www.youtube.com/embed/Pcd1ii9P9ZI",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/Pcd1ii9P9ZI"
         },
         {
             "title": "Find the Index of the First Occurrence in a String",
             "id": 28,
             "frontend_id": 28,
-            "embedded_url": "https://www.youtube.com/embed/Gjkhm1gYIMw",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/Gjkhm1gYIMw"
         },
         {
             "title": "Divide Two Integers",
             "id": 29,
             "frontend_id": 29,
-            "embedded_url": "https://www.youtube.com/embed/m4L_5qG4vG8",
-            "channel": "Algorithms Made Easy"
+            "embedded_url": "https://www.youtube.com/embed/m4L_5qG4vG8"
         },
         {
             "title": "Substring with Concatenation of All Words",
             "id": 30,
             "frontend_id": 30,
-            "embedded_url": "https://www.youtube.com/embed/Bbu4Qjzf7A0",
-            "channel": "Coding Simplified"
+            "embedded_url": "https://www.youtube.com/embed/Bbu4Qjzf7A0"
         },
         {
             "title": "Next Permutation",
             "id": 31,
             "frontend_id": 31,
-            "embedded_url": "https://www.youtube.com/embed/quAS1iydq7U",
-            "channel": "Back To Back SWE"
+            "embedded_url": "https://www.youtube.com/embed/quAS1iydq7U"
         },
         {
             "title": "Longest Valid Parentheses",
             "id": 32,
             "frontend_id": 32,
-            "embedded_url": "https://www.youtube.com/embed/q56S5NIqjdE",
-            "channel": "Timothy H Chang"
+            "embedded_url": "https://www.youtube.com/embed/q56S5NIqjdE"
         },
         {
             "title": "Search in Rotated Sorted Array",
             "id": 33,
             "frontend_id": 33,
-            "embedded_url": "https://www.youtube.com/embed/U8XENwh8Oy8",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/U8XENwh8Oy8"
         },
         {
             "title": "Find First and Last Position of Element in Sorted Array",
             "id": 34,
             "frontend_id": 34,
-            "embedded_url": "https://www.youtube.com/embed/4sQL7R5ySUU",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/4sQL7R5ySUU"
         },
         {
             "title": "Search Insert Position",
             "id": 35,
             "frontend_id": 35,
-            "embedded_url": "https://www.youtube.com/embed/K-RYzDZkzCI",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/K-RYzDZkzCI"
         },
         {
             "title": "Valid Sudoku",
             "id": 36,
             "frontend_id": 36,
-            "embedded_url": "https://www.youtube.com/embed/TjFXEUCMqI8",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/TjFXEUCMqI8"
         },
         {
             "title": "Sudoku Solver",
             "id": 37,
             "frontend_id": 37,
-            "embedded_url": "https://www.youtube.com/embed/G_UYXzGuqvM",
-            "channel": "Computerphile"
+            "embedded_url": "https://www.youtube.com/embed/G_UYXzGuqvM"
         },
         {
             "title": "Count and Say",
             "id": 38,
             "frontend_id": 38,
-            "embedded_url": "https://www.youtube.com/embed/-wB1xj-kOe0",
-            "channel": "Amell Peralta"
+            "embedded_url": "https://www.youtube.com/embed/-wB1xj-kOe0"
         },
         {
             "title": "Combination Sum",
             "id": 39,
             "frontend_id": 39,
-            "embedded_url": "https://www.youtube.com/embed/GBKI9VSKdGg",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/GBKI9VSKdGg"
         },
         {
             "title": "Combination Sum II",
             "id": 40,
             "frontend_id": 40,
-            "embedded_url": "https://www.youtube.com/embed/rSA3t6BDDwg",
-            "channel": "NeetCode"
+            "embedded_url": "https://www.youtube.com/embed/rSA3t6BDDwg"
         },
         {
             "title": "First Missing Positive",
@@ -320,7 +280,7 @@
             "id": 46,
             "frontend_id": 46,
             "embedded_url": "https://www.youtube.com/embed/DROZVHObeko",
-            "channel": "Khan Academy"
+            "channel": "Mario's Math Tutoring"
         },
         {
             "title": "Permutations II",
@@ -418,7 +378,7 @@
             "id": 60,
             "frontend_id": 60,
             "embedded_url": "https://www.youtube.com/embed/W9SIlE2jhBQ",
-            "channel": "TECH DOSE"
+            "channel": "Huifeng Guan"
         },
         {
             "title": "Rotate List",

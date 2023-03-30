@@ -1,1 +1,3 @@
-Collection of python scripts to generate all Leetcode problems with corresponding embedded youtube video url as a json file.
+Collection of python scripts to generate a JSON of all leetcode problems with embedded youtube solutions. 
+
+Bunch of scripts to create my JSON (leetcode_problems.json).

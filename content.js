@@ -13,7 +13,7 @@ function injectVideo(title) {
                     iframe.width = "100%";
                     iframe.height = "100%";
                     iframe.allow =
-                        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+                        "encrypted-media; picture-in-picture";
                     iframe.allowFullscreen = true;
                     solutionsTab.parentElement.insertBefore(iframe, solutionsTab);
                 } else {

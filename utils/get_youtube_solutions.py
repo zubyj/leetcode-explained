@@ -3,7 +3,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 # Enter your API key here
-DEVELOPER_KEY = "AIzaSyDYAAAT350LFmkXQRPh0swZTjBjt7Lye_k"
+DEVELOPER_KEY = "AIzaSyDUq5MsU-i0xG4y7K4bSrLUazK2rO_D6fg"
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
@@ -29,7 +29,12 @@ for question in data["questions"][last_index + 1 : last_index + 21]:
     )
     search_response = (
         youtube.search()
-        .list(q=question["title"], type="video", part="id,snippet", maxResults=5)
+        .list(
+            q=f"{question['frontend_id']} {question['title']} leetcode",
+            type="video",
+            part="id,snippet",
+            maxResults=5,
+        )
         .execute()
     )
 

@@ -423,702 +423,982 @@
         {
             "title": "Rotate List",
             "id": 61,
-            "frontend_id": 61
+            "frontend_id": 61,
+            "embedded_url": "https://www.youtube.com/embed/UcGtPs2LE_c",
+            "channel": "NeetCode"
         },
         {
             "title": "Unique Paths",
             "id": 62,
-            "frontend_id": 62
+            "frontend_id": 62,
+            "embedded_url": "https://www.youtube.com/embed/IlEsdxuD4lY",
+            "channel": "NeetCode"
         },
         {
             "title": "Unique Paths II",
             "id": 63,
-            "frontend_id": 63
+            "frontend_id": 63,
+            "embedded_url": "https://www.youtube.com/embed/z6kelCB0ww4",
+            "channel": "Algorithms Made Easy"
         },
         {
             "title": "Minimum Path Sum",
             "id": 64,
-            "frontend_id": 64
+            "frontend_id": 64,
+            "embedded_url": "https://www.youtube.com/embed/pGMsrvt0fpk",
+            "channel": "NeetCode"
         },
         {
             "title": "Valid Number",
             "id": 65,
-            "frontend_id": 65
+            "frontend_id": 65,
+            "embedded_url": "https://www.youtube.com/embed/0qac3ngAZmE",
+            "channel": "SBS TECH"
         },
         {
             "title": "Plus One",
             "id": 66,
-            "frontend_id": 66
+            "frontend_id": 66,
+            "embedded_url": "https://www.youtube.com/embed/RZSeK851vZY",
+            "channel": "Johnny Mac"
         },
         {
             "title": "Add Binary",
             "id": 67,
-            "frontend_id": 67
+            "frontend_id": 67,
+            "embedded_url": "https://www.youtube.com/embed/keuWJ47xG8g",
+            "channel": "NeetCode"
         },
         {
             "title": "Text Justification",
             "id": 68,
-            "frontend_id": 68
+            "frontend_id": 68,
+            "embedded_url": "https://www.youtube.com/embed/GqXlEbFVTXY",
+            "channel": "Huifeng Guan"
         },
         {
             "title": "Sqrt(x)",
             "id": 69,
-            "frontend_id": 69
+            "frontend_id": 69,
+            "embedded_url": "https://www.youtube.com/embed/3MyA0dj-_2c",
+            "channel": "Fraz"
         },
         {
             "title": "Climbing Stairs",
             "id": 70,
-            "frontend_id": 70
+            "frontend_id": 70,
+            "embedded_url": "https://www.youtube.com/embed/Y0lT9Fck7qI",
+            "channel": "NeetCode"
         },
         {
             "title": "Simplify Path",
             "id": 71,
-            "frontend_id": 71
+            "frontend_id": 71,
+            "embedded_url": "https://www.youtube.com/embed/qYlHrAKJfyA",
+            "channel": "NeetCode"
         },
         {
             "title": "Edit Distance",
             "id": 72,
-            "frontend_id": 72
+            "frontend_id": 72,
+            "embedded_url": "https://www.youtube.com/embed/XYi2-LPrwm4",
+            "channel": "NeetCode"
         },
         {
             "title": "Set Matrix Zeroes",
             "id": 73,
-            "frontend_id": 73
+            "frontend_id": 73,
+            "embedded_url": "https://www.youtube.com/embed/T41rL0L3Pnw",
+            "channel": "NeetCode"
         },
         {
             "title": "Search a 2D Matrix",
             "id": 74,
-            "frontend_id": 74
+            "frontend_id": 74,
+            "embedded_url": "https://www.youtube.com/embed/Ber2pi2C0j0",
+            "channel": "NeetCode"
         },
         {
             "title": "Sort Colors",
             "id": 75,
-            "frontend_id": 75
+            "frontend_id": 75,
+            "embedded_url": "https://www.youtube.com/embed/4xbWSRZHqac",
+            "channel": "NeetCode"
         },
         {
             "title": "Minimum Window Substring",
             "id": 76,
-            "frontend_id": 76
+            "frontend_id": 76,
+            "embedded_url": "https://www.youtube.com/embed/jSto0O4AJbM",
+            "channel": "NeetCode"
         },
         {
             "title": "Combinations",
             "id": 77,
-            "frontend_id": 77
+            "frontend_id": 77,
+            "embedded_url": "https://www.youtube.com/embed/iKy-d5_erhI",
+            "channel": "Khan Academy"
         },
         {
             "title": "Subsets",
             "id": 78,
-            "frontend_id": 78
+            "frontend_id": 78,
+            "embedded_url": "https://www.youtube.com/embed/REOH22Xwdkk",
+            "channel": "NeetCode"
         },
         {
             "title": "Word Search",
             "id": 79,
-            "frontend_id": 79
+            "frontend_id": 79,
+            "embedded_url": "https://www.youtube.com/embed/pfiQ_PS1g8E",
+            "channel": "NeetCode"
         },
         {
             "title": "Remove Duplicates from Sorted Array II",
             "id": 80,
-            "frontend_id": 80
+            "frontend_id": 80,
+            "embedded_url": "https://www.youtube.com/embed/DEJAZBq0FDA",
+            "channel": "NeetCode"
         },
         {
             "title": "Search in Rotated Sorted Array II",
             "id": 81,
-            "frontend_id": 81
+            "frontend_id": 81,
+            "embedded_url": "https://www.youtube.com/embed/tzTi0itKCb8",
+            "channel": "Happy Coding"
         },
         {
             "title": "Remove Duplicates from Sorted List II",
             "id": 82,
-            "frontend_id": 82
+            "frontend_id": 82,
+            "embedded_url": "https://www.youtube.com/embed/R6-PnHODewY",
+            "channel": "Knowledge Center"
         },
         {
             "title": "Remove Duplicates from Sorted List",
             "id": 83,
-            "frontend_id": 83
+            "frontend_id": 83,
+            "embedded_url": "https://www.youtube.com/embed/p10f-VpO4nE",
+            "channel": "NeetCode"
         },
         {
             "title": "Largest Rectangle in Histogram",
             "id": 84,
-            "frontend_id": 84
+            "frontend_id": 84,
+            "embedded_url": "https://www.youtube.com/embed/zx5Sw9130L0",
+            "channel": "NeetCode"
         },
         {
             "title": "Maximal Rectangle",
             "id": 85,
-            "frontend_id": 85
+            "frontend_id": 85,
+            "embedded_url": "https://www.youtube.com/embed/zx5Sw9130L0",
+            "channel": "NeetCode"
         },
         {
             "title": "Partition List",
             "id": 86,
-            "frontend_id": 86
+            "frontend_id": 86,
+            "embedded_url": "https://www.youtube.com/embed/KT1iUciJr4g",
+            "channel": "NeetCode"
         },
         {
             "title": "Scramble String",
             "id": 87,
-            "frontend_id": 87
+            "frontend_id": 87,
+            "embedded_url": "https://www.youtube.com/embed/MDmZm_aVDF8",
+            "channel": "Pepcoding"
         },
         {
             "title": "Merge Sorted Array",
             "id": 88,
-            "frontend_id": 88
+            "frontend_id": 88,
+            "embedded_url": "https://www.youtube.com/embed/P1Ic85RarKY",
+            "channel": "NeetCode"
         },
         {
             "title": "Gray Code",
             "id": 89,
-            "frontend_id": 89
+            "frontend_id": 89,
+            "embedded_url": "https://www.youtube.com/embed/0dPN4gh0CKI",
+            "channel": "FullStack Community"
         },
         {
             "title": "Subsets II",
             "id": 90,
-            "frontend_id": 90
+            "frontend_id": 90,
+            "embedded_url": "https://www.youtube.com/embed/Vn2v6ajA7U0",
+            "channel": "NeetCode"
         },
         {
             "title": "Decode Ways",
             "id": 91,
-            "frontend_id": 91
+            "frontend_id": 91,
+            "embedded_url": "https://www.youtube.com/embed/6aEyTjOwlJU",
+            "channel": "NeetCode"
         },
         {
             "title": "Reverse Linked List II",
             "id": 92,
-            "frontend_id": 92
+            "frontend_id": 92,
+            "embedded_url": "https://www.youtube.com/embed/RF_M9tX4Eag",
+            "channel": "NeetCode"
         },
         {
             "title": "Restore IP Addresses",
             "id": 93,
-            "frontend_id": 93
+            "frontend_id": 93,
+            "embedded_url": "https://www.youtube.com/embed/61tN4YEdiTM",
+            "channel": "NeetCode"
         },
         {
             "title": "Binary Tree Inorder Traversal",
             "id": 94,
-            "frontend_id": 94
+            "frontend_id": 94,
+            "embedded_url": "https://www.youtube.com/embed/g_S5WuasWUE",
+            "channel": "NeetCode"
         },
         {
             "title": "Unique Binary Search Trees II",
             "id": 95,
-            "frontend_id": 95
+            "frontend_id": 95,
+            "embedded_url": "https://www.youtube.com/embed/Ox0TenN3Zpg",
+            "channel": "NeetCode"
         },
         {
             "title": "Unique Binary Search Trees",
             "id": 96,
-            "frontend_id": 96
+            "frontend_id": 96,
+            "embedded_url": "https://www.youtube.com/embed/Ox0TenN3Zpg",
+            "channel": "NeetCode"
         },
         {
             "title": "Interleaving String",
             "id": 97,
-            "frontend_id": 97
+            "frontend_id": 97,
+            "embedded_url": "https://www.youtube.com/embed/3Rw3p9LrgvE",
+            "channel": "NeetCode"
         },
         {
             "title": "Validate Binary Search Tree",
             "id": 98,
-            "frontend_id": 98
+            "frontend_id": 98,
+            "embedded_url": "https://www.youtube.com/embed/s6ATEkipzow",
+            "channel": "NeetCode"
         },
         {
             "title": "Recover Binary Search Tree",
             "id": 99,
-            "frontend_id": 99
+            "frontend_id": 99,
+            "embedded_url": "https://www.youtube.com/embed/bJBwOMPhe6Y",
+            "channel": "Pepcoding"
         },
         {
             "title": "Same Tree",
             "id": 100,
-            "frontend_id": 100
+            "frontend_id": 100,
+            "embedded_url": "https://www.youtube.com/embed/vRbbcKXCxOw",
+            "channel": "NeetCode"
         },
         {
             "title": "Symmetric Tree",
             "id": 101,
-            "frontend_id": 101
+            "frontend_id": 101,
+            "embedded_url": "https://www.youtube.com/embed/-5E5Jt_HKLc",
+            "channel": "take U forward"
         },
         {
             "title": "Binary Tree Level Order Traversal",
             "id": 102,
-            "frontend_id": 102
+            "frontend_id": 102,
+            "embedded_url": "https://www.youtube.com/embed/6ZnyEApgFYg",
+            "channel": "NeetCode"
         },
         {
             "title": "Binary Tree Zigzag Level Order Traversal",
             "id": 103,
-            "frontend_id": 103
+            "frontend_id": 103,
+            "embedded_url": "https://www.youtube.com/embed/igbboQbiwqw",
+            "channel": "Knowledge Center"
         },
         {
             "title": "Maximum Depth of Binary Tree",
             "id": 104,
-            "frontend_id": 104
+            "frontend_id": 104,
+            "embedded_url": "https://www.youtube.com/embed/hTM3phVI6YQ",
+            "channel": "NeetCode"
         },
         {
             "title": "Construct Binary Tree from Preorder and Inorder Traversal",
             "id": 105,
-            "frontend_id": 105
+            "frontend_id": 105,
+            "embedded_url": "https://www.youtube.com/embed/ihj4IQGZ2zc",
+            "channel": "NeetCode"
         },
         {
             "title": "Construct Binary Tree from Inorder and Postorder Traversal",
             "id": 106,
-            "frontend_id": 106
+            "frontend_id": 106,
+            "embedded_url": "https://www.youtube.com/embed/ihj4IQGZ2zc",
+            "channel": "NeetCode"
         },
         {
             "title": "Binary Tree Level Order Traversal II",
             "id": 107,
-            "frontend_id": 107
+            "frontend_id": 107,
+            "embedded_url": "https://www.youtube.com/embed/FSWqYp3k1O4",
+            "channel": "Programming Tutorials"
         },
         {
             "title": "Convert Sorted Array to Binary Search Tree",
             "id": 108,
-            "frontend_id": 108
+            "frontend_id": 108,
+            "embedded_url": "https://www.youtube.com/embed/0K0uCMYq5ng",
+            "channel": "NeetCode"
         },
         {
             "title": "Convert Sorted List to Binary Search Tree",
             "id": 109,
-            "frontend_id": 109
+            "frontend_id": 109,
+            "embedded_url": "https://www.youtube.com/embed/0K0uCMYq5ng",
+            "channel": "NeetCode"
         },
         {
             "title": "Balanced Binary Tree",
             "id": 110,
-            "frontend_id": 110
+            "frontend_id": 110,
+            "embedded_url": "https://www.youtube.com/embed/QfJsau0ItOY",
+            "channel": "NeetCode"
         },
         {
             "title": "Minimum Depth of Binary Tree",
             "id": 111,
-            "frontend_id": 111
+            "frontend_id": 111,
+            "embedded_url": "https://www.youtube.com/embed/hmWhJyz5kqc",
+            "channel": "Persistent Programmer"
         },
         {
             "title": "Path Sum",
             "id": 112,
-            "frontend_id": 112
+            "frontend_id": 112,
+            "embedded_url": "https://www.youtube.com/embed/LSKQyOz_P8I",
+            "channel": "NeetCode"
         },
         {
             "title": "Path Sum II",
             "id": 113,
-            "frontend_id": 113
+            "frontend_id": 113,
+            "embedded_url": "https://www.youtube.com/embed/mS-CFA_k1yM",
+            "channel": "Hua Hua"
         },
         {
             "title": "Flatten Binary Tree to Linked List",
             "id": 114,
-            "frontend_id": 114
+            "frontend_id": 114,
+            "embedded_url": "https://www.youtube.com/embed/rKnD7rLT0lI",
+            "channel": "NeetCode"
         },
         {
             "title": "Distinct Subsequences",
             "id": 115,
-            "frontend_id": 115
+            "frontend_id": 115,
+            "embedded_url": "https://www.youtube.com/embed/-RDzMJ33nx8",
+            "channel": "NeetCode"
         },
         {
             "title": "Populating Next Right Pointers in Each Node",
             "id": 116,
-            "frontend_id": 116
+            "frontend_id": 116,
+            "embedded_url": "https://www.youtube.com/embed/U4hFQCa1Cq0",
+            "channel": "NeetCode"
         },
         {
             "title": "Populating Next Right Pointers in Each Node II",
             "id": 117,
-            "frontend_id": 117
+            "frontend_id": 117,
+            "embedded_url": "https://www.youtube.com/embed/U4hFQCa1Cq0",
+            "channel": "NeetCode"
         },
         {
             "title": "Pascal's Triangle",
             "id": 118,
-            "frontend_id": 118
+            "frontend_id": 118,
+            "embedded_url": "https://www.youtube.com/embed/XMriWTvPXHI",
+            "channel": "Khan Academy"
         },
         {
             "title": "Pascal's Triangle II",
             "id": 119,
-            "frontend_id": 119
+            "frontend_id": 119,
+            "embedded_url": "https://www.youtube.com/embed/nPVEaB3AjUM",
+            "channel": "NeetCode"
         },
         {
             "title": "Triangle",
             "id": 120,
-            "frontend_id": 120
+            "frontend_id": 120,
+            "embedded_url": "https://www.youtube.com/embed/VJ4pysRpnew",
+            "channel": "Netflix Jr."
         },
         {
             "title": "Best Time to Buy and Sell Stock",
             "id": 121,
-            "frontend_id": 121
+            "frontend_id": 121,
+            "embedded_url": "https://www.youtube.com/embed/1pkOgXD63yU",
+            "channel": "NeetCode"
         },
         {
             "title": "Best Time to Buy and Sell Stock II",
             "id": 122,
-            "frontend_id": 122
+            "frontend_id": 122,
+            "embedded_url": "https://www.youtube.com/embed/3SJ3pUkPQMc",
+            "channel": "NeetCode"
         },
         {
             "title": "Best Time to Buy and Sell Stock III",
             "id": 123,
-            "frontend_id": 123
+            "frontend_id": 123,
+            "embedded_url": "https://www.youtube.com/embed/37s1_xBiqH0",
+            "channel": "Knowledge Center"
         },
         {
             "title": "Binary Tree Maximum Path Sum",
             "id": 124,
-            "frontend_id": 124
+            "frontend_id": 124,
+            "embedded_url": "https://www.youtube.com/embed/Hr5cWUld4vU",
+            "channel": "NeetCode"
         },
         {
             "title": "Valid Palindrome",
             "id": 125,
-            "frontend_id": 125
+            "frontend_id": 125,
+            "embedded_url": "https://www.youtube.com/embed/jJXJ16kPFWg",
+            "channel": "NeetCode"
         },
         {
             "title": "Word Ladder II",
             "id": 126,
-            "frontend_id": 126
+            "frontend_id": 126,
+            "embedded_url": "https://www.youtube.com/embed/mIZJIuMpI2M",
+            "channel": "basketwangCoding"
         },
         {
             "title": "Word Ladder",
             "id": 127,
-            "frontend_id": 127
+            "frontend_id": 127,
+            "embedded_url": "https://www.youtube.com/embed/h9iTnkgv05E",
+            "channel": "NeetCode"
         },
         {
             "title": "Longest Consecutive Sequence",
             "id": 128,
-            "frontend_id": 128
+            "frontend_id": 128,
+            "embedded_url": "https://www.youtube.com/embed/P6RZZMu_maU",
+            "channel": "NeetCode"
         },
         {
             "title": "Sum Root to Leaf Numbers",
             "id": 129,
-            "frontend_id": 129
+            "frontend_id": 129,
+            "embedded_url": "https://www.youtube.com/embed/Jk16lZGFWxE",
+            "channel": "NeetCode"
         },
         {
             "title": "Surrounded Regions",
             "id": 130,
-            "frontend_id": 130
+            "frontend_id": 130,
+            "embedded_url": "https://www.youtube.com/embed/9z2BunfoZ5Y",
+            "channel": "NeetCode"
         },
         {
             "title": "Palindrome Partitioning",
             "id": 131,
-            "frontend_id": 131
+            "frontend_id": 131,
+            "embedded_url": "https://www.youtube.com/embed/3jvWodd7ht0",
+            "channel": "NeetCode"
         },
         {
             "title": "Palindrome Partitioning II",
             "id": 132,
-            "frontend_id": 132
+            "frontend_id": 132,
+            "embedded_url": "https://www.youtube.com/embed/hYPhskgL4Us",
+            "channel": "Hua Hua"
         },
         {
             "title": "Clone Graph",
             "id": 133,
-            "frontend_id": 133
+            "frontend_id": 133,
+            "embedded_url": "https://www.youtube.com/embed/mQeF6bN8hMk",
+            "channel": "NeetCode"
         },
         {
             "title": "Gas Station",
             "id": 134,
-            "frontend_id": 134
+            "frontend_id": 134,
+            "embedded_url": "https://www.youtube.com/embed/lJwbPZGo05A",
+            "channel": "NeetCode"
         },
         {
             "title": "Candy",
             "id": 135,
-            "frontend_id": 135
+            "frontend_id": 135,
+            "embedded_url": "https://www.youtube.com/embed/Ya-LfQ0OBkU",
+            "channel": "Happy Coding"
         },
         {
             "title": "Single Number",
             "id": 136,
-            "frontend_id": 136
+            "frontend_id": 136,
+            "embedded_url": "https://www.youtube.com/embed/qMPX1AOa83k",
+            "channel": "NeetCode"
         },
         {
             "title": "Single Number II",
             "id": 137,
-            "frontend_id": 137
+            "frontend_id": 137,
+            "embedded_url": "https://www.youtube.com/embed/cOFAmaMBVps",
+            "channel": "Codebix"
         },
         {
             "title": "Copy List with Random Pointer",
             "id": 138,
-            "frontend_id": 138
+            "frontend_id": 138,
+            "embedded_url": "https://www.youtube.com/embed/5Y2EiZST97Y",
+            "channel": "NeetCode"
         },
         {
             "title": "Word Break",
             "id": 139,
-            "frontend_id": 139
+            "frontend_id": 139,
+            "embedded_url": "https://www.youtube.com/embed/Sx9NNgInc3A",
+            "channel": "NeetCode"
         },
         {
             "title": "Word Break II",
             "id": 140,
-            "frontend_id": 140
+            "frontend_id": 140,
+            "embedded_url": "https://www.youtube.com/embed/fNVs1J2KCyo",
+            "channel": "Timothy H Chang"
         },
         {
             "title": "Linked List Cycle",
             "id": 141,
-            "frontend_id": 141
+            "frontend_id": 141,
+            "embedded_url": "https://www.youtube.com/embed/gBTe7lFR3vc",
+            "channel": "NeetCode"
         },
         {
             "title": "Linked List Cycle II",
             "id": 142,
-            "frontend_id": 142
+            "frontend_id": 142,
+            "embedded_url": "https://www.youtube.com/embed/gBTe7lFR3vc",
+            "channel": "NeetCode"
         },
         {
             "title": "Reorder List",
             "id": 143,
-            "frontend_id": 143
+            "frontend_id": 143,
+            "embedded_url": "https://www.youtube.com/embed/S5bfdUTrKLM",
+            "channel": "NeetCode"
         },
         {
             "title": "Binary Tree Preorder Traversal",
             "id": 144,
-            "frontend_id": 144
+            "frontend_id": 144,
+            "embedded_url": "https://www.youtube.com/embed/vMHaqhiTn7Y",
+            "channel": "Confused Geek"
         },
         {
             "title": "Binary Tree Postorder Traversal",
             "id": 145,
-            "frontend_id": 145
+            "frontend_id": 145,
+            "embedded_url": "https://www.youtube.com/embed/PiqIXedWhoY",
+            "channel": "NeetCodeIO"
         },
         {
             "title": "LRU Cache",
             "id": 146,
-            "frontend_id": 146
+            "frontend_id": 146,
+            "embedded_url": "https://www.youtube.com/embed/7ABFKPK2hD4",
+            "channel": "NeetCode"
         },
         {
             "title": "Insertion Sort List",
             "id": 147,
-            "frontend_id": 147
+            "frontend_id": 147,
+            "embedded_url": "https://www.youtube.com/embed/Kk6mXAzqX3Y",
+            "channel": "NeetCode"
         },
         {
             "title": "Sort List",
             "id": 148,
-            "frontend_id": 148
+            "frontend_id": 148,
+            "embedded_url": "https://www.youtube.com/embed/TGveA1oFhrc",
+            "channel": "NeetCode"
         },
         {
             "title": "Max Points on a Line",
             "id": 149,
-            "frontend_id": 149
+            "frontend_id": 149,
+            "embedded_url": "https://www.youtube.com/embed/Y8_WxLKYQ6Q",
+            "channel": "Inside code"
         },
         {
             "title": "Evaluate Reverse Polish Notation",
             "id": 150,
-            "frontend_id": 150
+            "frontend_id": 150,
+            "embedded_url": "https://www.youtube.com/embed/iu0082c4HDE",
+            "channel": "NeetCode"
         },
         {
             "title": "Reverse Words in a String",
             "id": 151,
-            "frontend_id": 151
+            "frontend_id": 151,
+            "embedded_url": "https://www.youtube.com/embed/vhnRAaJybpA",
+            "channel": "Michelle\u5c0f\u68a6\u60f3\u5bb6"
         },
         {
             "title": "Maximum Product Subarray",
             "id": 152,
-            "frontend_id": 152
+            "frontend_id": 152,
+            "embedded_url": "https://www.youtube.com/embed/lXVy6YWFcRM",
+            "channel": "NeetCode"
         },
         {
             "title": "Find Minimum in Rotated Sorted Array",
             "id": 153,
-            "frontend_id": 153
+            "frontend_id": 153,
+            "embedded_url": "https://www.youtube.com/embed/nIVW4P8b1VA",
+            "channel": "NeetCode"
         },
         {
             "title": "Find Minimum in Rotated Sorted Array II",
             "id": 154,
-            "frontend_id": 154
+            "frontend_id": 154,
+            "embedded_url": "https://www.youtube.com/embed/K0PjrikGKK4",
+            "channel": "Coding Decoded"
         },
         {
             "title": "Min Stack",
             "id": 155,
-            "frontend_id": 155
+            "frontend_id": 155,
+            "embedded_url": "https://www.youtube.com/embed/qkLl7nAwDPo",
+            "channel": "NeetCode"
         },
         {
             "title": "Binary Tree Upside Down",
             "id": 156,
-            "frontend_id": 156
+            "frontend_id": 156,
+            "embedded_url": "https://www.youtube.com/embed/JjaJQi77984",
+            "channel": "M.C\u7c73\u5f00\u6717\u57fa\u7f57"
         },
         {
             "title": "Read N Characters Given Read4",
             "id": 157,
-            "frontend_id": 157
+            "frontend_id": 157,
+            "embedded_url": "https://www.youtube.com/embed/x7pg4cTHu4g",
+            "channel": "happygirlzt"
         },
         {
             "title": "Read N Characters Given read4 II - Call Multiple Times",
             "id": 158,
-            "frontend_id": 158
+            "frontend_id": 158,
+            "embedded_url": "https://www.youtube.com/embed/HcmRR2If2Hk",
+            "channel": "\u5bb0\u76f8\u5c0f\u7518\u7f57"
         },
         {
             "title": "Longest Substring with At Most Two Distinct Characters",
             "id": 159,
-            "frontend_id": 159
+            "frontend_id": 159,
+            "embedded_url": "https://www.youtube.com/embed/odSP7QrlJys",
+            "channel": "Pepcoding"
         },
         {
             "title": "Intersection of Two Linked Lists",
             "id": 160,
-            "frontend_id": 160
+            "frontend_id": 160,
+            "embedded_url": "https://www.youtube.com/embed/D0X0BONOQhI",
+            "channel": "NeetCode"
         },
         {
             "title": "One Edit Distance",
             "id": 161,
-            "frontend_id": 161
+            "frontend_id": 161,
+            "embedded_url": "https://www.youtube.com/embed/zMtfENVtPcw",
+            "channel": "\u6765Offer - LaiOffer"
         },
         {
             "title": "Find Peak Element",
             "id": 162,
-            "frontend_id": 162
+            "frontend_id": 162,
+            "embedded_url": "https://www.youtube.com/embed/CFgUQUL7j_c",
+            "channel": "NeetCodeIO"
         },
         {
             "title": "Missing Ranges",
             "id": 163,
-            "frontend_id": 163
+            "frontend_id": 163,
+            "embedded_url": "https://www.youtube.com/embed/EKJQJBFCoE4",
+            "channel": "coding interview questions"
         },
         {
             "title": "Maximum Gap",
             "id": 164,
-            "frontend_id": 164
+            "frontend_id": 164,
+            "embedded_url": "https://www.youtube.com/embed/VT-6zwGKYwA",
+            "channel": "Coding Decoded"
         },
         {
             "title": "Compare Version Numbers",
             "id": 165,
-            "frontend_id": 165
+            "frontend_id": 165,
+            "embedded_url": "https://www.youtube.com/embed/MTSetP6kcRI",
+            "channel": "Michelle\u5c0f\u68a6\u60f3\u5bb6"
         },
         {
             "title": "Fraction to Recurring Decimal",
             "id": 166,
-            "frontend_id": 166
+            "frontend_id": 166,
+            "embedded_url": "https://www.youtube.com/embed/a-62yK1S1O4",
+            "channel": "\u8d3e\u8003\u535a"
         },
         {
             "title": "Two Sum II - Input Array Is Sorted",
             "id": 167,
-            "frontend_id": 167
+            "frontend_id": 167,
+            "embedded_url": "https://www.youtube.com/embed/cQ1Oz4ckceM",
+            "channel": "NeetCode"
         },
         {
             "title": "Excel Sheet Column Title",
             "id": 168,
-            "frontend_id": 168
+            "frontend_id": 168,
+            "embedded_url": "https://www.youtube.com/embed/UcTKk2y_3s4",
+            "channel": "Knowledge Center"
         },
         {
             "title": "Majority Element",
             "id": 169,
-            "frontend_id": 169
+            "frontend_id": 169,
+            "embedded_url": "https://www.youtube.com/embed/7pnhv842keE",
+            "channel": "NeetCode"
         },
         {
             "title": "Two Sum III - Data structure design",
             "id": 170,
-            "frontend_id": 170
+            "frontend_id": 170,
+            "embedded_url": "https://www.youtube.com/embed/CErIN1zFUA0",
+            "channel": "BS Codes"
         },
         {
             "title": "Excel Sheet Column Number",
             "id": 171,
-            "frontend_id": 171
+            "frontend_id": 171,
+            "embedded_url": "https://www.youtube.com/embed/g-l4UpF62x0",
+            "channel": "code Explainer"
         },
         {
             "title": "Factorial Trailing Zeroes",
             "id": 172,
-            "frontend_id": 172
+            "frontend_id": 172,
+            "embedded_url": "https://www.youtube.com/embed/rrrbC6XdLBk",
+            "channel": "Coding Blocks"
         },
         {
             "title": "Binary Search Tree Iterator",
             "id": 173,
-            "frontend_id": 173
+            "frontend_id": 173,
+            "embedded_url": "https://www.youtube.com/embed/RXy5RzGF5wo",
+            "channel": "NeetCode"
         },
         {
             "title": "Dungeon Game",
             "id": 174,
-            "frontend_id": 174
+            "frontend_id": 174,
+            "embedded_url": "https://www.youtube.com/embed/4uUGxZXoR5o",
+            "channel": "Coding Beats"
         },
         {
             "title": "Combine Two Tables",
             "id": 175,
-            "frontend_id": 175
+            "frontend_id": 175,
+            "embedded_url": "https://www.youtube.com/embed/bA6JzGWL9Ao",
+            "channel": "Taniya Saini"
         },
         {
             "title": "Second Highest Salary",
             "id": 176,
-            "frontend_id": 176
+            "frontend_id": 176,
+            "embedded_url": "https://www.youtube.com/embed/mFdyfB7RdgA",
+            "channel": "Tech Timeout"
         },
         {
             "title": "Nth Highest Salary",
             "id": 177,
-            "frontend_id": 177
+            "frontend_id": 177,
+            "embedded_url": "https://www.youtube.com/embed/ms-99n1KbT0",
+            "channel": "Carter MacLennan"
         },
         {
             "title": "Rank Scores",
             "id": 178,
-            "frontend_id": 178
+            "frontend_id": 178,
+            "embedded_url": "https://www.youtube.com/embed/rnaohD9aU_Y",
+            "channel": "savvy coder"
         },
         {
             "title": "Largest Number",
             "id": 179,
-            "frontend_id": 179
+            "frontend_id": 179,
+            "embedded_url": "https://www.youtube.com/embed/WDx6Y4i4xJ8",
+            "channel": "NeetCode"
         },
         {
             "title": "Consecutive Numbers",
             "id": 180,
-            "frontend_id": 180
+            "frontend_id": 180,
+            "embedded_url": "https://www.youtube.com/embed/iNaLjT9ybYI",
+            "channel": "Michelle\u5c0f\u68a6\u60f3\u5bb6"
         },
         {
             "title": "Employees Earning More Than Their Managers",
             "id": 181,
-            "frontend_id": 181
+            "frontend_id": 181,
+            "embedded_url": "https://www.youtube.com/embed/8TabzYBUo-o",
+            "channel": "Everyday Data Science"
         },
         {
             "title": "Duplicate Emails",
             "id": 182,
-            "frontend_id": 182
+            "frontend_id": 182,
+            "embedded_url": "https://www.youtube.com/embed/mGzca_OceHc",
+            "channel": "Eric Programming"
         },
         {
             "title": "Customers Who Never Order",
             "id": 183,
-            "frontend_id": 183
+            "frontend_id": 183,
+            "embedded_url": "https://www.youtube.com/embed/IEEho6nrw44",
+            "channel": "Big Data Tutorials"
         },
         {
             "title": "Department Highest Salary",
             "id": 184,
-            "frontend_id": 184
+            "frontend_id": 184,
+            "embedded_url": "https://www.youtube.com/embed/oAboCsqLX2g",
+            "channel": "Trendytech Insights"
         },
         {
             "title": "Department Top Three Salaries",
             "id": 185,
-            "frontend_id": 185
+            "frontend_id": 185,
+            "embedded_url": "https://www.youtube.com/embed/OsMuAspJAkc",
+            "channel": "Ashutosh Kumar"
         },
         {
             "title": "Reverse Words in a String II",
             "id": 186,
-            "frontend_id": 186
+            "frontend_id": 186,
+            "embedded_url": "https://www.youtube.com/embed/voWDMaKc-Lo",
+            "channel": "Hello Aki"
         },
         {
             "title": "Repeated DNA Sequences",
             "id": 187,
-            "frontend_id": 187
+            "frontend_id": 187,
+            "embedded_url": "https://www.youtube.com/embed/FzTYfsmtOso",
+            "channel": "NeetCode"
         },
         {
             "title": "Best Time to Buy and Sell Stock IV",
             "id": 188,
-            "frontend_id": 188
+            "frontend_id": 188,
+            "embedded_url": "https://www.youtube.com/embed/6928FkPhGUA",
+            "channel": "Happy Coding"
         },
         {
             "title": "Rotate Array",
             "id": 189,
-            "frontend_id": 189
+            "frontend_id": 189,
+            "embedded_url": "https://www.youtube.com/embed/BHr381Guz3Y",
+            "channel": "NeetCode"
         },
         {
             "title": "Reverse Bits",
             "id": 190,
-            "frontend_id": 190
+            "frontend_id": 190,
+            "embedded_url": "https://www.youtube.com/embed/UcoN6UjAI64",
+            "channel": "NeetCode"
         },
         {
             "title": "Number of 1 Bits",
             "id": 191,
-            "frontend_id": 191
+            "frontend_id": 191,
+            "embedded_url": "https://www.youtube.com/embed/5Km3utixwZs",
+            "channel": "NeetCode"
         },
         {
             "title": "Word Frequency",
             "id": 192,
-            "frontend_id": 192
+            "frontend_id": 192,
+            "embedded_url": "https://www.youtube.com/embed/hsomLb6mUdI",
+            "channel": "NeetCode"
         },
         {
             "title": "Valid Phone Numbers",
             "id": 193,
-            "frontend_id": 193
+            "frontend_id": 193,
+            "embedded_url": "https://www.youtube.com/embed/TiE-sxAHOVQ",
+            "channel": "Timothy H Chang"
         },
         {
             "title": "Transpose File",
             "id": 194,
-            "frontend_id": 194
+            "frontend_id": 194,
+            "embedded_url": "https://www.youtube.com/embed/kc7fOWDCp1g",
+            "channel": "TheRandomCoder"
         },
         {
             "title": "Tenth Line",
             "id": 195,
-            "frontend_id": 195
+            "frontend_id": 195,
+            "embedded_url": "https://www.youtube.com/embed/iQUQlpzOev8",
+            "channel": "Sridhar Media"
         },
         {
             "title": "Delete Duplicate Emails",
             "id": 196,
-            "frontend_id": 196
+            "frontend_id": 196,
+            "embedded_url": "https://www.youtube.com/embed/V0-33jrJgwo",
+            "channel": "Michelle\u5c0f\u68a6\u60f3\u5bb6"
         },
         {
             "title": "Rising Temperature",
             "id": 197,
-            "frontend_id": 197
+            "frontend_id": 197,
+            "embedded_url": "https://www.youtube.com/embed/09wjf87VRs0",
+            "channel": "Big Data Tutorials"
         },
         {
             "title": "House Robber",
             "id": 198,
-            "frontend_id": 198
+            "frontend_id": 198,
+            "embedded_url": "https://www.youtube.com/embed/73r3KWiEvyk",
+            "channel": "NeetCode"
         },
         {
             "title": "Binary Tree Right Side View",
             "id": 199,
-            "frontend_id": 199
+            "frontend_id": 199,
+            "embedded_url": "https://www.youtube.com/embed/d4zLyf32e3I",
+            "channel": "NeetCode"
         },
         {
             "title": "Number of Islands",
             "id": 200,
-            "frontend_id": 200
+            "frontend_id": 200,
+            "embedded_url": "https://www.youtube.com/embed/pV2kpPD66nE",
+            "channel": "NeetCode"
         },
         {
             "title": "Bitwise AND of Numbers Range",

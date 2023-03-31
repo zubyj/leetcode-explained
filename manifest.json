@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "LeetTube",
-    "version": "1.0",
-    "description": "LeetTube is a Chrome extension that injects the youtube solution into the Leetcode 'Solutions' tab.",
+    "version": "0.1.0",
+    "description": "LeetTube is a tool that adds the YouTube solution to the Leetcode 'Solutions' tab, as a Chrome extension.",
     "icons": {
         "16": "images/icon-16.png",
         "32": "images/icon-32.png",

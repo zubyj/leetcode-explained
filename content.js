@@ -1,9 +1,4 @@
-// Inject the CSS file
-const link = document.createElement('link');
-link.href = chrome.runtime.getURL('styles.css');
-link.type = 'text/css';
-link.rel = 'stylesheet';
-document.head.appendChild(link);
+
 
 
 // Injects the embedded youtube solution into the solutions tab of the Leetcode problem
@@ -27,16 +22,27 @@ function injectVideo(title) {
 
         // Check if the problem has the embedded_url
         if (problem && problem.embedded_url) {
-            // Create an iframe element and set its attributes
-            const iframe = document.createElement('iframe');
-            iframe.src = problem.embedded_url;
-            iframe.allow = 'encrypted-media; picture-in-picture';
-            iframe.allowFullscreen = true;
+            // Create a container element and set its styles
+            const container = document.createElement('div');
+            container.classList.add('video-container');
+            container.style.position = 'relative';
+            container.style.paddingBottom = '56.25%'; // 16:9 aspect ratio
 
-            // Insert the iframe element before the solutions tab
-            solutionsTab.parentElement.insertBefore(iframe, solutionsTab);
-        } else {
-            console.log(`Unable to find problem with title ${title} in the JSON file`);
+            // Create an object element and set its attributes
+            const video = document.createElement('object');
+            video.classList.add('youtube-video');
+            video.type = 'text/html';
+            video.data = problem.embedded_url;
+            video.style.position = 'absolute';
+            video.style.width = '85%';
+            video.style.height = '100%';
+            video.style.marginLeft = '7.5%';
+
+            // Append the object element to the container element
+            container.appendChild(video);
+
+            // Insert the container element before the solutions tab
+            solutionsTab.parentElement.insertBefore(container, solutionsTab);
         }
     });
 }
@@ -44,7 +50,6 @@ function injectVideo(title) {
 // Listen for messages from the background script
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'injectVideo') {
-        console.log('Injected the video');
         const title = request.title.split('-')[0].trim();
         injectVideo(title);
     }

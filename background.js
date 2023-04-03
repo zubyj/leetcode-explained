@@ -7,9 +7,7 @@ chrome.runtime.onInstalled.addListener(() => {
         .then(data => {
             // Store the JSON data in a global variable or a storage API
             chrome.storage.local.set({ leetcodeProblems: data }, () => {
-                console.log('data stored');
             });
-            console.log(data);
         })
         .catch(error => {
             console.error(error);

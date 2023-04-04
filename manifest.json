@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "LeetTube",
+    "name": "Leetcode Explained",
     "version": "0.1.0",
-    "description": "Displays Neetcode video solutions on Leetcode.",
+    "description": "Displays video solutions on Leetcode. Also gets time complexity and space complexity of your code",
     "icons": {
         "16": "images/icon-16.png",
         "32": "images/icon-32.png",
@@ -15,10 +15,10 @@
                 "https://leetcode.com/problems/*"
             ],
             "js": [
-                "content.js"
+                "content-script/content.js"
             ],
             "css": [
-                "content.css"
+                "content-script/content.css"
             ]
         }
     ],
@@ -27,7 +27,7 @@
         "storage"
     ],
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "background/background.js"
     },
     "web_accessible_resources": [
         {

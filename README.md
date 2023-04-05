@@ -1,22 +1,48 @@
-# LeetTube Chrome Extension Documentation
+# LeetCode Explained
 
-## Description
-LeetTube is a Chrome extension that enhances the LeetCode learning experience by automatically injecting relevant YouTube video solutions directly into the LeetCode Solutions tab.
+LeetCode Explained is a Chrome extension that provides video explanations for LeetCode problems. This document provides a detailed explanation of the extension's components and how they interact with one another.
 
-## Overview
-LeetTube injects YouTube video solutions alongside code in the LeetCode Solutions tab, providing users with valuable resources without the need to search for them manually.
+## Table of Contents
 
-## Objective
-The objective of LeetTube is to improve the learning experience on LeetCode by providing users with relevant video solutions directly within the Solutions tab.
+1. [Installation](#installation)
+2. [Features](#features)
+3. [Structure](#structure)
+   - [Manifest](#manifest)
+   - [Background](#background)
+   - [Content Script](#content-script)
+   - [ChatGPT Integration](#chatgpt-integration)
+   - [Popup](#popup)
 
-## Functionality
-- LeetTube has the following functionalities:
-- Automatically injects YouTube video solutions into the LeetCode Solutions tab.
-- Retrieves video data from a local JSON file containing problem titles and their corresponding video URLs.
+## Installation
 
-Ensures a smooth and user-friendly interface that allows resizing the video and code sections.
-## Architecture
-- LeetTube's architecture is comprised of the following components:
-- Manifest: Defines the extension's metadata, content scripts, permissions, and web-accessible resources.
-- Background script: Listens for tab updates and sends a message to the content script to inject the video when the LeetCode Solutions tab is loaded.
-- Content script: Injects the YouTube video iframe into the Solutions tab, handles resizing functionality, and communicates with the background script.
+1. Download the extension folder
+2. Open Chrome, and navigate to `chrome://extensions`
+3. Enable "Developer mode" in the top right corner
+4. Click on "Load unpacked" and select the extension folder
+
+## Features
+
+- Injects video explanations for LeetCode problems
+- Integrates with ChatGPT for generating responses
+
+## Structure
+
+### Manifest
+
+`manifest.json` defines the extension's metadata, permissions, content scripts, and other settings.
+
+### Background
+
+`background/background.js` contains the main background script responsible for handling access tokens, login, and communication with content scripts.
+
+### Content Script
+
+`content-script/content_script.js` and `content-script/inject-solution-video.js` are content scripts that run in the context of a web page. They handle injecting video explanations into the LeetCode solution page.
+
+### ChatGPT Integration
+
+`chatgpt.js` provides functionality for interacting with the ChatGPT API.
+
+### Popup
+
+`popup.html` and `popup.js` define the extension's popup UI and interactions.

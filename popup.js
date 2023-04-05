@@ -12,8 +12,7 @@ async function main() {
             if (accessToken) {
                 const chatGPTProvider = new ChatGPTProvider(accessToken);
 
-                const analyzeCodeButton = document.createElement("button");
-                analyzeCodeButton.textContent = "Analyze Code";
+                const analyzeCodeButton = document.getElementById("analyze-button");
                 analyzeCodeButton.onclick = async () => {
                     const codeText = await getCodeFromActiveTab();
                     if (codeText) {
@@ -31,6 +30,7 @@ async function main() {
                         document.getElementById('time-complexity').textContent = 'Error: Unable to retrieve code';
                     }
                 };
+
 
                 document.body.appendChild(analyzeCodeButton);
             } else {

@@ -3,19 +3,20 @@
 
 <head>
     <title>Leetcode Explained</title>
+    <link rel="stylesheet" href="popup.css"> <!-- Add this line -->
     <script type="module" src="popup.js"></script>
 </head>
 
 <body>
-    <div id="login-section" style="display:none;">
+    <div id="login-section" class="hidden">
         <p>To analyze your solution complexity, please login at <a href="https://chat.openai.com" target="_blank"
                 rel="noopener">chat.openai.com</a></p>
     </div>
-    <div id="chat-section" style="display:none;">
-        <button id="generate-response">Generate Response</button>
+    <div id="chat-section" class="hidden">
+        <button id="analyze-button" class="material-button">Analyze Complexity</button> <!-- Update this line -->
         <div id="response-container"></div>
     </div>
-    <p id="time-complexity"></p> <!-- Add this line -->
+    <p id="time-complexity"></p>
 </body>
 
 </html>

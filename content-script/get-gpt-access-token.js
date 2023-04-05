@@ -47,8 +47,6 @@ function injectVideo(title) {
             video.type = 'text/html';
             video.data = problem.embedded_url;
             video.style.position = 'absolute';
-            video.style.width = '85%';
-            video.style.height = '100%';
             video.style.marginLeft = '7.5%';
 
             // Append the object element to the container element

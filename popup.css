@@ -1,0 +1,42 @@
+/* Set the dark theme for the extension */
+body {
+    background-color: #2c2c2c;
+    color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Apply light color to the text and links */
+p,
+a {
+    color: #f0f0f0;
+}
+
+a:hover {
+    color: #a0a0a0;
+}
+
+/* Material UI button style */
+.material-button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 10px 24px;
+    transition-duration: 0.4s;
+}
+
+.material-button:hover {
+    background-color: #45a049;
+    color: white;
+}
+
+/* Class for hidden elements */
+.hidden {
+    display: none;
+}

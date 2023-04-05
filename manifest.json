@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "Leetcode Explained",
-    "version": "1.0.0",
-    "description": "ChatGPT Chrome Extension",
+    "version": "0.2.0",
+    "description": "Helps you learn and understand leetcode solutions by providing video explanations and  complexity for each solution.",
     "icons": {
         "16": "images/icon-16.png",
         "32": "images/icon-32.png",
@@ -15,7 +15,8 @@
     "permissions": [
         "storage",
         "webRequest",
-        "tabs"
+        "tabs",
+        "activeTab"
     ],
     "host_permissions": [
         "https://*.openai.com/"
@@ -25,19 +26,27 @@
     },
     "content_scripts": [
         {
+            "js": [
+                "content-script/get-gpt-access-token.js"
+            ],
             "matches": [
                 "https://leetcode.com/problems/*"
-            ],
-            "js": [
-                "content-script/inject-solution-video.js"
             ]
         },
         {
             "js": [
-                "content-script/content_script.js"
+                "content-script/inject-solution-video.js"
             ],
             "matches": [
-                "<all_urls>"
+                "https://leetcode.com/problems/*/solutions/*"
+            ]
+        },
+        {
+            "js": [
+                "content-script/get-user-code.js"
+            ],
+            "matches": [
+                "https://leetcode.com/problems/*"
             ]
         }
     ],

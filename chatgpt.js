@@ -2,6 +2,7 @@ import ExpiryMap from './expiry-map.mjs';
 import { uuidv4 } from './uuid.js';
 import { fetchSSE } from './fetch-sse.js'
 
+// HTTP request to the OpenAI Chat API. 
 async function request(token, method, path, data) {
     return fetch(`https://chat.openai.com/backend-api${path}`, {
         method,
@@ -13,10 +14,12 @@ async function request(token, method, path, data) {
     });
 }
 
+// Send feedback about quality of resposnes to the OpenAI Chat API.
 export async function sendMessageFeedback(token, data) {
     await request(token, 'POST', '/conversation/message_feedback', data);
 }
 
+// Update conversation properties to the OpenAI Chat API.
 export async function setConversationProperty(token, conversationId, propertyObject) {
     await request(token, 'PATCH', `/conversation/${conversationId}`, propertyObject);
 }
@@ -25,6 +28,7 @@ const KEY_ACCESS_TOKEN = 'accessToken';
 
 const cache = new ExpiryMap(10 * 1000);
 
+// Gets an access token from the OpenAI Chat API and caches it using the ExpiryMap.
 export async function getChatGPTAccessToken() {
     if (cache.get(KEY_ACCESS_TOKEN)) {
         return cache.get(KEY_ACCESS_TOKEN);
@@ -41,6 +45,13 @@ export async function getChatGPTAccessToken() {
     return data.accessToken;
 }
 
+
+/*
+Mangages interactions with the OpenAI Chat API.
+1. Gets available models
+2. Generates answers to prompts
+3. Cleans up conversations when done.
+*/
 export class ChatGPTProvider {
     constructor(token) {
         this.token = token;

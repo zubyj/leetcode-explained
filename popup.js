@@ -11,25 +11,28 @@ async function main() {
         chrome.storage.local.get(["accessToken"], async ({ accessToken }) => {
             if (accessToken) {
                 const chatGPTProvider = new ChatGPTProvider(accessToken);
-                const prompt = "how are you";
 
-                const requestButton = document.createElement("button");
-                requestButton.textContent = "Request ChatGPT";
-                requestButton.onclick = async () => {
-                    const responseDiv = document.createElement("div");
-                    document.body.appendChild(responseDiv);
-
-                    chatGPTProvider.generateAnswer({
-                        prompt,
-                        onEvent: (event) => {
-                            if (event.type === "answer") {
-                                responseDiv.textContent = `Answer: ${event.data.text}`;
-                            }
-                        },
-                    });
+                const analyzeCodeButton = document.createElement("button");
+                analyzeCodeButton.textContent = "Analyze Code";
+                analyzeCodeButton.onclick = async () => {
+                    const codeText = await getCodeFromActiveTab();
+                    if (codeText) {
+                        console.log(codeText);
+                        chatGPTProvider.generateAnswer({
+                            prompt: `What is the time and space complexity of the following code in one short sentence each?  \n ${codeText}`,
+                            onEvent: (event) => {
+                                if (event.type === 'answer') {
+                                    document.getElementById('time-complexity').textContent = `${event.data.text}`;
+                                }
+                            },
+                        });
+                    }
+                    else {
+                        document.getElementById('time-complexity').textContent = 'Error: Unable to retrieve code';
+                    }
                 };
 
-                document.body.appendChild(requestButton);
+                document.body.appendChild(analyzeCodeButton);
             } else {
                 displayLoginMessage();
             }
@@ -55,6 +58,21 @@ function displayLoginMessage() {
 
     error.appendChild(loginButton);
     document.body.appendChild(error);
+}
+
+async function getCodeFromActiveTab() {
+    return new Promise((resolve) => {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(tabs[0].id, { type: 'getCode' }, (response) => {
+                if (chrome.runtime.lastError) {
+                    console.error(chrome.runtime.lastError);
+                    resolve(null);
+                } else {
+                    resolve(response.data);
+                }
+            });
+        });
+    });
 }
 
 main();

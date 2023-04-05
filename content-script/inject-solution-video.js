@@ -8,8 +8,8 @@ function injectVideo(title) {
     }
 
     // Check if the video has already been injected
-    const existingIframe = solutionsTab.parentElement.querySelector('iframe');
-    if (existingIframe) {
+    const existingVideo = solutionsTab.parentElement.querySelector('object');
+    if (existingVideo) {
         return;
     }
 

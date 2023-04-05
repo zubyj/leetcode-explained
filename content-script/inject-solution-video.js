@@ -8,8 +8,8 @@ function injectVideo(title) {
     }
 
     // Check if the video has already been injected
-    const existingVideo = solutionsTab.parentElement.querySelector('object');
-    if (existingVideo) {
+    const existingContainer = solutionsTab.parentElement.querySelector('div.video-container');
+    if (existingContainer) {
         return;
     }
 

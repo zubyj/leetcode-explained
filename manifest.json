@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Leetcode Explained",
     "version": "0.2.0",
-    "description": "Helps you learn and understand leetcode solutions by providing video explanations and  complexity for each solution.",
+    "description": "Helps you learn and understand leetcode solutions by providing video explanations and complexity for each solution.",
     "icons": {
         "16": "images/icon-16.png",
         "32": "images/icon-32.png",
@@ -39,7 +39,8 @@
             ],
             "matches": [
                 "https://leetcode.com/problems/*/solutions/*"
-            ]
+            ],
+            "run_at": "document_end"
         },
         {
             "js": [

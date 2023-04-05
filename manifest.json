@@ -1,13 +1,27 @@
 {
     "manifest_version": 3,
     "name": "Leetcode Explained",
-    "version": "0.1.0",
-    "description": "Displays video solutions on Leetcode. Also gets time complexity and space complexity of your code",
+    "version": "1.0.0",
+    "description": "ChatGPT Chrome Extension",
     "icons": {
         "16": "images/icon-16.png",
         "32": "images/icon-32.png",
         "48": "images/icon-48.png",
         "128": "images/icon-128.png"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "storage",
+        "webRequest",
+        "tabs"
+    ],
+    "host_permissions": [
+        "https://*.openai.com/"
+    ],
+    "background": {
+        "service_worker": "background/background.js"
     },
     "content_scripts": [
         {
@@ -15,28 +29,25 @@
                 "https://leetcode.com/problems/*"
             ],
             "js": [
-                "content-script/content.js"
+                "content-script/inject-solution-video.js"
+            ]
+        },
+        {
+            "js": [
+                "content-script/content_script.js"
             ],
-            "css": [
-                "content-script/content.css"
+            "matches": [
+                "<all_urls>"
             ]
         }
     ],
-    "permissions": [
-        "tabs",
-        "storage"
-    ],
-    "background": {
-        "service_worker": "background/background.js",
-        "type": "module"
-    },
     "web_accessible_resources": [
         {
             "resources": [
                 "data/leetcode_problems.json"
             ],
             "matches": [
-                "https://leetcode.com/*"
+                "<all_urls>"
             ],
             "use_dynamic_url": false
         }

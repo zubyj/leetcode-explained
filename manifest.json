@@ -38,7 +38,7 @@
                 "content-script/inject-solution-video.js"
             ],
             "matches": [
-                "https://leetcode.com/problems/*/solutions/*"
+                "https://leetcode.com/problems/*"
             ]
         },
         {

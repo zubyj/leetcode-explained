@@ -25,9 +25,9 @@ a:hover {
 
 /* Material UI button style */
 .material-button {
-    background-color: #4caf50;
+    background-color: lavender;
     border: none;
-    color: white;
+    color: black;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -37,6 +37,7 @@ a:hover {
     border-radius: 4px;
     padding: 10px 24px;
     transition-duration: 0.4s;
+    min-width: 200px;
 }
 
 .material-button:hover {

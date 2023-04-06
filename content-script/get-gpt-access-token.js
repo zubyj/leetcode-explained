@@ -57,11 +57,3 @@ function injectVideo(title) {
         }
     });
 }
-
-// Listen for messages from the background script
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.action === 'injectVideo') {
-        const title = request.title.split('-')[0].trim();
-        injectVideo(title);
-    }
-});

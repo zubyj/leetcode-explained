@@ -35,29 +35,6 @@ async function main() {
                         document.getElementById('time-complexity').textContent = 'Unable to retrieve code. Please navigate to a Leetcode problem page and try again.';
                     }
                 };
-
-                const fixCodeButton = document.getElementById("fix-code-button");
-                fixCodeButton.onclick = async () => {
-                    const codeText = await getCodeFromActiveTab();
-                    if (codeText) {
-                        chatGPTProvider.generateAnswer({
-                            prompt: `Fix the code for the leetcode problem. Only return the code.\n ${codeText}`,
-                            onEvent: (event) => {
-                                if (event.type === 'answer') {
-                                    document.getElementById('time-complexity').textContent = `${event.data.text}`;
-                                    // tell the content script to add text onto the view-lines div
-                                    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                                        chrome.tabs.sendMessage(tabs[0].id, { type: 'addText', data: event.data.text });
-                                    }
-                                    );
-                                }
-                            },
-                        });
-                    }
-                    else {
-                        document.getElementById('time-complexity').textContent = 'Unable to retrieve code. Please navigate to a Leetcode problem page and try again.';
-                    }
-                }
             } else {
                 displayLoginMessage();
             }

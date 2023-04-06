@@ -12,27 +12,35 @@ async function main() {
             if (accessToken) {
                 const chatGPTProvider = new ChatGPTProvider(accessToken);
 
+                document.getElementById('chat-section').classList.remove('hidden');
                 const analyzeCodeButton = document.getElementById("analyze-button");
                 analyzeCodeButton.onclick = async () => {
                     const codeText = await getCodeFromActiveTab();
                     if (codeText) {
-                        console.log(codeText);
                         chatGPTProvider.generateAnswer({
                             prompt: `Give me the time and space complexity of the following code in one short sentence.  \n ${codeText}`,
                             onEvent: (event) => {
                                 if (event.type === 'answer') {
                                     document.getElementById('time-complexity').textContent = `${event.data.text}`;
+                                    // tell the content script to add text onto the view-lines div
+                                    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                                        chrome.tabs.sendMessage(tabs[0].id, { type: 'addText', data: event.data.text });
+                                    }
+                                    );
                                 }
                             },
                         });
                     }
                     else {
-                        document.getElementById('time-complexity').textContent = 'Error: Unable to retrieve code. Please navigate to a Leetcode problem page and try again.';
+                        document.getElementById('time-complexity').textContent = 'Unable to retrieve code. Please navigate to a Leetcode problem page and try again.';
                     }
                 };
 
+                const fixCodeButton = document.getElementById("fix-code-button");
+                fixCodeButton.onclick = async () => {
+                    console.log('fix code button clicked');
+                }
 
-                document.body.appendChild(analyzeCodeButton);
             } else {
                 displayLoginMessage();
             }

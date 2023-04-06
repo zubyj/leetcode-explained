@@ -18,7 +18,7 @@ async function main() {
                     if (codeText) {
                         console.log(codeText);
                         chatGPTProvider.generateAnswer({
-                            prompt: `What is the time and space complexity of the following code in one short sentence each?  \n ${codeText}`,
+                            prompt: `Give me the time and space complexity of the following code in one short sentence.  \n ${codeText}`,
                             onEvent: (event) => {
                                 if (event.type === 'answer') {
                                     document.getElementById('time-complexity').textContent = `${event.data.text}`;
@@ -27,7 +27,7 @@ async function main() {
                         });
                     }
                     else {
-                        document.getElementById('time-complexity').textContent = 'Error: Unable to retrieve code';
+                        document.getElementById('time-complexity').textContent = 'Error: Unable to retrieve code. Please navigate to a Leetcode problem page and try again.';
                     }
                 };
 

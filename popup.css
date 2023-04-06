@@ -3,12 +3,20 @@ body {
     background-color: #2c2c2c;
     color: #f0f0f0;
     font-family: 'Arial', sans-serif;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid grey;
+    border-radius: 15px;
+    padding: 50px;
+    flex-direction: column;
 }
 
 /* Apply light color to the text and links */
 p,
 a {
     color: #f0f0f0;
+    font-size: 14px;
 }
 
 a:hover {

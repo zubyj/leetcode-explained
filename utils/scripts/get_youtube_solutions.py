@@ -41,7 +41,7 @@ for question in data["questions"][last_index + 1 : last_index + 21]:
     # Find the first video with a channel name of "Neetcode"
     video_id = None
     for search_result in search_response.get("items", []):
-        if search_result["snippet"]["channelTitle"] == "NeetCode":
+        if search_result["snippet"]["channelTitle"] == "NeetCodeIO":
             video_id = search_result["id"]["videoId"]
             break
 

@@ -22,8 +22,8 @@ def find_frontend_id_in_title(frontend_id, titles):
 
 
 def main():
-    video_titles_file = "video_titles.json"
-    leetcode_problems_file = "leetcode_problems.json"
+    video_titles_file = "video_titles_neetcodeio.json"
+    leetcode_problems_file = "leetcode_solutions.json"
     output_file = "output.json"
 
     video_titles = load_json_from_file(video_titles_file)
@@ -33,7 +33,7 @@ def main():
         frontend_id = question["frontend_id"]
         if find_frontend_id_in_title(frontend_id, video_titles):
             question["embedded_url"] = question.get("embedded_url")
-            question["channel"] = question.get("channel", "NeetCode")
+            question["channel"] = question.get("channel", "NeetCodeIO")
         else:
             question.pop("embedded_url", None)
             question.pop("channel", None)

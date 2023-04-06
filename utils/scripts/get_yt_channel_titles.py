@@ -49,8 +49,8 @@ def save_titles_to_json(file_name, titles):
 
 
 def main():
-    neetcode_channel_id = "UC_mYaQAE6-71rjSN6CeCA-g"
-    json_file_name = "video_titles.json"
+    neetcode_channel_id = "UCevUmOfLTUX9MNGJQKsPdIA"
+    json_file_name = "video_titles_neetcodeio.json"
     existing_titles = load_existing_titles(json_file_name)
     new_titles = get_channel_videos(neetcode_channel_id, existing_titles)
     all_titles = existing_titles + new_titles

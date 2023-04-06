@@ -39,10 +39,9 @@ chrome.runtime.onInstalled.addListener(() => {
         });
 });
 
-// if the url is a leetcode solution page and the page is loaded, tell the content script to inject the video
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    if (changeInfo.status === 'complete' && /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/.*/.test(tab.url)) {
-        console.log('INJECTING VIDEO');
+    const urlPattern = /^https:\/\/leetcode\.com\/problems\/[^/]+\/solutions\/[^/]+/;
+    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
         setTimeout(() => {
             chrome.tabs.get(tabId, (updatedTab) => {
                 chrome.tabs.sendMessage(tabId, { action: 'injectVideo', title: updatedTab.title || 'title' });

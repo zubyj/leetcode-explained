@@ -39,8 +39,7 @@
             ],
             "matches": [
                 "https://leetcode.com/problems/*/solutions/*"
-            ],
-            "run_at": "document_end"
+            ]
         },
         {
             "js": [
@@ -48,8 +47,7 @@
             ],
             "matches": [
                 "https://leetcode.com/problems/*"
-            ],
-            "run_at": "document_end"
+            ]
         }
     ],
     "web_accessible_resources": [

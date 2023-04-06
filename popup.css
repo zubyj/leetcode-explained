@@ -6,9 +6,8 @@ body {
     min-width: 200px;
     display: flex;
     justify-content: center;
-    border: 1px solid grey;
     border-radius: 15px;
-    padding: 50px;
+    padding: 25px;
     flex-direction: column;
 }
 

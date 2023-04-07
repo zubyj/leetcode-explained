@@ -1,6 +1,6 @@
 import ExpiryMap from './expiry-map.mjs';
 import { uuidv4 } from './uuid.js';
-import { fetchSSE } from './fetch-sse.js'
+import { fetchSSE } from '../../fetch-sse.js'
 
 // HTTP request to the OpenAI Chat API. 
 async function request(token, method, path, data) {

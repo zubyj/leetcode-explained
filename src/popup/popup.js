@@ -1,7 +1,7 @@
 import {
     getChatGPTAccessToken,
     ChatGPTProvider,
-} from "../../chatgpt.js";
+} from "../chatgpt/chatgpt.js";
 
 async function main() {
     []

@@ -19,7 +19,7 @@ async function main() {
                     const codeText = await getCodeFromActiveTab();
                     if (codeText) {
                         chatGPTProvider.generateAnswer({
-                            prompt: `Give me the time and space complexity of the following code in one short sentence.  \n ${codeText}`,
+                            prompt: `Give me the time and space complexity of the following code, if it exists, in one short sentence.  \n ${codeText}`,
                             onEvent: (event) => {
                                 if (event.type === 'answer') {
                                     document.getElementById('time-complexity').textContent = `${event.data.text}`;

@@ -1,6 +1,6 @@
-import { createParser } from './node_modules/eventsource-parser/dist/index.js';
-import { isEmpty } from './node_modules/lodash-es/lodash.js';
-import { streamAsyncIterable } from './src/chatgpt/stream-async-iterable.js';
+import { createParser } from '../../node_modules/eventsource-parser/dist/index.js';
+import { isEmpty } from '../../node_modules/lodash-es/lodash.js';
+import { streamAsyncIterable } from './stream-async-iterable.js';
 
 export async function fetchSSE(resource, options) {
     const { onMessage, ...fetchOptions } = options;

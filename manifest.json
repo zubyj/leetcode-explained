@@ -27,22 +27,8 @@
     "content_scripts": [
         {
             "js": [
-                "src/content-script/get-gpt-access-token.js"
-            ],
-            "matches": [
-                "https://leetcode.com/problems/*"
-            ]
-        },
-        {
-            "js": [
-                "src/content-script/inject-solution-video.js"
-            ],
-            "matches": [
-                "https://leetcode.com/problems/*"
-            ]
-        },
-        {
-            "js": [
+                "src/content-script/get-gpt-access-token.js",
+                "src/content-script/inject-solution-video.js",
                 "src/content-script/get-user-code.js"
             ],
             "matches": [

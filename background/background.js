@@ -46,6 +46,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             chrome.tabs.get(tabId, (updatedTab) => {
                 chrome.tabs.sendMessage(tabId, { action: 'injectVideo', title: updatedTab.title || 'title' });
             });
-        }, 1000);
+        }, 500);
     }
 });

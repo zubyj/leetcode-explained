@@ -68,7 +68,6 @@ async function getCodeFromActiveTab() {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             chrome.tabs.sendMessage(tabs[0].id, { type: 'getCode' }, (response) => {
                 if (chrome.runtime.lastError) {
-                    console.error(chrome.runtime.lastError);
                     resolve(null);
                 } else {
                     resolve(response.data);

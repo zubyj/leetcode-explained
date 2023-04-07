@@ -1,3 +1,11 @@
+/*
+This file is the main module that manages interactions with the OpenAI Chat API. It exports a ChatGPTProvider class that has methods for getting available models, generating answers to prompts, and cleaning up conversations.
+The getChatGPTAccessToken function fetches an access token from the OpenAI Chat API and caches it using the ExpiryMap class from the expiry-map.mjs module.
+The sendMessageFeedback and setConversationProperty functions send feedback about the quality of responses and update conversation properties, respectively, to the OpenAI Chat API.
+The request function is a helper function that sends an HTTP request to the OpenAI Chat API with the provided method, path, and data.
+Finally, the uuidv4 and fetchSSE functions are imported from the uuid.js and fetch-sse.js modules, respectively, which provide functionality for generating UUIDs and sending Server-Sent Events (SSE) requests to the OpenAI Chat API.
+*/
+
 import ExpiryMap from './expiry-map.mjs';
 import { uuidv4 } from './uuid.js';
 import { fetchSSE } from './fetch-sse.js'

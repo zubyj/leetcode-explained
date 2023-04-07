@@ -10,7 +10,7 @@
         "128": "assets/images/icon-128.png"
     },
     "action": {
-        "default_popup": "popup.html"
+        "default_popup": "src/popup/popup.html"
     },
     "permissions": [
         "storage",
@@ -53,7 +53,7 @@
     "web_accessible_resources": [
         {
             "resources": [
-                "assets/data/leetcode_problems.json"
+                "assets/data/leetcode_solutions.json"
             ],
             "matches": [
                 "<all_urls>"

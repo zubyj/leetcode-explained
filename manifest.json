@@ -22,12 +22,12 @@
         "https://*.openai.com/"
     ],
     "background": {
-        "service_worker": "background/background.js"
+        "service_worker": "src/background/background.js"
     },
     "content_scripts": [
         {
             "js": [
-                "content-script/get-gpt-access-token.js"
+                "src/content-script/get-gpt-access-token.js"
             ],
             "matches": [
                 "https://leetcode.com/problems/*"
@@ -35,7 +35,7 @@
         },
         {
             "js": [
-                "content-script/inject-solution-video.js"
+                "src/content-script/inject-solution-video.js"
             ],
             "matches": [
                 "https://leetcode.com/problems/*"
@@ -43,7 +43,7 @@
         },
         {
             "js": [
-                "content-script/get-user-code.js"
+                "src/content-script/get-user-code.js"
             ],
             "matches": [
                 "https://leetcode.com/problems/*"

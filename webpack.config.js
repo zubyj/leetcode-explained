@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    entry: './chatgpt/chatgpt.js', // Change this to the entry point of your app
+    entry: './src/chatgpt/chatgpt.js', // Change this to the entry point of your app
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),

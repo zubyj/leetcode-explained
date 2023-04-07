@@ -3,7 +3,7 @@ body {
     background-color: #2c2c2c;
     color: #f0f0f0;
     font-family: 'Roboto', sans-serif;
-    min-width: 200px;
+    min-width: 220px;
     display: flex;
     justify-content: center;
     border-radius: 15px;
@@ -23,12 +23,19 @@ a:hover {
     color: #a0a0a0;
 }
 
+#chat-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
 /* Material UI button style */
 .material-button {
-    background-color: lavender;
     border: none;
-    color: black;
-    text-align: center;
+    color: white;
+    background-color: #2c2c2c;
+    border: 1px solid white;
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
@@ -37,12 +44,21 @@ a:hover {
     border-radius: 4px;
     padding: 10px 24px;
     transition-duration: 0.4s;
-    min-width: 200px;
+    align-items: center;
 }
 
 .material-button:hover {
-    background-color: #45a049;
-    color: white;
+    background-color: white;
+    color: black;
+}
+
+#buttonText {
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+#icon {
+    padding-right: 5px;
 }
 
 /* Class for hidden elements */

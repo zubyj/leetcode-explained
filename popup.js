@@ -4,6 +4,7 @@ import {
 } from "./chatgpt.js";
 
 async function main() {
+    []
     try {
         const accessToken = await getChatGPTAccessToken();
         chrome.storage.local.set({ accessToken });

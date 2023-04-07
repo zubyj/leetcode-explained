@@ -23,6 +23,10 @@ a:hover {
     color: #a0a0a0;
 }
 
+#title {
+    font-weight: 100;
+}
+
 #chat-section {
     display: flex;
     align-items: center;

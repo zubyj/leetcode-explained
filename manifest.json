@@ -4,10 +4,10 @@
     "version": "0.2.0",
     "description": "Helps you learn and understand leetcode solutions by providing video explanations and complexity for each solution.",
     "icons": {
-        "16": "images/icon-16.png",
-        "32": "images/icon-32.png",
-        "48": "images/icon-48.png",
-        "128": "images/icon-128.png"
+        "16": "assets/images/icon-16.png",
+        "32": "assets/images/icon-32.png",
+        "48": "assets/images/icon-48.png",
+        "128": "assets/images/icon-128.png"
     },
     "action": {
         "default_popup": "popup.html"
@@ -53,7 +53,7 @@
     "web_accessible_resources": [
         {
             "resources": [
-                "data/leetcode_problems.json"
+                "assets/data/leetcode_problems.json"
             ],
             "matches": [
                 "<all_urls>"

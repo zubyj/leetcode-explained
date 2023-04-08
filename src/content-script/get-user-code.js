@@ -11,6 +11,5 @@ function getCode() {
     for (const viewLine of viewLines) {
         textArray.push(viewLine.textContent);
     }
-    console.log('textArray' + textArray)
     return textArray;
 }

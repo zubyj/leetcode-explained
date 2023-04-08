@@ -12,8 +12,6 @@ async function main() {
         chrome.storage.local.get(["accessToken"], async ({ accessToken }) => {
             if (accessToken) {
                 const chatGPTProvider = new ChatGPTProvider(accessToken);
-
-                document.getElementById('chat-section').classList.remove('hidden');
                 const analyzeCodeButton = document.getElementById("analyze-button");
                 analyzeCodeButton.onclick = async () => {
                     const codeText = await getCodeFromActiveTab();
@@ -49,18 +47,12 @@ async function main() {
     }
 }
 
+document.getElementById('login-button').onclick = () => {
+    chrome.runtime.sendMessage({ type: 'OPEN_LOGIN_PAGE' });
+};
+
 function displayLoginMessage() {
-    const error = document.createElement('p');
-    error.textContent = 'Please login at ';
-
-    const loginButton = document.createElement('button');
-    loginButton.textContent = 'chat.openai.com';
-    loginButton.onclick = () => {
-        chrome.runtime.sendMessage({ type: 'OPEN_LOGIN_PAGE' });
-    };
-
-    error.appendChild(loginButton);
-    document.body.appendChild(error);
+    document.getElementById('login-button').classList.remove('hidden');
 }
 
 async function getCodeFromActiveTab() {

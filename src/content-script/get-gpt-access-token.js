@@ -1,15 +1,10 @@
-// Import the required modules
-import { getChatGPTAccessToken } from '../background/chatgpt/chatgpt.js';
-
-// Get the access token and store it
-async function storeAccessToken() {
-    try {
-        const accessToken = await getChatGPTAccessToken();
+// Request the access token from the background script
+chrome.runtime.sendMessage({ type: 'GET_CHATGPT_ACCESS_TOKEN' }, (response) => {
+    const accessToken = response.accessToken;
+    if (accessToken) {
         chrome.storage.local.set({ accessToken });
-    } catch (error) {
-        console.error('Error:', error);
+    } else {
+        console.error("Error: Unable to get ChatGPT access token.");
     }
-}
-
-storeAccessToken();
-
+    // Use the access token as needed
+});

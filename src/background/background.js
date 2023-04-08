@@ -1,3 +1,5 @@
+import { getChatGPTAccessToken } from './chatgpt/chatgpt.js';
+
 chrome.webRequest.onCompleted.addListener(
     (details) => {
         const accessTokenHeader = details.responseHeaders.find((header) => header.name.toLowerCase() === 'access-token');
@@ -47,5 +49,14 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                 chrome.tabs.sendMessage(tabId, { action: 'injectVideo', title: updatedTab.title || 'title' });
             });
         }, 500);
+    }
+});
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.type === 'GET_CHATGPT_ACCESS_TOKEN') {
+        getChatGPTAccessToken().then((accessToken) => {
+            sendResponse({ accessToken: accessToken });
+        });
+        return true; // Indicates the response will be sent asynchronously
     }
 });

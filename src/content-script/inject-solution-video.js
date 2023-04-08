@@ -11,15 +11,16 @@ function createVideoContainer(videoUrl) {
     container.style.position = 'relative';
     container.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
 
-    const video = document.createElement('object');
-    video.classList.add('youtube-video');
-    video.type = 'text/html';
-    video.data = videoUrl;
-    video.style.position = 'absolute';
-    video.style.width = '90%';
-    video.style.height = '100%';
+    const iframe = document.createElement('iframe');
+    iframe.classList.add('youtube-video');
+    iframe.src = videoUrl;
+    iframe.style.position = 'absolute';
+    iframe.style.width = '90%';
+    iframe.style.height = '100%';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
 
-    container.appendChild(video);
+    container.appendChild(iframe);
     return container;
 }
 

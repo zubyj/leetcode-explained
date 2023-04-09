@@ -20,7 +20,6 @@ async function main() {
     }
 }
 
-
 document.getElementById("login-button").onclick = () => {
     chrome.runtime.sendMessage({ type: "OPEN_LOGIN_PAGE" });
 };

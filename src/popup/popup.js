@@ -63,9 +63,8 @@ async function getCodeFromActiveTab() {
 }
 
 function processCode(chatGPTProvider, codeText) {
-    const getModel = "tell me what model you are? are you gpt3.5 or gpt4"
     chatGPTProvider.generateAnswer({
-        prompt: `Give me the time and space complexity of the following code, if it exists, in one short sentence.\n ${codeText} ${getModel}`,
+        prompt: `Give me the time and space complexity of the following code, if it exists, in one short sentence.\n ${codeText}`,
         onEvent: (event) => {
             if (event.type === "answer") {
                 displayTimeComplexity(event.data.text);

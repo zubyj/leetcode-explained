@@ -63,6 +63,7 @@ Mangages interactions with the OpenAI Chat API.
 export class ChatGPTProvider {
     constructor(token) {
         this.token = token;
+        this.modelName = 'gpt-3.5-turbo'
     }
 
     async fetchModels() {
@@ -70,15 +71,15 @@ export class ChatGPTProvider {
         return resp.models;
     }
 
-    async getModelName() {
-        try {
-            const models = await this.fetchModels();
-            return models[0].slug;
-        } catch (err) {
-            console.error(err);
-            return 'text-davinci-002-render';
-        }
-    }
+    // async getModelName() {
+    //     try {
+    //         const models = await this.fetchModels();
+    //         return models[0].slug;
+    //     } catch (err) {
+    //         console.error(err);
+    //         return 'text-davinci-002-render';
+    //     }
+    // }
 
     async generateAnswer(params) {
         let conversationId;
@@ -89,8 +90,8 @@ export class ChatGPTProvider {
             }
         };
 
-        const modelName = await this.getModelName();
-        console.debug('Using model:', modelName);
+        // const modelName = await this.getModelName();
+        // console.debug('Using model:', modelName);
 
         await fetchSSE('https://chat.openai.com/backend-api/conversation', {
             method: 'POST',
@@ -111,7 +112,7 @@ export class ChatGPTProvider {
                         },
                     },
                 ],
-                model: modelName,
+                model: this.modelName,
                 parent_message_id: uuidv4(),
             }),
             onMessage(message) {

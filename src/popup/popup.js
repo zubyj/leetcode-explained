@@ -75,7 +75,7 @@ function processCode(chatGPTProvider, codeText) {
 }
 
 function displayTimeComplexity(timeComplexity) {
-    document.getElementById("time-complexity").textContent = timeComplexity;
+    document.getElementById("user-message").textContent = timeComplexity;
 }
 
 function sendTextToContentScript(text) {
@@ -85,7 +85,7 @@ function sendTextToContentScript(text) {
 }
 
 function displayUnableToRetrieveCodeMessage() {
-    document.getElementById("time-complexity").textContent =
+    document.getElementById("user-message").textContent =
         "Unable to retrieve code. Please navigate to a Leetcode problem page and try again.";
 }
 

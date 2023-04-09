@@ -9,7 +9,7 @@ export async function fetchSSE(resource, options) {
         const error = await resp.json().catch(() => ({}));
         if (error.detail.code === 'model_cap_exceeded') {
             const message = `${error.detail.message}. ${error.detail.clears_in} seconds remaining`;
-            document.getElementById('time-complexity').innerText = message;
+            document.getElementById('user-message').innerText = message;
         }
         throw new Error(!isEmpty(error) ? JSON.stringify(error) : `${resp.status} ${resp.statusText}`);
     }

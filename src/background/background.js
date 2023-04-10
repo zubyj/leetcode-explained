@@ -42,13 +42,11 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    const urlPattern = /^https:\/\/leetcode\.com\/problems\/[^/]+\/solutions\/[^/]+/;
+    const urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\//;
     if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
-        setTimeout(() => {
-            chrome.tabs.get(tabId, (updatedTab) => {
-                chrome.tabs.sendMessage(tabId, { action: 'injectVideo', title: updatedTab.title || 'title' });
-            });
-        }, 500);
+        chrome.tabs.get(tabId, (updatedTab) => {
+            chrome.tabs.sendMessage(tabId, { action: 'injectVideo', title: updatedTab.title || 'title' });
+        });
     }
 });
 

@@ -63,8 +63,11 @@ async function getCodeFromActiveTab() {
 }
 
 function processCode(chatGPTProvider, codeText) {
+    document.getElementById("user-message").textContent = "";
     chatGPTProvider.generateAnswer({
-        prompt: `Give me the time and space complexity of the following code, if it exists, in one short sentence.\n ${codeText}`,
+        prompt: `Give me the time and space complexity of the following code, if it exists, in one short sentence.
+        Also, tell me if you're gpt3.5, gpt4, davinci, or curie. Which model are you?
+        \n ${codeText}`,
         onEvent: (event) => {
             if (event.type === "answer") {
                 displayTimeComplexity(event.data.text);
@@ -75,7 +78,9 @@ function processCode(chatGPTProvider, codeText) {
 }
 
 function displayTimeComplexity(timeComplexity) {
-    document.getElementById("user-message").textContent = timeComplexity;
+    // document.getElementById("user-message").textContent = timeComplexity;
+    // apend timeComplexity to user-message div 
+    document.getElementById("user-message").append(timeComplexity);
 }
 
 function sendTextToContentScript(text) {

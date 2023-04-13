@@ -1,11 +1,3 @@
-/*
-This file is the main module that manages interactions with the OpenAI Chat API. It exports a ChatGPTProvider class that has methods for getting available models, generating answers to prompts, and cleaning up conversations.
-The getChatGPTAccessToken function fetches an access token from the OpenAI Chat API and caches it using the ExpiryMap class from the expiry-map.mjs module.
-The sendMessageFeedback and setConversationProperty functions send feedback about the quality of responses and update conversation properties, respectively, to the OpenAI Chat API.
-The request function is a helper function that sends an HTTP request to the OpenAI Chat API with the provided method, path, and data.
-Finally, the uuidv4 and fetchSSE functions are imported from the uuid.js and fetch-sse.js modules, respectively, which provide functionality for generating UUIDs and sending Server-Sent Events (SSE) requests to the OpenAI Chat API.
-*/
-
 import ExpiryMap from './expiry-map.mjs';
 import { uuidv4 } from './uuid.js';
 import { fetchSSE } from './fetch-sse.js'
@@ -22,7 +14,7 @@ async function request(token, method, path, data) {
     });
 }
 
-// Send feedback about quality of resposnes to the OpenAI Chat API.
+// Send feedback about quality of responses to the OpenAI Chat API.
 export async function sendMessageFeedback(token, data) {
     await request(token, 'POST', '/conversation/message_feedback', data);
 }
@@ -56,30 +48,14 @@ export async function getChatGPTAccessToken() {
 
 /*
 Mangages interactions with the OpenAI Chat API.
-1. Gets available models
-2. Generates answers to prompts
-3. Cleans up conversations when done.
+Generates answers to prompts
+Cleans up conversations when done.
 */
 export class ChatGPTProvider {
     constructor(token) {
         this.token = token;
         this.modelName = 'gpt-3.5-turbo'
     }
-
-    async fetchModels() {
-        const resp = await request(this.token, 'GET', '/models').then((r) => r.json());
-        return resp.models;
-    }
-
-    // async getModelName() {
-    //     try {
-    //         const models = await this.fetchModels();
-    //         return models[0].slug;
-    //     } catch (err) {
-    //         console.error(err);
-    //         return 'text-davinci-002-render';
-    //     }
-    // }
 
     async generateAnswer(params) {
         let conversationId;
@@ -89,31 +65,22 @@ export class ChatGPTProvider {
                 setConversationProperty(this.token, conversationId, { is_visible: false });
             }
         };
-
-        // const modelName = await this.getModelName();
-        // console.debug('Using model:', modelName);
-
-        await fetchSSE('https://chat.openai.com/backend-api/conversation', {
+        await fetchSSE('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
-            signal: params.signal,
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${this.token}`,
             },
             body: JSON.stringify({
-                action: 'next',
                 messages: [
                     {
-                        id: uuidv4(),
                         role: 'user',
-                        content: {
-                            content_type: 'text',
-                            parts: [params.prompt],
-                        },
+                        content: params.prompt,
                     },
                 ],
                 model: this.modelName,
-                parent_message_id: uuidv4(),
+                stream: true,
+                user: uuidv4(),
             }),
             onMessage(message) {
                 console.debug('sse message', message);
@@ -129,15 +96,15 @@ export class ChatGPTProvider {
                     console.error(err);
                     return;
                 }
-                const text = data.message?.content?.parts?.[0];
+                const text = data.choices[0].delta.content
                 if (text) {
-                    conversationId = data.conversation_id;
+                    conversationId = data.id
                     params.onEvent({
                         type: 'answer',
                         data: {
                             text,
-                            messageId: data.message.id,
-                            conversationId: data.conversation_id,
+                            messageId: data.id,
+                            conversationId: data.id,
                         },
                     });
                 }

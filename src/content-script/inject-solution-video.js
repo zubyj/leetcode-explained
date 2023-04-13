@@ -19,7 +19,6 @@ function createVideoContainer(videoUrl) {
     iframe.style.height = '100%';
     iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
     iframe.allowFullscreen = true;
-
     container.appendChild(iframe);
     return container;
 }
@@ -55,5 +54,19 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'injectVideo') {
         const title = request.title.split('-')[0].trim();
         injectVideo(title);
+    }
+});
+
+window.addEventListener('mousedown', (event) => {
+    const iframe = document.querySelector('iframe.youtube-video');
+    if (iframe) {
+        iframe.style.pointerEvents = 'none';
+    }
+});
+
+window.addEventListener('mouseup', (event) => {
+    const iframe = document.querySelector('iframe.youtube-video');
+    if (iframe) {
+        iframe.style.pointerEvents = 'auto';
     }
 });

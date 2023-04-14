@@ -62,16 +62,6 @@ async function getCodeFromActiveTab() {
     });
 }
 
-// listen to the dom if the mouse is being pressed
-// if it is, then send the text to the content script
-// if it is not, then send the text to the content script
-// document.addEventListener("mousedown", (event) => {
-//     console.log("mousedown");
-
-document.addEventListener("mousedown", (event) => {
-    console.log("mousedown");
-});
-
 function processCode(chatGPTProvider, codeText) {
     document.getElementById("user-message").textContent = "";
     chatGPTProvider.generateAnswer({
@@ -86,8 +76,6 @@ function processCode(chatGPTProvider, codeText) {
 }
 
 function displayTimeComplexity(timeComplexity) {
-    // document.getElementById("user-message").textContent = timeComplexity;
-    // apend timeComplexity to user-message div 
     document.getElementById("user-message").append(timeComplexity);
 }
 

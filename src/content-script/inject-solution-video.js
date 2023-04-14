@@ -15,7 +15,7 @@ function createVideoContainer(videoUrl) {
     iframe.classList.add('youtube-video');
     iframe.src = videoUrl;
     iframe.style.position = 'absolute';
-    iframe.style.width = '90%';
+    iframe.style.width = '100%';
     iframe.style.height = '100%';
     iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
     iframe.allowFullscreen = true;

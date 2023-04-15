@@ -14,8 +14,7 @@
     },
     "permissions": [
         "storage",
-        "tabs",
-        "activeTab"
+        "tabs"
     ],
     "host_permissions": [
         "https://chat.openai.com/api/auth/session"

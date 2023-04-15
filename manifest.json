@@ -14,12 +14,10 @@
     },
     "permissions": [
         "storage",
-        "webRequest",
-        "tabs",
-        "activeTab"
+        "tabs"
     ],
     "host_permissions": [
-        "https://*.openai.com/"
+        "https://chat.openai.com/api/auth/session"
     ],
     "background": {
         "service_worker": "src/background/background.js",
@@ -29,23 +27,19 @@
         {
             "js": [
                 "src/content-script/get-gpt-access-token.js",
-                "src/content-script/inject-solution-video.js",
                 "src/content-script/get-user-code.js"
             ],
             "matches": [
                 "https://leetcode.com/problems/*"
             ]
-        }
-    ],
-    "web_accessible_resources": [
+        },
         {
-            "resources": [
-                "assets/data/leetcode_solutions.json"
+            "js": [
+                "src/content-script/add-solution-video.js"
             ],
             "matches": [
-                "<all_urls>"
-            ],
-            "use_dynamic_url": false
+                "https://leetcode.com/problems/*/solutions/"
+            ]
         }
     ]
 }

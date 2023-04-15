@@ -12,13 +12,10 @@
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
     "babel-loader": "^9.1.2",
-    "webpack": "^5.77.0",
-    "webpack-cli": "^5.0.1"
+    "webpack": "^5.77.0"
   },
   "dependencies": {
     "eventsource-parser": "^1.0.0",
-    "expiry-map": "^2.0.0",
-    "lodash-es": "^4.17.21",
-    "uuid": "^9.0.0"
+    "lodash-es": "^4.17.21"
   }
 }

@@ -1,20 +1,5 @@
 import { getChatGPTAccessToken } from './chatgpt/chatgpt.js';
 
-chrome.webRequest.onCompleted.addListener(
-    (details) => {
-        const accessTokenHeader = details.responseHeaders.find((header) => header.name.toLowerCase() === 'access-token');
-        if (accessTokenHeader) {
-            const token = accessTokenHeader.value;
-            chrome.storage.local.set({ accessToken: token });
-        }
-    },
-    {
-        urls: ['https://chat.openai.com/api/auth/session'],
-        types: ['xmlhttprequest'],
-    },
-    ['responseHeaders']
-);
-
 function openLoginPage() {
     chrome.tabs.create({ url: 'https://chat.openai.com' });
 }

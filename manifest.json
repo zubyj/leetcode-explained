@@ -14,7 +14,6 @@
     },
     "permissions": [
         "storage",
-        "webRequest",
         "tabs",
         "activeTab"
     ],

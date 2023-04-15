@@ -18,7 +18,7 @@
         "activeTab"
     ],
     "host_permissions": [
-        "https://*.openai.com/"
+        "https://chat.openai.com/api/auth/session"
     ],
     "background": {
         "service_worker": "src/background/background.js",
@@ -28,11 +28,18 @@
         {
             "js": [
                 "src/content-script/get-gpt-access-token.js",
-                "src/content-script/inject-solution-video.js",
                 "src/content-script/get-user-code.js"
             ],
             "matches": [
                 "https://leetcode.com/problems/*"
+            ]
+        },
+        {
+            "js": [
+                "src/content-script/inject-solution-video.js"
+            ],
+            "matches": [
+                "https://leetcode.com/problems/*/solutions/"
             ]
         }
     ]

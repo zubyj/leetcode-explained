@@ -36,7 +36,7 @@
         },
         {
             "js": [
-                "src/content-script/inject-solution-video.js"
+                "src/content-script/add-solution-video.js"
             ],
             "matches": [
                 "https://leetcode.com/problems/*/solutions/"

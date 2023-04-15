@@ -27,7 +27,7 @@ function createVideoContainer(videoUrl) {
  * Injects the embedded YouTube solution into the solutions tab of the LeetCode problem.
  * @param {string} title - The problem title.
  */
-function injectVideo(title) {
+function addVideo(title) {
     const SOLUTIONS_TAB_INDEX = 1;
 
     const solutionsTab = document.querySelectorAll('div.w-full.flex-col.overflow-auto')[SOLUTIONS_TAB_INDEX];
@@ -51,9 +51,9 @@ function injectVideo(title) {
  * Handles incoming messages from the background script.
  */
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.action === 'injectVideo') {
+    if (request.action === 'addVideo') {
         const title = request.title.split('-')[0].trim();
-        injectVideo(title);
+        addVideo(title);
     }
 });
 

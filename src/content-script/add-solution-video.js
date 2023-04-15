@@ -17,7 +17,6 @@ function createVideoContainer(videoUrl) {
     iframe.style.position = 'absolute';
     iframe.style.width = '100%';
     iframe.style.height = '100%';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
     iframe.allowFullscreen = true;
     container.appendChild(iframe);
     return container;

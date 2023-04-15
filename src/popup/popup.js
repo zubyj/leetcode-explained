@@ -7,14 +7,11 @@ import {
 async function main() {
     try {
         const accessToken = await getChatGPTAccessToken();
-        chrome.storage.local.set({ accessToken });
-        chrome.storage.local.get(["accessToken"], async ({ accessToken }) => {
-            if (accessToken) {
-                initAnalyzeCodeButton(new ChatGPTProvider(accessToken));
-            } else {
-                displayLoginMessage();
-            }
-        });
+        if (accessToken) {
+            initAnalyzeCodeButton(new ChatGPTProvider(accessToken));
+        } else {
+            displayLoginMessage();
+        }
     } catch (error) {
         handleError(error);
     }

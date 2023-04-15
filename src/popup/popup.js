@@ -9,25 +9,13 @@ async function main() {
         const accessToken = await getChatGPTAccessToken();
         if (accessToken) {
             initAnalyzeCodeButton(new ChatGPTProvider(accessToken));
+            document.getElementById("analyze-button").classList.remove("hidden");
         } else {
             displayLoginMessage();
         }
-
-        chrome.storage.local.get(["accessToken", "userMessage"], async ({ accessToken, userMessage }) => {
-            if (accessToken) {
-                initAnalyzeCodeButton(new ChatGPTProvider(accessToken));
-                // Display the stored message if it exists
-                if (userMessage) {
-                    displayTimeComplexity(userMessage);
-                }
-            } else {
-                displayLoginMessage();
-            }
-        });
     } catch (error) {
         handleError(error);
     }
-    displayUserMessageFromStorage();
 }
 
 document.getElementById("login-button").onclick = () => {
@@ -44,14 +32,8 @@ function handleError(error) {
 
 function displayLoginMessage() {
     document.getElementById("login-button").classList.remove("hidden");
-}
-
-function displayUserMessageFromStorage() {
-    chrome.storage.local.get(["userMessage"], (result) => {
-        if (result.userMessage) {
-            document.getElementById("user-message").textContent = result.userMessage;
-        }
-    });
+    document.getElementById("user-message").textContent = "Please login to ChatGPT to view your code complexity.";
+    resetUserMessage();
 }
 
 function initAnalyzeCodeButton(chatGPTProvider) {
@@ -80,28 +62,21 @@ async function getCodeFromActiveTab() {
     });
 }
 
-async function processCode(chatGPTProvider, codeText) {
-    let messageParts = [];
+function processCode(chatGPTProvider, codeText) {
     document.getElementById("user-message").textContent = "";
     chatGPTProvider.generateAnswer({
         prompt: `Give me the time and space complexity of the following code, if it exists, in one short sentence.\n ${codeText}`,
         onEvent: (event) => {
             if (event.type === "answer") {
-                messageParts.push(event.data.text);
-                let currentMessage = messageParts.join("");
-                displayTimeComplexity(currentMessage);
-            } else if (event.type === "done") {
-                let fullMessage = messageParts.join("");
-                sendTextToContentScript(fullMessage);
-                // Save the fullMessage to storage when the stream is done
-                chrome.storage.local.set({ userMessage: fullMessage });
+                displayTimeComplexity(event.data.text);
+                sendTextToContentScript(event.data.text);
             }
         },
     });
 }
 
 function displayTimeComplexity(timeComplexity) {
-    document.getElementById("user-message").textContent = timeComplexity;
+    document.getElementById("user-message").append(timeComplexity);
 }
 
 function sendTextToContentScript(text) {

@@ -36,16 +36,5 @@
                 "https://leetcode.com/problems/*"
             ]
         }
-    ],
-    "web_accessible_resources": [
-        {
-            "resources": [
-                "assets/data/leetcode_solutions.json"
-            ],
-            "matches": [
-                "<all_urls>"
-            ],
-            "use_dynamic_url": false
-        }
     ]
 }

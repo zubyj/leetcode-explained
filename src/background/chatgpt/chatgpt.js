@@ -22,11 +22,7 @@ export async function getChatGPTAccessToken() {
     return data.accessToken;
 }
 
-/*
-Mangages interactions with the OpenAI Chat API.
-Generates answers to prompts
-Cleans up conversations when done.
-*/
+// Mangages interactions with the OpenAI Chat API.
 export class ChatGPTProvider {
     constructor(token) {
         this.token = token;

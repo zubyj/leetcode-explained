@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Leetcode Explained",
     "version": "1.0.0",
-    "description": "Helps you learn and understand leetcode solutions by providing video explanations and code complexity.",
+    "description": "Enhance your Leetcode experience with video explanations and time/space complexity analysis for each solution.",
     "icons": {
         "16": "assets/images/icon-16.png",
         "32": "assets/images/icon-32.png",
@@ -27,18 +27,11 @@
         {
             "js": [
                 "src/content-script/get-gpt-access-token.js",
-                "src/content-script/get-user-code.js"
-            ],
-            "matches": [
-                "https://leetcode.com/problems/*"
-            ]
-        },
-        {
-            "js": [
+                "src/content-script/get-user-code.js",
                 "src/content-script/add-solution-video.js"
             ],
             "matches": [
-                "https://leetcode.com/problems/*/solutions/"
+                "https://leetcode.com/problems/*"
             ]
         }
     ]

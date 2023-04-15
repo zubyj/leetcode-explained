@@ -33,7 +33,6 @@ function handleError(error) {
 function displayLoginMessage() {
     document.getElementById("login-button").classList.remove("hidden");
     document.getElementById("user-message").textContent = "Please login to ChatGPT to view your code complexity.";
-    resetUserMessage();
 }
 
 function initAnalyzeCodeButton(chatGPTProvider) {

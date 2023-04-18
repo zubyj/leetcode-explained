@@ -1,6 +1,18 @@
 # Leetcode Explained
 
-Leetcode Explained is a Chrome extension that helps you learn and understand Leetcode solutions by providing video explanations and complexity for each solution.
+A Chrome extension that helps you learn and understand Leetcode solutions by providing video explanations and complexity for each solution.
+
+<iframe width="1236" height="695" src="https://www.youtube.com/embed/E5nvCyVZxuc" title="Introducing Leetcode Explained" frameborder="0" allowfullscreen></iframe>
+
+[Available in the Chrome Web Store](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
+
+### Adds Neetcode video solutions into Leetcode problems
+
+![Leetcode Explained Screenshot 2](./assets/images/screenshot-1.jpeg)
+
+### Gets your codes time & space complexity using ChatGPT
+
+![Leetcode Explained Screenshot 1](./assets/images/screenshot-2.jpeg)
 
 ## Table of Contents
 
@@ -32,10 +44,10 @@ The extension is organized into the following folders and files:
 
 - `assets/`: Contains images and other static files.
 - `src/`: Contains the main source files for the extension.
-    - `background/`: Contains background script and related files.
-        - `chatgpt/`: Contains ChatGPT related files.
-    - `content-script/`: Contains content scripts that interact with the Leetcode website.
-    - `popup/`: Contains the popup UI for the extension.
+  - `background/`: Contains background script and related files.
+    - `chatgpt/`: Contains ChatGPT related files.
+  - `content-script/`: Contains content scripts that interact with the Leetcode website.
+  - `popup/`: Contains the popup UI for the extension.
 - `manifest.json`: The extension manifest file.
 
 ## Configuration
@@ -45,4 +57,3 @@ The extension configuration is contained in the `manifest.json` file. You can up
 ## Browser Compatibility
 
 Leetcode Explained has been tested on the Google Chrome browser. It may work on other Chromium-based browsers, but compatibility is not guaranteed.
-

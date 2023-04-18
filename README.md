@@ -2,9 +2,9 @@
 
 A Chrome extension that helps you learn and understand Leetcode solutions by providing video explanations and complexity for each solution.
 
-<iframe width="1236" height="695" src="https://www.youtube.com/embed/E5nvCyVZxuc" title="Introducing Leetcode Explained" frameborder="0" allowfullscreen></iframe>
-
 [Available in the Chrome Web Store](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
+
+[View the demo on Youtube](https://www.youtube.com/watch?v=E5nvCyVZxuc)
 
 ### Adds Neetcode video solutions into Leetcode problems
 
@@ -13,14 +13,6 @@ A Chrome extension that helps you learn and understand Leetcode solutions by pro
 ### Gets your codes time & space complexity using ChatGPT
 
 ![Leetcode Explained Screenshot 1](./assets/images/screenshot-2.jpeg)
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Structure](#structure)
-- [Configuration](#configuration)
-- [Browser Compatibility](#browser-compatibility)
 
 ## Installation
 

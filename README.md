@@ -14,6 +14,14 @@ A Chrome extension that helps you learn and understand Leetcode solutions by pro
 
 ![Leetcode Explained Screenshot 1](./assets/images/screenshot-2.jpeg)
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Structure](#structure)
+- [Configuration](#configuration)
+- [Browser Compatibility](#browser-compatibility)
+
 ## Installation
 
 1. Download the Leetcode Explained repository.

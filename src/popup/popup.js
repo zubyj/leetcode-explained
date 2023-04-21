@@ -22,8 +22,12 @@ document.getElementById("login-button").onclick = () => {
 };
 
 function handleError(error) {
-    displayLoginMessage();
-    console.error("Error:", error);
+    if (error.message === "UNAUTHORIZED" || error.message === "CLOUDFARE") {
+        displayLoginMessage();
+    }
+    else {
+        console.error("Error:", error);
+    }
 }
 
 function displayLoginMessage() {

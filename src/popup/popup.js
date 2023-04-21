@@ -23,16 +23,13 @@ document.getElementById("login-button").onclick = () => {
 };
 
 function handleError(error) {
-    if (error.message === "UNAUTHORIZED") {
-        displayLoginMessage();
-    } else {
-        console.error("Error:", error);
-    }
+    displayLoginMessage();
+    console.error("Error:", error);
 }
 
 function displayLoginMessage() {
     document.getElementById("login-button").classList.remove("hidden");
-    document.getElementById("user-message").textContent = "Please login to ChatGPT to view your code complexity.";
+    document.getElementById("user-message").textContent = "To view your code's time & space complexity, login to ChatGPT.";
 }
 
 function initAnalyzeCodeButton(chatGPTProvider) {

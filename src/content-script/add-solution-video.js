@@ -56,6 +56,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
+/**
+ * This code is used to prevent the iframe from freezing when its being resized while the mouse is hovering over it
+ */
 window.addEventListener('mousedown', (event) => {
     const iframe = document.querySelector('iframe.youtube-video');
     if (iframe) {

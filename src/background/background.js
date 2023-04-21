@@ -1,5 +1,9 @@
-import { getChatGPTAccessToken } from './chatgpt/chatgpt.js';
+import {getChatGPTAccessToken} from './chatgpt/chatgpt.js';
 
+/**
+ * Opens the login page in a new tab
+ * @return {void}
+ */
 function openLoginPage() {
     chrome.tabs.create({ url: 'https://chat.openai.com' });
 }

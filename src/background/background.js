@@ -1,20 +1,12 @@
 import {getChatGPTAccessToken} from './chatgpt/chatgpt.js';
 
-/**
- * Opens the login page in a new tab
- * @return {void}
- */
-function openLoginPage() {
-    chrome.tabs.create({ url: 'https://chat.openai.com' });
-}
-
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.type === 'OPEN_LOGIN_PAGE') {
-        openLoginPage();
+        chrome.tabs.create({ url: 'https://chat.openai.com' });
     }
 });
 
-// On extension install, store the JSON of leetcode problems in the storage API
+// On extension install, store the JSON of leetcode problems in local storage
 chrome.runtime.onInstalled.addListener(() => {
     const jsonUrl = chrome.runtime.getURL('assets/data/leetcode_solutions.json');
 
@@ -22,8 +14,7 @@ chrome.runtime.onInstalled.addListener(() => {
         .then(response => response.json())
         .then(data => {
             // Store the JSON data in a global variable or a storage API
-            chrome.storage.local.set({ leetcodeProblems: data }, () => {
-            });
+            chrome.storage.local.set({ leetcodeProblems: data });
         })
         .catch(error => {
             console.error(error);

@@ -1,4 +1,3 @@
-// popup.js
 import {
     getChatGPTAccessToken,
     ChatGPTProvider,
@@ -29,7 +28,7 @@ function handleError(error) {
 
 function displayLoginMessage() {
     document.getElementById("login-button").classList.remove("hidden");
-    document.getElementById("user-message").textContent = "To view your code's time & space complexity, login to ChatGPT.";
+    document.getElementById("user-message").textContent = "Getting your code's time & space complexity requires ChatGPT login";
 }
 
 function initAnalyzeCodeButton(chatGPTProvider) {

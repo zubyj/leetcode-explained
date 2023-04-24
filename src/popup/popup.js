@@ -22,17 +22,22 @@ document.getElementById("login-button").onclick = () => {
 };
 
 function handleError(error) {
-    if (error.message === "UNAUTHORIZED" || error.message === "CLOUDFARE") {
+    if (error.message === "UNAUTHORIZED" || error.message === "CLOUDFLARE") {
         displayLoginMessage();
     }
     else {
         console.error("Error:", error);
+        displayErrorMessage(error.message);
     }
 }
 
 function displayLoginMessage() {
     document.getElementById("login-button").classList.remove("hidden");
     document.getElementById("user-message").textContent = "Getting your code's time & space complexity requires ChatGPT login";
+}
+
+function displayErrorMessage(error) {
+    document.getElementById("user-message").textContent = error;
 }
 
 function initAnalyzeCodeButton(chatGPTProvider) {
@@ -86,7 +91,7 @@ function sendTextToContentScript(text) {
 
 function displayUnableToRetrieveCodeMessage() {
     document.getElementById("user-message").textContent =
-        "Unable to retrieve code. Please navigate to a Leetcode problem page and try again.";
+        "Unable to retrieve code. Please navigate to a Leetcode problem page and refresh the page.";
 }
 
 main();

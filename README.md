@@ -1,12 +1,12 @@
 # Leetcode Explained
 
-A Chrome extension that helps you learn and understand Leetcode solutions by providing video explanations and complexity for each solution.
+A chrome extension that adds Leetcode video solutions directly into the problem. 
 
 [Available in the Chrome Web Store](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
 
-[View the demo on Youtube](https://www.youtube.com/watch?v=E5nvCyVZxuc)
+[Watch the demo](https://www.youtube.com/watch?v=E5nvCyVZxuc)
 
-### Adds Neetcode video solutions into Leetcode problems
+### Adds video solutions into Leetcode problems
 
 ![Leetcode Explained Screenshot 2](./assets/images/screenshot-1.jpeg)
 
@@ -32,23 +32,29 @@ A Chrome extension that helps you learn and understand Leetcode solutions by pro
 
 ## Usage
 
+### Access video solutions
+1. Navigate to a Leetcode problem page (e.g., `https://leetcode.com/problems/valid-parentheses`).
+2. Click the 'Solutions' tab.
+3. A video explanation of the solution will be injected into the page if available.
+
+### Get your code's time & space complexity
+
 1. Navigate to a Leetcode problem page (e.g., `https://leetcode.com/problems/valid-parentheses`).
 2. Open the extension by clicking on the Leetcode Explained icon in the Chrome toolbar.
 3. If not logged in, click the "Please login to ChatGPT" button to authenticate with ChatGPT.
 4. Click the "Analyze Complexity" button to get the time and space complexity of the solution.
-5. A video explanation of the solution will be injected into the page if available.
 
 ## Structure
 
 The extension is organized into the following folders and files:
 
-- `assets/`: Contains images and other static files.
+- `assets/`: Contains images and the json data of leetcode problems and their embedded urls
 - `src/`: Contains the main source files for the extension.
-  - `background/`: Contains background script and related files.
-    - `chatgpt/`: Contains ChatGPT related files.
-  - `content-script/`: Contains content scripts that interact with the Leetcode website.
-  - `popup/`: Contains the popup UI for the extension.
-- `manifest.json`: The extension manifest file.
+  - `background/`: Tells content script to add video if tab url matches a leetcode problem name
+    - `chatgpt/`: Stores auth token when user logs into ChatGPT. ChatGPT is used to get the user's code complexity.
+  - `content-script/`: Adds video onto the page. Gets user's code to send to ChatGPT.
+  - `popup/`: Contains the 'Analyze Complexity' button
+- `manifest.json`: Metadata such as version, permissions, files, etc.
 
 ## Configuration
 
@@ -56,4 +62,4 @@ The extension configuration is contained in the `manifest.json` file. You can up
 
 ## Browser Compatibility
 
-Leetcode Explained has been tested on the Google Chrome browser. It may work on other Chromium-based browsers, but compatibility is not guaranteed.
+Leetcode Explained works on most Chromium-based browsers. Other browsers, such as Mozilla Firefox, currently aren't supported.

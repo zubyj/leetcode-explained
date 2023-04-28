@@ -33,7 +33,7 @@ function handleError(error) {
 
 function displayLoginMessage() {
     document.getElementById("login-button").classList.remove("hidden");
-    document.getElementById("user-message").textContent = "Getting your code's time & space complexity requires ChatGPT login";
+    document.getElementById("user-message").textContent = "Get your code's time & space complexity with ChatGPT login";
 }
 
 function displayErrorMessage(error) {

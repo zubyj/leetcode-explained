@@ -16,7 +16,7 @@ export async function fetchSSE(
             onMessage(event.data);
         }
     });
-    for await (const chunk of streamAsyncIterable(resp.body)) {
+    for await (const chunk of streamAsyncIterable(resp.body!)) {
         const str = new TextDecoder().decode(chunk);
         parser.feed(str);
     }

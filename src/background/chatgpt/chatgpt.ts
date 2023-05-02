@@ -1,6 +1,6 @@
-import ExpiryMap from './expiry-map.mjs';
+import ExpiryMap from './expiry-map.js';
 import { uuidv4 } from './uuid.js';
-import { fetchSSE } from './fetch-sse.ts'
+import { fetchSSE } from './fetch-sse.js'
 
 const KEY_ACCESS_TOKEN = 'accessToken';
 const cache = new ExpiryMap(10 * 1000);

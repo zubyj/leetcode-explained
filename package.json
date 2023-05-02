@@ -11,6 +11,7 @@
   "devDependencies": {
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
+    "@types/lodash": "^4.14.194",
     "babel-loader": "^9.1.2",
     "eslint": "^8.38.0",
     "eslint-config-google": "^0.14.0",

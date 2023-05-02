@@ -9,18 +9,22 @@ before it expires. If the token is requested again before it expires, it is retr
 than making another HTTP request to the OpenAI Chat API.
 */
 
-class ExpiryMap {
-    constructor(expiryMs) {
+class ExpiryMap<K, V> {
+    private expiryMs: number;
+    private map: Map<K, V>;
+    private timeouts: Map<K, ReturnType<typeof setTimeout>>;
+
+    constructor(expiryMs: number) {
         this.expiryMs = expiryMs;
         this.map = new Map();
         this.timeouts = new Map();
     }
 
-    get(key) {
+    get(key: K): V | undefined {
         return this.map.get(key);
     }
 
-    set(key, value) {
+    set(key: K, value: V): void {
         this.clearTimeout(key);
         this.map.set(key, value);
         this.timeouts.set(
@@ -31,12 +35,12 @@ class ExpiryMap {
         );
     }
 
-    delete(key) {
+    delete(key: K): void {
         this.clearTimeout(key);
         this.map.delete(key);
     }
 
-    clearTimeout(key) {
+    clearTimeout(key: K): void {
         const timeout = this.timeouts.get(key);
         if (timeout) {
             clearTimeout(timeout);

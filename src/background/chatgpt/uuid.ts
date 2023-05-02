@@ -1,3 +1,6 @@
+// msCrypto is for IE11, which isnt included in ts by default 
+declare var msCrypto: Crypto;
+
 export function uuidv4() {
     var getRandomValues =
         typeof crypto !== "undefined" && crypto.getRandomValues

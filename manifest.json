@@ -20,15 +20,15 @@
         "https://chat.openai.com/api/auth/session"
     ],
     "background": {
-        "service_worker": "src/background/background.js",
+        "service_worker": "dist/background/background.js",
         "type": "module"
     },
     "content_scripts": [
         {
             "js": [
-                "src/content-script/get-gpt-access-token.js",
-                "src/content-script/get-user-code.js",
-                "src/content-script/add-solution-video.js"
+                "dist/content-script/get-gpt-access-token.js",
+                "dist/content-script/get-user-code.js",
+                "dist/content-script/add-solution-video.js"
             ],
             "matches": [
                 "https://leetcode.com/problems/*"

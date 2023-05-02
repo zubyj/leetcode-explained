@@ -1,6 +1,6 @@
-import {getChatGPTAccessToken} from './chatgpt/chatgpt.js';
+import { getChatGPTAccessToken } from './chatgpt/chatgpt.js';
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((request: any) => {
     if (request.type === 'OPEN_LOGIN_PAGE') {
         chrome.tabs.create({ url: 'https://chat.openai.com' });
     }

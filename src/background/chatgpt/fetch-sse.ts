@@ -2,7 +2,9 @@ import { createParser } from '../../../node_modules/eventsource-parser/dist/inde
 import { isEmpty } from '../../../node_modules/lodash-es/lodash.js';
 import { streamAsyncIterable } from './stream-async-iterable.js';
 
-export async function fetchSSE(resource, options) {
+export async function fetchSSE(
+    resource: string,
+    options: RequestInit & { onMessage: (message: string) => void }) {
     const { onMessage, ...fetchOptions } = options;
     const resp = await fetch(resource, fetchOptions);
     if (!resp.ok) {
@@ -14,7 +16,7 @@ export async function fetchSSE(resource, options) {
             onMessage(event.data);
         }
     });
-    for await (const chunk of streamAsyncIterable(resp.body)) {
+    for await (const chunk of streamAsyncIterable(resp.body!)) {
         const str = new TextDecoder().decode(chunk);
         parser.feed(str);
     }

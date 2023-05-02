@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Leetcode Explained",
     "version": "1.2",
-    "description": "Adds free video solutions directly into Leetcode problems.",
+    "description": "Adds video solutions directly into Leetcode problems.",
     "icons": {
         "16": "assets/images/icon-16.png",
         "32": "assets/images/icon-32.png",
@@ -20,15 +20,15 @@
         "https://chat.openai.com/api/auth/session"
     ],
     "background": {
-        "service_worker": "src/background/background.js",
+        "service_worker": "dist/background/background.js",
         "type": "module"
     },
     "content_scripts": [
         {
             "js": [
-                "src/content-script/get-gpt-access-token.js",
-                "src/content-script/get-user-code.js",
-                "src/content-script/add-solution-video.js"
+                "dist/content-script/get-gpt-access-token.js",
+                "dist/content-script/get-user-code.js",
+                "dist/content-script/add-solution-video.js"
             ],
             "matches": [
                 "https://leetcode.com/problems/*"

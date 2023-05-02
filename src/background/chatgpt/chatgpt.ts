@@ -1,4 +1,4 @@
-import ExpiryMap from './expiry-map.mjs';
+import ExpiryMap from './expiry-map.js';
 import { uuidv4 } from './uuid.js';
 import { fetchSSE } from './fetch-sse.js'
 
@@ -24,12 +24,15 @@ export async function getChatGPTAccessToken() {
 
 // Mangages interactions with the OpenAI Chat API.
 export class ChatGPTProvider {
-    constructor(token) {
+    private readonly token: string;
+    private readonly modelName: string;
+
+    constructor(token: string) {
         this.token = token;
         this.modelName = 'gpt-3.5-turbo'
     }
 
-    async generateAnswer(params) {
+    async generateAnswer(params: { prompt: string, onEvent: (arg: { type: string, data?: { text: string } }) => void }) {
         await fetchSSE('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {
@@ -47,7 +50,7 @@ export class ChatGPTProvider {
                 stream: true,
                 user: uuidv4(),
             }),
-            onMessage(message) {
+            onMessage(message: string) {
                 console.debug('sse message', message);
                 if (message === '[DONE]') {
                     params.onEvent({ type: 'done' });

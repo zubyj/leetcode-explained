@@ -77,14 +77,15 @@ function processCode(
     document.getElementById('user-message')!.textContent = '';
     chatGPTProvider.generateAnswer({
         prompt: `Give me the time and space complexity of the following code, if it exists, in one short sentence.\n ${codeText}`,
-        onEvent: (event: { type: string; data: { text: string } }) => {
-            if (event.type === 'answer') {
+        onEvent: (event: { type: string; data?: { text: string } }) => {
+            if (event.type === 'answer' && event.data) {
                 displayTimeComplexity(event.data.text);
                 sendTextToContentScript(event.data.text);
             }
         },
     });
 }
+
 
 function displayTimeComplexity(timeComplexity: string): void {
     document.getElementById('user-message')!.append(timeComplexity);

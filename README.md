@@ -1,14 +1,14 @@
 # Leetcode Explained
 
-A chrome extension that adds Leetcode video solutions directly into the problem. 
+A chrome extension that adds video solutions directly into Leetcode problem pages.
 
 [Available in the Chrome Web Store](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
 
 [Watch the demo](https://www.youtube.com/watch?v=E5nvCyVZxuc)
 
-![Leetcode Explained Screenshot 2](./assets/images/screenshot-1.png)
+![Leetcode Explained Screenshot 1](./assets/images/screenshot-1.png)
 
-![Leetcode Explained Screenshot 1](./assets/images/screenshot-2.png)
+![Leetcode Explained Screenshot 2](./assets/images/screenshot-2.png)
 
 ## Table of Contents
 

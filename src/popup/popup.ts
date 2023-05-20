@@ -33,7 +33,7 @@ function handleError(error: Error): void {
 function displayLoginMessage(): void {
     document.getElementById('login-button')!.classList.remove('hidden');
     document.getElementById('user-message')!.textContent =
-        "Get your code's time & space complexity with ChatGPT login";
+        'Get your codes time & space complexity with ChatGPT login';
 }
 
 function displayErrorMessage(error: string): void {
@@ -64,7 +64,7 @@ async function getCodeFromActiveTab(): Promise<string | null> {
                     } else {
                         resolve(response.data);
                     }
-                }
+                },
             );
         });
     });
@@ -72,7 +72,7 @@ async function getCodeFromActiveTab(): Promise<string | null> {
 
 function processCode(
     chatGPTProvider: ChatGPTProvider,
-    codeText: string
+    codeText: string,
 ): void {
     document.getElementById('user-message')!.textContent = '';
     chatGPTProvider.generateAnswer({

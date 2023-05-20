@@ -1,11 +1,11 @@
 import ExpiryMap from './expiry-map.js';
 import { uuidv4 } from './uuid.js';
-import { fetchSSE } from './fetch-sse.js'
+import { fetchSSE } from './fetch-sse.js';
 
 const KEY_ACCESS_TOKEN = 'accessToken';
 const cache = new ExpiryMap(10 * 1000);
 
-// Gets an access token from the OpenAI Chat API and caches it using the ExpiryMap.
+
 export async function getChatGPTAccessToken() {
     if (cache.get(KEY_ACCESS_TOKEN)) {
         return cache.get(KEY_ACCESS_TOKEN);
@@ -29,7 +29,7 @@ export class ChatGPTProvider {
 
     constructor(token: string) {
         this.token = token;
-        this.modelName = 'gpt-3.5-turbo'
+        this.modelName = 'gpt-3.5-turbo';
     }
 
     async generateAnswer(params: { prompt: string, onEvent: (arg: { type: string, data?: { text: string } }) => void }) {
@@ -37,7 +37,7 @@ export class ChatGPTProvider {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${this.token}`,
+                'Authorization': `Bearer ${this.token}`,
             },
             body: JSON.stringify({
                 messages: [
@@ -63,7 +63,7 @@ export class ChatGPTProvider {
                     console.error(err);
                     return;
                 }
-                const text = data.choices[0].delta.content
+                const text = data.choices[0].delta.content;
                 if (text) {
                     params.onEvent({
                         type: 'answer',

@@ -4,6 +4,6 @@ chrome.runtime.sendMessage({ type: 'GET_CHATGPT_ACCESS_TOKEN' }, (response) => {
     if (accessToken) {
         chrome.storage.local.set({ accessToken });
     } else {
-        console.error("Error: Unable to get ChatGPT access token.");
+        console.error('Error: Unable to get ChatGPT access token.');
     }
 });

@@ -11,12 +11,12 @@ chrome.runtime.onInstalled.addListener(() => {
     const jsonUrl = chrome.runtime.getURL('assets/data/leetcode_solutions.json');
 
     fetch(jsonUrl)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
             // Store the JSON data in a global variable or a storage API
             chrome.storage.local.set({ leetcodeProblems: data });
         })
-        .catch(error => {
+        .catch((error) => {
             console.error(error);
         });
 });

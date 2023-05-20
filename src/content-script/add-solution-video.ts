@@ -57,7 +57,7 @@ function addVideo(title: string): void {
 /**
  * Handles incoming messages from the background script.
  */
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'addVideo') {
         const title = request.title.split('-')[0].trim();
         addVideo(title);
@@ -67,14 +67,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 /**
  * This code is used to prevent the iframe from freezing when its being resized while the mouse is hovering over it
  */
-window.addEventListener('mousedown', (event) => {
+window.addEventListener('mousedown', () => {
     const iframe = document.querySelector<HTMLIFrameElement>('iframe.youtube-video');
     if (iframe) {
         iframe.style.pointerEvents = 'none';
     }
 });
 
-window.addEventListener('mouseup', (event) => {
+window.addEventListener('mouseup', () => {
     const iframe = document.querySelector<HTMLIFrameElement>('iframe.youtube-video');
     if (iframe) {
         iframe.style.pointerEvents = 'auto';

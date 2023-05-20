@@ -3,13 +3,43 @@
         "browser": true,
         "es2021": true
     },
-    "extends": "google",
-    "overrides": [
+    "extends": [
+        "google",
+        "plugin:@typescript-eslint/recommended"
     ],
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
-        "sourceType": "module"
+        "sourceType": "module",
+        "project": "../tsconfig.json"
     },
+    "plugins": [
+        "@typescript-eslint"
+    ],
     "rules": {
+        "semi": [
+            "error",
+            "always"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "indent": [
+            "error",
+            4
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 130
+            }
+        ],
+        "require-jsdoc": 0,
+        "@typescript-eslint/explicit-module-boundary-types": "off"
     }
 }

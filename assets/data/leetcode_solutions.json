@@ -4,8 +4,16 @@
             "title": "Two Sum",
             "id": 1,
             "frontend_id": 1,
-            "embedded_url": "https://www.youtube.com/embed/KLlXCFG5TnA",
-            "channel": "NeetCode"
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/BoHO04xVeU0",
+                    "channel": "Nick White"
+                },
+                {
+                    "embedded_url": "https://www.youtube.com/embed/KLlXCFG5TnA",
+                    "channel": "NeetCode"
+                }
+            ]
         },
         {
             "title": "Add Two Numbers",

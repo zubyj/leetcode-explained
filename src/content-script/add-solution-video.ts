@@ -9,11 +9,16 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     const container = document.createElement('div');
     container.classList.add('video-container');
     container.style.position = 'relative';
+    container.style.display = 'flex';
+    container.style.justifyContent = 'center';
+    container.style.width = '100%';
+    container.style.height = '100%';
     container.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
+    container.style.marginBottom = '50px';
 
     const controlsContainer = document.createElement('div');
     controlsContainer.style.display = 'flex';
-    controlsContainer.style.justifyContent = 'space-between';
+    controlsContainer.style.justifyContent = 'center';
     controlsContainer.style.position = 'absolute';
     controlsContainer.style.width = '100%';
     controlsContainer.style.padding = '10px';
@@ -29,6 +34,9 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     const channelElement = document.createElement('div');
     channelElement.textContent = channelName;
     channelElement.style.textAlign = 'center';
+    channelElement.style.width = '30%';
+    channelElement.style.marginLeft = '10px';
+    channelElement.style.marginRight = '10px';
     controlsContainer.appendChild(channelElement);
 
     const nextButton = document.createElement('button');
@@ -39,10 +47,15 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     const iframe = document.createElement('iframe');
     iframe.classList.add('youtube-video');
     iframe.src = videoUrl;
+    iframe.style.display = 'flex';
+    iframe.style.width = '90%';
+    iframe.style.height = '90%';
+    iframe.style.justifyContent = 'center';
     iframe.style.position = 'absolute';
     iframe.style.top = '50px'; // Adjust this value based on the height of your controlsContainer
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
+    iframe.style.width = '95%';
+    iframe.style.height = '95%';
+    iframe.style.border = '1px solid grey';
     iframe.allowFullscreen = true;
     container.appendChild(iframe);
 

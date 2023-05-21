@@ -3,29 +3,74 @@
  * @param {string} videoUrl - The video URL.
  * @return {HTMLDivElement} - The video container element.
  */
-function createVideoContainer(videoUrl: string): HTMLDivElement {
+function createVideoContainer(videoUrl: string, channelName: string) {
     const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 
     const container = document.createElement('div');
     container.classList.add('video-container');
     container.style.position = 'relative';
+    container.style.display = 'flex';
+    container.style.justifyContent = 'center';
+    container.style.width = '100%';
+    container.style.height = '100%';
     container.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
+    container.style.marginBottom = '50px';
+
+    const controlsContainer = document.createElement('div');
+    controlsContainer.style.display = 'flex';
+    controlsContainer.style.justifyContent = 'center';
+    controlsContainer.style.position = 'absolute';
+    controlsContainer.style.width = '100%';
+    controlsContainer.style.padding = '10px';
+    controlsContainer.style.boxSizing = 'border-box';
+    controlsContainer.style.color = '#fff';
+    container.appendChild(controlsContainer);
+
+    const prevButton = document.createElement('button');
+    prevButton.textContent = '<<';
+    prevButton.classList.add('prev-video');
+    controlsContainer.appendChild(prevButton);
+
+    const channelElement = document.createElement('div');
+    channelElement.textContent = channelName;
+    channelElement.style.textAlign = 'center';
+    channelElement.style.width = '30%';
+    channelElement.style.marginLeft = '10px';
+    channelElement.style.marginRight = '10px';
+    controlsContainer.appendChild(channelElement);
+
+    const nextButton = document.createElement('button');
+    nextButton.textContent = '>>';
+    nextButton.classList.add('next-video');
+    controlsContainer.appendChild(nextButton);
 
     const iframe = document.createElement('iframe');
     iframe.classList.add('youtube-video');
     iframe.src = videoUrl;
+    iframe.style.display = 'flex';
+    iframe.style.width = '90%';
+    iframe.style.height = '90%';
+    iframe.style.justifyContent = 'center';
     iframe.style.position = 'absolute';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
+    iframe.style.top = '50px'; // Adjust this value based on the height of your controlsContainer
+    iframe.style.width = '95%';
+    iframe.style.height = '95%';
+    iframe.style.border = '1px solid grey';
     iframe.allowFullscreen = true;
     container.appendChild(iframe);
+
+    container.iframe = iframe;
+    container.channelElement = channelElement;
 
     return container;
 }
 
 interface LeetCodeProblem {
     title: string;
-    embedded_url: string;
+    videos: {
+        embedded_url: string;
+        channel: string;
+    }[];
     // add more properties as needed
 }
 
@@ -46,13 +91,31 @@ function addVideo(title: string): void {
         const problems = result.leetcodeProblems.questions;
         const problem = problems.find((problem: LeetCodeProblem) => problem.title === title);
 
-        if (problem && problem.embedded_url) {
-            const container = createVideoContainer(problem.embedded_url);
+        if (problem && problem.videos && problem.videos.length > 0) {
+            let currentVideoIndex = 0;
+            const container = createVideoContainer(problem.videos[currentVideoIndex].embedded_url, problem.videos[currentVideoIndex].channel);
             solutionsTab.parentElement?.insertBefore(container, solutionsTab);
+
+            const prevButton = container.querySelector('button.prev-video');
+            const nextButton = container.querySelector('button.next-video');
+
+            prevButton?.addEventListener('click', () => {
+                currentVideoIndex = (currentVideoIndex - 1 + problem.videos.length) % problem.videos.length;
+                updateVideo(container, problem.videos[currentVideoIndex].embedded_url, problem.videos[currentVideoIndex].channel);
+            });
+
+            nextButton?.addEventListener('click', () => {
+                currentVideoIndex = (currentVideoIndex + 1) % problem.videos.length;
+                updateVideo(container, problem.videos[currentVideoIndex].embedded_url, problem.videos[currentVideoIndex].channel);
+            });
         }
     });
 }
 
+function updateVideo(container: HTMLDivElement, videoUrl: string, channelName: string): void {
+    container.iframe.src = videoUrl;
+    container.channelElement.textContent = channelName;
+}
 
 /**
  * Handles incoming messages from the background script.

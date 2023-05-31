@@ -29,6 +29,9 @@ a:hover {
 
 #title {
     font-weight: 100;
+    font-size: 1.3rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: lightcyan;
 }
 
 #chat-section {
@@ -66,4 +69,3 @@ a:hover {
 #icon {
     padding-right: 5px;
 }
-

@@ -69,3 +69,7 @@ a:hover {
 #icon {
     padding-right: 5px;
 }
+
+.video-container {
+    display: none;
+}

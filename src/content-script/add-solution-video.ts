@@ -125,6 +125,12 @@ chrome.runtime.onMessage.addListener((request) => {
         const title = request.title.split('-')[0].trim();
         addVideo(title);
     }
+    if (request.type === 'TOGGLE_SOLUTION_VIDEO') {
+        const container = document.querySelector('div.video-container');
+        if (container) {
+            container.style.display = container.style.display === 'none' ? 'flex' : 'none';
+        }
+    }
 });
 
 /**

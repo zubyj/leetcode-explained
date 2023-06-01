@@ -17,16 +17,7 @@ li {
     font-size: 14px;
 }
 
-ol {
-    margin: 0;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
 
-li {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
 
 
 .hidden {
@@ -93,7 +84,7 @@ a:hover {
 /* Material UI button style */
 .material-button {
     color: white;
-    background-color: #2c2c2c;
+    background-color: #202020;
     border: 1px solid white;
     text-decoration: none;
     font-size: 14px;
@@ -111,7 +102,7 @@ a:hover {
 }
 
 .button-icon {
-    padding-right: 5px;
+    padding-right: 7px;
 }
 
 .video-container {
@@ -127,6 +118,7 @@ a:hover {
     margin-right: 5px;
 }
 
+/* Features */
 #features-title {
     display: flex;
     flex-direction: row;
@@ -143,4 +135,15 @@ a:hover {
     color: lightskyblue;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+ol {
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+li {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

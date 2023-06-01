@@ -103,33 +103,3 @@ a:hover {
 #toggleText {
     margin-right: 5px;
 }
-
-/* Features */
-#features-title {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-#features-list {
-    display: none;
-}
-
-.feature-header {
-    font-size: 1rem;
-    color: lightskyblue;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-ol {
-    margin: 0;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-li {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}

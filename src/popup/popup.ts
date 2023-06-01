@@ -93,7 +93,7 @@ function processCode(
         The answer should be in the form of "Time complexity: O(n), Space complexity: O(n)"\n    
         ${codeText}`;
     } else if (action === "fix") {
-        prompt = `Fix my code and return only the fixed code\n ${codeText}`;
+        prompt = `Fix my code for the Leetcode problem and return only the fixed code. If no solution exists, provide one using Python.\n ${codeText}`;
     }
     chatGPTProvider.generateAnswer({
         prompt: prompt,

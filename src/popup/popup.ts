@@ -113,4 +113,15 @@ function displayUnableToRetrieveCodeMessage(): void {
         'Unable to retrieve code. Please navigate to a Leetcode problem page and refresh the page.';
 }
 
+window.onload = () => {
+    chrome.storage.sync.get('fontSize', (data) => {
+        document.body.style.fontSize = data.fontSize + 'px';
+    });
+};
+
+document.getElementById('open-settings-button')!.onclick = () => {
+    window.location.href = 'settings.html';
+};
+
+
 main();

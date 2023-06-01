@@ -4,6 +4,7 @@
 <head>
     <title>Leetcode Explained</title>
     <link rel="stylesheet" href="./popup.css">
+    <link rel="stylesheet" href="prism.css">
     <script type="module" src="../../dist/popup/popup.js"></script>
 </head>
 
@@ -13,21 +14,28 @@
             Leetcode Explained
         </h2>
         <a id="open-settings-btn" class="nav-button">
-            <img src="../../assets/images/settings.png" class="icon" alt="Settings" />
+            <img src="../../assets/images/settings.png" alt="Settings" />
         </a>
     </div>
+    <!-- Login Button -->
     <button id="login-button" class="material-button hidden">
         Open ChatGPT website
     </button>
+    <!-- Get Complexity Button-->
     <button id="get-complexity-btn" class="material-button button hidden">
         <image src="../../assets/images/code-icon.png" class="button-icon" alt="Analyze" />
         Get Code Complexity
     </button>
-    <div class="paper">
-        <div class="paper-content">
-            <textarea id="code-complexity" autofocus></textarea>
-        </div>
-    </div>
+    <!-- Fix Code Button-->
+    <button id="fix-code-btn" class="material-button button hidden">
+        <image src="../../assets/images/fix-icon.png" class="button-icon" alt="Fix" />
+        Fix My Code
+    </button>
+    <!-- GPT Response-->
+    <pre id="response-container">
+        <code class="language-clike" id="gpt-response">Open a <a href="https://leetcode.com/problems/two-sum/solutions/" target="_blank">Leetcode problem </a>to get started!</code>
+    </pre>
+    <script src="prism.js"></script>
 </body>
 
 </html>

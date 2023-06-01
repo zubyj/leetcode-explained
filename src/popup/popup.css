@@ -6,9 +6,9 @@ body {
     background-color: #202020;
     color: #fff;
     font-family: 'Roboto', sans-serif;
-    min-width: 350px;
+    width: 420px;
     min-height: 220px;
-    padding: 0;
+    padding: 25px;
 }
 
 p,
@@ -24,11 +24,6 @@ li {
 
 a:hover {
     color: #a0a0a0;
-}
-
-.icon {
-    width: 100%;
-    height: 100%;
 }
 
 .navbar {
@@ -77,7 +72,7 @@ a:hover {
     transition-duration: 0.4s;
     align-items: center;
     margin-bottom: 20px;
-    width: 250px;
+    width: 220px;
 }
 
 .material-button:hover {
@@ -89,11 +84,18 @@ a:hover {
     padding-right: 7px;
 }
 
+/* GPT Response */
+#response-container {
+    max-width: 410px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+/* Settings */
 .video-container {
     display: none;
 }
 
-/* Settings */
 #toggle-video {
     margin-bottom: 20px;
 }
@@ -130,53 +132,4 @@ ol {
 li {
     padding-top: 5px;
     padding-bottom: 5px;
-}
-
-
-/* Paper TextArea by Marc Malignan */
-.paper {
-    position: relative;
-    min-height: 300px;
-    width: 90%;
-    margin: 0 auto;
-    background: #fafafa;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
-    overflow: hidden;
-}
-
-.paper:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 60px;
-    background: radial-gradient(#575450 6px, transparent 7px) repeat-y;
-    background-size: 30px 30px;
-    border-right: 3px solid #D44147;
-    box-sizing: border-box;
-}
-
-.paper-content {
-    position: absolute;
-    top: 30px;
-    right: 0;
-    bottom: 30px;
-    left: 60px;
-    background: linear-gradient(transparent, transparent 28px, #91D1D3 28px);
-    background-size: 30px 30px;
-}
-
-.paper-content textarea {
-    width: 100%;
-    height: 100%;
-    line-height: 30px;
-    padding: 0 10px;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    font-size: 15px;
-    box-sizing: border-box;
-    z-index: 1;
 }

@@ -8,7 +8,17 @@ async function main(): Promise<void> {
         const accessToken = await getChatGPTAccessToken();
         if (accessToken) {
             initAnalyzeCodeButton(new ChatGPTProvider(accessToken));
-            document.getElementById('analyze-button')!.classList.remove('hidden');
+            chrome.storage.local.get(['timeComplexity'], (data) => {
+                if (data.timeComplexity) {
+                    displayTimeComplexity(data.timeComplexity);
+                }
+                else {
+                    displayTimeComplexity('Open your Leetcode solution and click the button to get started!');
+                }
+            });
+            document.getElementById('open-settings-btn')!.onclick = () => {
+                window.location.href = 'settings.html';
+            };
         } else {
             displayLoginMessage();
         }
@@ -50,6 +60,7 @@ function initAnalyzeCodeButton(chatGPTProvider: ChatGPTProvider): void {
             displayUnableToRetrieveCodeMessage();
         }
     };
+    document.getElementById('analyze-button')!.classList.remove('hidden');
 }
 
 async function getCodeFromActiveTab(): Promise<string | null> {
@@ -84,6 +95,13 @@ function processCode(
             }
         },
     });
+
+    // Set a delay to store timeComplexity after the onEvent function is done processing
+    setTimeout(() => {
+        const timeComplexity = document.getElementById('user-message')!.textContent;
+        chrome.storage.local.set({ 'timeComplexity': timeComplexity });
+    }, 5000);
+
 }
 
 function displayTimeComplexity(timeComplexity: string): void {
@@ -101,24 +119,4 @@ function displayUnableToRetrieveCodeMessage(): void {
         'Unable to retrieve code. Please navigate to a Leetcode problem page and refresh the page.';
 }
 
-window.onload = () => {
-    chrome.storage.local.get('fontSize', (data) => {
-        document.body.style.fontSize = data.fontSize + 'px';
-    });
-};
-
-document.getElementById('open-settings-btn')!.onclick = () => {
-    window.location.href = 'settings.html';
-};
-
 main();
-
-// Retrieve the boolean value from Chrome local storage
-chrome.storage.local.get('hideVideo', (data) => {
-    const hideVideo = data.hideVideo;
-    if (hideVideo) {
-        document.getElementById('toggleText')!.textContent = 'Show';
-    } else {
-        document.getElementById('toggleText')!.textContent = 'Hide';
-    }
-});

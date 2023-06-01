@@ -2,17 +2,19 @@ document.getElementById('home-button')!.onclick = () => {
     window.location.href = 'popup.html';
 };
 
-document.getElementById('settings-form')!.onsubmit = (e) => {
-    e.preventDefault();
-    const fontSize = document.getElementById('font-size')!.value;
-    chrome.storage.sync.set({ 'fontSize': fontSize }, () => {
-        alert('Settings saved');
-    });
-};
-
-window.onload = () => {
-    chrome.storage.sync.get('fontSize', (data) => {
-        document.getElementById('font-size')!.value = data.fontSize;
+document.getElementById('toggle-video')!.onclick = () => {
+    // Toggle the boolean value in Chrome local storage
+    chrome.storage.local.get('hideVideo', (data) => {
+        const hideVideo = data.hideVideo;
+        const updatedHideVideo = !hideVideo;
+        chrome.storage.local.set({ hideVideo: updatedHideVideo }, () => {
+            if (updatedHideVideo) {
+                document.getElementById('toggleText')!.textContent = 'Show';
+            } else {
+                document.getElementById('toggleText')!.textContent = 'Hide';
+            }
+            sendMessageToActiveTab({ type: 'TOGGLE_SOLUTION_VIDEO' });
+        });
     });
 };
 
@@ -21,8 +23,4 @@ function sendMessageToActiveTab(message: object): void {
         chrome.tabs.sendMessage(tabs[0].id!, message);
     });
 }
-
-document.getElementById('toggle-video')!.onclick = () => {
-    sendMessageToActiveTab({ type: 'TOGGLE_SOLUTION_VIDEO' });
-};
 

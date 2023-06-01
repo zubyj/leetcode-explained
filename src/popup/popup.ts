@@ -86,7 +86,6 @@ function processCode(
     });
 }
 
-
 function displayTimeComplexity(timeComplexity: string): void {
     document.getElementById('user-message')!.append(timeComplexity);
 }
@@ -113,3 +112,35 @@ document.getElementById('open-settings-btn')!.onclick = () => {
 };
 
 main();
+
+// Retrieve the boolean value from Chrome local storage
+chrome.storage.local.get('hideVideo', (data) => {
+    const hideVideo = data.hideVideo;
+    if (hideVideo) {
+        document.getElementById('toggleText')!.textContent = 'Show';
+    } else {
+        document.getElementById('toggleText')!.textContent = 'Hide';
+    }
+});
+
+document.getElementById('toggle-video')!.onclick = () => {
+    // Toggle the boolean value in Chrome local storage
+    chrome.storage.local.get('hideVideo', (data) => {
+        const hideVideo = data.hideVideo;
+        const updatedHideVideo = !hideVideo;
+        chrome.storage.local.set({ hideVideo: updatedHideVideo }, () => {
+            if (updatedHideVideo) {
+                document.getElementById('toggleText')!.textContent = 'Show';
+            } else {
+                document.getElementById('toggleText')!.textContent = 'Hide';
+            }
+            sendMessageToActiveTab({ type: 'TOGGLE_SOLUTION_VIDEO' });
+        });
+    });
+};
+
+function sendMessageToActiveTab(message: object): void {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id!, message);
+    });
+}

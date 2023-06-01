@@ -6,7 +6,7 @@ body {
     background-color: #202020;
     color: #fff;
     font-family: 'Roboto', sans-serif;
-    min-width: 300px;
+    min-width: 350px;
     min-height: 220px;
     padding: 0;
 }
@@ -77,7 +77,7 @@ a:hover {
     transition-duration: 0.4s;
     align-items: center;
     margin-bottom: 20px;
-    width: 400px;
+    width: 250px;
 }
 
 .material-button:hover {

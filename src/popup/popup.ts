@@ -100,7 +100,7 @@ function processCode(
     setTimeout(() => {
         const timeComplexity = document.getElementById('user-message')!.textContent;
         chrome.storage.local.set({ 'timeComplexity': timeComplexity });
-    }, 5000);
+    }, 4000);
 
 }
 

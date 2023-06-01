@@ -1,22 +1,35 @@
 /* Set the dark theme for the extension */
 body {
-    background-color: #2c2c2c;
-    color: #f0f0f0;
+    background-color: #202020;
+    color: #fff;
     font-family: 'Roboto', sans-serif;
     min-width: 220px;
     display: flex;
-    justify-content: center;
-    padding: 25px;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    padding: 25px;
 }
 
 /* Apply light color to the text and links */
 p,
-a {
+a,
+li {
     color: #f0f0f0;
     font-size: 14px;
 }
+
+ol {
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 
 .hidden {
     display: none;
@@ -61,6 +74,8 @@ a:hover {
     font-weight: 100;
     font-size: 1.2rem;
     color: lightcyan;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #chat-section {
@@ -100,4 +115,9 @@ a:hover {
 
 .video-container {
     display: none;
+}
+
+.feature-header {
+    font-size: 1rem;
+    color: lightskyblue;
 }

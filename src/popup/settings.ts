@@ -18,9 +18,22 @@ document.getElementById('toggle-video')!.onclick = () => {
     });
 };
 
+document.getElementById('toggle-features')!.onclick = () => {
+    const featureList = document.getElementById('features-list');
+    const featureIcon = document.getElementById('toggle-features-icon');
+    const displayValue = window.getComputedStyle(featureList).getPropertyValue('display');
+
+    if (displayValue === 'none') {
+        featureList.style.display = 'block';
+        featureIcon.src = '../../assets/images/collapse-icon.png';
+    } else {
+        featureList.style.display = 'none';
+        featureIcon.src = '../../assets/images/expand-icon.png';
+    }
+};
+
 function sendMessageToActiveTab(message: object): void {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id!, message);
     });
 }
-

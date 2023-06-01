@@ -6,8 +6,6 @@ body {
     min-width: 220px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding: 25px;
 }
 
@@ -84,6 +82,14 @@ a:hover {
     margin-bottom: 20px;
 }
 
+.button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
 /* Material UI button style */
 .material-button {
     color: white;
@@ -104,12 +110,7 @@ a:hover {
     color: black;
 }
 
-#buttonText {
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-}
-
-#icon {
+.button-icon {
     padding-right: 5px;
 }
 
@@ -117,7 +118,29 @@ a:hover {
     display: none;
 }
 
+/* Settings */
+#toggle-video {
+    margin-bottom: 20px;
+}
+
+#toggleText {
+    margin-right: 5px;
+}
+
+#features-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#features-list {
+    display: none;
+}
+
 .feature-header {
     font-size: 1rem;
     color: lightskyblue;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

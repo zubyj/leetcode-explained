@@ -3,19 +3,22 @@ import {
     ChatGPTProvider,
 } from '../background/chatgpt/chatgpt.js';
 
-function sendMessageToActiveTab(message: object): void {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id!, message);
-    });
-}
-
 async function main(): Promise<void> {
     try {
         const accessToken = await getChatGPTAccessToken();
         if (accessToken) {
             initAnalyzeCodeButton(new ChatGPTProvider(accessToken));
-            document.getElementById('analyze-button')!.classList.remove('hidden');
-            document.getElementById('toggle-solution-video')!.classList.remove('hidden');
+            chrome.storage.local.get(['timeComplexity'], (data) => {
+                if (data.timeComplexity) {
+                    displayTimeComplexity(data.timeComplexity);
+                }
+                else {
+                    displayTimeComplexity('Open your Leetcode solution and click the button to get started!');
+                }
+            });
+            document.getElementById('open-settings-btn')!.onclick = () => {
+                window.location.href = 'settings.html';
+            };
         } else {
             displayLoginMessage();
         }
@@ -23,10 +26,6 @@ async function main(): Promise<void> {
         handleError(error as Error);
     }
 }
-
-document.getElementById('toggle-solution-video')!.onclick = () => {
-    sendMessageToActiveTab({ type: 'TOGGLE_SOLUTION_VIDEO' });
-};
 
 document.getElementById('login-button')!.onclick = () => {
     chrome.runtime.sendMessage({ type: 'OPEN_LOGIN_PAGE' });
@@ -44,7 +43,7 @@ function handleError(error: Error): void {
 function displayLoginMessage(): void {
     document.getElementById('login-button')!.classList.remove('hidden');
     document.getElementById('user-message')!.textContent =
-        'Get your codes time & space complexity with ChatGPT login';
+        'Log into ChatGPT in your browser to get started';
 }
 
 function displayErrorMessage(error: string): void {
@@ -61,6 +60,7 @@ function initAnalyzeCodeButton(chatGPTProvider: ChatGPTProvider): void {
             displayUnableToRetrieveCodeMessage();
         }
     };
+    document.getElementById('analyze-button')!.classList.remove('hidden');
 }
 
 async function getCodeFromActiveTab(): Promise<string | null> {
@@ -95,8 +95,14 @@ function processCode(
             }
         },
     });
-}
 
+    // Set a delay to store timeComplexity after the onEvent function is done processing
+    setTimeout(() => {
+        const timeComplexity = document.getElementById('user-message')!.textContent;
+        chrome.storage.local.set({ 'timeComplexity': timeComplexity });
+    }, 5000);
+
+}
 
 function displayTimeComplexity(timeComplexity: string): void {
     document.getElementById('user-message')!.append(timeComplexity);

@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Leetcode Explained",
-    "version": "1.5",
+    "version": "2.0",
     "description": "Watch Leetcode video solutions directly inside the problem page.",
     "icons": {
         "16": "assets/images/icon-16.png",

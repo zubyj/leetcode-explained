@@ -33,7 +33,7 @@ function handleError(error: Error): void {
 function displayLoginMessage(): void {
     document.getElementById('login-button')!.classList.remove('hidden');
     document.getElementById('user-message')!.textContent =
-        'Get your codes time & space complexity with ChatGPT login';
+        'Log into ChatGPT in your browser to get started';
 }
 
 function displayErrorMessage(error: string): void {
@@ -122,25 +122,3 @@ chrome.storage.local.get('hideVideo', (data) => {
         document.getElementById('toggleText')!.textContent = 'Hide';
     }
 });
-
-document.getElementById('toggle-video')!.onclick = () => {
-    // Toggle the boolean value in Chrome local storage
-    chrome.storage.local.get('hideVideo', (data) => {
-        const hideVideo = data.hideVideo;
-        const updatedHideVideo = !hideVideo;
-        chrome.storage.local.set({ hideVideo: updatedHideVideo }, () => {
-            if (updatedHideVideo) {
-                document.getElementById('toggleText')!.textContent = 'Show';
-            } else {
-                document.getElementById('toggleText')!.textContent = 'Hide';
-            }
-            sendMessageToActiveTab({ type: 'TOGGLE_SOLUTION_VIDEO' });
-        });
-    });
-};
-
-function sendMessageToActiveTab(message: object): void {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id!, message);
-    });
-}

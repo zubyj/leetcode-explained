@@ -27,7 +27,22 @@ a:hover {
     color: #a0a0a0;
 }
 
-#title-container {
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    /* Align items to the right */
+}
+
+.icon {
+    width: 100%;
+    height: 100%;
+}
+
+.navbar {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -35,21 +50,18 @@ a:hover {
     margin-bottom: 20px;
 }
 
-#title {
+.nav-button {
+    margin-left: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+}
+
+.title {
     font-weight: 100;
     font-size: 1.2rem;
     color: lightcyan;
-}
-
-#open-settings-btn {
-    background-image: url("../../assets/images/settings.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    padding: 10px;
-    margin-left: 10px;
-    border: none;
-    cursor: pointer;
 }
 
 #chat-section {
@@ -90,13 +102,4 @@ a:hover {
 
 .video-container {
     display: none;
-}
-
-/* Settings menu */
-#home-button {
-    margin-bottom: 20px;
-}
-
-#toggle-video {
-    margin-bottom: 20px;
 }

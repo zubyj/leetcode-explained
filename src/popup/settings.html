@@ -8,15 +8,16 @@
 </head>
 
 <body>
-    <button id="home-button" class="material-button">Return Home</button>
+    <div class="navbar">
+        <h2 class="title">Settings</h2>
+        <button id="home-button" class="nav-button">
+            <image src="../../assets/images/home-icon.png" class="icon" alt="Home" />
+        </button>
+    </div>
     <button id="toggle-video" class="material-button">
-        Show/Hide Solution Video
+        <span id="toggleText">Show</span>
+        Solution Video
     </button>
-    <form id="settings-form">
-        <label for="font-size">Font Size</label>
-        <input type="number" id="font-size" name="font-size" min="1" max="50">
-        <button type="submit">Save</button>
-    </form>
 </body>
 
 </html>

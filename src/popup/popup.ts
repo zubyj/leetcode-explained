@@ -3,8 +3,6 @@ import {
     ChatGPTProvider,
 } from '../background/chatgpt/chatgpt.js';
 
-
-
 async function main(): Promise<void> {
     try {
         const accessToken = await getChatGPTAccessToken();
@@ -18,8 +16,6 @@ async function main(): Promise<void> {
         handleError(error as Error);
     }
 }
-
-
 
 document.getElementById('login-button')!.onclick = () => {
     chrome.runtime.sendMessage({ type: 'OPEN_LOGIN_PAGE' });
@@ -107,7 +103,7 @@ function displayUnableToRetrieveCodeMessage(): void {
 }
 
 window.onload = () => {
-    chrome.storage.sync.get('fontSize', (data) => {
+    chrome.storage.local.get('fontSize', (data) => {
         document.body.style.fontSize = data.fontSize + 'px';
     });
 };

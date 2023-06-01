@@ -1,15 +1,14 @@
-/* Set the dark theme for the extension */
 body {
     background-color: #202020;
     color: #fff;
     font-family: 'Roboto', sans-serif;
     min-width: 220px;
+    min-height: 220px;
     display: flex;
     flex-direction: column;
     padding: 25px;
 }
 
-/* Apply light color to the text and links */
 p,
 a,
 li {
@@ -17,25 +16,12 @@ li {
     font-size: 14px;
 }
 
-
-
-
 .hidden {
     display: none;
 }
 
 a:hover {
     color: #a0a0a0;
-}
-
-.navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    /* Align items to the right */
 }
 
 .icon {
@@ -51,14 +37,6 @@ a:hover {
     margin-bottom: 20px;
 }
 
-.nav-button {
-    margin-left: 20px;
-    cursor: pointer;
-    padding: 0;
-    width: 25px;
-    height: 25px;
-}
-
 .title {
     font-weight: 100;
     font-size: 1.2rem;
@@ -67,10 +45,12 @@ a:hover {
     margin-bottom: 20px;
 }
 
-#chat-section {
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
+.nav-button {
+    margin-left: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 25px;
+    height: 25px;
 }
 
 .button {
@@ -94,6 +74,7 @@ a:hover {
     padding: 10px 24px;
     transition-duration: 0.4s;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .material-button:hover {

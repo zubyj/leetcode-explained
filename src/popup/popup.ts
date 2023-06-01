@@ -7,7 +7,7 @@ async function main(): Promise<void> {
     try {
         const accessToken = await getChatGPTAccessToken();
         if (accessToken) {
-            initAnalyzeCodeButton(new ChatGPTProvider(accessToken));
+            initGetComplexityBtn(new ChatGPTProvider(accessToken));
             chrome.storage.local.get(['timeComplexity'], (data) => {
                 if (data.timeComplexity) {
                     displayTimeComplexity(data.timeComplexity);
@@ -42,16 +42,16 @@ function handleError(error: Error): void {
 
 function displayLoginMessage(): void {
     document.getElementById('login-button')!.classList.remove('hidden');
-    document.getElementById('user-message')!.textContent =
+    document.getElementById('code-complexity')!.textContent =
         'Log into ChatGPT in your browser to get started';
 }
 
 function displayErrorMessage(error: string): void {
-    document.getElementById('user-message')!.textContent = error;
+    document.getElementById('code-complexity')!.textContent = error;
 }
 
-function initAnalyzeCodeButton(chatGPTProvider: ChatGPTProvider): void {
-    const analyzeCodeButton = document.getElementById('analyze-button')!;
+function initGetComplexityBtn(chatGPTProvider: ChatGPTProvider): void {
+    const analyzeCodeButton = document.getElementById('get-complexity-btn')!;
     analyzeCodeButton.onclick = async () => {
         const codeText = await getCodeFromActiveTab();
         if (codeText) {
@@ -60,7 +60,7 @@ function initAnalyzeCodeButton(chatGPTProvider: ChatGPTProvider): void {
             displayUnableToRetrieveCodeMessage();
         }
     };
-    document.getElementById('analyze-button')!.classList.remove('hidden');
+    document.getElementById('get-complexity-btn')!.classList.remove('hidden');
 }
 
 async function getCodeFromActiveTab(): Promise<string | null> {
@@ -85,7 +85,7 @@ function processCode(
     chatGPTProvider: ChatGPTProvider,
     codeText: string,
 ): void {
-    document.getElementById('user-message')!.textContent = '';
+    document.getElementById('code-complexity')!.textContent = '';
     chatGPTProvider.generateAnswer({
         prompt: `Give me the time and space complexity of the following code, if it exists, in one short sentence.\n ${codeText}`,
         onEvent: (event: { type: string; data?: { text: string } }) => {
@@ -98,14 +98,14 @@ function processCode(
 
     // Set a delay to store timeComplexity after the onEvent function is done processing
     setTimeout(() => {
-        const timeComplexity = document.getElementById('user-message')!.textContent;
+        const timeComplexity = document.getElementById('code-complexity')!.textContent;
         chrome.storage.local.set({ 'timeComplexity': timeComplexity });
     }, 4000);
 
 }
 
 function displayTimeComplexity(timeComplexity: string): void {
-    document.getElementById('user-message')!.append(timeComplexity);
+    document.getElementById('code-complexity')!.append(timeComplexity);
 }
 
 function sendTextToContentScript(text: string): void {
@@ -115,7 +115,7 @@ function sendTextToContentScript(text: string): void {
 }
 
 function displayUnableToRetrieveCodeMessage(): void {
-    document.getElementById('user-message')!.textContent =
+    document.getElementById('code-complexity')!.textContent =
         'Unable to retrieve code. Please navigate to a Leetcode problem page and refresh the page.';
 }
 

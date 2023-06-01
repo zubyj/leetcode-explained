@@ -3,11 +3,7 @@ import {
     ChatGPTProvider,
 } from '../background/chatgpt/chatgpt.js';
 
-function sendMessageToActiveTab(message: object): void {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id!, message);
-    });
-}
+
 
 async function main(): Promise<void> {
     try {
@@ -15,7 +11,6 @@ async function main(): Promise<void> {
         if (accessToken) {
             initAnalyzeCodeButton(new ChatGPTProvider(accessToken));
             document.getElementById('analyze-button')!.classList.remove('hidden');
-            document.getElementById('toggle-solution-video')!.classList.remove('hidden');
         } else {
             displayLoginMessage();
         }
@@ -24,9 +19,7 @@ async function main(): Promise<void> {
     }
 }
 
-document.getElementById('toggle-solution-video')!.onclick = () => {
-    sendMessageToActiveTab({ type: 'TOGGLE_SOLUTION_VIDEO' });
-};
+
 
 document.getElementById('login-button')!.onclick = () => {
     chrome.runtime.sendMessage({ type: 'OPEN_LOGIN_PAGE' });
@@ -119,9 +112,8 @@ window.onload = () => {
     });
 };
 
-document.getElementById('open-settings-button')!.onclick = () => {
+document.getElementById('open-settings-btn')!.onclick = () => {
     window.location.href = 'settings.html';
 };
-
 
 main();

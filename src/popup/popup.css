@@ -27,11 +27,30 @@ a:hover {
     color: #a0a0a0;
 }
 
+#title-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
 #title {
     font-weight: 100;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: lightcyan;
+}
+
+#open-settings-btn {
+    background-image: url("../../assets/images/settings.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    padding: 10px;
+    margin-left: 10px;
+    border: none;
+    cursor: pointer;
 }
 
 #chat-section {
@@ -72,4 +91,13 @@ a:hover {
 
 .video-container {
     display: none;
+}
+
+/* Settings menu */
+#home-button {
+    margin-bottom: 20px;
+}
+
+#toggle-video {
+    margin-bottom: 20px;
 }

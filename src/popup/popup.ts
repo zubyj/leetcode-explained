@@ -84,31 +84,29 @@ function processCode(
     codeText: string,
     action: string,
 ): void {
-    gptResponse!.innerText = '';
+    gptResponse!.textContent = '';
     let prompt: string;
     if (action === "analyze") {
         prompt = `
-        Return the time and space complexity of the following code, if it exists.\n 
-        Keep the response as short as possible.
-        The answer should be in the form of "Time complexity: O(n), Space complexity: O(n)"\n    
+        What is the time and space complexity of the following code (if the code exists).\n
         ${codeText}`;
     } else if (action === "fix") {
-        prompt = `Fix my code for the Leetcode problem and return only the fixed code. If no solution exists, provide one using Python.\n ${codeText}`;
+        prompt = `Fix my code for the Leetcode problem and return only the fixed code. If no code is provided in the following text, provide one using Python.\n ${codeText}`;
     }
     chatGPTProvider.generateAnswer({
         prompt: prompt,
         onEvent: (event: { type: string; data?: { text: string } }) => {
             if (event.type === 'answer' && event.data) {
-                gptResponse!.innerText += event.data.text;
+                gptResponse!.textContent += event.data.text;
                 sendTextToContentScript(event.data.text);
+            }
+            if (event.type === 'done') {
+                (window as any).Prism.highlightAll();
+                const timeComplexity = gptResponse!.textContent;
+                chrome.storage.local.set({ 'timeComplexity': timeComplexity });
             }
         },
     });
-    // Set a delay to store timeComplexity after the onEvent function is done processing
-    setTimeout(() => {
-        const timeComplexity = gptResponse!.innerText;
-        chrome.storage.local.set({ 'timeComplexity': timeComplexity });
-    }, 4000);
 }
 
 function sendTextToContentScript(text: string): void {

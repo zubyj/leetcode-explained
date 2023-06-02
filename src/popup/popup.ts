@@ -128,6 +128,10 @@ function initCopyButton(): void {
         const gptResponse = document.getElementById('gpt-response')!;
         if (gptResponse.textContent) {
             await navigator.clipboard.writeText(gptResponse.textContent);
+            infoMessage!.textContent = 'Copied to clipboard!'
+            setTimeout(() => {
+                infoMessage!.textContent = '';
+            }, 2000);
         }
     };
     copyButton.classList.remove('hidden');

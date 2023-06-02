@@ -4,6 +4,7 @@ import {
 } from '../background/chatgpt/chatgpt.js';
 
 let gptResponse = document.getElementById('gpt-response')!;
+let infoMessage = document.getElementById('info-message')!;
 
 function initActionButton(buttonId: string, action: string, chatGPTProvider: ChatGPTProvider): void {
     const actionButton = document.getElementById(buttonId)!;
@@ -25,6 +26,7 @@ async function main(): Promise<void> {
             const chatGPTProvider = new ChatGPTProvider(accessToken);
             initActionButton('get-complexity-btn', 'analyze', chatGPTProvider);
             initActionButton('fix-code-btn', 'fix', chatGPTProvider);
+            initCopyButton();
         }
         else {
             displayLoginMessage();
@@ -118,6 +120,17 @@ function sendTextToContentScript(text: string): void {
 function displayUnableToRetrieveCodeMessage(): void {
     gptResponse!.textContent =
         'Unable to retrieve code. Please navigate to a Leetcode problem page and refresh the page.';
+}
+
+function initCopyButton(): void {
+    const copyButton = document.getElementById('copy-code-btn')!;
+    copyButton.onclick = async () => {
+        const gptResponse = document.getElementById('gpt-response')!;
+        if (gptResponse.textContent) {
+            await navigator.clipboard.writeText(gptResponse.textContent);
+        }
+    };
+    copyButton.classList.remove('hidden');
 }
 
 main();

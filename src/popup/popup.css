@@ -85,8 +85,22 @@ a:hover {
 }
 
 /* GPT Response */
+#copy-code-btn {
+    background-color: #202020;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0;
+}
+
+#copy-code-btn:hover {
+    background-color: darkslategrey;
+    color: #202020;
+}
+
 #response-container {
-    max-width: 410px;
+    width: 90%;
 }
 
 /* Settings */

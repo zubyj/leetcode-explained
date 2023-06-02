@@ -20,6 +20,13 @@ function initActionButton(buttonId: string, action: string, chatGPTProvider: Cha
 }
 
 async function main(): Promise<void> {
+
+    chrome.runtime.onMessage.addListener((request) => {
+        if (request.type === 'SET_TAB_NAME') {
+            infoMessage!.textContent = request.data;
+        }
+    });
+
     try {
         const accessToken = await getChatGPTAccessToken();
         if (accessToken) {
@@ -92,10 +99,10 @@ function processCode(
         prompt = `
         What is the time and space complexity of the following code (if the code exists).\n
         ${codeText}`;
-        infoMessage.textContent = 'Getting time and space complexity ...'
+        infoMessage.textContent = 'Getting time and space complexity using ChatGPT ...'
     } else if (action === "fix") {
         prompt = `Fix my code for the Leetcode problem and return only the fixed code. If no code is provided in the following text, provide one using Python.\n ${codeText}`;
-        infoMessage.textContent = 'Fixing the code ...'
+        infoMessage.textContent = 'Fixing the code using ChatGPT ...'
     }
     chatGPTProvider.generateAnswer({
         prompt: prompt,
@@ -108,6 +115,7 @@ function processCode(
                 const timeComplexity = gptResponse!.textContent;
                 infoMessage!.textContent = '';
                 chrome.storage.local.set({ 'timeComplexity': timeComplexity });
+                (window as any).Prism.highlightAll();
             }
         },
     });
@@ -122,7 +130,6 @@ function applyLanguageClass(language: string) {
     const languageClass = 'language-' + language;
     // Apply the language class to the <code> element
     document.getElementById('gpt-response')!.className = languageClass;
-    (window as any).Prism.highlightAll();
 }
 
 chrome.runtime.onInstalled.addListener(function () {

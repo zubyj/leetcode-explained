@@ -27,6 +27,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         setTimeout(() => {
             chrome.tabs.get(tabId, (updatedTab) => {
                 chrome.tabs.sendMessage(tabId, { action: 'addVideo', title: updatedTab.title || 'title' });
+                chrome.runtime.sendMessage({ type: 'SET_TAB_NAME', data: updatedTab.title || 'title' });
+
             });
         }, 1000);
     }

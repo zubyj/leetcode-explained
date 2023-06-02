@@ -3,7 +3,6 @@ document.getElementById('home-button')!.onclick = () => {
 };
 
 document.getElementById('toggle-video')!.onclick = () => {
-    // Toggle the boolean value in Chrome local storage
     chrome.storage.local.get('hideVideo', (data) => {
         const hideVideo = data.hideVideo;
         const updatedHideVideo = !hideVideo;

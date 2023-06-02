@@ -4,7 +4,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #202020;
-    color: #fff;
+    color: #f0f0f0;
     font-family: 'Roboto', sans-serif;
     min-width: 300px;
     max-width: 500px;
@@ -12,10 +12,15 @@ body {
     padding: 25px;
 }
 
+a {
+    color: lightblue;
+    text-decoration: none;
+}
+
 p,
 a,
 li {
-    color: #f0f0f0;
+
     font-size: 14px;
 }
 
@@ -92,7 +97,6 @@ a:hover {
 /* GPT Response */
 #copy-code-btn {
     display: flex;
-    justify-content: center;
     align-items: center;
     background-color: #202020;
     border: 1px solid #f0f0f0;
@@ -111,6 +115,10 @@ a:hover {
 }
 
 /* Settings */
+#settings-menu {
+    text-align: center;
+}
+
 .video-container {
     display: none;
 }

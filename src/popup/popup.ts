@@ -87,14 +87,15 @@ function processCode(
     action: string,
 ): void {
     gptResponse!.textContent = '';
-    infoMessage!.textContent = '';
     let prompt: string;
     if (action === "analyze") {
         prompt = `
         What is the time and space complexity of the following code (if the code exists).\n
         ${codeText}`;
+        infoMessage.textContent = 'Getting time and space complexity ...'
     } else if (action === "fix") {
         prompt = `Fix my code for the Leetcode problem and return only the fixed code. If no code is provided in the following text, provide one using Python.\n ${codeText}`;
+        infoMessage.textContent = 'Fixing the code ...'
     }
     chatGPTProvider.generateAnswer({
         prompt: prompt,
@@ -104,8 +105,8 @@ function processCode(
                 sendTextToContentScript(event.data.text);
             }
             if (event.type === 'done') {
-                (window as any).Prism.highlightAll();
                 const timeComplexity = gptResponse!.textContent;
+                infoMessage!.textContent = '';
                 chrome.storage.local.set({ 'timeComplexity': timeComplexity });
             }
         },
@@ -121,6 +122,7 @@ function applyLanguageClass(language) {
     const languageClass = 'language-' + language;
     // Apply the language class to the <code> element
     document.getElementById('gpt-response')!.className = languageClass;
+    (window as any).Prism.highlightAll();
 }
 
 chrome.runtime.onInstalled.addListener(function () {
@@ -144,7 +146,7 @@ function initCopyButton(): void {
     const copyButton = document.getElementById('copy-code-btn')!;
     copyButton.onclick = async () => {
         await navigator.clipboard.writeText(gptResponse.textContent);
-        infoMessage!.textContent = 'Copied to clipboard!'
+        infoMessage!.textContent = 'Copied to clipboard'
         setTimeout(() => {
             infoMessage!.textContent = '';
         }, 2000);

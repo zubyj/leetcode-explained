@@ -3,7 +3,7 @@ import {
     ChatGPTProvider,
 } from '../background/chatgpt/chatgpt.js';
 
-let gptResponse = document.getElementById('gpt-response')!;
+let gptResponse: HTMLElement = document.getElementById('gpt-response')!;
 let infoMessage = document.getElementById('info-message')!;
 
 function initActionButton(buttonId: string, action: string, chatGPTProvider: ChatGPTProvider): void {
@@ -87,7 +87,7 @@ function processCode(
     action: string,
 ): void {
     gptResponse!.textContent = '';
-    let prompt: string;
+    let prompt: string = '';
     if (action === "analyze") {
         prompt = `
         What is the time and space complexity of the following code (if the code exists).\n
@@ -118,7 +118,7 @@ chrome.storage.local.get('selectedLanguage', (data) => {
     applyLanguageClass(data.selectedLanguage);
 });
 
-function applyLanguageClass(language) {
+function applyLanguageClass(language: string) {
     const languageClass = 'language-' + language;
     // Apply the language class to the <code> element
     document.getElementById('gpt-response')!.className = languageClass;
@@ -145,7 +145,9 @@ function displayUnableToRetrieveCodeMessage(): void {
 function initCopyButton(): void {
     const copyButton = document.getElementById('copy-code-btn')!;
     copyButton.onclick = async () => {
-        await navigator.clipboard.writeText(gptResponse.textContent);
+        if (gptResponse.textContent) {
+            await navigator.clipboard.writeText(gptResponse.textContent);
+        }
         infoMessage!.textContent = 'Copied to clipboard'
         setTimeout(() => {
             infoMessage!.textContent = '';

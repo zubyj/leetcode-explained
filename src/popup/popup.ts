@@ -55,12 +55,12 @@ function handleError(error: Error): void {
 
 function displayLoginMessage(): void {
     document.getElementById('login-button')!.classList.remove('hidden');
-    gptResponse!.textContent =
+    infoMessage!.textContent =
         'Log into ChatGPT in your browser to get started';
 }
 
 function displayErrorMessage(error: string): void {
-    gptResponse!.textContent = error;
+    infoMessage!.textContent = error;
 }
 
 async function getCodeFromActiveTab(): Promise<string | null> {
@@ -87,6 +87,7 @@ function processCode(
     action: string,
 ): void {
     gptResponse!.textContent = '';
+    infoMessage!.textContent = '';
     let prompt: string;
     if (action === "analyze") {
         prompt = `
@@ -111,6 +112,23 @@ function processCode(
     });
 }
 
+// Get the currently selected language from local storage
+chrome.storage.local.get('selectedLanguage', (data) => {
+    applyLanguageClass(data.selectedLanguage);
+});
+
+function applyLanguageClass(language) {
+    const languageClass = 'language-' + language;
+    // Apply the language class to the <code> element
+    document.getElementById('gpt-response')!.className = languageClass;
+}
+
+chrome.runtime.onInstalled.addListener(function () {
+    chrome.storage.local.set({ selectedLanguage: 'python' }, function () {
+        console.log("The language is set to 'python'.");
+    });
+});
+
 function sendTextToContentScript(text: string): void {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id!, { type: 'addText', data: text });
@@ -118,21 +136,18 @@ function sendTextToContentScript(text: string): void {
 }
 
 function displayUnableToRetrieveCodeMessage(): void {
-    gptResponse!.textContent =
+    infoMessage!.textContent =
         'Unable to retrieve code. Please navigate to a Leetcode problem page and refresh the page.';
 }
 
 function initCopyButton(): void {
     const copyButton = document.getElementById('copy-code-btn')!;
     copyButton.onclick = async () => {
-        const gptResponse = document.getElementById('gpt-response')!;
-        if (gptResponse.textContent) {
-            await navigator.clipboard.writeText(gptResponse.textContent);
-            infoMessage!.textContent = 'Copied to clipboard!'
-            setTimeout(() => {
-                infoMessage!.textContent = '';
-            }, 2000);
-        }
+        await navigator.clipboard.writeText(gptResponse.textContent);
+        infoMessage!.textContent = 'Copied to clipboard!'
+        setTimeout(() => {
+            infoMessage!.textContent = '';
+        }, 2000);
     };
     copyButton.classList.remove('hidden');
 }

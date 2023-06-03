@@ -21,21 +21,25 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    const urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/;
+    let urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/;
     if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
         setTimeout(() => {
             chrome.tabs.get(tabId, (updatedTab) => {
                 chrome.tabs.sendMessage(tabId, { action: 'addVideo', title: updatedTab.title || 'title' });
+
+                // Save the tab title in local storage
+
             });
         }, 1000);
     }
 
-    const urlPattern2 = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
-    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern2)) {
+    urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
+    if (tab.url && tab.url.match(urlPattern)) {
         setTimeout(() => {
-            chrome.tabs.sendMessage(tabId, { action: 'setTabInfo', title: tab.title || 'title', url: tab.url });
+            chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title || 'title' });
         }, 1000);
     }
+
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

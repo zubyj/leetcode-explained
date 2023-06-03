@@ -27,6 +27,11 @@ async function main(): Promise<void> {
         }
     });
 
+    chrome.storage.local.get('currentLeetCodeProblemTitle', function (data) {
+        const title = data.currentLeetCodeProblemTitle;
+        infoMessage!.textContent = title;
+    });
+
     try {
         const accessToken = await getChatGPTAccessToken();
         if (accessToken) {

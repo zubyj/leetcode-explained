@@ -20,10 +20,10 @@ function initActionButton(buttonId: string, action: string, chatGPTProvider: Cha
 }
 
 async function main(): Promise<void> {
-
-    chrome.runtime.onMessage.addListener((request) => {
-        if (request.type === 'SET_TAB_NAME') {
-            infoMessage!.textContent = request.data;
+    chrome.storage.local.get('gptResponse', function (data) {
+        if (data.gptResponse) {
+            gptResponse.textContent = data.gptResponse;
+            (window as any).Prism.highlightAll();
         }
     });
 
@@ -45,11 +45,22 @@ async function main(): Promise<void> {
     catch (error) {
         handleError(error as Error);
     }
+
+
 }
 
 document.getElementById('login-button')!.onclick = () => {
     chrome.runtime.sendMessage({ type: 'OPEN_LOGIN_PAGE' });
 };
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.action === 'setTabInfo') {
+        const urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
+        if (message.url.match(urlPattern)) {
+            infoMessage.textContent = message.title;
+        }
+    }
+});
 
 function handleError(error: Error): void {
     if (error.message === 'UNAUTHORIZED' || error.message === 'CLOUDFLARE') {
@@ -99,10 +110,10 @@ function processCode(
         prompt = `
         What is the time and space complexity of the following code (if the code exists).\n
         ${codeText}`;
-        infoMessage.textContent = 'Getting time and space complexity using ChatGPT ...'
+        infoMessage.textContent = 'Getting the time and space complexity using ChatGPT ...'
     } else if (action === "fix") {
-        prompt = `Fix my code for the Leetcode problem and return only the fixed code. If no code is provided in the following text, provide one using Python.\n ${codeText}`;
-        infoMessage.textContent = 'Fixing the code using ChatGPT ...'
+        prompt = `Fix my code for the Leetcode problem and return only the fixed code without using a code block. If no code is provided in the following text, provide one using Python.\n ${codeText}`;
+        infoMessage.textContent = 'Creating the solution using ChatGPT...'
     }
     chatGPTProvider.generateAnswer({
         prompt: prompt,
@@ -112,31 +123,13 @@ function processCode(
                 sendTextToContentScript(event.data.text);
             }
             if (event.type === 'done') {
-                const timeComplexity = gptResponse!.textContent;
-                infoMessage!.textContent = '';
-                chrome.storage.local.set({ 'timeComplexity': timeComplexity });
+                infoMessage!.textContent = 'Done!';
+                chrome.storage.local.set({ 'gptResponse': gptResponse!.textContent });
                 (window as any).Prism.highlightAll();
             }
         },
     });
 }
-
-// Get the currently selected language from local storage
-chrome.storage.local.get('selectedLanguage', (data) => {
-    applyLanguageClass(data.selectedLanguage);
-});
-
-function applyLanguageClass(language: string) {
-    const languageClass = 'language-' + language;
-    // Apply the language class to the <code> element
-    document.getElementById('gpt-response')!.className = languageClass;
-}
-
-chrome.runtime.onInstalled.addListener(function () {
-    chrome.storage.local.set({ selectedLanguage: 'python' }, function () {
-        console.log("The language is set to 'python'.");
-    });
-});
 
 function sendTextToContentScript(text: string): void {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -162,5 +155,7 @@ function initCopyButton(): void {
     };
     copyButton.classList.remove('hidden');
 }
+
+
 
 main();

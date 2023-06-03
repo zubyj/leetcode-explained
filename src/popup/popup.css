@@ -8,12 +8,11 @@ body {
     font-family: 'Roboto', sans-serif;
     min-width: 300px;
     max-width: 500px;
-    min-height: 220px;
     padding: 25px;
 }
 
 a {
-    color: lightblue;
+    color: lightgreen;
     text-decoration: none;
 }
 
@@ -106,13 +105,13 @@ a:hover {
 }
 
 #copy-code-btn:hover {
-    background-color: darkslategrey;
-    color: #202020;
+    background-color: black;
 }
 
 #response-container {
     min-width: 300px;
     max-width: 480px;
+    min-height: 150px;
 }
 
 /* Settings */

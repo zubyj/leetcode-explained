@@ -9,7 +9,6 @@ chrome.runtime.onMessage.addListener((request: any) => {
 // On extension install, store the JSON of leetcode problems in local storage
 chrome.runtime.onInstalled.addListener(() => {
     const jsonUrl = chrome.runtime.getURL('assets/data/leetcode_solutions.json');
-
     fetch(jsonUrl)
         .then((response) => response.json())
         .then((data) => {
@@ -27,9 +26,14 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         setTimeout(() => {
             chrome.tabs.get(tabId, (updatedTab) => {
                 chrome.tabs.sendMessage(tabId, { action: 'addVideo', title: updatedTab.title || 'title' });
-                chrome.runtime.sendMessage({ type: 'SET_TAB_NAME', data: updatedTab.title || 'title' });
-
             });
+        }, 1000);
+    }
+
+    const urlPattern2 = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
+    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern2)) {
+        setTimeout(() => {
+            chrome.tabs.sendMessage(tabId, { action: 'setTabInfo', title: tab.title || 'title', url: tab.url });
         }, 1000);
     }
 });
@@ -39,6 +43,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         getChatGPTAccessToken().then((accessToken) => {
             sendResponse({ accessToken: accessToken });
         });
-        return true; // Indicates the response will be sent asynchronously
+        return true;
     }
 });

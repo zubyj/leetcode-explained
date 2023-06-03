@@ -23,9 +23,7 @@ li {
     font-size: 14px;
 }
 
-.hidden {
-    display: none;
-}
+
 
 a:hover {
     color: #a0a0a0;
@@ -129,4 +127,8 @@ a:hover {
 
 #toggleText {
     margin-right: 5px;
+}
+
+.hidden {
+    display: none;
 }

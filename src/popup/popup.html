@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <!-- Title & Settings Button-->
     <div class="navbar">
         <h2 class="title">
             Leetcode Explained
@@ -17,28 +18,21 @@
             <img src="../../assets/images/settings.png" alt="Settings" />
         </a>
     </div>
-    <!-- Login Button -->
-    <button id="login-button" class="material-button hidden">
-        Open ChatGPT website
-    </button>
-    <!-- Get Complexity Button-->
+    <!-- GPT Buttons -->
+    <button id="login-button" class="material-button hidden">Open ChatGPT website</button>
     <button id="get-complexity-btn" class="material-button button hidden">
-        <image src="../../assets/images/code-icon.png" class="button-icon" alt="Analyze" />
-        Code Complexity
+        <image src="../../assets/images/code-icon.png" class="button-icon" alt="Analyze" />Code Complexity
     </button>
-    <!-- Fix Code Button-->
     <button id="fix-code-btn" class="material-button button hidden">
-        <image src="../../assets/images/fix-icon.png" class="button-icon" alt="Fix" />
-        Fix Code
+        <image src="../../assets/images/fix-icon.png" class="button-icon" alt="Fix" />Fix Code
     </button>
+    <!-- Info/Error Message-->
     <p id="info-message">
         Open a <a href="https://leetcode.com/problems/two-sum/" target="_blank">Leetcode problem </a>to get started
     </p>
-    <!-- GPT Response-->
-    <!-- <code class="language-python"> -->
-    <p id="analyze-code-response"></p>
-    <!-- </code> -->
-    <pre id="response-container">
+    <!-- GPT Response containers-->
+    <code class="language-text" id="analyze-code-response" class="response-container hidden"></code>
+    <pre id="fix-code-response" class="response-container hidden">
 <button id="copy-code-btn" class="button">
 <img src="../../assets/images/copy-icon.png" class="button-icon" alt="Copy" />
 </button>

@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     display: flex;
     flex-direction: column;
@@ -7,7 +8,7 @@ body {
     color: #f0f0f0;
     font-family: 'Roboto', sans-serif;
     min-width: 300px;
-    max-width: 500px;
+    max-width: 420px;
     padding: 25px;
 }
 
@@ -23,11 +24,19 @@ li {
     font-size: 14px;
 }
 
-
-
 a:hover {
     color: #a0a0a0;
 }
+
+.button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Navigation bar styling */
 
 .navbar {
     display: flex;
@@ -51,14 +60,6 @@ a:hover {
     padding: 0;
     width: 25px;
     height: 25px;
-}
-
-.button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
 }
 
 /* Material UI button style */
@@ -106,10 +107,15 @@ a:hover {
     background-color: black;
 }
 
-#response-container {
+.response-container {
     min-width: 300px;
-    max-width: 480px;
+    max-width: 420px;
     min-height: 150px;
+    padding: 15px;
+}
+
+#analyze-code-response {
+    padding: 15px;
 }
 
 /* Settings */

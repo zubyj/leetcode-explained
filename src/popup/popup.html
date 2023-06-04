@@ -20,23 +20,23 @@
     </div>
     <!-- GPT Buttons -->
     <button id="login-button" class="material-button hidden">Open ChatGPT website</button>
-    <button id="get-complexity-btn" class="material-button button hidden">
-        <image src="../../assets/images/code-icon.png" class="button-icon" alt="Analyze" />Code Complexity
-    </button>
-    <button id="fix-code-btn" class="material-button button hidden">
+    <button id="fix-code-btn" class="material-button button">
         <image src="../../assets/images/fix-icon.png" class="button-icon" alt="Fix" />Fix Code
+    </button>
+    <button id="get-complexity-btn" class="material-button button">
+        <image src="../../assets/images/code-icon.png" class="button-icon" alt="Analyze" />Code Complexity
     </button>
     <!-- Info/Error Message-->
     <p id="info-message">
         Open a <a href="https://leetcode.com/problems/two-sum/" target="_blank">Leetcode problem </a>to get started
     </p>
-    <!-- GPT Response containers-->
+    <!-- GPT Response Containers-->
     <code class="language-text" id="analyze-code-response" class="response-container hidden"></code>
-    <pre id="fix-code-response" class="response-container hidden">
+    <pre class="response-container hidden" id="fix-code-container">
 <button id="copy-code-btn" class="button">
 <img src="../../assets/images/copy-icon.png" class="button-icon" alt="Copy" />
 </button>
-<code class="language-python" id="gpt-response">
+<code class="language-python" id="fix-code-response">
 </code>
     </pre>
     <script src="prism.js"></script>

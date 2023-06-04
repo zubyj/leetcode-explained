@@ -35,7 +35,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
         setTimeout(() => {
             chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title || 'title' });
-        }, 3000);
+        }, 1000);
     }
 
 });

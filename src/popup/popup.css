@@ -10,6 +10,8 @@ body {
     min-width: 300px;
     max-width: 420px;
     padding: 25px;
+    padding-top: 0;
+    margin-top: 0;
 }
 
 a {
@@ -26,6 +28,10 @@ li {
 
 a:hover {
     color: #a0a0a0;
+}
+
+.hidden {
+    display: none;
 }
 
 .button {
@@ -133,8 +139,4 @@ a:hover {
 
 #toggleText {
     margin-right: 5px;
-}
-
-.hidden {
-    display: none;
 }

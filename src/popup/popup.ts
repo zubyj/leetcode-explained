@@ -5,7 +5,6 @@ import {
 
 
 /* Global Variables */
-let gptResponse: HTMLElement = document.getElementById('gpt-response')!;
 let getComplexityBtn = document.getElementById('get-complexity-btn')!;
 let fixCodeBtn = document.getElementById('fix-code-btn')!;
 let infoMessage = document.getElementById('info-message')!;
@@ -51,71 +50,102 @@ function processCode(
     action: string,
 ): void {
 
-    gptResponse!.textContent = '';
-    analyzeCodeResponse!.textContent = '';
-    fixCodeResponse!.textContent = '';
-
     let getComplexityOnClick = getComplexityBtn!.onclick;
     getComplexityBtn!.onclick = null;
     let fixCodeOnClick = fixCodeBtn.onclick;
     fixCodeBtn!.onclick = null;
+
+    fixCodeResponse.textContent = '';
+    analyzeCodeResponse.textContent = '';
 
     let prompt: string = '';
     if (action === "analyze") {
         prompt = `
         What is the time and space complexity of the following code (if the code exists).\n${codeText}`;
         infoMessage.textContent = 'Analyzing code complexity using ChatGPT ...'
-        fixCodeResponse.classList.add('hidden');
         analyzeCodeResponse.classList.remove('hidden');
+        document.getElementById('fix-code-container')!.classList.add('hidden');
     }
     else if (action === "fix") {
         prompt = `
         Fix my code for the Leetcode problem and return only the fixed code without using a code block.
         If no code is provided in the following text, provide one using Python.\n ${codeText}`;
-        infoMessage.textContent = 'Creating the solution using ChatGPT...'
+        infoMessage.textContent = 'Creating the solution using ChatGPT...';
         analyzeCodeResponse.classList.add('hidden');
-        fixCodeResponse.classList.remove('hidden');
+        document.getElementById('fix-code-container')!.classList.remove('hidden');
     }
+
+    let response = '';
 
     chatGPTProvider.generateAnswer({
         prompt: prompt,
         onEvent: (event: { type: string; data?: { text: string } }) => {
             if (event.type === 'answer' && event.data) {
-                gptResponse!.textContent += event.data.text;
-                analyzeCodeResponse.textContent = gptResponse!.textContent;
-                fixCodeResponse.textContent = gptResponse!.textContent;
+                response += event.data.text;
+                if (action === "analyze") {
+                    analyzeCodeResponse.textContent = response;
+                }
+                else if (action === "fix") {
+                    fixCodeResponse.textContent = response;
+                }
             }
             if (event.type === 'done') {
-                infoMessage!.textContent = 'Done!';
-                // set info message to the title of the current leetcode problem
-                chrome.storage.local.get('currentLeetCodeProblemTitle', function (data) {
-                    const title = data.currentLeetCodeProblemTitle;
-                    infoMessage!.textContent = title;
+                chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                    const tab = tabs[0];
+                    chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title });
+                    infoMessage!.textContent = tab.title;
                 });
-                chrome.storage.local.set({ 'gptResponse': gptResponse!.textContent });
-                (window as any).Prism.highlightAll();
+
+                chrome.storage.local.set({ 'analyzeCodeResponse': analyzeCodeResponse.textContent });
+                chrome.storage.local.set({ 'fixCodeResponse': fixCodeResponse.textContent });
+                chrome.storage.local.set({ 'lastAction': action });
+
                 getComplexityBtn!.onclick = getComplexityOnClick;
                 fixCodeBtn!.onclick = fixCodeOnClick;
+                (window as any).Prism.highlightAll();
             }
         },
     });
 }
 
 async function main(): Promise<void> {
-    chrome.storage.local.get('gptResponse', function (data) {
-        if (data.gptResponse) {
-            gptResponse.textContent = data.gptResponse;
+    chrome.storage.local.get('analyzeCodeResponse', function (data) {
+        if (data.analyzeCodeResponse) {
+            analyzeCodeResponse.textContent = data.analyzeCodeResponse;
+        }
+    });
+
+    chrome.storage.local.get('fixCodeResponse', function (data) {
+        if (data.fixCodeResponse) {
+            fixCodeResponse.textContent = data.fixCodeResponse;
             (window as any).Prism.highlightAll();
         }
     });
 
-    setTimeout(() => {
+    chrome.storage.local.get('lastAction', function (data) {
+        if (data.lastAction) {
+            if (data.lastAction === "analyze") {
+                analyzeCodeResponse.classList.remove('hidden');
+                document.getElementById('fix-code-container')!.classList.add('hidden');
+            }
+            else if (data.lastAction === "fix") {
+                analyzeCodeResponse.classList.add('hidden');
+                document.getElementById('fix-code-container')!.classList.remove('hidden');
+            }
+        }
+    });
 
-        chrome.storage.local.get('currentLeetCodeProblemTitle', function (data) {
-            const title = data.currentLeetCodeProblemTitle;
-            infoMessage!.textContent = title;
-        });
-    }, 3000);
+    // get name of current tab and set info message to it if its a leetcode problem
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const tab = tabs[0];
+        if (tab.url!.includes('leetcode.com/problems')) {
+            chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title });
+            if (infoMessage) {
+                infoMessage!.textContent = tab.title;
+
+            }
+        }
+    });
 
     try {
         const accessToken = await getChatGPTAccessToken();
@@ -143,8 +173,8 @@ async function main(): Promise<void> {
 function initCopyButton(): void {
     const copyButton = document.getElementById('copy-code-btn')!;
     copyButton.onclick = async () => {
-        if (gptResponse.textContent) {
-            await navigator.clipboard.writeText(gptResponse.textContent);
+        if (fixCodeResponse.textContent) {
+            await navigator.clipboard.writeText(fixCodeResponse.textContent);
         }
         infoMessage!.textContent = 'Copied to clipboard'
         setTimeout(() => {
@@ -153,10 +183,11 @@ function initCopyButton(): void {
                 const title = data.currentLeetCodeProblemTitle;
                 infoMessage!.textContent = title;
             });
-        }, 2000);
+        }, 1000);
     };
     copyButton.classList.remove('hidden');
 }
+
 
 /* Error handling functions */
 function handleError(error: Error): void {
@@ -177,6 +208,7 @@ function displayLoginMessage(): void {
 function displayErrorMessage(error: string): void {
     infoMessage!.textContent = error;
 }
+
 
 /* Event listeners */
 document.getElementById('login-button')!.onclick = () => {

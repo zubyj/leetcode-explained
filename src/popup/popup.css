@@ -7,7 +7,7 @@ body {
     background-color: #202020;
     color: #f0f0f0;
     font-family: 'Roboto', sans-serif;
-    width: 420px;
+    width: 450px;
     padding: 25px;
 }
 
@@ -83,6 +83,7 @@ a:hover {
     color: black;
 }
 
+
 .button-icon {
     padding-right: 15px;
 }
@@ -111,9 +112,11 @@ a:hover {
 
 .response-container {
     min-width: 300px;
-    max-width: 400px;
+    max-width: 450px;
     min-height: 150px;
     padding: 15px;
+    padding-top: 0;
+    margin: 0
 }
 
 #analyze-code-response {
@@ -138,6 +141,6 @@ a:hover {
     margin-bottom: 20px;
 }
 
-#toggleText {
-    margin-right: 5px;
+#toggle-video:hover {
+    background-color: darkgreen;
 }

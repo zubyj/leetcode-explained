@@ -8,9 +8,13 @@ document.getElementById('toggle-video')!.onclick = () => {
         const updatedHideVideo = !hideVideo;
         chrome.storage.local.set({ hideVideo: updatedHideVideo }, () => {
             if (updatedHideVideo) {
-                document.getElementById('toggleText')!.textContent = 'Show';
+                document.getElementById('hide-icon')!.classList.add('hidden');
+                document.getElementById('show-icon')!.classList.remove('hidden');
+                document.getElementById('toggle-text')!.textContent = 'Show';
             } else {
-                document.getElementById('toggleText')!.textContent = 'Hide';
+                document.getElementById('hide-icon')!.classList.remove('hidden');
+                document.getElementById('show-icon')!.classList.add('hidden');
+                document.getElementById('toggle-text')!.textContent = 'Hide';
             }
             sendMessageToActiveTab({ type: 'TOGGLE_SOLUTION_VIDEO' });
         });

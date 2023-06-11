@@ -10,8 +10,6 @@ body {
     min-width: 300px;
     max-width: 420px;
     padding: 25px;
-    padding-top: 0;
-    margin-top: 0;
 }
 
 a {
@@ -22,7 +20,6 @@ a {
 p,
 a,
 li {
-
     font-size: 14px;
 }
 
@@ -43,9 +40,7 @@ a:hover {
 
 .navbar {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: center;
     margin-bottom: 20px;
 }
 
@@ -53,16 +48,13 @@ a:hover {
     font-weight: 100;
     font-size: 1.2rem;
     color: lightcyan;
-    margin-top: 30px;
-    margin-bottom: 20px;
 }
 
 .nav-button {
     margin-left: 20px;
     cursor: pointer;
     padding: 0;
-    width: 25px;
-    height: 25px;
+    margin-bottom: 0;
 }
 
 /* GPT Buttons */
@@ -128,6 +120,11 @@ a:hover {
 }
 
 /* Settings */
+#settings-icon {
+    width: 30px;
+    height: 30px;
+}
+
 #settings-menu {
     text-align: center;
 }

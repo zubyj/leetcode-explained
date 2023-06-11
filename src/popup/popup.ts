@@ -72,8 +72,7 @@ function processCode(
     if (action === "analyze") {
         prompt += `
         Please analyze the following code.
-        Return the time complexity followed by the space complexity of the code.\n${codeText}
-        Explain the reasoning in a few sentences or less.`;
+        Return the time complexity followed by the space complexity in a short & concise response.`;
         infoMessage.textContent = 'Analyzing code complexity using ChatGPT ...'
         analyzeCodeResponse.classList.remove('hidden');
         document.getElementById('fix-code-container')!.classList.add('hidden');
@@ -83,7 +82,7 @@ function processCode(
         Please review and fix the following code.
         If no code is provided, generate the best Python solution for the problem.
         If the solution is already optimal, tell me and return the original code.
-        The fixed or generated code should not be contained within a code block. Here's the code\n${codeText}`;
+        The fixed or generated code should not be contained within a code block.`;
         infoMessage.textContent = 'Creating the solution using ChatGPT...';
         analyzeCodeResponse.classList.add('hidden');
         document.getElementById('fix-code-container')!.classList.remove('hidden');
@@ -93,13 +92,13 @@ function processCode(
         Please find the errors in the following code.
         The code may contain syntax errors, runtime errors, or logical errors that causes the submission to fail.
         If no code is provided or the code is correct, tell me.
-        Return the errors in a numbered list in order of severity. Here's the code\n${codeText}`;
+        Return the errors in a numbered list in order of severity.`;
         infoMessage.textContent = 'Finding errors using ChatGPT...';
         analyzeCodeResponse.classList.remove('hidden');
         document.getElementById('fix-code-container')!.classList.add('hidden');
     }
 
-    prompt += '\n Ignore code comments'
+    prompt += '\n Ignore code comments Heres the code \n' + codeText;
 
     let response = '';
 
@@ -208,7 +207,6 @@ function initCopyButton(): void {
     };
     copyButton.classList.remove('hidden');
 }
-
 
 /* Error handling functions */
 function handleError(error: Error): void {

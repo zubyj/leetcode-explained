@@ -8,7 +8,7 @@ body {
     color: #f0f0f0;
     font-family: 'Roboto', sans-serif;
     min-width: 300px;
-    max-width: 420px;
+    max-width: 450px;
     padding: 25px;
 }
 
@@ -74,7 +74,7 @@ a:hover {
     transition-duration: 0.4s;
     align-items: center;
     margin-bottom: 20px;
-    width: 150px;
+    width: 200px;
     height: 50px;
     margin: 10px;
 }
@@ -85,12 +85,14 @@ a:hover {
 }
 
 .button-icon {
-    padding-right: 4px;
+    padding-right: 15px;
 }
 
 #info-message {
     text-align: center;
+    font-weight: bold;
     color: lightcyan;
+    font-size: 15px;
 }
 
 /* GPT Response */

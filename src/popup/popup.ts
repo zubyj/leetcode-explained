@@ -56,13 +56,6 @@ function processCode(
     fixCodeResponse.textContent = '';
     analyzeCodeResponse.textContent = '';
 
-    // get the leetcode problem title
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        const tab = tabs[0];
-        chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title });
-        infoMessage!.textContent = tab.title;
-    });
-
     let problemTitle = infoMessage!.textContent;
 
     let prompt: string = "As an expert software engineer, you are given the following code for the Leetcode problem titled " + problemTitle + ".\n";
@@ -102,6 +95,8 @@ function processCode(
                 chrome.storage.local.set({ 'analyzeCodeResponse': analyzeCodeResponse.textContent });
                 chrome.storage.local.set({ 'fixCodeResponse': fixCodeResponse.textContent });
                 chrome.storage.local.set({ 'lastAction': action });
+
+                infoMessage.textContent = problemTitle;
 
                 getComplexityBtn!.onclick = getComplexityOnClick;
                 fixCodeBtn!.onclick = fixCodeOnClick;
@@ -144,7 +139,7 @@ async function main(): Promise<void> {
         if (tab.url!.includes('leetcode.com/problems')) {
             chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title });
             if (infoMessage) {
-                infoMessage!.textContent = tab.title;
+                infoMessage!.textContent = tab.title?.split('-')[0];
             }
         }
     });

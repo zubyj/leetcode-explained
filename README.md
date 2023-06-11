@@ -6,9 +6,9 @@ A chrome extension that adds video solutions directly into Leetcode problem page
 
 [Watch the demo](https://www.youtube.com/watch?v=E5nvCyVZxuc)
 
-![Leetcode Explained Screenshot 1](./assets/images/screenshot-1.png)
+![Leetcode Explained Screenshot 1](./src/assets/images/screenshot-1.png)
 
-![Leetcode Explained Screenshot 2](./assets/images/screenshot-2.png)
+![Leetcode Explained Screenshot 2](./src/assets/images/screenshot-2.png)
 
 ## Table of Contents
 
@@ -44,8 +44,8 @@ A chrome extension that adds video solutions directly into Leetcode problem page
 
 The extension is organized into the following folders and files:
 
-- `assets/`: Contains images and the json data of leetcode problems and their embedded urls
 - `src/`: Contains the main source files for the extension.
+  - `assets/`: Contains images and the json data of leetcode problems and their embedded urls
   - `background/`: Tells content script to add video if tab url matches a leetcode problem name
     - `chatgpt/`: Stores auth token when user logs into ChatGPT. ChatGPT is used to get the user's code complexity.
   - `content-script/`: Adds video onto the page. Gets user's code to send to ChatGPT.

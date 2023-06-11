@@ -138,7 +138,7 @@ async function main(): Promise<void> {
         const tab = tabs[0];
         if (tab.url!.includes('leetcode.com/problems')) {
             chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title });
-            if (infoMessage) {
+            if (tab.title) {
                 infoMessage!.textContent = tab.title?.split('-')[0];
             }
         }
@@ -168,6 +168,9 @@ async function main(): Promise<void> {
 }
 
 function initCopyButton(): void {
+
+    let message = infoMessage!.textContent;
+
     const copyButton = document.getElementById('copy-code-btn')!;
     copyButton.onclick = async () => {
         if (fixCodeResponse.textContent) {
@@ -175,11 +178,7 @@ function initCopyButton(): void {
         }
         infoMessage!.textContent = 'Copied to clipboard'
         setTimeout(() => {
-            // set info message to the title of the current leetcode problem
-            chrome.storage.local.get('currentLeetCodeProblemTitle', function (data) {
-                const title = data.currentLeetCodeProblemTitle;
-                infoMessage!.textContent = title;
-            });
+            infoMessage!.textContent = message;
         }, 1000);
     };
     copyButton.classList.remove('hidden');

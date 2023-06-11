@@ -8,7 +8,7 @@ chrome.runtime.onMessage.addListener((request: any) => {
 
 // On extension install, store the JSON of leetcode problems in local storage
 chrome.runtime.onInstalled.addListener(() => {
-    const jsonUrl = chrome.runtime.getURL('assets/data/leetcode_solutions.json');
+    const jsonUrl = chrome.runtime.getURL('src/assets/data/leetcode_solutions.json');
     fetch(jsonUrl)
         .then((response) => response.json())
         .then((data) => {

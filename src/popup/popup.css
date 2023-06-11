@@ -76,8 +76,7 @@ a:hover {
     margin-bottom: 20px;
     width: 150px;
     height: 50px;
-    margin-left: 3px;
-    margin-right: 3px;
+    margin: 10px;
 }
 
 .material-button:hover {

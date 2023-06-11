@@ -6,7 +6,6 @@ import {
 /* Global Variables */
 let getComplexityBtn = document.getElementById('get-complexity-btn')!;
 let fixCodeBtn = document.getElementById('fix-code-btn')!;
-let findErrorsBtn = document.getElementById('find-errors-btn')!;
 let infoMessage = document.getElementById('info-message')!;
 let analyzeCodeResponse = document.getElementById('analyze-code-response')!;
 let fixCodeResponse = document.getElementById('fix-code-response')!;
@@ -53,8 +52,6 @@ function processCode(
     getComplexityBtn!.onclick = null;
     let fixCodeOnClick = fixCodeBtn.onclick;
     fixCodeBtn!.onclick = null;
-    let findErrorsOnClick = findErrorsBtn.onclick;
-    findErrorsBtn!.onclick = null;
 
     fixCodeResponse.textContent = '';
     analyzeCodeResponse.textContent = '';
@@ -68,10 +65,9 @@ function processCode(
 
     let problemTitle = infoMessage!.textContent;
 
-    let prompt: string = 'You are an expert software engineer. You are given the code for the Leetcode problem titled ' + problemTitle + '.\n';
+    let prompt: string = "As an expert software engineer, you are given the following code for the Leetcode problem titled " + problemTitle + ".\n";
     if (action === "analyze") {
         prompt += `
-        Please analyze the following code.
         Return the time complexity followed by the space complexity in a short & concise response.`;
         infoMessage.textContent = 'Analyzing code complexity using ChatGPT ...'
         analyzeCodeResponse.classList.remove('hidden');
@@ -79,32 +75,17 @@ function processCode(
     }
     else if (action === "fix") {
         prompt += `
-        Please fix the bugs in the following code that prevents the submission from being accepted. 
-        If no code is provided, generate the best Python solution for the problem.
-        If the solution is already optimal, tell me and return the original code.
-        Return only the code without using a code block.`;
+        Find and fix the bugs that prevent the submission from being accepted.
+        If no code is provided, generate an optimal solution.
+        If the given solution is already optimal, please let me know and return the original code.
+        Return only the code in plain text format and without a code block`;
         infoMessage.textContent = 'Creating the solution using ChatGPT...';
         analyzeCodeResponse.classList.add('hidden');
         document.getElementById('fix-code-container')!.classList.remove('hidden');
     }
-    else if (action === "find") {
-        prompt += `
-        Please find the bugs in the following code.
-        I dont care about the code's class & function definitions, indentation, import statements, and code comments.
-        Focus on the main algorithm.
-        Only return the bugs preventing the submission from being accepted.
-        If no code is provided or the code is correct, tell me.
-        Order the bugs in order of severity.`;
-        infoMessage.textContent = 'Finding errors using ChatGPT...';
-        analyzeCodeResponse.classList.remove('hidden');
-        document.getElementById('fix-code-container')!.classList.add('hidden');
-    }
-
     prompt += '\n Ignore code comments Heres the code \n' + codeText;
-    console.log(prompt);
 
     let response = '';
-
     chatGPTProvider.generateAnswer({
         prompt: prompt,
         onEvent: (event: { type: string; data?: { text: string } }) => {
@@ -113,7 +94,7 @@ function processCode(
                 if (action === "fix") {
                     fixCodeResponse.textContent = response;
                 }
-                else {
+                else if (action === "analyze") {
                     analyzeCodeResponse.textContent = response;
                 }
             }
@@ -124,7 +105,6 @@ function processCode(
 
                 getComplexityBtn!.onclick = getComplexityOnClick;
                 fixCodeBtn!.onclick = fixCodeOnClick;
-                findErrorsBtn!.onclick = findErrorsOnClick;
                 (window as any).Prism.highlightAll();
             }
         },
@@ -147,7 +127,7 @@ async function main(): Promise<void> {
 
     chrome.storage.local.get('lastAction', function (data) {
         if (data.lastAction) {
-            if (data.lastAction === "analyze" || data.lastAction === "find") {
+            if (data.lastAction === "analyze") {
                 analyzeCodeResponse.classList.remove('hidden');
                 document.getElementById('fix-code-container')!.classList.add('hidden');
             }
@@ -175,7 +155,6 @@ async function main(): Promise<void> {
             const chatGPTProvider = new ChatGPTProvider(accessToken);
             initActionButton('get-complexity-btn', 'analyze', chatGPTProvider);
             initActionButton('fix-code-btn', 'fix', chatGPTProvider);
-            initActionButton('find-errors-btn', 'find', chatGPTProvider);
             initCopyButton();
             getComplexityBtn!.classList.remove('hidden');
             fixCodeBtn!.classList.remove('hidden');

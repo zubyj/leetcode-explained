@@ -79,26 +79,29 @@ function processCode(
     }
     else if (action === "fix") {
         prompt += `
-        Please review and fix the following code.
+        Please fix the bugs in the following code that prevents the submission from being accepted. 
         If no code is provided, generate the best Python solution for the problem.
         If the solution is already optimal, tell me and return the original code.
-        The fixed or generated code should not be contained within a code block.`;
+        Return only the code without using a code block.`;
         infoMessage.textContent = 'Creating the solution using ChatGPT...';
         analyzeCodeResponse.classList.add('hidden');
         document.getElementById('fix-code-container')!.classList.remove('hidden');
     }
     else if (action === "find") {
         prompt += `
-        Please find the errors in the following code.
-        The code may contain syntax errors, runtime errors, or logical errors that causes the submission to fail.
+        Please find the bugs in the following code.
+        I dont care about the code's class & function definitions, indentation, import statements, and code comments.
+        Focus on the main algorithm.
+        Only return the bugs preventing the submission from being accepted.
         If no code is provided or the code is correct, tell me.
-        Return the errors in a numbered list in order of severity.`;
+        Order the bugs in order of severity.`;
         infoMessage.textContent = 'Finding errors using ChatGPT...';
         analyzeCodeResponse.classList.remove('hidden');
         document.getElementById('fix-code-container')!.classList.add('hidden');
     }
 
     prompt += '\n Ignore code comments Heres the code \n' + codeText;
+    console.log(prompt);
 
     let response = '';
 

@@ -5,7 +5,6 @@ import { fetchSSE } from './fetch-sse.js';
 const KEY_ACCESS_TOKEN = 'accessToken';
 const cache = new ExpiryMap(10 * 1000);
 
-
 export async function getChatGPTAccessToken() {
     if (cache.get(KEY_ACCESS_TOKEN)) {
         return cache.get(KEY_ACCESS_TOKEN);

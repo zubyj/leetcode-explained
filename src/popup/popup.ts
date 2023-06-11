@@ -7,13 +7,13 @@ import {
 /* Global Variables */
 let getComplexityBtn = document.getElementById('get-complexity-btn')!;
 let fixCodeBtn = document.getElementById('fix-code-btn')!;
+let findErrorsBtn = document.getElementById('find-errors-btn')!;
 let infoMessage = document.getElementById('info-message')!;
 let analyzeCodeResponse = document.getElementById('analyze-code-response')!;
 let fixCodeResponse = document.getElementById('fix-code-response')!;
 
 /* Helper functions */
 
-// Initialize the ChatGPTProvider
 function initActionButton(buttonId: string, action: string, chatGPTProvider: ChatGPTProvider): void {
     const actionButton = document.getElementById(buttonId)!;
     actionButton.onclick = async () => {
@@ -55,6 +55,8 @@ function processCode(
     getComplexityBtn!.onclick = null;
     let fixCodeOnClick = fixCodeBtn.onclick;
     fixCodeBtn!.onclick = null;
+    let findErrorsOnClick = findErrorsBtn.onclick;
+    findErrorsBtn!.onclick = null;
 
     fixCodeResponse.textContent = '';
     analyzeCodeResponse.textContent = '';
@@ -68,11 +70,9 @@ function processCode(
 
     let problemTitle = infoMessage!.textContent;
 
-
-    let prompt: string = '';
+    let prompt: string = 'You are an expert software engineer.';
     if (action === "analyze") {
-        prompt = `
-        You are an expert software engineer. 
+        prompt += `
         Please analyze the following code for the Leetcode problem '${problemTitle}'.
         Return the time complexity followed by the space complexity of the code.\n${codeText}
         Explain the reasoning in a few sentences or less.`;
@@ -82,15 +82,27 @@ function processCode(
         document.getElementById('fix-code-container')!.classList.add('hidden');
     }
     else if (action === "fix") {
-        prompt = `
-        You are an expert software engineer.
+        prompt += `
         Please review and fix the following code for the Leetcode problem titled '${problemTitle}'.
-        If no code is provided, generate a Python solution for the problem.
-        The fixed or generated code should not be contained within a code block.\n${codeText}`;
+        If no code is provided, generate the best Python solution for the problem.
+        If the solution is already optimal, tell me and return the original code.
+        The fixed or generated code should not be contained within a code block. Here's the code\n${codeText}`;
         infoMessage.textContent = 'Creating the solution using ChatGPT...';
         analyzeCodeResponse.classList.add('hidden');
         document.getElementById('fix-code-container')!.classList.remove('hidden');
     }
+    else if (action === "find") {
+        prompt += `
+        Please find the errors in the following code for the Leetcode problem titled '${problemTitle}.
+        The code may contain syntax errors, runtime errors, or logical errors that causes the submission to fail.
+        If no code is provided or the code is correct, tell me.
+        Return the errors in a numbered list in order of severity. Here's the code\n${codeText}`;
+        infoMessage.textContent = 'Finding errors using ChatGPT...';
+        analyzeCodeResponse.classList.remove('hidden');
+        document.getElementById('fix-code-container')!.classList.add('hidden');
+    }
+
+    prompt += '\n Ignore code comments'
 
     let response = '';
 
@@ -99,22 +111,21 @@ function processCode(
         onEvent: (event: { type: string; data?: { text: string } }) => {
             if (event.type === 'answer' && event.data) {
                 response += event.data.text;
-                if (action === "analyze") {
-                    analyzeCodeResponse.textContent = response;
-                }
-                else if (action === "fix") {
+                if (action === "fix") {
                     fixCodeResponse.textContent = response;
+                }
+                else {
+                    analyzeCodeResponse.textContent = response;
                 }
             }
             if (event.type === 'done') {
-
-
                 chrome.storage.local.set({ 'analyzeCodeResponse': analyzeCodeResponse.textContent });
                 chrome.storage.local.set({ 'fixCodeResponse': fixCodeResponse.textContent });
                 chrome.storage.local.set({ 'lastAction': action });
 
                 getComplexityBtn!.onclick = getComplexityOnClick;
                 fixCodeBtn!.onclick = fixCodeOnClick;
+                findErrorsBtn!.onclick = findErrorsOnClick;
                 (window as any).Prism.highlightAll();
             }
         },
@@ -137,7 +148,7 @@ async function main(): Promise<void> {
 
     chrome.storage.local.get('lastAction', function (data) {
         if (data.lastAction) {
-            if (data.lastAction === "analyze") {
+            if (data.lastAction === "analyze" || data.lastAction === "find") {
                 analyzeCodeResponse.classList.remove('hidden');
                 document.getElementById('fix-code-container')!.classList.add('hidden');
             }
@@ -155,7 +166,6 @@ async function main(): Promise<void> {
             chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title });
             if (infoMessage) {
                 infoMessage!.textContent = tab.title;
-
             }
         }
     });
@@ -166,6 +176,7 @@ async function main(): Promise<void> {
             const chatGPTProvider = new ChatGPTProvider(accessToken);
             initActionButton('get-complexity-btn', 'analyze', chatGPTProvider);
             initActionButton('fix-code-btn', 'fix', chatGPTProvider);
+            initActionButton('find-errors-btn', 'find', chatGPTProvider);
             initCopyButton();
             getComplexityBtn!.classList.remove('hidden');
             fixCodeBtn!.classList.remove('hidden');
@@ -236,7 +247,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         }
     }
 });
-
 
 /* Run the main function */
 main();

@@ -23,7 +23,6 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     let urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/;
     if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
-        console.log('leetcode solution detected 1');
         setTimeout(() => {
             chrome.tabs.get(tabId, (updatedTab) => {
                 chrome.tabs.sendMessage(tabId, { action: 'addVideo', title: updatedTab.title || 'title' });

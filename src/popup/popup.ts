@@ -11,8 +11,9 @@ let infoMessage = document.getElementById('info-message')!;
 let analyzeCodeResponse = document.getElementById('analyze-code-response')!;
 let fixCodeResponse = document.getElementById('fix-code-response')!;
 
-
 /* Helper functions */
+
+// Initialize the ChatGPTProvider
 function initActionButton(buttonId: string, action: string, chatGPTProvider: ChatGPTProvider): void {
     const actionButton = document.getElementById(buttonId)!;
     actionButton.onclick = async () => {
@@ -58,18 +59,34 @@ function processCode(
     fixCodeResponse.textContent = '';
     analyzeCodeResponse.textContent = '';
 
+    // get the leetcode problem title
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const tab = tabs[0];
+        chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title });
+        infoMessage!.textContent = tab.title;
+    });
+
+    let problemTitle = infoMessage!.textContent;
+
+
     let prompt: string = '';
     if (action === "analyze") {
         prompt = `
-        What is the time and space complexity of the following code (if the code exists).\n${codeText}`;
+        You are an expert software engineer. 
+        Please analyze the following code for the Leetcode problem '${problemTitle}'.
+        Return the time complexity followed by the space complexity of the code.\n${codeText}
+        Explain the reasoning in a few sentences or less.`;
+        console.log('prompt ' + prompt);
         infoMessage.textContent = 'Analyzing code complexity using ChatGPT ...'
         analyzeCodeResponse.classList.remove('hidden');
         document.getElementById('fix-code-container')!.classList.add('hidden');
     }
     else if (action === "fix") {
         prompt = `
-        Fix my code for the Leetcode problem and return only the fixed code without using a code block.
-        If no code is provided in the following text, provide one using Python.\n ${codeText}`;
+        You are an expert software engineer.
+        Please review and fix the following code for the Leetcode problem titled '${problemTitle}'.
+        If no code is provided, generate a Python solution for the problem.
+        The fixed or generated code should not be contained within a code block.\n${codeText}`;
         infoMessage.textContent = 'Creating the solution using ChatGPT...';
         analyzeCodeResponse.classList.add('hidden');
         document.getElementById('fix-code-container')!.classList.remove('hidden');
@@ -90,11 +107,7 @@ function processCode(
                 }
             }
             if (event.type === 'done') {
-                chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                    const tab = tabs[0];
-                    chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title });
-                    infoMessage!.textContent = tab.title;
-                });
+
 
                 chrome.storage.local.set({ 'analyzeCodeResponse': analyzeCodeResponse.textContent });
                 chrome.storage.local.set({ 'fixCodeResponse': fixCodeResponse.textContent });

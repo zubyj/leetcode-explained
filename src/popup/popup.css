@@ -36,10 +36,7 @@ a:hover {
 
 .button {
     display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
 }
 
 /* Navigation bar styling */
@@ -56,7 +53,7 @@ a:hover {
     font-weight: 100;
     font-size: 1.2rem;
     color: lightcyan;
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 20px;
 }
 
@@ -68,21 +65,27 @@ a:hover {
     height: 25px;
 }
 
-/* Material UI button style */
+/* GPT Buttons */
+.button-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .material-button {
     color: white;
     background-color: #202020;
     border: 1px solid white;
     text-decoration: none;
     font-size: 14px;
-    margin: 4px 2px;
     cursor: pointer;
     border-radius: 4px;
-    padding: 10px 24px;
     transition-duration: 0.4s;
     align-items: center;
     margin-bottom: 20px;
-    width: 220px;
+    width: 150px;
+    height: 50px;
+    margin-left: 3px;
+    margin-right: 3px;
 }
 
 .material-button:hover {
@@ -91,7 +94,7 @@ a:hover {
 }
 
 .button-icon {
-    padding-right: 7px;
+    padding-right: 4px;
 }
 
 #info-message {

@@ -3,7 +3,6 @@ import {
     ChatGPTProvider,
 } from '../background/chatgpt/chatgpt.js';
 
-
 /* Global Variables */
 let getComplexityBtn = document.getElementById('get-complexity-btn')!;
 let fixCodeBtn = document.getElementById('fix-code-btn')!;
@@ -13,7 +12,6 @@ let analyzeCodeResponse = document.getElementById('analyze-code-response')!;
 let fixCodeResponse = document.getElementById('fix-code-response')!;
 
 /* Helper functions */
-
 function initActionButton(buttonId: string, action: string, chatGPTProvider: ChatGPTProvider): void {
     const actionButton = document.getElementById(buttonId)!;
     actionButton.onclick = async () => {
@@ -70,20 +68,19 @@ function processCode(
 
     let problemTitle = infoMessage!.textContent;
 
-    let prompt: string = 'You are an expert software engineer.';
+    let prompt: string = 'You are an expert software engineer. You are given the code for the Leetcode problem titled ' + problemTitle + '.\n';
     if (action === "analyze") {
         prompt += `
-        Please analyze the following code for the Leetcode problem '${problemTitle}'.
+        Please analyze the following code.
         Return the time complexity followed by the space complexity of the code.\n${codeText}
         Explain the reasoning in a few sentences or less.`;
-        console.log('prompt ' + prompt);
         infoMessage.textContent = 'Analyzing code complexity using ChatGPT ...'
         analyzeCodeResponse.classList.remove('hidden');
         document.getElementById('fix-code-container')!.classList.add('hidden');
     }
     else if (action === "fix") {
         prompt += `
-        Please review and fix the following code for the Leetcode problem titled '${problemTitle}'.
+        Please review and fix the following code.
         If no code is provided, generate the best Python solution for the problem.
         If the solution is already optimal, tell me and return the original code.
         The fixed or generated code should not be contained within a code block. Here's the code\n${codeText}`;
@@ -93,7 +90,7 @@ function processCode(
     }
     else if (action === "find") {
         prompt += `
-        Please find the errors in the following code for the Leetcode problem titled '${problemTitle}.
+        Please find the errors in the following code.
         The code may contain syntax errors, runtime errors, or logical errors that causes the submission to fail.
         If no code is provided or the code is correct, tell me.
         Return the errors in a numbered list in order of severity. Here's the code\n${codeText}`;

@@ -18,6 +18,9 @@ chrome.runtime.onInstalled.addListener(() => {
         .catch((error) => {
             console.error(error);
         });
+
+    // Set the default language as python
+    chrome.storage.local.set({ language: 'python' });
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {

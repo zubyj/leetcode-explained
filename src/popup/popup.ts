@@ -133,6 +133,15 @@ async function main(): Promise<void> {
         }
     });
 
+    // get language from storage and set the classname of the code block to it
+    chrome.storage.local.get('language', function (data) {
+        if (data.language) {
+            let codeBlock = document.getElementById('fix-code-response')!;
+            codeBlock.className = 'language-' + data.language;
+            console.log('language set to ' + data.language);
+        });
+
+
     // get name of current tab and set info message to it if its a leetcode problem
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const tab = tabs[0];

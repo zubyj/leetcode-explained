@@ -18,7 +18,8 @@ a {
 
 p,
 a,
-li {
+li,
+label {
     font-size: 14px;
 }
 

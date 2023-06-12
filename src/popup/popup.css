@@ -145,3 +145,12 @@ a:hover {
 #toggle-video:hover {
     background-color: darkgreen;
 }
+
+#language-select {
+    text-align: center;
+}
+
+#language-select:hover {
+    background-color: black;
+    color: #f0f0f0;
+}

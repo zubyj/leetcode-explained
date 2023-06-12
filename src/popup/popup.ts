@@ -139,8 +139,8 @@ async function main(): Promise<void> {
             let codeBlock = document.getElementById('fix-code-response')!;
             codeBlock.className = 'language-' + data.language;
             console.log('language set to ' + data.language);
-        });
-
+        }
+    });
 
     // get name of current tab and set info message to it if its a leetcode problem
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

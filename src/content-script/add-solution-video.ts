@@ -18,9 +18,10 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     const controlsContainer = document.createElement('div');
     controlsContainer.style.display = 'flex';
     controlsContainer.style.justifyContent = 'center';
+    controlsContainer.style.alignItems = 'center';
     controlsContainer.style.position = 'absolute';
     controlsContainer.style.width = '100%';
-    controlsContainer.style.padding = '15px';
+    controlsContainer.style.padding = '10px';
     controlsContainer.style.boxSizing = 'border-box';
     controlsContainer.style.color = '#fff';
     container.appendChild(controlsContainer);
@@ -33,9 +34,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     const channelElement = document.createElement('div');
     channelElement.textContent = channelName;
     channelElement.style.textAlign = 'center';
-    channelElement.style.width = '30%';
-    channelElement.style.marginLeft = '10px';
-    channelElement.style.marginRight = '10px';
+    channelElement.style.width = '200px';
     controlsContainer.appendChild(channelElement);
 
     const nextButton = document.createElement('button');
@@ -44,11 +43,11 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     controlsContainer.appendChild(nextButton);
 
     const toggleButton = document.createElement('button');
-    toggleButton.textContent = 'Toggle Video';
+    toggleButton.textContent = 'Hide Video';
     toggleButton.classList.add('toggle-video');
-    toggleButton.style.marginLeft = '20px';
+    toggleButton.style.marginLeft = '50px';
     toggleButton.style.border = '1px solid white';
-    toggleButton.style.padding = '5px';
+    toggleButton.style.padding = '10px 20px';
     toggleButton.style.borderRadius = '10px';
     controlsContainer.appendChild(toggleButton);
 
@@ -120,6 +119,7 @@ function addVideo(title: string): void {
                 const videoContainer = document.querySelector('div.video-container');
                 if (videoContainer) {
                     videoContainer.style.paddingBottom = videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}%` : '0%';
+                    toggleButton.textContent = videoContainer.style.paddingBottom === '0%' ? 'Show Video' : 'Hide Video';
                 }
             });
         }

@@ -61,8 +61,9 @@ function processCode(
     let prompt: string = "As an expert software engineer, you are given the following code for the Leetcode problem titled " + problemTitle + ".\n";
     if (action === "analyze") {
         prompt += `
-        Return the time complexity followed by the space complexity.
-        Also provide an explanation in a short & concise response.`;
+        Analyze the code complexity of the given code. 
+        Using Big O notation, return the time complexity followed by the space complexity.
+        Then, provide an explanation in a short & concise response.`;
         infoMessage.textContent = 'Analyzing code complexity using ChatGPT ...'
         analyzeCodeResponse.classList.remove('hidden');
         document.getElementById('fix-code-container')!.classList.add('hidden');
@@ -162,6 +163,7 @@ async function main(): Promise<void> {
             initActionButton('get-complexity-btn', 'analyze', chatGPTProvider);
             initActionButton('fix-code-btn', 'fix', chatGPTProvider);
             initCopyButton();
+            initClearButton();
             getComplexityBtn!.classList.remove('hidden');
             fixCodeBtn!.classList.remove('hidden');
         }
@@ -193,6 +195,24 @@ function initCopyButton(): void {
         }, 1000);
     };
     copyButton.classList.remove('hidden');
+}
+
+// init clear code button
+function initClearButton(): void {
+
+    let message = infoMessage!.textContent;
+
+    const clearButton = document.getElementById('clear-code-btn')!;
+    clearButton.onclick = async () => {
+        fixCodeResponse.textContent = '';
+        analyzeCodeResponse.textContent = '';
+        chrome.storage.local.set({ 'fixCodeResponse': '' });
+        chrome.storage.local.set({ 'analyzeCodeResponse': '' });
+    };
+    infoMessage!.textContent = 'Response cleared';
+    setTimeout(() => {
+        infoMessage!.textContent = message;
+    });
 }
 
 /* Error handling functions */

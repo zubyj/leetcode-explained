@@ -95,7 +95,7 @@ a:hover {
 }
 
 /* GPT Response */
-#copy-code-btn {
+.code-btn {
     display: flex;
     align-items: center;
     background-color: #202020;
@@ -105,8 +105,12 @@ a:hover {
     padding: 5px 10px;
 }
 
-#copy-code-btn:hover {
+.code-btn:hover {
     background-color: black;
+}
+
+#clear-code-btn {
+    margin-left: 10px;
 }
 
 .response-container {

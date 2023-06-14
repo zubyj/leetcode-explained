@@ -21,7 +21,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     controlsContainer.style.alignItems = 'center';
     controlsContainer.style.position = 'absolute';
     controlsContainer.style.width = '100%';
-    controlsContainer.style.padding = '10px';
+    controlsContainer.style.paddingTop = '10px';
     controlsContainer.style.boxSizing = 'border-box';
     controlsContainer.style.color = '#fff';
     container.appendChild(controlsContainer);
@@ -32,6 +32,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     controlsContainer.appendChild(prevButton);
 
     const channelElement = document.createElement('div');
+    channelElement.style.fontSize = '14px';
     channelElement.textContent = channelName;
     channelElement.style.textAlign = 'center';
     channelElement.style.width = '200px';

@@ -61,7 +61,8 @@ function processCode(
     let prompt: string = "As an expert software engineer, you are given the following code for the Leetcode problem titled " + problemTitle + ".\n";
     if (action === "analyze") {
         prompt += `
-        Return the time complexity followed by the space complexity in a short & concise response.`;
+        Return the time complexity followed by the space complexity.
+        Also provide an explanation in a short & concise response.`;
         infoMessage.textContent = 'Analyzing code complexity using ChatGPT ...'
         analyzeCodeResponse.classList.remove('hidden');
         document.getElementById('fix-code-container')!.classList.add('hidden');

@@ -7,7 +7,7 @@ body {
     background-color: #202020;
     color: #f0f0f0;
     font-family: 'Roboto', sans-serif;
-    width: 450px;
+    width: 420px;
     padding: 25px;
 }
 
@@ -113,7 +113,7 @@ a:hover {
 
 .response-container {
     min-width: 300px;
-    max-width: 450px;
+    max-width: 400px;
     min-height: 150px;
     padding: 15px;
     padding-top: 0;

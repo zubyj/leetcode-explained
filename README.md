@@ -6,9 +6,9 @@ A chrome extension that adds video solutions directly into Leetcode problem page
 
 [Watch the demo](https://www.youtube.com/watch?v=E5nvCyVZxuc)
 
-![Leetcode Explained Screenshot 1](./src/assets/images/screenshot-1.png)
+![Leetcode Explained Screenshot 1](./src/assets/images/screenshots/screenshot-1.png)
 
-![Leetcode Explained Screenshot 2](./src/assets/images/screenshot-2.png)
+![Leetcode Explained Screenshot 2](./src/assets/images//screenshots/screenshot-2.png)
 
 ## Table of Contents
 

@@ -206,13 +206,13 @@ function initClearButton(): void {
     clearButton.onclick = async () => {
         fixCodeResponse.textContent = '';
         analyzeCodeResponse.textContent = '';
+        infoMessage!.textContent = 'Response cleared';
         chrome.storage.local.set({ 'fixCodeResponse': '' });
         chrome.storage.local.set({ 'analyzeCodeResponse': '' });
     };
-    infoMessage!.textContent = 'Response cleared';
     setTimeout(() => {
         infoMessage!.textContent = message;
-    });
+    }, 1000);
 }
 
 /* Error handling functions */

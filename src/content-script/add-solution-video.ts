@@ -47,7 +47,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     toggleButton.classList.add('toggle-video');
     toggleButton.style.marginLeft = '50px';
     toggleButton.style.border = '1px solid white';
-    toggleButton.style.padding = '10px 20px';
+    toggleButton.style.padding = '10px 10px';
     toggleButton.style.borderRadius = '10px';
     controlsContainer.appendChild(toggleButton);
 
@@ -57,7 +57,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     iframe.style.display = 'flex';
     iframe.style.justifyContent = 'center';
     iframe.style.position = 'absolute';
-    iframe.style.top = '50px'; // Adjust this value based on the height of your controlsContainer
+    iframe.style.top = '60px'; // Adjust this value based on the height of your controlsContainer
     iframe.style.width = '95%';
     iframe.style.height = '95%';
     iframe.style.border = '1px solid grey';
@@ -121,6 +121,17 @@ function addVideo(title: string): void {
                     videoContainer.style.paddingBottom = videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}%` : '0%';
                     toggleButton.textContent = videoContainer.style.paddingBottom === '0%' ? 'Show Video' : 'Hide Video';
                 }
+            });
+
+            // on hover, change background color of toggleButton
+            toggleButton?.addEventListener('mouseover', () => {
+                toggleButton.style.backgroundColor = '#fff';
+                toggleButton.style.color = '#000';
+            });
+
+            toggleButton?.addEventListener('mouseout', () => {
+                toggleButton.style.backgroundColor = 'transparent';
+                toggleButton.style.color = '#fff';
             });
         }
     });

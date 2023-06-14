@@ -138,8 +138,9 @@ async function main(): Promise<void> {
     chrome.storage.local.get('language', function (data) {
         if (data.language) {
             let codeBlock = document.getElementById('fix-code-response')!;
-            codeBlock.className = 'language-' + data.language;
-            console.log('language set to ' + data.language);
+            // add class to code block called 'language-<language>'
+            codeBlock.classList.add('language-' + data.language);
+
         }
     });
 
@@ -213,7 +214,6 @@ function displayLoginMessage(): void {
 function displayErrorMessage(error: string): void {
     infoMessage!.textContent = error;
 }
-
 
 /* Event listeners */
 document.getElementById('login-button')!.onclick = () => {

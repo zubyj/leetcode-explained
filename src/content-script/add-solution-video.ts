@@ -1,18 +1,17 @@
+const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
+
 /**
  * Creates a video container element with the provided video URL.
  * @param {string} videoUrl - The video URL.
  * @return {HTMLDivElement} - The video container element.
  */
 function createVideoContainer(videoUrl: string, channelName: string) {
-    const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 
     const container = document.createElement('div');
     container.classList.add('video-container');
     container.style.position = 'relative';
     container.style.display = 'flex';
     container.style.justifyContent = 'center';
-    container.style.width = '100%';
-    container.style.height = '100%';
     container.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
     container.style.marginBottom = '50px';
 
@@ -21,7 +20,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     controlsContainer.style.justifyContent = 'center';
     controlsContainer.style.position = 'absolute';
     controlsContainer.style.width = '100%';
-    controlsContainer.style.padding = '10px';
+    controlsContainer.style.padding = '15px';
     controlsContainer.style.boxSizing = 'border-box';
     controlsContainer.style.color = '#fff';
     container.appendChild(controlsContainer);
@@ -44,12 +43,19 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     nextButton.classList.add('next-video');
     controlsContainer.appendChild(nextButton);
 
+    const toggleButton = document.createElement('button');
+    toggleButton.textContent = 'Toggle Video';
+    toggleButton.classList.add('toggle-video');
+    toggleButton.style.marginLeft = '20px';
+    toggleButton.style.border = '1px solid white';
+    toggleButton.style.padding = '5px';
+    toggleButton.style.borderRadius = '10px';
+    controlsContainer.appendChild(toggleButton);
+
     const iframe = document.createElement('iframe');
     iframe.classList.add('youtube-video');
     iframe.src = videoUrl;
     iframe.style.display = 'flex';
-    iframe.style.width = '90%';
-    iframe.style.height = '90%';
     iframe.style.justifyContent = 'center';
     iframe.style.position = 'absolute';
     iframe.style.top = '50px'; // Adjust this value based on the height of your controlsContainer
@@ -108,6 +114,14 @@ function addVideo(title: string): void {
                 currentVideoIndex = (currentVideoIndex + 1) % problem.videos.length;
                 updateVideo(container, problem.videos[currentVideoIndex].embedded_url, problem.videos[currentVideoIndex].channel);
             });
+
+            const toggleButton = container.querySelector('button.toggle-video');
+            toggleButton?.addEventListener('click', () => {
+                const videoContainer = document.querySelector('div.video-container');
+                if (videoContainer) {
+                    videoContainer.style.paddingBottom = videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}%` : '0%';
+                }
+            });
         }
     });
 }
@@ -124,12 +138,6 @@ chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'addVideo') {
         const title = request.title.split('-')[0].trim();
         addVideo(title);
-    }
-    if (request.type === 'TOGGLE_SOLUTION_VIDEO') {
-        const container = document.querySelector('div.video-container');
-        if (container) {
-            container.style.display = container.style.display === 'none' ? 'flex' : 'none';
-        }
     }
 });
 

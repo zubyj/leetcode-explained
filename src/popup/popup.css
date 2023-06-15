@@ -43,7 +43,7 @@ a:hover {
 }
 
 .title {
-    font-weight: 100;
+    font-weight: 600;
     font-size: 1.2rem;
     color: lightcyan;
 }
@@ -89,7 +89,7 @@ a:hover {
 
 #info-message {
     text-align: center;
-    font-weight: bold;
+    font-weight: 400;
     color: lightcyan;
     font-size: 15px;
 }

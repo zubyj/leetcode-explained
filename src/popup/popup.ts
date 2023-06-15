@@ -102,7 +102,7 @@ function processCode(
         Analyze the code complexity of the given code. 
         Using Big O notation, return the time complexity followed by the space complexity.
         Then, provide an explanation in a short & concise response.`;
-        infoMessage.textContent = 'Analyzing code complexity using ChatGPT ...'
+        infoMessage.textContent = 'Analyzing code complexity ...'
         analyzeCodeResponse.classList.remove('hidden');
         fixCodeContainer!.classList.add('hidden');
     }
@@ -112,7 +112,7 @@ function processCode(
         If no code is provided, generate an optimal solution.
         If the given solution is already optimal, please let me know and return the original code.
         Return only the code in plain text format and without a code block`;
-        infoMessage.textContent = 'Creating the solution using ChatGPT...';
+        infoMessage.textContent = 'Creating the solution ...';
         analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer!.classList.remove('hidden');
     }

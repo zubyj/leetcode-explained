@@ -99,24 +99,23 @@ function processCode(
     let prompt: string = "As an expert software engineer, you are given the following code for the Leetcode problem titled " + problemTitle + ".\n";
     if (action === "analyze") {
         prompt += `
-        Analyze the code complexity of the given code. 
-        Using Big O notation, return the time complexity followed by the space complexity.
-        Then, provide an explanation in a short & concise response.`;
+        Analyze the code complexity of the given code. Ignore code comments.
+        Using Big O notation, return the time complexity followed by the space complexity in a short & concise response.`
         infoMessage.textContent = 'Analyzing code complexity ...'
         analyzeCodeResponse.classList.remove('hidden');
         fixCodeContainer!.classList.add('hidden');
     }
     else if (action === "fix") {
         prompt += `
-        Find and fix the bugs that prevent the submission from being accepted.
-        If no code is provided, generate an optimal solution.
-        If the given solution is already optimal, please let me know and return the original code.
-        Return only the code in plain text format and without a code block`;
+        If there are bugs in the code that prevent the submission from being accepted, fix the bugs.
+        Else if no solution code is provided, generate an optimal solution.
+        Else if the given solution is already optimal, please let me know and return the original code.
+        Return only the code in plain text format and without a code block and ignoring code comments`;
         infoMessage.textContent = 'Creating the solution ...';
         analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer!.classList.remove('hidden');
     }
-    prompt += '\n Ignore code comments Heres the code \n' + codeText;
+    prompt += '\n Heres the code \n' + codeText;
 
     let response = '';
     chatGPTProvider.generateAnswer({
@@ -155,6 +154,7 @@ async function main(): Promise<void> {
     chrome.storage.local.get('analyzeCodeResponse', function (data) {
         if (data.analyzeCodeResponse) {
             analyzeCodeResponse.textContent = data.analyzeCodeResponse;
+            (window as any).Prism.highlightAll();
         }
     });
 

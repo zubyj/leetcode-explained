@@ -3,14 +3,57 @@ import {
     ChatGPTProvider,
 } from '../background/chatgpt/chatgpt.js';
 
-/* Global Variables */
-let getComplexityBtn = document.getElementById('get-complexity-btn')!;
-let fixCodeBtn = document.getElementById('fix-code-btn')!;
-let infoMessage = document.getElementById('info-message')!;
-let analyzeCodeResponse = document.getElementById('analyze-code-response')!;
-let fixCodeResponse = document.getElementById('fix-code-response')!;
+/* Element selectors */
+const selectors = {
+    fixCodeBtn: 'fix-code-btn',
+    getComplexityBtn: 'get-complexity-btn',
+    infoMessage: 'info-message',
+    analyzeCodeResponse: 'analyze-code-response',
+    fixCodeResponse: 'fix-code-response',
+    fixCodeContainer: 'fix-code-container',
+    codeBtnContainer: 'code-btn-container',
+    copyCodeBtn: 'copy-code-btn',
+    clearCodeBtn: 'clear-code-btn',
+    openSettingsBtn: 'open-settings-btn',
+    loginBtn: 'login-btn',
+};
+
+/* Chrome storage keys */
+const storageKeys = {
+    analyzeCodeResponse: 'analyzeCodeResponse',
+    fixCodeResponse: 'fixCodeResponse',
+    lastAction: 'lastAction',
+    language: 'language',
+    currentLeetCodeProblemTitle: 'currentLeetCodeProblemTitle',
+};
+
+/* Retrieve elements from DOM */
+const elements = {};
+for (let key in selectors) {
+    elements[key] = document.getElementById(selectors[key]);
+}
+
+let analyzeCodeResponse = elements['analyzeCodeResponse'];
+let fixCodeResponse = elements['fixCodeResponse'];
+let infoMessage = elements['infoMessage'];
+let fixCodeContainer = elements['fixCodeContainer'];
 
 /* Helper functions */
+function disableAllButtons(disabled: boolean): void {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        button.disabled = disabled;
+    });
+}
+
+function setInfoMessage(message: string, duration: number) {
+    let oldMessage = infoMessage.textContent;
+    infoMessage.textContent = message;
+    setTimeout(() => {
+        infoMessage.textContent = oldMessage;
+    }, duration);
+}
+
 function initActionButton(buttonId: string, action: string, chatGPTProvider: ChatGPTProvider): void {
     const actionButton = document.getElementById(buttonId)!;
     actionButton.onclick = async () => {
@@ -18,8 +61,8 @@ function initActionButton(buttonId: string, action: string, chatGPTProvider: Cha
         if (codeText) {
             processCode(chatGPTProvider, codeText, action);
         } else {
-            infoMessage!.textContent =
-                'Unable to retrieve code. Please navigate to a Leetcode problem page and refresh the page.';
+            let errorMessage = 'Unable to retrieve code. Please navigate to a Leetcode problem page and refresh the page.';
+            setInfoMessage(errorMessage, 5000);
         }
     };
 }
@@ -48,14 +91,9 @@ function processCode(
     action: string,
 ): void {
 
-    let getComplexityOnClick = getComplexityBtn!.onclick;
-    getComplexityBtn!.onclick = null;
-    let fixCodeOnClick = fixCodeBtn.onclick;
-    fixCodeBtn!.onclick = null;
-
+    disableAllButtons(true);
     fixCodeResponse.textContent = '';
     analyzeCodeResponse.textContent = '';
-
     let problemTitle = infoMessage!.textContent;
 
     let prompt: string = "As an expert software engineer, you are given the following code for the Leetcode problem titled " + problemTitle + ".\n";
@@ -66,7 +104,7 @@ function processCode(
         Then, provide an explanation in a short & concise response.`;
         infoMessage.textContent = 'Analyzing code complexity using ChatGPT ...'
         analyzeCodeResponse.classList.remove('hidden');
-        document.getElementById('fix-code-container')!.classList.add('hidden');
+        fixCodeContainer!.classList.add('hidden');
     }
     else if (action === "fix") {
         prompt += `
@@ -76,7 +114,7 @@ function processCode(
         Return only the code in plain text format and without a code block`;
         infoMessage.textContent = 'Creating the solution using ChatGPT...';
         analyzeCodeResponse.classList.add('hidden');
-        document.getElementById('fix-code-container')!.classList.remove('hidden');
+        fixCodeContainer!.classList.remove('hidden');
     }
     prompt += '\n Ignore code comments Heres the code \n' + codeText;
 
@@ -97,11 +135,8 @@ function processCode(
                 chrome.storage.local.set({ 'analyzeCodeResponse': analyzeCodeResponse.textContent });
                 chrome.storage.local.set({ 'fixCodeResponse': fixCodeResponse.textContent });
                 chrome.storage.local.set({ 'lastAction': action });
-
                 infoMessage.textContent = problemTitle;
-
-                getComplexityBtn!.onclick = getComplexityOnClick;
-                fixCodeBtn!.onclick = fixCodeOnClick;
+                disableAllButtons(false);
                 (window as any).Prism.highlightAll();
             }
         },
@@ -109,6 +144,14 @@ function processCode(
 }
 
 async function main(): Promise<void> {
+
+    await Promise.all([
+        getFromStorage(storageKeys.analyzeCodeResponse),
+        getFromStorage(storageKeys.fixCodeResponse),
+        getFromStorage(storageKeys.lastAction),
+        getFromStorage(storageKeys.language),
+    ]);
+
     chrome.storage.local.get('analyzeCodeResponse', function (data) {
         if (data.analyzeCodeResponse) {
             analyzeCodeResponse.textContent = data.analyzeCodeResponse;
@@ -126,11 +169,11 @@ async function main(): Promise<void> {
         if (data.lastAction) {
             if (data.lastAction === "analyze") {
                 analyzeCodeResponse.classList.remove('hidden');
-                document.getElementById('fix-code-container')!.classList.add('hidden');
+                fixCodeContainer.classList.add('hidden');
             }
             else if (data.lastAction === "fix") {
                 analyzeCodeResponse.classList.add('hidden');
-                document.getElementById('fix-code-container')!.classList.remove('hidden');
+                fixCodeContainer!.classList.remove('hidden');
             }
         }
     });
@@ -139,9 +182,7 @@ async function main(): Promise<void> {
     chrome.storage.local.get('language', function (data) {
         if (data.language) {
             let codeBlock = document.getElementById('fix-code-response')!;
-            // add class to code block called 'language-<language>'
             codeBlock.classList.add('language-' + data.language);
-
         }
     });
 
@@ -164,14 +205,14 @@ async function main(): Promise<void> {
             initActionButton('fix-code-btn', 'fix', chatGPTProvider);
             initCopyButton();
             initClearButton();
-            getComplexityBtn!.classList.remove('hidden');
-            fixCodeBtn!.classList.remove('hidden');
+            elements['getComplexityBtn'].classList.remove('hidden');
+            elements['fixCodeBtn'].classList.remove('hidden');
         }
         else {
             displayLoginMessage();
 
         }
-        document.getElementById('open-settings-btn')!.onclick = () => {
+        elements['openSettingsBtn']!.onclick = () => {
             window.location.href = 'settings.html';
         };
     }
@@ -184,7 +225,7 @@ function initCopyButton(): void {
 
     let message = infoMessage!.textContent;
 
-    const copyButton = document.getElementById('copy-code-btn')!;
+    const copyButton = elements['copyCodeBtn'];
     copyButton.onclick = async () => {
         if (fixCodeResponse.textContent) {
             await navigator.clipboard.writeText(fixCodeResponse.textContent);
@@ -201,8 +242,7 @@ function initCopyButton(): void {
 function initClearButton(): void {
 
     let message = infoMessage!.textContent;
-
-    const clearButton = document.getElementById('clear-code-btn')!;
+    const clearButton = elements['clearCodeBtn']
     clearButton.onclick = async () => {
         fixCodeResponse.textContent = '';
         analyzeCodeResponse.textContent = '';
@@ -226,7 +266,7 @@ function handleError(error: Error): void {
 }
 
 function displayLoginMessage(): void {
-    document.getElementById('login-button')!.classList.remove('hidden');
+    elements['loginBtn'].classList.remove('hidden');
     infoMessage!.textContent =
         'Log into ChatGPT in your browser to get started';
 }
@@ -236,7 +276,7 @@ function displayErrorMessage(error: string): void {
 }
 
 /* Event listeners */
-document.getElementById('login-button')!.onclick = () => {
+elements['loginBtn']!.onclick = () => {
     chrome.runtime.sendMessage({ type: 'OPEN_LOGIN_PAGE' });
 };
 
@@ -248,6 +288,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         }
     }
 });
+
+/* Utility functions */
+function getFromStorage(key: string) {
+    return new Promise((resolve) => {
+        chrome.storage.local.get(key, (data) => resolve(data[key]));
+    });
+}
 
 /* Run the main function */
 main();

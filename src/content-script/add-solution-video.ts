@@ -97,7 +97,7 @@ function addVideo(title: string): void {
         const problems = result.leetcodeProblems.questions;
         const problem = problems.find((problem: LeetCodeProblem) => problem.title === title);
 
-        if (problem && problem.videos && problem.videos.length > 0) {
+        if (problem?.videos?.length) {
             let currentVideoIndex = 0;
             const container = createVideoContainer(problem.videos[currentVideoIndex].embedded_url, problem.videos[currentVideoIndex].channel);
             solutionsTab.parentElement?.insertBefore(container, solutionsTab);
@@ -119,20 +119,11 @@ function addVideo(title: string): void {
             toggleButton?.addEventListener('click', () => {
                 const videoContainer = document.querySelector('div.video-container');
                 if (videoContainer) {
-                    videoContainer.style.paddingBottom = videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}%` : '0%';
-                    toggleButton.textContent = videoContainer.style.paddingBottom === '0%' ? 'Show Video' : 'Hide Video';
+                    const isHidden = videoContainer.style.paddingBottom === '0%';
+                    videoContainer.style.paddingBottom = isHidden ? `${VIDEO_ASPECT_RATIO}%` : '0%';
+                    videoContainer.querySelector('iframe').style.display = isHidden ? 'flex' : 'none';
+                    toggleButton.textContent = isHidden ? 'Hide Video' : 'Show Video';
                 }
-            });
-
-            // on hover, change background color of toggleButton
-            toggleButton?.addEventListener('mouseover', () => {
-                toggleButton.style.backgroundColor = '#fff';
-                toggleButton.style.color = '#000';
-            });
-
-            toggleButton?.addEventListener('mouseout', () => {
-                toggleButton.style.backgroundColor = 'transparent';
-                toggleButton.style.color = '#fff';
             });
         }
     });

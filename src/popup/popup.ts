@@ -235,10 +235,10 @@ function initCopyButton(): void {
 
     const copyButton = elements['copyCodeBtn'];
     copyButton.onclick = async () => {
+        infoMessage!.textContent = 'Copied code to clipboard'
         if (fixCodeResponse.textContent) {
             await navigator.clipboard.writeText(fixCodeResponse.textContent);
         }
-        infoMessage!.textContent = 'Copied code to clipboard'
         setTimeout(() => {
             infoMessage!.textContent = message;
         }, 2000);

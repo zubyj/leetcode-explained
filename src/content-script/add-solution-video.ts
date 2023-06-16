@@ -13,7 +13,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     container.style.display = 'flex';
     container.style.justifyContent = 'center';
     container.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
-    container.style.marginBottom = '50px';
+    container.style.marginBottom = '60px';
 
     const controlsContainer = document.createElement('div');
     controlsContainer.style.display = 'flex';
@@ -27,7 +27,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     container.appendChild(controlsContainer);
 
     const prevButton = document.createElement('button');
-    prevButton.textContent = '<<';
+    prevButton.textContent = '⬅️';
     prevButton.classList.add('prev-video');
     controlsContainer.appendChild(prevButton);
 
@@ -39,7 +39,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     controlsContainer.appendChild(channelElement);
 
     const nextButton = document.createElement('button');
-    nextButton.textContent = '>>';
+    nextButton.textContent = '➡️';
     nextButton.classList.add('next-video');
     controlsContainer.appendChild(nextButton);
 
@@ -48,8 +48,8 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     toggleButton.classList.add('toggle-video');
     toggleButton.style.marginLeft = '50px';
     toggleButton.style.border = '1px solid white';
-    toggleButton.style.padding = '10px 10px';
-    toggleButton.style.borderRadius = '10px';
+    toggleButton.style.borderRadius = '5px';
+    toggleButton.style.padding = '5px 10px';
     controlsContainer.appendChild(toggleButton);
 
     const iframe = document.createElement('iframe');

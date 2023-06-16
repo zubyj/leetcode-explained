@@ -10,16 +10,19 @@ body {
     padding: 25px;
 }
 
-a {
-    color: lightgreen;
-    text-decoration: none;
-}
+/* General */
+
 
 p,
 a,
 li,
 label {
     font-size: 14px;
+}
+
+a {
+    color: lightgreen;
+    text-decoration: none;
 }
 
 a:hover {
@@ -39,7 +42,6 @@ a:hover {
 .navbar {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
 }
 
 .title {
@@ -72,16 +74,15 @@ a:hover {
     transition-duration: 0.4s;
     align-items: center;
     margin-bottom: 20px;
-    width: 200px;
+    width: 180px;
     height: 50px;
     margin: 10px;
 }
 
 .material-button:hover {
-    background-color: white;
-    color: black;
+    background-color: #f0f0f0;
+    color: #202020;
 }
-
 
 .button-icon {
     padding-right: 15px;
@@ -95,6 +96,19 @@ a:hover {
 }
 
 /* GPT Response */
+.response-container {
+    min-width: 300px;
+    max-width: 390px;
+    min-height: 150px;
+    padding: 15px;
+    padding-top: 0;
+    margin: 0
+}
+
+#analyze-code-response {
+    padding: 15px;
+}
+
 .code-btn {
     display: flex;
     align-items: center;
@@ -111,19 +125,6 @@ a:hover {
 
 #clear-code-btn {
     margin-left: 10px;
-}
-
-.response-container {
-    min-width: 300px;
-    max-width: 390px;
-    min-height: 150px;
-    padding: 15px;
-    padding-top: 0;
-    margin: 0
-}
-
-#analyze-code-response {
-    padding: 15px;
 }
 
 /* Settings */

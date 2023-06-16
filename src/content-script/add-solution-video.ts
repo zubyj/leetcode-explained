@@ -32,7 +32,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     controlsContainer.appendChild(prevButton);
 
     const channelElement = document.createElement('div');
-    channelElement.style.fontSize = '14px';
+    channelElement.style.fontSize = '15px';
     channelElement.textContent = channelName;
     channelElement.style.textAlign = 'center';
     channelElement.style.width = '200px';

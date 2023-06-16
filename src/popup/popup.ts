@@ -188,11 +188,7 @@ async function main(): Promise<void> {
 
     // get language from storage and set the classname of the code block to it
     chrome.storage.local.get('language', function (data) {
-        if (data.language) {
-            let codeBlock = document.getElementById('fix-code-response')!;
-            codeBlock.classList.add('language-' + data.language);
-
-        }
+        fixCodeResponse.classList.add('language-' + data.language);
     });
 
     // get name of current tab and set info message to it if its a leetcode problem
@@ -232,32 +228,24 @@ async function main(): Promise<void> {
 
 function initCopyButton(): void {
 
-    let message = infoMessage!.textContent;
+    setInfoMessage('Copy code to clipboard', 2000);
 
     const copyButton = elements['copyCodeBtn'];
     copyButton.onclick = async () => {
-        infoMessage!.textContent = 'Copied code to clipboard'
         if (fixCodeResponse.textContent) {
             await navigator.clipboard.writeText(fixCodeResponse.textContent);
         }
-        setTimeout(() => {
-            infoMessage!.textContent = message;
-        }, 2000);
     };
     copyButton.classList.remove('hidden');
 }
 
 // init clear code button
 function initClearButton(): void {
-
-    let message = infoMessage!.textContent;
+    setInfoMessage('Clear code', 2000);
     const clearButton = elements['clearCodeBtn']
     clearButton.onclick = async () => {
         clearResponse();
     };
-    setTimeout(() => {
-        infoMessage!.textContent = message;
-    }, 1000);
 }
 
 /* Error handling functions */

@@ -115,10 +115,11 @@ function processCode(
     }
     else if (action === "fix") {
         prompt += `
-        If there are bugs in the code that prevent the submission from being accepted, fix the bugs.
-        Else if no solution code is provided, generate an optimal solution.
-        Else if the given solution is already optimal, please let me know and return the original code.
-        Return only the code in plain text format and without a code block and ignoring code comments`;
+        Find and fix the bugs that prevent the submission from being accepted.
+        If no code is provided, generate an optimal solution.
+        If the given solution is already optimal, please let me know and return the original code.
+        Return only the code in plain text format and without a code block`;
+        infoMessage.textContent = 'Creating the solution using ChatGPT...';
         infoMessage.textContent = 'Creating the solution ...';
         analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer!.classList.remove('hidden');
@@ -191,6 +192,7 @@ async function main(): Promise<void> {
         if (data.language) {
             let codeBlock = document.getElementById('fix-code-response')!;
             codeBlock.classList.add('language-' + data.language);
+
         }
     });
 

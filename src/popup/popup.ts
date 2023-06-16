@@ -104,22 +104,21 @@ function processCode(
     clearResponse();
     let problemTitle = infoMessage!.textContent;
 
-    let prompt: string = "As an expert software engineer, you are given the following code for the Leetcode problem titled " + problemTitle + ".\n";
+    let prompt: string = "As an expert software engineer, you are provided the following code for the Leetcode problem titled " + problemTitle + ".\n";
     if (action === "analyze") {
         prompt += `
-        Analyze the code complexity of the given code. Ignore code comments.
-        Using Big O notation, return the time complexity followed by the space complexity in a short & concise response.`
+        Your task is to analyze the code complexity.
+        State the time complexity followed by the space complexity, using Big O notation. Your response should be short and concise.`
         infoMessage.textContent = 'Analyzing code complexity ...'
         analyzeCodeResponse.classList.remove('hidden');
         fixCodeContainer!.classList.add('hidden');
     }
     else if (action === "fix") {
-        prompt += `
-        Find and fix the bugs that prevent the submission from being accepted.
-        If no code is provided, generate an optimal solution.
-        If the given solution is already optimal, please let me know and return the original code.
-        Return only the code in plain text format and without a code block`;
-        infoMessage.textContent = 'Creating the solution using ChatGPT...';
+        prompt += `\nDepending on the given code:
+        1. If the code is provided below, identify and rectify any bugs preventing the submission from being accepted.
+        2. If no code is provided below, create an optimal solution.
+        3. If the code is provided and the given solution is already optimal, confirm the same and return the original code.
+        Please return only the code in plain text and without using a code block. Do not return any additional comments or text.`
         infoMessage.textContent = 'Creating the solution ...';
         analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer!.classList.remove('hidden');

@@ -119,11 +119,20 @@ function addVideo(title: string): void {
             toggleButton?.addEventListener('click', () => {
                 const videoContainer = document.querySelector('div.video-container');
                 if (videoContainer) {
-                    const isHidden = videoContainer.style.paddingBottom === '0%';
-                    videoContainer.style.paddingBottom = isHidden ? `${VIDEO_ASPECT_RATIO}%` : '0%';
-                    videoContainer.querySelector('iframe').style.display = isHidden ? 'flex' : 'none';
-                    toggleButton.textContent = isHidden ? 'Hide Video' : 'Show Video';
+                    videoContainer.style.paddingBottom = videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}%` : '0%';
+                    toggleButton.textContent = videoContainer.style.paddingBottom === '0%' ? 'Show Video' : 'Hide Video';
                 }
+            });
+
+            // on hover, change background color of toggleButton
+            toggleButton?.addEventListener('mouseover', () => {
+                toggleButton.style.backgroundColor = '#fff';
+                toggleButton.style.color = '#000';
+            });
+
+            toggleButton?.addEventListener('mouseout', () => {
+                toggleButton.style.backgroundColor = 'transparent';
+                toggleButton.style.color = '#fff';
             });
         }
     });

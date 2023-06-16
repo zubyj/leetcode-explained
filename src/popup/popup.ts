@@ -46,6 +46,15 @@ function disableAllButtons(disabled: boolean): void {
     });
 }
 
+function clearResponse(): void {
+    analyzeCodeResponse.textContent = '';
+    fixCodeResponse.textContent = '';
+    fixCodeContainer!.classList.add('hidden');
+    analyzeCodeResponse.classList.add('hidden');
+    chrome.storage.local.set({ 'fixCodeResponse': '' });
+    chrome.storage.local.set({ 'analyzeCodeResponse': '' });
+}
+
 function setInfoMessage(message: string, duration: number) {
     let oldMessage = infoMessage.textContent;
     infoMessage.textContent = message;
@@ -92,8 +101,7 @@ function processCode(
 ): void {
 
     disableAllButtons(true);
-    fixCodeResponse.textContent = '';
-    analyzeCodeResponse.textContent = '';
+    clearResponse();
     let problemTitle = infoMessage!.textContent;
 
     let prompt: string = "As an expert software engineer, you are given the following code for the Leetcode problem titled " + problemTitle + ".\n";
@@ -230,10 +238,10 @@ function initCopyButton(): void {
         if (fixCodeResponse.textContent) {
             await navigator.clipboard.writeText(fixCodeResponse.textContent);
         }
-        infoMessage!.textContent = 'Copied to clipboard'
+        infoMessage!.textContent = 'Copied code to clipboard'
         setTimeout(() => {
             infoMessage!.textContent = message;
-        }, 1000);
+        }, 2000);
     };
     copyButton.classList.remove('hidden');
 }
@@ -244,11 +252,7 @@ function initClearButton(): void {
     let message = infoMessage!.textContent;
     const clearButton = elements['clearCodeBtn']
     clearButton.onclick = async () => {
-        fixCodeResponse.textContent = '';
-        analyzeCodeResponse.textContent = '';
-        infoMessage!.textContent = 'Response cleared';
-        chrome.storage.local.set({ 'fixCodeResponse': '' });
-        chrome.storage.local.set({ 'analyzeCodeResponse': '' });
+        clearResponse();
     };
     setTimeout(() => {
         infoMessage!.textContent = message;

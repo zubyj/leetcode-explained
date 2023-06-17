@@ -227,11 +227,9 @@ async function main(): Promise<void> {
 }
 
 function initCopyButton(): void {
-
-    setInfoMessage('Copy code to clipboard', 2000);
-
     const copyButton = elements['copyCodeBtn'];
     copyButton.onclick = async () => {
+        setInfoMessage('Copy code to clipboard', 2000);
         if (fixCodeResponse.textContent) {
             await navigator.clipboard.writeText(fixCodeResponse.textContent);
         }
@@ -241,9 +239,9 @@ function initCopyButton(): void {
 
 // init clear code button
 function initClearButton(): void {
-    setInfoMessage('Clear code', 2000);
     const clearButton = elements['clearCodeBtn']
     clearButton.onclick = async () => {
+        setInfoMessage('Clear code', 2000);
         clearResponse();
     };
 }

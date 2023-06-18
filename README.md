@@ -1,61 +1,58 @@
 # Leetcode Explained
+![version](https://img.shields.io/badge/version-2.0.1-blue)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A chrome extension that adds video solutions directly into Leetcode problem pages.
+Leetcode Explained is a Chrome Extension that allows users to watch Leetcode video solutions directly inside the problem page. It also enhances your Leetcode experience by integrating AI-powered code analysis and solution generation functionality.
 
-[Available in the Chrome Web Store](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
+Available on the [Chrome Web Store](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe).
 
-[Watch the demo](https://www.youtube.com/watch?v=E5nvCyVZxuc)
+## Features
+### 1️⃣ Watch solution videos directly inside each Leetcode problem
+![Fix Code](src/assets/images/screenshots/fix-code.png)
 
-![Leetcode Explained Screenshot 1](./src/assets/images/screenshots/screenshot-1.png)
+2️⃣ Analyze your code complexity using ChatGPT
+![Code Complexity](src/assets/images/screenshots/code-complexity.png)
 
-![Leetcode Explained Screenshot 2](./src/assets/images//screenshots/screenshot-2.png)
+3️⃣ Fix errors in your code using ChatGPT
+![Add Video](src/assets/images/screenshots/add-video.png)
 
-## Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Structure](#structure)
-- [Configuration](#configuration)
-- [Browser Compatibility](#browser-compatibility)
+Additional details:
+- Free and open source: [github.com/zubyj/leetcode-explained](https://github.com/zubyj/leetcode-explained)
+- No API key required for using ChatGPT. Simply login to ChatGPT in your browser.
+- 5 solution videos added per problem
+- No data stored. All data is stored locally in your browser
 
 ## Installation
 
-1. Download the Leetcode Explained repository.
-2. Unzip the folder if needed.
-3. Open Chrome and go to `chrome://extensions`.
-4. Enable "Developer mode" in the top right corner.
-5. Click "Load unpacked" and select the `src` folder within the unzipped Leetcode Explained folder.
+1. Install the extension directly from the [Chrome Web Store](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe).
+
+OR
+
+2. Download the latest version of the extension from the [releases](./build) directory as a zip file.
+   Unzip the downloaded file into a directory.
+   Open Google Chrome and navigate to chrome://extensions.
+   Enable "Developer mode" (toggle switch in the top right corner).
+   Click on "Load unpacked" and navigate to the unzipped extension directory, then click "Select".
+   Ensure that the extension is enabled. You should now see the extension icon next to the address bar.
 
 ## Usage
+To view solution videos, open the "Solutions" tab of a Leetcode problem.
+For example ➡️ [leetcode.com/problems/two-sum/solutions/](https://leetcode.com/problems/two-sum/solutions/)
 
-### Access video solutions
-1. Navigate to a Leetcode problem page (e.g., `https://leetcode.com/problems/valid-parentheses`).
-2. Click the 'Solutions' tab.
-3. A video explanation of the solution will be injected into the page if available.
+To fix your code or analyze its complexity, you first need to be logged into ChatGPT in your browser and have this extension pinned. Then, simply open your Leetcode solution and click the extension to use the awesome GPT features!
 
-### Get your code's time & space complexity
+## Contributing
+Please see the [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details on how to contribute to the project.
 
-1. Navigate to a Leetcode problem page (e.g., `https://leetcode.com/problems/valid-parentheses`).
-2. Open the extension by clicking on the Leetcode Explained icon in the Chrome toolbar.
-3. If not logged in, click the "Please login to ChatGPT" button to authenticate with ChatGPT.
-4. Click the "Analyze Complexity" button to get the time and space complexity of the solution.
+## Code of Conduct
+We aim to foster an inclusive and respectful environment. Please read the [CODE_OF_CONDUCT.md](docs/CODE_OF_CONDUCT.md) for more information.
 
-## Structure
+## License
+Leetcode Explained is [MIT licensed](docs/LICENSE).
 
-The extension is organized into the following folders and files:
+## Support
+If you encounter any issues or have any questions, please open an issue on this repository.
 
-- `src/`: Contains the main source files for the extension.
-  - `assets/`: Contains images and the json data of leetcode problems and their embedded urls
-  - `background/`: Tells content script to add video if tab url matches a leetcode problem name
-    - `chatgpt/`: Stores auth token when user logs into ChatGPT. ChatGPT is used to get the user's code complexity.
-  - `content-script/`: Adds video onto the page. Gets user's code to send to ChatGPT.
-  - `popup/`: Contains the 'Analyze Complexity' button
-- `manifest.json`: Metadata such as version, permissions, files, etc.
-
-## Configuration
-
-The extension configuration is contained in the `manifest.json` file. You can update the extension's name, version, description, permissions, and other settings in this file.
-
-## Browser Compatibility
-
-Leetcode Explained works on most Chromium-based browsers. Other browsers, such as Mozilla Firefox, currently aren't supported.
+## Privacy
+This extension doesn't collect any personal data. All the code analysis and generation happens on your local machine.

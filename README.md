@@ -7,15 +7,15 @@ Leetcode Explained is a Chrome Extension that allows users to watch Leetcode vid
 Available on the [Chrome Web Store](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe).
 
 ## Features
-### 1️⃣ Watch solution videos directly inside each Leetcode problem
-![Fix Code](src/assets/images/screenshots/fix-code.png)
+1️⃣ Watch solution videos directly inside each Leetcode problem
 
 2️⃣ Analyze your code complexity using ChatGPT
-![Code Complexity](src/assets/images/screenshots/code-complexity.png)
 
 3️⃣ Fix errors in your code using ChatGPT
-![Add Video](src/assets/images/screenshots/add-video.png)
 
+![Add Video](src/assets/images/screenshots/add-video.png)
+![Code Complexity](src/assets/images/screenshots/code-complexity.png)
+![Fix Code](src/assets/images/screenshots/fix-code.png)
 
 Additional details:
 - Free and open source: [github.com/zubyj/leetcode-explained](https://github.com/zubyj/leetcode-explained)

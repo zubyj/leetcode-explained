@@ -119,11 +119,11 @@ function processCode(
     else if (action === "fix") {
         prompt = `
         ChatGPT, in your capacity as a coding expert, I need your assistance with a LeetCode problem titled ${problemTitle}.
-        Should I not provide any code, your task is to generate the optimal solution for this problem.
-        Conversely, if I provide a piece of code, please debug it, correct any potential issues and make it submission-ready.
+        If only the function definition is provided, your task is to generate the optimal solution for this problem.
+        Conversely, if I provide a piece of code, there is most likely error(s) in the code. Please debug it, correct any potential issues and make it submission-ready.
         If the code I provide is already correct and optimized, return it as is, but include a comment stating, 'The code is already correct & optimal.'
         All code should be returned in plain text, with no usage of code blocks, and only essential inline comments are permitted.
-        `
+        `;
         infoMessage.textContent = 'Creating the solution ...';
         analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer!.classList.remove('hidden');
@@ -234,7 +234,7 @@ async function main(): Promise<void> {
 function initCopyButton(): void {
     const copyButton = elements['copyCodeBtn'];
     copyButton.onclick = async () => {
-        setInfoMessage('Copy code to clipboard', 2000);
+        setInfoMessage('Copied Code', 3000);
         if (fixCodeResponse.textContent) {
             await navigator.clipboard.writeText(fixCodeResponse.textContent);
         }
@@ -246,7 +246,7 @@ function initCopyButton(): void {
 function initClearButton(): void {
     const clearButton = elements['clearCodeBtn']
     clearButton.onclick = async () => {
-        setInfoMessage('Clear code', 2000);
+        setInfoMessage('Cleared Response', 3000);
         clearResponse();
     };
 }

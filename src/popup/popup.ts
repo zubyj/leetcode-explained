@@ -104,12 +104,15 @@ function processCode(
     clearResponse();
     let problemTitle = infoMessage!.textContent;
 
-    let prompt: string = "As an expert software engineer, you are provided the following code for the Leetcode problem titled " + problemTitle + ".\n";
+    let prompt: string = "";
     if (action === "analyze") {
-        prompt += `
-        Your task is to analyze the code complexity.
-        State the time complexity followed by the space complexity, using Big O notation. Your response should be short and concise.`
-        infoMessage.textContent = 'Analyzing code complexity ...'
+        prompt = `
+        You are an expert software engineer.
+        Given the Leetcode problem ${problemTitle} and the associated code below, analyze it concisely and directly.
+         Provide the time complexity and the space complexity, both expressed in big O notation.
+        Offer a brief explanation(1 - 2 lines max) for each complexity analysis. Keep your analysis direct and succinct.
+        `;
+        infoMessage.textContent = 'Analyzing code complexity ...';
         analyzeCodeResponse.classList.remove('hidden');
         fixCodeContainer!.classList.add('hidden');
     }
@@ -118,7 +121,7 @@ function processCode(
         1. If the code is provided below, identify and rectify any bugs preventing the submission from being accepted.
         2. If no code is provided below, create an optimal solution.
         3. If the code is provided and the given solution is already optimal, confirm the same and return the original code.
-        Please return only the code in plain text and without using a code block. Do not return any additional comments or text.`
+        Please return only the code in plain text and without using a code block.Do not return any additional comments or text.`
         infoMessage.textContent = 'Creating the solution ...';
         analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer!.classList.remove('hidden');

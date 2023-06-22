@@ -120,8 +120,10 @@ function processCode(
         prompt = `
         ChatGPT, in your capacity as a coding expert, I need your assistance with a LeetCode problem titled ${problemTitle}.
         If only the function definition is provided, your task is to generate the optimal solution for this problem.
-        Conversely, if I provide a piece of code, there is most likely error(s) in the code. Please debug it, correct any potential issues and make it submission-ready.
-        If the code I provide is already correct and optimized, return it as is, but include a comment stating, 'The code is already correct & optimal.'
+        Conversely, if the code is provided below, there is most likely error(s) in the code.
+         Please correct any potential issues that is preventing the submission from being accepted.
+        If the code I provide is already correct and optimized, return it as is, but include a comment stating,
+            'The code is already correct & optimal.'
         All code should be returned in plain text, with no usage of code blocks, and only essential inline comments are permitted.
         `;
         infoMessage.textContent = 'Creating the solution ...';

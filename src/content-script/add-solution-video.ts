@@ -3,10 +3,11 @@ const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 /**
  * Creates a video container element with the provided video URL.
  * @param {string} videoUrl - The video URL.
+ * @param {string} channelName - The name of the YouTube channel.
+ * @param {Array} companies - The array of company problems.
  * @return {HTMLDivElement} - The video container element.
  */
-function createVideoContainer(videoUrl: string, channelName: string) {
-
+function createVideoContainer(videoUrl, channelName, companies) {
     const container = document.createElement('div');
     container.classList.add('video-container');
     container.style.position = 'relative';
@@ -27,6 +28,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     container.appendChild(controlsContainer);
 
     const prevButton = document.createElement('button');
+    prevButton.style.fontSize = '20px';
     prevButton.textContent = '⬅️';
     prevButton.classList.add('prev-video');
     controlsContainer.appendChild(prevButton);
@@ -39,6 +41,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     controlsContainer.appendChild(channelElement);
 
     const nextButton = document.createElement('button');
+    nextButton.style.fontSize = '20px';
     nextButton.textContent = '➡️';
     nextButton.classList.add('next-video');
     controlsContainer.appendChild(nextButton);
@@ -51,6 +54,23 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     toggleButton.style.borderRadius = '5px';
     toggleButton.style.padding = '5px 10px';
     controlsContainer.appendChild(toggleButton);
+
+    const companyDropdown = document.createElement('select');
+    companyDropdown.style.marginLeft = '20px';
+    companyDropdown.style.border = '1px solid white';
+    companyDropdown.style.borderRadius = '5px';
+    companyDropdown.style.padding = '5px 10px';
+    companyDropdown.style.height = '35px';
+
+    companies.forEach((company) => {
+        const option = document.createElement('option');
+        option.value = company.name;
+        option.textContent = `⭐ ${company.score} | ${company.name}`;
+
+        companyDropdown.appendChild(option);
+    });
+
+    controlsContainer.appendChild(companyDropdown);
 
     const iframe = document.createElement('iframe');
     iframe.classList.add('youtube-video');
@@ -67,6 +87,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
 
     container.iframe = iframe;
     container.channelElement = channelElement;
+    container.companyDropdown = companyDropdown;
 
     return container;
 }
@@ -77,6 +98,10 @@ interface LeetCodeProblem {
         embedded_url: string;
         channel: string;
     }[];
+    companies?: {
+        name: string;
+        score: string;
+    }[];
     // add more properties as needed
 }
 
@@ -84,22 +109,26 @@ interface LeetCodeProblem {
  * Injects the embedded YouTube solution into the solutions tab of the LeetCode problem.
  * @param {string} title - The problem title.
  */
-function addVideo(title: string): void {
+function addVideo(title) {
     const SOLUTIONS_TAB_INDEX = 1;
 
-    const solutionsTab = document.querySelectorAll<HTMLDivElement>('div.w-full.flex-col.overflow-auto')[SOLUTIONS_TAB_INDEX];
+    const solutionsTab = document.querySelectorAll('div.w-full.flex-col.overflow-auto')[SOLUTIONS_TAB_INDEX];
     if (!solutionsTab) return;
 
-    const existingContainer = solutionsTab.parentElement?.querySelector<HTMLDivElement>('div.video-container');
+    const existingContainer = solutionsTab.parentElement?.querySelector('div.video-container');
     if (existingContainer) return;
 
     chrome.storage.local.get(['leetcodeProblems'], (result) => {
         const problems = result.leetcodeProblems.questions;
-        const problem = problems.find((problem: LeetCodeProblem) => problem.title === title);
+        const problem = problems.find((problem) => problem.title === title);
 
         if (problem?.videos?.length) {
             let currentVideoIndex = 0;
-            const container = createVideoContainer(problem.videos[currentVideoIndex].embedded_url, problem.videos[currentVideoIndex].channel);
+            const container = createVideoContainer(
+                problem.videos[currentVideoIndex].embedded_url,
+                problem.videos[currentVideoIndex].channel,
+                problem.companies || []
+            );
             solutionsTab.parentElement?.insertBefore(container, solutionsTab);
 
             const prevButton = container.querySelector('button.prev-video');
@@ -107,12 +136,22 @@ function addVideo(title: string): void {
 
             prevButton?.addEventListener('click', () => {
                 currentVideoIndex = (currentVideoIndex - 1 + problem.videos.length) % problem.videos.length;
-                updateVideo(container, problem.videos[currentVideoIndex].embedded_url, problem.videos[currentVideoIndex].channel);
+                updateVideo(
+                    container,
+                    problem.videos[currentVideoIndex].embedded_url,
+                    problem.videos[currentVideoIndex].channel,
+                    container.companyDropdown.value
+                );
             });
 
             nextButton?.addEventListener('click', () => {
                 currentVideoIndex = (currentVideoIndex + 1) % problem.videos.length;
-                updateVideo(container, problem.videos[currentVideoIndex].embedded_url, problem.videos[currentVideoIndex].channel);
+                updateVideo(
+                    container,
+                    problem.videos[currentVideoIndex].embedded_url,
+                    problem.videos[currentVideoIndex].channel,
+                    container.companyDropdown.value
+                );
             });
 
             const toggleButton = container.querySelector('button.toggle-video');
@@ -135,12 +174,17 @@ function addVideo(title: string): void {
                 toggleButton.style.color = '#fff';
             });
         }
+        if (problem.companies) {
+            console.log('companies');
+            console.log(problem.companies);
+        }
     });
 }
 
-function updateVideo(container: HTMLDivElement, videoUrl: string, channelName: string): void {
+function updateVideo(container, videoUrl, channelName, selectedCompany) {
     container.iframe.src = videoUrl;
     container.channelElement.textContent = channelName;
+    container.companyDropdown.value = selectedCompany;
 }
 
 /**
@@ -154,17 +198,17 @@ chrome.runtime.onMessage.addListener((request) => {
 });
 
 /**
- * This code is used to prevent the iframe from freezing when its being resized while the mouse is hovering over it
+ * This code is used to prevent the iframe from freezing when it's being resized while the mouse is hovering over it.
  */
 window.addEventListener('mousedown', () => {
-    const iframe = document.querySelector<HTMLIFrameElement>('iframe.youtube-video');
+    const iframe = document.querySelector('iframe.youtube-video');
     if (iframe) {
         iframe.style.pointerEvents = 'none';
     }
 });
 
 window.addEventListener('mouseup', () => {
-    const iframe = document.querySelector<HTMLIFrameElement>('iframe.youtube-video');
+    const iframe = document.querySelector('iframe.youtube-video');
     if (iframe) {
         iframe.style.pointerEvents = 'auto';
     }

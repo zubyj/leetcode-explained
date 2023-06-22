@@ -110,7 +110,8 @@ function processCode(
         You are an expert software engineer.
         Given the Leetcode problem ${problemTitle} and the associated code below, analyze it concisely and directly.
         Provide the time complexity and the space complexity, both expressed in big O notation.
-        Offer a brief explanation(1 - 2 lines max) for each complexity analysis. Keep your analysis direct and succinct.
+        Offer a brief explanation(1 - 2 lines max) for each complexity analysis. 
+        Keep your analysis direct and succinct.
         `;
         infoMessage.textContent = 'Analyzing code complexity ...';
         analyzeCodeResponse.classList.remove('hidden');

@@ -31,7 +31,10 @@
                     "name": "Amazon",
                     "score": "14"
                 },
-                {}
+                {
+                    "name": "Google",
+                    "score": "13"
+                }
             ]
         },
         {
@@ -1212,7 +1215,7 @@
             "frontend_id": 46,
             "videos": [
                 {
-                    "embedded_url": "",
+                    "embedded_url": "https://www.youtube.com/embed/s7AvT7cGdSo",
                     "channel": "NeetCode"
                 },
                 {

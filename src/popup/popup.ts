@@ -109,7 +109,7 @@ function processCode(
         prompt = `
         You are an expert software engineer.
         Given the Leetcode problem ${problemTitle} and the associated code below, analyze it concisely and directly.
-         Provide the time complexity and the space complexity, both expressed in big O notation.
+        Provide the time complexity and the space complexity, both expressed in big O notation.
         Offer a brief explanation(1 - 2 lines max) for each complexity analysis. Keep your analysis direct and succinct.
         `;
         infoMessage.textContent = 'Analyzing code complexity ...';
@@ -117,11 +117,13 @@ function processCode(
         fixCodeContainer!.classList.add('hidden');
     }
     else if (action === "fix") {
-        prompt += `\nDepending on the given code:
-        1. If the code is provided below, identify and rectify any bugs preventing the submission from being accepted.
-        2. If no code is provided below, create an optimal solution.
-        3. If the code is provided and the given solution is already optimal, confirm the same and return the original code.
-        Please return only the code in plain text and without using a code block.Do not return any additional comments or text.`
+        prompt = `
+        ChatGPT, in your capacity as a coding expert, I need your assistance with a LeetCode problem titled ${problemTitle}.
+        Should I not provide any code, your task is to generate the optimal solution for this problem.
+        Conversely, if I provide a piece of code, please debug it, correct any potential issues and make it submission-ready.
+        If the code I provide is already correct and optimized, return it as is, but include a comment stating, 'The code is already correct & optimal.'
+        All code should be returned in plain text, with no usage of code blocks, and only essential inline comments are permitted.
+        `
         infoMessage.textContent = 'Creating the solution ...';
         analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer!.classList.remove('hidden');

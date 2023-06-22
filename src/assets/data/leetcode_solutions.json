@@ -25,6 +25,13 @@
                     "embedded_url": "https://www.youtube.com/embed/Aql6zHkONek",
                     "channel": "Kevin Naughton Jr."
                 }
+            ],
+            "companies": [
+                {
+                    "name": "Amazon",
+                    "score": "14"
+                },
+                {}
             ]
         },
         {

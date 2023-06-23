@@ -167,6 +167,16 @@ async function main(): Promise<void> {
         getFromStorage(storageKeys.language),
     ]);
 
+    let fontSizeElement = document.documentElement; // Or any specific element you want to change the font size of
+
+    // Load font size from storage
+    chrome.storage.local.get('fontSize', function (data) {
+        if (data.fontSize) {
+            // Setting CSS variable --dynamic-font-size with the loaded value
+            fontSizeElement.style.setProperty('--dynamic-font-size', `${data.fontSize}px`);
+        }
+    });
+
     chrome.storage.local.get('analyzeCodeResponse', function (data) {
         if (data.analyzeCodeResponse) {
             analyzeCodeResponse.textContent = data.analyzeCodeResponse;
@@ -193,6 +203,8 @@ async function main(): Promise<void> {
             }
         }
     });
+
+
 
     // get language from storage and set the classname of the code block to it
     chrome.storage.local.get('language', function (data) {

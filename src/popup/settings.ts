@@ -23,12 +23,16 @@ let fontSizeSelect = document.getElementById('font-size-select');
 chrome.storage.local.get('fontSize', function (data) {
     if (data.fontSize) {
         fontSizeSelect!.value = data.fontSize;
+        // Add this line to set the font size in your CSS variables when the page loads
+        document.documentElement.style.setProperty('--dynamic-font-size', `${data.fontSize}px`);
     }
 });
 
 fontSizeSelect!.onchange = function () {
     let selectedFontSize = this.value;
     chrome.storage.local.set({ fontSize: selectedFontSize });
+    // Add this line to set the font size in your CSS variables every time the font size is changed
+    document.documentElement.style.setProperty('--dynamic-font-size', `${selectedFontSize}px`);
 };
 
 function sendMessageToActiveTab(message: object): void {

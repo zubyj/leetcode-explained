@@ -8,16 +8,21 @@ body {
     font-family: 'Roboto', sans-serif;
     width: 390px;
     padding: 15px;
+    font-size: var(--dynamic-font-size, 14px);
 }
-
-/* General */
-
 
 p,
 a,
 li,
 label {
-    font-size: 14px;
+    font-size: var(--dynamic-font-size, 14px);
+    /* default to 14px if --dynamic-font-size is not set */
+}
+
+.material-button,
+.button,
+#info-message {
+    font-size: var(--dynamic-font-size, 14px);
 }
 
 a {
@@ -69,7 +74,6 @@ a:hover {
     background-color: #202020;
     border: 1px solid white;
     text-decoration: none;
-    font-size: 14px;
     cursor: pointer;
     border-radius: 4px;
     transition-duration: 0.4s;
@@ -93,7 +97,6 @@ a:hover {
     text-align: center;
     font-weight: 400;
     color: lightcyan;
-    font-size: 15px;
 }
 
 /* GPT Response */

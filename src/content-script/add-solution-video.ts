@@ -1,11 +1,4 @@
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
-/**
- * Creates a video container element with the provided video URL.
- * @param {string} videoUrl - The video URL.
- * @param {string} channelName - The name of the YouTube channel.
- * @param {Array} companies - The array of company problems.
- * @return {HTMLDivElement} - The video container element.
- */
 
 function createStyledElement(tagName, styles = {}) {
     const element = document.createElement(tagName);
@@ -198,9 +191,6 @@ function updateVideo(container, videoUrl, channelName, selectedCompany) {
     if (companyDropdown) companyDropdown.value = selectedCompany;
 }
 
-/**
- * Handles incoming messages from the background script.
- */
 chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'addVideo') {
         const title = request.title.split('-')[0].trim();
@@ -209,7 +199,7 @@ chrome.runtime.onMessage.addListener((request) => {
 });
 
 /**
- * This code is used to prevent the iframe from freezing when it's being resized while the mouse is hovering over it.
+ * Prevents the iframe from freezing when it's being resized while the mouse is hovering over it.
  */
 window.addEventListener('mousedown', () => {
     const iframe = document.querySelector('iframe.youtube-video');

@@ -56,6 +56,8 @@ function createVideoContainer(videoUrl, channelName, companies) {
     controlsContainer.appendChild(toggleButton);
 
     const companyDropdown = document.createElement('select');
+    companyDropdown.name = 'Companies';
+    // Set default text to "Companies"
     companyDropdown.style.marginLeft = '20px';
     companyDropdown.style.border = '1px solid white';
     companyDropdown.style.borderRadius = '5px';
@@ -65,7 +67,7 @@ function createVideoContainer(videoUrl, channelName, companies) {
     companies.forEach((company) => {
         const option = document.createElement('option');
         option.value = company.name;
-        option.textContent = `${company.name}`;
+        option.textContent = `${company.score} ⭐ | 🏢 ${company.name} `;
 
         companyDropdown.appendChild(option);
     });
@@ -158,7 +160,7 @@ function addVideo(title) {
             toggleButton?.addEventListener('click', () => {
                 const videoContainer = document.querySelector('div.video-container');
                 if (videoContainer) {
-                    videoContainer.style.paddingBottom = videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}%` : '0%';
+                    videoContainer.style.paddingBottom = videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}% ` : '0%';
                     toggleButton.textContent = videoContainer.style.paddingBottom === '0%' ? 'Show Video' : 'Hide Video';
                 }
             });

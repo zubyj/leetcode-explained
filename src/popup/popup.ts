@@ -176,11 +176,12 @@ async function main(): Promise<void> {
             fontSizeElement.style.setProperty('--dynamic-font-size', `${data.fontSize}px`);
 
             // set body width to 500px
-            console.log(typeof (data.fontSize));
-            let width = parseInt(data.fontSize) * 35;
+            let width = parseInt(data.fontSize) * 30;
             document.body.style.width = `${width}px`;
             fixCodeContainer.style.width = `${width}px`;
             analyzeCodeResponse.style.width = `${width}px`;
+
+
         }
     });
 

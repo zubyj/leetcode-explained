@@ -187,7 +187,8 @@ async function main(): Promise<void> {
                 button.style.width = `${width / 2}px`;
                 button.style.height = `${width / 10}px`;
             }
-        });
+        }
+    });
 
     chrome.storage.local.get('analyzeCodeResponse', function (data) {
         if (data.analyzeCodeResponse) {

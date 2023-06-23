@@ -143,11 +143,11 @@ a:hover {
     background-color: darkgreen;
 }
 
-#language-select {
+.select {
     text-align: center;
 }
 
-#language-select:hover {
+.select:hover {
     background-color: black;
     color: #f0f0f0;
 }

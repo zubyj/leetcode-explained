@@ -8,15 +8,8 @@ body {
     font-family: 'Roboto', sans-serif;
     width: 390px;
     padding: 15px;
+    width: 400px;
     font-size: var(--dynamic-font-size, 14px);
-}
-
-p,
-a,
-li,
-label {
-    font-size: var(--dynamic-font-size, 14px);
-    /* default to 14px if --dynamic-font-size is not set */
 }
 
 .material-button,
@@ -79,7 +72,7 @@ a:hover {
     transition-duration: 0.4s;
     align-items: center;
     margin-bottom: 20px;
-    width: 180px;
+    width: 200px;
     height: 50px;
     margin: 10px;
 }
@@ -101,8 +94,6 @@ a:hover {
 
 /* GPT Response */
 .response-container {
-    min-width: 300px;
-    max-width: 385px;
     min-height: 150px;
     padding-top: 0;
     margin: 0

@@ -67,7 +67,10 @@ function createVideoContainer(videoUrl, channelName, companies) {
     companies.forEach((company) => {
         const option = document.createElement('option');
         option.value = company.name;
-        option.textContent = `⭐ ${company.score}  ${company.name} `;
+        option.textContent = `⭐ ${company.score}  ${company.name} <img src="./src/assets/images/${company.name}.png" width="20px" height="20px">`;
+
+        // set the 
+
         companyDropdown.appendChild(option);
     });
 

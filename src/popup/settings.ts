@@ -18,6 +18,19 @@ languageSelect!.onchange = function () {
     chrome.storage.local.set({ language: selectedLanguage });
 };
 
+// Get font fize and check if it is already set in local storage
+let fontSizeSelect = document.getElementById('font-size-select');
+chrome.storage.local.get('fontSize', function (data) {
+    if (data.fontSize) {
+        fontSizeSelect!.value = data.fontSize;
+    }
+});
+
+fontSizeSelect!.onchange = function () {
+    let selectedFontSize = this.value;
+    chrome.storage.local.set({ fontSize: selectedFontSize });
+};
+
 function sendMessageToActiveTab(message: object): void {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id!, message);

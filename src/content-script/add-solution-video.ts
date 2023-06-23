@@ -37,7 +37,7 @@ function createVideoContainer(videoUrl, channelName, companies) {
     channelElement.style.fontSize = '15px';
     channelElement.textContent = channelName;
     channelElement.style.textAlign = 'center';
-    channelElement.style.width = '200px';
+    channelElement.style.width = '150px';
     controlsContainer.appendChild(channelElement);
 
     const nextButton = document.createElement('button');
@@ -49,7 +49,7 @@ function createVideoContainer(videoUrl, channelName, companies) {
     const toggleButton = document.createElement('button');
     toggleButton.textContent = 'Hide Video';
     toggleButton.classList.add('toggle-video');
-    toggleButton.style.marginLeft = '50px';
+    toggleButton.style.marginLeft = '40px';
     toggleButton.style.border = '1px solid white';
     toggleButton.style.borderRadius = '5px';
     toggleButton.style.padding = '5px 10px';
@@ -67,14 +67,13 @@ function createVideoContainer(videoUrl, channelName, companies) {
     companies.forEach((company) => {
         const option = document.createElement('option');
         option.value = company.name;
-        option.textContent = `⭐ ${company.score}  ${company.name} <img src="./src/assets/images/${company.name}.png" width="20px" height="20px">`;
-
-        // set the 
-
+        option.textContent = `⭐ ${company.score}  ${company.name}`;
         companyDropdown.appendChild(option);
     });
 
     controlsContainer.appendChild(companyDropdown);
+
+
 
     const iframe = document.createElement('iframe');
     iframe.classList.add('youtube-video');
@@ -131,7 +130,8 @@ function addVideo(title) {
             const container = createVideoContainer(
                 problem.videos[currentVideoIndex].embedded_url,
                 problem.videos[currentVideoIndex].channel,
-                problem.companies || []
+                problem.companies
+                || []
             );
             solutionsTab.parentElement?.insertBefore(container, solutionsTab);
 
@@ -177,10 +177,6 @@ function addVideo(title) {
                 toggleButton.style.backgroundColor = 'transparent';
                 toggleButton.style.color = '#fff';
             });
-        }
-        if (problem.companies) {
-            console.log('companies');
-            console.log(problem.companies);
         }
     });
 }

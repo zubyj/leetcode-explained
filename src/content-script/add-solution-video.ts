@@ -63,7 +63,8 @@ function createControlsContainer(channelName, companies) {
         border: '1px solid white',
         borderRadius: '5px',
         padding: '5px 10px',
-        height: '35px'
+        height: '35px',
+        width: '150px'
     };
     const companyDropdown = createSelect('Companies', companies, selectStyles);
 

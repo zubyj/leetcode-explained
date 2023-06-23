@@ -39,6 +39,14 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         }, 1000);
     }
 
+    urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/description\/?/;
+    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
+        setTimeout(() => {
+            chrome.tabs.get(tabId, (updatedTab) => {
+                chrome.tabs.sendMessage(tabId, { action: 'addCompanies', title: updatedTab.title || 'title' });
+            });
+        }, 1000);
+    }
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

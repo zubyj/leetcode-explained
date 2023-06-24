@@ -1,5 +1,12 @@
 chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'addCompanies') {
+        chrome.storage.local.get(['hideDifficulty'], (result) => {
+            let difficulty = document.querySelectorAll('div.bg-olive')[0];
+            const canShowDifficulty = !result.hideDifficulty;
+            if (!canShowDifficulty) {
+                difficulty.classList.add('hidden');
+            }
+        });
 
         let canShowCompanyTags = true;
         chrome.storage.local.get(['hideTags'], (result) => {
@@ -7,7 +14,6 @@ chrome.runtime.onMessage.addListener((request) => {
             if (!canShowCompanyTags) {
                 return;
             }
-
             const title = request.title.split('-')[0].trim();
             addCompanies(title);
         });
@@ -15,6 +21,8 @@ chrome.runtime.onMessage.addListener((request) => {
 
     }
 });
+
+
 function addCompanies(title: string) {
     const container = document.querySelectorAll('div.mt-3.flex')[0];
 
@@ -66,9 +74,7 @@ function addCompanies(title: string) {
                 button.appendChild(icon);
 
                 button.style.color = '#fff';
-                button.style.width = '130px';
-                button.style.minWidth = '100px';
-                button.style.maxWidth = '130px';
+                button.style.minWidth = '130px';
                 button.style.height = '25px';
                 button.style.padding = '1px';
                 button.style.backgroundColor = '#373737';

@@ -21,10 +21,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
-
-
-
-
 // Getting element and checking if the language is already set in local storage
 let languageSelect = document.getElementById('language-select');
 chrome.storage.local.get('language', function (data) {
@@ -75,8 +71,6 @@ document.getElementById('hide-difficulty-btn')!.addEventListener('click', functi
         });
     });
 });
-
-
 
 function sendMessageToActiveTab(message: object): void {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

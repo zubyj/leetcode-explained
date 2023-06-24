@@ -171,12 +171,17 @@ async function main(): Promise<void> {
     // Load font size from storage
     chrome.storage.local.get('fontSize', function (data) {
         if (data.fontSize) {
+            // Setting CSS variable --dynamic-font-size with the loaded value
             fontSizeElement.style.setProperty('--dynamic-font-size', `${data.fontSize}px`);
 
-            let width = parseInt(data.fontSize) * 30;
-            document.body.style.width = `${width}px`;
-            fixCodeContainer.style.width = `${width}px`;
-            analyzeCodeResponse.style.width = `${width}px`;
+            console.log(typeof (data.fontSize));
+
+            if (parseInt(data.fontSize) >= 18) {
+                let width = (parseInt(data.fontSize) * 20 + 120);
+                document.body.style.width = `${width}px`;
+                fixCodeContainer.style.maxWidth = `${width}px`;
+                analyzeCodeResponse.style.maxWidth = `${width}px`;
+            }
         }
     });
 

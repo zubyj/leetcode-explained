@@ -6,7 +6,6 @@ body {
     background-color: #202020;
     color: #f0f0f0;
     font-family: 'Roboto', sans-serif;
-    width: 390px;
     padding: 20px;
     width: 400px;
     font-size: var(--dynamic-font-size, 14px);
@@ -95,6 +94,7 @@ a:hover {
 /* GPT Response */
 .response-container {
     min-height: 150px;
+    max-width: 400px;
     padding-top: 0;
     margin: 0
 }

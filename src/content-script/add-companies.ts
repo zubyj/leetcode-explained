@@ -1,25 +1,29 @@
 chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'addCompanies') {
         chrome.storage.local.get(['hideDifficulty'], (result) => {
-            let difficulty = document.querySelectorAll('div.bg-olive')[0];
             const canShowDifficulty = !result.hideDifficulty;
-            if (!canShowDifficulty) {
-                difficulty.classList.add('hidden');
+            if (canShowDifficulty) {
+                let buttonIds = ['div.bg-olive', 'div.bg-yellow', 'div.bg-pink'];
+
+                buttonIds.forEach((id) => {
+                    let button = document.querySelectorAll(id)[0];
+                    if (button) {
+                        button.classList.add('hidden');
+                    }
+                });
             }
         });
 
-        let canShowCompanyTags = true;
         chrome.storage.local.get(['hideTags'], (result) => {
+            let canShowCompanyTags = true;
             canShowCompanyTags = !result.hideTags;
             if (canShowCompanyTags) {
                 const title = request.title.split('-')[0].trim();
                 addCompanies(title);
             }
         });
-
     }
 });
-
 
 function addCompanies(title: string) {
     const container = document.querySelectorAll('div.mt-3.flex')[0];

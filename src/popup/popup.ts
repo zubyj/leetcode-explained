@@ -171,21 +171,12 @@ async function main(): Promise<void> {
     // Load font size from storage
     chrome.storage.local.get('fontSize', function (data) {
         if (data.fontSize) {
-            // Setting CSS variable --dynamic-font-size with the loaded value
             fontSizeElement.style.setProperty('--dynamic-font-size', `${data.fontSize}px`);
 
             let width = parseInt(data.fontSize) * 30;
             document.body.style.width = `${width}px`;
             fixCodeContainer.style.width = `${width}px`;
             analyzeCodeResponse.style.width = `${width}px`;
-
-            // set material-button padding to sclae with width
-            // let buttons = document.getElementsByClassName("material-button");
-            // for (let i = 0; i < buttons.length; i++) {
-            //     let button = buttons[i] as HTMLElement;
-            //     button.style.width = `${width / 2.2}px`;
-            //     button.style.height = `${width / 10}px`;
-            // }
         }
     });
 

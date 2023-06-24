@@ -11,13 +11,11 @@ chrome.runtime.onMessage.addListener((request) => {
         let canShowCompanyTags = true;
         chrome.storage.local.get(['hideTags'], (result) => {
             canShowCompanyTags = !result.hideTags;
-            if (!canShowCompanyTags) {
-                return;
+            if (canShowCompanyTags) {
+                const title = request.title.split('-')[0].trim();
+                addCompanies(title);
             }
-            const title = request.title.split('-')[0].trim();
-            addCompanies(title);
         });
-
 
     }
 });

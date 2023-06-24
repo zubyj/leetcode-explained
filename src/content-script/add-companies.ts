@@ -13,16 +13,23 @@ function addCompanies(title: string) {
         return;
     }
 
+    // remove the old button container if it exists
+    const oldButtonContainer = document.getElementById('companyButtonContainer');
+    if (oldButtonContainer) {
+        oldButtonContainer.parentNode.removeChild(oldButtonContainer);
+    }
+
     chrome.storage.local.get(['leetcodeProblems'], (result) => {
         const problem = result.leetcodeProblems.questions.find((problem) => problem.title === title);
         if (problem.companies && problem.companies.length > 0) {
 
             // create a container for buttons
             const buttonContainer = document.createElement('div');
+            buttonContainer.id = 'companyButtonContainer';  // add an id
             buttonContainer.style.display = 'flex';
             buttonContainer.style.flexDirection = 'row';
             buttonContainer.style.marginTop = '10px';
-            buttonContainer.style.gap = '10px';  // adjust the space between buttons as needed
+            buttonContainer.style.gap = '10px';
 
             // slice the array to get only the first five companies
             const topCompanies = problem.companies.slice(0, 5);

@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
 
         if (result.hideDifficulty) {
-            hideDifficultyBtnTextElement.textContent = 'Hide';
-        } else {
             hideDifficultyBtnTextElement.textContent = 'Show';
+        } else {
+            hideDifficultyBtnTextElement.textContent = 'Hide';
         }
     });
 });

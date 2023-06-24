@@ -22,6 +22,39 @@ chrome.runtime.onMessage.addListener((request) => {
                 addCompanies(title);
             }
         });
+
+        const details = document.querySelectorAll('div.mt-3.flex.space-x-4')[0];
+
+        // if showVideoBtn already exists, remove the old one
+
+
+        let oldBtn = document.getElementById('showVideoBtn');
+        if (oldBtn) {
+            oldBtn.remove();
+        }
+
+        let showVideoBtn = document.createElement('button');
+        showVideoBtn.id = 'showVideoBtn';
+        showVideoBtn.style.minWidth = '100px';
+        showVideoBtn.style.backgroundColor = '#373737';
+        showVideoBtn.style.height = '30px';
+        showVideoBtn.style.fontSize = '10px';
+        showVideoBtn.style.borderRadius = '10px';
+        showVideoBtn.textContent = 'Solution Video';
+
+        showVideoBtn.onmouseover = function () {
+            showVideoBtn.style.color = 'orange';
+        }
+        showVideoBtn.onmouseout = function () {
+            showVideoBtn.style.color = 'white';
+        }
+
+        showVideoBtn.onclick = function () {
+            chrome.runtime.sendMessage({ action: "openSolutionVideo" }, function (response) {
+                console.log(response);
+            });
+        };
+        details.appendChild(showVideoBtn);
     }
 });
 

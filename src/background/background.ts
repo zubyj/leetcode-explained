@@ -28,6 +28,29 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.local.set({ hideDifficulty: false });
 });
 
+chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse) {
+        if (request.action == "openSolutionVideo") {
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                let url = tabs[0].url;
+                if (url) {
+                    // Remove /description/ if it exists
+                    url = url.replace(/\/description\//, '/');
+                    // Ensure the URL ends with /
+                    if (!url.endsWith('/')) {
+                        url += '/';
+                    }
+                    // Append solutions/
+                    const newUrl = url + 'solutions/';
+                    chrome.tabs.update(tabs[0].id, { url: newUrl });
+                }
+            });
+
+            sendResponse({ result: "Success" });
+        }
+    }
+);
+
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     let urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?/;
     if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {

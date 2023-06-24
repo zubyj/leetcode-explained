@@ -31,8 +31,9 @@ function createControlsContainer(channelName) {
     const channelElement = createStyledElement('div', {
         fontSize: '15px',
         textAlign: 'center',
-        width: '150px'
+        width: '160px'
     });
+    channelElement.classList.add('channel');  // add this line
     channelElement.textContent = channelName;
     const nextButton = createButton('➡️', 'next-video', { fontSize: '20px' });
 
@@ -42,7 +43,7 @@ function createControlsContainer(channelName) {
         borderRadius: '5px',
         padding: '5px 10px'
     };
-    const toggleButton = createButton('Hide Video', 'toggle-video', toggleButtonStyles);
+    const toggleButton = createButton('🔼', 'toggle-video', toggleButtonStyles);
 
     const selectStyles = {
         marginLeft: '20px',
@@ -141,7 +142,7 @@ function addVideo(title) {
                 const videoContainer = document.querySelector('div.video-container');
                 if (videoContainer) {
                     videoContainer.style.paddingBottom = videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}% ` : '0%';
-                    toggleButton.textContent = videoContainer.style.paddingBottom === '0%' ? 'Show Video' : 'Hide Video';
+                    toggleButton.textContent = videoContainer.style.paddingBottom === '0%' ? ' 🔽 ' : '🔼';
                 }
             });
 

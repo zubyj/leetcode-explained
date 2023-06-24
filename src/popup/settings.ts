@@ -3,20 +3,12 @@ document.getElementById('home-button')!.onclick = () => {
 };
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    chrome.storage.local.get(['hideTags', 'hideDifficulty'], (result) => {
+    chrome.storage.local.get(['hideTags'], (result) => {
         const hideTagsBtnTextElement = document.getElementById('toggle-show-tags-text');
-        const hideDifficultyBtnTextElement = document.getElementById('toggle-show-difficulty-text');
-
         if (result.hideTags) {
-            hideTagsBtnTextElement.textContent = `🏢 Show`;
+            hideTagsBtnTextElement.textContent = `❌`;
         } else {
-            hideTagsBtnTextElement.textContent = `🙈 Hide`;
-        }
-
-        if (result.hideDifficulty) {
-            hideDifficultyBtnTextElement.textContent = '🧠 Show';
-        } else {
-            hideDifficultyBtnTextElement.textContent = '🙈 Hide';
+            hideTagsBtnTextElement.textContent = `✅`;
         }
     });
 });
@@ -59,19 +51,11 @@ document.getElementById('hide-tags-btn')!.addEventListener('click', function () 
     chrome.storage.local.get(['hideTags'], (result) => {
         const newHideTags = !result.hideTags;
         chrome.storage.local.set({ hideTags: newHideTags }, () => {
-            document.getElementById('toggle-show-tags-text')!.textContent = newHideTags ? '🏢 Show' : '🙈 Hide';
+            document.getElementById('toggle-show-tags-text')!.textContent = newHideTags ? '❌' : '✅';
         });
     });
 });
 
-document.getElementById('hide-difficulty-btn')!.addEventListener('click', function () {
-    chrome.storage.local.get(['hideDifficulty'], (result) => {
-        const newHideDifficulty = !result.hideDifficulty;
-        chrome.storage.local.set({ hideDifficulty: newHideDifficulty }, () => {
-            document.getElementById('toggle-show-difficulty-text')!.textContent = newHideDifficulty ? '🧠 Show' : '🙈 Hide';
-        });
-    });
-});
 
 function sendMessageToActiveTab(message: object): void {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

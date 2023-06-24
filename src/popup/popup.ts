@@ -180,12 +180,12 @@ async function main(): Promise<void> {
             analyzeCodeResponse.style.width = `${width}px`;
 
             // set material-button padding to sclae with width
-            let buttons = document.getElementsByClassName("material-button");
-            for (let i = 0; i < buttons.length; i++) {
-                let button = buttons[i] as HTMLElement;
-                button.style.width = `${width / 2.2}px`;
-                button.style.height = `${width / 10}px`;
-            }
+            // let buttons = document.getElementsByClassName("material-button");
+            // for (let i = 0; i < buttons.length; i++) {
+            //     let button = buttons[i] as HTMLElement;
+            //     button.style.width = `${width / 2.2}px`;
+            //     button.style.height = `${width / 10}px`;
+            // }
         }
     });
 

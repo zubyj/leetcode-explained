@@ -32,12 +32,21 @@ function addCompanies(title: string) {
                 const button = document.createElement('button');
                 button.style.color = '#fff';
                 button.style.width = '100px';
-                button.style.height = '30px';
-                button.style.padding = '5px';
+                button.style.height = '25px';
+                button.style.padding = '1px';
                 button.style.backgroundColor = '#373737';
                 button.style.borderRadius = '10px';
                 button.style.fontSize = '10px';
-                button.textContent = `⭐ ${company.score}  ${company.name}`;
+
+                const companyName = document.createTextNode(`${company.name}`);
+                button.appendChild(companyName);
+
+                const score = document.createElement('span');
+                score.textContent = ` ${company.score} ⭐ `;
+                score.style.fontSize = '12px';
+                score.style.fontWeight = 'bold';
+                score.style.fontFamily = 'monospace';
+                button.appendChild(score);
                 buttonContainer.appendChild(button);
             });
 

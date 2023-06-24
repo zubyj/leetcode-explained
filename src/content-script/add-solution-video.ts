@@ -15,21 +15,7 @@ function createButton(content, className, styles = {}) {
     return button;
 }
 
-function createSelect(name, companies, styles = {}) {
-    const select = createStyledElement('select', styles);
-    select.name = name;
-
-    companies.forEach((company) => {
-        const option = document.createElement('option');
-        option.value = company.name;
-        option.textContent = `⭐ ${company.score}  ${company.name}`;
-        select.appendChild(option);
-    });
-
-    return select;
-}
-
-function createControlsContainer(channelName, companies) {
+function createControlsContainer(channelName) {
     const controlsContainer = createStyledElement('div', {
         display: 'flex',
         justifyContent: 'center',
@@ -66,14 +52,13 @@ function createControlsContainer(channelName, companies) {
         height: '35px',
         width: '150px'
     };
-    const companyDropdown = createSelect('Companies', companies, selectStyles);
 
-    controlsContainer.append(prevButton, channelElement, nextButton, toggleButton, companyDropdown);
+    controlsContainer.append(prevButton, channelElement, nextButton, toggleButton);
 
-    return { controlsContainer, prevButton, nextButton, toggleButton, companyDropdown };
+    return { controlsContainer, prevButton, nextButton, toggleButton };
 }
 
-function createVideoContainer(videoUrl, channelName, companies) {
+function createVideoContainer(videoUrl, channelName) {
     const container = createStyledElement('div', {
         position: 'relative',
         display: 'flex',
@@ -83,7 +68,7 @@ function createVideoContainer(videoUrl, channelName, companies) {
     });
     container.classList.add('video-container');
 
-    const { controlsContainer, prevButton, nextButton, toggleButton, companyDropdown } = createControlsContainer(channelName, companies);
+    const { controlsContainer, prevButton, nextButton, toggleButton } = createControlsContainer(channelName);
 
     const iframe = createStyledElement('iframe', {
         display: 'flex',
@@ -100,7 +85,7 @@ function createVideoContainer(videoUrl, channelName, companies) {
 
     container.append(controlsContainer, iframe);
 
-    return { container, iframe, prevButton, nextButton, toggleButton, companyDropdown };
+    return { container, iframe, prevButton, nextButton, toggleButton };
 }
 
 interface LeetCodeProblem {
@@ -109,11 +94,6 @@ interface LeetCodeProblem {
         embedded_url: string;
         channel: string;
     }[];
-    companies?: {
-        name: string;
-        score: string;
-    }[];
-    // add more properties as needed
 }
 
 /**
@@ -133,10 +113,9 @@ function addVideo(title) {
         const problem = result.leetcodeProblems.questions.find((problem) => problem.title === title);
         if (problem?.videos?.length) {
             let currentVideoIndex = 0;
-            const { container, iframe, prevButton, nextButton, toggleButton, companyDropdown } = createVideoContainer(
+            const { container, iframe, prevButton, nextButton, toggleButton } = createVideoContainer(
                 problem.videos[currentVideoIndex].embedded_url,
                 problem.videos[currentVideoIndex].channel,
-                problem.companies || []
             );
             solutionsTab.parentElement?.insertBefore(container, solutionsTab);
 
@@ -146,7 +125,6 @@ function addVideo(title) {
                     container,
                     problem.videos[currentVideoIndex].embedded_url,
                     problem.videos[currentVideoIndex].channel,
-                    companyDropdown.value
                 );
             });
 
@@ -156,7 +134,6 @@ function addVideo(title) {
                     container,
                     problem.videos[currentVideoIndex].embedded_url,
                     problem.videos[currentVideoIndex].channel,
-                    companyDropdown.value
                 );
             });
 
@@ -182,14 +159,12 @@ function addVideo(title) {
     });
 }
 
-function updateVideo(container, videoUrl, channelName, selectedCompany) {
+function updateVideo(container, videoUrl, channelName) {
     const iframe = container.querySelector('iframe.youtube-video');
     const channelElement = container.querySelector('div.channel');
-    const companyDropdown = container.querySelector('select.Companies');
 
     if (iframe) iframe.src = videoUrl;
     if (channelElement) channelElement.textContent = channelName;
-    if (companyDropdown) companyDropdown.value = selectedCompany;
 }
 
 chrome.runtime.onMessage.addListener((request) => {

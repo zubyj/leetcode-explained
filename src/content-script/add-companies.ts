@@ -1,7 +1,18 @@
 chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'addCompanies') {
-        const title = request.title.split('-')[0].trim();
-        addCompanies(title);
+
+        let canShowCompanyTags = true;
+        chrome.storage.local.get(['hideTags'], (result) => {
+            canShowCompanyTags = !result.hideTags;
+            if (!canShowCompanyTags) {
+                return;
+            }
+
+            const title = request.title.split('-')[0].trim();
+            addCompanies(title);
+        });
+
+
     }
 });
 function addCompanies(title: string) {

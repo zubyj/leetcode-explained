@@ -23,6 +23,9 @@ chrome.runtime.onInstalled.addListener(() => {
             console.error(error);
         });
     chrome.storage.local.set({ language: 'python' });
+    chrome.storage.local.set({ fontSize: 14 });
+    chrome.storage.local.set({ hideTags: false });
+    chrome.storage.local.set({ hideDifficulty: false });
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {

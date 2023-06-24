@@ -2,6 +2,29 @@ document.getElementById('home-button')!.onclick = () => {
     window.location.href = 'popup.html';
 };
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    chrome.storage.local.get(['hideTags', 'hideDifficulty'], (result) => {
+        const hideTagsBtnTextElement = document.getElementById('toggle-show-tags-text');
+        const hideDifficultyBtnTextElement = document.getElementById('toggle-show-difficulty-text');
+
+        if (result.hideTags) {
+            hideTagsBtnTextElement.textContent = 'Show';
+        } else {
+            hideTagsBtnTextElement.textContent = 'Hide';
+        }
+
+        if (result.hideDifficulty) {
+            hideDifficultyBtnTextElement.textContent = 'Show';
+        } else {
+            hideDifficultyBtnTextElement.textContent = 'Hide';
+        }
+    });
+});
+
+
+
+
+
 // Getting element and checking if the language is already set in local storage
 let languageSelect = document.getElementById('language-select');
 chrome.storage.local.get('language', function (data) {
@@ -34,6 +57,26 @@ fontSizeSelect!.onchange = function () {
     // Add this line to set the font size in your CSS variables every time the font size is changed
     document.documentElement.style.setProperty('--dynamic-font-size', `${selectedFontSize}px`);
 };
+
+document.getElementById('hide-tags-btn')!.addEventListener('click', function () {
+    chrome.storage.local.get(['hideTags'], (result) => {
+        const newHideTags = !result.hideTags;
+        chrome.storage.local.set({ hideTags: newHideTags }, () => {
+            document.getElementById('toggle-show-tags-text')!.textContent = newHideTags ? 'Show' : 'Hide';
+        });
+    });
+});
+
+document.getElementById('hide-difficulty-btn')!.addEventListener('click', function () {
+    chrome.storage.local.get(['hideDifficulty'], (result) => {
+        const newHideDifficulty = !result.hideDifficulty;
+        chrome.storage.local.set({ hideDifficulty: newHideDifficulty }, () => {
+            document.getElementById('toggle-show-difficulty-text')!.textContent = newHideDifficulty ? 'Show' : 'Hide';
+        });
+    });
+});
+
+
 
 function sendMessageToActiveTab(message: object): void {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

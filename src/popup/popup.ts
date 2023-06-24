@@ -183,7 +183,7 @@ async function main(): Promise<void> {
             let buttons = document.getElementsByClassName("material-button");
             for (let i = 0; i < buttons.length; i++) {
                 let button = buttons[i] as HTMLElement;
-                button.style.width = `${width / 2}px`;
+                button.style.width = `${width / 2.2}px`;
                 button.style.height = `${width / 10}px`;
             }
         }

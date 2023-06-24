@@ -23,11 +23,8 @@ chrome.runtime.onMessage.addListener((request) => {
             }
         });
 
+        // if theres no solution video for the current problem, dont add the button
         const details = document.querySelectorAll('div.mt-3.flex.space-x-4')[0];
-
-        // if showVideoBtn already exists, remove the old one
-
-
         let oldBtn = document.getElementById('showVideoBtn');
         if (oldBtn) {
             oldBtn.remove();

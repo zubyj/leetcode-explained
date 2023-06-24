@@ -2,7 +2,7 @@ chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'addCompanies') {
         chrome.storage.local.get(['hideDifficulty'], (result) => {
             const canShowDifficulty = !result.hideDifficulty;
-            if (canShowDifficulty) {
+            if (!canShowDifficulty) {
                 let buttonIds = ['div.bg-olive', 'div.bg-yellow', 'div.bg-pink'];
 
                 buttonIds.forEach((id) => {

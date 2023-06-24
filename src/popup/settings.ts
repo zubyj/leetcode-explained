@@ -8,15 +8,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const hideDifficultyBtnTextElement = document.getElementById('toggle-show-difficulty-text');
 
         if (result.hideTags) {
-            hideTagsBtnTextElement.textContent = 'Show';
+            hideTagsBtnTextElement.textContent = `🏢 Show`;
         } else {
-            hideTagsBtnTextElement.textContent = 'Hide';
+            hideTagsBtnTextElement.textContent = `🙈 Hide`;
         }
 
         if (result.hideDifficulty) {
-            hideDifficultyBtnTextElement.textContent = 'Show';
+            hideDifficultyBtnTextElement.textContent = '🧠 Show';
         } else {
-            hideDifficultyBtnTextElement.textContent = 'Hide';
+            hideDifficultyBtnTextElement.textContent = '🙈 Hide';
         }
     });
 });
@@ -55,10 +55,11 @@ fontSizeSelect!.onchange = function () {
 };
 
 document.getElementById('hide-tags-btn')!.addEventListener('click', function () {
+    chrome.runtime.sendMessage({ message: 'addCompanies' })
     chrome.storage.local.get(['hideTags'], (result) => {
         const newHideTags = !result.hideTags;
         chrome.storage.local.set({ hideTags: newHideTags }, () => {
-            document.getElementById('toggle-show-tags-text')!.textContent = newHideTags ? 'Show' : 'Hide';
+            document.getElementById('toggle-show-tags-text')!.textContent = newHideTags ? '🏢 Show' : '🙈 Hide';
         });
     });
 });
@@ -67,7 +68,7 @@ document.getElementById('hide-difficulty-btn')!.addEventListener('click', functi
     chrome.storage.local.get(['hideDifficulty'], (result) => {
         const newHideDifficulty = !result.hideDifficulty;
         chrome.storage.local.set({ hideDifficulty: newHideDifficulty }, () => {
-            document.getElementById('toggle-show-difficulty-text')!.textContent = newHideDifficulty ? 'Show' : 'Hide';
+            document.getElementById('toggle-show-difficulty-text')!.textContent = newHideDifficulty ? '🧠 Show' : '🙈 Hide';
         });
     });
 });

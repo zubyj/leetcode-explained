@@ -4,7 +4,6 @@ chrome.runtime.onMessage.addListener((request) => {
         addCompanies(title);
     }
 });
-
 function addCompanies(title: string) {
     const container = document.querySelectorAll('div.mt-3.flex')[0];
 
@@ -13,32 +12,52 @@ function addCompanies(title: string) {
         return;
     }
 
-    // remove the old button container if it exists
-    const oldButtonContainer = document.getElementById('companyButtonContainer');
-    if (oldButtonContainer) {
-        oldButtonContainer.parentNode.removeChild(oldButtonContainer);
+    // Find the old button container or create a new one
+    let buttonContainer = document.getElementById('companyButtonContainer');
+    if (buttonContainer) {
+        // Clear the old content
+        buttonContainer.innerHTML = '';
+    } else {
+        // create a new container for buttons
+        buttonContainer = document.createElement('div');
+        buttonContainer.id = 'companyButtonContainer';  // add an id
+        buttonContainer.style.display = 'flex';
+        buttonContainer.style.flexDirection = 'row';
+        buttonContainer.style.marginTop = '10px';
+        buttonContainer.style.gap = '10px';
+
+        // add the button container to the main container
+        container.parentElement?.appendChild(buttonContainer);
     }
 
     chrome.storage.local.get(['leetcodeProblems'], (result) => {
         const problem = result.leetcodeProblems.questions.find((problem) => problem.title === title);
         if (problem.companies && problem.companies.length > 0) {
 
-            // create a container for buttons
-            const buttonContainer = document.createElement('div');
-            buttonContainer.id = 'companyButtonContainer';  // add an id
-            buttonContainer.style.display = 'flex';
-            buttonContainer.style.flexDirection = 'row';
-            buttonContainer.style.marginTop = '10px';
-            buttonContainer.style.gap = '10px';
-
             // slice the array to get only the first five companies
             const topCompanies = problem.companies.slice(0, 5);
 
             // create a button for each company
+            // ... other code
+
+            // create a button for each company
             topCompanies.forEach(company => {
                 const button = document.createElement('button');
+                button.style.display = 'flex';
+                button.style.alignItems = 'center';  // align items vertically in the center
+                button.style.justifyContent = 'center';  // align items horizontally in the center
+
+                const icon = document.createElement('img');
+                icon.src = `https://logo.clearbit.com/${company.name.toLowerCase().replace(/\s/g, '')}.com`; // replace spaces with nothing
+                icon.style.height = '12px';
+                icon.style.width = '12px';
+                icon.style.marginRight = '5px';  // some space between the icon and the name
+                button.appendChild(icon);
+
                 button.style.color = '#fff';
-                button.style.width = '100px';
+                button.style.width = '130px';
+                button.style.minWidth = '100px';
+                button.style.maxWidth = '130px';
                 button.style.height = '25px';
                 button.style.padding = '1px';
                 button.style.backgroundColor = '#373737';
@@ -53,12 +72,11 @@ function addCompanies(title: string) {
                 score.style.fontSize = '12px';
                 score.style.fontWeight = 'bold';
                 score.style.fontFamily = 'monospace';
+                score.style.marginLeft = '5px';  // some space between the name and the score
                 button.appendChild(score);
                 buttonContainer.appendChild(button);
             });
 
-            // add the button container to the main container
-            container.parentElement?.appendChild(buttonContainer);
         }
     });
 }

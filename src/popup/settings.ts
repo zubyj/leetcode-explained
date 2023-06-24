@@ -35,7 +35,6 @@ document.getElementById('hide-tags-btn')!.addEventListener('click', function () 
     });
 });
 
-
 function sendMessageToActiveTab(message: object): void {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id!, message);

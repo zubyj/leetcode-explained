@@ -39,7 +39,8 @@ function createControlsContainer(channelName) {
 
     const toggleButtonStyles = {
         marginLeft: '40px',
-        border: '1px solid white',
+        backgroundColor: '#373737',
+        border: '1px solid #111111',
         borderRadius: '5px',
         padding: '5px 10px'
     };

@@ -31,7 +31,7 @@ function createControlsContainer(channelName) {
     const channelElement = createStyledElement('div', {
         fontSize: '15px',
         textAlign: 'center',
-        width: '180px'
+        width: '200px'
     });
     channelElement.classList.add('channel');  // add this line
     channelElement.textContent = channelName;
@@ -127,13 +127,12 @@ function addVideo(title: string) {
                 const videoContainer = document.querySelector('div.video-container');
                 if (videoContainer) {
                     videoContainer.style.paddingBottom = videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}% ` : '0%';
-                    toggleButton.textContent = videoContainer.style.paddingBottom === '0%' ? ' 🔽 ' : '🔼';
-
-                    const iframe = container.querySelector('iframe.youtube-video');
-
-                    if (iframe) {
-                        // pause the video
+                    if (videoContainer.style.paddingBottom === '0%') {
+                        toggleButton.style.transform = 'rotate(180deg)';
+                    } else {
+                        toggleButton.style.transform = 'rotate(0deg)';
                     }
+                    toggleButton.style.transition = 'transform 0.3s linear';
                 }
             });
 

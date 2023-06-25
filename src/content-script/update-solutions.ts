@@ -148,6 +148,13 @@ function addVideo(title: string) {
                 if (videoContainer) {
                     videoContainer.style.paddingBottom = videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}% ` : '0%';
                     toggleButton.textContent = videoContainer.style.paddingBottom === '0%' ? ' 🔽 ' : '🔼';
+
+                    const iframe = container.querySelector('iframe.youtube-video');
+
+                    if (iframe) {
+                        // pause the video
+                        iframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                    }
                 }
             });
 

@@ -174,8 +174,6 @@ async function main(): Promise<void> {
             // Setting CSS variable --dynamic-font-size with the loaded value
             fontSizeElement.style.setProperty('--dynamic-font-size', `${data.fontSize}px`);
 
-            console.log(typeof (data.fontSize));
-
             if (parseInt(data.fontSize) >= 18) {
                 let width = (parseInt(data.fontSize) * 20 + 180);
                 document.body.style.width = `${width}px`;

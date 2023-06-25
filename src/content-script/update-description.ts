@@ -11,18 +11,9 @@ chrome.runtime.onMessage.addListener((request) => {
 
         const details = document.querySelectorAll('div.mt-3.flex.space-x-4')[0];
         let oldBtn = document.getElementById('openSolutionsBtn');
-        if (oldBtn) {
+        i(oldBtn) {
             oldBtn.remove();
         }
-
-        chrome.storage.local.get(['videoFound'], (result) => {
-            if (result.videoFound) {
-                console.log("video found");
-            }
-            else {
-                console.log("video not found");
-            }
-        });
 
         let openSolutionBtn = document.createElement('button');
         openSolutionBtn.id = 'openSolutionsBtn';
@@ -44,7 +35,6 @@ chrome.runtime.onMessage.addListener((request) => {
             // Get all div elements that contain the text 'Solutions'
             // If a solutions tab was found, simulate a click on it
             let solutionsTabs = document.querySelectorAll('div.relative.flex.h-full.select-none');
-            console.log(solutionsTabs);
             if (solutionsTabs.length > 0) {
                 solutionsTabs[2].click();
             } else {
@@ -61,7 +51,6 @@ function addCompanyTags(title: string) {
     const container = document.querySelectorAll('div.mt-3.flex')[0];
 
     if (!container) {
-        console.log("no container");
         return;
     }
 

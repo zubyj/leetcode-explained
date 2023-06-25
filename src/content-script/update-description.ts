@@ -11,7 +11,7 @@ chrome.runtime.onMessage.addListener((request) => {
 
         const details = document.querySelectorAll('div.mt-3.flex.space-x-4')[0];
         let oldBtn = document.getElementById('openSolutionsBtn');
-        i(oldBtn) {
+        if (oldBtn) {
             oldBtn.remove();
         }
 

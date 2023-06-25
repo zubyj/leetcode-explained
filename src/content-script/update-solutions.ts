@@ -31,7 +31,7 @@ function createControlsContainer(channelName) {
     const channelElement = createStyledElement('div', {
         fontSize: '15px',
         textAlign: 'center',
-        width: '160px'
+        width: '180px'
     });
     channelElement.classList.add('channel');  // add this line
     channelElement.textContent = channelName;
@@ -49,18 +49,7 @@ function createControlsContainer(channelName) {
         padding: '5px 10px'
     };
     const toggleButton = createButton('🔼', 'toggle-video', toggleButtonStyles);
-
-    const selectStyles = {
-        marginLeft: '20px',
-        border: '1px solid white',
-        borderRadius: '5px',
-        padding: '5px 10px',
-        height: '35px',
-        width: '150px'
-    };
-
     controlsContainer.append(prevButton, channelElement, nextButton, toggleButton);
-
     return { controlsContainer, prevButton, nextButton, toggleButton };
 }
 
@@ -94,17 +83,8 @@ function createVideoContainer(videoUrl, channelName) {
     return { container, iframe, prevButton, nextButton, toggleButton };
 }
 
-interface LeetCodeProblem {
-    title: string;
-    videos: {
-        embedded_url: string;
-        channel: string;
-    }[];
-}
-
 /**
  * Injects the embedded YouTube solution into the solutions tab of the LeetCode problem.
- * @param {string} title - The problem title.
  */
 function addVideo(title: string) {
     const SOLUTIONS_TAB_INDEX = 1;
@@ -153,14 +133,13 @@ function addVideo(title: string) {
 
                     if (iframe) {
                         // pause the video
-                        iframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
                     }
                 }
             });
 
             // on hover, change background color of toggleButton
             toggleButton?.addEventListener('mouseover', () => {
-                toggleButton.style.backgroundColor = '#fff';
+                toggleButton.style.backgroundColor = '#222';
                 toggleButton.style.color = '#000';
             });
 

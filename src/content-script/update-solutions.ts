@@ -59,7 +59,8 @@ function createVideoContainer(videoUrl, channelName) {
         display: 'flex',
         justifyContent: 'center',
         paddingBottom: `${VIDEO_ASPECT_RATIO}%`,
-        marginBottom: '60px'
+        marginBottom: '60px',
+        transition: 'padding-bottom 0.3s ease-out' // Add this line
     });
     container.classList.add('video-container');
 
@@ -134,7 +135,7 @@ function addVideo(title: string) {
                     }
                     toggleButton.style.transition = 'transform 0.3s linear';
                 }
-            });
+            })
 
             // on hover, change background color of toggleButton
             toggleButton?.addEventListener('mouseover', () => {

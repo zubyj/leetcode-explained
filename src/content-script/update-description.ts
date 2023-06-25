@@ -77,7 +77,7 @@ function addCompanyTags(title: string) {
         buttonContainer.style.display = 'flex';
         buttonContainer.style.flexDirection = 'row';
         buttonContainer.style.marginTop = '10px';
-        buttonContainer.style.gap = '10px';
+        buttonContainer.style.gap = '5px';
 
         // add the button container to the main container
         container.parentElement?.appendChild(buttonContainer);
@@ -108,7 +108,7 @@ function addCompanyTags(title: string) {
                 button.appendChild(icon);
 
                 button.style.color = '#fff';
-                button.style.minWidth = '130px';
+                button.style.minWidth = '100px';
                 button.style.height = '25px';
                 button.style.padding = '1px';
                 button.style.backgroundColor = '#373737';
@@ -119,7 +119,7 @@ function addCompanyTags(title: string) {
                 button.appendChild(companyName);
 
                 const score = document.createElement('span');
-                score.textContent = ` ${company.score} ⭐ `;
+                score.textContent = ` ${company.score}`;
                 score.style.fontSize = '12px';
                 score.style.fontWeight = 'bold';
                 score.style.fontFamily = 'monospace';
@@ -127,7 +127,6 @@ function addCompanyTags(title: string) {
                 button.appendChild(score);
                 buttonContainer.appendChild(button);
             });
-
         }
     });
 }

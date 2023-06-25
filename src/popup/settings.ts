@@ -26,7 +26,7 @@ fontSizeSelect!.onchange = function () {
 };
 
 document.getElementById('hide-tags-btn')!.addEventListener('click', function () {
-    chrome.runtime.sendMessage({ message: 'addCompanies' })
+    chrome.runtime.sendMessage({ message: 'updateDescription' })
     chrome.storage.local.get(['hideTags'], (result) => {
         const newHideTags = !result.hideTags;
         chrome.storage.local.set({ hideTags: newHideTags }, () => {

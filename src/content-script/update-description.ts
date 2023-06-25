@@ -1,20 +1,28 @@
 chrome.runtime.onMessage.addListener((request) => {
-    if (request.action === 'addCompanies') {
+    if (request.action === 'updateDescription') {
         chrome.storage.local.get(['hideTags'], (result) => {
             let canShowCompanyTags = true;
             canShowCompanyTags = !result.hideTags;
             if (canShowCompanyTags) {
                 const title = request.title.split('-')[0].trim();
-                addCompanies(title);
+                addCompanyTags(title);
             }
         });
 
-        // if theres no solution video for the current problem, dont add the button
         const details = document.querySelectorAll('div.mt-3.flex.space-x-4')[0];
         let oldBtn = document.getElementById('showVideoBtn');
         if (oldBtn) {
             oldBtn.remove();
         }
+
+        // chrome.storage.local.get(['videoFound'], (result) => {
+        //     if (result.videoFound) {
+        //         console.log("video found");
+        //     }
+        //     else {
+        //         console.log("video not found");
+        //     }
+        // });
 
         let showVideoBtn = document.createElement('button');
         showVideoBtn.id = 'showVideoBtn';
@@ -41,7 +49,7 @@ chrome.runtime.onMessage.addListener((request) => {
     }
 });
 
-function addCompanies(title: string) {
+function addCompanyTags(title: string) {
     const container = document.querySelectorAll('div.mt-3.flex')[0];
 
     if (!container) {

@@ -25,6 +25,7 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.local.set({ language: 'python' });
     chrome.storage.local.set({ fontSize: 14 });
     chrome.storage.local.set({ hideTags: false });
+    chrome.storage.local.set({ videoFound: false });
 });
 
 chrome.runtime.onMessage.addListener(
@@ -44,7 +45,6 @@ chrome.runtime.onMessage.addListener(
                     chrome.tabs.update(tabs[0].id, { url: newUrl });
                 }
             });
-
             sendResponse({ result: "Success" });
         }
     }
@@ -55,7 +55,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
         setTimeout(() => {
             chrome.tabs.get(tabId, (updatedTab) => {
-                chrome.tabs.sendMessage(tabId, { action: 'addCompanies', title: updatedTab.title || 'title' });
+                chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: updatedTab.title || 'title' });
             });
         }, 1000);
     }

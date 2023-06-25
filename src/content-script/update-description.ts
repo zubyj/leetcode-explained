@@ -91,9 +91,6 @@ function addCompanyTags(title: string) {
             const topCompanies = problem.companies.slice(0, 5);
 
             // create a button for each company
-            // ... other code
-
-            // create a button for each company
             topCompanies.forEach(company => {
                 const button = document.createElement('button');
                 button.style.display = 'flex';

@@ -35,6 +35,10 @@ function createControlsContainer(channelName) {
     });
     channelElement.classList.add('channel');  // add this line
     channelElement.textContent = channelName;
+    channelElement.fontWeight = 'bold';
+    channelElement.style.color = 'lightcyan';
+    channelElement.style.textShadow = '0 0 5px #000000';
+    channelElement.style.fontFamily = 'Menlo, Monaco, Consolas, "Courier New", monospace'
     const nextButton = createButton('➡️', 'next-video', { fontSize: '20px' });
 
     const toggleButtonStyles = {
@@ -166,7 +170,9 @@ function updateVideo(container, videoUrl, channelName) {
     const channelElement = container.querySelector('div.channel');
 
     if (iframe) iframe.src = videoUrl;
-    if (channelElement) channelElement.textContent = channelName;
+    if (channelElement) {
+        channelElement.textContent = channelName;
+    }
 }
 
 chrome.runtime.onMessage.addListener((request) => {

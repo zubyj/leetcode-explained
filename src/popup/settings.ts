@@ -26,11 +26,15 @@ fontSizeSelect!.onchange = function () {
 };
 
 document.getElementById('hide-tags-btn')!.addEventListener('click', function () {
-    chrome.runtime.sendMessage({ message: 'updateDescription' })
     chrome.storage.local.get(['hideTags'], (result) => {
         const newHideTags = !result.hideTags;
         chrome.storage.local.set({ hideTags: newHideTags }, () => {
             document.getElementById('toggle-show-tags-text')!.textContent = newHideTags ? '❌' : '✅';
+
+            // Manually trigger the update description after toggling 'hideTags'
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                chrome.tabs.sendMessage(tabs[0].id!, { action: 'updateDescription', title: tabs[0].title || 'title' });
+            });
         });
     });
 });

@@ -1,11 +1,25 @@
 chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'updateDescription') {
+
+        // testing some stuff
+
+        let descriptionContainer = document.querySelectorAll('div.px-5.pt-4')
+        console.log(descriptionContainer)
+        // end testing
+
+
         chrome.storage.local.get(['hideTags'], (result) => {
             let canShowCompanyTags = true;
             canShowCompanyTags = !result.hideTags;
             if (canShowCompanyTags) {
                 const title = request.title.split('-')[0].trim();
                 addCompanyTags(title);
+            }
+            else {
+                let buttonContainer = document.getElementById('companyButtonContainer');
+                if (buttonContainer) {
+                    buttonContainer.remove();
+                }
             }
         });
 

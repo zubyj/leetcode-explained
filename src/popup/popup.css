@@ -127,6 +127,10 @@ a:hover {
     height: 30px;
 }
 
+.settings-btn {
+    width: 250px;
+}
+
 #settings-menu {
     text-align: center;
 }

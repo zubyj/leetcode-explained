@@ -3,7 +3,8 @@ chrome.runtime.onMessage.addListener((request) => {
 
         // testing some stuff
 
-        let descriptionContainer = document.querySelectorAll('div.px-5.pt-4')
+        let descriptionContainer = document.getElementById('descriptionContainer');
+        // remove the <pre> element from the page
         console.log(descriptionContainer)
         // end testing
 

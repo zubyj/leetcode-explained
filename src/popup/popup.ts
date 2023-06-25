@@ -175,10 +175,15 @@ async function main(): Promise<void> {
             fontSizeElement.style.setProperty('--dynamic-font-size', `${data.fontSize}px`);
 
             if (parseInt(data.fontSize) >= 18) {
-                let width = (parseInt(data.fontSize) * 20 + 180);
-                document.body.style.width = `${width}px`;
+                let width = (parseInt(data.fontSize) * 24 + 200);
+                document.body.style.width = `${width + 20}px`;
                 fixCodeContainer.style.maxWidth = `${width}px`;
                 analyzeCodeResponse.style.maxWidth = `${width}px`;
+            }
+
+            let sizes = document.getElementsByClassName('material-button');
+            for (let i = 0; i < sizes.length; i++) {
+                (sizes[i] as HTMLElement).style.width = `${data.fontSize * 13}px`;
             }
         }
     });

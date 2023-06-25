@@ -6,12 +6,7 @@ chrome.runtime.onMessage.addListener((request: any) => {
     }
 });
 
-chrome.runtime.onMessage.addListener((request: any) => {
-    if (request.type === 'OPEN_LOGIN_PAGE') {
-        chrome.tabs.create({ url: 'https://chat.openai.com' });
-    }
-});
-
+// Runs when the extension is installed
 chrome.runtime.onInstalled.addListener(() => {
     const jsonUrl = chrome.runtime.getURL('src/assets/data/leetcode_solutions.json');
     fetch(jsonUrl)

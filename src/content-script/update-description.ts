@@ -10,44 +10,52 @@ chrome.runtime.onMessage.addListener((request) => {
         });
 
         const details = document.querySelectorAll('div.mt-3.flex.space-x-4')[0];
-        let oldBtn = document.getElementById('showVideoBtn');
+        let oldBtn = document.getElementById('openSolutionsBtn');
         if (oldBtn) {
             oldBtn.remove();
         }
 
-        // chrome.storage.local.get(['videoFound'], (result) => {
-        //     if (result.videoFound) {
-        //         console.log("video found");
-        //     }
-        //     else {
-        //         console.log("video not found");
-        //     }
-        // });
+        chrome.storage.local.get(['videoFound'], (result) => {
+            if (result.videoFound) {
+                console.log("video found");
+            }
+            else {
+                console.log("video not found");
+            }
+        });
 
-        let showVideoBtn = document.createElement('button');
-        showVideoBtn.id = 'showVideoBtn';
-        showVideoBtn.style.minWidth = '100px';
-        showVideoBtn.style.backgroundColor = '#373737';
-        showVideoBtn.style.height = '30px';
-        showVideoBtn.style.fontSize = '10px';
-        showVideoBtn.style.borderRadius = '10px';
-        showVideoBtn.textContent = 'Solution Video';
+        let openSolutionBtn = document.createElement('button');
+        openSolutionBtn.id = 'openSolutionsBtn';
+        openSolutionBtn.style.minWidth = '100px';
+        openSolutionBtn.style.backgroundColor = '#373737';
+        openSolutionBtn.style.height = '30px';
+        openSolutionBtn.style.fontSize = '10px';
+        openSolutionBtn.style.borderRadius = '10px';
+        openSolutionBtn.textContent = 'Solution Video';
 
-        showVideoBtn.onmouseover = function () {
-            showVideoBtn.style.color = 'orange';
+        openSolutionBtn.onmouseover = function () {
+            openSolutionBtn.style.color = 'orange';
         }
-        showVideoBtn.onmouseout = function () {
-            showVideoBtn.style.color = 'white';
+        openSolutionBtn.onmouseout = function () {
+            openSolutionBtn.style.color = 'white';
         }
 
-        showVideoBtn.onclick = function () {
-            chrome.runtime.sendMessage({ action: "openSolutionVideo" }, function (response) {
-                console.log(response);
-            });
+        openSolutionBtn.onclick = function () {
+            // Get all div elements that contain the text 'Solutions'
+            // If a solutions tab was found, simulate a click on it
+            let solutionsTabs = document.querySelectorAll('div.relative.flex.h-full.select-none');
+            console.log(solutionsTabs);
+            if (solutionsTabs.length > 0) {
+                solutionsTabs[2].click();
+            } else {
+                // If no solutions tab was found, log an error message
+                console.log('No solutions tab found');
+            }
         };
-        details.appendChild(showVideoBtn);
+        details.appendChild(openSolutionBtn);
     }
 });
+
 
 function addCompanyTags(title: string) {
     const container = document.querySelectorAll('div.mt-3.flex')[0];

@@ -1,3 +1,6 @@
+/* Reads the code from the user's code editor and sends it to the background script
+*/
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.type === 'getCode') {
         sendResponse({ data: getCode() });

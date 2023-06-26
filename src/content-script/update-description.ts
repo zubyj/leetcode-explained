@@ -3,15 +3,20 @@
 function showExamples() {
     chrome.storage.local.get(['showExamples'], (result) => {
         let showExamples = result.showExamples;
-        let descriptionContainer = document.querySelector('div._1l1MA');
+        let descriptionContainer = document.querySelector('div._1l1MA') as Element;
         if (!descriptionContainer) {
             return;
         }
-        let exampleElements = descriptionContainer.getElementsByClassName('example');
-        if (exampleElements && exampleElements.length > 0) {
-            let startIndex = Array.from(descriptionContainer.children).indexOf(exampleElements[0].parentNode);
+        let examples = descriptionContainer.getElementsByClassName('example');
+        if (examples && examples.length > 0) {
+            let parent = examples[0].parentNode as Element;
+            if (!parent) {
+                return;
+            }
+            let startIndex = Array.from(descriptionContainer.children).indexOf(parent);
             for (let i = startIndex; i < descriptionContainer.children.length; i++) {
-                descriptionContainer.children[i].style.display = showExamples ? 'block' : 'none';
+                let child = descriptionContainer.children[i] as HTMLElement;
+                child.style.display = showExamples ? 'block' : 'none';
             }
         }
     });
@@ -53,14 +58,22 @@ function loadCompanyTags(problemTitle: string) {
     }
     descriptionBtns.parentElement?.appendChild(companyTagContainer);
 
+    interface problem {
+        title: string;
+        companies: Array<{
+            name: string;
+            score: number;
+        }>;
+    }
+
     chrome.storage.local.get(['leetcodeProblems'], (result) => {
-        const problem = result.leetcodeProblems.questions.find((problem) => problem.title === problemTitle);
+        const problem = result.leetcodeProblems.questions.find((problem: problem) => problem.title === problemTitle);
         if (problem.companies && problem.companies.length > 0) {
             // slice the array to get only the first five companies
             const topCompanies = problem.companies.slice(0, 5);
 
             // create a button for each company
-            topCompanies.forEach(company => {
+            topCompanies.forEach((company: { name: string; score: any; }) => {
                 const button = document.createElement('button');
                 button.style.display = 'flex';
                 button.style.alignItems = 'center';  // align items vertically in the center
@@ -95,7 +108,7 @@ function loadCompanyTags(problemTitle: string) {
             });
         }
     });
-    descriptionBtns.parentElement.appendChild(companyTagContainer);
+    if (descriptionBtns.parentElement) descriptionBtns.parentElement.appendChild(companyTagContainer);
     return companyTagContainer;
 }
 

@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 // Get font fize and check if it is already set in local storage
-let fontSizeSelect = document.getElementById('font-size-select');
+let fontSizeSelect = document.getElementById('font-size-select') as HTMLSelectElement;
 chrome.storage.local.get('fontSize', function (data) {
     if (data.fontSize) {
         fontSizeSelect!.value = data.fontSize;
@@ -22,10 +22,9 @@ chrome.storage.local.get('fontSize', function (data) {
     }
 });
 
-fontSizeSelect!.onchange = function () {
-    let selectedFontSize = this.value;
+fontSizeSelect.onchange = function (this: GlobalEventHandlers, ev: Event) {
+    let selectedFontSize = 14;
     chrome.storage.local.set({ fontSize: selectedFontSize });
-    // Add this line to set the font size in your CSS variables every time the font size is changed
     document.documentElement.style.setProperty('--dynamic-font-size', `${selectedFontSize}px`);
 };
 

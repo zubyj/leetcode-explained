@@ -107,11 +107,12 @@ function processCode(
     let prompt: string = "";
     if (action === "analyze") {
         prompt = `
-        You are an expert software engineer.
-        Given the Leetcode problem ${problemTitle} and the associated code below, analyze it concisely and directly.
-        Provide the time complexity and the space complexity, both expressed in big O notation.
-        Offer a brief explanation(1 - 2 lines max) for each complexity analysis. 
-        Keep your analysis direct and succinct.
+        As an experienced software engineer, please analyze the Leetcode problem titled ${problemTitle} and the accompanying code below.
+        Your analysis should be concise and straightforward, providing both time and space complexity in big O notation.
+        Please include a brief explanation (no more than 1-2 lines) for each complexity analysis.
+        Space complexity should not include the output (return value) of the function.
+        Your analysis should be direct and to the point. 
+        The code is provided below.
         `;
         infoMessage!.textContent = 'Analyzing code complexity ...';
         analyzeCodeResponse!.classList.remove('hidden');
@@ -119,18 +120,21 @@ function processCode(
     }
     else if (action === "fix") {
         prompt = `
-        ChatGPT, in your capacity as a coding expert, I need your assistance with a LeetCode problem titled ${problemTitle}.
-        If only the function definition is provided, your task is to generate the optimal solution for this problem.
-        Conversely, if the code is provided below, there is most likely error(s) in the code.
-        Please correct any potential issues that is preventing the submission f rom being accepted.
-        If the provided code is already correct and optimized, return it as is.
-        All code should be returned in plain text, with no usage of code blocks, and only essential inline comments are permitted.
+        As a coding expert, I require your aid with a specific LeetCode problem called ${problemTitle}.
+        If you are given only the function definition, your task is to generate the best possible solution for this problem.
+        On the other hand, if the code is already provided, there may be some errors that are preventing it from being accepted.
+        Please identify and fix any potential issues in the code.
+        If the provided code is already correct and optimized, please return it as is.
+        All code should be returned in plain text format, with no usage of code blocks.
+        Inline comments are permitted, but only if they are essential.
+        The code is provided below.
+        
         `;
         infoMessage!.textContent = 'Creating the solution ...';
         analyzeCodeResponse!.classList.add('hidden');
         fixCodeContainer!.classList.remove('hidden');
     }
-    prompt += '\n Heres the code \n' + codeText;
+    prompt += '\n' + codeText;
 
     let response = '';
     chatGPTProvider.generateAnswer({

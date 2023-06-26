@@ -1,21 +1,23 @@
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 
-function createStyledElement(tagName, styles = {}) {
+function createStyledElement(tagName: string, styles: {}) {
     const element = document.createElement(tagName);
-    for (let [key, value] of Object.entries(styles)) {
-        element.style[key] = value;
+    for (const [key, value] of Object.entries(styles)) {
+        if (typeof element.style[key as any] !== 'undefined') {
+            (element.style as any)[key] = value;
+        }
     }
     return element;
 }
 
-function createButton(content, className, styles = {}) {
+function createButton(content: string, className: string, styles = {}) {
     const button = createStyledElement('button', styles);
     button.textContent = content;
     button.classList.add(className);
     return button;
 }
 
-function createControlsContainer(channelName) {
+function createControlsContainer(channelName: string) {
     const controlsContainer = createStyledElement('div', {
         display: 'flex',
         justifyContent: 'center',
@@ -35,7 +37,7 @@ function createControlsContainer(channelName) {
     });
     channelElement.classList.add('channel');  // add this line
     channelElement.textContent = channelName;
-    channelElement.fontWeight = 'bold';
+    channelElement.style.fontWeight = '600';
     channelElement.style.color = 'lightcyan';
     channelElement.style.textShadow = '0 0 5px #000000';
     channelElement.style.fontFamily = 'Menlo, Monaco, Consolas, "Courier New", monospace'
@@ -53,7 +55,7 @@ function createControlsContainer(channelName) {
     return { controlsContainer, prevButton, nextButton, toggleButton };
 }
 
-function createVideoContainer(videoUrl, channelName) {
+function createVideoContainer(videoUrl: string, channelName: string) {
     const container = createStyledElement('div', {
         position: 'relative',
         display: 'flex',
@@ -74,7 +76,7 @@ function createVideoContainer(videoUrl, channelName) {
         width: '95%',
         height: '95%',
         border: '1px solid grey'
-    });
+    }) as HTMLIFrameElement;
     iframe.classList.add('youtube-video');
     iframe.src = videoUrl;
     iframe.allowFullscreen = true;
@@ -97,7 +99,7 @@ function addVideo(title: string) {
     if (existingContainer) return;
 
     chrome.storage.local.get(['leetcodeProblems'], (result) => {
-        const problem = result.leetcodeProblems.questions.find((problem) => problem.title === title);
+        const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
         if (problem?.videos?.length) {
             let currentVideoIndex = 0;
             const { container, iframe, prevButton, nextButton, toggleButton } = createVideoContainer(
@@ -109,7 +111,7 @@ function addVideo(title: string) {
             prevButton?.addEventListener('click', () => {
                 currentVideoIndex = (currentVideoIndex - 1 + problem.videos.length) % problem.videos.length;
                 updateVideo(
-                    container,
+                    container as HTMLDivElement,
                     problem.videos[currentVideoIndex].embedded_url,
                     problem.videos[currentVideoIndex].channel,
                 );
@@ -118,14 +120,14 @@ function addVideo(title: string) {
             nextButton?.addEventListener('click', () => {
                 currentVideoIndex = (currentVideoIndex + 1) % problem.videos.length;
                 updateVideo(
-                    container,
+                    container as HTMLDivElement,
                     problem.videos[currentVideoIndex].embedded_url,
                     problem.videos[currentVideoIndex].channel,
                 );
             });
 
             toggleButton?.addEventListener('click', () => {
-                const videoContainer = document.querySelector('div.video-container');
+                const videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
                 if (videoContainer) {
                     videoContainer.style.paddingBottom = videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}% ` : '0%';
                     if (videoContainer.style.paddingBottom === '0%') {
@@ -151,8 +153,8 @@ function addVideo(title: string) {
     });
 }
 
-function updateVideo(container, videoUrl, channelName) {
-    const iframe = container.querySelector('iframe.youtube-video');
+function updateVideo(container: HTMLDivElement, videoUrl: string, channelName: string) {
+    const iframe = container.querySelector('iframe.youtube-video') as HTMLIFrameElement;
     const channelElement = container.querySelector('div.channel');
 
     if (iframe) iframe.src = videoUrl;
@@ -172,14 +174,14 @@ chrome.runtime.onMessage.addListener((request) => {
  * Prevents the iframe from freezing when it's being resized while the mouse is hovering over it.
  */
 window.addEventListener('mousedown', () => {
-    const iframe = document.querySelector('iframe.youtube-video');
+    const iframe = document.querySelector('iframe.youtube-video') as HTMLIFrameElement;
     if (iframe) {
         iframe.style.pointerEvents = 'none';
     }
 });
 
 window.addEventListener('mouseup', () => {
-    const iframe = document.querySelector('iframe.youtube-video');
+    const iframe = document.querySelector('iframe.youtube-video') as HTMLIFrameElement;
     if (iframe) {
         iframe.style.pointerEvents = 'auto';
     }

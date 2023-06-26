@@ -22,11 +22,11 @@ function showExamples() {
     });
 }
 
-// shows the company tags if the user has enabled it in the settings
 function showCompanyTags(problemTitle: string) {
     chrome.storage.local.get(['showCompanyTags'], (result) => {
         let showCompanyTags = result.showCompanyTags;
         let companyTagContainer = document.getElementById('companyTagContainer');
+
         if (!showCompanyTags) {
             if (companyTagContainer) {
                 companyTagContainer.style.display = 'none';
@@ -34,18 +34,32 @@ function showCompanyTags(problemTitle: string) {
             return;
         }
 
-        // if the company tag container already exists then just show it
+        // Always re-load company tags, regardless if container already exists
         if (companyTagContainer) {
+            // Remove old tags
+            while (companyTagContainer.firstChild) {
+                companyTagContainer.firstChild.remove();
+            }
+        } else {
+            companyTagContainer = document.createElement('div');
+            companyTagContainer.id = 'companyTagContainer';
             companyTagContainer.style.display = 'flex';
-            return;
+            companyTagContainer.style.flexDirection = 'row';
+            companyTagContainer.style.marginTop = '10px';
+            companyTagContainer.style.gap = '5px';
+            const descriptionBtns = document.querySelectorAll('div.mt-3.flex')[0];
+            if (descriptionBtns) {
+                descriptionBtns.parentElement?.appendChild(companyTagContainer);
+            }
         }
-        companyTagContainer = loadCompanyTags(problemTitle) || null;
+
+        // Load new tags
+        loadCompanyTags(problemTitle, companyTagContainer);
     });
 }
 
-function loadCompanyTags(problemTitle: string) {
+function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement) {
     // create a new container for buttons
-    let companyTagContainer = document.createElement('div');
     companyTagContainer.id = 'companyTagContainer';  // add an id
     companyTagContainer.style.display = 'flex';
     companyTagContainer.style.flexDirection = 'row';

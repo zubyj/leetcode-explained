@@ -1,6 +1,6 @@
 {
   "name": "leetcode-explained",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Used to log into GPT-3 and return the token",
   "main": "background.js",
   "scripts": {

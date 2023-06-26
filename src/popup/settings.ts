@@ -3,9 +3,13 @@ document.getElementById('home-button')!.onclick = () => {
 };
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    chrome.storage.local.get(['hideTags'], (result) => {
-        let hideTagsBtnText = document.getElementById('toggle-show-tags-text');
-        hideTagsBtnText!.textContent = result.hideTags ? '❌' : '✅';
+    chrome.storage.local.get(['showCompanyTags'], (result) => {
+        let showCompanyTagsIcon = document.getElementById('show-company-tags-icon');
+        showCompanyTagsIcon!.textContent = result.showCompanyTags ? '✅' : '❌';
+    });
+    chrome.storage.local.get(['showExamples'], (result) => {
+        let showExamplesIcon = document.getElementById('show-examples-icon');
+        showExamplesIcon!.textContent = result.showExamples ? '✅' : '❌';
     });
 });
 
@@ -25,16 +29,28 @@ fontSizeSelect!.onchange = function () {
     document.documentElement.style.setProperty('--dynamic-font-size', `${selectedFontSize}px`);
 };
 
-document.getElementById('hide-tags-btn')!.addEventListener('click', function () {
-    chrome.storage.local.get(['hideTags'], (result) => {
-        const newHideTags = !result.hideTags;
-        chrome.storage.local.set({ hideTags: newHideTags }, () => {
-            document.getElementById('toggle-show-tags-text')!.textContent = newHideTags ? '❌' : '✅';
-
-            // Manually trigger the update description after toggling 'hideTags'
+document.getElementById('show-company-tags-btn')!.addEventListener('click', function () {
+    chrome.storage.local.get(['showCompanyTags'], (result) => {
+        const showCompanyTags = !result.showCompanyTags;
+        chrome.storage.local.set({ showCompanyTags: showCompanyTags }, () => {
+            document.getElementById('show-company-tags-icon')!.textContent = showCompanyTags ? '✅' : '❌';
+            // Manually trigger the update description after toggling
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 chrome.tabs.sendMessage(tabs[0].id!, { action: 'updateDescription', title: tabs[0].title || 'title' });
             });
+        });
+    });
+});
+
+document.getElementById('show-examples-btn')!.addEventListener('click', function () {
+    chrome.storage.local.get(['showExamples'], (result) => {
+        const showExamples = !result.showExamples;
+        chrome.storage.local.set({ showExamples: showExamples }, () => {
+            document.getElementById('show-examples-icon')!.textContent = showExamples ? '✅' : '❌';
+        })
+        // Manually trigger the update description after toggling
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(tabs[0].id!, { action: 'updateDescription', title: tabs[0].title || 'title' });
         });
     });
 });

@@ -1,11 +1,5 @@
 import { getChatGPTAccessToken } from './chatgpt/chatgpt.js';
 
-chrome.runtime.onMessage.addListener((request: any) => {
-    if (request.type === 'OPEN_LOGIN_PAGE') {
-        chrome.tabs.create({ url: 'https://chat.openai.com' });
-    }
-});
-
 // Runs when the extension is installed
 chrome.runtime.onInstalled.addListener(() => {
     const jsonUrl = chrome.runtime.getURL('src/assets/data/leetcode_solutions.json');
@@ -37,7 +31,11 @@ chrome.runtime.onMessage.addListener(
                     }
                     // Append solutions/
                     const newUrl = url + 'solutions/';
-                    chrome.tabs.update(tabs[0].id, { url: newUrl });
+                    if (tabs.length > 0 && tabs[0].id) {
+                        const tabId = tabs[0].id;
+                        const updateProperties = { url: newUrl };
+                        chrome.tabs.update(tabId, updateProperties);
+                    }
                 }
             });
             sendResponse({ result: "Success" });
@@ -45,30 +43,9 @@ chrome.runtime.onMessage.addListener(
     }
 );
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    let urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?/;
-    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
-        setTimeout(() => {
-            chrome.tabs.get(tabId, (updatedTab) => {
-                chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: updatedTab.title || 'title' });
-            });
-        }, 1000);
-    }
-
-    urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/;
-    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
-        setTimeout(() => {
-            chrome.tabs.get(tabId, (updatedTab) => {
-                chrome.tabs.sendMessage(tabId, { action: 'addVideo', title: updatedTab.title || 'title' });
-            });
-        }, 1000);
-    }
-
-    urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
-    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
-        setTimeout(() => {
-            chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title || 'title' });
-        }, 1000);
+chrome.runtime.onMessage.addListener((request: any) => {
+    if (request.type === 'OPEN_LOGIN_PAGE') {
+        chrome.tabs.create({ url: 'https://chat.openai.com' });
     }
 });
 
@@ -78,5 +55,35 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             sendResponse({ accessToken: accessToken });
         });
         return true;
+    }
+});
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+    // If descriptions tab is opened or updated, update the description
+    let urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?/;
+    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
+        setTimeout(() => {
+            chrome.tabs.get(tabId, (updatedTab) => {
+                chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: updatedTab.title || 'title' });
+            });
+        }, 1000);
+    }
+
+    // If solutions tab is opened or updated, add the video
+    urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/;
+    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
+        setTimeout(() => {
+            chrome.tabs.get(tabId, (updatedTab) => {
+                chrome.tabs.sendMessage(tabId, { action: 'addVideo', title: updatedTab.title || 'title' });
+            });
+        }, 1000);
+    }
+
+    // If problem tab is opened or updated, update the current problem title
+    urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
+    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
+        setTimeout(() => {
+            chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title || 'title' });
+        }, 1000);
     }
 });

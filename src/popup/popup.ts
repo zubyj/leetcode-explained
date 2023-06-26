@@ -122,7 +122,7 @@ function processCode(
         ChatGPT, in your capacity as a coding expert, I need your assistance with a LeetCode problem titled ${problemTitle}.
         If only the function definition is provided, your task is to generate the optimal solution for this problem.
         Conversely, if the code is provided below, there is most likely error(s) in the code.
-         Please correct any potential issues that is preventing the submission from being accepted.
+        Please correct any potential issues that is preventing the submission f rom being accepted.
         If the code I provide is already correct and optimized, return it as is.
         All code should be returned in plain text, with no usage of code blocks, and only essential inline comments are permitted.
         `;

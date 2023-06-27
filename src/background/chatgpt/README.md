@@ -2,6 +2,10 @@
 
 This module provides a TypeScript implementation for interacting with the OpenAI Chat API, specifically the `gpt-3.5-turbo` model. It includes utilities for fetching and managing access tokens, generating responses from the model, and handling server-sent events.
 
+
+### Why we aren't using API Keys
+Session token auth is used instead of API keys to keep the requests free. It's also easier for the user to just login to ChatGPT in their browser.
+
 ## Files
 
 - `chatgpt.ts`: This is the main file of the module. It exports a function `getChatGPTAccessToken` for fetching and caching access tokens, and a class `ChatGPTProvider` for interacting with the OpenAI Chat API.

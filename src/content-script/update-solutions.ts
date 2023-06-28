@@ -90,9 +90,8 @@ function createVideoContainer(videoUrl: string, channelName: string) {
  * Injects the embedded YouTube solution into the solutions tab of the LeetCode problem.
  */
 function addVideo(title: string) {
-    const SOLUTIONS_TAB_INDEX = 1;
-
-    const solutionsTab = document.querySelectorAll('div.w-full.flex-col.overflow-auto')[SOLUTIONS_TAB_INDEX];
+    const SOLUTIONS_TAB_INDEX = 0;
+    const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[SOLUTIONS_TAB_INDEX];
     if (!solutionsTab) return;
 
     const existingContainer = solutionsTab.parentElement?.querySelector('div.video-container');
@@ -106,7 +105,8 @@ function addVideo(title: string) {
                 problem.videos[currentVideoIndex].embedded_url,
                 problem.videos[currentVideoIndex].channel,
             );
-            solutionsTab.parentElement?.insertBefore(container, solutionsTab);
+            const firstChild = solutionsTab.firstChild; // Get the first child of solutionsTab
+            solutionsTab.insertBefore(container, firstChild); // Insert the container before the first child
 
             prevButton?.addEventListener('click', () => {
                 currentVideoIndex = (currentVideoIndex - 1 + problem.videos.length) % problem.videos.length;

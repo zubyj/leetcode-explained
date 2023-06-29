@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "Leetcode Explained",
-    "version": "2.0.3",
-    "description": "View Leetcode video solutions and comapny tags directly inside each problem.",
+    "version": "2.0.4",
+    "description": "Adds video solutions, company tags, and GPT code analysis into each problem.",
     "icons": {
         "16": "src/assets/images/logo/icon-16.png",
         "32": "src/assets/images/logo/icon-32.png",

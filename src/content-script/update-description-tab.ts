@@ -25,8 +25,14 @@ function showExamples() {
 function showDifficulty() {
     chrome.storage.local.get(['showDifficulty'], (result) => {
         let showDifficulty = result.showDifficulty;
-        let difficultyContainer = document.querySelectorAll('div.bg-olive')[0];
-        difficultyContainer.style.display = showDifficulty ? 'block' : 'none';
+
+        let colors = ['bg-olive', 'bg-yellow', 'bg-red'];
+        for (let color in colors) {
+            let difficultyContainer = document.querySelectorAll('div.' + colors[color])[0];
+            if (difficultyContainer) {
+                difficultyContainer.style.display = showDifficulty ? 'block' : 'none';
+            }
+        }
     });
 }
 

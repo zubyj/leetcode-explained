@@ -28,8 +28,8 @@
             "js": [
                 "dist/content-script/get-gpt-access-token.js",
                 "dist/content-script/get-user-code.js",
-                "dist/content-script/update-solutions.js",
-                "dist/content-script/update-description.js"
+                "dist/content-script/update-solutions-tab.js",
+                "dist/content-script/update-description-tab.js"
             ],
             "matches": [
                 "https://leetcode.com/problems/*"

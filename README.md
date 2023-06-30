@@ -4,7 +4,7 @@
 ![version](https://img.shields.io/badge/version-2.0.2-blue) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[Badge](src/assets/images/badge.png)
+![Badge](src/assets/images/badge.png)
 
 
 Adds video solutions, company tags, and GPT code analysis into each problem page.

@@ -1,6 +1,15 @@
-# Leetcode Explained ![Downloads](https://img.shields.io/badge/Daily_Users-300+-blue) ![version](https://img.shields.io/badge/version-2.0.2-blue) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# Leetcode Explained 
 
-Leetcode Explained is a free, open-source extension that enhances your Leetcoding experience. You can install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe).
+![Downloads](https://img.shields.io/chrome-web-store/users/cofoinjfjcpgcjiinjhcpomcjoalijbe) 
+![version](https://img.shields.io/badge/version-2.0.2-blue) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+[Badge](src/assets/images/badge.png)
+
+
+Adds video solutions, company tags, and GPT code analysis into each problem page.
+
+Free, open-source chrome extension that enhances your Leetcoding experience. You can install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe).
 
 ## Features
 
@@ -26,7 +35,7 @@ Alternatively, you can manually install the extension:
 ## Screenshots
 
 ![Add Video](src/assets/images/screenshots/add-video.png)
-![Code Complexity](src/assets/images/screenshots/code-complexity.png)
+![Code Complexity](src/assets/images/screenshots/get-complexity.png)
 ![Fix Code](src/assets/images/screenshots/fix-code.png)
 
 ## Tutorial

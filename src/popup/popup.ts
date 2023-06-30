@@ -219,8 +219,6 @@ async function main(): Promise<void> {
         }
     });
 
-
-
     // get language from storage and set the classname of the code block to it
     chrome.storage.local.get('language', function (data) {
         fixCodeResponse!.classList.add('language-' + data.language);

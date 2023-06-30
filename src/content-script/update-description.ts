@@ -22,6 +22,14 @@ function showExamples() {
     });
 }
 
+function showDifficulty() {
+    chrome.storage.local.get(['showDifficulty'], (result) => {
+        let showDifficulty = result.showDifficulty;
+        let difficultyContainer = document.querySelectorAll('div.bg-olive')[0];
+        difficultyContainer.style.display = showDifficulty ? 'block' : 'none';
+    });
+}
+
 function showCompanyTags(problemTitle: string) {
     chrome.storage.local.get(['showCompanyTags'], (result) => {
         let showCompanyTags = result.showCompanyTags;
@@ -130,5 +138,6 @@ chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'updateDescription') {
         showExamples();
         showCompanyTags(request.title.split('-')[0].trim());
+        showDifficulty();
     }
 });

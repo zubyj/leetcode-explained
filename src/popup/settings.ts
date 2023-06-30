@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let showExamplesIcon = document.getElementById('show-examples-icon');
         showExamplesIcon!.textContent = result.showExamples ? '✅' : '❌';
     });
+
+    chrome.storage.local.get(['showDifficulty'], (result) => {
+        let showDifficultyIcon = document.getElementById('show-difficulty-icon');
+        showDifficultyIcon!.textContent = result.showDifficulty ? '✅' : '❌';
+    });
 });
 
 // Get font fize and check if it is already set in local storage
@@ -46,6 +51,19 @@ document.getElementById('show-examples-btn')!.addEventListener('click', function
         const showExamples = !result.showExamples;
         chrome.storage.local.set({ showExamples: showExamples }, () => {
             document.getElementById('show-examples-icon')!.textContent = showExamples ? '✅' : '❌';
+        })
+        // Manually trigger the update description after toggling
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(tabs[0].id!, { action: 'updateDescription', title: tabs[0].title || 'title' });
+        });
+    });
+});
+
+document.getElementById('show-difficulty-btn')!.addEventListener('click', function () {
+    chrome.storage.local.get(['showDifficulty'], (result) => {
+        const showDifficulty = !result.showDifficulty;
+        chrome.storage.local.set({ showDifficulty: showDifficulty }, () => {
+            document.getElementById('show-difficulty-icon')!.textContent = showDifficulty ? '✅' : '❌';
         })
         // Manually trigger the update description after toggling
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

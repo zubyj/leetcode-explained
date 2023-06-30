@@ -15,6 +15,7 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.local.set({ fontSize: 14 });
     chrome.storage.local.set({ showCompanyTags: true });
     chrome.storage.local.set({ showExamples: true });
+    chrome.storage.local.set({ showDifficulty: true });
 });
 
 chrome.runtime.onMessage.addListener(

@@ -49,3 +49,14 @@ a {
 a:hover {
     color: lightcyan;
 }
+
+.header {
+    color: lightgreen;
+
+}
+
+.header:hover {
+    cursor: pointer;
+    color: lightcyan;
+    background-color: #202020;
+}

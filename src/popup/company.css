@@ -51,12 +51,12 @@ a:hover {
 }
 
 .header {
-    color: lightgreen;
+    color: lightcyan;
 
 }
 
 .header:hover {
+    color: lightgreen;
     cursor: pointer;
-    color: lightcyan;
     background-color: #202020;
 }

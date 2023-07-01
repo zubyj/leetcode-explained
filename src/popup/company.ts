@@ -1,5 +1,5 @@
 // define solutions and companyName outside of the functions so they can be accessed globally
-let solutions = [];
+let solutions = [] as { id: number, title: string, score: number, url: string }[];
 let companyName = "Amazon";
 
 function main() {
@@ -7,20 +7,20 @@ function main() {
 
     chrome.storage.local.get("clickedCompany", function (data) {
         companyName = data.clickedCompany;
-        document.getElementById("title").textContent = companyName;
+        document.getElementById("title")!.textContent = companyName;
         document.title = companyName + "'s favorite problems"
     });
 
     addCompanyProblems("Score");
 
     // attach click listeners to table headers for sorting
-    document.getElementById('#').addEventListener('click', () => sortBy('#'));
-    document.getElementById('Title').addEventListener('click', () => sortBy('Title'));
-    document.getElementById('Score').addEventListener('click', () => sortBy('Score'));
+    document.getElementById('#')!.addEventListener('click', () => sortBy('#'));
+    document.getElementById('Title')!.addEventListener('click', () => sortBy('Title'));
+    document.getElementById('Score')!.addEventListener('click', () => sortBy('Score'));
 }
 
 // Adds the company problems by sorting method
-function addCompanyProblems(sortMethod) {
+function addCompanyProblems(sortMethod: string) {
     chrome.storage.local.get("leetcodeProblems", function (data) {
         data.leetcodeProblems.questions.forEach(question => {
             if (!question.companies) return;
@@ -43,7 +43,7 @@ function addCompanyProblems(sortMethod) {
         }
 
         solutions.forEach(solution => {
-            const row = table.insertRow(-1);
+            const row = table!.insertRow(-1);
             row.insertCell(0).innerText = solution.id;
             const titleCell = row.insertCell(1);
             titleCell.innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
@@ -52,7 +52,7 @@ function addCompanyProblems(sortMethod) {
     });
 }
 
-function sortBy(column) {
+function sortBy(column: string) {
     if (column === 'Score') {
         solutions.sort((a, b) => b.score - a.score);
     }

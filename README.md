@@ -20,16 +20,15 @@ Adds video solutions, company tags, and GPT code analysis into each Leetcode pro
 
 ### Installation
 
-You can install the extension directly from the [Chrome Web Store](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe).
 
-Alternatively, you can manually install the extension:
-
-1. Download the latest version of the extension from the [releases](./build) directory as a zip file.
-2. Unzip the downloaded file into a directory.
-3. Open Google Chrome and navigate to chrome://extensions.
+1. Clone the repository
+2. ``` npm install ```
+3. Open Google Chrome and navigate to chrome://extensions in the search bar.
 4. Enable "Developer mode" (top right corner).
-5. Click on "Load unpacked" and navigate to the unzipped extension directory, then click "Select".
+5. Click on "Load unpacked" and navigate to the extension directory, then click "Select".
 6. Pin the extension. You should now see the extension icon next to the address bar.
+
+Now you can test the latest dev version and contribute new features!
 
 ### Screenshots
 

@@ -22,6 +22,215 @@ function showExamples() {
     });
 }
 
+function addDrawingTool() {
+    const drawingToolContainer = document.createElement('div');
+    drawingToolContainer.textContent = 'Drawing Tool';
+    drawingToolContainer.style.fontSize = '10px';
+    drawingToolContainer.id = 'drawing-tool-container';
+
+    drawingToolContainer.innerHTML = `
+        <div class="container">
+          <section class="tools-board">
+            <div class="row">
+              <label class="title">Shapes</label>
+              <ul class="options">
+                <li class="option tool" id="rectangle">
+                  <img src="icons/rectangle.svg" alt="">
+                  <span>Rectangle</span>
+                </li>
+                <li class="option tool" id="circle">
+                  <img src="icons/circle.svg" alt="">
+                  <span>Circle</span>
+                </li>
+                <li class="option tool" id="triangle">
+                  <img src="icons/triangle.svg" alt="">
+                  <span>Triangle</span>
+                </li>
+                <li class="option">
+                  <input type="checkbox" id="fill-color">
+                  <label for="fill-color">Fill color</label>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <label class="title">Options</label>
+              <ul class="options">
+                <li class="option active tool" id="brush">
+                  <img src="icons/brush.svg" alt="">
+                  <span>Brush</span>
+                </li>
+                <li class="option tool" id="eraser">
+                  <img src="icons/eraser.svg" alt="">
+                  <span>Eraser</span>
+                </li>
+                <li class="option">
+                  <input type="range" id="size-slider" min="1" max="30" value="5">
+                </li>
+              </ul>
+            </div>
+            <div class="row colors">
+              <label class="title">Colors</label>
+              <ul class="options">
+                <li class="option"></li>
+                <li class="option selected"></li>
+                <li class="option"></li>
+                <li class="option"></li>
+                <li class="option">
+                  <input type="color" id="color-picker" value="#4A98F7">
+                </li>
+              </ul>
+            </div>
+            <div class="row buttons">
+              <button class="clear-canvas">Clear Canvas</button>
+              <button class="save-img">Save As Image</button>
+            </div>
+          </section>
+          <section class="drawing-board">
+            <canvas></canvas>
+          </section>
+        </div>
+    `
+
+    const css = `
+    .container{
+      display: flex;
+      width: 100%;
+      gap: 10px;
+      padding: 10px;
+      max-width: 1050px;
+    }
+    section{
+      background: #fff;
+      border-radius: 7px;
+    }
+    .tools-board{
+      width: 210px;
+      padding: 15px 22px 0;
+    }
+    .tools-board .row{
+      margin-bottom: 20px;
+    }
+    .row .options{
+      list-style: none;
+      margin: 10px 0 0 5px;
+    }
+    .row .options .option{
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .option:is(:hover, .active) img{
+      filter: invert(17%) sepia(90%) saturate(3000%) hue-rotate(900deg) brightness(100%) contrast(100%);
+    }
+    .option :where(span, label){
+      color: #5A6168;
+      cursor: pointer;
+      padding-left: 10px;
+    }
+    .option:is(:hover, .active) :where(span, label){
+      color: #4A98F7;
+    }
+    .option #fill-color{
+      cursor: pointer;
+      height: 14px;
+      width: 14px;
+    }
+    #fill-color:checked ~ label{
+      color: #4A98F7;
+    }
+    .option #size-slider{
+      width: 100%;
+      height: 5px;
+      margin-top: 10px;
+    }
+    .colors .options{
+      display: flex;
+      justify-content: space-between;
+    }
+    .colors .option{
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      margin-top: 3px;
+      position: relative;
+    }
+    .colors .option:nth-child(1){
+      background-color: #fff;
+      border: 1px solid #bfbfbf;
+    }
+    .colors .option:nth-child(2){
+      background-color: #000;
+    }
+    .colors .option:nth-child(3){
+      background-color: #E02020;
+    }
+    .colors .option:nth-child(4){
+      background-color: #6DD400;
+    }
+    .colors .option:nth-child(5){
+      background-color: #4A98F7;
+    }
+    .colors .option.selected::before{
+      position: absolute;
+      content: "";
+      top: 50%;
+      left: 50%;
+      height: 12px;
+      width: 12px;
+      background: inherit;
+      border-radius: inherit;
+      border: 2px solid #fff;
+      transform: translate(-50%, -50%);
+    }
+    .colors .option:first-child.selected::before{
+      border-color: #ccc;
+    }
+    .option #color-picker{
+      opacity: 0;
+      cursor: pointer;
+    }
+    .buttons button{
+      width: 100%;
+      color: #fff;
+      border: none;
+      outline: none;
+      padding: 11px 0;
+      font-size: 0.9rem;
+      margin-bottom: 13px;
+      background: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .buttons .clear-canvas{
+      color: #6C757D;
+      border: 1px solid #6C757D;
+      transition: all 0.3s ease;
+    }
+    .clear-canvas:hover{
+      color: #fff;
+      background: #6C757D;
+    }
+    .buttons .save-img{
+      background: #4A98F7;
+      border: 1px solid #4A98F7;
+    }
+    .drawing-board{
+      flex: 1;
+      overflow: hidden;
+    }
+    .drawing-board canvas{
+      width: 100%;
+      height: 100%;
+    }
+        `
+
+    const style = document.createElement('style')
+    style.appendChild(document.createTextNode(css));
+    document.head.appendChild(style);
+    document.body.appendChild(drawingToolContainer);
+}
+
 function showDifficulty() {
     chrome.storage.local.get(['showDifficulty'], (result) => {
         let showDifficulty = result.showDifficulty;
@@ -161,5 +370,6 @@ chrome.runtime.onMessage.addListener((request) => {
         showExamples();
         showCompanyTags(request.title.split('-')[0].trim());
         showDifficulty();
+        addDrawingTool();
     }
 });

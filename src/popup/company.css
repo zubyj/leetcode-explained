@@ -60,3 +60,8 @@ a:hover {
     cursor: pointer;
     background-color: #202020;
 }
+
+#score {
+    color: lightgreen;
+    font-weight: bold;
+}

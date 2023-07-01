@@ -1,16 +1,13 @@
-// define solutions and companyName outside of the functions so they can be accessed globally
-let solutions = [] as { id: number, title: string, score: number, url: string }[];
 let companyName = "Amazon";
+let solutions = [] as { id: number, title: string, score: number, url: string }[];
 
 function main() {
-
-
     chrome.storage.local.get("clickedCompany", function (data) {
         companyName = data.clickedCompany;
-        document.getElementById("title")!.textContent = companyName;
-        document.title = companyName + "'s favorite problems"
     });
 
+    document.getElementById("title")!.textContent = companyName;
+    document.title = companyName + "'s favorite problems"
     addCompanyProblems("Score");
 
     // attach click listeners to table headers for sorting

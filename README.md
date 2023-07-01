@@ -21,7 +21,7 @@ Adds video solutions, company tags, and GPT code analysis into each Leetcode pro
 ### Installation
 
 
-1. Clone the repository
+1. Clone this repository
 2. ``` npm install ```
 3. Open Google Chrome and navigate to chrome://extensions in the search bar.
 4. Enable "Developer mode" (top right corner).

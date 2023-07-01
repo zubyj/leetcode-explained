@@ -59,6 +59,24 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "openCompanyPage") {
+        chrome.tabs.create({
+            url: chrome.runtime.getURL("src/popup/company.html"),
+            active: true
+        }, function (tab) {
+            chrome.tabs.onUpdated.addListener(function listener(tabId, changedProps) {
+                // When the tab is done loading
+                if (tabId == tab.id && changedProps.status == "complete") {
+                    chrome.tabs.sendMessage(tabId, request);
+                    chrome.tabs.onUpdated.removeListener(listener);
+                }
+            });
+        });
+    }
+});
+
+
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     // If descriptions tab is opened or updated, update the description
     let urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?/;

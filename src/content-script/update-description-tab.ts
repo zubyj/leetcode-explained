@@ -97,15 +97,21 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
     chrome.storage.local.get(['leetcodeProblems'], (result) => {
         const problem = result.leetcodeProblems.questions.find((problem: problem) => problem.title === problemTitle);
         if (problem.companies && problem.companies.length > 0) {
-            // slice the array to get only the first five companies
             const topCompanies = problem.companies.slice(0, 5);
-
             // create a button for each company
             topCompanies.forEach((company: { name: string; score: any; }) => {
                 const button = document.createElement('button');
+                // opens the company page when the button is clicked
+                button.onclick = () => {
+                    chrome.runtime.sendMessage({
+                        // passes the company name and score to the background script
+                        action: 'openCompanyPage', company: company
+                    })
+                }
+
                 button.style.display = 'flex';
-                button.style.alignItems = 'center';  // align items vertically in the center
-                button.style.justifyContent = 'center';  // align items horizontally in the center
+                button.style.alignItems = 'center';
+                button.style.justifyContent = 'center';
 
                 const icon = document.createElement('img');
                 icon.src = `https://logo.clearbit.com/${company.name.toLowerCase().replace(/\s/g, '')}.com`; // replace spaces with nothing

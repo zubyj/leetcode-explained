@@ -1,7 +1,7 @@
 function main() {
 
     let companyName = "Amazon";
-
+    let solutions = [];
 
     chrome.storage.local.get("clickedCompany", function (data) {
         companyName = data.clickedCompany;
@@ -10,10 +10,6 @@ function main() {
     });
 
     chrome.storage.local.get("leetcodeProblems", function (data) {
-        let solutions = [];
-
-        console.log(data);
-
         data.leetcodeProblems.questions.forEach(question => {
             if (!question.companies) return;
             question.companies.forEach(company => {

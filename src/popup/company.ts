@@ -1,8 +1,15 @@
-
-
 function main() {
+
+    let companyName = "Amazon";
+
+
+    chrome.storage.local.get("clickedCompany", function (data) {
+        companyName = data.clickedCompany;
+        document.getElementById("title").textContent = companyName;
+        document.title = companyName + "'s favorite problems"
+    });
+
     chrome.storage.local.get("leetcodeProblems", function (data) {
-        const companyName = "Amazon";
         let solutions = [];
 
         console.log(data);
@@ -22,6 +29,9 @@ function main() {
         });
 
         const table = document.getElementById("solutionTable");
+
+        solutions.sort((a, b) => b.score - a.score);
+
         solutions.forEach(solution => {
             const row = table.insertRow(-1);
             row.insertCell(0).innerText = solution.id;
@@ -30,8 +40,6 @@ function main() {
             row.insertCell(2).innerText = solution.score;
         });
     });
-
-    document.getElementById("test")?.textContent = "Hello World!";
 }
 
 /* Run the script */

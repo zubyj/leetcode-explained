@@ -101,12 +101,22 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
             // create a button for each company
             topCompanies.forEach((company: { name: string; score: any; }) => {
                 const button = document.createElement('button');
+
                 // opens the company page when the button is clicked
                 button.onclick = () => {
                     chrome.runtime.sendMessage({
                         // passes the company name and score to the background script
-                        action: 'openCompanyPage', company: company
+                        action: 'openCompanyPage', company: company.name
                     })
+                }
+
+
+                // on hover, set background color to black
+                button.onmouseover = () => {
+                    button.style.color = 'orange';
+                }
+                button.onmouseout = () => {
+                    button.style.color = 'white';
                 }
 
                 button.style.display = 'flex';

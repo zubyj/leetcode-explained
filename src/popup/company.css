@@ -1,0 +1,67 @@
+body {
+    background-color: #202020;
+    color: #f0f0f0;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: lightcyan;
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+    width: 500px;
+}
+
+table,
+th,
+td {
+    border: 1px solid #FFFFFF;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    font-size: 18px;
+    background-color: #424242;
+}
+
+td {
+    font-size: 16px;
+}
+
+a {
+    color: lightgreen;
+    text-decoration: none;
+}
+
+a:hover {
+    color: lightcyan;
+}
+
+.header {
+    color: lightcyan;
+
+}
+
+.header:hover {
+    color: lightgreen;
+    cursor: pointer;
+    background-color: #202020;
+}
+
+#score {
+    color: lightgreen;
+    font-weight: bold;
+}

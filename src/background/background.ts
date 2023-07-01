@@ -11,11 +11,14 @@ chrome.runtime.onInstalled.addListener(() => {
         .catch((error) => {
             console.error(error);
         });
+
+    // Default settings
     chrome.storage.local.set({ language: 'python' });
     chrome.storage.local.set({ fontSize: 14 });
     chrome.storage.local.set({ showCompanyTags: true });
     chrome.storage.local.set({ showExamples: true });
     chrome.storage.local.set({ showDifficulty: true });
+    chrome.storage.local.set({ clickedCompany: 'Amazon' })
 });
 
 chrome.runtime.onMessage.addListener(
@@ -44,6 +47,28 @@ chrome.runtime.onMessage.addListener(
     }
 );
 
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "openCompanyPage") {
+        chrome.storage.local.set({ clickedCompany: request.company });
+        chrome.tabs.create({
+            url: chrome.runtime.getURL("src/popup/company.html"),
+            active: true
+        }, function (tab) {
+            // Keep a reference to the listener so it can be removed later
+            let listener = function (tabId, changedProps) {
+                // When the tab is done loading
+                if (tabId == tab.id && changedProps.status == "complete") {
+                    chrome.tabs.sendMessage(tabId, request);
+                    // Remove the listener once the tab is loaded
+                    chrome.tabs.onUpdated.removeListener(listener);
+                }
+            };
+            // Attach the listener
+            chrome.tabs.onUpdated.addListener(listener);
+        });
+    }
+});
+
 chrome.runtime.onMessage.addListener((request: any) => {
     if (request.type === 'OPEN_LOGIN_PAGE') {
         chrome.tabs.create({ url: 'https://chat.openai.com' });
@@ -58,6 +83,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         return true;
     }
 });
+
+
+
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     // If descriptions tab is opened or updated, update the description

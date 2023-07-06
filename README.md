@@ -4,35 +4,40 @@
 ![Rating](https://img.shields.io/chrome-web-store/rating/cofoinjfjcpgcjiinjhcpomcjoalijbe)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-
 [![Badge](src/assets/images/badge.png)](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
 
-A browser extension that adds video solutions, company tags, and GPT code analysis into each Leetcode problem
+A free, open source browser extension that adds video solutions, company tags, and GPT code analysis into each Leetcode problem
 
 ### 4 🔥 Features
 
-1️⃣ Adds the top 5 youtube solution videos into each problem's Solutions tab
+1️⃣ Adds the top 5 youtube solution videos into each problems [Solutions tab](https://leetcode.com/problems/two-sum/solutions)
 
-2️⃣ Adds the top 5 companies that ask each problem into each problem's Descriptions tab
+2️⃣ Adds the top 5 companies that ask each problem into each problems [Descriptions tab](https://leetcode.com/problems/two-sum/description)
 
 3️⃣ Reads your code and tells you the time and space complexity
 
 4️⃣ Reads your code, fixes any bugs, and returns the corrected solution
 
-### Installation
+Features 3️⃣ and 4️⃣ require  login to chat.openai.com (ChatGPT) in your browser.
+
+### ⚙️ Installation
 
 
-1. Clone this repository
-2. ``` npm install ```
-3. Open Google Chrome and navigate to chrome://extensions in the search bar.
-4. Enable "Developer mode" (top right corner).
-5. Click on "Load unpacked" and navigate to the extension directory, then click "Select".
-6. Pin the extension. You should now see the extension icon next to the address bar.
+1. ``` git clone https://github.com/zubyj/leetcode-explained.git ```
+2. ``` cd leetcode-explained ```
+3. ``` npm install ```
+4. Open Google Chrome and navigate to ```chrome://extensions``` in the search bar.
+5. Enable "Developer mode" (top right corner).
+6. Click on "Load unpacked" and navigate to the extension directory, then click "Select".
+7. Pin the extension. You should now see the extension icon next to the address bar.
 
 Now you can test the latest dev version and contribute new features!
-### Tutorial
+### 📚 Tutorial
 
-After enabling the extension, each question will automatically have the [top 5 solution videos](https://leetcode.com/problems/two-sum/solutions/) and [top 5 companies](https://leetcode.com/problems/two-sum/description/). If you pin the extension in the toolbar & login into ChatGPT in your browser, you can use the following 2 GPT buttons:
+For solution videos open a Leetcode problems
+[Solution videos](https://leetcode.com/problems/two-sum/solutions)
+
+ If you pin the extension in the toolbar & login into ChatGPT in your browser, you can use the following 2 GPT buttons:
 
 - Get your code complexity using ChatGPT
 - Fix bugs in your code and return the optimal solution

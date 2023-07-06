@@ -1,18 +1,19 @@
 # Leetcode Explained 
-
-![Downloads](https://img.shields.io/chrome-web-store/users/cofoinjfjcpgcjiinjhcpomcjoalijbe) 
-![version](https://img.shields.io/badge/version-2.0.2-blue) 
+![Downloads](https://img.shields.io/chrome-web-store/users/cofoinjfjcpgcjiinjhcpomcjoalijbe)
+![Version](https://img.shields.io/chrome-web-store/v/cofoinjfjcpgcjiinjhcpomcjoalijbe) 
+![Rating](https://img.shields.io/chrome-web-store/rating/cofoinjfjcpgcjiinjhcpomcjoalijbe)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 [![Badge](src/assets/images/badge.png)](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
 
-Adds video solutions, company tags, and GPT code analysis into each Leetcode problem
+A browser extension that adds video solutions, company tags, and GPT code analysis into each Leetcode problem
 
 ### 4 🔥 Features
 
-1️⃣ Adds the top 5 youtube solution videos into each problem
+1️⃣ Adds the top 5 youtube solution videos into each problem's Solutions tab
 
-2️⃣ Adds the top 5 companies that ask each problem
+2️⃣ Adds the top 5 companies that ask each problem into each problem's Descriptions tab
 
 3️⃣ Reads your code and tells you the time and space complexity
 
@@ -29,16 +30,6 @@ Adds video solutions, company tags, and GPT code analysis into each Leetcode pro
 6. Pin the extension. You should now see the extension icon next to the address bar.
 
 Now you can test the latest dev version and contribute new features!
-
-### Screenshots
-
-<img src="src/assets/images/screenshots/add-video.png" alt="Add Video" width="600"/>
-
-
-<img src="src/assets/images/screenshots/get-complexity.png" alt="Code Complexity" width="600"/>
-
-<img src="src/assets/images/screenshots/fix-code.png" alt="Fix Code" width="600"/>
-
 ### Tutorial
 
 After enabling the extension, each question will automatically have the [top 5 solution videos](https://leetcode.com/problems/two-sum/solutions/) and [top 5 companies](https://leetcode.com/problems/two-sum/description/). If you pin the extension in the toolbar & login into ChatGPT in your browser, you can use the following 2 GPT buttons:
@@ -52,6 +43,14 @@ Please ensure your Leetcode solution is open so the extension can read your code
 
 We welcome contributions! Please see the [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details on how to contribute to the project.
 
+### Screenshots
+
+<img src="src/assets/images/screenshots/add-video.png" alt="Add Video" width="600"/>
+
+
+<img src="src/assets/images/screenshots/get-complexity.png" alt="Code Complexity" width="600"/>
+
+<img src="src/assets/images/screenshots/fix-code.png" alt="Fix Code" width="600"/>
 
 
 ### Code of Conduct

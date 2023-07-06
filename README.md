@@ -32,12 +32,12 @@ Now you can test the latest dev version and contribute new features!
 
 ### Screenshots
 
-<img src="src/assets/images/screenshots/add-video.png" alt="drawing" width="400"/>
+<img src="src/assets/images/screenshots/add-video.png" alt="Add Video" width="600"/>
 
 
-![Code Complexity](src/assets/images/screenshots/get-complexity.png)
+<img src="src/assets/images/screenshots/get-complexity.png" alt="Code Complexity" width="600"/>
 
-![Fix Code](src/assets/images/screenshots/fix-code.png)
+<img src="src/assets/images/screenshots/fix-code.png" alt="Fix Code" width="600"/>
 
 ### Tutorial
 

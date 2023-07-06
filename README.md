@@ -25,13 +25,13 @@ Features 3️⃣ and 4️⃣ require  login to chat.openai.com (ChatGPT) in your
 
 1. ``` git clone https://github.com/zubyj/leetcode-explained.git ```
 2. ``` cd leetcode-explained ```
-3. ``` npm install ```
+3. ``` npm install && tsc```
 4. Open Google Chrome and navigate to ```chrome://extensions``` in the search bar.
 5. Enable "Developer mode" (top right corner).
 6. Click on "Load unpacked" and navigate to the extension directory, then click "Select".
 7. Pin the extension. You should now see the extension icon next to the address bar.
 
-Now you can test the latest dev version and contribute new features!
+Now you can test the latest dev version and contribute new features! After you make changes, remember to run tsc to compile the TS files into javascript.
 ### 📚 Tutorial
 
 For solution videos open a Leetcode problems

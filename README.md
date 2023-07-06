@@ -52,6 +52,8 @@ Please ensure your Leetcode solution is open so the extension can read your code
 
 We welcome contributions! Please see the [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details on how to contribute to the project.
 
+
+
 ### Code of Conduct
 
 We aim to foster an inclusive and respectful environment. Please read the [CODE_OF_CONDUCT.md](docs/CODE_OF_CONDUCT.md) for more information.

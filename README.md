@@ -32,8 +32,11 @@ Now you can test the latest dev version and contribute new features!
 
 ### Screenshots
 
-![Add Video](src/assets/images/screenshots/add-video.png)
+<img src="src/assets/images/screenshots/add-video.png" alt="drawing" width="400"/>
+
+
 ![Code Complexity](src/assets/images/screenshots/get-complexity.png)
+
 ![Fix Code](src/assets/images/screenshots/fix-code.png)
 
 ### Tutorial

@@ -29,6 +29,6 @@ If you encounter any issues or bugs in the project, please report them using the
 
 ## Contact
 
-If you have any questions or need help with your contributions, please email me at zjdev@gmail.com.
+If you have any questions or need help with your contributions, please email me at zubydevelops@gmail.com.
 
 Thank you for your contributions!

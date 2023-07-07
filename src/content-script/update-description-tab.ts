@@ -1,5 +1,11 @@
 
-// shows the Leetcode examples if the user has enabled it in the settings
+/*
+    Adds & hides content from the description tab based on the user's settings
+    This includes hiding the company tags, examples, and difficulty of the problem.
+*/
+
+
+// shows the examples if the user has enabled it in the settings
 function showExamples() {
     chrome.storage.local.get(['showExamples'], (result) => {
         let showExamples = result.showExamples;
@@ -22,6 +28,7 @@ function showExamples() {
     });
 }
 
+// show the leetcode difficulty if the user has enabled it in the settings
 function showDifficulty() {
     chrome.storage.local.get(['showDifficulty'], (result) => {
         let showDifficulty = result.showDifficulty;
@@ -36,6 +43,7 @@ function showDifficulty() {
     });
 }
 
+// show the company tags if the user has enabled it in the settings
 function showCompanyTags(problemTitle: string) {
     chrome.storage.local.get(['showCompanyTags'], (result) => {
         let showCompanyTags = result.showCompanyTags;
@@ -48,9 +56,7 @@ function showCompanyTags(problemTitle: string) {
             return;
         }
 
-        // Always re-load company tags, regardless if container already exists
         if (companyTagContainer) {
-            // Remove old tags
             while (companyTagContainer.firstChild) {
                 companyTagContainer.firstChild.remove();
             }
@@ -72,6 +78,7 @@ function showCompanyTags(problemTitle: string) {
     });
 }
 
+// loads and creates company tags for the problem from the local storage
 function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement) {
     // create a new container for buttons
     companyTagContainer.id = 'companyTagContainer';  // add an id

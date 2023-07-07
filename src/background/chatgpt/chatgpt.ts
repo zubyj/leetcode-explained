@@ -1,3 +1,8 @@
+/*
+    Authorizes the extension with the OpenAI Chat API and manages interactions with it.
+*/
+
+
 import ExpiryMap from './expiry-map.js';
 import { uuidv4 } from './uuid.js';
 import { fetchSSE } from './fetch-sse.js';

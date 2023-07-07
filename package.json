@@ -1,12 +1,12 @@
 {
   "name": "leetcode-explained",
-  "version": "2.0.4",
-  "description": "Used to log into GPT-3 and return the token",
+  "version": "2.0.5",
+  "description": "NPM used to log into GPT-3 using the session token",
   "main": "background.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Zohaib Javed",
+  "author": "Zuby Javed",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.21.8",

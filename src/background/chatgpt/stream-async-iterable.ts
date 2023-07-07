@@ -1,3 +1,7 @@
+/*
+    Make reading the stream easier by converting it to an async iterable.
+*/
+
 export async function* streamAsyncIterable(stream: ReadableStream) {
     const reader = stream.getReader();
     try {

@@ -1,3 +1,9 @@
+/*
+    The logic behind the popup window that appears when the extension icon is clicked. 
+    Creates the GPT buttons, sets the prompts, and displays the responses.
+    The user can also copy the code to their clipboard, clear the code, and open the settings page.
+*/
+
 import {
     getChatGPTAccessToken,
     ChatGPTProvider,

@@ -1,3 +1,7 @@
+/*
+    Generates a unique id for each message
+*/
+
 // msCrypto is for IE11, which isnt included in ts by default
 declare let msCrypto: Crypto;
 

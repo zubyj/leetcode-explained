@@ -26,7 +26,7 @@ function showDifficulty() {
     chrome.storage.local.get(['showDifficulty'], (result) => {
         let showDifficulty = result.showDifficulty;
 
-        // Finding the difficulty element and then toggling its display.
+        // Finding the difficulty element and then toggling the display.
         let colors = ['bg-olive', 'bg-yellow', 'bg-red'];
         for (let color in colors) {
             let element = document.querySelectorAll('div.' + colors[color])[0];

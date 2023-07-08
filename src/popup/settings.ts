@@ -1,32 +1,32 @@
 /*
     Manages the settings page which is opened when the user clicks on the settings icon in the popup
-    
     The user can toggle the following settings:
         - Show company tags
         - Show examples
         - Show difficulty
         - The user can also change the font size of the description
-        
     The Leetcode problem's descriptions tab will be updated with the new settings
 */
 
-document.getElementById('home-button')!.onclick = () => {
+const homeButton = document.getElementById('home-button') as HTMLButtonElement;
+homeButton.onclick = () => {
     window.location.href = 'popup.html';
 };
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     chrome.storage.local.get(['showCompanyTags'], (result) => {
-        let showCompanyTagsIcon = document.getElementById('show-company-tags-icon');
+        const showCompanyTagsIcon = document.getElementById('show-company-tags-icon');
         showCompanyTagsIcon!.textContent = result.showCompanyTags ? '✅' : '❌';
     });
     chrome.storage.local.get(['showExamples'], (result) => {
-        let showExamplesIcon = document.getElementById('show-examples-icon');
+        const showExamplesIcon = document.getElementById('show-examples-icon');
         showExamplesIcon!.textContent = result.showExamples ? '✅' : '❌';
     });
 
     chrome.storage.local.get(['showDifficulty'], (result) => {
-        let showDifficultyIcon = document.getElementById('show-difficulty-icon');
-        showDifficultyIcon!.textContent = result.showDifficulty ? '✅' : '❌';
+        const showDifficultyIcon = document.getElementById('show-difficulty-icon');
+
+        if (showDifficultyIcon) showDifficultyIcon.textContent = result.showDifficulty ? '✅' : '❌';
     });
 });
 

@@ -31,21 +31,21 @@ function createControlsContainer(channelName: string) {
         width: '100%',
         paddingTop: '10px',
         boxSizing: 'border-box',
-        color: '#fff'
+        color: '#fff',
     });
 
     const prevButton = createButton('⬅️', 'prev-video', { fontSize: '20px' });
     const channelElement = createStyledElement('div', {
         fontSize: '15px',
         textAlign: 'center',
-        width: '200px'
+        width: '200px',
     });
-    channelElement.classList.add('channel');  // add this line
+    channelElement.classList.add('channel');
     channelElement.textContent = channelName;
     channelElement.style.fontWeight = '600';
     channelElement.style.color = 'lightcyan';
     channelElement.style.textShadow = '0 0 5px #000000';
-    channelElement.style.fontFamily = 'Menlo, Monaco, Consolas, "Courier New", monospace'
+    channelElement.style.fontFamily = 'Menlo, Monaco, Consolas, "Courier New", monospace';
     const nextButton = createButton('➡️', 'next-video', { fontSize: '20px' });
 
     const toggleButtonStyles = {
@@ -67,7 +67,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
         justifyContent: 'center',
         paddingBottom: `${VIDEO_ASPECT_RATIO}%`,
         marginBottom: '60px',
-        transition: 'padding-bottom 0.3s ease-out' // Add this line
+        transition: 'padding-bottom 0.3s ease-out',
     });
     container.classList.add('video-container');
 
@@ -80,7 +80,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
         top: '60px',
         width: '95%',
         height: '95%',
-        border: '1px solid grey'
+        border: '1px solid grey',
     }) as HTMLIFrameElement;
     iframe.classList.add('youtube-video');
     iframe.src = videoUrl;
@@ -106,7 +106,7 @@ function addVideo(title: string) {
         const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
         if (problem?.videos?.length) {
             let currentVideoIndex = 0;
-            const { container, iframe, prevButton, nextButton, toggleButton } = createVideoContainer(
+            const { container, prevButton, nextButton, toggleButton } = createVideoContainer(
                 problem.videos[currentVideoIndex].embedded_url,
                 problem.videos[currentVideoIndex].channel,
             );
@@ -142,7 +142,7 @@ function addVideo(title: string) {
                     }
                     toggleButton.style.transition = 'transform 0.3s linear';
                 }
-            })
+            });
 
             // on hover, change background color of toggleButton
             toggleButton?.addEventListener('mouseover', () => {

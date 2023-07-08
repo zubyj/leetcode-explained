@@ -1,7 +1,7 @@
 /*
-    The logic behind the popup window that appears when the extension icon is clicked. 
-    Creates the GPT buttons, sets the prompts, and displays the responses.
-    The user can also copy the code to their clipboard, clear the code, and open the settings page.
+The logic behind the popup window that appears when the extension icon is clicked. 
+Creates the GPT buttons, sets the prompts, and displays the responses.
+The user can also copy the code to their clipboard, clear the code, and open the settings page.
 */
 
 import {
@@ -35,14 +35,14 @@ const storageKeys: { [key: string]: string } = {
 
 /* Retrieve elements from DOM */
 const elements: { [key: string]: HTMLElement | null } = {};
-for (let key in selectors) {
+for (const key in selectors) {
     elements[key] = document.getElementById(selectors[key]);
 }
 
-let analyzeCodeResponse = elements['analyzeCodeResponse'];
-let fixCodeResponse = elements['fixCodeResponse'];
-let infoMessage = elements['infoMessage'];
-let fixCodeContainer = elements['fixCodeContainer'];
+const analyzeCodeResponse = elements['analyzeCodeResponse'];
+const fixCodeResponse = elements['fixCodeResponse'];
+const infoMessage = elements['infoMessage'];
+const fixCodeContainer = elements['fixCodeContainer'];
 
 /* Helper functions */
 function disableAllButtons(disabled: boolean): void {
@@ -53,19 +53,20 @@ function disableAllButtons(disabled: boolean): void {
 }
 
 function clearResponse(): void {
-    analyzeCodeResponse!.textContent = '';
-    fixCodeResponse!.textContent = '';
-    fixCodeContainer!.classList.add('hidden');
-    analyzeCodeResponse!.classList.add('hidden');
+    if (analyzeCodeResponse) analyzeCodeResponse.textContent = '';
+    if (fixCodeResponse) fixCodeResponse.textContent = '';
+    if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
+    if (analyzeCodeResponse) analyzeCodeResponse.classList.add('hidden');
     chrome.storage.local.set({ 'fixCodeResponse': '' });
     chrome.storage.local.set({ 'analyzeCodeResponse': '' });
 }
 
 function setInfoMessage(message: string, duration: number) {
-    let oldMessage = infoMessage!.textContent;
-    infoMessage!.textContent = message;
+    if (!infoMessage) return;
+    const oldMessage = infoMessage.textContent;
+    infoMessage.textContent = message;
     setTimeout(() => {
-        infoMessage!.textContent = oldMessage;
+        infoMessage.textContent = oldMessage;
     }, duration);
 }
 
@@ -76,7 +77,7 @@ function initActionButton(buttonId: string, action: string, chatGPTProvider: Cha
         if (codeText) {
             processCode(chatGPTProvider, codeText, action);
         } else {
-            let errorMessage = 'Unable to retrieve code. Please navigate to a Leetcode problem page and refresh the page.';
+            const errorMessage = 'Unable to retrieve code. Please navigate to a Leetcode problem page and refresh the page.';
             setInfoMessage(errorMessage, 5000);
         }
     };
@@ -105,26 +106,26 @@ function processCode(
     codeText: string,
     action: string,
 ): void {
-
     disableAllButtons(true);
     clearResponse();
-    let problemTitle = infoMessage!.textContent;
 
-    let prompt: string = "";
-    if (action === "analyze") {
+
+    const problemTitle = infoMessage!.textContent;
+
+    let prompt: string = '';
+    if (action === 'analyze') {
         prompt = `
         As an experienced software engineer, please analyze the Leetcode problem titled ${problemTitle} and the accompanying code below.
         Your analysis should be concise and straightforward, providing both time and space complexity in big O notation.
         Please include a brief, concise explanation (no more than 1-2 lines) for each complexity analysis.
         Space complexity should not include the output (return value) of the function.
         Your analysis should be direct and to the point. 
-        The code is provided below.
-        `;
+        The code is provided below.`;
         infoMessage!.textContent = 'Analyzing code complexity ...';
         analyzeCodeResponse!.classList.remove('hidden');
         fixCodeContainer!.classList.add('hidden');
     }
-    else if (action === "fix") {
+    else if (action === 'fix') {
         prompt = `
         As a coding expert, I require your aid with a specific LeetCode problem called ${problemTitle}.
         If you are given only the function definition, your task is to generate the best possible solution for this problem.
@@ -132,10 +133,8 @@ function processCode(
         Please identify and fix any potential issues in the code.
         If the provided code is already correct and optimized, please return it as is.
         All code should be returned in plain text format, with no usage of code blocks.
-        Inline comments are permitted, but only if they are essential.
-        The code is provided below.
-        
-        `;
+        Anything other than the code text is not permitted.
+        The code is provided below.`;
         infoMessage!.textContent = 'Creating the solution ...';
         analyzeCodeResponse!.classList.add('hidden');
         fixCodeContainer!.classList.remove('hidden');
@@ -148,10 +147,10 @@ function processCode(
         onEvent: (event: { type: string; data?: { text: string } }) => {
             if (event.type === 'answer' && event.data) {
                 response += event.data.text;
-                if (action === "fix") {
+                if (action === 'fix') {
                     fixCodeResponse!.textContent = response;
                 }
-                else if (action === "analyze") {
+                else if (action === 'analyze') {
                     analyzeCodeResponse!.textContent = response;
                 }
             }

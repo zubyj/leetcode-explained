@@ -35,7 +35,7 @@ function showDifficulty() {
 
         // Finding the difficulty element and then toggling the display.
         const colors = ['bg-olive', 'bg-yellow', 'bg-red'];
-        for (let color in colors) {
+        for (const color in colors) {
             const element = document.querySelectorAll('div.' + colors[color])[0];
             if (element instanceof HTMLElement) {
                 element.style.display = showDifficulty ? 'block' : 'none';
@@ -106,7 +106,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
         if (problem.companies && problem.companies.length > 0) {
             const topCompanies = problem.companies.slice(0, 5);
             // create a button for each company
-            topCompanies.forEach((company: { name: string; score: number; }) => {
+            topCompanies.forEach((company: { name: string; score: any; }) => {
                 const button = document.createElement('button');
 
                 // opens the company page when the button is clicked
@@ -114,18 +114,15 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
                     chrome.runtime.sendMessage({
                         // passes the company name and score to the background script
                         action: 'openCompanyPage', company: company.name
-                    })
-                }
-
-
+                    });
+                };
                 // on hover, set background color to black
                 button.onmouseover = () => {
                     button.style.color = 'orange';
-                }
+                };
                 button.onmouseout = () => {
                     button.style.color = 'white';
-                }
-
+                };
                 button.style.display = 'flex';
                 button.style.alignItems = 'center';
                 button.style.justifyContent = 'center';
@@ -134,7 +131,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
                 icon.src = `https://logo.clearbit.com/${company.name.toLowerCase().replace(/\s/g, '')}.com`; // replace spaces with nothing
                 icon.style.height = '12px';
                 icon.style.width = '12px';
-                icon.style.marginRight = '5px';  // some space between the icon and the name
+                icon.style.marginRight = '5px';
                 button.appendChild(icon);
 
                 button.style.color = '#fff';

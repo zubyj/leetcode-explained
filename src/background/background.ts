@@ -19,12 +19,12 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.local.set({ showCompanyTags: true });
     chrome.storage.local.set({ showExamples: true });
     chrome.storage.local.set({ showDifficulty: true });
-    chrome.storage.local.set({ clickedCompany: 'Amazon' })
+    chrome.storage.local.set({ clickedCompany: 'Amazon' });
 });
 
 chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-        if (request.action == "openSolutionVideo") {
+    function (request, _, sendResponse) {
+        if (request.action == 'openSolutionVideo') {
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 let url = tabs[0].url;
                 if (url) {
@@ -43,22 +43,22 @@ chrome.runtime.onMessage.addListener(
                     }
                 }
             });
-            sendResponse({ result: "Success" });
+            sendResponse({ result: 'Success' });
         }
-    }
+    },
 );
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.action === "openCompanyPage") {
+chrome.runtime.onMessage.addListener((request) => {
+    if (request.action === 'openCompanyPage') {
         chrome.storage.local.set({ clickedCompany: request.company });
         chrome.tabs.create({
-            url: chrome.runtime.getURL("src/popup/company.html"),
-            active: true
+            url: chrome.runtime.getURL('src/popup/company.html'),
+            active: true,
         }, function (tab) {
             // Keep a reference to the listener so it can be removed later
-            let listener = function (tabId: number, changedProps: any) {
+            const listener = function (tabId: number, changedProps: any) {
                 // When the tab is done loading
-                if (tabId == tab.id && changedProps.status == "complete") {
+                if (tabId == tab.id && changedProps.status == 'complete') {
                     chrome.tabs.sendMessage(tabId, request);
                     // Remove the listener once the tab is loaded
                     chrome.tabs.onUpdated.removeListener(listener);

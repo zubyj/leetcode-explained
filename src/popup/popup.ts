@@ -1,5 +1,5 @@
 /*
-The logic behind the popup window that appears when the extension icon is clicked. 
+The logic behind the popup window that appears when the extension icon is clicked.
 Creates the GPT buttons, sets the prompts, and displays the responses.
 The user can also copy the code to their clipboard, clear the code, and open the settings page.
 */
@@ -71,7 +71,8 @@ function setInfoMessage(message: string, duration: number) {
 }
 
 function initActionButton(buttonId: string, action: string, chatGPTProvider: ChatGPTProvider): void {
-    const actionButton = document.getElementById(buttonId)!;
+    const actionButton = document.getElementById(buttonId);
+    if (!actionButton) return;
     actionButton.onclick = async () => {
         const codeText = await getCodeFromActiveTab();
         if (codeText) {
@@ -87,7 +88,7 @@ async function getCodeFromActiveTab(): Promise<string | null> {
     return new Promise<string | null>((resolve) => {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             chrome.tabs.sendMessage(
-                tabs[0].id!,
+                tabs[0].id as number,
                 { type: 'getCode' },
                 (response) => {
                     if (chrome.runtime.lastError) {
@@ -109,7 +110,6 @@ function processCode(
     disableAllButtons(true);
     clearResponse();
 
-
     const problemTitle = infoMessage!.textContent;
 
     let prompt: string = '';
@@ -121,9 +121,11 @@ function processCode(
         Space complexity should not include the output (return value) of the function.
         Your analysis should be direct and to the point. 
         The code is provided below.`;
-        infoMessage!.textContent = 'Analyzing code complexity ...';
-        analyzeCodeResponse!.classList.remove('hidden');
-        fixCodeContainer!.classList.add('hidden');
+
+
+        if (infoMessage) infoMessage.textContent = 'Analyzing code complexity ...';
+        if (analyzeCodeResponse) analyzeCodeResponse.classList.remove('hidden');
+        if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
     }
     else if (action === 'fix') {
         prompt = `
@@ -135,7 +137,7 @@ function processCode(
         All code should be returned in plain text format, with no usage of code blocks.
         Anything other than the code text is not permitted.
         The code is provided below.`;
-        infoMessage!.textContent = 'Creating the solution ...';
+        if (infoMessage) infoMessage.textContent = 'Creating the solution ...';
         analyzeCodeResponse!.classList.add('hidden');
         fixCodeContainer!.classList.remove('hidden');
     }
@@ -147,11 +149,11 @@ function processCode(
         onEvent: (event: { type: string; data?: { text: string } }) => {
             if (event.type === 'answer' && event.data) {
                 response += event.data.text;
-                if (action === 'fix') {
-                    fixCodeResponse!.textContent = response;
+                if (action === 'fix' && fixCodeResponse) {
+                    fixCodeResponse.textContent = response;
                 }
-                else if (action === 'analyze') {
-                    analyzeCodeResponse!.textContent = response;
+                else if (action === 'analyze' && analyzeCodeResponse) {
+                    analyzeCodeResponse.textContent = response;
                 }
             }
             if (event.type === 'done') {

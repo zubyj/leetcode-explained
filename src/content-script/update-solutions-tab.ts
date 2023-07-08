@@ -1,3 +1,8 @@
+/*
+    Adds the top 5 youtube solution videos into the solutions tab of a Leetcode problem page.
+*/
+
+
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 
 function createStyledElement(tagName: string, styles: {}) {

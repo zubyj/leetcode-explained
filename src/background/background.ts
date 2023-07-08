@@ -1,7 +1,8 @@
 import { getChatGPTAccessToken } from './chatgpt/chatgpt.js';
 
-// Runs when the extension is installed
+// Load JSON & default settings on install
 chrome.runtime.onInstalled.addListener(() => {
+    // Load JSON file into storage
     const jsonUrl = chrome.runtime.getURL('src/assets/data/leetcode_solutions.json');
     fetch(jsonUrl)
         .then((response) => response.json())
@@ -84,9 +85,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
-
-
-
+// If the user is on a Leetcode problem page, show the solution video or company tags.
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     // If descriptions tab is opened or updated, update the description
     let urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?/;

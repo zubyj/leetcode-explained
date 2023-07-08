@@ -1,3 +1,15 @@
+/*
+    Manages the settings page which is opened when the user clicks on the settings icon in the popup
+    
+    The user can toggle the following settings:
+        - Show company tags
+        - Show examples
+        - Show difficulty
+        - The user can also change the font size of the description
+        
+    The Leetcode problem's descriptions tab will be updated with the new settings
+*/
+
 document.getElementById('home-button')!.onclick = () => {
     window.location.href = 'popup.html';
 };

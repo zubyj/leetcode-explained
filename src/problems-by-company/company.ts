@@ -16,12 +16,27 @@ function main() {
     document.getElementById('Score')!.addEventListener('click', () => sortBy('Score'));
 }
 
-// Adds the company problems by sorting method
+interface Company {
+    name: string;
+    score: number;
+}
+
+interface Question {
+    title: string;
+    frontend_id: number;
+    companies?: Company[];
+}
+
+interface LeetcodeProblems {
+    questions: Question[];
+}
+
 function addCompanyProblems(sortMethod: string) {
-    chrome.storage.local.get("leetcodeProblems", function (data) {
-        data.leetcodeProblems.questions.forEach(question => {
+    chrome.storage.local.get("leetcodeProblems", function (items: { [key: string]: any; }) {
+        const data = items as { leetcodeProblems: LeetcodeProblems };
+        data.leetcodeProblems.questions.forEach((question: Question) => {
             if (!question.companies) return;
-            question.companies.forEach(company => {
+            question.companies.forEach((company: Company) => {
                 if (company.name === companyName) {
                     solutions.push({
                         id: question.frontend_id,
@@ -33,18 +48,18 @@ function addCompanyProblems(sortMethod: string) {
             });
         });
 
-        const table = document.getElementById("solutionTable");
+        const table = document.getElementById("solutionTable") as HTMLTableElement;
 
         if (sortMethod === "Score") {
             solutions.sort((a, b) => b.score - a.score);
         }
 
         solutions.forEach(solution => {
-            const row = table!.insertRow(-1);
-            row.insertCell(0).innerText = solution.id;
+            const row = table.insertRow(-1);
+            row.insertCell(0).innerText = solution.id.toString();
             const titleCell = row.insertCell(1);
             titleCell.innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
-            row.insertCell(2).innerText = solution.score;
+            row.insertCell(2).innerText = solution.score.toString();
         });
     });
 }
@@ -61,7 +76,7 @@ function sortBy(column: string) {
     }
 
     // after sorting, you might want to re-render your table
-    const table = document.getElementById("solutionTable");
+    const table = document.getElementById("solutionTable") as HTMLTableElement;
 
     // remove all existing rows
     while (table.rows.length > 1) {
@@ -71,10 +86,10 @@ function sortBy(column: string) {
     // add sorted rows
     solutions.forEach(solution => {
         const row = table.insertRow(-1);
-        row.insertCell(0).innerText = solution.id;
+        row.insertCell(0).innerText = solution.id.toString();
         const titleCell = row.insertCell(1);
         titleCell.innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
-        row.insertCell(2).innerText = solution.score;
+        row.insertCell(2).innerText = solution.score.toString();
     });
 }
 

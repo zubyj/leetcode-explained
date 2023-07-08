@@ -27,8 +27,8 @@ chrome.storage.local.get('fontSize', function (data) {
     }
 });
 
-fontSizeSelect.onchange = function () {
-    let selectedFontSize = this.value;
+fontSizeSelect.onchange = function (event: Event) {
+    let selectedFontSize = (event.target as HTMLInputElement).value;
     chrome.storage.local.set({ fontSize: selectedFontSize });
     document.documentElement.style.setProperty('--dynamic-font-size', `${selectedFontSize}px`);
 };

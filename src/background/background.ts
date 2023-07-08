@@ -55,7 +55,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             active: true
         }, function (tab) {
             // Keep a reference to the listener so it can be removed later
-            let listener = function (tabId, changedProps) {
+            let listener = function (tabId: number, changedProps: any) {
                 // When the tab is done loading
                 if (tabId == tab.id && changedProps.status == "complete") {
                     chrome.tabs.sendMessage(tabId, request);

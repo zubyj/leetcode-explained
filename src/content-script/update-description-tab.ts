@@ -26,11 +26,12 @@ function showDifficulty() {
     chrome.storage.local.get(['showDifficulty'], (result) => {
         let showDifficulty = result.showDifficulty;
 
+        // Finding the difficulty element and then toggling its display.
         let colors = ['bg-olive', 'bg-yellow', 'bg-red'];
         for (let color in colors) {
-            let difficultyContainer = document.querySelectorAll('div.' + colors[color])[0];
-            if (difficultyContainer) {
-                difficultyContainer.style.display = showDifficulty ? 'block' : 'none';
+            let element = document.querySelectorAll('div.' + colors[color])[0];
+            if (element instanceof HTMLElement) {
+                element.style.display = showDifficulty ? 'block' : 'none';
             }
         }
     });

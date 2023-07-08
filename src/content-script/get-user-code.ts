@@ -1,6 +1,4 @@
-/* 
-    Reads the code from the user's code editor and sends it to the background script 
-*/
+// Reads the code from the user's code editor and sends it to the background script
 
 // On get user code request, read & send the code as a response
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

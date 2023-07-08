@@ -52,7 +52,7 @@ chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'openCompanyPage') {
         chrome.storage.local.set({ clickedCompany: request.company });
         chrome.tabs.create({
-            url: chrome.runtime.getURL('src/popup/company.html'),
+            url: chrome.runtime.getURL('src/problems-by-company/company.html'),
             active: true,
         }, function (tab) {
             // Keep a reference to the listener so it can be removed later

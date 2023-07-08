@@ -1,19 +1,18 @@
-let companyName = "Amazon";
-let solutions = [] as { id: number, title: string, score: number, url: string }[];
+let companyName = 'Amazon';
+const solutions = [] as { id: number, title: string, score: number, url: string }[];
 
 function main() {
-    chrome.storage.local.get("clickedCompany", function (data) {
+    chrome.storage.local.get('clickedCompany', function (data: { [key: string]: any; }) {
         companyName = data.clickedCompany;
+        const title: HTMLElement | null = document.getElementById('title');
+        if (title) title.textContent = companyName;
+        document.title = companyName + ` Questions`;
+        addCompanyProblems('Score');
     });
 
-    document.getElementById("title")!.textContent = companyName;
-    document.title = companyName + "'s favorite problems"
-    addCompanyProblems("Score");
-
-    // attach click listeners to table headers for sorting
-    document.getElementById('#')!.addEventListener('click', () => sortBy('#'));
-    document.getElementById('Title')!.addEventListener('click', () => sortBy('Title'));
-    document.getElementById('Score')!.addEventListener('click', () => sortBy('Score'));
+    document.getElementById('#')?.addEventListener('click', () => sortBy('#'));
+    document.getElementById('Title')?.addEventListener('click', () => sortBy('Title'));
+    document.getElementById('Score')?.addEventListener('click', () => sortBy('Score'));
 }
 
 interface Company {
@@ -30,9 +29,8 @@ interface Question {
 interface LeetcodeProblems {
     questions: Question[];
 }
-
 function addCompanyProblems(sortMethod: string) {
-    chrome.storage.local.get("leetcodeProblems", function (items: { [key: string]: any; }) {
+    chrome.storage.local.get('leetcodeProblems', function (items: { [key: string]: any; }) {
         const data = items as { leetcodeProblems: LeetcodeProblems };
         data.leetcodeProblems.questions.forEach((question: Question) => {
             if (!question.companies) return;
@@ -42,15 +40,15 @@ function addCompanyProblems(sortMethod: string) {
                         id: question.frontend_id,
                         title: question.title,
                         score: company.score,
-                        url: `https://leetcode.com/problems/${question.title.replace(/\s/g, '-')}/`
+                        url: `https://leetcode.com/problems/${question.title.replace(/\s/g, '-')}/`,
                     });
                 }
             });
         });
 
-        const table = document.getElementById("solutionTable") as HTMLTableElement;
+        const table = document.getElementById('solutionTable') as HTMLTableElement;
 
-        if (sortMethod === "Score") {
+        if (sortMethod === 'Score') {
             solutions.sort((a, b) => b.score - a.score);
         }
 
@@ -76,7 +74,7 @@ function sortBy(column: string) {
     }
 
     // after sorting, you might want to re-render your table
-    const table = document.getElementById("solutionTable") as HTMLTableElement;
+    const table = document.getElementById('solutionTable') as HTMLTableElement;
 
     // remove all existing rows
     while (table.rows.length > 1) {

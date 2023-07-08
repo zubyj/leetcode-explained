@@ -8,20 +8,20 @@
 // shows the examples if the user has enabled it in the settings
 function showExamples() {
     chrome.storage.local.get(['showExamples'], (result) => {
-        let showExamples = result.showExamples;
-        let descriptionContainer = document.querySelector('div._1l1MA') as Element;
+        const showExamples = result.showExamples;
+        const descriptionContainer = document.querySelector('div._1l1MA') as Element;
         if (!descriptionContainer) {
             return;
         }
-        let examples = descriptionContainer.getElementsByClassName('example');
+        const examples = descriptionContainer.getElementsByClassName('example');
         if (examples && examples.length > 0) {
-            let parent = examples[0].parentNode as Element;
+            const parent = examples[0].parentNode as Element;
             if (!parent) {
                 return;
             }
-            let startIndex = Array.from(descriptionContainer.children).indexOf(parent);
+            const startIndex = Array.from(descriptionContainer.children).indexOf(parent);
             for (let i = startIndex; i < descriptionContainer.children.length; i++) {
-                let child = descriptionContainer.children[i] as HTMLElement;
+                const child = descriptionContainer.children[i] as HTMLElement;
                 child.style.display = showExamples ? 'block' : 'none';
             }
         }
@@ -31,12 +31,12 @@ function showExamples() {
 // show the leetcode difficulty if the user has enabled it in the settings
 function showDifficulty() {
     chrome.storage.local.get(['showDifficulty'], (result) => {
-        let showDifficulty = result.showDifficulty;
+        const showDifficulty = result.showDifficulty;
 
         // Finding the difficulty element and then toggling the display.
-        let colors = ['bg-olive', 'bg-yellow', 'bg-red'];
+        const colors = ['bg-olive', 'bg-yellow', 'bg-red'];
         for (let color in colors) {
-            let element = document.querySelectorAll('div.' + colors[color])[0];
+            const element = document.querySelectorAll('div.' + colors[color])[0];
             if (element instanceof HTMLElement) {
                 element.style.display = showDifficulty ? 'block' : 'none';
             }
@@ -47,7 +47,7 @@ function showDifficulty() {
 // show the company tags if the user has enabled it in the settings
 function showCompanyTags(problemTitle: string) {
     chrome.storage.local.get(['showCompanyTags'], (result) => {
-        let showCompanyTags = result.showCompanyTags;
+        const showCompanyTags = result.showCompanyTags;
         let companyTagContainer = document.getElementById('companyTagContainer');
 
         if (!showCompanyTags) {
@@ -81,8 +81,7 @@ function showCompanyTags(problemTitle: string) {
 
 // loads and creates company tags for the problem from the local storage
 function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement) {
-    // create a new container for buttons
-    companyTagContainer.id = 'companyTagContainer';  // add an id
+    companyTagContainer.id = 'companyTagContainer';
     companyTagContainer.style.display = 'flex';
     companyTagContainer.style.flexDirection = 'row';
     companyTagContainer.style.marginTop = '10px';
@@ -107,7 +106,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
         if (problem.companies && problem.companies.length > 0) {
             const topCompanies = problem.companies.slice(0, 5);
             // create a button for each company
-            topCompanies.forEach((company: { name: string; score: any; }) => {
+            topCompanies.forEach((company: { name: string; score: number; }) => {
                 const button = document.createElement('button');
 
                 // opens the company page when the button is clicked

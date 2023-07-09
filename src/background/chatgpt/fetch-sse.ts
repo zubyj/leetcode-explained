@@ -2,7 +2,6 @@
     Reads the data stream of messages sent by the OpenAI Chat API as the response.
 */
 
-
 import { createParser } from '../../../node_modules/eventsource-parser/dist/index.js';
 import { isEmpty } from '../../../node_modules/lodash-es/lodash.js';
 import { streamAsyncIterable } from './stream-async-iterable.js';

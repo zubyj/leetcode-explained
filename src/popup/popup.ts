@@ -220,24 +220,24 @@ async function main(): Promise<void> {
                 fixCodeContainer!.classList.add('hidden');
             }
             else if (data.lastAction === "fix") {
-                analyzeCodeResponse!.classList.add('hidden');
-                fixCodeContainer!.classList.remove('hidden');
+                analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
+                fixCodeContainer && fixCodeContainer.classList.remove('hidden');
             }
         }
     });
 
     // get language from storage and set the classname of the code block to it
     chrome.storage.local.get('language', function (data) {
-        fixCodeResponse!.classList.add('language-' + data.language);
+        fixCodeResponse && fixCodeResponse.classList.add('language-' + data.language);
     });
 
     // get name of current tab and set info message to it if its a leetcode problem
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const tab = tabs[0];
-        if (tab.url!.includes('leetcode.com/problems')) {
+        if (tab.url && tab.url.includes('leetcode.com/problems')) {
             chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title });
-            if (tab.title) {
-                infoMessage!.textContent = tab.title?.split('-')[0];
+            if (tab.title && infoMessage) {
+                infoMessage.textContent = tab.title.split('-')[0];
             }
         }
     });
@@ -250,16 +250,15 @@ async function main(): Promise<void> {
             initActionButton('fix-code-btn', 'fix', chatGPTProvider);
             initCopyButton();
             initClearButton();
-            elements['getComplexityBtn']!.classList.remove('hidden');
-            elements['fixCodeBtn']!.classList.remove('hidden');
+            elements['getComplexityBtn'] && elements['getComplexityBtn'].classList.remove('hidden');
+            elements['fixCodeBtn'] && elements['fixCodeBtn'].classList.remove('hidden');
         }
         else {
             displayLoginMessage();
-
         }
-        elements['openSettingsBtn']!.onclick = () => {
+        elements['openSettingsBtn'] && (elements['openSettingsBtn'].onclick = () => {
             window.location.href = 'settings.html';
-        };
+        });
     }
     catch (error) {
         handleError(error as Error);
@@ -268,22 +267,23 @@ async function main(): Promise<void> {
 
 function initCopyButton(): void {
     const copyButton = elements['copyCodeBtn'];
-    copyButton!.onclick = async () => {
+    if (!copyButton) return;
+    copyButton.onclick = async () => {
         setInfoMessage('Copied Code', 3000);
-        if (fixCodeResponse!.textContent) {
-            await navigator.clipboard.writeText(fixCodeResponse!.textContent);
+        if (fixCodeResponse && fixCodeResponse.textContent) {
+            await navigator.clipboard.writeText(fixCodeResponse.textContent);
         }
     };
-    copyButton!.classList.remove('hidden');
+    copyButton.classList.remove('hidden');
 }
 
 // init clear code button
 function initClearButton(): void {
-    const clearButton = elements['clearCodeBtn']
-    clearButton!.onclick = async () => {
+    const clearButton = elements['clearCodeBtn'];
+    clearButton && (clearButton.onclick = async () => {
         setInfoMessage('Cleared Response', 3000);
         clearResponse();
-    };
+    });
 }
 
 /* Error handling functions */
@@ -297,25 +297,24 @@ function handleError(error: Error): void {
 }
 
 function displayLoginMessage(): void {
-    elements['loginBtn']!.classList.remove('hidden');
-    infoMessage!.textContent =
-        'Log into ChatGPT in your browser to get started';
+    elements['loginBtn'] && elements['loginBtn'].classList.remove('hidden');
+    infoMessage && (infoMessage.textContent = 'Log into ChatGPT in your browser to get started');
 }
 
 function displayErrorMessage(error: string): void {
-    infoMessage!.textContent = error;
+    infoMessage && (infoMessage.textContent = error);
 }
 
 /* Event listeners */
-elements['loginBtn']!.onclick = () => {
+elements['loginBtn'] && (elements['loginBtn'].onclick = () => {
     chrome.runtime.sendMessage({ type: 'OPEN_LOGIN_PAGE' });
-};
+});
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message) => {
     if (message.action === 'setTabInfo') {
         const urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
         if (message.url.match(urlPattern)) {
-            infoMessage!.textContent = message.title;
+            infoMessage && (infoMessage.textContent = message.title);
         }
     }
 });

@@ -21,6 +21,7 @@
             "error",
             "always"
         ],
+        "space-before-function-paren": "off",
         "quotes": [
             "error",
             "single"
@@ -38,6 +39,12 @@
             {
                 "code": 130
             }
+        ],
+        "brace-style": [
+            "off"
+        ],
+        "arrow-parens": [
+            "off"
         ],
         "require-jsdoc": 0,
         "@typescript-eslint/explicit-module-boundary-types": "off"

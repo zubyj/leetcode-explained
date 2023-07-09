@@ -6,7 +6,7 @@ function main() {
         companyName = data.clickedCompany;
         const title: HTMLElement | null = document.getElementById('title');
         if (title) title.textContent = companyName;
-        document.title = companyName + ` Questions`;
+        document.title = companyName + ' Questions';
         addCompanyProblems('Score');
     });
 

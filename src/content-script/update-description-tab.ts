@@ -36,6 +36,7 @@ function showDifficulty() {
         // Finding the difficulty element and then toggling the display.
         const colors = ['bg-olive', 'bg-yellow', 'bg-red'];
         for (const color in colors) {
+            if (!color) continue;
             const element = document.querySelectorAll('div.' + colors[color])[0];
             if (element instanceof HTMLElement) {
                 element.style.display = showDifficulty ? 'block' : 'none';
@@ -106,17 +107,14 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
         if (problem.companies && problem.companies.length > 0) {
             const topCompanies = problem.companies.slice(0, 5);
             // create a button for each company
-            topCompanies.forEach((company: { name: string; score: any; }) => {
+            topCompanies.forEach((company: { name: string; score: number; }) => {
                 const button = document.createElement('button');
-
                 // opens the company page when the button is clicked
                 button.onclick = () => {
                     chrome.runtime.sendMessage({
-                        // passes the company name and score to the background script
-                        action: 'openCompanyPage', company: company.name
+                        action: 'openCompanyPage', company: company.name,
                     });
                 };
-                // on hover, set background color to black
                 button.onmouseover = () => {
                     button.style.color = 'orange';
                 };
@@ -128,7 +126,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
                 button.style.justifyContent = 'center';
 
                 const icon = document.createElement('img');
-                icon.src = `https://logo.clearbit.com/${company.name.toLowerCase().replace(/\s/g, '')}.com`; // replace spaces with nothing
+                icon.src = `https://logo.clearbit.com/${company.name.toLowerCase().replace(/\s/g, '')}.com`;
                 icon.style.height = '12px';
                 icon.style.width = '12px';
                 icon.style.marginRight = '5px';
@@ -150,9 +148,9 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
                 score.style.fontSize = '12px';
                 score.style.fontWeight = 'bold';
                 score.style.fontFamily = 'monospace';
-                score.style.marginLeft = '5px';  // some space between the name and the score
+                score.style.marginLeft = '5px';
                 button.appendChild(score);
-                companyTagContainer!.appendChild(button);
+                companyTagContainer.appendChild(button);
             });
         }
     });

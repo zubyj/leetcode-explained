@@ -2,10 +2,9 @@
     Adds the top 5 youtube solution videos into the solutions tab of a Leetcode problem page.
 */
 
-
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 
-function createStyledElement(tagName: string, styles: {}) {
+function createStyledElement(tagName: string, styles: { [key: string]: string }) {
     const element = document.createElement(tagName);
     for (const [key, value] of Object.entries(styles)) {
         if (typeof element.style[key as any] !== 'undefined') {
@@ -53,7 +52,7 @@ function createControlsContainer(channelName: string) {
         backgroundColor: '#373737',
         border: '1px solid #111111',
         borderRadius: '5px',
-        padding: '5px 10px'
+        padding: '5px 10px',
     };
     const toggleButton = createButton('🔼', 'toggle-video', toggleButtonStyles);
     controlsContainer.append(prevButton, channelElement, nextButton, toggleButton);
@@ -91,9 +90,7 @@ function createVideoContainer(videoUrl: string, channelName: string) {
     return { container, iframe, prevButton, nextButton, toggleButton };
 }
 
-/**
- * Injects the embedded YouTube solution into the solutions tab of the LeetCode problem.
- */
+// Injects the embedded YouTube solution into the solutions tab of the LeetCode problem.
 function addVideo(title: string) {
     const SOLUTIONS_TAB_INDEX = 0;
     const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[SOLUTIONS_TAB_INDEX];
@@ -134,7 +131,9 @@ function addVideo(title: string) {
             toggleButton?.addEventListener('click', () => {
                 const videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
                 if (videoContainer) {
-                    videoContainer.style.paddingBottom = videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}% ` : '0%';
+                    if (videoContainer.style.paddingBottom) {
+                        videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}% ` : '0%';
+                    }
                     if (videoContainer.style.paddingBottom === '0%') {
                         toggleButton.style.transform = 'rotate(180deg)';
                     } else {

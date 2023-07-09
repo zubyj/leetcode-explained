@@ -36,7 +36,7 @@ const storageKeys: { [key: string]: string } = {
 /* Retrieve elements from DOM */
 const elements: { [key: string]: HTMLElement | null } = {};
 for (const key in selectors) {
-    elements[key] = document.getElementById(selectors[key]);
+    if (key) elements[key] = document.getElementById(selectors[key]);
 }
 
 const analyzeCodeResponse = elements['analyzeCodeResponse'];
@@ -110,36 +110,35 @@ function processCode(
     disableAllButtons(true);
     clearResponse();
 
-    const problemTitle = infoMessage!.textContent;
+    const problemTitle = infoMessage && infoMessage.textContent;
 
-    let prompt: string = '';
+    let prompt = '';
     if (action === 'analyze') {
         prompt = `
-        As an experienced software engineer, please analyze the Leetcode problem titled ${problemTitle} and the accompanying code below.
-        Your analysis should be concise and straightforward, providing both time and space complexity in big O notation.
-        Please include a brief, concise explanation (no more than 1-2 lines) for each complexity analysis.
-        Space complexity should not include the output (return value) of the function.
-        Your analysis should be direct and to the point. 
-        The code is provided below.`;
-
-
+        As an experienced software engineer, please analyze the Leetcode problem 
+        titled ${problemTitle} and the accompanying code below. Your analysis should
+        be concise and straightforward, providing both time and space complexity in
+        big O notation. Please include a brief, concise explanation (no more than 1-2 lines)
+        for each complexity analysis. Space complexity should not include the output(return value)
+        of the function. Your analysis should be direct and to the point. The code is provided below.`;
         if (infoMessage) infoMessage.textContent = 'Analyzing code complexity ...';
         if (analyzeCodeResponse) analyzeCodeResponse.classList.remove('hidden');
         if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
     }
     else if (action === 'fix') {
         prompt = `
-        As a coding expert, I require your aid with a specific LeetCode problem called ${problemTitle}.
-        If you are given only the function definition, your task is to generate the best possible solution for this problem.
-        On the other hand, if the code is already provided, there may be some errors that are preventing it from being accepted.
-        Please identify and fix any potential issues in the code.
+        As a coding expert, I require your aid with a specific LeetCode problem
+        called ${problemTitle}. If you are given only the function definition, your
+        task is to generate the best possible solution for this problem. On the other
+        hand, if the code is already provided, there may be some errors that are preventing
+        it from being accepted. Please identify and fix any potential issues in the code.
         If the provided code is already correct and optimized, please return it as is.
-        All code should be returned in plain text format, with no usage of code blocks.
-        Anything other than the code text is not permitted.
-        The code is provided below.`;
+        Only the function definition and code should be returned in plain text format with
+        no usage of code blocks. Anything other than the code text is not permitted.
+        Anything other than the code text is not permitted.`;
         if (infoMessage) infoMessage.textContent = 'Creating the solution ...';
-        analyzeCodeResponse!.classList.add('hidden');
-        fixCodeContainer!.classList.remove('hidden');
+        analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
+        fixCodeContainer && fixCodeContainer.classList.remove('hidden');
     }
     prompt += '\n' + codeText;
 
@@ -157,10 +156,10 @@ function processCode(
                 }
             }
             if (event.type === 'done') {
-                chrome.storage.local.set({ 'analyzeCodeResponse': analyzeCodeResponse!.textContent });
-                chrome.storage.local.set({ 'fixCodeResponse': fixCodeResponse!.textContent });
+                analyzeCodeResponse && chrome.storage.local.set({ 'analyzeCodeResponse': analyzeCodeResponse.textContent });
+                fixCodeResponse && chrome.storage.local.set({ 'fixCodeResponse': fixCodeResponse.textContent });
                 chrome.storage.local.set({ 'lastAction': action });
-                infoMessage!.textContent = problemTitle;
+                infoMessage && (infoMessage.textContent = problemTitle);
                 disableAllButtons(false);
                 (window as any).Prism.highlightAll();
             }
@@ -169,7 +168,6 @@ function processCode(
 }
 
 async function main(): Promise<void> {
-
     await Promise.all([
         getFromStorage(storageKeys.analyzeCodeResponse),
         getFromStorage(storageKeys.fixCodeResponse),
@@ -177,22 +175,20 @@ async function main(): Promise<void> {
         getFromStorage(storageKeys.language),
     ]);
 
-    let fontSizeElement = document.documentElement; // Or any specific element you want to change the font size of
+    const fontSizeElement = document.documentElement; // Or any specific element you want to change the font size of
 
     // Load font size from storage
     chrome.storage.local.get('fontSize', function (data) {
         if (data.fontSize) {
-            // Setting CSS variable --dynamic-font-size with the loaded value
             fontSizeElement.style.setProperty('--dynamic-font-size', `${data.fontSize}px`);
-
             if (parseInt(data.fontSize) >= 18) {
-                let width = (parseInt(data.fontSize) * 24 + 200);
+                const width = (parseInt(data.fontSize) * 24 + 200);
                 document.body.style.width = `${width + 20}px`;
-                fixCodeContainer!.style.maxWidth = `${width}px`;
-                analyzeCodeResponse!.style.maxWidth = `${width}px`;
+                fixCodeContainer && (fixCodeContainer.style.maxWidth = `${width}px`);
+                analyzeCodeResponse && (analyzeCodeResponse.style.maxWidth = `${width}px`);
             }
 
-            let sizes = document.getElementsByClassName('material-button');
+            const sizes = document.getElementsByClassName('material-button');
             for (let i = 0; i < sizes.length; i++) {
                 (sizes[i] as HTMLElement).style.width = `${data.fontSize * 13}px`;
             }
@@ -201,25 +197,25 @@ async function main(): Promise<void> {
 
     chrome.storage.local.get('analyzeCodeResponse', function (data) {
         if (data.analyzeCodeResponse) {
-            analyzeCodeResponse!.textContent = data.analyzeCodeResponse;
+            analyzeCodeResponse && (analyzeCodeResponse.textContent = data.analyzeCodeResponse);
             (window as any).Prism.highlightAll();
         }
     });
 
     chrome.storage.local.get('fixCodeResponse', function (data) {
         if (data.fixCodeResponse) {
-            fixCodeResponse!.textContent = data.fixCodeResponse;
+            fixCodeResponse && (fixCodeResponse.textContent = data.fixCodeResponse);
             (window as any).Prism.highlightAll();
         }
     });
 
     chrome.storage.local.get('lastAction', function (data) {
         if (data.lastAction) {
-            if (data.lastAction === "analyze") {
-                analyzeCodeResponse!.classList.remove('hidden');
-                fixCodeContainer!.classList.add('hidden');
+            if (data.lastAction === 'analyze') {
+                analyzeCodeResponse && analyzeCodeResponse.classList.remove('hidden');
+                fixCodeContainer && fixCodeContainer.classList.add('hidden');
             }
-            else if (data.lastAction === "fix") {
+            else if (data.lastAction === 'fix') {
                 analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
                 fixCodeContainer && fixCodeContainer.classList.remove('hidden');
             }

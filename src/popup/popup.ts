@@ -115,12 +115,11 @@ function processCode(
     let prompt = '';
     if (action === 'analyze') {
         prompt = `
-        As an experienced software engineer, please analyze the Leetcode problem 
-        titled ${problemTitle} and the accompanying code below. Your analysis should
-        be concise and straightforward, providing both time and space complexity in
-        big O notation. Please include a brief, concise explanation (no more than 1-2 lines)
-        for each complexity analysis. Space complexity should not include the output(return value)
-        of the function. Your analysis should be direct and to the point. The code is provided below.`;
+        As an experienced software engineer, please analyze the code complexity of the Leetcode
+        problem titled ${problemTitle} and the accompanying code below. Provide both the time and 
+        space complexity in big O notation. Space complexity should not include 
+        the output (return value) of the function. Your analysis should be direct and concise.
+        The code is provided below.`;
         if (infoMessage) infoMessage.textContent = 'Analyzing code complexity ...';
         if (analyzeCodeResponse) analyzeCodeResponse.classList.remove('hidden');
         if (fixCodeContainer) fixCodeContainer.classList.add('hidden');

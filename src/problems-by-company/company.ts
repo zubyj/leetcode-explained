@@ -116,7 +116,7 @@ function addCompanyProblems(sortMethod: string) {
             scoreCell.style.fontWeight = 'bold';
         });
 
-        function getColorForScore(score) {
+        function getColorForScore(score: number) {
             const percent = score / 100;
             const red = Math.floor(255 * (1 - percent));
             const green = Math.floor(255 * percent);
@@ -158,7 +158,7 @@ function sortBy(column: string) {
         scoreCell.style.fontWeight = 'bold';
     });
 
-    function getColorForScore(score) {
+    function getColorForScore(score: number) {
         const percent = score / 100;
         const red = Math.floor(255 * (1 - percent));
         const green = Math.floor(255 * percent);

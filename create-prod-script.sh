@@ -32,15 +32,14 @@ LICENSE.txt README.md
 rm -rf src/assets/images/screenshots src/assets/images/marquee-promo-tile.png src/assets/images/small-promo-tile.png 
 
 # Remove package, tsconfig, webpack files
-rm -rf node_modules/ package.json package-lock.json tsconfig.json webpack.config.js src/webpack.config.js dist/webpack.config.js
+rm -rf package.json package-lock.json tsconfig.json webpack.config.js src/webpack.config.js dist/webpack.config.js
 
 # Remove all .ts files from src directory
 find src -type f -name "*.ts" -exec rm -f {} \;
 
-# Only keep referenced node_modules
-# You should replace `required-module-1 required-module-2` with your actual required module names
-npm prune --production
+# Remove this file
+rm -rf create-prod-script.sh
 
 # Zip the project directory into leetcode-explained.zip
-zip -r leetcode-explained.zip build/
+zip -r leetcode-explained.zip .
 

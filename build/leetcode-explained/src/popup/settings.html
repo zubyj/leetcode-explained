@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Settings</title>
+    <link rel="stylesheet" href="./popup.css">
+    <script type="module" src="../../dist/popup/settings.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <h2 class="title">Settings</h2>
+        <a id="home-button" class="nav-button">
+            <image src="../assets/images/home-icon.png" alt="Home" />
+        </a>
+    </div>
+    <label for="font-size-select">Display Size</label>
+    <select name="fontSize" id="font-size-select" class="material-button select settings-btn">
+        <option value="12">Extra Small (XS)</option>
+        <option value="14">Small (S)</option>
+        <option value="16">Medium (M)</option>
+        <option value="18">Large (L)</option>
+        <option value="22">Extra Large (XL)</option>
+    </select>
+    <button id="show-company-tags-btn" class="material-button settings-btn">
+        <span id="show-company-tags-icon"> </span> Show Company Tags
+    </button>
+    <button id="show-examples-btn" class="material-button settings-btn">
+        <span id="show-examples-icon"> </span> Show Examples
+    </button>
+</body>
+
+</html>

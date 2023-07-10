@@ -131,9 +131,7 @@ function addVideo(title: string) {
             toggleButton?.addEventListener('click', () => {
                 const videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
                 if (videoContainer) {
-                    if (videoContainer.style.paddingBottom) {
-                        videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}% ` : '0%';
-                    }
+                    videoContainer.style.paddingBottom = videoContainer.style.paddingBottom === '0%' ? `${VIDEO_ASPECT_RATIO}% ` : '0%';
                     if (videoContainer.style.paddingBottom === '0%') {
                         toggleButton.style.transform = 'rotate(180deg)';
                     } else {

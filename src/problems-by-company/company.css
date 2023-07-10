@@ -18,6 +18,24 @@ h1 {
     color: lightcyan;
 }
 
+#navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+#navbar button {
+    margin: 10px;
+}
+
+#navbar a:hover {
+    background-color: #424242;
+    cursor: pointer;
+}
+
 table {
     border-collapse: collapse;
     margin: auto;

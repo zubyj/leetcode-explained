@@ -1,5 +1,9 @@
-let companyName = 'Amazon';
 const solutions = [] as { id: number, title: string, score: number, url: string }[];
+
+let companyName = 'Amazon';
+const companies = [
+    'Facebook', 'Google', 'Microsoft', 'Adobe', 'Apple', 'Bloomberg',
+    'Spotify', 'Cisco'];
 
 function main() {
     chrome.storage.local.get('clickedCompany', function (data: { [key: string]: any; }) {
@@ -13,7 +17,54 @@ function main() {
     document.getElementById('#')?.addEventListener('click', () => sortBy('#'));
     document.getElementById('Title')?.addEventListener('click', () => sortBy('Title'));
     document.getElementById('Score')?.addEventListener('click', () => sortBy('Score'));
+
+    addNavbarLinks();
 }
+
+function addNavbarLinks() {
+    const navbar = document.getElementById('navbar');
+    companies.forEach((company) => {
+        const button = document.createElement('button');
+
+        button.onclick = () => {
+            chrome.storage.local.set({ clickedCompany: company }, () => {
+                location.reload();
+            });
+        };
+        button.onmouseover = () => {
+            button.style.color = 'orange';
+            button.style.cursor = 'pointer';
+        };
+        button.onmouseout = () => {
+            button.style.color = 'white';
+        };
+        button.style.display = 'flex';
+        button.style.alignItems = 'center';
+        button.style.justifyContent = 'center';
+
+        const icon = document.createElement('img');
+        icon.src = `https://logo.clearbit.com/${company.toLowerCase().replace(/\s/g, '')}.com`;
+        icon.style.height = '20px';
+        icon.style.width = '20px';
+        icon.style.marginRight = '20px';
+        button.appendChild(icon);
+
+        button.style.color = '#fff';
+        button.style.minWidth = '150px';
+        button.style.height = '50px';
+        button.style.padding = '5px';
+        button.style.backgroundColor = '#373737';
+        button.style.borderRadius = '10px';
+        button.style.fontSize = '15px';
+
+        const companyName = document.createTextNode(`${company}`);
+        button.appendChild(companyName);
+
+        navbar?.appendChild(button);
+    });
+}
+
+
 
 interface Company {
     name: string;

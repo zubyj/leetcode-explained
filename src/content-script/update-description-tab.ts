@@ -4,7 +4,6 @@
     This includes hiding the company tags, examples, and difficulty of the problem.
 */
 
-
 // shows the examples if the user has enabled it in the settings
 function showExamples() {
     chrome.storage.local.get(['showExamples'], (result) => {

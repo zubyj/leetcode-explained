@@ -2,8 +2,8 @@ const solutions = [] as { id: number, title: string, score: number, url: string 
 
 let companyName = 'Amazon';
 const companies = [
-    'Facebook', 'Google', 'Microsoft', 'Adobe', 'Apple', 'Bloomberg',
-    'Spotify', 'Cisco'];
+    'Adobe', 'Apple', 'Bloomberg', 'Cisco', 'Facebook', 'Google', 'Microsoft', 'Spotify'
+];
 
 function main() {
     chrome.storage.local.get('clickedCompany', function (data: { [key: string]: any; }) {
@@ -108,8 +108,21 @@ function addCompanyProblems(sortMethod: string) {
             row.insertCell(0).innerText = solution.id.toString();
             const titleCell = row.insertCell(1);
             titleCell.innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
-            row.insertCell(2).innerText = solution.score.toString();
+            const scoreCell = row.insertCell(2);
+            scoreCell.innerText = solution.score.toString();
+            const score = solution.score;
+            const color = getColorForScore(score);
+            scoreCell.style.color = color;
+            scoreCell.style.fontWeight = 'bold';
         });
+
+        function getColorForScore(score) {
+            const percent = score / 100;
+            const red = Math.floor(255 * (1 - percent));
+            const green = Math.floor(255 * percent);
+            const blue = 0;
+            return `rgb(${red}, ${green}, ${blue})`;
+        }
     });
 }
 
@@ -132,14 +145,26 @@ function sortBy(column: string) {
         table.deleteRow(1);
     }
 
-    // add sorted rows
     solutions.forEach(solution => {
         const row = table.insertRow(-1);
         row.insertCell(0).innerText = solution.id.toString();
         const titleCell = row.insertCell(1);
         titleCell.innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
-        row.insertCell(2).innerText = solution.score.toString();
+        const scoreCell = row.insertCell(2);
+        scoreCell.innerText = solution.score.toString();
+        const score = solution.score;
+        const color = getColorForScore(score);
+        scoreCell.style.color = color;
+        scoreCell.style.fontWeight = 'bold';
     });
+
+    function getColorForScore(score) {
+        const percent = score / 100;
+        const red = Math.floor(255 * (1 - percent));
+        const green = Math.floor(255 * percent);
+        const blue = 0;
+        return `rgb(${red}, ${green}, ${blue})`;
+    }
 }
 
 /* Run the script */

@@ -1,7 +1,7 @@
 {
   "name": "leetcode-explained",
   "version": "2.0.5",
-  "description": "NPM used to log into GPT-3 using the session token",
+  "description": "NPM used to log into ChatGPT using session token",
   "main": "background.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -49,7 +49,6 @@ showCompanyTagsBtn && showCompanyTagsBtn.addEventListener('click', function () {
         chrome.storage.local.set({ showCompanyTags: showCompanyTags }, () => {
             const showCompanyTagsIcon = document.getElementById('show-company-tags-icon');
             showCompanyTagsIcon && (showCompanyTagsIcon.textContent = showCompanyTags ? '✅' : '❌');
-            // Manually trigger the update description after toggling
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 chrome.tabs.sendMessage(tabs[0].id || 0, { action: 'updateDescription', title: tabs[0].title || 'title' });
             });

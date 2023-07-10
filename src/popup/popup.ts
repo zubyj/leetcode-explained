@@ -1,5 +1,5 @@
 /*
-The logic behind the popup window that appears when the extension icon is clicked.
+Contains the logic behind the popup window that appears when the extension icon is clicked.
 Creates the GPT buttons, sets the prompts, and displays the responses.
 The user can also copy the code to their clipboard, clear the code, and open the settings page.
 */
@@ -133,8 +133,7 @@ function processCode(
         it from being accepted. Please identify and fix any potential issues in the code.
         If the provided code is already correct and optimized, please return it as is.
         Only the function definition and code should be returned in plain text format with
-        no usage of code blocks. Anything other than the code text is not permitted.
-        Anything other than the code text is not permitted.`;
+        no usage of code blocks. Anything other than the code text is not permitted.`;
         if (infoMessage) infoMessage.textContent = 'Creating the solution ...';
         analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer && fixCodeContainer.classList.remove('hidden');

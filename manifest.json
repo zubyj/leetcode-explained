@@ -20,16 +20,16 @@
         "https://chat.openai.com/api/auth/session"
     ],
     "background": {
-        "service_worker": "dist/background/background.js",
+        "service_worker": "dist/src/background/background.js",
         "type": "module"
     },
     "content_scripts": [
         {
             "js": [
-                "dist/content-script/get-gpt-access-token.js",
-                "dist/content-script/get-user-code.js",
-                "dist/content-script/update-solutions-tab.js",
-                "dist/content-script/update-description-tab.js"
+                "dist/src/content-script/get-gpt-access-token.js",
+                "dist/src/content-script/get-user-code.js",
+                "dist/src/content-script/update-solutions-tab.js",
+                "dist/src/content-script/update-description-tab.js"
             ],
             "matches": [
                 "https://leetcode.com/problems/*"
@@ -37,3 +37,4 @@
         }
     ]
 }
+

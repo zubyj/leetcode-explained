@@ -3,8 +3,25 @@
 # Ensure we are in the project root
 cd "$(dirname "$0")"
 
+
+# Removes everything in node_modules except for eventsource-parser and lodash-es
+#
+#
+# Create a temporary directory
+mkdir temp_node_modules
+
+# Copy necessary files to the temporary directory
+cp -r node_modules/eventsource-parser/dist temp_node_modules/
+cp -r node_modules/lodash-es temp_node_modules/
+
 # Remove the node_modules directory
-rm -rf node_modules/
+rm -rf node_modules
+
+# Rename the temporary directory to node_modules
+mv temp_node_modules node_modules
+
+
+
 
 # Remove dev files not used in production
 rm -rf .git .gitignore docs build src/background src/content-script \

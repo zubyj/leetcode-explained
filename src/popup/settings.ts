@@ -45,7 +45,7 @@ fontSizeSelect.onchange = function (event: Event) {
 const showCompanyTagsBtn = document.getElementById('show-company-tags-btn');
 showCompanyTagsBtn && showCompanyTagsBtn.addEventListener('click', function () {
     chrome.storage.local.get(['showCompanyTags'], (result) => {
-        const showCompanyTags = result.showCompanyTags;
+        const showCompanyTags = !result.showCompanyTags;
         chrome.storage.local.set({ showCompanyTags: showCompanyTags }, () => {
             const showCompanyTagsIcon = document.getElementById('show-company-tags-icon');
             showCompanyTagsIcon && (showCompanyTagsIcon.textContent = showCompanyTags ? '✅' : '❌');
@@ -56,10 +56,10 @@ showCompanyTagsBtn && showCompanyTagsBtn.addEventListener('click', function () {
     });
 });
 
-const showExamplesBtn = document.getElementById('show-examples-btn');
+let showExamplesBtn = document.getElementById('show-examples-btn');
 showExamplesBtn && showExamplesBtn.addEventListener('click', function () {
     chrome.storage.local.get(['showExamples'], (result) => {
-        const showExamples = result.showExamples;
+        const showExamples = !result.showExamples;
         chrome.storage.local.set({ showExamples: showExamples }, () => {
             const showExamplesIcon = document.getElementById('show-examples-icon');
             showExamplesIcon && (showExamplesIcon.textContent = showExamples ? '✅' : '❌');
@@ -74,7 +74,7 @@ showExamplesBtn && showExamplesBtn.addEventListener('click', function () {
 const showDifficultyBtn = document.getElementById('show-difficulty-btn');
 showDifficultyBtn && showDifficultyBtn.addEventListener('click', function () {
     chrome.storage.local.get(['showDifficulty'], (result) => {
-        const showDifficulty = result.showDifficulty;
+        const showDifficulty = !result.showDifficulty;
         chrome.storage.local.set({ showDifficulty: showDifficulty }, () => {
             const showDifficultyIcon = document.getElementById('show-difficulty-icon');
             if (showDifficultyIcon) showDifficultyIcon.textContent = showDifficulty ? '✅' : '❌';

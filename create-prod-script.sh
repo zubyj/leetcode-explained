@@ -13,6 +13,7 @@ cp -r node_modules/eventsource-parser/dist prod/node_modules/eventsource-parser
 cp -r node_modules/lodash-es/ prod/node_modules/lodash-es
 cp -r src/popup prod/src
 cp -r src/assets prod/src
+cp -r src/problems-by-company prod/src
 
 # Remove all .ts files from build directory
 find prod/src -type f -name "*.ts" -exec rm -f {} \;

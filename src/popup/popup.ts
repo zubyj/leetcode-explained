@@ -102,6 +102,12 @@ async function getCodeFromActiveTab(): Promise<string | null> {
     });
 }
 
+function timeout(ms: number): Promise<never> {
+    return new Promise((_, reject) =>
+        setTimeout(() => reject(new Error(`Operation timed out after ${ms} ms`)), ms)
+    );
+}
+
 function processCode(
     chatGPTProvider: ChatGPTProvider,
     codeText: string,
@@ -116,10 +122,10 @@ function processCode(
     if (action === 'analyze') {
         prompt = `
         As an experienced software engineer, please analyze the code complexity of the Leetcode
-        problem titled ${problemTitle} and the accompanying code below. Provide both the time and 
-        space complexity in big O notation. Space complexity should not include 
-        the output (return value) of the function. Your analysis should be direct and concise.
-        The code is provided below.`;
+        problem titled ${problemTitle} and the accompanying code below. Return only the time
+        and space complexity of the function in big O notation. The space complexity should not
+        include the output (return value) of the function. Your analysis should be direct and concise.
+        You can provide a one sentence explanation of the time and space complexity.`;
         if (infoMessage) infoMessage.textContent = 'Analyzing code complexity ...';
         if (analyzeCodeResponse) analyzeCodeResponse.classList.remove('hidden');
         if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
@@ -133,35 +139,43 @@ function processCode(
         it from being accepted. Please identify and fix any potential issues in the code.
         If the provided code is already correct and optimized, please return it as is.
         Only the function definition and code should be returned in plain text format with
-        no usage of code blocks. Anything other than the code text is not permitted.`;
+        no usage of code blocks. Do not return any code comments. Anything other than the
+        code text is not permitted.`;
         if (infoMessage) infoMessage.textContent = 'Creating the solution ...';
         analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer && fixCodeContainer.classList.remove('hidden');
     }
-    prompt += '\n' + codeText;
+    prompt += 'The code is provided below\n' + codeText;
 
     let response = '';
-    chatGPTProvider.generateAnswer({
-        prompt: prompt,
-        onEvent: (event: { type: string; data?: { text: string } }) => {
-            if (event.type === 'answer' && event.data) {
-                response += event.data.text;
-                if (action === 'fix' && fixCodeResponse) {
-                    fixCodeResponse.textContent = response;
+    Promise.race([
+        chatGPTProvider.generateAnswer({
+            prompt: prompt,
+            onEvent: (event: { type: string; data?: { text: string } }) => {
+                if (event.type === 'answer' && event.data) {
+                    response += event.data.text;
+                    if (action === 'fix' && fixCodeResponse) {
+                        fixCodeResponse.textContent = response;
+                    }
+                    else if (action === 'analyze' && analyzeCodeResponse) {
+                        analyzeCodeResponse.textContent = response;
+                    }
                 }
-                else if (action === 'analyze' && analyzeCodeResponse) {
-                    analyzeCodeResponse.textContent = response;
+                if (event.type === 'done') {
+                    analyzeCodeResponse && chrome.storage.local.set({ 'analyzeCodeResponse': analyzeCodeResponse.textContent });
+                    fixCodeResponse && chrome.storage.local.set({ 'fixCodeResponse': fixCodeResponse.textContent });
+                    chrome.storage.local.set({ 'lastAction': action });
+                    infoMessage && (infoMessage.textContent = problemTitle);
+                    disableAllButtons(false);
+                    (window as any).Prism.highlightAll();
                 }
-            }
-            if (event.type === 'done') {
-                analyzeCodeResponse && chrome.storage.local.set({ 'analyzeCodeResponse': analyzeCodeResponse.textContent });
-                fixCodeResponse && chrome.storage.local.set({ 'fixCodeResponse': fixCodeResponse.textContent });
-                chrome.storage.local.set({ 'lastAction': action });
-                infoMessage && (infoMessage.textContent = problemTitle);
-                disableAllButtons(false);
-                (window as any).Prism.highlightAll();
-            }
-        },
+            },
+        }),
+        timeout(12000)
+    ]).catch((error) => {
+        infoMessage && (infoMessage.textContent = 'The request timed out. Please try again.');
+        console.error(error);
+        disableAllButtons(false);
     });
 }
 

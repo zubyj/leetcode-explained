@@ -4,11 +4,11 @@
 cd "$(dirname "$0")"
 
 # Create necessary directories in build
-mkdir -p prod prod/dist prod/src prod/node_modules prod/node_modules/eventsource-parser/dist
+mkdir -p prod prod/src prod/node_modules prod/node_modules/eventsource-parser/dist
 
 # Copy necessary files to the build directory
 cp manifest.json prod
-cp -r dist prod/dist
+cp -r dist prod
 cp -r node_modules/eventsource-parser/dist prod/node_modules/eventsource-parser/dist
 cp -r node_modules/lodash-es/ prod/node_modules/lodash-es
 cp -r src/popup prod/src

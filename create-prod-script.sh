@@ -4,21 +4,21 @@
 cd "$(dirname "$0")"
 
 # Create necessary directories in build
-mkdir -p prod prod/node_modules prod/src/assets/images prod/src/popup
+mkdir -p prod prod/dist prod/src prod/node_modules
 
 # Copy necessary files to the build directory
-cp -r dist/* prod
+cp manifest.json prod
+cp -r dist/src prod/dist
 cp -r node_modules/eventsource-parser/ prod/node_modules/eventsource-parser 
 cp -r node_modules/lodash-es/ prod/node_modules/lodash-es
-cp manifest.json prod
-cp src/assets prod  # copy all files under assets
-cp -r src prod  # copy all files under popup
-
-# Find and copy all .html, .css and .js files from src directory to build
-find src -type f \( -iname \*.html -o -iname \*.css -o -iname \*.js \) -exec cp --parents \{\} build/ \;
+cp -r src/popup prod/src
+cp -r src/assets prod/src
 
 # Remove all .ts files from build directory
 find prod/src -type f -name "*.ts" -exec rm -f {} \;
+
+# Remove src/assets/images/screenshots directory from build directory
+rm -rf prod/src/assets/images/screenshots
 
 # Zip the build directory into leetcode-explained.zip
 cd prod

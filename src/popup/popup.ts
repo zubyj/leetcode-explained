@@ -4,6 +4,8 @@ Creates the GPT buttons, sets the prompts, and displays the responses.
 The user can also copy the code to their clipboard, clear the code, and open the settings page.
 */
 
+var { browser } = require('webextension-polyfill-ts');
+
 import {
     getChatGPTAccessToken,
     ChatGPTProvider,
@@ -57,8 +59,8 @@ function clearResponse(): void {
     if (fixCodeResponse) fixCodeResponse.textContent = '';
     if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
     if (analyzeCodeResponse) analyzeCodeResponse.classList.add('hidden');
-    chrome.storage.local.set({ 'fixCodeResponse': '' });
-    chrome.storage.local.set({ 'analyzeCodeResponse': '' });
+    browser.storage.local.set({ 'fixCodeResponse': '' });
+    browser.storage.local.set({ 'analyzeCodeResponse': '' });
 }
 
 function setInfoMessage(message: string, duration: number) {
@@ -86,12 +88,12 @@ function initActionButton(buttonId: string, action: string, chatGPTProvider: Cha
 
 async function getCodeFromActiveTab(): Promise<string | null> {
     return new Promise<string | null>((resolve) => {
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-            chrome.tabs.sendMessage(
+        browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            browser.tabs.sendMessage(
                 tabs[0].id as number,
                 { type: 'getCode' },
                 (response) => {
-                    if (chrome.runtime.lastError) {
+                    if (browser.runtime.lastError) {
                         resolve(null);
                     } else {
                         resolve(response.data);
@@ -162,9 +164,9 @@ function processCode(
                     }
                 }
                 if (event.type === 'done') {
-                    analyzeCodeResponse && chrome.storage.local.set({ 'analyzeCodeResponse': analyzeCodeResponse.textContent });
-                    fixCodeResponse && chrome.storage.local.set({ 'fixCodeResponse': fixCodeResponse.textContent });
-                    chrome.storage.local.set({ 'lastAction': action });
+                    analyzeCodeResponse && browser.storage.local.set({ 'analyzeCodeResponse': analyzeCodeResponse.textContent });
+                    fixCodeResponse && browser.storage.local.set({ 'fixCodeResponse': fixCodeResponse.textContent });
+                    browser.storage.local.set({ 'lastAction': action });
                     infoMessage && (infoMessage.textContent = problemTitle);
                     disableAllButtons(false);
                     (window as any).Prism.highlightAll();
@@ -190,7 +192,7 @@ async function main(): Promise<void> {
     const fontSizeElement = document.documentElement; // Or any specific element you want to change the font size of
 
     // Load font size from storage
-    chrome.storage.local.get('fontSize', function (data) {
+    browser.storage.local.get('fontSize', function (data) {
         if (data.fontSize) {
             fontSizeElement.style.setProperty('--dynamic-font-size', `${data.fontSize}px`);
             if (parseInt(data.fontSize) >= 18) {
@@ -207,21 +209,21 @@ async function main(): Promise<void> {
         }
     });
 
-    chrome.storage.local.get('analyzeCodeResponse', function (data) {
+    browser.storage.local.get('analyzeCodeResponse', function (data) {
         if (data.analyzeCodeResponse) {
             analyzeCodeResponse && (analyzeCodeResponse.textContent = data.analyzeCodeResponse);
             (window as any).Prism.highlightAll();
         }
     });
 
-    chrome.storage.local.get('fixCodeResponse', function (data) {
+    browser.storage.local.get('fixCodeResponse', function (data) {
         if (data.fixCodeResponse) {
             fixCodeResponse && (fixCodeResponse.textContent = data.fixCodeResponse);
             (window as any).Prism.highlightAll();
         }
     });
 
-    chrome.storage.local.get('lastAction', function (data) {
+    browser.storage.local.get('lastAction', function (data) {
         if (data.lastAction) {
             if (data.lastAction === 'analyze') {
                 analyzeCodeResponse && analyzeCodeResponse.classList.remove('hidden');
@@ -235,15 +237,15 @@ async function main(): Promise<void> {
     });
 
     // get language from storage and set the classname of the code block to it
-    chrome.storage.local.get('language', function (data) {
+    browser.storage.local.get('language', function (data) {
         fixCodeResponse && fixCodeResponse.classList.add('language-' + data.language);
     });
 
     // get name of current tab and set info message to it if its a leetcode problem
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const tab = tabs[0];
         if (tab.url && tab.url.includes('leetcode.com/problems')) {
-            chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title });
+            browser.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title });
             if (tab.title && infoMessage) {
                 infoMessage.textContent = tab.title.split('-')[0];
             }
@@ -315,10 +317,10 @@ function displayErrorMessage(error: string): void {
 
 /* Event listeners */
 elements['loginBtn'] && (elements['loginBtn'].onclick = () => {
-    chrome.runtime.sendMessage({ type: 'OPEN_LOGIN_PAGE' });
+    browser.runtime.sendMessage({ type: 'OPEN_LOGIN_PAGE' });
 });
 
-chrome.runtime.onMessage.addListener((message) => {
+browser.runtime.onMessage.addListener((message) => {
     if (message.action === 'setTabInfo') {
         const urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
         if (message.url.match(urlPattern)) {
@@ -330,7 +332,7 @@ chrome.runtime.onMessage.addListener((message) => {
 /* Utility functions */
 function getFromStorage(key: string) {
     return new Promise((resolve) => {
-        chrome.storage.local.get(key, (data) => resolve(data[key]));
+        browser.storage.local.get(key, (data) => resolve(data[key]));
     });
 }
 

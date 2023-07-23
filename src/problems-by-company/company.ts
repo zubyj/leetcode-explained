@@ -1,3 +1,4 @@
+var { browser } = require("webextension-polyfill-ts");
 const solutions = [] as { id: number, title: string, score: number, url: string }[];
 
 let companyName = 'Amazon';
@@ -6,7 +7,7 @@ const companies = [
 ];
 
 function main() {
-    chrome.storage.local.get('clickedCompany', function (data: { [key: string]: any; }) {
+    browser.storage.local.get('clickedCompany', function (data: { [key: string]: any; }) {
         companyName = data.clickedCompany;
         const title: HTMLElement | null = document.getElementById('title');
         if (title) title.textContent = companyName;
@@ -27,7 +28,7 @@ function addNavbarLinks() {
         const button = document.createElement('button');
 
         button.onclick = () => {
-            chrome.storage.local.set({ clickedCompany: company }, () => {
+            browser.storage.local.set({ clickedCompany: company }, () => {
                 location.reload();
             });
         };
@@ -80,8 +81,9 @@ interface Question {
 interface LeetcodeProblems {
     questions: Question[];
 }
+
 function addCompanyProblems(sortMethod: string) {
-    chrome.storage.local.get('leetcodeProblems', function (items: { [key: string]: any; }) {
+    browser.storage.local.get('leetcodeProblems', function (items: { [key: string]: any; }) {
         const data = items as { leetcodeProblems: LeetcodeProblems };
         data.leetcodeProblems.questions.forEach((question: Question) => {
             if (!question.companies) return;

@@ -133,19 +133,15 @@ function processCode(
     else if (action === 'fix') {
         prompt = `
         As a coding expert, I require your aid with a specific LeetCode problem
-        called ${problemTitle}. If you are given only the function definition, your
-        task is to generate the best possible solution for this problem. On the other
-        hand, if the code is already provided, there may be some errors that are preventing
-        it from being accepted. Please identify and fix any potential issues in the code.
-        If the provided code is already correct and optimized, please return it as is.
-        Only the function definition and code should be returned in plain text format with
-        no usage of code blocks. Do not return any code comments. Anything other than the
-        code text is not permitted.`;
+        called ${problemTitle}. Generate the best possible, optimized solution 
+        for this problem. Only the function definition and code should be returned
+        in plain text format with no usage of code blocks. Do not return any code comments.
+        Anything other than the code text is not permitted.`;
         if (infoMessage) infoMessage.textContent = 'Creating the solution ...';
         analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer && fixCodeContainer.classList.remove('hidden');
     }
-    prompt += 'The code is provided below\n' + codeText;
+    prompt += 'Copy the same function definition. Ignore my code\n' + codeText;
 
     let response = '';
     Promise.race([

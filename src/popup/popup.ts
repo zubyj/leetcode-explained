@@ -137,13 +137,14 @@ function processCode(
         As a coding expert, I require your aid with a specific LeetCode problem
         called ${problemTitle}. Generate the best possible, optimized solution 
         for this problem. Only the function definition and code should be returned
-        in plain text format with no usage of code blocks. Do not return any code comments.
-        Anything other than the code text is not permitted.`;
-        if (infoMessage) infoMessage.textContent = 'Creating the solution ...';
+        in plain text format with no usage of code blocks. Code comments are optional.
+        Anything other than the code text is not permitted. I should be able to copy
+        and paste the code into the LeetCode editor and run it successfully.`;
+        if (infoMessage) infoMessage.textContent = 'Generating solution code ...';
         analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer && fixCodeContainer.classList.remove('hidden');
     }
-    prompt += 'Copy the same function definition. Ignore my code\n' + codeText;
+    prompt += 'Heres the problem description, examples, constraints and my code. Note that code might not exist and may be incorrect.\n' + codeText;
 
     let response = '';
     Promise.race([

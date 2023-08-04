@@ -1,7 +1,7 @@
 # Leetcode Explained 
 ![Downloads](https://img.shields.io/chrome-web-store/users/cofoinjfjcpgcjiinjhcpomcjoalijbe)
-![Version](https://img.shields.io/chrome-web-store/v/cofoinjfjcpgcjiinjhcpomcjoalijbe) 
 ![Rating](https://img.shields.io/chrome-web-store/rating/cofoinjfjcpgcjiinjhcpomcjoalijbe)
+![Version](https://img.shields.io/chrome-web-store/v/cofoinjfjcpgcjiinjhcpomcjoalijbe) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A free, open source browser extension that adds video solutions, company tags, and GPT code analysis into each Leetcode problem
@@ -52,10 +52,8 @@ We welcome contributions! Please see the [CONTRIBUTING.md](docs/CONTRIBUTING.md)
 ### Screenshots
 
 <img src="src/assets/images/screenshots/add-video.png" alt="Add Video" width="600"/>
-
-
+<img src="src/assets/images/screenshots/get-company-tags.png" alt="Company Tags" width="600"/>
 <img src="src/assets/images/screenshots/get-complexity.png" alt="Code Complexity" width="600"/>
-
 <img src="src/assets/images/screenshots/fix-code.png" alt="Fix Code" width="600"/>
 
 

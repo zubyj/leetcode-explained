@@ -1,9 +1,7 @@
-var { browser } = require("webextension-polyfill-ts");
-
 // Reads the code from the user's code editor and sends it to the background script
 
 // On get user code request, read & send the code as a response
-browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.type === 'getCode') {
         sendResponse({ data: getCode() });
     }

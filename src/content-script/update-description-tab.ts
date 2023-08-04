@@ -4,11 +4,9 @@
     This includes hiding the company tags, examples, and difficulty of the problem.
 */
 
-var { browser } = require('webextension-polyfill-ts');
-
 // shows the examples if the user has enabled it in the settings
 function showExamples() {
-    browser.storage.local.get(['showExamples'], (result) => {
+    chrome.storage.local.get(['showExamples'], (result) => {
         const showExamples = result.showExamples;
         const descriptionContainer = document.querySelector('div._1l1MA') as Element;
         if (!descriptionContainer) {
@@ -31,7 +29,7 @@ function showExamples() {
 
 // show the leetcode difficulty if the user has enabled it in the settings
 function showDifficulty() {
-    browser.storage.local.get(['showDifficulty'], (result) => {
+    chrome.storage.local.get(['showDifficulty'], (result) => {
         const showDifficulty = result.showDifficulty;
 
         // Finding the difficulty element and then toggling the display.
@@ -48,7 +46,7 @@ function showDifficulty() {
 
 // show the company tags if the user has enabled it in the settings
 function showCompanyTags(problemTitle: string) {
-    browser.storage.local.get(['showCompanyTags'], (result) => {
+    chrome.storage.local.get(['showCompanyTags'], (result) => {
         const showCompanyTags = result.showCompanyTags;
         let companyTagContainer = document.getElementById('companyTagContainer');
 
@@ -103,7 +101,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
         }>;
     }
 
-    browser.storage.local.get(['leetcodeProblems'], (result) => {
+    chrome.storage.local.get(['leetcodeProblems'], (result) => {
         const problem = result.leetcodeProblems.questions.find((problem: problem) => problem.title === problemTitle);
         if (problem.companies && problem.companies.length > 0) {
             const topCompanies = problem.companies.slice(0, 5);
@@ -112,7 +110,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
                 const button = document.createElement('button');
                 // opens the company page when the button is clicked
                 button.onclick = () => {
-                    browser.runtime.sendMessage({
+                    chrome.runtime.sendMessage({
                         action: 'openCompanyPage', company: company.name,
                     });
                 };
@@ -159,7 +157,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
     return companyTagContainer;
 }
 
-browser.runtime.onMessage.addListener((request) => {
+chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'updateDescription') {
         showExamples();
         showCompanyTags(request.title.split('-')[0].trim());

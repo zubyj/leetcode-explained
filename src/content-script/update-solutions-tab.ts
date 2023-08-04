@@ -2,8 +2,6 @@
     Adds the top 5 youtube solution videos into the solutions tab of a Leetcode problem page.
 */
 
-var { browser } = require('webextension-polyfill-ts');
-
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 
 function createStyledElement(tagName: string, styles: { [key: string]: string }) {
@@ -101,7 +99,7 @@ function addVideo(title: string) {
     const existingContainer = solutionsTab.parentElement?.querySelector('div.video-container');
     if (existingContainer) return;
 
-    browser.storage.local.get(['leetcodeProblems'], (result) => {
+    chrome.storage.local.get(['leetcodeProblems'], (result) => {
         const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
         if (problem?.videos?.length) {
             let currentVideoIndex = 0;
@@ -167,7 +165,7 @@ function updateVideo(container: HTMLDivElement, videoUrl: string, channelName: s
     }
 }
 
-browser.runtime.onMessage.addListener((request) => {
+chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'addVideo') {
         const title = request.title.split('-')[0].trim();
         addVideo(title);

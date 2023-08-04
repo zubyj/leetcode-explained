@@ -51,7 +51,7 @@ function showRating(problemTitle: string) {
             chrome.storage.local.get(['leetcodeProblems'], (result) => {
                 const problem = result.leetcodeProblems.questions.find((problem: problem) => problem.title === problemTitle);
 
-                let ratingElement = document.getElementById('ratingElement');
+                let ratingElement = document.getElementById('rating');
 
                 if (ratingElement) {
                     // update the existing rating element
@@ -59,7 +59,7 @@ function showRating(problemTitle: string) {
                 } else {
                     // create a new rating element
                     ratingElement = document.createElement('div');
-                    ratingElement.id = 'ratingElement';
+                    ratingElement.id = 'rating';
                     ratingElement.textContent = problem.rating;
                     ratingElement.style.fontSize = '12px';
                     ratingElement.style.color = 'lightcyan';
@@ -71,6 +71,13 @@ function showRating(problemTitle: string) {
                     difficultyContainer.insertBefore(ratingElement, difficultyContainer.children[0].nextSibling);
                 }
             });
+        }
+        else {
+            const ratingElement = document.getElementById('rating');
+            if (ratingElement) {
+                ratingElement.style.display = 'none';
+                ratingElement.remove();
+            }
         }
     });
 }

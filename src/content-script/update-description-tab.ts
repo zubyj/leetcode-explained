@@ -53,6 +53,14 @@ function showRating(problemTitle: string) {
 
                 let ratingElement = document.getElementById('rating');
 
+                if (!problem || !problem.rating) {
+                    if (ratingElement) {
+                        ratingElement.style.display = 'none';
+                        ratingElement.remove();
+                    }
+                    return;
+                }
+
                 if (ratingElement) {
                     // update the existing rating element
                     ratingElement.textContent = problem.rating;

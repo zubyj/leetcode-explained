@@ -116,6 +116,8 @@ function processCode(
     disableAllButtons(true);
     clearResponse();
 
+
+
     const problemTitle = infoMessage && infoMessage.textContent;
 
     let prompt = '';

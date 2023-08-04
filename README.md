@@ -4,19 +4,20 @@
 ![Rating](https://img.shields.io/chrome-web-store/rating/cofoinjfjcpgcjiinjhcpomcjoalijbe)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[![Badge](src/assets/images/badge.png)](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
-
 A free, open source browser extension that adds video solutions, company tags, and GPT code analysis into each Leetcode problem
 
-### 4 🔥 Features
+[<img src="https://user-images.githubusercontent.com/3750161/214147732-c75e96a4-48a4-4b64-b407-c2402e899a75.PNG" height="40" alt="Chrome">](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
+[<img src="https://user-images.githubusercontent.com/3750161/214148610-acdef778-753e-470e-8765-6cc97bca85ed.png" height="40" alt="Firefox">](https://addons.mozilla.org/en-US/firefox/addon/leetcode-explained/)
+[<img src="https://user-images.githubusercontent.com/3750161/233201810-d1026855-0482-44c8-b1ec-c7247134473e.png" height="40" alt="Chrome">](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
+### Features
 
-1️⃣ Adds the top 5 youtube solution videos into each problems [Solutions tab](https://leetcode.com/problems/two-sum/solutions)
+1️⃣ Adds the top 5 youtube solution videos into each problems [solutions tab](https://leetcode.com/problems/two-sum/solutions)
 
-2️⃣ Adds the top 5 companies that ask each problem into each problems [Descriptions tab](https://leetcode.com/problems/two-sum/description)
+2️⃣ Adds the top 5 companies that ask each problem into each problems [description tab](https://leetcode.com/problems/two-sum/description)
 
 3️⃣ Reads your code and tells you the time and space complexity
 
-4️⃣ Reads your code, fixes any bugs, and returns the corrected solution
+4️⃣ Generates the optimized code for the given problem
 
 Features 3️⃣ and 4️⃣ require  login to chat.openai.com (ChatGPT) in your browser.
 

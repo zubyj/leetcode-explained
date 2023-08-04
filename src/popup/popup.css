@@ -129,6 +129,14 @@ a:hover {
 
 .settings-btn {
     width: 250px;
+    display: flex;
+    justify-content: start;
+}
+
+.settings-btn span {
+    margin-left: 20px;
+    margin-right: 25px;
+
 }
 
 #settings-menu {

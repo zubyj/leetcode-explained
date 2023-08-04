@@ -20,6 +20,7 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.local.set({ showExamples: true });
     chrome.storage.local.set({ showDifficulty: true });
     chrome.storage.local.set({ clickedCompany: 'Amazon' });
+    chrome.storage.local.set({ showRating: true });
 });
 
 chrome.runtime.onMessage.addListener(

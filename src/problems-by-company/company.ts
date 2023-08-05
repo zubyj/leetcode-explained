@@ -5,7 +5,7 @@ const companies = [
     'Adobe', 'Apple', 'Bloomberg', 'Cisco', 'Facebook', 'Google', 'Microsoft', 'Spotify'
 ];
 
-function main() {
+async function main() {
     chrome.storage.local.get('clickedCompany', function (data: { [key: string]: any; }) {
         companyName = data.clickedCompany;
         const title: HTMLElement | null = document.getElementById('title');
@@ -19,6 +19,7 @@ function main() {
     document.getElementById('Score')?.addEventListener('click', () => sortBy('Score'));
 
     addNavbarLinks();
+    await addCompaniesToSelect();
 }
 
 function addNavbarLinks() {
@@ -61,10 +62,9 @@ function addNavbarLinks() {
         button.appendChild(companyName);
 
         navbar?.appendChild(button);
+
     });
 }
-
-
 
 interface Company {
     name: string;
@@ -124,6 +124,39 @@ function addCompanyProblems(sortMethod: string) {
             const blue = 0;
             return `rgb(${red}, ${green}, ${blue})`;
         }
+    });
+}
+
+async function addCompaniesToSelect() {
+    const companySelect = document.getElementById('companySelect') as HTMLSelectElement;
+
+    let uniqueCompanies = new Set<string>();
+
+    const data = await new Promise<{ leetcodeProblems: LeetcodeProblems }>(resolve => {
+        chrome.storage.local.get('leetcodeProblems', function (items: { [key: string]: any; }) {
+            resolve(items as { leetcodeProblems: LeetcodeProblems });
+        });
+    });
+
+    data.leetcodeProblems.questions.forEach((question: Question) => {
+        if (question.companies) {
+            question.companies.forEach((company: Company) => {
+                uniqueCompanies.add(company.name);
+            });
+        }
+    });
+
+    uniqueCompanies.forEach((company) => {
+        const option = document.createElement('option');
+        option.value = company;
+        option.text = company;
+        companySelect.appendChild(option);
+    });
+
+    companySelect.addEventListener('change', () => {
+        chrome.storage.local.set({ clickedCompany: companySelect.value }, () => {
+            location.reload();
+        });
     });
 }
 

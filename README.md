@@ -19,6 +19,7 @@ A free, open source browser extension that adds video solutions, company tags, a
 
 4️⃣ Generates the optimized code for the given problem
 
+
 Features 3️⃣ and 4️⃣ require  login to chat.openai.com (ChatGPT) in your browser.
 
 ### ⚙️ Installation

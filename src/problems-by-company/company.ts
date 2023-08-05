@@ -173,8 +173,6 @@ async function addCompaniesToSelect() {
     companySelect.style.maxHeight = '500px';
 }
 
-
-
 function sortBy(column: string) {
     if (column === 'Score') {
         solutions.sort((a, b) => b.score - a.score);

@@ -51,12 +51,13 @@ function addNavbarLinks() {
         button.appendChild(icon);
 
         button.style.color = '#fff';
-        button.style.minWidth = '150px';
-        button.style.height = '50px';
+        button.style.minWidth = '130px';
+        button.style.height = '40px';
         button.style.padding = '5px';
+        button.style.border = '3px solid #373737';
         button.style.backgroundColor = '#373737';
         button.style.borderRadius = '10px';
-        button.style.fontSize = '15px';
+        button.style.fontSize = '12px';
 
         const companyName = document.createTextNode(`${company}`);
         button.appendChild(companyName);
@@ -130,6 +131,10 @@ function addCompanyProblems(sortMethod: string) {
 async function addCompaniesToSelect() {
     const companySelect = document.getElementById('companySelect') as HTMLSelectElement;
 
+    companySelect.style.backgroundColor = '#373737';
+    companySelect.style.color = '#fff';
+    companySelect.style.padding = '5px';
+
     let uniqueCompanies = new Set<string>();
 
     const data = await new Promise<{ leetcodeProblems: LeetcodeProblems }>(resolve => {
@@ -146,7 +151,10 @@ async function addCompaniesToSelect() {
         }
     });
 
-    uniqueCompanies.forEach((company) => {
+    // Convert the Set to an Array and sort it alphabetically
+    const sortedCompanies = Array.from(uniqueCompanies).sort();
+
+    sortedCompanies.forEach((company) => {
         const option = document.createElement('option');
         option.value = company;
         option.text = company;
@@ -161,7 +169,10 @@ async function addCompaniesToSelect() {
             location.reload();
         });
     });
+
+    companySelect.style.maxHeight = '500px';
 }
+
 
 
 function sortBy(column: string) {

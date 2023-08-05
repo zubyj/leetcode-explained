@@ -150,6 +150,9 @@ async function addCompaniesToSelect() {
         const option = document.createElement('option');
         option.value = company;
         option.text = company;
+        if (company === companyName) {
+            option.selected = true;
+        }
         companySelect.appendChild(option);
     });
 
@@ -159,6 +162,7 @@ async function addCompaniesToSelect() {
         });
     });
 }
+
 
 function sortBy(column: string) {
     if (column === 'Score') {

@@ -78,7 +78,7 @@ function initActionButton(buttonId: string, action: string, chatGPTProvider: Cha
         if (codeText) {
             processCode(chatGPTProvider, codeText, action);
         } else {
-            const errorMessage = 'Unable to retrieve code. Please navigate to a Leetcode problem page and refresh the page.';
+            const errorMessage = "Unable to retrieve code. Please open a Leetcode problem's description page and refresh the page.";
             setInfoMessage(errorMessage, 5000);
         }
     };
@@ -116,8 +116,6 @@ function processCode(
     disableAllButtons(true);
     clearResponse();
 
-
-
     const problemTitle = infoMessage && infoMessage.textContent;
 
     let prompt = '';
@@ -127,24 +125,30 @@ function processCode(
         problem titled ${problemTitle} and the accompanying code below. Return only the time
         and space complexity of the function in big O notation. The space complexity should not
         include the output (return value) of the function. Your analysis should be direct and concise.
-        You can provide a one sentence explanation of the time and space complexity.`;
+        You can provide a one sentence explanation of the time and space complexity. The problem
+        description and code are provided below\n. ${codeText}`;
         if (infoMessage) infoMessage.textContent = 'Analyzing code complexity ...';
         if (analyzeCodeResponse) analyzeCodeResponse.classList.remove('hidden');
         if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
     }
     else if (action === 'fix') {
+
+        // The prompt for fixing the users code 
         prompt = `
-        As a coding expert, I require your aid with a specific LeetCode problem
-        called ${problemTitle}. Generate the best possible, optimized solution 
-        for this problem. Only the function definition and code should be returned
-        in plain text format with no usage of code blocks. Code comments are optional.
-        Anything other than the code text is not permitted. I should be able to copy
-        and paste the code into the LeetCode editor and run it successfully.`;
+        As a coding professional, I need your expertise with a specific LeetCode problem named ${problemTitle}.
+        Please follow the instructions:
+        1. If no code is provided: Generate an efficient and accurate solution for the problem.
+        2. If code is provided and contains errors: Identify the issues, correct them, and optimize the code if possible.
+        3. If the provided code is already correct and optimized: Simply return it as-is.
+        IMPORTANT: Your response should only include the function definition and code solution in plain text format (no backticks, code blocks, or additional formatting).
+        Here's the problem description and code:\n
+        ${codeText}
+        `
         if (infoMessage) infoMessage.textContent = 'Generating solution code ...';
         analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer && fixCodeContainer.classList.remove('hidden');
     }
-    prompt += 'Heres the problem description, examples, constraints and my code. Note that code might not exist and may be incorrect.\n' + codeText;
+    console.log('prompt', prompt);
 
     let response = '';
     Promise.race([
@@ -170,7 +174,7 @@ function processCode(
                 }
             },
         }),
-        timeout(12000)
+        timeout(15000)
     ]).catch((error) => {
         infoMessage && (infoMessage.textContent = 'The request timed out. Please try again.');
         console.error(error);
@@ -191,17 +195,17 @@ async function main(): Promise<void> {
     // Load font size from storage
     chrome.storage.local.get('fontSize', function (data) {
         if (data.fontSize) {
-            fontSizeElement.style.setProperty('--dynamic-font-size', `${data.fontSize}px`);
+            fontSizeElement.style.setProperty('--dynamic-font-size', `${data.fontSize} px`);
             if (parseInt(data.fontSize) >= 18) {
                 const width = (parseInt(data.fontSize) * 24 + 200);
-                document.body.style.width = `${width + 20}px`;
-                fixCodeContainer && (fixCodeContainer.style.maxWidth = `${width}px`);
-                analyzeCodeResponse && (analyzeCodeResponse.style.maxWidth = `${width}px`);
+                document.body.style.width = `${width + 20} px`;
+                fixCodeContainer && (fixCodeContainer.style.maxWidth = `${width} px`);
+                analyzeCodeResponse && (analyzeCodeResponse.style.maxWidth = `${width} px`);
             }
 
             const sizes = document.getElementsByClassName('material-button');
             for (let i = 0; i < sizes.length; i++) {
-                (sizes[i] as HTMLElement).style.width = `${data.fontSize * 13}px`;
+                (sizes[i] as HTMLElement).style.width = `${data.fontSize * 13} px`;
             }
         }
     });

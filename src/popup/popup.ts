@@ -148,7 +148,6 @@ function processCode(
         analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer && fixCodeContainer.classList.remove('hidden');
     }
-    console.log('prompt', prompt);
 
     let response = '';
     Promise.race([

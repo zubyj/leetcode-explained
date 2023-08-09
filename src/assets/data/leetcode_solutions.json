@@ -66,6 +66,86 @@
                 {
                     "name": "Goldman Sachs",
                     "score": 7
+                },
+                {
+                    "name": "Expedia",
+                    "score": 7
+                },
+                {
+                    "name": "Oracle",
+                    "score": 6
+                },
+                {
+                    "name": "Yahoo",
+                    "score": 4
+                },
+                {
+                    "name": "Zoho",
+                    "score": 4
+                },
+                {
+                    "name": "Visa",
+                    "score": 4
+                },
+                {
+                    "name": "Morgan Stanley",
+                    "score": 3
+                },
+                {
+                    "name": "IBM",
+                    "score": 3
+                },
+                {
+                    "name": "Paypal",
+                    "score": 3
+                },
+                {
+                    "name": "JPMorgan",
+                    "score": 3
+                },
+                {
+                    "name": "Walmart Global Tech",
+                    "score": 3
+                },
+                {
+                    "name": "Intel",
+                    "score": 3
+                },
+                {
+                    "name": "Salesforce",
+                    "score": 3
+                },
+                {
+                    "name": "Dell",
+                    "score": 3
+                },
+                {
+                    "name": "American Express",
+                    "score": 3
+                },
+                {
+                    "name": "Accenture",
+                    "score": 3
+                },
+                {
+                    "name": "Samsung",
+                    "score": 2
+                },
+                {
+                    "name": "Intuit",
+                    "score": 2
+                },
+                {
+                    "name": "Zillow",
+                    "score": 2
+                },
+                {
+                    "name": "Zoom",
+                    "score": 2
+                },
+                {
+                    "name": "Zomato",
+                    "score": 2
                 }
             ]
         },
@@ -135,6 +215,26 @@
                 {
                     "name": "Uber",
                     "score": 4
+                },
+                {
+                    "name": "JPMorgan",
+                    "score": 3
+                },
+                {
+                    "name": "SAP",
+                    "score": 2
+                },
+                {
+                    "name": "Capital One",
+                    "score": 2
+                },
+                {
+                    "name": "Visa",
+                    "score": 2
+                },
+                {
+                    "name": "Huawei",
+                    "score": 2
                 }
             ]
         },
@@ -204,6 +304,50 @@
                 {
                     "name": "VMware",
                     "score": 5
+                },
+                {
+                    "name": "Yahoo",
+                    "score": 4
+                },
+                {
+                    "name": "Goldman Sachs",
+                    "score": 4
+                },
+                {
+                    "name": "Oracle",
+                    "score": 4
+                },
+                {
+                    "name": "Walmart Global Tech",
+                    "score": 3
+                },
+                {
+                    "name": "Salesforce",
+                    "score": 3
+                },
+                {
+                    "name": "Paypal",
+                    "score": 2
+                },
+                {
+                    "name": "Samsung",
+                    "score": 2
+                },
+                {
+                    "name": "Intuit",
+                    "score": 2
+                },
+                {
+                    "name": "Yandex",
+                    "score": 2
+                },
+                {
+                    "name": "Zoho",
+                    "score": 2
+                },
+                {
+                    "name": "JPMorgan",
+                    "score": 2
                 }
             ]
         },
@@ -272,6 +416,22 @@
                 },
                 {
                     "name": "Bloomberg",
+                    "score": 2
+                },
+                {
+                    "name": "VMware",
+                    "score": 2
+                },
+                {
+                    "name": "LinkedIn",
+                    "score": 2
+                },
+                {
+                    "name": "Walmart Global Tech",
+                    "score": 2
+                },
+                {
+                    "name": "Yandex",
                     "score": 2
                 }
             ]
@@ -448,6 +608,10 @@
                 {
                     "name": "Visa",
                     "score": 2
+                },
+                {
+                    "name": "Samsung",
+                    "score": 2
                 }
             ]
         },
@@ -475,6 +639,44 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/VYsSowFwZVU",
                     "channel": "Leetcodes"
+                }
+            ],
+            "companies": [
+                {
+                    "name": "Facebook",
+                    "score": 32
+                },
+                {
+                    "name": "Microsoft",
+                    "score": 16
+                },
+                {
+                    "name": "Amazon",
+                    "score": 9
+                },
+                {
+                    "name": "Google",
+                    "score": 6
+                },
+                {
+                    "name": "Bloomberg",
+                    "score": 5
+                },
+                {
+                    "name": "Adobe",
+                    "score": 4
+                },
+                {
+                    "name": "Goldman Sachs",
+                    "score": 3
+                },
+                {
+                    "name": "Redfin",
+                    "score": 3
+                },
+                {
+                    "name": "Apple",
+                    "score": 2
                 }
             ]
         },
@@ -755,6 +957,44 @@
                     "embedded_url": "https://www.youtube.com/embed/k4KgVd5LQk8",
                     "channel": "Carter MacLennan"
                 }
+            ],
+            "companies": [
+                {
+                    "name": "Amazon",
+                    "score": 27
+                },
+                {
+                    "name": "Adobe",
+                    "score": 16
+                },
+                {
+                    "name": "Apple",
+                    "score": 13
+                },
+                {
+                    "name": "Google",
+                    "score": 10
+                },
+                {
+                    "name": "Bloomberg",
+                    "score": 10
+                },
+                {
+                    "name": "Facebook",
+                    "score": 8
+                },
+                {
+                    "name": "Microsoft",
+                    "score": 6
+                },
+                {
+                    "name": "tiktok",
+                    "score": 5
+                },
+                {
+                    "name": "Yahoo",
+                    "score": 4
+                }
             ]
         },
         {
@@ -892,6 +1132,54 @@
                 {
                     "name": "Qualtrics",
                     "score": 5
+                },
+                {
+                    "name": "Yahoo",
+                    "score": 5
+                },
+                {
+                    "name": "Goldman Sachs",
+                    "score": 4
+                },
+                {
+                    "name": "tiktok",
+                    "score": 4
+                },
+                {
+                    "name": "Salesforce",
+                    "score": 3
+                },
+                {
+                    "name": "VMware",
+                    "score": 3
+                },
+                {
+                    "name": "ByteDance",
+                    "score": 3
+                },
+                {
+                    "name": "Morgan Stanley",
+                    "score": 3
+                },
+                {
+                    "name": "Cisco",
+                    "score": 2
+                },
+                {
+                    "name": "Oracle",
+                    "score": 2
+                },
+                {
+                    "name": "Tesla",
+                    "score": 2
+                },
+                {
+                    "name": "American Express",
+                    "score": 2
+                },
+                {
+                    "name": "Infosys",
+                    "score": 2
                 }
             ]
         },
@@ -1205,6 +1493,70 @@
                 {
                     "name": "Google",
                     "score": 6
+                },
+                {
+                    "name": "Oracle",
+                    "score": 6
+                },
+                {
+                    "name": "VMware",
+                    "score": 5
+                },
+                {
+                    "name": "Cisco",
+                    "score": 5
+                },
+                {
+                    "name": "Intel",
+                    "score": 4
+                },
+                {
+                    "name": "Yandex",
+                    "score": 3
+                },
+                {
+                    "name": "tiktok",
+                    "score": 3
+                },
+                {
+                    "name": "Arista Networks",
+                    "score": 3
+                },
+                {
+                    "name": "Barclays",
+                    "score": 2
+                },
+                {
+                    "name": "ServiceNow",
+                    "score": 2
+                },
+                {
+                    "name": "Uber",
+                    "score": 2
+                },
+                {
+                    "name": "Goldman Sachs",
+                    "score": 2
+                },
+                {
+                    "name": "Booking.com",
+                    "score": 2
+                },
+                {
+                    "name": "Salesforce",
+                    "score": 2
+                },
+                {
+                    "name": "Netflix",
+                    "score": 2
+                },
+                {
+                    "name": "Dataminr",
+                    "score": 2
+                },
+                {
+                    "name": "tcs",
+                    "score": 2
                 }
             ]
         },
@@ -1343,6 +1695,18 @@
                 {
                     "name": "Walmart Global Tech",
                     "score": 3
+                },
+                {
+                    "name": "Oracle",
+                    "score": 3
+                },
+                {
+                    "name": "ByteDance",
+                    "score": 2
+                },
+                {
+                    "name": "Tesla",
+                    "score": 2
                 }
             ]
         },
@@ -1412,6 +1776,38 @@
                 {
                     "name": "LinkedIn",
                     "score": 3
+                },
+                {
+                    "name": "Oracle",
+                    "score": 3
+                },
+                {
+                    "name": "Yandex",
+                    "score": 3
+                },
+                {
+                    "name": "Bloomberg",
+                    "score": 2
+                },
+                {
+                    "name": "Walmart Global Tech",
+                    "score": 2
+                },
+                {
+                    "name": "Shopee",
+                    "score": 2
+                },
+                {
+                    "name": "tiktok",
+                    "score": 2
+                },
+                {
+                    "name": "Sprinklr",
+                    "score": 2
+                },
+                {
+                    "name": "TuSimple",
+                    "score": 2
                 }
             ]
         },
@@ -1922,6 +2318,50 @@
                 {
                     "name": "Oracle",
                     "score": 5
+                },
+                {
+                    "name": "tiktok",
+                    "score": 4
+                },
+                {
+                    "name": "VMware",
+                    "score": 3
+                },
+                {
+                    "name": "Google",
+                    "score": 3
+                },
+                {
+                    "name": "Visa",
+                    "score": 3
+                },
+                {
+                    "name": "ServiceNow",
+                    "score": 3
+                },
+                {
+                    "name": "Expedia",
+                    "score": 2
+                },
+                {
+                    "name": "Nvidia",
+                    "score": 2
+                },
+                {
+                    "name": "Salesforce",
+                    "score": 2
+                },
+                {
+                    "name": "Goldman Sachs",
+                    "score": 2
+                },
+                {
+                    "name": "Morgan Stanley",
+                    "score": 2
+                },
+                {
+                    "name": "Splunk",
+                    "score": 2
                 }
             ]
         },
@@ -2147,6 +2587,14 @@
                 },
                 {
                     "name": "Facebook",
+                    "score": 2
+                },
+                {
+                    "name": "Salesforce",
+                    "score": 2
+                },
+                {
+                    "name": "Nutanix",
                     "score": 2
                 }
             ]
@@ -2445,6 +2893,54 @@
                 {
                     "name": "Qualtrics",
                     "score": 4
+                },
+                {
+                    "name": "Rubrik",
+                    "score": 4
+                },
+                {
+                    "name": "Snapchat",
+                    "score": 3
+                },
+                {
+                    "name": "Intel",
+                    "score": 3
+                },
+                {
+                    "name": "Oracle",
+                    "score": 3
+                },
+                {
+                    "name": "Paypal",
+                    "score": 3
+                },
+                {
+                    "name": "Tesla",
+                    "score": 3
+                },
+                {
+                    "name": "Intuit",
+                    "score": 2
+                },
+                {
+                    "name": "Citadel",
+                    "score": 2
+                },
+                {
+                    "name": "Visa",
+                    "score": 2
+                },
+                {
+                    "name": "ServiceNow",
+                    "score": 2
+                },
+                {
+                    "name": "National Instruments",
+                    "score": 2
+                },
+                {
+                    "name": "Sapient",
+                    "score": 2
                 }
             ]
         },
@@ -2860,6 +3356,62 @@
                 {
                     "name": "Adobe",
                     "score": 4
+                },
+                {
+                    "name": "Affirm",
+                    "score": 4
+                },
+                {
+                    "name": "Oracle",
+                    "score": 4
+                },
+                {
+                    "name": "Uber",
+                    "score": 3
+                },
+                {
+                    "name": "Salesforce",
+                    "score": 3
+                },
+                {
+                    "name": "Twilio",
+                    "score": 3
+                },
+                {
+                    "name": "Visa",
+                    "score": 3
+                },
+                {
+                    "name": "ServiceNow",
+                    "score": 3
+                },
+                {
+                    "name": "Yahoo",
+                    "score": 2
+                },
+                {
+                    "name": "Goldman Sachs",
+                    "score": 2
+                },
+                {
+                    "name": "VMware",
+                    "score": 2
+                },
+                {
+                    "name": "Alation",
+                    "score": 2
+                },
+                {
+                    "name": "IBM",
+                    "score": 2
+                },
+                {
+                    "name": "Cisco",
+                    "score": 2
+                },
+                {
+                    "name": "tiktok",
+                    "score": 2
                 }
             ]
         },
@@ -2887,6 +3439,44 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/wAyrtLAeWvI",
                     "channel": "mycodeschool"
+                }
+            ],
+            "companies": [
+                {
+                    "name": "Facebook",
+                    "score": 162
+                },
+                {
+                    "name": "Amazon",
+                    "score": 9
+                },
+                {
+                    "name": "Bloomberg",
+                    "score": 8
+                },
+                {
+                    "name": "LinkedIn",
+                    "score": 7
+                },
+                {
+                    "name": "Google",
+                    "score": 5
+                },
+                {
+                    "name": "Microsoft",
+                    "score": 5
+                },
+                {
+                    "name": "Apple",
+                    "score": 5
+                },
+                {
+                    "name": "Adobe",
+                    "score": 3
+                },
+                {
+                    "name": "Yahoo",
+                    "score": 3
                 }
             ]
         },
@@ -3050,6 +3640,58 @@
                 {
                     "name": "Shopee",
                     "score": 5
+                },
+                {
+                    "name": "Bloomberg",
+                    "score": 4
+                },
+                {
+                    "name": "Uber",
+                    "score": 4
+                },
+                {
+                    "name": "VMware",
+                    "score": 4
+                },
+                {
+                    "name": "Oracle",
+                    "score": 3
+                },
+                {
+                    "name": "Salesforce",
+                    "score": 3
+                },
+                {
+                    "name": "ByteDance",
+                    "score": 3
+                },
+                {
+                    "name": "Docusign",
+                    "score": 3
+                },
+                {
+                    "name": "Samsung",
+                    "score": 3
+                },
+                {
+                    "name": "Goldman Sachs",
+                    "score": 2
+                },
+                {
+                    "name": "ServiceNow",
+                    "score": 2
+                },
+                {
+                    "name": "Walmart Global Tech",
+                    "score": 2
+                },
+                {
+                    "name": "PayTM",
+                    "score": 2
+                },
+                {
+                    "name": "Infosys",
+                    "score": 2
                 }
             ]
         },
@@ -3245,6 +3887,62 @@
                 {
                     "name": "IBM",
                     "score": 8
+                },
+                {
+                    "name": "LinkedIn",
+                    "score": 7
+                },
+                {
+                    "name": "Snapchat",
+                    "score": 5
+                },
+                {
+                    "name": "Walmart Global Tech",
+                    "score": 5
+                },
+                {
+                    "name": "VMware",
+                    "score": 5
+                },
+                {
+                    "name": "Oracle",
+                    "score": 4
+                },
+                {
+                    "name": "Yandex",
+                    "score": 4
+                },
+                {
+                    "name": "Shopee",
+                    "score": 4
+                },
+                {
+                    "name": "Twitter",
+                    "score": 3
+                },
+                {
+                    "name": "Cisco",
+                    "score": 2
+                },
+                {
+                    "name": "Intuit",
+                    "score": 2
+                },
+                {
+                    "name": "Nvidia",
+                    "score": 2
+                },
+                {
+                    "name": "Morgan Stanley",
+                    "score": 2
+                },
+                {
+                    "name": "ByteDance",
+                    "score": 2
+                },
+                {
+                    "name": "tiktok",
+                    "score": 2
                 }
             ]
         },
@@ -3864,6 +4562,36 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/p8EkGkUZZgE",
                     "channel": "code Explainer"
+                }
+            ],
+            "companies": [
+                {
+                    "name": "LinkedIn",
+                    "score": 9
+                },
+                {
+                    "name": "Amazon",
+                    "score": 9
+                },
+                {
+                    "name": "Apple",
+                    "score": 5
+                },
+                {
+                    "name": "Google",
+                    "score": 4
+                },
+                {
+                    "name": "Adobe",
+                    "score": 4
+                },
+                {
+                    "name": "Microsoft",
+                    "score": 3
+                },
+                {
+                    "name": "Bloomberg",
+                    "score": 2
                 }
             ]
         },
@@ -6272,6 +7000,36 @@
                     "embedded_url": "https://www.youtube.com/embed/MzdzJuvzmS4",
                     "channel": "Timothy H Chang"
                 }
+            ],
+            "companies": [
+                {
+                    "name": "Amazon",
+                    "score": 5
+                },
+                {
+                    "name": "Apple",
+                    "score": 4
+                },
+                {
+                    "name": "Microsoft",
+                    "score": 4
+                },
+                {
+                    "name": "Goldman Sachs",
+                    "score": 3
+                },
+                {
+                    "name": "Snapchat",
+                    "score": 2
+                },
+                {
+                    "name": "Uber",
+                    "score": 2
+                },
+                {
+                    "name": "Yahoo",
+                    "score": 2
+                }
             ]
         },
         {
@@ -6298,6 +7056,16 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/Q1lj9B33Euc",
                     "channel": "Code with Alisha"
+                }
+            ],
+            "companies": [
+                {
+                    "name": "Microsoft",
+                    "score": 2
+                },
+                {
+                    "name": "Goldman Sachs",
+                    "score": 2
                 }
             ]
         },
@@ -6400,6 +7168,86 @@
                 {
                     "name": "Expedia",
                     "score": 5
+                },
+                {
+                    "name": "Oracle",
+                    "score": 4
+                },
+                {
+                    "name": "Capital One",
+                    "score": 4
+                },
+                {
+                    "name": "JPMorgan",
+                    "score": 3
+                },
+                {
+                    "name": "Walmart Global Tech",
+                    "score": 3
+                },
+                {
+                    "name": "ByteDance",
+                    "score": 3
+                },
+                {
+                    "name": "Paypal",
+                    "score": 2
+                },
+                {
+                    "name": "VMware",
+                    "score": 2
+                },
+                {
+                    "name": "eBay",
+                    "score": 2
+                },
+                {
+                    "name": "Cisco",
+                    "score": 2
+                },
+                {
+                    "name": "Salesforce",
+                    "score": 2
+                },
+                {
+                    "name": "Atlassian",
+                    "score": 2
+                },
+                {
+                    "name": "ServiceNow",
+                    "score": 2
+                },
+                {
+                    "name": "Visa",
+                    "score": 2
+                },
+                {
+                    "name": "Docusign",
+                    "score": 2
+                },
+                {
+                    "name": "Alation",
+                    "score": 2
+                },
+                {
+                    "name": "tcs",
+                    "score": 2
+                },
+                {
+                    "name": "tiktok",
+                    "score": 2
+                },
+                {
+                    "name": "Zoho",
+                    "score": 2
+                },
+                {
+                    "name": "Netflix",
+                    "score": 2
+                },
+                {
+                    "name": "Zoom",
+                    "score": 2
                 }
             ]
         },
@@ -6570,6 +7418,26 @@
                 },
                 {
                     "name": "Bloomberg",
+                    "score": 2
+                },
+                {
+                    "name": "Adobe",
+                    "score": 2
+                },
+                {
+                    "name": "Twitter",
+                    "score": 2
+                },
+                {
+                    "name": "Twilio",
+                    "score": 2
+                },
+                {
+                    "name": "Sprinklr",
+                    "score": 2
+                },
+                {
+                    "name": "TuSimple",
                     "score": 2
                 }
             ]
@@ -7705,6 +8573,70 @@
                 {
                     "name": "Twilio",
                     "score": 7
+                },
+                {
+                    "name": "Goldman Sachs",
+                    "score": 6
+                },
+                {
+                    "name": "tiktok",
+                    "score": 6
+                },
+                {
+                    "name": "LinkedIn",
+                    "score": 5
+                },
+                {
+                    "name": "ByteDance",
+                    "score": 5
+                },
+                {
+                    "name": "Adobe",
+                    "score": 4
+                },
+                {
+                    "name": "Walmart Global Tech",
+                    "score": 4
+                },
+                {
+                    "name": "Yahoo",
+                    "score": 3
+                },
+                {
+                    "name": "Snapchat",
+                    "score": 3
+                },
+                {
+                    "name": "Nvidia",
+                    "score": 3
+                },
+                {
+                    "name": "VMware",
+                    "score": 2
+                },
+                {
+                    "name": "Uber",
+                    "score": 2
+                },
+                {
+                    "name": "Paypal",
+                    "score": 2
+                },
+                {
+                    "name": "GoDaddy",
+                    "score": 2
+                },
+                {
+                    "name": "Morgan Stanley",
+                    "score": 2
+                },
+                {
+                    "name": "Docusign",
+                    "score": 2
+                },
+                {
+                    "name": "Shopee",
+                    "score": 2
                 }
             ]
         },
@@ -8775,6 +9707,12 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/I5uCYjbVbb8",
                     "channel": "Hello Aki"
+                }
+            ],
+            "companies": [
+                {
+                    "name": "LinkedIn",
+                    "score": 2
                 }
             ]
         },
@@ -9885,6 +10823,86 @@
                 {
                     "name": "Salesforce",
                     "score": 6
+                },
+                {
+                    "name": "ByteDance",
+                    "score": 6
+                },
+                {
+                    "name": "tiktok",
+                    "score": 6
+                },
+                {
+                    "name": "DoorDash",
+                    "score": 5
+                },
+                {
+                    "name": "Docusign",
+                    "score": 5
+                },
+                {
+                    "name": "SAP",
+                    "score": 4
+                },
+                {
+                    "name": "Karat",
+                    "score": 4
+                },
+                {
+                    "name": "Adobe",
+                    "score": 3
+                },
+                {
+                    "name": "Qualtrics",
+                    "score": 3
+                },
+                {
+                    "name": "Goldman Sachs",
+                    "score": 3
+                },
+                {
+                    "name": "Paypal",
+                    "score": 3
+                },
+                {
+                    "name": "Nvidia",
+                    "score": 3
+                },
+                {
+                    "name": "VMware",
+                    "score": 3
+                },
+                {
+                    "name": "ServiceNow",
+                    "score": 3
+                },
+                {
+                    "name": "Shopee",
+                    "score": 3
+                },
+                {
+                    "name": "eBay",
+                    "score": 2
+                },
+                {
+                    "name": "Snapchat",
+                    "score": 2
+                },
+                {
+                    "name": "Dropbox",
+                    "score": 2
+                },
+                {
+                    "name": "Square",
+                    "score": 2
+                },
+                {
+                    "name": "Twitch",
+                    "score": 2
+                },
+                {
+                    "name": "Cruise Automation",
+                    "score": 2
                 }
             ]
         },
@@ -10393,6 +11411,26 @@
                 {
                     "name": "Karat",
                     "score": 4
+                },
+                {
+                    "name": "VMware",
+                    "score": 4
+                },
+                {
+                    "name": "Salesforce",
+                    "score": 3
+                },
+                {
+                    "name": "ByteDance",
+                    "score": 3
+                },
+                {
+                    "name": "Uber",
+                    "score": 2
+                },
+                {
+                    "name": "tiktok",
+                    "score": 2
                 }
             ]
         },
@@ -11555,6 +12593,10 @@
                 {
                     "name": "Yahoo",
                     "score": 2
+                },
+                {
+                    "name": "Intuit",
+                    "score": 2
                 }
             ]
         },
@@ -11844,6 +12886,38 @@
                 {
                     "name": "Apple",
                     "score": 3
+                },
+                {
+                    "name": "Twilio",
+                    "score": 3
+                },
+                {
+                    "name": "tiktok",
+                    "score": 3
+                },
+                {
+                    "name": "Bloomberg",
+                    "score": 2
+                },
+                {
+                    "name": "VMware",
+                    "score": 2
+                },
+                {
+                    "name": "Booking.com",
+                    "score": 2
+                },
+                {
+                    "name": "DoorDash",
+                    "score": 2
+                },
+                {
+                    "name": "DE Shaw",
+                    "score": 2
+                },
+                {
+                    "name": "Quora",
+                    "score": 2
                 }
             ]
         },
@@ -13664,6 +14738,14 @@
                 {
                     "name": "IBM",
                     "score": 2
+                },
+                {
+                    "name": "Expedia",
+                    "score": 2
+                },
+                {
+                    "name": "tiktok",
+                    "score": 2
                 }
             ]
         },
@@ -14475,6 +15557,12 @@
                     "embedded_url": "https://www.youtube.com/embed/KE8MQuwE2yA",
                     "channel": "NeetCode"
                 }
+            ],
+            "companies": [
+                {
+                    "name": "Facebook",
+                    "score": 2
+                }
             ]
         },
         {
@@ -14501,6 +15589,28 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/MSNSqU3BnXk",
                     "channel": "Hua Hua"
+                }
+            ],
+            "companies": [
+                {
+                    "name": "Facebook",
+                    "score": 10
+                },
+                {
+                    "name": "Lyft",
+                    "score": 4
+                },
+                {
+                    "name": "Amazon",
+                    "score": 3
+                },
+                {
+                    "name": "Google",
+                    "score": 2
+                },
+                {
+                    "name": "Samsung",
+                    "score": 2
                 }
             ]
         },
@@ -14603,6 +15713,16 @@
                     "embedded_url": "https://www.youtube.com/embed/PwUZbyuQkiA",
                     "channel": "Ayushi Sharma"
                 }
+            ],
+            "companies": [
+                {
+                    "name": "Google",
+                    "score": 6
+                },
+                {
+                    "name": "Amazon",
+                    "score": 3
+                }
             ]
         },
         {
@@ -14629,6 +15749,12 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/MSNSqU3BnXk",
                     "channel": "Hua Hua"
+                }
+            ],
+            "companies": [
+                {
+                    "name": "Google",
+                    "score": 3
                 }
             ]
         },
@@ -17550,6 +18676,44 @@
                     "embedded_url": "https://www.youtube.com/embed/hru9opR7wG8",
                     "channel": "Eric Programming"
                 }
+            ],
+            "companies": [
+                {
+                    "name": "Facebook",
+                    "score": 23
+                },
+                {
+                    "name": "Bloomberg",
+                    "score": 23
+                },
+                {
+                    "name": "Amazon",
+                    "score": 17
+                },
+                {
+                    "name": "LinkedIn",
+                    "score": 15
+                },
+                {
+                    "name": "Microsoft",
+                    "score": 12
+                },
+                {
+                    "name": "Affirm",
+                    "score": 10
+                },
+                {
+                    "name": "Uber",
+                    "score": 7
+                },
+                {
+                    "name": "Twitter",
+                    "score": 5
+                },
+                {
+                    "name": "Google",
+                    "score": 4
+                }
             ]
         },
         {
@@ -17576,6 +18740,20 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/mRTgft9sBhA",
                     "channel": "Hua Hua"
+                }
+            ],
+            "companies": [
+                {
+                    "name": "Facebook",
+                    "score": 5
+                },
+                {
+                    "name": "LinkedIn",
+                    "score": 4
+                },
+                {
+                    "name": "Affirm",
+                    "score": 3
                 }
             ]
         },
@@ -18121,6 +19299,34 @@
                 {
                     "name": "tiktok",
                     "score": 5
+                },
+                {
+                    "name": "Adobe",
+                    "score": 3
+                },
+                {
+                    "name": "Uber",
+                    "score": 3
+                },
+                {
+                    "name": "Intuit",
+                    "score": 2
+                },
+                {
+                    "name": "Cruise Automation",
+                    "score": 2
+                },
+                {
+                    "name": "ByteDance",
+                    "score": 2
+                },
+                {
+                    "name": "Walmart Global Tech",
+                    "score": 2
+                },
+                {
+                    "name": "Sumologic",
+                    "score": 2
                 }
             ]
         },
@@ -19412,6 +20618,20 @@
                     "embedded_url": "https://www.youtube.com/embed/1TK2a26zU6I",
                     "channel": "Huifeng Guan"
                 }
+            ],
+            "companies": [
+                {
+                    "name": "LinkedIn",
+                    "score": 17
+                },
+                {
+                    "name": "Amazon",
+                    "score": 3
+                },
+                {
+                    "name": "VMware",
+                    "score": 2
+                }
             ]
         },
         {
@@ -19971,6 +21191,24 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/cau0JE1q_ZA",
                     "channel": "codestorywithMIK"
+                }
+            ],
+            "companies": [
+                {
+                    "name": "Adobe",
+                    "score": 2
+                },
+                {
+                    "name": "Google",
+                    "score": 2
+                },
+                {
+                    "name": "Uber",
+                    "score": 2
+                },
+                {
+                    "name": "Baidu",
+                    "score": 1
                 }
             ]
         },
@@ -23935,6 +25173,30 @@
                 {
                     "name": "Quora",
                     "score": 3
+                },
+                {
+                    "name": "Adobe",
+                    "score": 2
+                },
+                {
+                    "name": "Expedia",
+                    "score": 2
+                },
+                {
+                    "name": "Nvidia",
+                    "score": 2
+                },
+                {
+                    "name": "ServiceNow",
+                    "score": 2
+                },
+                {
+                    "name": "DoorDash",
+                    "score": 2
+                },
+                {
+                    "name": "Bolt",
+                    "score": 2
                 }
             ]
         },
@@ -26870,6 +28132,16 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/GweveyNC3lw",
                     "channel": "Tech Adora by Nivedita"
+                }
+            ],
+            "companies": [
+                {
+                    "name": "Amazon",
+                    "score": 2
+                },
+                {
+                    "name": "Uber",
+                    "score": 2
                 }
             ]
         },
@@ -34048,7 +35320,13 @@
             "title": "Minimum Swaps to Group All 1's Together",
             "id": 1107,
             "frontend_id": 1151,
-            "videos": []
+            "videos": [],
+            "companies": [
+                {
+                    "name": "Amazon",
+                    "score": 21
+                }
+            ]
         },
         {
             "title": "Analyze User Website Visit Pattern",
@@ -35176,7 +36454,17 @@
             "id": 1221,
             "frontend_id": 1220,
             "videos": [],
-            "rating": 1220
+            "rating": 1220,
+            "companies": [
+                {
+                    "name": "Facebook",
+                    "score": 5
+                },
+                {
+                    "name": "Google",
+                    "score": 2
+                }
+            ]
         },
         {
             "title": "Remove Covered Intervals",
@@ -37498,7 +38786,13 @@
             "id": 1455,
             "frontend_id": 1126,
             "videos": [],
-            "rating": 1126
+            "rating": 1126,
+            "companies": [
+                {
+                    "name": "Yelp",
+                    "score": 4
+                }
+            ]
         },
         {
             "title": "Find the City With the Smallest Number of Neighbors at a Threshold Distance",
@@ -38602,7 +39896,13 @@
             "title": "Check If All 1's Are at Least Length K Places Away",
             "id": 1548,
             "frontend_id": 1437,
-            "videos": []
+            "videos": [],
+            "companies": [
+                {
+                    "name": "United Health Group",
+                    "score": 1
+                }
+            ]
         },
         {
             "title": "Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit",
@@ -39052,7 +40352,13 @@
             "title": "Longest Subarray of 1's After Deleting One Element",
             "id": 1586,
             "frontend_id": 1493,
-            "videos": []
+            "videos": [],
+            "companies": [
+                {
+                    "name": "Yandex",
+                    "score": 3
+                }
+            ]
         },
         {
             "title": "Parallel Courses II",
@@ -40020,7 +41326,13 @@
             "title": "Replace All ?'s to Avoid Consecutive Repeating Characters",
             "id": 1698,
             "frontend_id": 1576,
-            "videos": []
+            "videos": [],
+            "companies": [
+                {
+                    "name": "Microsoft",
+                    "score": 2
+                }
+            ]
         },
         {
             "title": "Number of Ways Where Square of Number Is Equal to Product of Two Numbers",
@@ -41477,10 +42789,6 @@
                 {
                     "name": "Microsoft",
                     "score": 2
-                },
-                {
-                    "name": "AppDynamics",
-                    "score": "Lucid"
                 }
             ],
             "rating": 1301
@@ -42401,7 +43709,17 @@
             "title": "Implement Trie II (Prefix Tree)",
             "id": 1949,
             "frontend_id": 1804,
-            "videos": []
+            "videos": [],
+            "companies": [
+                {
+                    "name": "Apple",
+                    "score": 2
+                },
+                {
+                    "name": "Docusign",
+                    "score": 2
+                }
+            ]
         },
         {
             "title": "Sign of the Product of an Array",
@@ -45158,7 +46476,13 @@
             "id": 2243,
             "frontend_id": 1302,
             "videos": [],
-            "rating": 1302
+            "rating": 1302,
+            "companies": [
+                {
+                    "name": "Microsoft",
+                    "score": 1
+                }
+            ]
         },
         {
             "title": "Number of Laser Beams in a Bank",
@@ -45260,7 +46584,13 @@
             "id": 2255,
             "frontend_id": 1261,
             "videos": [],
-            "rating": 1261
+            "rating": 1261,
+            "companies": [
+                {
+                    "name": "Amazon",
+                    "score": 2
+                }
+            ]
         },
         {
             "title": "Count Words Obtained After Adding a Letter",

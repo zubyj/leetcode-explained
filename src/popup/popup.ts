@@ -189,17 +189,16 @@ async function main(): Promise<void> {
         getFromStorage(storageKeys.language),
     ]);
 
-    const fontSizeElement = document.documentElement; // Or any specific element you want to change the font size of
-
     // Load font size from storage
+    let fontSizeElement = document.documentElement; // Or any specific element you want to change the font size of
     chrome.storage.local.get('fontSize', function (data) {
         if (data.fontSize) {
-            fontSizeElement.style.setProperty('--dynamic-font-size', `${data.fontSize} px`);
+            fontSizeElement.style.setProperty('--dynamic-font-size', `${data.fontSize}px`);
             if (parseInt(data.fontSize) >= 18) {
                 const width = (parseInt(data.fontSize) * 24 + 200);
                 document.body.style.width = `${width + 20} px`;
                 fixCodeContainer && (fixCodeContainer.style.maxWidth = `${width} px`);
-                analyzeCodeResponse && (analyzeCodeResponse.style.maxWidth = `${width} px`);
+                analyzeCodeResponse && (analyzeCodeResponse.style.maxWidth = `${width}px`);
             }
 
             const sizes = document.getElementsByClassName('material-button');
@@ -308,7 +307,7 @@ function handleError(error: Error): void {
 
 function displayLoginMessage(): void {
     elements['loginBtn'] && elements['loginBtn'].classList.remove('hidden');
-    infoMessage && (infoMessage.textContent = 'Log into ChatGPT in your chrome to get started');
+    infoMessage && (infoMessage.textContent = 'Log into ChatGPT in your browser to get started');
 }
 
 function displayErrorMessage(error: string): void {

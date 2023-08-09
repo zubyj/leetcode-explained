@@ -113,18 +113,10 @@ function addCompanyProblems(sortMethod: string) {
             const scoreCell = row.insertCell(2);
             scoreCell.innerText = solution.score.toString();
             const score = solution.score;
-            const color = getColorForScore(score);
+            const color = 'white';
             scoreCell.style.color = color;
             scoreCell.style.fontWeight = 'bold';
         });
-
-        function getColorForScore(score: number) {
-            const percent = score / 100;
-            const red = Math.floor(255 * (1 - percent));
-            const green = Math.floor(255 * percent);
-            const blue = 0;
-            return `rgb(${red}, ${green}, ${blue})`;
-        }
     });
 }
 
@@ -200,18 +192,10 @@ function sortBy(column: string) {
         const scoreCell = row.insertCell(2);
         scoreCell.innerText = solution.score.toString();
         const score = solution.score;
-        const color = getColorForScore(score);
+        const color = 'white';
         scoreCell.style.color = color;
         scoreCell.style.fontWeight = 'bold';
     });
-
-    function getColorForScore(score: number) {
-        const percent = score / 100;
-        const red = Math.floor(255 * (1 - percent));
-        const green = Math.floor(255 * percent);
-        const blue = 0;
-        return `rgb(${red}, ${green}, ${blue})`;
-    }
 }
 
 /* Run the script */

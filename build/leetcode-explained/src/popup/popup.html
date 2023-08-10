@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Leetcode Explained</title>
+    <link rel="stylesheet" href="./popup.css">
+    <link rel="stylesheet" href="prism.css">
+    <script type="module" src="../../dist/popup/popup.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <h2 class="title">
+            Leetcode Explained
+        </h2>
+        <a id="open-settings-btn" class="nav-button">
+            <img src="../assets/images/settings-icon.png" alt="Settings" id="settings-icon" />
+        </a>
+    </div>
+    <!-- GPT Buttons -->
+    <div class="button-container">
+        <button id="fix-code-btn" class="material-button button">
+            <image src="../assets/images/fix-icon.png" class="button-icon" alt="Fix" />
+            Fix Code
+        </button>
+        <button id="get-complexity-btn" class="material-button button">
+            <image src="../assets/images/code-icon.png" class="button-icon" alt="Analyze" />Code Complexity
+        </button>
+    </div>
+    <!-- Info/Error Message-->
+    <p id="info-message">
+        Open a <a href="https://leetcode.com/problems/two-sum/" target="_blank">Leetcode problem </a>to get started
+    </p>
+    <!-- ChatGPT Login Button -->
+    <button id="login-btn" class="material-button hidden">Open ChatGPT website</button>
+    <!-- GPT Response -->
+    <code class="language-text" id="analyze-code-response" class="response-container hidden">
+    </code>
+    <pre class="response-container hidden" id="fix-code-container">
+    <div class="button-container">
+    <button id="copy-code-btn" class="code-btn">
+        <img src="../assets/images/copy-icon.png" alt="Copy" />
+    </button>
+    <button id="clear-code-btn" class="code-btn">
+        <img src="../assets/images/clear-icon.png" alt="Clear" />
+    </button>
+    </div>
+    <code class="language-python" id="fix-code-response">
+    </code>
+        </pre>
+    <script src="prism.js"></script>
+</body>
+
+</html>

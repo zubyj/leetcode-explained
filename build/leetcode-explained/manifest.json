@@ -1,0 +1,39 @@
+{
+    "manifest_version": 3,
+    "name": "Leetcode Explained",
+    "version": "2.0.4",
+    "description": "Adds video solutions, company tags, GPT code analysis and more.",
+    "icons": {
+        "16": "src/assets/images/logo/icon-16.png",
+        "32": "src/assets/images/logo/icon-32.png",
+        "48": "src/assets/images/logo/icon-48.png",
+        "128": "src/assets/images/logo/icon-128.png"
+    },
+    "action": {
+        "default_popup": "src/popup/popup.html"
+    },
+    "permissions": [
+        "storage",
+        "tabs"
+    ],
+    "host_permissions": [
+        "https://chat.openai.com/api/auth/session"
+    ],
+    "background": {
+        "service_worker": "dist/background/background.js",
+        "type": "module"
+    },
+    "content_scripts": [
+        {
+            "js": [
+                "dist/content-script/get-gpt-access-token.js",
+                "dist/content-script/get-user-code.js",
+                "dist/content-script/update-solutions-tab.js",
+                "dist/content-script/update-description-tab.js"
+            ],
+            "matches": [
+                "https://leetcode.com/problems/*"
+            ]
+        }
+    ]
+}

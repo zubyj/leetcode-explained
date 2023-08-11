@@ -88,6 +88,17 @@ function addCompanyProblems(sortMethod: string) {
         const companyProblems = data.companyProblems[companyName];
         console.log('companyProblems', companyProblems);
 
+        // Find max and min frequency
+        let maxFrequency = 0;
+        let minFrequency = Number.MAX_SAFE_INTEGER;
+        if (Array.isArray(companyProblems)) {
+            companyProblems.forEach((problem) => {
+                const freq = problem.freq_alltime;
+                if (freq > maxFrequency) maxFrequency = freq;
+                if (freq < minFrequency) minFrequency = freq;
+            });
+        }
+
         // Check if companyProblems is an array before proceeding
         if (Array.isArray(companyProblems)) {
             companyProblems.forEach((problem) => {
@@ -116,11 +127,17 @@ function addCompanyProblems(sortMethod: string) {
             row.insertCell(0).innerText = solution.id.toString();
             // add title and link to the problem
             row.insertCell(1).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
-            // add frequency
+
+            // add frequency as a bar
             if (solution.frequency) {
                 const frequencyCell = row.insertCell(2);
-                frequencyCell.innerText = solution.frequency.toString();
-                frequencyCell.style.color = 'white';
+                const bar = document.createElement('div');
+                const width = ((solution.frequency - minFrequency) / (maxFrequency - minFrequency)) * 100;
+                bar.style.width = width + '%';
+                bar.style.height = '10px';
+                bar.style.backgroundColor = 'lightgreen';
+                bar.style.borderRadius = '10px';
+                frequencyCell.appendChild(bar);
             }
 
             // add difficulty

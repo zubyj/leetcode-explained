@@ -223,10 +223,10 @@ async function addCompaniesToSelect() {
 
 // Keep track of the sorting order for each column
 const sortOrders = {
-    '#': true,
-    'Title': true,
-    'Score': true,
-    'Frequency': true,
+    '#': false,
+    'Title': false,
+    'Score': false,
+    'Frequency': false,
 };
 
 function sortBy(column: string) {

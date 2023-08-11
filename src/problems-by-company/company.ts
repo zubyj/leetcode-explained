@@ -172,7 +172,8 @@ function addCompanyProblems(sortMethod: string) {
         solutions.forEach(solution => {
             const row = table.insertRow(-1);
             row.insertCell(0).innerText = solution.id.toString();
-            row.insertCell(1).innerText = solution.difficulty?.toString() || 'N/A'; // New column for difficulty
+            const difficultyText = solution.difficulty === 1 ? 'Easy' : solution.difficulty === 2 ? 'Medium' : 'Hard';
+            row.insertCell(1).innerText = difficultyText || 'N/A';
             row.insertCell(2).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
             row.insertCell(3).innerText = (solution.acceptance ? (solution.acceptance * 100).toFixed(2) + '%' : 'N/A'); // New column for acceptance
             // add frequency as a bar
@@ -186,7 +187,6 @@ function addCompanyProblems(sortMethod: string) {
                 bar.style.borderRadius = '10px';
                 frequencyCell.appendChild(bar);
             }
-
         });
     });
 }

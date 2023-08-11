@@ -11,7 +11,7 @@ async function main() {
         const title: HTMLElement | null = document.getElementById('title');
         if (title) title.textContent = companyName;
         document.title = companyName + ' Questions';
-        addCompanyProblems('Score');
+        addCompanyProblems('Frequency'); // Change this line to sort by frequency by default
     });
 
     document.getElementById('#')?.addEventListener('click', () => sortBy('#'));
@@ -23,6 +23,7 @@ async function main() {
     addNavbarLinks();
     await addCompaniesToSelect();
 }
+
 
 function addNavbarLinks() {
     const navbar = document.getElementById('navbar');
@@ -82,15 +83,18 @@ interface LeetcodeProblems {
     questions: Question[];
 }
 
+let minFrequency = Number.MAX_SAFE_INTEGER;
+let maxFrequency = 0;
+
 function addCompanyProblems(sortMethod: string) {
     chrome.storage.local.get('companyProblems', function (data) {
         // Get the problems for the selected company
         const companyProblems = data.companyProblems[companyName];
         console.log('companyProblems', companyProblems);
 
-        // Find max and min frequency
-        let maxFrequency = 0;
-        let minFrequency = Number.MAX_SAFE_INTEGER;
+        // Reset max and min frequency
+        maxFrequency = 0;
+        minFrequency = Number.MAX_SAFE_INTEGER;
         if (Array.isArray(companyProblems)) {
             companyProblems.forEach((problem) => {
                 const freq = problem.freq_alltime;
@@ -179,11 +183,6 @@ function addCompanyProblems(sortMethod: string) {
 
 async function addCompaniesToSelect() {
     const companySelect = document.getElementById('companySelect') as HTMLSelectElement;
-
-    companySelect.style.backgroundColor = '#373737';
-    companySelect.style.color = '#fff';
-    companySelect.style.padding = '5px';
-
     let uniqueCompanies = new Set<string>();
 
     const data = await new Promise<{ leetcodeProblems: LeetcodeProblems }>(resolve => {
@@ -222,61 +221,53 @@ async function addCompaniesToSelect() {
     companySelect.style.maxHeight = '500px';
 }
 
+// Keep track of the sorting order for each column
+const sortOrders = {
+    '#': true,
+    'Title': true,
+    'Score': true,
+    'Frequency': true,
+};
+
 function sortBy(column: string) {
-    if (column === 'Score') {
-        solutions.sort((a, b) => b.score - a.score);
-    }
-    else if (column === 'Title') {
-        solutions.sort((a, b) => a.title.localeCompare(b.title));
-    }
-    else if (column === 'Difficulty') {
-        solutions.sort((a, b) => a.difficulty - b.difficulty); // Easy < Medium < Hard
-    }
-    else {
-        solutions.sort((a, b) => a.id - b.id);
-    }
+    // Toggle the sort order for the selected column
+    sortOrders[column] = !sortOrders[column];
 
-    // after sorting, you might want to re-render your table
+    // Clear the existing table
     const table = document.getElementById('solutionTable') as HTMLTableElement;
-
-    // remove all existing rows
     while (table.rows.length > 1) {
         table.deleteRow(1);
     }
 
-    solutions.forEach(solution => {
+    // Sort the solutions based on the selected column
+    switch (column) {
+        case '#':
+            solutions.sort((a, b) => (sortOrders[column] ? a.id - b.id : b.id - a.id));
+            break;
+        case 'Title':
+            solutions.sort((a, b) => (sortOrders[column] ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)));
+            break;
+        case 'Frequency':
+            solutions.sort((a, b) => (sortOrders[column] ? b.frequency - a.frequency : a.frequency - b.frequency));
+            break;
+        // Add other cases if needed
+    }
+
+    // Rebuild the table with sorted solutions
+    solutions.forEach((solution) => {
         const row = table.insertRow(-1);
         row.insertCell(0).innerText = solution.id.toString();
-        const titleCell = row.insertCell(1);
-        titleCell.innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
-        const scoreCell = row.insertCell(2);
-        scoreCell.innerText = solution.score.toString();
-        const score = solution.score;
-        const color = 'white';
-        scoreCell.style.color = color;
-        scoreCell.style.fontWeight = 'bold';
+        row.insertCell(1).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
 
-        // add difficulty
-        const difficultyCell = row.insertCell(3);
-        let innerText = '';
-        if (solution.difficulty === 1) {
-            innerText = 'Easy';
-        }
-        else if (solution.difficulty === 2) {
-            innerText = 'Medium';
-        }
-        else if (solution.difficulty === 3) {
-            innerText = 'Hard';
-        }
-        difficultyCell.innerText = innerText;
-        difficultyCell.style.color = color;
-
-        // add frequency
-        if (solution.frequency) {
-            const frequencyCell = row.insertCell(4);
-            frequencyCell.innerText = solution.frequency.toString();
-            frequencyCell.style.color = color;
-        }
+        // Add frequency as a bar
+        const frequencyCell = row.insertCell(2);
+        const bar = document.createElement('div');
+        const width = ((solution.frequency - minFrequency) / (maxFrequency - minFrequency)) * 100;
+        bar.style.width = width + '%';
+        bar.style.height = '10px';
+        bar.style.backgroundColor = 'lightgreen';
+        bar.style.borderRadius = '10px';
+        frequencyCell.appendChild(bar);
     });
 }
 

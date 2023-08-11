@@ -200,6 +200,7 @@ async function addCompaniesToSelect() {
         }
     });
 
+    // Event when the "Enter" key is pressed
     companySearch.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
             const selectedCompany = companySearch.value;
@@ -208,6 +209,16 @@ async function addCompaniesToSelect() {
                     location.reload();
                 });
             }
+        }
+    });
+
+    // Event when an option is selected from the dropdown
+    companySearch.addEventListener('change', () => {
+        const selectedCompany = companySearch.value;
+        if (selectedCompany) {
+            chrome.storage.local.set({ clickedCompany: selectedCompany }, () => {
+                location.reload();
+            });
         }
     });
 

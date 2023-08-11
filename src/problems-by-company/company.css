@@ -83,3 +83,9 @@ a:hover {
     color: lightgreen;
     font-weight: bold;
 }
+
+select {
+    background-color: #373737;
+    color: #fff;
+    padding: 5px;
+}

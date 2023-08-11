@@ -9,7 +9,15 @@
 <body>
     <nav id="navbar">
     </nav>
-    <select id="companySelect"></select>
+    <div class="row">
+        <select id="companySelect"></select>
+        <select id="dateSelect">
+            <option value="freq_6months">6 months</option>
+            <option value="freq_1year">1 year</option>
+            <option value="freq_2years">2 years</option>
+            <option value="freq_alltime">All time</option>
+        </select>
+    </div>
     <h1 id="title">Amazon</h1>
     <p>
         <span id="score">Score</span> = The number of times the question was asked between 2021-2023
@@ -22,7 +30,6 @@
             <!-- <th id="Score" class="header">Score</th> -->
             <!-- <th id="Acceptance" class="header">Acceptance</th> -->
             <th id="Frequency" class="header">Frequency</th>
-
         </tr>
     </table>
     <script src="../../dist/problems-by-company/company.js"></script>

@@ -225,8 +225,31 @@ function rebuildTable() {
     solutions.forEach((solution) => {
         const row = table.insertRow(-1);
         row.insertCell(0).innerText = solution.id.toString();
-        const difficultyText = solution.difficulty === 1 ? 'Easy' : solution.difficulty === 2 ? 'Medium' : 'Hard';
-        row.insertCell(1).innerText = difficultyText || 'N/A';
+
+        // Get the difficulty level
+        const difficulty = solution.difficulty;
+        const difficultyCell = row.insertCell(1);
+        let difficultyText = '';
+        let color = '';
+
+        // Define the difficulty text and background color
+        if (difficulty === 1) {
+            difficultyText = 'Easy';
+            color = 'lightgreen';
+        } else if (difficulty === 2) {
+            difficultyText = 'Medium';
+            color = 'orange';
+        } else {
+            difficultyText = 'Hard';
+            color = 'red';
+        }
+
+        difficultyCell.innerText = difficultyText || 'N/A';
+        difficultyCell.style.color = color;
+        difficultyCell.style.fontWeight = 'bold';
+        difficultyCell.style.fontSize = '10px';
+        difficultyCell.style.borderRadius = '5px'; // Apply border radius
+
         row.insertCell(2).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
         row.insertCell(3).innerText = (solution.acceptance ? (solution.acceptance * 100).toFixed(2) + '%' : 'N/A'); // New column for acceptance
 
@@ -242,7 +265,6 @@ function rebuildTable() {
         frequencyCell.appendChild(bar);
     });
 }
-
 
 
 // Keep track of the sorting order for each column

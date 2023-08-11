@@ -200,27 +200,27 @@ async function addCompaniesToSelect() {
         }
     });
 
-    // Event when the "Enter" key is pressed
-    companySearch.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            const selectedCompany = companySearch.value;
-            if (selectedCompany) {
-                chrome.storage.local.set({ clickedCompany: selectedCompany }, () => {
-                    location.reload();
-                });
-            }
-        }
-    });
-
-    // Event when an option is selected from the dropdown
-    companySearch.addEventListener('change', () => {
-        const selectedCompany = companySearch.value;
+    // Event when the "Enter" key is pressed or an option is selected from the dropdown
+    const handleSelection = () => {
+        const inputValue = companySearch.value;
+        // Find the selected company in a case-insensitive manner
+        const selectedCompany = Array.from(uniqueCompanies).find(
+            (company) => company.toLowerCase() === inputValue.toLowerCase()
+        );
         if (selectedCompany) {
             chrome.storage.local.set({ clickedCompany: selectedCompany }, () => {
                 location.reload();
             });
         }
+    };
+
+    companySearch.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            handleSelection();
+        }
     });
+
+    companySearch.addEventListener('change', handleSelection);
 
     // Convert the Set to an Array and sort it alphabetically
     const sortedCompanies = Array.from(uniqueCompanies).sort();
@@ -231,6 +231,7 @@ async function addCompaniesToSelect() {
         companyList.appendChild(option);
     });
 }
+
 
 // Keep track of the sorting order for each column
 const sortOrders = {

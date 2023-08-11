@@ -13,8 +13,7 @@ body {
 }
 
 h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
+    font-size: 30px;
     color: lightcyan;
 }
 
@@ -90,9 +89,22 @@ select {
     padding: 5px;
 }
 
-#companySearch {
-    background-color: #373737;
+#dateSelect {
     color: #fff;
-    padding: 5px;
-    margin-bottom: 20px;
+    background-color: #373737;
+    border: '2px solid white';
+    width: 150px;
+    height: 35px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+#companySearch {
+    color: #fff;
+    background-color: #373737;
+    border: '2px solid white';
+    width: 250px;
+    height: 30px;
+    border-radius: 5px;
+    text-align: center;
 }

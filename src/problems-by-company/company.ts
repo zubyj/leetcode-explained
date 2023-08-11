@@ -15,8 +15,9 @@ async function main() {
     });
 
     document.getElementById('#')?.addEventListener('click', () => sortBy('#'));
-    document.getElementById('Title')?.addEventListener('click', () => sortBy('Title'));
     document.getElementById('Difficulty')?.addEventListener('click', () => sortBy('Difficulty'));
+    document.getElementById('Title')?.addEventListener('click', () => sortBy('Title'));
+    document.getElementById('Acceptance')?.addEventListener('click', () => sortBy('Acceptance'));
     document.getElementById('Frequency')?.addEventListener('click', () => sortBy('Frequency'));
     document.getElementById('dateSelect')?.addEventListener('change', (event) => {
         const selectedFrequency = (event.target as HTMLSelectElement).value;
@@ -270,7 +271,9 @@ function rebuildTable() {
 // Keep track of the sorting order for each column
 const sortOrders = {
     '#': false,
+    'Difficulty': false,
     'Title': false,
+    'Acceptance': false,
     'Frequency': false,
 };
 
@@ -289,8 +292,14 @@ function sortBy(column: string) {
         case '#':
             solutions.sort((a, b) => (sortOrders[column] ? a.id - b.id : b.id - a.id));
             break;
+        case 'Difficulty':
+            solutions.sort((a, b) => (sortOrders[column] ? a.difficulty - b.difficulty : b.difficulty - a.difficulty));
+            break;
         case 'Title':
             solutions.sort((a, b) => (sortOrders[column] ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)));
+            break;
+        case 'Acceptance':
+            solutions.sort((a, b) => (sortOrders[column] ? b.acceptance - a.acceptance : a.acceptance - b.acceptance));
             break;
         case 'Frequency':
             solutions.sort((a, b) => (sortOrders[column] ? b.frequency - a.frequency : a.frequency - b.frequency));

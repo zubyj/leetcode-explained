@@ -83,7 +83,7 @@ interface LeetcodeProblems {
 }
 
 function addCompanyProblems(sortMethod: string) {
-    chrome.storage.local.get('leetcodeProblems', function (items: { [key: string]: any; }) {
+    chrome.storage.local.get('companyFreq', function (items: { [key: string]: any; }) {
         const data = items as { leetcodeProblems: LeetcodeProblems };
         data.leetcodeProblems.questions.forEach((question: Question) => {
             if (!question.companies) return;

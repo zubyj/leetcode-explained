@@ -13,6 +13,17 @@ chrome.runtime.onInstalled.addListener(() => {
             console.error(error);
         });
 
+    // Load company-freq JSON file into storage
+    const companyFreq = chrome.runtime.getURL('src/assets/data/company-freq.json');
+    fetch(jsonUrl)
+        .then((response) => response.json())
+        .then((data) => {
+            chrome.storage.local.set({ companyFreq: data });
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
     // Default settings
     chrome.storage.local.set({ language: 'python' });
     chrome.storage.local.set({ fontSize: 14 });

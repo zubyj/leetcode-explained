@@ -75,3 +75,13 @@ If you encounter any issues or have any questions, please open an issue on this 
 This extension doesn't collect any personal data. All the code analysis and generation happens on your local machine.
 
 If you like the extension, please leave a review in the Reviews tab. For questions or bugs, feel free to open an issue on Github.
+
+### References
+
+Check out these cool datasets used in Leetcode Explained
+
+[Problem elo ratings](https://github.com/zerotrac/leetcode_problem_rating) 
+
+[Company tags](https://github.com/hxu296/leetcode-company-wise-problems-2022)
+
+[Problem frequency by company](https://github.com/krishnadey30/LeetCode-Questions-CompanyWise/tree/master)

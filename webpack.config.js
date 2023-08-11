@@ -1,5 +1,4 @@
 import path from 'path';
-
 module.exports = {
     entry: './dist/background/chatgpt/chatgpt.js',
     output: {

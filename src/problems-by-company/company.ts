@@ -2,7 +2,7 @@ const solutions = [] as { id: number, title: string, url: string }[];
 
 let companyName = 'Amazon';
 const companies = [
-    'Adobe', 'Amazon', 'Apple', 'Facebook', 'Google', 'Microsoft', 'Netflix', 'Oracle', 'Uber'
+    'Amazon', 'Apple', 'Facebook', 'Google', 'Microsoft', 'Netflix'
 ];
 
 async function main() {

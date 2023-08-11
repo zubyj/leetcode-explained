@@ -149,18 +149,10 @@ function addCompanyProblems(sortMethod: string) {
                     difficulty: correspondingLeetcodeProblem?.difficulty_lvl, // Add difficulty
                     acceptance: correspondingLeetcodeProblem?.acceptance, // Add acceptance
                 });
-            });
-        }
 
-        // Check if companyProblems is an array before proceeding
-        if (Array.isArray(companyProblems)) {
-            companyProblems.forEach((problem) => {
-                solutions.push({
-                    id: problem.id,
-                    title: problem.title,
-                    url: `https://leetcode.com/problems/${problem.title.replace(/\s/g, '-')}/`,
-                    frequency: problem.freq_alltime,
-                });
+                // Update min and max frequency
+                if (problem.freq_alltime < minFrequency) minFrequency = problem.freq_alltime;
+                if (problem.freq_alltime > maxFrequency) maxFrequency = problem.freq_alltime;
             });
         }
 

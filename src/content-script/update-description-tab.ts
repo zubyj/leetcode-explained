@@ -8,19 +8,12 @@
 function showExamples() {
     chrome.storage.local.get(['showExamples'], (result) => {
         const showExamples = result.showExamples;
-        const descriptionContainer = document.querySelector('div._1l1MA') as Element;
-        if (!descriptionContainer) {
-            return;
-        }
-        const examples = descriptionContainer.getElementsByClassName('example');
-        if (examples && examples.length > 0) {
-            const parent = examples[0].parentNode as Element;
-            if (!parent) {
-                return;
-            }
-            const startIndex = Array.from(descriptionContainer.children).indexOf(parent);
-            for (let i = startIndex; i < descriptionContainer.children.length; i++) {
-                const child = descriptionContainer.children[i] as HTMLElement;
+
+        const examples = document.getElementsByClassName('xFUwe')[0];
+        if (examples && examples.children) {
+            for (const child of examples.children) {
+                // skip the first child since it is the title of the examples section
+                if (child === examples.children[0]) continue;
                 child.style.display = showExamples ? 'block' : 'none';
             }
         }

@@ -2,7 +2,7 @@ const solutions = [] as { id: number, title: string, url: string }[];
 
 let companyName = 'Amazon';
 const companies = [
-    'Adobe', 'Apple', 'Bloomberg', 'Cisco', 'Facebook', 'Google', 'Microsoft', 'Spotify'
+    'Adobe', 'Amazon', 'Apple', 'Facebook', 'Google', 'Microsoft', 'Netflix', 'Oracle', 'Uber'
 ];
 
 async function main() {
@@ -235,11 +235,15 @@ function rebuildTable() {
         difficultyCell.innerText = difficultyText || 'N/A';
         difficultyCell.style.color = color;
         difficultyCell.style.fontWeight = 'bold';
-        difficultyCell.style.fontSize = '10px';
+        difficultyCell.style.fontSize = '12px';
         difficultyCell.style.borderRadius = '5px'; // Apply border radius
 
         row.insertCell(2).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
-        row.insertCell(3).innerText = (solution.acceptance ? (solution.acceptance * 100).toFixed(2) + '%' : 'N/A'); // New column for acceptance
+
+        // Add acceptance rating
+        const acceptanceCell = row.insertCell(3);
+        acceptanceCell.innerText = (solution.acceptance ? (solution.acceptance * 100).toFixed(2) + '%' : 'N/A'); // New column for acceptance
+        acceptanceCell.style.fontSize = '12px';
 
         // Add frequency as a bar
         const frequencyCell = row.insertCell(4);

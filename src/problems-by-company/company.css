@@ -109,7 +109,10 @@ select {
     text-align: center;
 }
 
-#Title,
+#Title {
+    min-width: 300px;
+}
+
 #Frequency {
-    min-width: 200px;
+    min-width: 150px;
 }

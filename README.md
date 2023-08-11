@@ -11,9 +11,9 @@ A free, open source browser extension that adds video solutions, company tags, a
 [<img src="https://user-images.githubusercontent.com/3750161/233201810-d1026855-0482-44c8-b1ec-c7247134473e.png" height="40" alt="Chrome">](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
 ### Features
 
-1️⃣ Adds the top 5 youtube solution videos into each [problem](https://leetcode.com/problems/two-sum/solutions)
+1️⃣ Solution videos: Adds the top 5 youtube solution videos into each [problem](https://leetcode.com/problems/two-sum/solutions)
 
-2️⃣ Adds the top 5 companies that ask each [problem](https://leetcode.com/problems/two-sum/description)
+2️⃣ Company tags: Adds the top 5 companies that ask each [problem](https://leetcode.com/problems/two-sum/description)
 
 3️⃣ Elo Rating: Adds more accurate ratings to problems used in weekly/biweekly contests (~1500 problems supported)
 

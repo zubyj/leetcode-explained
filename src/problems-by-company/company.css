@@ -89,3 +89,10 @@ select {
     color: #fff;
     padding: 5px;
 }
+
+#companySearch {
+    background-color: #373737;
+    color: #fff;
+    padding: 5px;
+    margin-bottom: 20px;
+}

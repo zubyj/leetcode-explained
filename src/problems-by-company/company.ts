@@ -182,7 +182,8 @@ function addCompanyProblems(sortMethod: string) {
 }
 
 async function addCompaniesToSelect() {
-    const companySelect = document.getElementById('companySelect') as HTMLSelectElement;
+    const companySearch = document.getElementById('companySearch') as HTMLInputElement;
+    const companyList = document.getElementById('companyList') as HTMLDataListElement;
     let uniqueCompanies = new Set<string>();
 
     const data = await new Promise<{ leetcodeProblems: LeetcodeProblems }>(resolve => {
@@ -199,17 +200,46 @@ async function addCompaniesToSelect() {
         }
     });
 
+    // Add event listener to the search input
+    companySearch.addEventListener('input', () => {
+        // Get the search term
+        const searchTerm = companySearch.value.trim().toLowerCase();
+
+        // Clear the existing options
+        companySelect.innerHTML = '';
+
+        // Filter and add the options based on the search term
+        sortedCompanies.forEach((company) => {
+            if (company.toLowerCase().includes(searchTerm)) {
+                const option = document.createElement('option');
+                option.value = company;
+                option.text = company;
+                if (company === companyName) {
+                    option.selected = true;
+                }
+                companySelect.appendChild(option);
+            }
+        });
+    });
+
+    companySearch.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            const selectedCompany = companySearch.value;
+            if (selectedCompany) {
+                chrome.storage.local.set({ clickedCompany: selectedCompany }, () => {
+                    location.reload();
+                });
+            }
+        }
+    });
+
     // Convert the Set to an Array and sort it alphabetically
     const sortedCompanies = Array.from(uniqueCompanies).sort();
 
     sortedCompanies.forEach((company) => {
         const option = document.createElement('option');
         option.value = company;
-        option.text = company;
-        if (company === companyName) {
-            option.selected = true;
-        }
-        companySelect.appendChild(option);
+        companyList.appendChild(option);
     });
 
     companySelect.addEventListener('change', () => {

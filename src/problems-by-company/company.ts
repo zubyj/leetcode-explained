@@ -72,7 +72,7 @@ function addNavbarLinks() {
     });
 }
 
-function updateFrequency(selectedFrequency: string) {
+async function updateFrequency(selectedFrequency: string) {
     // Clear the existing table
     const table = document.getElementById('solutionTable') as HTMLTableElement;
     while (table.rows.length > 1) {
@@ -80,14 +80,18 @@ function updateFrequency(selectedFrequency: string) {
     }
 
     // Update the frequency values in the solutions array
-    solutions.forEach((solution, index) => {
+    const data = await new Promise<{ companyProblems: any }>((resolve) => {
         chrome.storage.local.get('companyProblems', function (data) {
-            const companyProblems = data.companyProblems[companyName];
-            if (Array.isArray(companyProblems)) {
-                solution.frequency = companyProblems[index][selectedFrequency];
-            }
+            resolve(data);
         });
     });
+
+    const companyProblems = data.companyProblems[companyName];
+    if (Array.isArray(companyProblems)) {
+        solutions.forEach((solution, index) => {
+            solution.frequency = companyProblems[index][selectedFrequency];
+        });
+    }
 
     // Rebuild the table with updated frequency values
     solutions.forEach((solution) => {
@@ -107,7 +111,6 @@ function updateFrequency(selectedFrequency: string) {
     });
 }
 
-
 interface Company {
     name: string;
 }
@@ -126,19 +129,26 @@ let minFrequency = Number.MAX_SAFE_INTEGER;
 let maxFrequency = 0;
 
 function addCompanyProblems(sortMethod: string) {
-    chrome.storage.local.get('companyProblems', function (data) {
-        // Get the problems for the selected company
+    chrome.storage.local.get(['companyProblems', 'leetcodeProblems'], function (data) {
         const companyProblems = data.companyProblems[companyName];
-        console.log('companyProblems', companyProblems);
+        const leetcodeProblems = data.leetcodeProblems.questions;
 
         // Reset max and min frequency
         maxFrequency = 0;
         minFrequency = Number.MAX_SAFE_INTEGER;
+
+        // Check if companyProblems is an array before proceeding
         if (Array.isArray(companyProblems)) {
             companyProblems.forEach((problem) => {
-                const freq = problem.freq_alltime;
-                if (freq > maxFrequency) maxFrequency = freq;
-                if (freq < minFrequency) minFrequency = freq;
+                const correspondingLeetcodeProblem = leetcodeProblems.find(q => q.frontend_id === problem.id);
+                solutions.push({
+                    id: problem.id,
+                    title: problem.title,
+                    url: `https://leetcode.com/problems/${problem.title.replace(/\s/g, '-')}/`,
+                    frequency: problem.freq_alltime,
+                    difficulty: correspondingLeetcodeProblem?.difficulty_lvl, // Add difficulty
+                    acceptance: correspondingLeetcodeProblem?.acceptance, // Add acceptance
+                });
             });
         }
 
@@ -150,7 +160,6 @@ function addCompanyProblems(sortMethod: string) {
                     title: problem.title,
                     url: `https://leetcode.com/problems/${problem.title.replace(/\s/g, '-')}/`,
                     frequency: problem.freq_alltime,
-                    // acceptance: company.acceptance, // Adjust this as needed
                 });
             });
         }
@@ -159,16 +168,16 @@ function addCompanyProblems(sortMethod: string) {
 
         const table = document.getElementById('solutionTable') as HTMLTableElement;
 
+        // Modify table rendering to include difficulty and acceptance
         solutions.forEach(solution => {
             const row = table.insertRow(-1);
-            // add id
             row.insertCell(0).innerText = solution.id.toString();
-            // add title and link to the problem
-            row.insertCell(1).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
-
+            row.insertCell(1).innerText = solution.difficulty?.toString() || 'N/A'; // New column for difficulty
+            row.insertCell(2).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
+            row.insertCell(3).innerText = (solution.acceptance ? (solution.acceptance * 100).toFixed(2) + '%' : 'N/A'); // New column for acceptance
             // add frequency as a bar
             if (solution.frequency) {
-                const frequencyCell = row.insertCell(2);
+                const frequencyCell = row.insertCell(4);
                 const bar = document.createElement('div');
                 const width = ((solution.frequency - minFrequency) / (maxFrequency - minFrequency)) * 100;
                 bar.style.width = width + '%';
@@ -177,6 +186,7 @@ function addCompanyProblems(sortMethod: string) {
                 bar.style.borderRadius = '10px';
                 frequencyCell.appendChild(bar);
             }
+
         });
     });
 }
@@ -278,6 +288,7 @@ function sortBy(column: string) {
         bar.style.height = '10px';
         bar.style.backgroundColor = 'lightgreen';
         bar.style.borderRadius = '10px';
+        bar.style.border = '1px solid lightgreen';
         frequencyCell.appendChild(bar);
     });
 }

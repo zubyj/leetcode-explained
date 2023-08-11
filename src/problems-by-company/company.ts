@@ -158,28 +158,9 @@ function addCompanyProblems(sortMethod: string) {
 
         console.log(solutions);
 
-        const table = document.getElementById('solutionTable') as HTMLTableElement;
+        // Rebuild the table with sorted solutions
+        rebuildTable();
 
-        // Modify table rendering to include difficulty and acceptance
-        solutions.forEach(solution => {
-            const row = table.insertRow(-1);
-            row.insertCell(0).innerText = solution.id.toString();
-            const difficultyText = solution.difficulty === 1 ? 'Easy' : solution.difficulty === 2 ? 'Medium' : 'Hard';
-            row.insertCell(1).innerText = difficultyText || 'N/A';
-            row.insertCell(2).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
-            row.insertCell(3).innerText = (solution.acceptance ? (solution.acceptance * 100).toFixed(2) + '%' : 'N/A'); // New column for acceptance
-            // add frequency as a bar
-            if (solution.frequency) {
-                const frequencyCell = row.insertCell(4);
-                const bar = document.createElement('div');
-                const width = ((solution.frequency - minFrequency) / (maxFrequency - minFrequency)) * 100;
-                bar.style.width = width + '%';
-                bar.style.height = '10px';
-                bar.style.backgroundColor = 'lightgreen';
-                bar.style.borderRadius = '10px';
-                frequencyCell.appendChild(bar);
-            }
-        });
     });
 }
 
@@ -234,6 +215,35 @@ async function addCompaniesToSelect() {
     });
 }
 
+// Function to rebuild the table with sorted solutions
+function rebuildTable() {
+    const table = document.getElementById('solutionTable') as HTMLTableElement;
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+
+    solutions.forEach((solution) => {
+        const row = table.insertRow(-1);
+        row.insertCell(0).innerText = solution.id.toString();
+        const difficultyText = solution.difficulty === 1 ? 'Easy' : solution.difficulty === 2 ? 'Medium' : 'Hard';
+        row.insertCell(1).innerText = difficultyText || 'N/A';
+        row.insertCell(2).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
+        row.insertCell(3).innerText = (solution.acceptance ? (solution.acceptance * 100).toFixed(2) + '%' : 'N/A'); // New column for acceptance
+
+        // Add frequency as a bar
+        const frequencyCell = row.insertCell(4);
+        const bar = document.createElement('div');
+        const width = ((solution.frequency - minFrequency) / (maxFrequency - minFrequency)) * 100;
+        bar.style.width = width + '%';
+        bar.style.height = '10px';
+        bar.style.backgroundColor = 'lightgreen';
+        bar.style.borderRadius = '10px';
+        bar.style.border = '1px solid lightgreen';
+        frequencyCell.appendChild(bar);
+    });
+}
+
+
 
 // Keep track of the sorting order for each column
 const sortOrders = {
@@ -267,22 +277,8 @@ function sortBy(column: string) {
     }
 
     // Rebuild the table with sorted solutions
-    solutions.forEach((solution) => {
-        const row = table.insertRow(-1);
-        row.insertCell(0).innerText = solution.id.toString();
-        row.insertCell(1).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
+    rebuildTable();
 
-        // Add frequency as a bar
-        const frequencyCell = row.insertCell(2);
-        const bar = document.createElement('div');
-        const width = ((solution.frequency - minFrequency) / (maxFrequency - minFrequency)) * 100;
-        bar.style.width = width + '%';
-        bar.style.height = '10px';
-        bar.style.backgroundColor = 'lightgreen';
-        bar.style.borderRadius = '10px';
-        bar.style.border = '1px solid lightgreen';
-        frequencyCell.appendChild(bar);
-    });
 }
 
 /* Run the script */

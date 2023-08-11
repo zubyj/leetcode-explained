@@ -108,3 +108,8 @@ select {
     border-radius: 5px;
     text-align: center;
 }
+
+#Title,
+#Frequency {
+    min-width: 200px;
+}

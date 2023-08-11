@@ -284,6 +284,7 @@ function sortBy(column: string) {
             solutions.sort((a, b) => (sortOrders[column] ? a.id - b.id : b.id - a.id));
             break;
         case 'Difficulty':
+            solutions.sort((a, b) => (sortOrders[column] ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)));
             solutions.sort((a, b) => (sortOrders[column] ? a.difficulty - b.difficulty : b.difficulty - a.difficulty));
             break;
         case 'Title':

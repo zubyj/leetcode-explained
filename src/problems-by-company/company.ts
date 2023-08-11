@@ -200,28 +200,6 @@ async function addCompaniesToSelect() {
         }
     });
 
-    // Add event listener to the search input
-    companySearch.addEventListener('input', () => {
-        // Get the search term
-        const searchTerm = companySearch.value.trim().toLowerCase();
-
-        // Clear the existing options
-        companySelect.innerHTML = '';
-
-        // Filter and add the options based on the search term
-        sortedCompanies.forEach((company) => {
-            if (company.toLowerCase().includes(searchTerm)) {
-                const option = document.createElement('option');
-                option.value = company;
-                option.text = company;
-                if (company === companyName) {
-                    option.selected = true;
-                }
-                companySelect.appendChild(option);
-            }
-        });
-    });
-
     companySearch.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
             const selectedCompany = companySearch.value;
@@ -241,14 +219,6 @@ async function addCompaniesToSelect() {
         option.value = company;
         companyList.appendChild(option);
     });
-
-    companySelect.addEventListener('change', () => {
-        chrome.storage.local.set({ clickedCompany: companySelect.value }, () => {
-            location.reload();
-        });
-    });
-
-    companySelect.style.maxHeight = '500px';
 }
 
 // Keep track of the sorting order for each column

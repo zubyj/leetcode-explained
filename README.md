@@ -11,16 +11,20 @@ A free, open source browser extension that adds video solutions, company tags, a
 [<img src="https://user-images.githubusercontent.com/3750161/233201810-d1026855-0482-44c8-b1ec-c7247134473e.png" height="40" alt="Chrome">](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
 ### Features
 
-1️⃣ Adds the top 5 youtube solution videos into each problems [solutions tab](https://leetcode.com/problems/two-sum/solutions)
+1️⃣ Adds the top 5 youtube solution videos into each [problem](https://leetcode.com/problems/two-sum/solutions)
 
-2️⃣ Adds the top 5 companies that ask each problem into each problems [description tab](https://leetcode.com/problems/two-sum/description)
+2️⃣ Adds the top 5 companies that ask each [problem](https://leetcode.com/problems/two-sum/description)
 
-3️⃣ Reads your code and tells you the time and space complexity
+3️⃣ Elo Rating: Adds more accurate ratings to problems used in weekly/biweekly contests (~1500 problems supported)
 
-4️⃣ Generates the optimized code for the given problem
+4️⃣ Hard Mode: Hide Leetcode examples and difficulty levels to simulate a real coding interview environment.
 
+5️⃣ Code Analysis: Reads your code & gives you the time & space complexity using GPT.
 
-Features 3️⃣ and 4️⃣ require  login to chat.openai.com (ChatGPT) in your browser.
+6️⃣ Code Generation: Creates the optimal solution code for the given problem using GPT.
+
+To activate features 5️⃣ and 6️⃣, log into ChatGPT in your browser and pin the extension.
+
 
 ### ⚙️ Installation
 

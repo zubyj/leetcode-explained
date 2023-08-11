@@ -3,8 +3,8 @@ import { getChatGPTAccessToken } from './chatgpt/chatgpt.js';
 // Load JSON & default settings on install
 chrome.runtime.onInstalled.addListener(() => {
     // Load JSON file into storage
-    const jsonUrl = chrome.runtime.getURL('src/assets/data/leetcode_solutions.json');
-    fetch(jsonUrl)
+    const leetcodeProblems = chrome.runtime.getURL('src/assets/data/leetcode_solutions.json');
+    fetch(leetcodeProblems)
         .then((response) => response.json())
         .then((data) => {
             chrome.storage.local.set({ leetcodeProblems: data });
@@ -14,11 +14,11 @@ chrome.runtime.onInstalled.addListener(() => {
         });
 
     // Load company-freq JSON file into storage
-    const companyFreq = chrome.runtime.getURL('src/assets/data/company-freq.json');
-    fetch(jsonUrl)
+    const companyProblems = chrome.runtime.getURL('src/assets/data/problems_by_company.json');
+    fetch(companyProblems)
         .then((response) => response.json())
         .then((data) => {
-            chrome.storage.local.set({ companyFreq: data });
+            chrome.storage.local.set({ companyProblems: data });
         })
         .catch((error) => {
             console.error(error);

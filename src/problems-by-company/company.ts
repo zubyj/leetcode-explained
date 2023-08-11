@@ -17,6 +17,8 @@ async function main() {
     document.getElementById('#')?.addEventListener('click', () => sortBy('#'));
     document.getElementById('Title')?.addEventListener('click', () => sortBy('Title'));
     document.getElementById('Score')?.addEventListener('click', () => sortBy('Score'));
+    document.getElementById('Difficulty')?.addEventListener('click', () => sortBy('Difficulty'));
+    document.getElementById('Frequency')?.addEventListener('click', () => sortBy('Frequency'));
 
     addNavbarLinks();
     await addCompaniesToSelect();
@@ -61,9 +63,7 @@ function addNavbarLinks() {
 
         const companyName = document.createTextNode(`${company}`);
         button.appendChild(companyName);
-
         navbar?.appendChild(button);
-
     });
 }
 
@@ -83,21 +83,26 @@ interface LeetcodeProblems {
 }
 
 function addCompanyProblems(sortMethod: string) {
-    chrome.storage.local.get('companyFreq', function (items: { [key: string]: any; }) {
-        const data = items as { leetcodeProblems: LeetcodeProblems };
-        data.leetcodeProblems.questions.forEach((question: Question) => {
-            if (!question.companies) return;
-            question.companies.forEach((company: Company) => {
-                if (company.name === companyName) {
-                    solutions.push({
-                        id: question.frontend_id,
-                        title: question.title,
-                        score: company.score,
-                        url: `https://leetcode.com/problems/${question.title.replace(/\s/g, '-')}/`,
-                    });
-                }
+    chrome.storage.local.get('companyProblems', function (data) {
+        // Get the problems for the selected company
+        const companyProblems = data.companyProblems[companyName];
+        console.log('companyProblems', companyProblems);
+
+        // Check if companyProblems is an array before proceeding
+        if (Array.isArray(companyProblems)) {
+            companyProblems.forEach((problem) => {
+                solutions.push({
+                    id: problem.id,
+                    title: problem.title,
+                    // score: company.score, // Adjust this as needed
+                    url: `https://leetcode.com/problems/${problem.title.replace(/\s/g, '-')}/`,
+                    frequency: problem.freq_alltime,
+                    // acceptance: company.acceptance, // Adjust this as needed
+                });
             });
-        });
+        }
+
+        console.log(solutions);
 
         const table = document.getElementById('solutionTable') as HTMLTableElement;
 
@@ -107,15 +112,50 @@ function addCompanyProblems(sortMethod: string) {
 
         solutions.forEach(solution => {
             const row = table.insertRow(-1);
+            // add id
             row.insertCell(0).innerText = solution.id.toString();
-            const titleCell = row.insertCell(1);
-            titleCell.innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
-            const scoreCell = row.insertCell(2);
-            scoreCell.innerText = solution.score.toString();
-            const score = solution.score;
-            const color = 'white';
-            scoreCell.style.color = color;
-            scoreCell.style.fontWeight = 'bold';
+            // add title and link to the problem
+            row.insertCell(1).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
+            // add frequency
+            if (solution.frequency) {
+                const frequencyCell = row.insertCell(2);
+                frequencyCell.innerText = solution.frequency.toString();
+                frequencyCell.style.color = 'white';
+            }
+
+            // add difficulty
+            // const difficultyCell = row.insertCell(1);
+            // let innerText = '';
+            // if (solution.difficulty === 1) {
+            //     innerText = 'Easy';
+            // }
+            // else if (solution.difficulty === 2) {
+            //     innerText = 'Medium';
+            // }
+            // else if (solution.difficulty === 3) {
+            //     innerText = 'Hard';
+            // }
+            // difficultyCell.innerText = innerText;
+            // difficultyCell.style.color = color;
+
+
+            // add score
+            // const scoreCell = row.insertCell(2);
+            // scoreCell.innerText = solution.score.toString();
+
+            // add acceptance
+            // if (solution.acceptance) {
+            //     const acceptanceCell = row.insertCell(5);
+            //     acceptanceCell.innerText = solution.acceptance.toString();
+            //     acceptanceCell.style.color = color;
+            // }
+
+            // add frequency
+            // if (solution.frequency) {
+            //     const frequencyCell = row.insertCell(4);
+            //     frequencyCell.innerText = solution.frequency.toString();
+            //     frequencyCell.style.color = color;
+            // }
         });
     });
 }
@@ -172,6 +212,9 @@ function sortBy(column: string) {
     else if (column === 'Title') {
         solutions.sort((a, b) => a.title.localeCompare(b.title));
     }
+    else if (column === 'Difficulty') {
+        solutions.sort((a, b) => a.difficulty - b.difficulty); // Easy < Medium < Hard
+    }
     else {
         solutions.sort((a, b) => a.id - b.id);
     }
@@ -195,6 +238,28 @@ function sortBy(column: string) {
         const color = 'white';
         scoreCell.style.color = color;
         scoreCell.style.fontWeight = 'bold';
+
+        // add difficulty
+        const difficultyCell = row.insertCell(3);
+        let innerText = '';
+        if (solution.difficulty === 1) {
+            innerText = 'Easy';
+        }
+        else if (solution.difficulty === 2) {
+            innerText = 'Medium';
+        }
+        else if (solution.difficulty === 3) {
+            innerText = 'Hard';
+        }
+        difficultyCell.innerText = innerText;
+        difficultyCell.style.color = color;
+
+        // add frequency
+        if (solution.frequency) {
+            const frequencyCell = row.insertCell(4);
+            frequencyCell.innerText = solution.frequency.toString();
+            frequencyCell.style.color = color;
+        }
     });
 }
 

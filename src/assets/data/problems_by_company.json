@@ -30803,12 +30803,6 @@
             "id": 1013
         }
     ],
-    "Zomato": [
-        {
-            "title": "Two Sum",
-            "id": 1
-        }
-    ],
     "Ebay": [
         {
             "title": "Two Sum",
@@ -35757,19 +35751,6 @@
             "freq_alltime": 0.02324
         }
     ],
-    "Radius": [
-        {
-            "title": "Two Sum",
-            "id": 1,
-            "freq_2year": 0.00082,
-            "freq_alltime": 0.00512
-        },
-        {
-            "title": "Find Pivot Index",
-            "id": 724,
-            "freq_alltime": 0.0
-        }
-    ],
     "Sap": [
         {
             "title": "Two Sum",
@@ -36330,19 +36311,6 @@
         {
             "title": "Longest Subarray of 1's After Deleting One Element",
             "id": 1586,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Ge-digital": [
-        {
-            "title": "Two Sum",
-            "id": 1,
-            "freq_2year": 0.00185,
-            "freq_alltime": 0.00328
-        },
-        {
-            "title": "Degree of an Array",
-            "id": 697,
             "freq_alltime": 0.0
         }
     ],
@@ -38206,25 +38174,6 @@
         {
             "title": "Sort Array by Increasing Frequency",
             "id": 1741
-        }
-    ],
-    "Aetion": [
-        {
-            "title": "Two Sum",
-            "id": 1,
-            "freq_2year": 0.00082,
-            "freq_alltime": 0.04892
-        },
-        {
-            "title": "Add Two Numbers",
-            "id": 2,
-            "freq_2year": 0.00164,
-            "freq_alltime": 0.02049
-        },
-        {
-            "title": "Arithmetic Slices",
-            "id": 413,
-            "freq_alltime": 0.02843
         }
     ],
     "Cloudera": [
@@ -40409,14 +40358,6 @@
             "freq_alltime": 0.49375
         }
     ],
-    "Emc": [
-        {
-            "title": "Two Sum",
-            "id": 1,
-            "freq_2year": 0.00082,
-            "freq_alltime": 0.01649
-        }
-    ],
     "Splunk": [
         {
             "title": "Two Sum",
@@ -40621,39 +40562,6 @@
         {
             "title": "Middle of the Linked List",
             "id": 908
-        }
-    ],
-    "Deutsche-bank": [
-        {
-            "title": "Two Sum",
-            "id": 1,
-            "freq_2year": 0.00082,
-            "freq_alltime": 0.02137
-        },
-        {
-            "title": "Minimum Window Substring",
-            "id": 76,
-            "freq_2year": 0.00343,
-            "freq_alltime": 0.01694
-        },
-        {
-            "title": "Best Time to Buy and Sell Stock",
-            "id": 121,
-            "freq_2year": 0.00212,
-            "freq_alltime": 0.00847
-        }
-    ],
-    "Valve": [
-        {
-            "title": "Two Sum",
-            "id": 1,
-            "freq_2year": 0.00082,
-            "freq_alltime": 0.00736
-        },
-        {
-            "title": "Dota2 Senate",
-            "id": 649,
-            "freq_alltime": 0.0
         }
     ],
     "Box": [
@@ -42895,20 +42803,6 @@
             "freq_alltime": 0.06636
         }
     ],
-    "Garena": [
-        {
-            "title": "Median of Two Sorted Arrays",
-            "id": 4,
-            "freq_2year": 0.00032,
-            "freq_alltime": 0.00032
-        },
-        {
-            "title": "Permutations",
-            "id": 46,
-            "freq_2year": 0.00063,
-            "freq_alltime": 0.00063
-        }
-    ],
     "Houzz": [
         {
             "title": "Median of Two Sorted Arrays",
@@ -44018,20 +43912,6 @@
             "freq_2year": 0.16646,
             "freq_1year": 0.17202,
             "freq_alltime": 0.80807
-        }
-    ],
-    "Swiggy": [
-        {
-            "title": "Container With Most Water",
-            "id": 11
-        },
-        {
-            "title": "Letter Combinations of a Phone Number",
-            "id": 17
-        },
-        {
-            "title": "Rabbits in Forest",
-            "id": 797
         }
     ],
     "tiktok": [
@@ -45623,20 +45503,6 @@
             "id": 2179
         }
     ],
-    "Epic Systems": [
-        {
-            "title": "Letter Combinations of a Phone Number",
-            "id": 17
-        },
-        {
-            "title": "Additive Number",
-            "id": 306
-        },
-        {
-            "title": "Self Dividing Numbers",
-            "id": 728
-        }
-    ],
     "Quip": [
         {
             "title": "Letter Combinations of a Phone Number",
@@ -45840,14 +45706,6 @@
         {
             "title": "Maximum Ascending Subarray Sum",
             "id": 1927
-        }
-    ],
-    "Blizzard": [
-        {
-            "title": "Valid Parentheses",
-            "id": 20,
-            "freq_2year": 0.0023,
-            "freq_alltime": 0.05598
         }
     ],
     "Riot-games": [
@@ -46088,20 +45946,6 @@
         {
             "title": "Next Greater Numerically Balanced Number",
             "id": 2174
-        }
-    ],
-    "TuSimple": [
-        {
-            "title": "Merge k Sorted Lists",
-            "id": 23
-        },
-        {
-            "title": "Binary Tree Maximum Path Sum",
-            "id": 124
-        },
-        {
-            "title": "Binary Tree Postorder Traversal",
-            "id": 145
         }
     ],
     "Cruise-automation": [
@@ -46713,18 +46557,6 @@
             "freq_alltime": 0.0116
         }
     ],
-    "National Instruments": [
-        {
-            "title": "Trapping Rain Water",
-            "id": 42
-        }
-    ],
-    "Sapient": [
-        {
-            "title": "Trapping Rain Water",
-            "id": 42
-        }
-    ],
     "Electronic-arts": [
         {
             "title": "Trapping Rain Water",
@@ -46776,26 +46608,6 @@
             "id": 1465
         }
     ],
-    "payu": [
-        {
-            "title": "Jump Game II",
-            "id": 45
-        },
-        {
-            "title": "Count Operations to Obtain Zero",
-            "id": 2288
-        }
-    ],
-    "BlackRock": [
-        {
-            "title": "Group Anagrams",
-            "id": 49
-        },
-        {
-            "title": "Evaluate Division",
-            "id": 399
-        }
-    ],
     "eBay": [
         {
             "title": "Group Anagrams",
@@ -46832,20 +46644,6 @@
         {
             "title": "Rotating the Box",
             "id": 1972
-        }
-    ],
-    "PayTM": [
-        {
-            "title": "Maximum Subarray",
-            "id": 53
-        },
-        {
-            "title": "Reverse Words in a String III",
-            "id": 557
-        },
-        {
-            "title": "Distribute Candies to People",
-            "id": 1195
         }
     ],
     "Asana": [
@@ -47023,44 +46821,6 @@
             "id": 1790
         }
     ],
-    "Quantcast": [
-        {
-            "title": "Word Search",
-            "id": 79,
-            "freq_2year": 0.00166,
-            "freq_alltime": 0.00166
-        }
-    ],
-    "Hbo": [
-        {
-            "title": "Word Break",
-            "id": 139,
-            "freq_2year": 0.00389,
-            "freq_alltime": 0.00389
-        },
-        {
-            "title": "LRU Cache",
-            "id": 146,
-            "freq_2year": 0.0046,
-            "freq_alltime": 0.01032
-        },
-        {
-            "title": "House Robber",
-            "id": 198,
-            "freq_2year": 0.01177,
-            "freq_alltime": 0.03332
-        }
-    ],
-    "GoDaddy": [
-        {
-            "title": "LRU Cache",
-            "id": 146
-        },
-        {
-            "title": "Battleships in a Board",
-            "id": 419
-        }
-    ],
     "HRT": [
         {
             "title": "Find Peak Element",
@@ -47087,56 +46847,6 @@
             "id": 1901
         }
     ],
-    "Arcesium": [
-        {
-            "title": "Minimum Size Subarray Sum",
-            "id": 209
-        },
-        {
-            "title": "Broken Calculator",
-            "id": 1033
-        },
-        {
-            "title": "Maximum Length of Subarray With Positive Product",
-            "id": 1690
-        }
-    ],
-    "FactSet": [
-        {
-            "title": "Maximal Square",
-            "id": 221
-        }
-    ],
-    "Jump-trading": [
-        {
-            "title": "Basic Calculator",
-            "id": 224,
-            "freq_2year": 0.02008,
-            "freq_alltime": 0.02008
-        }
-    ],
-    "DE Shaw": [
-        {
-            "title": "Sliding Window Maximum",
-            "id": 239
-        },
-        {
-            "title": "Freedom Trail",
-            "id": 514
-        },
-        {
-            "title": "Number of Substrings Containing All Three Characters",
-            "id": 1460
-        }
-    ],
-    "Forusall": [
-        {
-            "title": "Closest Binary Search Tree Value II",
-            "id": 272,
-            "freq_2year": 0.08995,
-            "freq_alltime": 0.31952
-        }
-    ],
     "Bolt": [
         {
             "title": "Word Pattern",
@@ -47159,44 +46869,6 @@
             "id": 2053
         }
     ],
-    "Ponyai": [
-        {
-            "title": "Word Pattern II",
-            "id": 291,
-            "freq_2year": 0.2343,
-            "freq_alltime": 0.48941
-        },
-        {
-            "title": "Remove Invalid Parentheses",
-            "id": 301,
-            "freq_2year": 0.01447,
-            "freq_alltime": 0.03226
-        }
-    ],
-    "Zappos": [
-        {
-            "title": "Coin Change",
-            "id": 322,
-            "freq_2year": 0.00904,
-            "freq_1year": 0.00904,
-            "freq_alltime": 0.01602
-        },
-        {
-            "title": "Reverse Words in a String III",
-            "id": 557,
-            "freq_alltime": 0.03064
-        }
-    ],
-    "IXL": [
-        {
-            "title": "Design Snake Game",
-            "id": 353
-        },
-        {
-            "title": "Find the Derangement of An Array",
-            "id": 634
-        }
-    ],
     "Dunzo": [
         {
             "title": "Max Sum of Rectangle No Larger Than K",
@@ -47213,277 +46885,6 @@
         {
             "title": "Stone Game VII",
             "id": 1808
-        }
-    ],
-    "Hotstar": [
-        {
-            "title": "Find K Pairs with Smallest Sums",
-            "id": 373
-        },
-        {
-            "title": "Asteroid Collision",
-            "id": 735
-        },
-        {
-            "title": "Keys and Rooms",
-            "id": 871
-        }
-    ],
-    "Palantir Technologies": [
-        {
-            "title": "UTF-8 Validation",
-            "id": 393
-        },
-        {
-            "title": "Check If It Is a Straight Line",
-            "id": 1349
-        }
-    ],
-    "MakeMyTrip": [
-        {
-            "title": "Remove K Digits",
-            "id": 402
-        },
-        {
-            "title": "Remove All Occurrences of a Substring",
-            "id": 2021
-        }
-    ],
-    "MAQ Software": [
-        {
-            "title": "Unique Substrings in Wraparound String",
-            "id": 467
-        }
-    ],
-    "Maq-software": [
-        {
-            "title": "Unique Substrings in Wraparound String",
-            "id": 467,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Rackspace": [
-        {
-            "title": "Matchsticks to Square",
-            "id": 473,
-            "freq_alltime": 0.0
-        }
-    ],
-    "HBO": [
-        {
-            "title": "Sliding Window Median",
-            "id": 480
-        },
-        {
-            "title": "Short Encoding of Words",
-            "id": 839
-        }
-    ],
-    "Riot Games": [
-        {
-            "title": "Teemo Attacking",
-            "id": 495
-        }
-    ],
-    "Fallible": [
-        {
-            "title": "Perfect Number",
-            "id": 507,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Pure Storage": [
-        {
-            "title": "Valid Square",
-            "id": 593
-        },
-        {
-            "title": "Maximum Repeating Substring",
-            "id": 1764
-        }
-    ],
-    "Pocket Gems": [
-        {
-            "title": "Non-negative Integers without Consecutive Ones",
-            "id": 600
-        }
-    ],
-    "Gilt Groupe": [
-        {
-            "title": "Add One Row to Tree",
-            "id": 623
-        }
-    ],
-    "Gilt-groupe": [
-        {
-            "title": "Add One Row to Tree",
-            "id": 623,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Symantec": [
-        {
-            "title": "Maximum Product of Three Numbers",
-            "id": 628,
-            "freq_2year": 0.01653,
-            "freq_alltime": 0.03681
-        }
-    ],
-    "Works Applications": [
-        {
-            "title": "K Inverse Pairs Array",
-            "id": 629
-        }
-    ],
-    "Poynt": [
-        {
-            "title": "Print Binary Tree",
-            "id": 655,
-            "freq_alltime": 0.11154
-        }
-    ],
-    "Athenahealth": [
-        {
-            "title": "Degree of an Array",
-            "id": 697
-        }
-    ],
-    "TripleByte": [
-        {
-            "title": "Minimum ASCII Delete Sum for Two Strings",
-            "id": 712
-        }
-    ],
-    "Activision": [
-        {
-            "title": "Minimum ASCII Delete Sum for Two Strings",
-            "id": 712
-        }
-    ],
-    "Yatra": [
-        {
-            "title": "Subarray Product Less Than K",
-            "id": 713,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Inmobi": [
-        {
-            "title": "Reach a Number",
-            "id": 755,
-            "freq_alltime": 0.0
-        }
-    ],
-    "IIT Bombay": [
-        {
-            "title": "Score After Flipping Matrix",
-            "id": 891
-        }
-    ],
-    "Iit-bombay": [
-        {
-            "title": "Score After Flipping Matrix",
-            "id": 891,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Leap Motion": [
-        {
-            "title": "Generate Random Point in a Circle",
-            "id": 915
-        }
-    ],
-    "Leap-motion": [
-        {
-            "title": "Generate Random Point in a Circle",
-            "id": 915,
-            "freq_alltime": 0.0
-        }
-    ],
-    "National-instruments": [
-        {
-            "title": "Decoded String at Index",
-            "id": 916,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Fidessa": [
-        {
-            "title": "Fair Candy Swap",
-            "id": 924,
-            "freq_alltime": 0.0
-        }
-    ],
-    "MindTickle": [
-        {
-            "title": "Maximum Frequency Stack",
-            "id": 931
-        }
-    ],
-    "Akamai": [
-        {
-            "title": "N-Repeated Element in Size 2N Array",
-            "id": 1001,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Thumbtack": [
-        {
-            "title": "Vowel Spellchecker",
-            "id": 1006,
-            "freq_alltime": 1.03062
-        }
-    ],
-    "C3-iot": [
-        {
-            "title": "Largest Perimeter Triangle",
-            "id": 1018,
-            "freq_alltime": 0.0
-        }
-    ],
-    "PhonePe": [
-        {
-            "title": "Distribute Coins in Binary Tree",
-            "id": 1021
-        },
-        {
-            "title": "Simple Bank System",
-            "id": 2169
-        }
-    ],
-    "Limebike": [
-        {
-            "title": "Unique Paths III",
-            "id": 1022,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Flexport": [
-        {
-            "title": "Time Based Key-Value Store",
-            "id": 1023,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Arista": [
-        {
-            "title": "Find the Town Judge",
-            "id": 1039,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Druva": [
-        {
-            "title": "Maximize Sum Of Array After K Negations",
-            "id": 1047,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Paytm": [
-        {
-            "title": "Remove All Adjacent Duplicates In String",
-            "id": 1128,
-            "freq_alltime": 0.0
         }
     ],
     "Virtu Financial": [
@@ -47542,125 +46943,6 @@
             "freq_alltime": 0.74078
         }
     ],
-    "F5-networks": [
-        {
-            "title": "Sequential Digits",
-            "id": 1212,
-            "freq_alltime": 0.0
-        }
-    ],
-    "De-shaw": [
-        {
-            "title": "Relative Sort Array",
-            "id": 1217,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Number of Substrings Containing All Three Characters",
-            "id": 1460,
-            "freq_alltime": 0.2857
-        }
-    ],
-    "ZScaler": [
-        {
-            "title": "Day of the Year",
-            "id": 1260
-        }
-    ],
-    "Zscaler": [
-        {
-            "title": "Day of the Year",
-            "id": 1260,
-            "freq_alltime": 0.0
-        }
-    ],
-    "United Health Group": [
-        {
-            "title": "Day of the Week",
-            "id": 1289
-        },
-        {
-            "title": "Check If All 1's Are at Least Length K Places Away",
-            "id": 1548
-        }
-    ],
-    "United-health-group": [
-        {
-            "title": "Day of the Week",
-            "id": 1289,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Check If All 1's Are at Least Length K Places Away",
-            "id": 1548,
-            "freq_alltime": 0.0
-        }
-    ],
-    "DJI": [
-        {
-            "title": "Three Consecutive Odds",
-            "id": 1293
-        }
-    ],
-    "IMC": [
-        {
-            "title": "Count Artifacts That Can Be Extracted",
-            "id": 1312
-        }
-    ],
-    "Rakuten": [
-        {
-            "title": "Sum of Floored Pairs",
-            "id": 1326
-        }
-    ],
-    "Palantir": [
-        {
-            "title": "Check If It Is a Straight Line",
-            "id": 1349,
-            "freq_alltime": 0.0
-        }
-    ],
-    "DRW": [
-        {
-            "title": "Counting Elements",
-            "id": 1391
-        },
-        {
-            "title": "Reorder Routes to Make All Paths Lead to the City Zero",
-            "id": 1576
-        }
-    ],
-    "Medianet": [
-        {
-            "title": "Minimum Time Visiting All Points",
-            "id": 1395,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Hrt": [
-        {
-            "title": "Convert Integer to the Sum of Two No-Zero Integers",
-            "id": 1440,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Number of Steps to Reduce a Number to Zero",
-            "id": 1444,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Maximum 69 Number",
-            "id": 1448,
-            "freq_alltime": 0.01658
-        }
-    ],
-    "Akuna Capital": [
-        {
-            "title": "Increasing Decreasing String",
-            "id": 1472
-        }
-    ],
     "Mercari": [
         {
             "title": "Count Largest Group",
@@ -47677,238 +46959,6 @@
         {
             "title": "Crawler Log Folder",
             "id": 1720
-        }
-    ],
-    "Sony": [
-        {
-            "title": "Reducing Dishes",
-            "id": 1503
-        }
-    ],
-    "OT": [
-        {
-            "title": "Reducing Dishes",
-            "id": 1503
-        }
-    ],
-    "JP Morgan": [
-        {
-            "title": "Display Table of Food Orders in a Restaurant",
-            "id": 1533
-        },
-        {
-            "title": "Lexicographically Smallest String After Applying Operations",
-            "id": 1747
-        }
-    ],
-    "Nuro": [
-        {
-            "title": "Subrectangle Queries",
-            "id": 1572
-        }
-    ],
-    "Netsuite": [
-        {
-            "title": "Average Salary Excluding the Minimum and Maximum Salary",
-            "id": 1584,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Turvo": [
-        {
-            "title": "Count Good Triplets",
-            "id": 1656,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Directi": [
-        {
-            "title": "Find the Winner of an Array Game",
-            "id": 1657
-        }
-    ],
-    "Rupeek": [
-        {
-            "title": "Find Kth Bit in Nth Binary String",
-            "id": 1667
-        }
-    ],
-    "peak6": [
-        {
-            "title": "Coordinate With Maximum Network Quality",
-            "id": 1726
-        }
-    ],
-    "APT Portfolio": [
-        {
-            "title": "Stone Game VI",
-            "id": 1788
-        }
-    ],
-    "Toptal": [
-        {
-            "title": "Reformat Phone Number",
-            "id": 1812
-        }
-    ],
-    "Cashfree": [
-        {
-            "title": "Maximum Erasure Value",
-            "id": 1813
-        }
-    ],
-    "edabit": [
-        {
-            "title": "Calculate Money in Leetcode Bank",
-            "id": 1817
-        }
-    ],
-    "Duolingo": [
-        {
-            "title": "Minimum Number of People to Teach",
-            "id": 1834
-        }
-    ],
-    "AllinCall": [
-        {
-            "title": "Number Of Rectangles That Can Form The Largest Square",
-            "id": 1843
-        }
-    ],
-    "Softwire": [
-        {
-            "title": "Second Largest Digit in a String",
-            "id": 1904
-        }
-    ],
-    "Deutsche Bank": [
-        {
-            "title": "Minimum Operations to Make the Array Increasing",
-            "id": 1938
-        },
-        {
-            "title": "The Time When the Network Becomes Idle",
-            "id": 2151
-        }
-    ],
-    "Honeywell": [
-        {
-            "title": "Minimum Distance to the Target Element",
-            "id": 1975
-        }
-    ],
-    "Moengage": [
-        {
-            "title": "Redistribute Characters to Make All Strings Equal",
-            "id": 2025
-        }
-    ],
-    "TIAA": [
-        {
-            "title": "Find Greatest Common Divisor of Array",
-            "id": 2106
-        }
-    ],
-    "Optum": [
-        {
-            "title": "Reverse Prefix of Word",
-            "id": 2128
-        }
-    ],
-    "T System": [
-        {
-            "title": "Grid Game",
-            "id": 2145
-        }
-    ],
-    "Jeavio": [
-        {
-            "title": "Minimum Moves to Convert String",
-            "id": 2154
-        }
-    ],
-    "razorpay": [
-        {
-            "title": "Two Best Non-Overlapping Events",
-            "id": 2164
-        }
-    ],
-    "Info Edge": [
-        {
-            "title": "Find the Minimum and Maximum Number of Nodes Between Critical Points",
-            "id": 2182
-        }
-    ],
-    "Commvault": [
-        {
-            "title": "Count Vowel Substrings of a String",
-            "id": 2186
-        }
-    ],
-    "Jane Street": [
-        {
-            "title": "Count Common Words With One Occurrence",
-            "id": 2190
-        }
-    ],
-    "Zopsmart": [
-        {
-            "title": "Reverse Nodes in Even Length Groups",
-            "id": 2196
-        }
-    ],
-    "instacart": [
-        {
-            "title": "Check if Every Row and Column Contains All Numbers",
-            "id": 2254
-        }
-    ],
-    "Canonical": [
-        {
-            "title": "Divide a String Into Groups of Size k",
-            "id": 2260
-        }
-    ],
-    "zeta suite": [
-        {
-            "title": "Count Equal and Divisible Pairs in an Array",
-            "id": 2277
-        }
-    ],
-    "FPT": [
-        {
-            "title": "Find Three Consecutive Integers That Sum to a Given Number",
-            "id": 2278
-        }
-    ],
-    "Cognizant": [
-        {
-            "title": "Smallest Value of the Rearranged Number",
-            "id": 2284
-        }
-    ],
-    "Wealthfront": [
-        {
-            "title": "Minimum Number of Steps to Make Two Strings Anagram II",
-            "id": 2293
-        }
-    ],
-    "MindTree": [
-        {
-            "title": "Count Integers With Even Digit Sum",
-            "id": 2298
-        }
-    ],
-    "persistent systems": [
-        {
-            "title": "Minimum Bit Flips to Convert Number",
-            "id": 2323
-        }
-    ],
-    "Tiger Analytics": [
-        {
-            "title": "Find Closest Number to Zero",
-            "id": 2350
         }
     ]
 }

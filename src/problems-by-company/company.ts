@@ -1,4 +1,4 @@
-const solutions = [] as { id: number, title: string, score: number, url: string }[];
+const solutions = [] as { id: number, title: string, url: string }[];
 
 let companyName = 'Amazon';
 const companies = [
@@ -16,9 +16,13 @@ async function main() {
 
     document.getElementById('#')?.addEventListener('click', () => sortBy('#'));
     document.getElementById('Title')?.addEventListener('click', () => sortBy('Title'));
-    document.getElementById('Score')?.addEventListener('click', () => sortBy('Score'));
     document.getElementById('Difficulty')?.addEventListener('click', () => sortBy('Difficulty'));
     document.getElementById('Frequency')?.addEventListener('click', () => sortBy('Frequency'));
+    document.getElementById('dateSelect')?.addEventListener('change', (event) => {
+        const selectedFrequency = (event.target as HTMLSelectElement).value;
+        updateFrequency(selectedFrequency);
+    });
+
 
     addNavbarLinks();
     await addCompaniesToSelect();
@@ -68,9 +72,44 @@ function addNavbarLinks() {
     });
 }
 
+function updateFrequency(selectedFrequency: string) {
+    // Clear the existing table
+    const table = document.getElementById('solutionTable') as HTMLTableElement;
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+
+    // Update the frequency values in the solutions array
+    solutions.forEach((solution, index) => {
+        chrome.storage.local.get('companyProblems', function (data) {
+            const companyProblems = data.companyProblems[companyName];
+            if (Array.isArray(companyProblems)) {
+                solution.frequency = companyProblems[index][selectedFrequency];
+            }
+        });
+    });
+
+    // Rebuild the table with updated frequency values
+    solutions.forEach((solution) => {
+        const row = table.insertRow(-1);
+        row.insertCell(0).innerText = solution.id.toString();
+        row.insertCell(1).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
+
+        // Add frequency as a bar
+        const frequencyCell = row.insertCell(2);
+        const bar = document.createElement('div');
+        const width = ((solution.frequency - minFrequency) / (maxFrequency - minFrequency)) * 100;
+        bar.style.width = width + '%';
+        bar.style.height = '10px';
+        bar.style.backgroundColor = 'lightgreen';
+        bar.style.borderRadius = '10px';
+        frequencyCell.appendChild(bar);
+    });
+}
+
+
 interface Company {
     name: string;
-    score: number;
 }
 
 interface Question {
@@ -109,7 +148,6 @@ function addCompanyProblems(sortMethod: string) {
                 solutions.push({
                     id: problem.id,
                     title: problem.title,
-                    // score: company.score, // Adjust this as needed
                     url: `https://leetcode.com/problems/${problem.title.replace(/\s/g, '-')}/`,
                     frequency: problem.freq_alltime,
                     // acceptance: company.acceptance, // Adjust this as needed
@@ -120,10 +158,6 @@ function addCompanyProblems(sortMethod: string) {
         console.log(solutions);
 
         const table = document.getElementById('solutionTable') as HTMLTableElement;
-
-        if (sortMethod === 'Score') {
-            solutions.sort((a, b) => b.score - a.score);
-        }
 
         solutions.forEach(solution => {
             const row = table.insertRow(-1);
@@ -143,40 +177,6 @@ function addCompanyProblems(sortMethod: string) {
                 bar.style.borderRadius = '10px';
                 frequencyCell.appendChild(bar);
             }
-
-            // add difficulty
-            // const difficultyCell = row.insertCell(1);
-            // let innerText = '';
-            // if (solution.difficulty === 1) {
-            //     innerText = 'Easy';
-            // }
-            // else if (solution.difficulty === 2) {
-            //     innerText = 'Medium';
-            // }
-            // else if (solution.difficulty === 3) {
-            //     innerText = 'Hard';
-            // }
-            // difficultyCell.innerText = innerText;
-            // difficultyCell.style.color = color;
-
-
-            // add score
-            // const scoreCell = row.insertCell(2);
-            // scoreCell.innerText = solution.score.toString();
-
-            // add acceptance
-            // if (solution.acceptance) {
-            //     const acceptanceCell = row.insertCell(5);
-            //     acceptanceCell.innerText = solution.acceptance.toString();
-            //     acceptanceCell.style.color = color;
-            // }
-
-            // add frequency
-            // if (solution.frequency) {
-            //     const frequencyCell = row.insertCell(4);
-            //     frequencyCell.innerText = solution.frequency.toString();
-            //     frequencyCell.style.color = color;
-            // }
         });
     });
 }
@@ -225,7 +225,6 @@ async function addCompaniesToSelect() {
 const sortOrders = {
     '#': false,
     'Title': false,
-    'Score': false,
     'Frequency': false,
 };
 

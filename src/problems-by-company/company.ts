@@ -90,26 +90,13 @@ async function updateFrequency(selectedFrequency: string) {
     const companyProblems = data.companyProblems[companyName];
     if (Array.isArray(companyProblems)) {
         solutions.forEach((solution, index) => {
-            solution.frequency = companyProblems[index][selectedFrequency];
+            // Update the frequency based on the selected option
+            solution['frequency'] = companyProblems[index][selectedFrequency];
         });
     }
 
     // Rebuild the table with updated frequency values
-    solutions.forEach((solution) => {
-        const row = table.insertRow(-1);
-        row.insertCell(0).innerText = solution.id.toString();
-        row.insertCell(1).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
-
-        // Add frequency as a bar
-        const frequencyCell = row.insertCell(2);
-        const bar = document.createElement('div');
-        const width = ((solution.frequency - minFrequency) / (maxFrequency - minFrequency)) * 100;
-        bar.style.width = width + '%';
-        bar.style.height = '10px';
-        bar.style.backgroundColor = 'lightgreen';
-        bar.style.borderRadius = '10px';
-        frequencyCell.appendChild(bar);
-    });
+    rebuildTable();
 }
 
 interface Company {

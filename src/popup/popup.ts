@@ -173,7 +173,7 @@ function processCode(
                 }
             },
         }),
-        timeout(15000)
+        timeout(20000)
     ]).catch((error) => {
         infoMessage && (infoMessage.textContent = 'The request timed out. Please try again.');
         console.error(error);

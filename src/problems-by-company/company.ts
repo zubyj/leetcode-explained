@@ -62,7 +62,6 @@ function addNavbarLinks() {
         button.style.minWidth = '130px';
         button.style.height = '40px';
         button.style.padding = '5px';
-        button.style.border = '3px solid #373737';
         button.style.backgroundColor = '#373737';
         button.style.borderRadius = '10px';
         button.style.fontSize = '12px';
@@ -80,6 +79,10 @@ async function updateFrequency(selectedFrequency: string) {
         table.deleteRow(1);
     }
 
+    // Reset min and max frequency for the selected range
+    minFrequency = Number.MAX_SAFE_INTEGER;
+    maxFrequency = 0;
+
     // Update the frequency values in the solutions array
     const data = await new Promise<{ companyProblems: any }>((resolve) => {
         chrome.storage.local.get('companyProblems', function (data) {
@@ -91,13 +94,19 @@ async function updateFrequency(selectedFrequency: string) {
     if (Array.isArray(companyProblems)) {
         solutions.forEach((solution, index) => {
             // Update the frequency based on the selected option
-            solution['frequency'] = companyProblems[index][selectedFrequency];
+            const freqValue = companyProblems[index][selectedFrequency];
+            solution['frequency'] = freqValue;
+
+            // Update min and max frequency for the selected range
+            if (freqValue < minFrequency) minFrequency = freqValue;
+            if (freqValue > maxFrequency) maxFrequency = freqValue;
         });
     }
 
     // Rebuild the table with updated frequency values
     rebuildTable();
 }
+
 
 interface Company {
     name: string;

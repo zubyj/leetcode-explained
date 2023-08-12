@@ -93,13 +93,15 @@ async function updateFrequency(selectedFrequency: string) {
     const companyProblems = data.companyProblems[companyName];
     if (Array.isArray(companyProblems)) {
         solutions.forEach((solution, index) => {
-            // Update the frequency based on the selected option
-            const freqValue = companyProblems[index][selectedFrequency];
-            solution['frequency'] = freqValue;
+            // Check if the selected frequency value exists for the problem
+            if (companyProblems[index].hasOwnProperty(selectedFrequency)) {
+                const freqValue = companyProblems[index][selectedFrequency];
+                solution['frequency'] = freqValue;
 
-            // Update min and max frequency for the selected range
-            if (freqValue < minFrequency) minFrequency = freqValue;
-            if (freqValue > maxFrequency) maxFrequency = freqValue;
+                // Update min and max frequency for the selected range
+                if (freqValue < minFrequency) minFrequency = freqValue;
+                if (freqValue > maxFrequency) maxFrequency = freqValue;
+            }
         });
     }
 
@@ -258,7 +260,7 @@ function rebuildTable() {
         const frequencyCell = row.insertCell(4);
         const bar = document.createElement('div');
         const width = ((solution.frequency - minFrequency) / (maxFrequency - minFrequency)) * 100;
-        bar.style.width = width + '%';
+        bar.style.width = Math.min(width, 100) + '%';
         bar.style.height = '10px';
         bar.style.backgroundColor = 'lightgreen';
         bar.style.borderRadius = '10px';

@@ -1,3 +1,5 @@
+// Create a new variable to store all solutions
+const allSolutions = [] as { id: number, title: string, url: string }[];
 const solutions = [] as { id: number, title: string, url: string }[];
 
 let companyName = 'Amazon';
@@ -72,44 +74,6 @@ function addNavbarLinks() {
     });
 }
 
-async function updateFrequency(selectedFrequency: string) {
-    // Clear the existing table
-    const table = document.getElementById('solutionTable') as HTMLTableElement;
-    while (table.rows.length > 1) {
-        table.deleteRow(1);
-    }
-
-    // Reset min and max frequency for the selected range
-    minFrequency = Number.MAX_SAFE_INTEGER;
-    maxFrequency = 0;
-
-    // Update the frequency values in the solutions array
-    const data = await new Promise<{ companyProblems: any }>((resolve) => {
-        chrome.storage.local.get('companyProblems', function (data) {
-            resolve(data);
-        });
-    });
-
-    const companyProblems = data.companyProblems[companyName];
-    if (Array.isArray(companyProblems)) {
-        solutions.forEach((solution, index) => {
-            // Check if the selected frequency value exists for the problem
-            if (companyProblems[index].hasOwnProperty(selectedFrequency)) {
-                const freqValue = companyProblems[index][selectedFrequency];
-                solution['frequency'] = freqValue;
-
-                // Update min and max frequency for the selected range
-                if (freqValue < minFrequency) minFrequency = freqValue;
-                if (freqValue > maxFrequency) maxFrequency = freqValue;
-            }
-        });
-    }
-
-    // Rebuild the table with updated frequency values
-    rebuildTable();
-}
-
-
 interface Company {
     name: string;
 }
@@ -127,6 +91,56 @@ interface LeetcodeProblems {
 let minFrequency = Number.MAX_SAFE_INTEGER;
 let maxFrequency = 0;
 
+
+
+async function updateFrequency(selectedFrequency: string) {
+    // Clear the existing table
+    const table = document.getElementById('solutionTable') as HTMLTableElement;
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+
+    // Reset min and max frequency for the selected range
+    minFrequency = Number.MAX_SAFE_INTEGER;
+    maxFrequency = 0;
+
+    // Create a new array to hold the solutions with the selected frequency
+    const updatedSolutions = [];
+
+    // Update the frequency values in the solutions array
+    const data = await new Promise<{ companyProblems: any }>((resolve) => {
+        chrome.storage.local.get('companyProblems', function (data) {
+            resolve(data);
+        });
+    });
+
+    const companyProblems = data.companyProblems[companyName];
+    if (Array.isArray(companyProblems)) {
+        allSolutions.forEach((solution, index) => { // Iterate over allSolutions
+            // Check if the selected frequency value exists for the problem
+            if (companyProblems[index].hasOwnProperty(selectedFrequency)) {
+                const freqValue = companyProblems[index][selectedFrequency];
+                solution['frequency'] = freqValue;
+
+                // Update min and max frequency for the selected range
+                if (freqValue < minFrequency) minFrequency = freqValue;
+                if (freqValue > maxFrequency) maxFrequency = freqValue;
+
+                // Add the solution to the updated solutions array
+                updatedSolutions.push(solution);
+            }
+        });
+    }
+
+    // Replace the solutions array with the updated solutions
+    solutions.length = 0;
+    solutions.push(...updatedSolutions);
+
+    // Rebuild the table with updated frequency values
+    rebuildTable();
+}
+
+
 function addCompanyProblems(sortMethod: string) {
     chrome.storage.local.get(['companyProblems', 'leetcodeProblems'], function (data) {
         const companyProblems = data.companyProblems[companyName];
@@ -139,14 +153,15 @@ function addCompanyProblems(sortMethod: string) {
         // Check if companyProblems is an array before proceeding
         if (Array.isArray(companyProblems)) {
             companyProblems.forEach((problem) => {
-                const correspondingLeetcodeProblem = leetcodeProblems.find(q => q.frontend_id === problem.id);
-                solutions.push({
+                const correspondingLeetcodeProblem = leetcodeProblems.find(q => q.frontend_id === problem.id); // Find the corresponding problem
+                // Populate allSolutions instead of solutions
+                allSolutions.push({
                     id: problem.id,
                     title: problem.title,
                     url: `https://leetcode.com/problems/${problem.title.replace(/\s/g, '-')}/`,
                     frequency: problem.freq_alltime,
-                    difficulty: correspondingLeetcodeProblem?.difficulty_lvl, // Add difficulty
-                    acceptance: correspondingLeetcodeProblem?.acceptance, // Add acceptance
+                    difficulty: correspondingLeetcodeProblem?.difficulty_lvl, // Use the defined variable
+                    acceptance: correspondingLeetcodeProblem?.acceptance, // Use the defined variable
                 });
 
                 // Update min and max frequency
@@ -155,64 +170,17 @@ function addCompanyProblems(sortMethod: string) {
             });
         }
 
+        // Initialize solutions with all problems initially
+        solutions.length = 0;
+        solutions.push(...allSolutions);
+
         console.log(solutions);
 
         // Rebuild the table with sorted solutions
         rebuildTable();
-
     });
 }
 
-async function addCompaniesToSelect() {
-    const companySearch = document.getElementById('companySearch') as HTMLInputElement;
-    const companyList = document.getElementById('companyList') as HTMLDataListElement;
-    let companies = [];
-
-    const data = await new Promise<{ companyProblems: any }>((resolve) => {
-        chrome.storage.local.get('companyProblems', function (data) {
-            resolve(data);
-        });
-    });
-
-    const companyProblems = data.companyProblems;
-    // add all the keys to the set
-    Object.keys(companyProblems).forEach((company) => {
-        if (company) {
-            console.log(company);
-            companies.push(company);
-        }
-    });
-
-    // Event when the "Enter" key is pressed or an option is selected from the dropdown
-    const handleSelection = () => {
-        const inputValue = companySearch.value;
-        // Find the selected company in a case-insensitive manner
-        const selectedCompany = Array.from(companies).find(
-            (company) => company.toLowerCase() === inputValue.toLowerCase()
-        );
-        if (selectedCompany) {
-            chrome.storage.local.set({ clickedCompany: selectedCompany }, () => {
-                location.reload();
-            });
-        }
-    };
-
-    companySearch.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            handleSelection();
-        }
-    });
-
-    companySearch.addEventListener('change', handleSelection);
-
-    const sortedCompanies = companies.sort();
-
-    sortedCompanies.forEach((company) => {
-        const option = document.createElement('option');
-        option.value = company;
-        companyList.appendChild(option);
-    });
-}
 
 // Function to rebuild the table with sorted solutions
 function rebuildTable() {
@@ -312,7 +280,6 @@ function sortBy(column: string) {
 
     // Rebuild the table with sorted solutions
     rebuildTable();
-
 }
 
 /* Run the script */

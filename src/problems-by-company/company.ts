@@ -92,7 +92,6 @@ let minFrequency = Number.MAX_SAFE_INTEGER;
 let maxFrequency = 0;
 
 
-
 async function updateFrequency(selectedFrequency: string) {
     // Clear the existing table
     const table = document.getElementById('solutionTable') as HTMLTableElement;
@@ -234,6 +233,56 @@ function rebuildTable() {
         bar.style.borderRadius = '10px';
         bar.style.border = '1px solid lightgreen';
         frequencyCell.appendChild(bar);
+    });
+}
+
+async function addCompaniesToSelect() {
+    const companySearch = document.getElementById('companySearch') as HTMLInputElement;
+    const companyList = document.getElementById('companyList') as HTMLDataListElement;
+    let companies = [];
+
+    const data = await new Promise<{ companyProblems: any }>((resolve) => {
+        chrome.storage.local.get('companyProblems', function (data) {
+            resolve(data);
+        });
+    });
+
+    const companyProblems = data.companyProblems;
+    // Add all the keys to the set
+    Object.keys(companyProblems).forEach((company) => {
+        if (company) {
+            companies.push(company);
+        }
+    });
+
+    // Event when the "Enter" key is pressed or an option is selected from the dropdown
+    const handleSelection = () => {
+        const inputValue = companySearch.value;
+        // Find the selected company in a case-insensitive manner
+        const selectedCompany = Array.from(companies).find(
+            (company) => company.toLowerCase() === inputValue.toLowerCase()
+        );
+        if (selectedCompany) {
+            chrome.storage.local.set({ clickedCompany: selectedCompany }, () => {
+                location.reload();
+            });
+        }
+    };
+
+    companySearch.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            handleSelection();
+        }
+    });
+
+    companySearch.addEventListener('change', handleSelection);
+
+    const sortedCompanies = companies.sort();
+
+    sortedCompanies.forEach((company) => {
+        const option = document.createElement('option');
+        option.value = company;
+        companyList.appendChild(option);
     });
 }
 

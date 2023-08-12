@@ -155,19 +155,20 @@ function addCompanyProblems(sortMethod: string) {
 async function addCompaniesToSelect() {
     const companySearch = document.getElementById('companySearch') as HTMLInputElement;
     const companyList = document.getElementById('companyList') as HTMLDataListElement;
-    let uniqueCompanies = new Set<string>();
+    let companies = [];
 
-    const data = await new Promise<{ leetcodeProblems: LeetcodeProblems }>(resolve => {
-        chrome.storage.local.get('leetcodeProblems', function (items: { [key: string]: any; }) {
-            resolve(items as { leetcodeProblems: LeetcodeProblems });
+    const data = await new Promise<{ companyProblems: any }>((resolve) => {
+        chrome.storage.local.get('companyProblems', function (data) {
+            resolve(data);
         });
     });
 
-    data.leetcodeProblems.questions.forEach((question: Question) => {
-        if (question.companies) {
-            question.companies.forEach((company: Company) => {
-                uniqueCompanies.add(company.name);
-            });
+    const companyProblems = data.companyProblems;
+    // add all the keys to the set
+    Object.keys(companyProblems).forEach((company) => {
+        if (company) {
+            console.log(company);
+            companies.push(company);
         }
     });
 
@@ -175,7 +176,7 @@ async function addCompaniesToSelect() {
     const handleSelection = () => {
         const inputValue = companySearch.value;
         // Find the selected company in a case-insensitive manner
-        const selectedCompany = Array.from(uniqueCompanies).find(
+        const selectedCompany = Array.from(companies).find(
             (company) => company.toLowerCase() === inputValue.toLowerCase()
         );
         if (selectedCompany) {
@@ -193,8 +194,7 @@ async function addCompaniesToSelect() {
 
     companySearch.addEventListener('change', handleSelection);
 
-    // Convert the Set to an Array and sort it alphabetically
-    const sortedCompanies = Array.from(uniqueCompanies).sort();
+    const sortedCompanies = companies.sort();
 
     sortedCompanies.forEach((company) => {
         const option = document.createElement('option');

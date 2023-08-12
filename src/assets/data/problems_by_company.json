@@ -28850,36 +28850,6 @@
             "freq_alltime": 0.0
         }
     ],
-    "Morgan Stanley": [
-        {
-            "title": "Two Sum",
-            "id": 1
-        },
-        {
-            "title": "3Sum",
-            "id": 15
-        },
-        {
-            "title": "Longest Valid Parentheses",
-            "id": 32
-        },
-        {
-            "title": "Search in Rotated Sorted Array",
-            "id": 33
-        },
-        {
-            "title": "Merge Intervals",
-            "id": 56
-        },
-        {
-            "title": "LRU Cache",
-            "id": 146
-        },
-        {
-            "title": "Best Team With No Conflicts",
-            "id": 1748
-        }
-    ],
     "IBM": [
         {
             "title": "Two Sum",

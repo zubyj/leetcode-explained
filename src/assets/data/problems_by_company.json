@@ -26092,27 +26092,6 @@
             "freq_alltime": 0.36509
         }
     ],
-    "Dell": [
-        {
-            "title": "Add Two Numbers",
-            "id": 2,
-            "freq_2year": 0.00162,
-            "freq_alltime": 0.00364
-        },
-        {
-            "title": "Move Zeroes",
-            "id": 283,
-            "freq_2year": 0.00276,
-            "freq_alltime": 0.0062
-        },
-        {
-            "title": "Design HashMap",
-            "id": 817,
-            "freq_2year": 0.00438,
-            "freq_1year": 0.01666,
-            "freq_alltime": 0.00984
-        }
-    ],
     "Samsung": [
         {
             "title": "Two Sum",
@@ -37301,15 +37280,6 @@
             "freq_alltime": 0.07223
         }
     ],
-    "Alation": [
-        {
-            "title": "Longest Substring Without Repeating Characters",
-            "id": 3,
-            "freq_2year": 0.00968,
-            "freq_1year": 0.0035,
-            "freq_alltime": 0.14469
-        }
-    ],
     "Rubrik": [
         {
             "title": "Median of Two Sorted Arrays",
@@ -38564,56 +38534,6 @@
             "freq_alltime": 0.80807
         }
     ],
-    "Evernote": [
-        {
-            "title": "Integer to Roman",
-            "id": 12,
-            "freq_2year": 0.00967,
-            "freq_1year": 0.00805,
-            "freq_alltime": 0.0429
-        },
-        {
-            "title": "Number of Islands",
-            "id": 200,
-            "freq_2year": 0.00289,
-            "freq_1year": 0.00289,
-            "freq_alltime": 0.01151
-        },
-        {
-            "title": "Happy Number",
-            "id": 202,
-            "freq_2year": 0.01541,
-            "freq_1year": 0.00578,
-            "freq_alltime": 0.02926
-        },
-        {
-            "title": "Product of Array Except Self",
-            "id": 238,
-            "freq_2year": 0.00393,
-            "freq_alltime": 0.01563
-        }
-    ],
-    "Opendoor": [
-        {
-            "title": "Integer to Roman",
-            "id": 12,
-            "freq_2year": 0.00853,
-            "freq_alltime": 0.00853
-        },
-        {
-            "title": "Evaluate Reverse Polish Notation",
-            "id": 150,
-            "freq_2year": 0.04232,
-            "freq_1year": 0.03153,
-            "freq_alltime": 0.20519
-        },
-        {
-            "title": "Game of Life",
-            "id": 289,
-            "freq_2year": 0.02542,
-            "freq_alltime": 0.40185
-        }
-    ],
     "Qualtrics": [
         {
             "title": "Roman to Integer",
@@ -39652,60 +39572,6 @@
             "freq_alltime": 0.0745
         }
     ],
-    "Dataminr": [
-        {
-            "title": "Trapping Rain Water",
-            "id": 42,
-            "freq_2year": 0.00435,
-            "freq_alltime": 0.02689
-        },
-        {
-            "title": "Merge Intervals",
-            "id": 56,
-            "freq_2year": 0.0078,
-            "freq_alltime": 0.03083
-        },
-        {
-            "title": "Insert Interval",
-            "id": 57,
-            "freq_2year": 0.01215,
-            "freq_1year": 0.01312,
-            "freq_alltime": 0.05772
-        },
-        {
-            "title": "Spiral Matrix III",
-            "id": 921,
-            "freq_alltime": 0.0
-        }
-    ],
-    "Riot-games": [
-        {
-            "title": "Valid Parentheses",
-            "id": 20,
-            "freq_2year": 0.00917,
-            "freq_1year": 0.00517,
-            "freq_alltime": 0.03619
-        },
-        {
-            "title": "Divide Two Integers",
-            "id": 29,
-            "freq_6month": 0.00677,
-            "freq_2year": 0.02739,
-            "freq_1year": 0.01034,
-            "freq_alltime": 0.1425
-        },
-        {
-            "title": "Sudoku Solver",
-            "id": 37,
-            "freq_2year": 0.01822,
-            "freq_alltime": 0.01822
-        },
-        {
-            "title": "Teemo Attacking",
-            "id": 495,
-            "freq_alltime": 0.08935
-        }
-    ],
     "Liveramp": [
         {
             "title": "Valid Parentheses",
@@ -39741,36 +39607,6 @@
             "title": "Longest Harmonious Subsequence",
             "id": 594,
             "freq_alltime": 0.0
-        }
-    ],
-    "Triplebyte": [
-        {
-            "title": "Valid Parentheses",
-            "id": 20,
-            "freq_2year": 0.0023,
-            "freq_alltime": 0.00917
-        },
-        {
-            "title": "Kth Smallest Element in a BST",
-            "id": 230,
-            "freq_6month": 0.00634,
-            "freq_2year": 0.27114,
-            "freq_1year": 0.0142,
-            "freq_alltime": 0.34132
-        },
-        {
-            "title": "Design Tic-Tac-Toe",
-            "id": 348,
-            "freq_6month": 0.01267,
-            "freq_2year": 0.80183,
-            "freq_1year": 0.0284,
-            "freq_alltime": 1.06029
-        },
-        {
-            "title": "Minimum ASCII Delete Sum for Two Strings",
-            "id": 712,
-            "freq_2year": 0.53299,
-            "freq_alltime": 0.70081
         }
     ],
     "Epic-systems": [
@@ -40179,39 +40015,6 @@
             "freq_alltime": 0.09643
         }
     ],
-    "Karat": [
-        {
-            "title": "Maximal Rectangle",
-            "id": 85,
-            "freq_2year": 0.01333,
-            "freq_1year": 0.01333,
-            "freq_alltime": 0.01333
-        },
-        {
-            "title": "Basic Calculator",
-            "id": 224,
-            "freq_6month": 0.17452,
-            "freq_2year": 0.23074,
-            "freq_1year": 0.23074,
-            "freq_alltime": 0.56685
-        },
-        {
-            "title": "Maximum Length of Repeated Subarray",
-            "id": 718,
-            "freq_6month": 0.06269,
-            "freq_2year": 0.06269,
-            "freq_1year": 0.06269,
-            "freq_alltime": 0.06269
-        },
-        {
-            "title": "Subdomain Visit Count",
-            "id": 829,
-            "freq_6month": 0.28635,
-            "freq_2year": 0.39879,
-            "freq_1year": 0.39879,
-            "freq_alltime": 1.07101
-        }
-    ],
     "Reddit": [
         {
             "title": "Basic Calculator II",
@@ -40383,62 +40186,6 @@
             "freq_2year": 0.14203,
             "freq_1year": 0.14792,
             "freq_alltime": 0.55808
-        }
-    ],
-    "Sumologic": [
-        {
-            "title": "Merge Intervals",
-            "id": 56,
-            "freq_2year": 0.0078,
-            "freq_1year": 0.00347,
-            "freq_alltime": 0.01382
-        },
-        {
-            "title": "Number of Islands",
-            "id": 200,
-            "freq_2year": 0.00289,
-            "freq_alltime": 0.00649
-        },
-        {
-            "title": "Time Based Key-Value Store",
-            "id": 1023,
-            "freq_2year": 0.37557,
-            "freq_1year": 0.04941,
-            "freq_alltime": 0.8181
-        }
-    ],
-    "Virtu": [
-        {
-            "title": "Count Substrings with Only One Distinct Letter",
-            "id": 1131,
-            "freq_6month": 0.15297,
-            "freq_2year": 0.3162,
-            "freq_1year": 0.3162,
-            "freq_alltime": 0.70954
-        },
-        {
-            "title": "How Many Apples Can You Put into the Basket",
-            "id": 1141,
-            "freq_6month": 0.14158,
-            "freq_2year": 0.29431,
-            "freq_1year": 0.29431,
-            "freq_alltime": 0.66812
-        },
-        {
-            "title": "Array Transformation",
-            "id": 1175,
-            "freq_6month": 0.24214,
-            "freq_2year": 0.48023,
-            "freq_1year": 0.48023,
-            "freq_alltime": 0.99781
-        },
-        {
-            "title": "Hexspeak",
-            "id": 1199,
-            "freq_6month": 0.38372,
-            "freq_2year": 0.74078,
-            "freq_1year": 0.74078,
-            "freq_alltime": 0.74078
         }
     ]
 }

@@ -2773,11 +2773,6 @@
             "freq_alltime": 0.18195
         },
         {
-            "title": "Complex Number Multiplication",
-            "id": 537,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Convert BST to Greater Tree",
             "id": 538,
             "freq_6month": 0.05476,
@@ -2836,11 +2831,6 @@
             "id": 549,
             "freq_2year": 0.08816,
             "freq_alltime": 0.18845
-        },
-        {
-            "title": "Optimal Division",
-            "id": 553,
-            "freq_alltime": 0.0
         },
         {
             "title": "Reverse Words in a String III",
@@ -3001,11 +2991,6 @@
             "freq_alltime": 3.86678
         },
         {
-            "title": "Set Mismatch",
-            "id": 645,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Maximum Length of Pair Chain",
             "id": 646,
             "freq_6month": 0.03687,
@@ -3061,11 +3046,6 @@
             "freq_2year": 0.23998,
             "freq_1year": 0.06561,
             "freq_alltime": 0.73472
-        },
-        {
-            "title": "Equal Tree Partition",
-            "id": 663,
-            "freq_alltime": 0.0
         },
         {
             "title": "Non-decreasing Array",
@@ -3292,11 +3272,6 @@
             "freq_alltime": 0.7142
         },
         {
-            "title": "Monotone Increasing Digits",
-            "id": 738,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Daily Temperatures",
             "id": 739,
             "freq_6month": 0.14957,
@@ -3421,11 +3396,6 @@
             "freq_2year": 0.23923,
             "freq_1year": 0.23923,
             "freq_alltime": 0.60306
-        },
-        {
-            "title": "Split BST",
-            "id": 791,
-            "freq_alltime": 0.0
         },
         {
             "title": "Binary Search",
@@ -3906,11 +3876,6 @@
             "freq_alltime": 0.68458
         },
         {
-            "title": "Index Pairs of a String",
-            "id": 1075,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Sum of Root To Leaf Binary Numbers",
             "id": 1079,
             "freq_2year": 0.34981,
@@ -3923,11 +3888,6 @@
             "freq_2year": 0.16582,
             "freq_1year": 0.07711,
             "freq_alltime": 0.8253
-        },
-        {
-            "title": "Sum of Digits in the Minimum Number",
-            "id": 1082,
-            "freq_alltime": 0.0
         },
         {
             "title": "Two Sum Less Than K",
@@ -3945,21 +3905,6 @@
             "freq_alltime": 1.18434
         },
         {
-            "title": "Number of Days in a Month",
-            "id": 1088,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Remove Vowels from a String",
-            "id": 1089,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Armstrong Number",
-            "id": 1090,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Maximum Difference Between Node and Ancestor",
             "id": 1092,
             "freq_2year": 0.11947,
@@ -3970,11 +3915,6 @@
             "id": 1095,
             "freq_2year": 0.03634,
             "freq_alltime": 0.06372
-        },
-        {
-            "title": "Largest Unique Number",
-            "id": 1098,
-            "freq_alltime": 0.0
         },
         {
             "title": "Analyze User Website Visit Pattern",
@@ -4136,21 +4076,6 @@
             "freq_alltime": 0.4406
         },
         {
-            "title": "Closest Divisors",
-            "id": 1276,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Prime Arrangements",
-            "id": 1279,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Diet Plan Performance",
-            "id": 1280,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Balance a Binary Search Tree",
             "id": 1285,
             "freq_6month": 0.0448,
@@ -4190,11 +4115,6 @@
             "freq_alltime": 0.20778
         },
         {
-            "title": "Shift 2D Grid",
-            "id": 1386,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Minimum Time Visiting All Points",
             "id": 1395,
             "freq_2year": 0.01735,
@@ -4232,11 +4152,6 @@
             "freq_2year": 0.01589,
             "freq_1year": 0.01589,
             "freq_alltime": 0.03541
-        },
-        {
-            "title": "All Elements in Two Binary Search Trees",
-            "id": 1427,
-            "freq_alltime": 0.0
         },
         {
             "title": "Angle Between Hands of a Clock",
@@ -4299,16 +4214,6 @@
             "freq_alltime": 0.14944
         },
         {
-            "title": "String Matching in an Array",
-            "id": 1524,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Queries on a Permutation With Key",
-            "id": 1525,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Kids With the Greatest Number of Candies",
             "id": 1528,
             "freq_6month": 0.00593,
@@ -4320,31 +4225,6 @@
             "title": "Maximum Number of Vowels in a Substring of Given Length",
             "id": 1567,
             "freq_alltime": 0.0422
-        },
-        {
-            "title": "Pseudo-Palindromic Paths in a Binary Tree",
-            "id": 1568,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Path Crossing",
-            "id": 1619,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Clone Binary Tree With Random Pointer",
-            "id": 1624,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Can Make Arithmetic Progression From Sequence",
-            "id": 1626,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Clone N-ary Tree",
-            "id": 1634,
-            "freq_alltime": 0.0
         }
     ],
     "Adobe": [
@@ -5677,11 +5557,6 @@
             "id": 909,
             "freq_2year": 0.02486,
             "freq_alltime": 0.02486
-        },
-        {
-            "title": "Smallest Range I",
-            "id": 944,
-            "freq_alltime": 0.0
         },
         {
             "title": "Unique Email Addresses",
@@ -8406,11 +8281,6 @@
             "freq_alltime": 0.98618
         },
         {
-            "title": "Magical String",
-            "id": 481,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "License Key Formatting",
             "id": 482,
             "freq_2year": 3.64328,
@@ -8495,26 +8365,6 @@
             "freq_alltime": 2.45504
         },
         {
-            "title": "Relative Ranks",
-            "id": 506,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Freedom Trail",
-            "id": 514,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Detect Capital",
-            "id": 520,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Longest Uncommon Subsequence II",
-            "id": 522,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Continuous Subarray Sum",
             "id": 523,
             "freq_2year": 0.02639,
@@ -8536,11 +8386,6 @@
             "freq_2year": 0.04391,
             "freq_1year": 0.04391,
             "freq_alltime": 0.27703
-        },
-        {
-            "title": "Beautiful Arrangement",
-            "id": 526,
-            "freq_alltime": 0.0
         },
         {
             "title": "Word Abbreviation",
@@ -8566,11 +8411,6 @@
             "id": 531,
             "freq_2year": 0.24818,
             "freq_alltime": 0.49091
-        },
-        {
-            "title": "Lonely Pixel II",
-            "id": 533,
-            "freq_alltime": 0.0
         },
         {
             "title": "Encode and Decode TinyURL",
@@ -8605,11 +8445,6 @@
             "freq_2year": 0.29302,
             "freq_1year": 0.06313,
             "freq_alltime": 1.24101
-        },
-        {
-            "title": "Boundary of Binary Tree",
-            "id": 545,
-            "freq_alltime": 0.0
         },
         {
             "title": "Binary Tree Longest Consecutive Sequence II",
@@ -8766,11 +8601,6 @@
             "freq_alltime": 1.07061
         },
         {
-            "title": "Shopping Offers",
-            "id": 638,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Decode Ways II",
             "id": 639,
             "freq_6month": 0.07425,
@@ -8798,22 +8628,12 @@
             "freq_alltime": 0.03684
         },
         {
-            "title": "Maximum Average Subarray II",
-            "id": 644,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Palindromic Substrings",
             "id": 647,
             "freq_6month": 0.0104,
             "freq_2year": 0.12051,
             "freq_1year": 0.04097,
             "freq_alltime": 0.61347
-        },
-        {
-            "title": "4 Keys Keyboard",
-            "id": 651,
-            "freq_alltime": 0.0
         },
         {
             "title": "Find Duplicate Subtrees",
@@ -8830,11 +8650,6 @@
             "freq_2year": 0.02061,
             "freq_1year": 0.02061,
             "freq_alltime": 0.04579
-        },
-        {
-            "title": "Coin Path",
-            "id": 656,
-            "freq_alltime": 0.0
         },
         {
             "title": "Find K Closest Elements",
@@ -8871,11 +8686,6 @@
             "freq_2year": 0.07871,
             "freq_1year": 0.02905,
             "freq_alltime": 0.23532
-        },
-        {
-            "title": "Beautiful Arrangement II",
-            "id": 667,
-            "freq_alltime": 0.0
         },
         {
             "title": "Kth Smallest Number in Multiplication Table",
@@ -9159,11 +8969,6 @@
             "freq_alltime": 3.24615
         },
         {
-            "title": "Pyramid Transition Matrix",
-            "id": 757,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Bold Words in String",
             "id": 760,
             "freq_alltime": 0.28358
@@ -9270,11 +9075,6 @@
             "freq_alltime": 2.12835
         },
         {
-            "title": "Escape The Ghosts",
-            "id": 805,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Custom Sort String",
             "id": 807,
             "freq_6month": 0.02328,
@@ -9355,11 +9155,6 @@
             "freq_alltime": 0.03113
         },
         {
-            "title": "Ambiguous Coordinates",
-            "id": 834,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Most Common Word",
             "id": 837,
             "freq_2year": 0.01027,
@@ -9399,11 +9194,6 @@
             "freq_2year": 0.40321,
             "freq_1year": 0.05371,
             "freq_alltime": 0.94375
-        },
-        {
-            "title": "Push Dominoes",
-            "id": 868,
-            "freq_alltime": 0.0
         },
         {
             "title": "Magic Squares In Grid",
@@ -9573,11 +9363,6 @@
             "freq_alltime": 0.22018
         },
         {
-            "title": "Delete Columns to Make Sorted",
-            "id": 981,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Validate Stack Sequences",
             "id": 983,
             "freq_6month": 1.10296,
@@ -9599,11 +9384,6 @@
             "freq_2year": 1.73415,
             "freq_1year": 1.09431,
             "freq_alltime": 2.32617
-        },
-        {
-            "title": "Array of Doubled Pairs",
-            "id": 991,
-            "freq_alltime": 0.0
         },
         {
             "title": "Check Completeness of a Binary Tree",
@@ -9664,11 +9444,6 @@
             "freq_alltime": 0.30231
         },
         {
-            "title": "Smallest String Starting From Leaf",
-            "id": 1030,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Add to Array-Form of Integer",
             "id": 1031,
             "freq_6month": 0.03268,
@@ -9710,11 +9485,6 @@
             "freq_2year": 0.4566,
             "freq_1year": 0.31508,
             "freq_alltime": 1.33524
-        },
-        {
-            "title": "Number of Enclaves",
-            "id": 1073,
-            "freq_alltime": 0.0
         },
         {
             "title": "Brace Expansion",
@@ -9773,11 +9543,6 @@
             "freq_alltime": 0.65187
         },
         {
-            "title": "Valid Boomerang",
-            "id": 1115,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Maximum Level Sum of a Binary Tree",
             "id": 1116,
             "freq_alltime": 0.19218
@@ -9798,11 +9563,6 @@
             "freq_alltime": 0.44172
         },
         {
-            "title": "Shortest Distance to Target Color",
-            "id": 1134,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Height Checker",
             "id": 1137,
             "freq_2year": 0.01147,
@@ -9810,19 +9570,9 @@
             "freq_alltime": 0.02562
         },
         {
-            "title": "Occurrences After Bigram",
-            "id": 1156,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Letter Tile Possibilities",
             "id": 1160,
             "freq_alltime": 0.03334
-        },
-        {
-            "title": "Largest Values From Labels",
-            "id": 1169,
-            "freq_alltime": 0.0
         },
         {
             "title": "Shortest Path in Binary Matrix",
@@ -9863,16 +9613,6 @@
             "freq_alltime": 0.11712
         },
         {
-            "title": "Element Appearing More Than 25% In Sorted Array",
-            "id": 1221,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Minimum Falling Path Sum II",
-            "id": 1224,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Sum of Mutated Array Closest to Target",
             "id": 1232,
             "freq_alltime": 0.07008
@@ -9888,11 +9628,6 @@
             "freq_2year": 0.01209,
             "freq_1year": 0.01209,
             "freq_alltime": 0.01209
-        },
-        {
-            "title": "Matrix Block Sum",
-            "id": 1242,
-            "freq_alltime": 0.0
         },
         {
             "title": "Snapshot Array",
@@ -9911,16 +9646,6 @@
             "freq_alltime": 0.16528
         },
         {
-            "title": "Deepest Leaves Sum",
-            "id": 1254,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Rank Transform of an Array",
-            "id": 1256,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Compare Strings by Frequency of the Smallest Character",
             "id": 1273,
             "freq_2year": 1.71143,
@@ -9928,26 +9653,11 @@
             "freq_alltime": 2.38062
         },
         {
-            "title": "Distance Between Bus Stops",
-            "id": 1287,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Unique Number of Occurrences",
-            "id": 1319,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Remove All Adjacent Duplicates in String II",
             "id": 1320,
             "freq_2year": 0.13713,
             "freq_1year": 0.13713,
             "freq_alltime": 0.19197
-        },
-        {
-            "title": "Path with Maximum Probability",
-            "id": 1325,
-            "freq_alltime": 0.0
         },
         {
             "title": "Path with Maximum Gold",
@@ -9963,11 +9673,6 @@
             "freq_2year": 0.07537,
             "freq_1year": 0.07537,
             "freq_alltime": 0.2724
-        },
-        {
-            "title": "Find Elements in a Contaminated Binary Tree",
-            "id": 1387,
-            "freq_alltime": 0.0
         },
         {
             "title": "Count Servers that Communicate",
@@ -10023,11 +9728,6 @@
             "freq_alltime": 0.07663
         },
         {
-            "title": "Check If N and Its Double Exist",
-            "id": 1468,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Product of the Last K Numbers",
             "id": 1477,
             "freq_6month": 0.21187,
@@ -10049,42 +9749,12 @@
             "freq_alltime": 0.15575
         },
         {
-            "title": "Sort Integers by The Power Value",
-            "id": 1488,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Pizza With 3n Slices",
-            "id": 1489,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Time Needed to Inform All Employees",
             "id": 1492,
             "freq_6month": 0.49039,
             "freq_2year": 0.49039,
             "freq_1year": 0.49039,
             "freq_alltime": 1.42306
-        },
-        {
-            "title": "Frog Position After T Seconds",
-            "id": 1493,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Circle and Rectangle Overlapping",
-            "id": 1501,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Longest Happy Prefix",
-            "id": 1508,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Maximum Score After Splitting a String",
-            "id": 1537,
-            "freq_alltime": 0.0
         },
         {
             "title": "Maximum Points You Can Obtain from Cards",
@@ -10108,21 +9778,6 @@
             "freq_alltime": 1.55157
         },
         {
-            "title": "Build an Array With Stack Operations",
-            "id": 1552,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Check If a String Contains All Binary Codes of Size K",
-            "id": 1557,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "People Whose List of Favorite Companies Is Not a Subset of Another List",
-            "id": 1562,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Reorder Routes to Make All Paths Lead to the City Zero",
             "id": 1576,
             "freq_6month": 0.184,
@@ -10131,39 +9786,9 @@
             "freq_alltime": 0.184
         },
         {
-            "title": "The k Strongest Values in an Array",
-            "id": 1581,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Running Sum of 1d Array",
             "id": 1603,
             "freq_alltime": 0.01044
-        },
-        {
-            "title": "Minimum Number of Days to Make m Bouquets",
-            "id": 1605,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Range Sum of Sorted Subarray Sums",
-            "id": 1615,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Number of Good Ways to Split a String",
-            "id": 1632,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Minimum Number of Increments on Subarrays to Form a Target Array",
-            "id": 1633,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Make The String Great",
-            "id": 1666,
-            "freq_alltime": 0.0
         }
     ],
     "Apple": [
@@ -12055,11 +11680,6 @@
             "freq_2year": 0.03787,
             "freq_1year": 0.00428,
             "freq_alltime": 0.10185
-        },
-        {
-            "title": "Array Nesting",
-            "id": 565,
-            "freq_alltime": 0.0
         },
         {
             "title": "Kill Process",
@@ -14673,11 +14293,6 @@
             "freq_alltime": 0.36966
         },
         {
-            "title": "Find Bottom Left Tree Value",
-            "id": 513,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Find Largest Value in Each Tree Row",
             "id": 515,
             "freq_2year": 0.07428,
@@ -14835,11 +14450,6 @@
             "freq_alltime": 0.05858
         },
         {
-            "title": "Design Excel Sum Formula",
-            "id": 631,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Exclusive Time of Functions",
             "id": 636,
             "freq_6month": 0.08155,
@@ -14893,11 +14503,6 @@
             "freq_alltime": 0.16169
         },
         {
-            "title": "Maximum Binary Tree",
-            "id": 654,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Print Binary Tree",
             "id": 655,
             "freq_2year": 0.11154,
@@ -14934,11 +14539,6 @@
             "id": 671,
             "freq_2year": 0.02959,
             "freq_alltime": 0.11344
-        },
-        {
-            "title": "Bulb Switcher II",
-            "id": 672,
-            "freq_alltime": 0.0
         },
         {
             "title": "Longest Continuous Increasing Subsequence",
@@ -15232,11 +14832,6 @@
             "freq_alltime": 0.09491
         },
         {
-            "title": "Online Stock Span",
-            "id": 937,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Reverse Only Letters",
             "id": 953,
             "freq_2year": 0.2324,
@@ -15383,11 +14978,6 @@
             "freq_alltime": 0.09812
         },
         {
-            "title": "Find Smallest Common Element in All Rows",
-            "id": 1143,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Letter Tile Possibilities",
             "id": 1160,
             "freq_6month": 0.0735,
@@ -15401,11 +14991,6 @@
             "freq_2year": 0.03165,
             "freq_1year": 0.03165,
             "freq_alltime": 0.03165
-        },
-        {
-            "title": "Delete Tree Nodes",
-            "id": 1201,
-            "freq_alltime": 0.0
         },
         {
             "title": "Print in Order",
@@ -15461,16 +15046,6 @@
             "freq_alltime": 0.09056
         },
         {
-            "title": "Maximum Product of Splitted Binary Tree",
-            "id": 1465,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Find the Longest Substring Containing Vowels in Even Counts",
-            "id": 1473,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Cinema Seat Allocation",
             "id": 1487,
             "freq_alltime": 0.10648
@@ -15484,62 +15059,12 @@
             "freq_alltime": 0.14531
         },
         {
-            "title": "Find Lucky Integer in an Array",
-            "id": 1510,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "The k-th Lexicographical String of All Happy Strings of Length n",
-            "id": 1516,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Reformat The String",
-            "id": 1532,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Count Good Nodes in Binary Tree",
-            "id": 1544,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Shuffle the Array",
             "id": 1580,
             "freq_6month": 0.00453,
             "freq_2year": 0.00453,
             "freq_1year": 0.00453,
             "freq_alltime": 0.00453
-        },
-        {
-            "title": "Find All The Lonely Nodes",
-            "id": 1609,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Delete N Nodes After M Nodes of a Linked List",
-            "id": 1618,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Count Odd Numbers in an Interval Range",
-            "id": 1630,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Water Bottles",
-            "id": 1642,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Kth Missing Positive Number",
-            "id": 1646,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Shuffle String",
-            "id": 1651,
-            "freq_alltime": 0.0
         }
     ],
     "Facebook": [
@@ -17007,11 +16532,6 @@
             "freq_alltime": 0.12828
         },
         {
-            "title": "H-Index II",
-            "id": 275,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Find the Celebrity",
             "id": 277,
             "freq_6month": 0.1726,
@@ -18270,11 +17790,6 @@
             "freq_alltime": 0.00839
         },
         {
-            "title": "Largest Plus Sign",
-            "id": 769,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Toeplitz Matrix",
             "id": 777,
             "freq_6month": 0.60456,
@@ -18315,11 +17830,6 @@
             "freq_2year": 0.11641,
             "freq_1year": 0.11641,
             "freq_alltime": 0.40134
-        },
-        {
-            "title": "Letter Case Permutation",
-            "id": 800,
-            "freq_alltime": 0.0
         },
         {
             "title": "Rotated Digits",
@@ -18436,11 +17946,6 @@
             "freq_alltime": 1.15357
         },
         {
-            "title": "Groups of Special-Equivalent Strings",
-            "id": 929,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Monotonic Array",
             "id": 932,
             "freq_6month": 0.83938,
@@ -18550,11 +18055,6 @@
             "freq_alltime": 2.1847
         },
         {
-            "title": "Add to Array-Form of Integer",
-            "id": 1031,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Cousins in Binary Tree",
             "id": 1035,
             "freq_2year": 0.01741,
@@ -18627,11 +18127,6 @@
             "freq_2year": 0.83269,
             "freq_1year": 0.83269,
             "freq_alltime": 0.903
-        },
-        {
-            "title": "Moving Stones Until Consecutive",
-            "id": 1103,
-            "freq_alltime": 0.0
         },
         {
             "title": "Partition Array for Maximum Sum",
@@ -18716,11 +18211,6 @@
             "freq_alltime": 0.03402
         },
         {
-            "title": "Validate Binary Tree Nodes",
-            "id": 1275,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Remove All Adjacent Duplicates in String II",
             "id": 1320,
             "freq_6month": 0.13713,
@@ -18781,11 +18271,6 @@
             "freq_2year": 0.05819,
             "freq_1year": 0.05819,
             "freq_alltime": 0.05819
-        },
-        {
-            "title": "Apply Discount Every n Orders",
-            "id": 1459,
-            "freq_alltime": 0.0
         },
         {
             "title": "Find a Corresponding Node of a Binary Tree in a Clone of That Tree",
@@ -19938,11 +19423,6 @@
             "freq_alltime": 0.04108
         },
         {
-            "title": "Palindrome Permutation",
-            "id": 266,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Missing Number",
             "id": 268,
             "freq_2year": 0.01938,
@@ -20604,11 +20084,6 @@
             "freq_2year": 0.23998,
             "freq_1year": 0.06561,
             "freq_alltime": 0.47639
-        },
-        {
-            "title": "Trim a Binary Search Tree",
-            "id": 669,
-            "freq_alltime": 0.0
         },
         {
             "title": "Number of Longest Increasing Subsequence",
@@ -21516,11 +20991,6 @@
             "freq_alltime": 1.3062
         },
         {
-            "title": "Excel Sheet Column Number",
-            "id": 171,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Binary Search Tree Iterator",
             "id": 173,
             "freq_2year": 0.15925,
@@ -22017,11 +21487,6 @@
             "freq_alltime": 1.00875
         },
         {
-            "title": "Find K Pairs with Smallest Sums",
-            "id": 373,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Wiggle Subsequence",
             "id": 376,
             "freq_2year": 0.03667,
@@ -22352,11 +21817,6 @@
             "freq_alltime": 0.86362
         },
         {
-            "title": "Employee Importance",
-            "id": 690,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Top K Frequent Words",
             "id": 692,
             "freq_2year": 0.02973,
@@ -22382,11 +21842,6 @@
             "freq_2year": 0.03643,
             "freq_1year": 0.03643,
             "freq_alltime": 0.03643
-        },
-        {
-            "title": "Asteroid Collision",
-            "id": 735,
-            "freq_alltime": 0.0
         },
         {
             "title": "Daily Temperatures",
@@ -22512,11 +21967,6 @@
             "freq_alltime": 0.13163
         },
         {
-            "title": "Fixed Point",
-            "id": 1066,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Next Greater Node In Linked List",
             "id": 1072,
             "freq_2year": 0.04796,
@@ -22569,11 +22019,6 @@
             "title": "Find the Distance Value Between Two Arrays",
             "id": 1486,
             "freq_alltime": 0.04668
-        },
-        {
-            "title": "Construct K Palindrome Strings",
-            "id": 1502,
-            "freq_alltime": 0.0
         }
     ],
     "Spotify": [
@@ -22911,11 +22356,6 @@
             "freq_alltime": 0.00428
         },
         {
-            "title": "Valid Triangle Number",
-            "id": 611,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Top K Frequent Words",
             "id": 692,
             "freq_2year": 0.01683,
@@ -22961,26 +22401,11 @@
             "freq_alltime": 0.45026
         },
         {
-            "title": "Minimum Swaps to Group All 1's Together",
-            "id": 1107,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Find the Smallest Divisor Given a Threshold",
             "id": 1408,
             "freq_2year": 0.17885,
             "freq_1year": 0.13693,
             "freq_alltime": 0.36509
-        },
-        {
-            "title": "Rearrange Words in a Sentence",
-            "id": 1561,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "The kth Factor of n",
-            "id": 1585,
-            "freq_alltime": 0.0
         }
     ],
     "Oracle": [
@@ -24315,16 +23740,6 @@
             "freq_2year": 0.02628,
             "freq_1year": 0.02628,
             "freq_alltime": 0.02628
-        },
-        {
-            "title": "Lucky Numbers in a Matrix",
-            "id": 1496,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "HTML Entity Parser",
-            "id": 1526,
-            "freq_alltime": 0.0
         }
     ],
     "Yahoo": [
@@ -24925,11 +24340,6 @@
             "freq_alltime": 0.09087
         },
         {
-            "title": "Maximum Distance in Arrays",
-            "id": 624,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Trim a Binary Search Tree",
             "id": 669,
             "freq_6month": 0.01505,
@@ -24942,11 +24352,6 @@
             "id": 680,
             "freq_2year": 0.00697,
             "freq_alltime": 0.02758
-        },
-        {
-            "title": "Binary Number with Alternating Bits",
-            "id": 693,
-            "freq_alltime": 0.0
         },
         {
             "title": "Min Cost Climbing Stairs",
@@ -24971,11 +24376,6 @@
             "id": 1014,
             "freq_2year": 0.01235,
             "freq_alltime": 0.02186
-        },
-        {
-            "title": "Matrix Cells in Distance Order",
-            "id": 1094,
-            "freq_alltime": 0.0
         },
         {
             "title": "Defanging an IP Address",
@@ -25012,11 +24412,6 @@
             "freq_2year": 0.0022,
             "freq_1year": 0.00115,
             "freq_alltime": 0.0022
-        },
-        {
-            "title": "Find Winner on a Tic Tac Toe Game",
-            "id": 1400,
-            "freq_alltime": 0.0
         }
     ],
     "Visa": [
@@ -25234,22 +24629,12 @@
             "freq_alltime": 0.0418
         },
         {
-            "title": "Divisor Game",
-            "id": 1086,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Maximum Number of Events That Can Be Attended",
             "id": 1478,
             "freq_6month": 0.00647,
             "freq_2year": 0.05429,
             "freq_1year": 0.05429,
             "freq_alltime": 0.29912
-        },
-        {
-            "title": "Create Target Array in the Given Order",
-            "id": 1505,
-            "freq_alltime": 0.0
         }
     ],
     "Paypal": [
@@ -26074,16 +25459,6 @@
             "freq_alltime": 0.16296
         },
         {
-            "title": "Check If a Number Is Majority Element in a Sorted Array",
-            "id": 1102,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Height Checker",
-            "id": 1137,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Find the Smallest Divisor Given a Threshold",
             "id": 1408,
             "freq_6month": 0.03015,
@@ -26204,25 +25579,10 @@
             "freq_alltime": 0.08695
         },
         {
-            "title": "Two Sum IV - Input is a BST",
-            "id": 653,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Middle of the Linked List",
             "id": 908,
             "freq_2year": 0.00728,
             "freq_alltime": 0.01631
-        },
-        {
-            "title": "Vertical Order Traversal of a Binary Tree",
-            "id": 1029,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Maximum Product of Two Elements in an Array",
-            "id": 1574,
-            "freq_alltime": 0.0
         }
     ],
     "Intuit": [
@@ -26341,11 +25701,6 @@
             "freq_2year": 0.09594,
             "freq_1year": 0.09594,
             "freq_alltime": 0.14612
-        },
-        {
-            "title": "Maximum Product of Three Numbers",
-            "id": 628,
-            "freq_alltime": 0.0
         },
         {
             "title": "Max Area of Island",
@@ -27303,11 +26658,6 @@
             "freq_alltime": 0.0211
         },
         {
-            "title": "Minimum Window Subsequence",
-            "id": 727,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Asteroid Collision",
             "id": 735,
             "freq_2year": 0.05479,
@@ -27334,11 +26684,6 @@
             "id": 812,
             "freq_2year": 0.05978,
             "freq_alltime": 0.10392
-        },
-        {
-            "title": "Binary Gap",
-            "id": 899,
-            "freq_alltime": 0.0
         },
         {
             "title": "Flip Equivalent Binary Trees",
@@ -27418,11 +26763,6 @@
             "id": 46,
             "freq_2year": 0.00366,
             "freq_alltime": 0.00398
-        },
-        {
-            "title": "Strange Printer",
-            "id": 664,
-            "freq_alltime": 0.0
         }
     ],
     "Bookingcom": [
@@ -27642,21 +26982,6 @@
             "id": 460,
             "freq_2year": 0.03096,
             "freq_alltime": 0.06836
-        },
-        {
-            "title": "Split Array with Equal Sum",
-            "id": 548,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Split Concatenated Strings",
-            "id": 555,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Path Sum IV",
-            "id": 666,
-            "freq_alltime": 0.0
         },
         {
             "title": "Valid Parenthesis String",
@@ -28666,11 +27991,6 @@
             "freq_alltime": 1.50633
         },
         {
-            "title": "Find Largest Value in Each Tree Row",
-            "id": 515,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Longest Palindromic Subsequence",
             "id": 516,
             "freq_2year": 0.21567,
@@ -28696,11 +28016,6 @@
             "freq_2year": 0.6315,
             "freq_1year": 0.09333,
             "freq_alltime": 2.31662
-        },
-        {
-            "title": "Sum of Square Numbers",
-            "id": 633,
-            "freq_alltime": 0.0
         },
         {
             "title": "Exclusive Time of Functions",
@@ -28793,11 +28108,6 @@
             "freq_alltime": 0.21436
         },
         {
-            "title": "Validate Stack Sequences",
-            "id": 983,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "K Closest Points to Origin",
             "id": 1014,
             "freq_2year": 0.01294,
@@ -28816,11 +28126,6 @@
             "freq_2year": 0.0116,
             "freq_1year": 0.0116,
             "freq_alltime": 0.02592
-        },
-        {
-            "title": "Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold",
-            "id": 1445,
-            "freq_alltime": 0.0
         }
     ],
     "Bytedance": [
@@ -29851,11 +29156,6 @@
             "freq_alltime": 0.02608
         },
         {
-            "title": "String Compression",
-            "id": 443,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Permutation in String",
             "id": 567,
             "freq_6month": 0.01495,
@@ -29966,11 +29266,6 @@
             "id": 39,
             "freq_2year": 0.01282,
             "freq_alltime": 0.0503
-        },
-        {
-            "title": "Combination Sum II",
-            "id": 40,
-            "freq_alltime": 0.0
         },
         {
             "title": "Trapping Rain Water",
@@ -30191,11 +29486,6 @@
             "freq_alltime": 0.23067
         },
         {
-            "title": "Closest Binary Search Tree Value",
-            "id": 270,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Expression Add Operators",
             "id": 282,
             "freq_2year": 0.04998,
@@ -30238,11 +29528,6 @@
             "id": 311,
             "freq_2year": 0.0277,
             "freq_alltime": 0.10648
-        },
-        {
-            "title": "Burst Balloons",
-            "id": 312,
-            "freq_alltime": 0.0
         },
         {
             "title": "Binary Tree Vertical Order Traversal",
@@ -30309,11 +29594,6 @@
             "freq_alltime": 0.0712
         },
         {
-            "title": "Remove K Digits",
-            "id": 402,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Frog Jump",
             "id": 403,
             "freq_alltime": 0.50477
@@ -30329,11 +29609,6 @@
             "title": "Ternary Expression Parser",
             "id": 439,
             "freq_alltime": 0.57054
-        },
-        {
-            "title": "String Compression",
-            "id": 443,
-            "freq_alltime": 0.0
         },
         {
             "title": "LFU Cache",
@@ -30492,11 +29767,6 @@
             "id": 344,
             "freq_2year": 0.00734,
             "freq_alltime": 0.01301
-        },
-        {
-            "title": "String Compression",
-            "id": 443,
-            "freq_alltime": 0.0
         },
         {
             "title": "Find Pivot Index",
@@ -30659,16 +29929,6 @@
             "freq_2year": 0.0119,
             "freq_1year": 0.00531,
             "freq_alltime": 0.03271
-        },
-        {
-            "title": "Remove Boxes",
-            "id": 546,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Minimum Factorization",
-            "id": 625,
-            "freq_alltime": 0.0
         },
         {
             "title": "Longest Common Subsequence",
@@ -30857,11 +30117,6 @@
             "freq_2year": 0.04981,
             "freq_1year": 0.02832,
             "freq_alltime": 0.04981
-        },
-        {
-            "title": "Rabbits in Forest",
-            "id": 797,
-            "freq_alltime": 0.0
         },
         {
             "title": "Random Pick with Weight",
@@ -32014,11 +31269,6 @@
             "freq_2year": 0.0689,
             "freq_1year": 0.03934,
             "freq_alltime": 0.14885
-        },
-        {
-            "title": "Longest Subarray of 1's After Deleting One Element",
-            "id": 1586,
-            "freq_alltime": 0.0
         }
     ],
     "Twitter": [
@@ -32271,11 +31521,6 @@
             "freq_alltime": 0.3073
         },
         {
-            "title": "Number of Connected Components in an Undirected Graph",
-            "id": 323,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Flatten Nested List Iterator",
             "id": 341,
             "freq_2year": 0.22092,
@@ -32294,20 +31539,10 @@
             "freq_alltime": 1.15023
         },
         {
-            "title": "Kth Smallest Element in a Sorted Matrix",
-            "id": 378,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Insert Delete GetRandom O(1)",
             "id": 380,
             "freq_2year": 0.03872,
             "freq_alltime": 0.14661
-        },
-        {
-            "title": "Trapping Rain Water II",
-            "id": 407,
-            "freq_alltime": 0.0
         },
         {
             "title": "Validate IP Address",
@@ -32390,11 +31625,6 @@
             "freq_alltime": 0.03113
         },
         {
-            "title": "Binary Gap",
-            "id": 899,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Random Pick with Weight",
             "id": 912,
             "freq_2year": 0.05805,
@@ -32407,11 +31637,6 @@
             "freq_2year": 0.04941,
             "freq_1year": 0.02226,
             "freq_alltime": 0.04941
-        },
-        {
-            "title": "Minimum Number of Steps to Make Two Strings Anagram",
-            "id": 1469,
-            "freq_alltime": 0.0
         },
         {
             "title": "Tweet Counts Per Frequency",
@@ -32517,11 +31742,6 @@
             "freq_2year": 0.14894,
             "freq_1year": 0.14894,
             "freq_alltime": 0.1322
-        },
-        {
-            "title": "Minimum Absolute Difference",
-            "id": 1306,
-            "freq_alltime": 0.0
         }
     ],
     "Factset": [
@@ -32559,11 +31779,6 @@
             "freq_2year": 0.06293,
             "freq_1year": 0.06293,
             "freq_alltime": 0.14465
-        },
-        {
-            "title": "Remove All Adjacent Duplicates in String II",
-            "id": 1320,
-            "freq_alltime": 0.0
         }
     ],
     "Tableau": [
@@ -32941,11 +32156,6 @@
             "freq_2year": 0.15467,
             "freq_1year": 0.12051,
             "freq_alltime": 0.19203
-        },
-        {
-            "title": "Maximum Length of Repeated Subarray",
-            "id": 718,
-            "freq_alltime": 0.0
         },
         {
             "title": "Find Pivot Index",
@@ -33665,11 +32875,6 @@
             "freq_alltime": 0.04112
         },
         {
-            "title": "Perform String Shifts",
-            "id": 1345,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Count Number of Teams",
             "id": 1511,
             "freq_6month": 0.05641,
@@ -33773,22 +32978,12 @@
             "freq_alltime": 0.34294
         },
         {
-            "title": "Univalued Binary Tree",
-            "id": 1005,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Subarray Sums Divisible by K",
             "id": 1016,
             "freq_6month": 0.1398,
             "freq_2year": 0.50832,
             "freq_1year": 0.2968,
             "freq_alltime": 1.87644
-        },
-        {
-            "title": "Reformat Date",
-            "id": 1283,
-            "freq_alltime": 0.0
         }
     ],
     "Cloudera": [
@@ -33832,11 +33027,6 @@
             "freq_2year": 0.05295,
             "freq_1year": 0.05295,
             "freq_alltime": 0.11095
-        },
-        {
-            "title": "Complement of Base 10 Integer",
-            "id": 1054,
-            "freq_alltime": 0.0
         }
     ],
     "Baidu": [
@@ -33925,50 +33115,15 @@
             "freq_alltime": 0.04465
         },
         {
-            "title": "Longest Substring with At Least K Repeating Characters",
-            "id": 395,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Integer Replacement",
-            "id": 397,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Split Array Largest Sum",
             "id": 410,
             "freq_alltime": 0.02436
-        },
-        {
-            "title": "Arithmetic Slices",
-            "id": 413,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Arithmetic Slices II - Subsequence",
-            "id": 446,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Zuma Game",
-            "id": 488,
-            "freq_alltime": 0.0
         },
         {
             "title": "Diameter of Binary Tree",
             "id": 543,
             "freq_2year": 0.00505,
             "freq_alltime": 0.00505
-        },
-        {
-            "title": "Out of Boundary Paths",
-            "id": 576,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Design In-Memory File System",
-            "id": 588,
-            "freq_alltime": 0.0
         }
     ],
     "Servicenow": [
@@ -34241,11 +33396,6 @@
             "freq_alltime": 0.03872
         },
         {
-            "title": "Minimum Moves to Equal Array Elements",
-            "id": 453,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Subarray Sum Equals K",
             "id": 560,
             "freq_2year": 0.00428,
@@ -34278,11 +33428,6 @@
             "freq_2year": 1.53831,
             "freq_1year": 0.721,
             "freq_alltime": 2.27932
-        },
-        {
-            "title": "Sum of Even Numbers After Queries",
-            "id": 1027,
-            "freq_alltime": 0.0
         },
         {
             "title": "Longest Common Subsequence",
@@ -34345,16 +33490,6 @@
             "title": "Largest Number",
             "id": 179,
             "freq_alltime": 0.07394
-        },
-        {
-            "title": "K Inverse Pairs Array",
-            "id": 629,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Course Schedule III",
-            "id": 630,
-            "freq_alltime": 0.0
         }
     ],
     "Mathworks": [
@@ -34553,11 +33688,6 @@
             "freq_2year": 0.29031,
             "freq_1year": 0.17351,
             "freq_alltime": 0.9952
-        },
-        {
-            "title": "Reshape the Matrix",
-            "id": 566,
-            "freq_alltime": 0.0
         },
         {
             "title": "Palindromic Substrings",
@@ -35281,11 +34411,6 @@
             "freq_alltime": 0.00408
         },
         {
-            "title": "1-bit and 2-bit Characters",
-            "id": 717,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Peak Index in a Mountain Array",
             "id": 882,
             "freq_2year": 0.07348,
@@ -35303,21 +34428,6 @@
             "freq_2year": 0.08585,
             "freq_1year": 0.08585,
             "freq_alltime": 0.14787
-        },
-        {
-            "title": "Subtract the Product and Sum of Digits of an Integer",
-            "id": 1406,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Find Numbers with Even Number of Digits",
-            "id": 1421,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Construct Target Array With Multiple Sums",
-            "id": 1479,
-            "freq_alltime": 0.0
         }
     ],
     "Yelp": [
@@ -35459,19 +34569,9 @@
             "freq_alltime": 0.0851
         },
         {
-            "title": "Insert Delete GetRandom O(1) - Duplicates allowed",
-            "id": 381,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Decode String",
             "id": 394,
             "freq_alltime": 0.00817
-        },
-        {
-            "title": "String Compression",
-            "id": 443,
-            "freq_alltime": 0.0
         },
         {
             "title": "Minimum Index Sum of Two Lists",
@@ -35497,16 +34597,6 @@
             "freq_2year": 0.12617,
             "freq_1year": 0.03307,
             "freq_alltime": 0.3174
-        },
-        {
-            "title": "Destination City",
-            "id": 1547,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Check If a Word Occurs As a Prefix of Any Word in a Sentence",
-            "id": 1566,
-            "freq_alltime": 0.0
         }
     ],
     "Nvidia": [
@@ -35751,11 +34841,6 @@
             "freq_2year": 1.21937,
             "freq_1year": 0.86124,
             "freq_alltime": 2.44703
-        },
-        {
-            "title": "Group the People Given the Group Size They Belong To",
-            "id": 1407,
-            "freq_alltime": 0.0
         },
         {
             "title": "Convert Binary Number in a Linked List to Integer",
@@ -36328,11 +35413,6 @@
             "freq_alltime": 0.02211
         },
         {
-            "title": "Basic Calculator II",
-            "id": 227,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Lowest Common Ancestor of a Binary Tree",
             "id": 236,
             "freq_2year": 0.01872,
@@ -36399,11 +35479,6 @@
             "title": "Mini Parser",
             "id": 385,
             "freq_alltime": 0.13177
-        },
-        {
-            "title": "Add Strings",
-            "id": 415,
-            "freq_alltime": 0.0
         },
         {
             "title": "Design In-Memory File System",
@@ -36560,11 +35635,6 @@
             "freq_2year": 0.00763,
             "freq_1year": 0.00763,
             "freq_alltime": 0.00763
-        },
-        {
-            "title": "Maximum Points You Can Obtain from Cards",
-            "id": 1538,
-            "freq_alltime": 0.0
         }
     ],
     "Docusign": [
@@ -36807,11 +35877,6 @@
             "freq_2year": 0.12182,
             "freq_1year": 0.12182,
             "freq_alltime": 0.41754
-        },
-        {
-            "title": "Four Divisors",
-            "id": 1284,
-            "freq_alltime": 0.0
         }
     ],
     "Coupang": [
@@ -36829,11 +35894,6 @@
             "freq_alltime": 0.00744
         },
         {
-            "title": "Subsets",
-            "id": 78,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Word Search",
             "id": 79,
             "freq_6month": 0.00164,
@@ -36849,29 +35909,9 @@
             "freq_alltime": 0.02621
         },
         {
-            "title": "Word Break",
-            "id": 139,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Longest Substring with At Most K Distinct Characters",
-            "id": 340,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Decode String",
             "id": 394,
             "freq_alltime": 0.00779
-        },
-        {
-            "title": "Find Pivot Index",
-            "id": 724,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Split BST",
-            "id": 791,
-            "freq_alltime": 0.0
         },
         {
             "title": "Divide Array in Sets of K Consecutive Numbers",
@@ -37312,11 +36352,6 @@
             "freq_alltime": 0.32447
         },
         {
-            "title": "Candy Crush",
-            "id": 723,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Random Pick with Weight",
             "id": 912,
             "freq_alltime": 0.01483
@@ -37542,11 +36577,6 @@
             "freq_alltime": 0.15839
         },
         {
-            "title": "Remove 9",
-            "id": 660,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Partition to K Equal Sum Subsets",
             "id": 698,
             "freq_2year": 0.0211,
@@ -37578,11 +36608,6 @@
             "freq_alltime": 0.00917
         },
         {
-            "title": "Generate Parentheses",
-            "id": 22,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Trapping Rain Water",
             "id": 42,
             "freq_alltime": 0.20803
@@ -37598,29 +36623,9 @@
             "freq_alltime": 0.0322
         },
         {
-            "title": "Valid Palindrome",
-            "id": 125,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "LRU Cache",
             "id": 146,
             "freq_alltime": 0.01828
-        },
-        {
-            "title": "Min Stack",
-            "id": 155,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Excel Sheet Column Title",
-            "id": 168,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Majority Element",
-            "id": 169,
-            "freq_alltime": 0.0
         },
         {
             "title": "Number of Islands",
@@ -37633,24 +36638,9 @@
             "freq_alltime": 0.02086
         },
         {
-            "title": "Course Schedule",
-            "id": 207,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Course Schedule II",
             "id": 210,
             "freq_alltime": 0.00761
-        },
-        {
-            "title": "Majority Element II",
-            "id": 229,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Sliding Window Maximum",
-            "id": 239,
-            "freq_alltime": 0.0
         },
         {
             "title": "Flatten 2D Vector",
@@ -37661,11 +36651,6 @@
             "title": "Verify Preorder Sequence in Binary Search Tree",
             "id": 255,
             "freq_alltime": 0.13488
-        },
-        {
-            "title": "Graph Valid Tree",
-            "id": 261,
-            "freq_alltime": 0.0
         },
         {
             "title": "Shortest Distance from All Buildings",
@@ -37876,11 +36861,6 @@
             "freq_2year": 0.83431,
             "freq_1year": 0.92865,
             "freq_alltime": 0.72705
-        },
-        {
-            "title": "Check If Word Is Valid After Substitutions",
-            "id": 1045,
-            "freq_alltime": 0.0
         }
     ],
     "Wayfair": [
@@ -38075,11 +37055,6 @@
             "freq_alltime": 0.00989
         },
         {
-            "title": "Longest Substring with At Most K Distinct Characters",
-            "id": 340,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Moving Average from Data Stream",
             "id": 346,
             "freq_6month": 0.01569,
@@ -38201,11 +37176,6 @@
             "id": 713,
             "freq_2year": 0.54497,
             "freq_alltime": 0.6218
-        },
-        {
-            "title": "N-th Tribonacci Number",
-            "id": 1236,
-            "freq_alltime": 0.0
         }
     ],
     "Databricks": [
@@ -38296,11 +37266,6 @@
             "freq_2year": 0.88833,
             "freq_1year": 0.23361,
             "freq_alltime": 1.1768
-        },
-        {
-            "title": "Time Based Key-Value Store",
-            "id": 1023,
-            "freq_alltime": 0.0
         },
         {
             "title": "Vertical Order Traversal of a Binary Tree",
@@ -38398,16 +37363,6 @@
             "freq_alltime": 0.13205
         },
         {
-            "title": "Range Sum Query - Immutable",
-            "id": 303,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Maximum Size Subarray Sum Equals k",
-            "id": 325,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "UTF-8 Validation",
             "id": 393,
             "freq_6month": 1.02866,
@@ -38493,31 +37448,6 @@
             "freq_2year": 0.15414,
             "freq_1year": 0.14759,
             "freq_alltime": 1.49293
-        },
-        {
-            "title": "Insert Delete GetRandom O(1)",
-            "id": 380,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Longest Repeating Character Replacement",
-            "id": 424,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Find All Duplicates in an Array",
-            "id": 442,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Non-negative Integers without Consecutive Ones",
-            "id": 600,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Top K Frequent Words",
-            "id": 692,
-            "freq_alltime": 0.0
         },
         {
             "title": "Delete and Earn",
@@ -38944,11 +37874,6 @@
             "freq_alltime": 0.16528
         },
         {
-            "title": "Longest Word in Dictionary",
-            "id": 720,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Subdomain Visit Count",
             "id": 829,
             "freq_2year": 1.20277,
@@ -39335,11 +38260,6 @@
             "freq_alltime": 0.0892
         },
         {
-            "title": "Squirrel Simulation",
-            "id": 573,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Goat Latin",
             "id": 851,
             "freq_2year": 0.0318,
@@ -39412,11 +38332,6 @@
             "freq_alltime": 0.03103
         },
         {
-            "title": "Map Sum Pairs",
-            "id": 677,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Subarray Product Less Than K",
             "id": 713,
             "freq_2year": 0.67275,
@@ -39424,24 +38339,9 @@
             "freq_alltime": 1.07248
         },
         {
-            "title": "Delete and Earn",
-            "id": 740,
-            "freq_alltime": 0.0
-        },
-        {
             "title": "Network Delay Time",
             "id": 744,
             "freq_alltime": 0.02845
-        },
-        {
-            "title": "Reduce Array Size to The Half",
-            "id": 1464,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Increasing Decreasing String",
-            "id": 1472,
-            "freq_alltime": 0.0
         }
     ],
     "Postmates": [
@@ -39602,11 +38502,6 @@
             "title": "Shortest Unsorted Continuous Subarray",
             "id": 581,
             "freq_alltime": 0.05007
-        },
-        {
-            "title": "Longest Harmonious Subsequence",
-            "id": 594,
-            "freq_alltime": 0.0
         }
     ],
     "Epic-systems": [
@@ -39635,11 +38530,6 @@
             "freq_2year": 0.02172,
             "freq_1year": 0.01319,
             "freq_alltime": 0.67882
-        },
-        {
-            "title": "Self Dividing Numbers",
-            "id": 728,
-            "freq_alltime": 0.0
         }
     ],
     "Arista-networks": [
@@ -39908,16 +38798,6 @@
             "freq_2year": 0.01743,
             "freq_1year": 0.01743,
             "freq_alltime": 0.01743
-        },
-        {
-            "title": "K-th Smallest in Lexicographical Order",
-            "id": 440,
-            "freq_alltime": 0.0
-        },
-        {
-            "title": "Binary Tree Pruning",
-            "id": 832,
-            "freq_alltime": 0.0
         }
     ],
     "Tripadvisor": [

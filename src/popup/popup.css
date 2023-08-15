@@ -106,15 +106,15 @@ a:hover {
 .code-btn {
     display: flex;
     align-items: center;
-    background-color: #202020;
-    border: 1px solid #f0f0f0;
+    background-color: #222;
+    border: 2px solid lightgray;
     border-radius: 10px;
     cursor: pointer;
     padding: 5px 10px;
 }
 
 .code-btn:hover {
-    background-color: black;
+    border: 2px solid lightgreen;
 }
 
 #clear-code-btn {

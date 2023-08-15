@@ -8,13 +8,13 @@
 function showExamples() {
     chrome.storage.local.get(['showExamples'], (result) => {
         const showExamples = result.showExamples;
-
-        const examples = document.getElementsByClassName('xFUwe')[0];
-        if (examples && examples.children) {
-            for (const child of examples.children) {
-                // skip the first child since it is the title of the examples section
-                if (child === examples.children[0]) continue;
-                child.style.display = showExamples ? 'block' : 'none';
+        let examples = document.getElementsByClassName('xFUwe')[0];
+        if (!examples) return;
+        let preTags = examples.getElementsByTagName('pre');
+        if (preTags) {
+            for (let tag of preTags) {
+                console.log(tag);
+                tag.style.display = showExamples ? 'block' : 'none';
             }
         }
     });

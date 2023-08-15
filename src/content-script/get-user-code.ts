@@ -8,22 +8,30 @@
 
 // Read the users code and examples from the Leetcode problem page
 function getCode() {
+    console.log('getting code');
+
+
+    let textArray = []
+
+    // Add the test cases & examples
+    textArray.push('\nHeres the description, examples, and constraints for the problem\n');
+    const examples = document.getElementsByClassName('xFUwe')[0];
+    if (examples && examples.children) {
+        for (const child of examples.children) {
+            let text = child.textContent;
+            if (text) textArray.push(text);
+        }
+    }
 
     // Get the function definition and users code from the code editor
-    let textArray = ["heres the function definition and the users code which might be not present or might be incorrect.\n"]
+    textArray = ["heres the function definition and the users code which might be not present or might be incorrect.\n"]
     const codeEditor = document.getElementsByClassName('view-line');
     for (const viewLine of codeEditor) {
         let text = viewLine.textContent;
         if (text) textArray.push(text);
     }
+    console.log('text array', textArray);
 
-    // Add the test cases & examples
-    textArray.push('\nHeres the description, examples, and constraints for the problem\n');
-    const examples = document.getElementsByClassName('xFUwe')[0];
-    for (const child of examples.children) {
-        let text = child.textContent;
-        if (text) textArray.push(text);
-    }
     return textArray;
 }
 

@@ -77,7 +77,7 @@ function initActionButton(buttonId: string, action: string, chatGPTProvider: Cha
         if (codeText) {
             processCode(chatGPTProvider, codeText, action);
         } else {
-            const errorMessage = "Unable to retrieve code. Please open a Leetcode problem's description page and refresh the page.";
+            const errorMessage = "Cannot read from page. Please open a Leetcode problem and refresh the page.";
             setInfoMessage(errorMessage, 5000);
         }
     };
@@ -121,11 +121,10 @@ function processCode(
     if (action === 'analyze') {
         prompt = `
         As an experienced software engineer, please analyze the code complexity of the Leetcode
-        problem titled ${problemTitle} and the accompanying code below. Return only the time
-        and space complexity of the function in big O notation. The space complexity should not
-        include the output (return value) of the function. Your analysis should be direct and concise.
-        You can provide a one sentence explanation of the time and space complexity. The problem
-        description and code are provided below\n. ${codeText}`;
+        problem titled ${problemTitle} and the accompanying code below. The output (return value) of 
+        the function should not be factored into the time and space complexity of the function.
+        Return the time and space complexity of the function in big O notation. Your analysis should be direct and concise
+        with no more than two sentences. The problem description and code are provided below\n. ${codeText}`;
         if (infoMessage) infoMessage.textContent = 'Analyzing code complexity ...';
         if (analyzeCodeResponse) analyzeCodeResponse.classList.remove('hidden');
         if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
@@ -140,6 +139,7 @@ function processCode(
         2. If code is provided and contains errors: Identify the issues, correct them, and optimize the code if possible.
         3. If the provided code is already correct and optimized: Simply return it as-is.
         IMPORTANT: Your response should only include the function definition and code solution in plain text format (no backticks, code blocks, or additional formatting).
+        Do not explain your solution or provide any additional information other than the code.
         Here's the problem description and code:\n
         ${codeText}
         `

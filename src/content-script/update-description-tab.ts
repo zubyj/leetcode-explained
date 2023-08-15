@@ -13,7 +13,6 @@ function showExamples() {
         let preTags = examples.getElementsByTagName('pre');
         if (preTags) {
             for (let tag of preTags) {
-                console.log(tag);
                 tag.style.display = showExamples ? 'block' : 'none';
             }
         }

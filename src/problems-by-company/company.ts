@@ -173,8 +173,6 @@ function addCompanyProblems(sortMethod: string) {
         solutions.length = 0;
         solutions.push(...allSolutions);
 
-        console.log(solutions);
-
         // Rebuild the table with sorted solutions
         rebuildTable();
     });

@@ -8,9 +8,6 @@
 
 // Read the users code and examples from the Leetcode problem page
 function getCode() {
-    console.log('getting code');
-
-
     let textArray = []
 
     // Add the test cases & examples
@@ -33,7 +30,6 @@ function getCode() {
         }
     }
 
-    console.log('heres the text array', textArray);
     return textArray;
 }
 

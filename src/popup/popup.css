@@ -64,7 +64,7 @@ a:hover {
 .material-button {
     color: white;
     background-color: #202020;
-    border: 1px solid white;
+    border: 2px solid lightgray;
     text-decoration: none;
     cursor: pointer;
     border-radius: 4px;
@@ -77,8 +77,8 @@ a:hover {
 }
 
 .material-button:hover {
-    background-color: #f0f0f0;
-    color: #202020;
+    color: lightgreen;
+    border: 2px solid lightgreen;
 }
 
 .button-icon {

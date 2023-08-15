@@ -25,7 +25,6 @@ chrome.runtime.onInstalled.addListener(() => {
         });
 
     // Default settings
-    chrome.storage.local.set({ language: 'python' });
     chrome.storage.local.set({ fontSize: 14 });
     chrome.storage.local.set({ showCompanyTags: true });
     chrome.storage.local.set({ showExamples: true });

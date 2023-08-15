@@ -29,7 +29,6 @@ const storageKeys: { [key: string]: string } = {
     analyzeCodeResponse: 'analyzeCodeResponse',
     fixCodeResponse: 'fixCodeResponse',
     lastAction: 'lastAction',
-    language: 'language',
     currentLeetCodeProblemTitle: 'currentLeetCodeProblemTitle',
 };
 
@@ -233,11 +232,6 @@ async function main(): Promise<void> {
                 fixCodeContainer && fixCodeContainer.classList.remove('hidden');
             }
         }
-    });
-
-    // get language from storage and set the classname of the code block to it
-    chrome.storage.local.get('language', function (data) {
-        fixCodeResponse && fixCodeResponse.classList.add('language-' + data.language);
     });
 
     // get name of current tab and set info message to it if its a leetcode problem

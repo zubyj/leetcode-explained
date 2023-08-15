@@ -27,11 +27,13 @@ function getCode() {
     return textArray;
 }
 
-
 // On get user code request, read & send the code as a response
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.type === 'getCode') {
         sendResponse({ data: getCode() });
+    }
+    if (request.type === 'getCodeComplexity') {
+        sendResponse({ data: getCodeComplexity() })
     }
 });
 

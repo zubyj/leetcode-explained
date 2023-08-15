@@ -107,6 +107,12 @@ function timeout(ms: number): Promise<never> {
     );
 }
 
+function formatResponseText(text: string): string {
+    return text
+        .replace(/time/gi, '<span style="color: lightgreen;">time complexity</span>')
+        .replace(/space/gi, '<span style="color: lightgreen;">space complexity</span>');
+}
+
 function processCode(
     chatGPTProvider: ChatGPTProvider,
     codeText: string,
@@ -154,21 +160,28 @@ function processCode(
             prompt: prompt,
             onEvent: (event: { type: string; data?: { text: string } }) => {
                 if (event.type === 'answer' && event.data) {
-                    response += event.data.text;
                     if (action === 'fix' && fixCodeResponse) {
+                        response += event.data.text;
                         fixCodeResponse.textContent = response;
+                        (window as any).Prism.highlightAll();
+
                     }
                     else if (action === 'analyze' && analyzeCodeResponse) {
-                        analyzeCodeResponse.textContent = response;
+                        response += formatResponseText(event.data.text); // Use the helper function here
+                        analyzeCodeResponse.innerHTML = response;
                     }
                 }
                 if (event.type === 'done') {
-                    analyzeCodeResponse && chrome.storage.local.set({ 'analyzeCodeResponse': analyzeCodeResponse.textContent });
-                    fixCodeResponse && chrome.storage.local.set({ 'fixCodeResponse': fixCodeResponse.textContent });
+                    disableAllButtons(false);
                     chrome.storage.local.set({ 'lastAction': action });
                     infoMessage && (infoMessage.textContent = problemTitle);
-                    disableAllButtons(false);
-                    (window as any).Prism.highlightAll();
+                    if (action === 'fix') {
+                        fixCodeResponse && chrome.storage.local.set({ 'fixCodeResponse': fixCodeResponse.textContent });
+                        (window as any).Prism.highlightAll();
+                    }
+                    if (action === 'analyze') {
+                        analyzeCodeResponse && chrome.storage.local.set({ 'analyzeCodeResponse': analyzeCodeResponse.innerHTML });
+                    }
                 }
             },
         }),
@@ -209,7 +222,7 @@ async function main(): Promise<void> {
 
     chrome.storage.local.get('analyzeCodeResponse', function (data) {
         if (data.analyzeCodeResponse) {
-            analyzeCodeResponse && (analyzeCodeResponse.textContent = data.analyzeCodeResponse);
+            analyzeCodeResponse && (analyzeCodeResponse.innerHTML = data.analyzeCodeResponse);
             (window as any).Prism.highlightAll();
         }
     });

@@ -101,6 +101,7 @@ function addVideo(title: string) {
 
     chrome.storage.local.get(['leetcodeProblems'], (result) => {
         const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
+        console.log(titleToGitHubFormat(problem.title, problem.frontend_id));
         if (problem?.videos?.length) {
             let currentVideoIndex = 0;
             const { container, prevButton, nextButton, toggleButton } = createVideoContainer(
@@ -169,6 +170,15 @@ chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'addVideo') {
         const title = request.title.split('-')[0].trim();
         addVideo(title);
+
+        chrome.storage.local.get(['leetcodeProblems'], (result) => {
+            const problem = result.leetcodeProblems.questions.find((p: { title: string }) => p.title === title);
+            if (problem) {
+                // Add code solutions for each language you support
+                // e.g., 'c', 'python', 'java', etc.
+                addCodeSolution(title, problem.frontend_id, 'python');
+            }
+        });
     }
 });
 
@@ -188,3 +198,60 @@ window.addEventListener('mouseup', () => {
         iframe.style.pointerEvents = 'auto';
     }
 });
+
+
+// Convert problem title to GitHub-compatible string
+function titleToGitHubFormat(title: string, frontend_id: number): string {
+    const formattedTitle = title.toLowerCase().replace(/ /g, "-");
+    const idStr = frontend_id.toString().padStart(4, '0');
+    return `${idStr}-${formattedTitle}`;
+}
+
+// Function to fetch the code from GitHub and insert it into the solutions tab
+// (Note: This is a mockup; actual implementation would require making an API request)
+async function addCodeSolution(title: string, frontend_id: number, language: string) {
+    // Convert frontend_id and title to the GitHub-compatible format
+    const formattedTitle = titleToGitHubFormat(title, frontend_id);
+    const filePath = `${language}/${formattedTitle}.${language === 'python' ? 'py' : 'py'}`; // Change 'other_extension' accordingly
+    console.log('filepath', filePath);
+
+
+    // Construct the URL to fetch the file content from GitHub
+    const url = `https://api.github.com/repos/neetcode-gh/leetcode/contents/${filePath}`;
+
+    try {
+        // Make the API call to fetch the code from GitHub
+        const response = await fetch(url);
+        const data = await response.json();
+
+        // Decode the Base64 encoded content
+        const code = atob(data.content);
+
+        // Create an HTML element to hold the code
+        const codeElement = document.createElement('pre');
+        codeElement.style.minHeight = '300px';
+        codeElement.style.width = '95%';
+        codeElement.style.border = '1px solid white';
+        codeElement.style.marginLeft = '2.5%';
+        codeElement.style.padding = '10px';
+        codeElement.style.justifyContent = 'center';
+        codeElement.style.alignItems = 'center';
+        codeElement.textContent = code;
+
+        // Insert the code element into the solutions tab
+        const SOLUTIONS_TAB_INDEX = 0;
+        const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[SOLUTIONS_TAB_INDEX];
+        // solutionsTab?.appendChild(codeElement);
+        // insert code element after first child of solutions tab
+        const existingContainer = solutionsTab.parentElement?.querySelector('div.video-container');
+        if (existingContainer) {
+            existingContainer.insertAdjacentElement('afterend', codeElement);
+        }
+
+        // solutionsTab?.insertBefore(codeElement, solutionsTab.firstChild);
+        // solutionsTab?.insertAdjacentElement('afterbegin', codeElement);
+    } catch (error) {
+        console.error('Failed to fetch code:', error);
+    }
+}
+

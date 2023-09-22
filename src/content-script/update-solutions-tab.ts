@@ -4,6 +4,10 @@
 
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 
+let discussion;
+let solutionVideo;
+let solutionCode;
+
 function createStyledElement(tagName: string, styles: { [key: string]: string }) {
     const element = document.createElement(tagName);
     for (const [key, value] of Object.entries(styles)) {
@@ -21,6 +25,43 @@ function createButton(content: string, className: string, styles = {}) {
     return button;
 }
 
+function createNavButtons() {
+    const navContainer = createStyledElement('div', {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        boxSizing: 'border-box',
+        color: '#fff',
+        marginTop: '20px',
+    });
+
+    const videoButton = createStyledElement('button', {
+        'width': '100px',
+        'border': '1px solid white',
+    });
+    videoButton.textContent = 'Solution Video';
+
+    const codeButton = createStyledElement('button', {
+        'width': '100px',
+        'border': '1px solid white',
+    });
+    codeButton.textContent = 'Solution Code';
+
+    const discussionButton = createStyledElement('button', {
+        'width': '100px',
+        'border': '1px solid white',
+    });
+    discussionButton.textContent = 'Discussion';
+
+    navContainer.append(discussionButton);
+    navContainer.append(codeButton);
+    navContainer.append(videoButton);
+
+
+    let solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
+    solutionsTab?.insertBefore(navContainer, solutionsTab.firstChild);
+}
+
 function createControlsContainer(channelName: string) {
     const controlsContainer = createStyledElement('div', {
         display: 'flex',
@@ -34,6 +75,7 @@ function createControlsContainer(channelName: string) {
     });
 
     const prevButton = createButton('⬅️', 'prev-video', { fontSize: '20px' });
+
     const channelElement = createStyledElement('div', {
         fontSize: '15px',
         textAlign: 'center',
@@ -171,6 +213,7 @@ chrome.runtime.onMessage.addListener((request) => {
         const title = request.title.split('-')[0].trim();
         addVideo(title);
 
+
         chrome.storage.local.get(['leetcodeProblems'], (result) => {
             const problem = result.leetcodeProblems.questions.find((p: { title: string }) => p.title === title);
             if (problem) {
@@ -179,6 +222,9 @@ chrome.runtime.onMessage.addListener((request) => {
                 addCodeSolution(title, problem.frontend_id, 'python');
             }
         });
+
+        createNavButtons();
+
     }
 });
 
@@ -229,8 +275,8 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
 
         // Create an HTML element to hold the code
         const codeElement = document.createElement('pre');
-        codeElement.style.minHeight = '300px';
         codeElement.style.width = '95%';
+        codeElement.style.minHeight = '200px';
         codeElement.style.border = '1px solid white';
         codeElement.style.marginLeft = '2.5%';
         codeElement.style.padding = '10px';

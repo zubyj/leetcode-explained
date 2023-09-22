@@ -91,15 +91,56 @@ function createNavContainer() {
     });
 
     codeButton.addEventListener('click', () => {
-        console.log('code button clicked');
+        videoContainer.style.paddingBottom = '0%';
     });
-
 
     controlsContainer.append(solutionsButton)
     controlsContainer.append(codeButton);
     controlsContainer.append(discussionButton);
     return controlsContainer;
 }
+
+// Convert problem title to GitHub-compatible string
+function titleToGitHubFormat(title: string, frontend_id: number): string {
+    const formattedTitle = title.toLowerCase().replace(/ /g, "-");
+    const idStr = frontend_id.toString().padStart(4, '0');
+    return `${idStr}-${formattedTitle}`;
+}
+
+// Function to fetch the code from GitHub and insert it into the solutions tab
+// (Note: This is a mockup; actual implementation would require making an API request)
+async function addCodeSolution(title: string, frontend_id: number, language: string) {
+    // Convert frontend_id and title to the GitHub-compatible format
+    const formattedTitle = titleToGitHubFormat(title, frontend_id);
+    const filePath = `${language}/${formattedTitle}.${language === 'python' ? 'py' : 'py'}`; // Change 'other_extension' accordingly
+
+    // Construct the URL to fetch the file content from GitHub
+    const url = `https://api.github.com/repos/neetcode-gh/leetcode/contents/${filePath}`;
+
+    try {
+        // Make the API call to fetch the code from GitHub
+        const response = await fetch(url);
+        const data = await response.json();
+
+        // Decode the Base64 encoded content
+        const code = atob(data.content);
+
+        // Create an HTML element to hold the code
+        const codeElement = document.createElement('pre');
+        codeElement.classList.add('code-container');
+        codeElement.textContent = code;
+
+        // Insert the code element into the solutions tab
+        const SOLUTIONS_TAB_INDEX = 0;
+        const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[SOLUTIONS_TAB_INDEX];
+        // append as second child of solutionstab
+        solutionsTab.insertBefore(codeElement, solutionsTab.children[2]);
+
+    } catch (error) {
+        console.error('Failed to fetch code:', error);
+    }
+}
+
 
 chrome.runtime.onMessage.addListener((request) => {
     const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
@@ -115,6 +156,9 @@ chrome.runtime.onMessage.addListener((request) => {
                 let navContainer = createNavContainer();
                 solutionsTab.insertBefore(navContainer, videoContainer);
             }
+
+            addCodeSolution(problem.title, problem.frontend_id, 'python');
+
         });
     }
 });

@@ -21,6 +21,7 @@ function createVideoContainer(problem: any) {
         display: 'flex',
         justifyContent: 'center',
         paddingBottom: `${VIDEO_ASPECT_RATIO}%`,
+        marginTop: '50px',
         marginBottom: '60px',
         transition: 'padding-bottom 0.3s ease-out',
     });
@@ -46,9 +47,62 @@ function createVideoContainer(problem: any) {
     return container;
 }
 
+function createNavContainer() {
+    const controlsContainer = createStyledElement('div', {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        width: '100%',
+        paddingTop: '10px',
+        boxSizing: 'border-box',
+        color: '#fff',
+        marginBottom: '100px',
+        borderBottom: '1px solid #fff',
+    });
+
+    // Create discussion button
+    const discussionButton = document.createElement('button');
+    discussionButton.textContent = 'Discussion';
+    discussionButton.style.border = '1px solid white';
+    discussionButton.style.padding = '5px';
+
+    // Create solutions button
+    const solutionsButton = document.createElement('button');
+    solutionsButton.textContent = 'Video';
+    solutionsButton.style.border = '1px solid white';
+    solutionsButton.style.padding = '5px';
+
+    // Create code button
+    const codeButton = document.createElement('button');
+    codeButton.textContent = 'Code';
+    codeButton.style.border = '1px solid white';
+    codeButton.style.padding = '5px';
+
+
+    const videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
+
+    discussionButton.addEventListener('click', () => {
+        videoContainer.style.paddingBottom = '0%';
+    });
+
+    solutionsButton.addEventListener('click', () => {
+        videoContainer.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
+    });
+
+    codeButton.addEventListener('click', () => {
+        console.log('code button clicked');
+    });
+
+
+    controlsContainer.append(solutionsButton)
+    controlsContainer.append(codeButton);
+    controlsContainer.append(discussionButton);
+    return controlsContainer;
+}
+
 chrome.runtime.onMessage.addListener((request) => {
     const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
-
     if (request.action === 'updateSolutions') {
         const title = request.title.split('-')[0].trim();
         chrome.storage.local.get(['leetcodeProblems'], (result) => {
@@ -57,6 +111,9 @@ chrome.runtime.onMessage.addListener((request) => {
             if (solutionsTab) {
                 console.log('solutionsTab', solutionsTab);
                 solutionsTab.insertBefore(videoContainer, solutionsTab.firstChild);
+
+                let navContainer = createNavContainer();
+                solutionsTab.insertBefore(navContainer, videoContainer);
             }
         });
     }

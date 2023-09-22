@@ -113,7 +113,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
         setTimeout(() => {
             chrome.tabs.get(tabId, (updatedTab) => {
-                chrome.tabs.sendMessage(tabId, { action: 'addVideo', title: updatedTab.title || 'title' });
+                chrome.tabs.sendMessage(tabId, { action: 'updateSolutions', title: updatedTab.title || 'title' });
             });
         }, 1000);
     }

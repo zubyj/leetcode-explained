@@ -166,7 +166,7 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
         const SOLUTIONS_TAB_INDEX = 0;
         const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[SOLUTIONS_TAB_INDEX];
         // append as second child of solutionstab
-        solutionsTab.insertBefore(codeElement, solutionsTab.firstChild);
+        solutionsTab.appendChild(codeElement);
 
     } catch (error) {
         console.error('Failed to fetch code:', error);

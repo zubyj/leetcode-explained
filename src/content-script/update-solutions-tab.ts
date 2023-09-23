@@ -47,19 +47,36 @@ function createVideoContainer(problem: any) {
     return container;
 }
 
+function hideContent() {
+    let solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
+    let children = solutionsTab.children;
+    for (var child of children) {
+        if (!child.classList.contains('nav-container')) {
+            child.style.display = 'none';
+        }
+    }
+
+    // add the nav controls
+    let navContainer = document.getElementsByClassName('nav-container')[0] as HTMLDivElement;
+    navContainer.style.display = 'flex';
+
+    let videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
+    videoContainer.style.paddingBottom = '0%';
+}
+
 function createNavContainer() {
     const controlsContainer = createStyledElement('div', {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'absolute',
         width: '100%',
         paddingTop: '10px',
         boxSizing: 'border-box',
         color: '#fff',
-        marginBottom: '100px',
         borderBottom: '1px solid #fff',
     });
+
+    controlsContainer.classList.add('nav-container');
 
     // Create discussion button
     const discussionButton = document.createElement('button');
@@ -68,10 +85,10 @@ function createNavContainer() {
     discussionButton.style.padding = '5px';
 
     // Create solutions button
-    const solutionsButton = document.createElement('button');
-    solutionsButton.textContent = 'Video';
-    solutionsButton.style.border = '1px solid white';
-    solutionsButton.style.padding = '5px';
+    const videoButton = document.createElement('button');
+    videoButton.textContent = 'Video';
+    videoButton.style.border = '1px solid white';
+    videoButton.style.padding = '5px';
 
     // Create code button
     const codeButton = document.createElement('button');
@@ -82,28 +99,32 @@ function createNavContainer() {
     const videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
 
     discussionButton.addEventListener('click', () => {
+        hideContent();
         const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
         let children = solutionsTab.children;
         for (var child of children) {
+            let classList = child.classList;
+            if (classList.contains('nav-container') || classList.contains('video-container') || classList.contains('code-container')) {
+                continue;
+            }
             child.style.display = 'block';
         }
-        videoContainer.style.paddingBottom = '0%';
-        let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
-        codeContainer.style.display = 'none';
     });
 
-    solutionsButton.addEventListener('click', () => {
+    videoButton.addEventListener('click', () => {
+        hideContent();
+        videoContainer.style.display = 'block';
         videoContainer.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
-
     });
 
     codeButton.addEventListener('click', () => {
+        hideContent();
         videoContainer.style.paddingBottom = '0%';
         let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
         codeContainer.style.display = 'flex';
     });
 
-    controlsContainer.append(solutionsButton)
+    controlsContainer.append(videoButton)
     controlsContainer.append(codeButton);
     controlsContainer.append(discussionButton);
     return controlsContainer;

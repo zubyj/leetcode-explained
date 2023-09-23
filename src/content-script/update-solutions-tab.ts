@@ -79,19 +79,28 @@ function createNavContainer() {
     codeButton.style.border = '1px solid white';
     codeButton.style.padding = '5px';
 
-
     const videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
 
     discussionButton.addEventListener('click', () => {
+        const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
+        let children = solutionsTab.children;
+        for (var child of children) {
+            child.style.display = 'block';
+        }
         videoContainer.style.paddingBottom = '0%';
+        let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
+        codeContainer.style.display = 'none';
     });
 
     solutionsButton.addEventListener('click', () => {
         videoContainer.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
+
     });
 
     codeButton.addEventListener('click', () => {
         videoContainer.style.paddingBottom = '0%';
+        let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
+        codeContainer.style.display = 'flex';
     });
 
     controlsContainer.append(solutionsButton)
@@ -129,22 +138,37 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
         const codeElement = document.createElement('pre');
         codeElement.classList.add('code-container');
         codeElement.textContent = code;
+        codeElement.style.display = 'none';
+        codeElement.style.paddingTop = '100px';
 
         // Insert the code element into the solutions tab
         const SOLUTIONS_TAB_INDEX = 0;
         const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[SOLUTIONS_TAB_INDEX];
         // append as second child of solutionstab
-        solutionsTab.insertBefore(codeElement, solutionsTab.children[2]);
+        solutionsTab.insertBefore(codeElement, solutionsTab.firstChild);
 
     } catch (error) {
         console.error('Failed to fetch code:', error);
     }
 }
 
-
 chrome.runtime.onMessage.addListener((request) => {
     const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
     if (request.action === 'updateSolutions') {
+
+        let index = 0
+        for (var child of solutionsTab.children) {
+            console.log(index, child);
+            index++;
+        }
+
+        // get all the children of solutions tab
+        let children = solutionsTab.children;
+        // hide all the children
+        for (let i = 0; i < children.length; i++) {
+            children[i].style.display = 'none';
+        }
+
         const title = request.title.split('-')[0].trim();
         chrome.storage.local.get(['leetcodeProblems'], (result) => {
             const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
@@ -156,9 +180,7 @@ chrome.runtime.onMessage.addListener((request) => {
                 let navContainer = createNavContainer();
                 solutionsTab.insertBefore(navContainer, videoContainer);
             }
-
             addCodeSolution(problem.title, problem.frontend_id, 'python');
-
         });
     }
 });

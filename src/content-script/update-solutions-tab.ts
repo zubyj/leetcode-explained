@@ -23,6 +23,7 @@ function createStyledButton(text: string): HTMLButtonElement {
     button.style.padding = '5px';
     button.style.margin = '0px 20px';
     button.style.borderRadius = '5px';
+    button.style.fontSize = '12px';
     // on button hover, change background color
     button.addEventListener('mouseover', () => {
         button.style.color = 'lightgreen';
@@ -54,6 +55,8 @@ function createVideoContainer(problem: any) {
         width: '95%',
         height: '95%',
         border: '1px solid grey',
+        paddingBottom: '20px',
+        marginTop: '50px',
     }) as HTMLIFrameElement;
 
     iframe.classList.add('youtube-video');
@@ -62,8 +65,60 @@ function createVideoContainer(problem: any) {
     iframe.src = src;
     iframe.allowFullscreen = true;
 
+    const controlsContainer = createStyledElement('div', {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        width: '100%',
+        paddingTop: '10px',
+        marginBottom: '50px',
+        boxSizing: 'border-box',
+        color: '#fff',
+    });
+
+    const prevButton = document.createElement('button');
+    prevButton.textContent = '⬅️';
+    prevButton.style.fontSize = '20px';
+    const nextButton = document.createElement('button');
+    nextButton.textContent = '➡️';
+    nextButton.style.fontSize = '20px';
+
+    const channelElement = createStyledElement('div', {
+        fontSize: '15px',
+        textAlign: 'center',
+        width: '200px',
+    });
+    let currentVideoIndex = 0;
+    channelElement.classList.add('channel');
+    channelElement.textContent = problem.videos[currentVideoIndex].channel;;
+    channelElement.style.fontWeight = '600';
+    channelElement.style.color = 'lightcyan';
+    channelElement.style.textShadow = '0 0 5px #000000';
+    channelElement.style.fontFamily = 'Menlo, Monaco, Consolas, "Courier New", monospace';
+
+    prevButton.addEventListener('click', () => {
+        currentVideoIndex = (currentVideoIndex - 1 + problem.videos.length) % problem.videos.length;
+        updateVideo(iframe, problem.videos[currentVideoIndex].embedded_url);
+        channelElement.textContent = problem.videos[currentVideoIndex].channel; // Update channel name
+    });
+
+    nextButton.addEventListener('click', () => {
+        currentVideoIndex = (currentVideoIndex + 1) % problem.videos.length;
+        updateVideo(iframe, problem.videos[currentVideoIndex].embedded_url);
+        channelElement.textContent = problem.videos[currentVideoIndex].channel; // Update channel name
+    });
+
+
+    controlsContainer.append(prevButton, channelElement, nextButton);
+    container.append(controlsContainer);
     container.append(iframe);
+
     return container;
+}
+
+function updateVideo(iframe: HTMLIFrameElement, videoUrl: string) {
+    iframe.src = videoUrl;
 }
 
 function hideContent() {
@@ -85,6 +140,7 @@ function hideContent() {
 
     let videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
     videoContainer.style.paddingBottom = '0%';
+    videoContainer.style.display = 'none';
 }
 
 function createNavContainer() {
@@ -96,7 +152,6 @@ function createNavContainer() {
         paddingTop: '10px',
         boxSizing: 'border-box',
         color: '#fff',
-        marginBottom: '10px',
     });
 
     controlsContainer.classList.add('nav-container');
@@ -125,6 +180,7 @@ function createNavContainer() {
     videoButton.addEventListener('click', () => {
         hideContent();
         videoContainer.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
+        videoContainer.style.display = 'flex';
     });
 
     codeButton.addEventListener('click', () => {
@@ -171,7 +227,8 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
         codeElement.textContent = code;
         codeElement.style.display = 'none';
         codeElement.style.border = '1px solid grey';
-        codeElement.style.padding = '5px';
+        codeElement.style.paddingLeft = '5px';
+        codeElement.style.marginTop = '20px';
 
         // Insert the code element into the solutions tab
         const SOLUTIONS_TAB_INDEX = 0;

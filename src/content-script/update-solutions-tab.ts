@@ -15,13 +15,33 @@ function createStyledElement(tagName: string, styles: { [key: string]: string })
     return element;
 }
 
+function createStyledButton(text: string): HTMLButtonElement {
+    const button = document.createElement('button');
+    button.textContent = text;
+    button.style.border = '1px solid white';
+    button.style.width = '100px';
+    button.style.padding = '5px';
+    button.style.margin = '0px 20px';
+    button.style.borderRadius = '5px';
+    // on button hover, change background color
+    button.addEventListener('mouseover', () => {
+        button.style.color = 'lightgreen';
+        button.style.border = '1px solid lightgreen';
+    });
+    button.addEventListener('mouseout', () => {
+        button.style.backgroundColor = 'transparent';
+        button.style.color = 'white';
+        button.style.border = '1px solid white';
+    });
+    return button;
+}
+
 function createVideoContainer(problem: any) {
     const container = createStyledElement('div', {
         position: 'relative',
         display: 'flex',
         justifyContent: 'center',
         paddingBottom: `${VIDEO_ASPECT_RATIO}%`,
-        marginTop: '50px',
         marginBottom: '60px',
         transition: 'padding-bottom 0.3s ease-out',
     });
@@ -51,12 +71,16 @@ function hideContent() {
     let solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
     let children = solutionsTab.children;
     for (var child of children) {
-        if (!child.classList.contains('nav-container')) {
+        if (!child.classList.contains('nav-container') &&
+            !child.classList.contains('video-container') &&
+            !child.classList.contains('code-container')) {
             child.style.display = 'none';
         }
     }
 
-    // add the nav controls
+    let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
+    if (codeContainer) codeContainer.style.display = 'none';
+
     let navContainer = document.getElementsByClassName('nav-container')[0] as HTMLDivElement;
     navContainer.style.display = 'flex';
 
@@ -73,47 +97,33 @@ function createNavContainer() {
         paddingTop: '10px',
         boxSizing: 'border-box',
         color: '#fff',
-        borderBottom: '1px solid #fff',
     });
 
     controlsContainer.classList.add('nav-container');
 
-    // Create discussion button
-    const discussionButton = document.createElement('button');
-    discussionButton.textContent = 'Discussion';
-    discussionButton.style.border = '1px solid white';
-    discussionButton.style.padding = '5px';
-
-    // Create solutions button
-    const videoButton = document.createElement('button');
-    videoButton.textContent = 'Video';
-    videoButton.style.border = '1px solid white';
-    videoButton.style.padding = '5px';
-
-    // Create code button
-    const codeButton = document.createElement('button');
-    codeButton.textContent = 'Code';
-    codeButton.style.border = '1px solid white';
-    codeButton.style.padding = '5px';
+    // Create the buttons using the utility function
+    const discussionButton = createStyledButton('Discussion');
+    const videoButton = createStyledButton('Video');
+    const codeButton = createStyledButton('Code');
 
     const videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
 
     discussionButton.addEventListener('click', () => {
-        hideContent();
-        const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
+        hideContent();  // First hide everything.
+        let solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
         let children = solutionsTab.children;
         for (var child of children) {
             let classList = child.classList;
-            if (classList.contains('nav-container') || classList.contains('video-container') || classList.contains('code-container')) {
-                continue;
+            if (!classList.contains('nav-container') &&
+                !classList.contains('video-container') &&
+                !classList.contains('code-container')) {
+                child.style.display = 'block';  // Show original discussion content.
             }
-            child.style.display = 'block';
         }
     });
 
     videoButton.addEventListener('click', () => {
         hideContent();
-        videoContainer.style.display = 'block';
         videoContainer.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
     });
 
@@ -177,18 +187,12 @@ chrome.runtime.onMessage.addListener((request) => {
     const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
     if (request.action === 'updateSolutions') {
 
-        let index = 0
-        for (var child of solutionsTab.children) {
-            console.log(index, child);
-            index++;
-        }
-
-        // get all the children of solutions tab
-        let children = solutionsTab.children;
-        // hide all the children
-        for (let i = 0; i < children.length; i++) {
-            children[i].style.display = 'none';
-        }
+        // // get all the children of solutions tab
+        // let children = solutionsTab.children;
+        // // hide all the children
+        // for (let i = 0; i < children.length; i++) {
+        //     children[i].style.display = 'none';
+        // }
 
         const title = request.title.split('-')[0].trim();
         chrome.storage.local.get(['leetcodeProblems'], (result) => {

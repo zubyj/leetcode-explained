@@ -51,7 +51,6 @@ function createVideoContainer(problem: any) {
         display: 'flex',
         justifyContent: 'center',
         position: 'absolute',
-        top: '60px',
         width: '95%',
         height: '95%',
         border: '1px solid grey',
@@ -97,6 +96,7 @@ function createNavContainer() {
         paddingTop: '10px',
         boxSizing: 'border-box',
         color: '#fff',
+        marginBottom: '10px',
     });
 
     controlsContainer.classList.add('nav-container');
@@ -170,7 +170,8 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
         codeElement.classList.add('code-container');
         codeElement.textContent = code;
         codeElement.style.display = 'none';
-        codeElement.style.paddingTop = '100px';
+        codeElement.style.border = '1px solid grey';
+        codeElement.style.padding = '5px';
 
         // Insert the code element into the solutions tab
         const SOLUTIONS_TAB_INDEX = 0;
@@ -187,26 +188,31 @@ chrome.runtime.onMessage.addListener((request) => {
     const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
     if (request.action === 'updateSolutions') {
 
-        // // get all the children of solutions tab
-        // let children = solutionsTab.children;
-        // // hide all the children
-        // for (let i = 0; i < children.length; i++) {
-        //     children[i].style.display = 'none';
-        // }
-
         const title = request.title.split('-')[0].trim();
         chrome.storage.local.get(['leetcodeProblems'], (result) => {
             const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
-            let videoContainer = createVideoContainer(problem);
-            if (solutionsTab) {
-                console.log('solutionsTab', solutionsTab);
-                solutionsTab.insertBefore(videoContainer, solutionsTab.firstChild);
 
-                let navContainer = createNavContainer();
-                solutionsTab.insertBefore(navContainer, videoContainer);
+            // Check if the video container already exists before adding
+            if (!document.querySelector('.video-container')) {
+                let videoContainer = createVideoContainer(problem);
+                if (solutionsTab) {
+                    solutionsTab.insertBefore(videoContainer, solutionsTab.firstChild);
+                }
             }
+
+            // Check if the nav container already exists before adding
+            if (!document.querySelector('.nav-container')) {
+                let navContainer = createNavContainer();
+                if (solutionsTab) {
+                    let videoContainer = document.querySelector('.video-container');
+                    solutionsTab.insertBefore(navContainer, videoContainer);
+                }
+            }
+
+            // Add code solution (since your addCodeSolution function already checks for the existence of the element, you don't need to check here)
             addCodeSolution(problem.title, problem.frontend_id, 'python');
         });
     }
 });
+
 

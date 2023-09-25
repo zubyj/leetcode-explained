@@ -126,8 +126,10 @@ function createCodeContainer() {
     codeElement.style.paddingLeft = '5px';
     codeElement.style.marginTop = '20px';
     codeElement.style.width = '95%';
+    codeElement.style.fontSize = '12px';
     codeElement.style.marginLeft = '2.5%';
     codeElement.style.padding = '10px';
+    codeElement.style.height = '100%';
     return codeElement;
 }
 

@@ -29,7 +29,7 @@ function getCode() {
             if (text) textArray.push(text);
         }
     }
-
+    console.log('textarray ', textArray);
     return textArray;
 }
 

@@ -226,6 +226,11 @@ async function getCodeSolution(title: string, frontend_id: number, language: str
 
     // Construct the URL to fetch the file content from GitHub
     const url = `https://api.github.com/repos/neetcode-gh/leetcode/contents/${filePath}`;
+
+    let codeElement = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
+    if (codeElement) {
+        codeElement.textContent = 'Loading...';
+    }
     try {
         // Make the API call to fetch the code from GitHub
         const response = await fetch(url);
@@ -245,7 +250,7 @@ function createLanguageButtons(problem: any) {
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        paddingTop: '10px',
+        paddingTop: '20px',
         boxSizing: 'border-box',
         color: '#fff',
     });
@@ -253,6 +258,7 @@ function createLanguageButtons(problem: any) {
     // For each language, create a button and set up its event listener
     problem.languages.forEach((language: string) => {
         const langButton = createStyledButton(language.charAt(0).toUpperCase() + language.slice(1)); // Convert first letter to uppercase
+        langButton.style.margin = '0px 10px';
         langButton.addEventListener('click', () => {
             let code = getCodeSolution(problem.title, problem.frontend_id, language);
             code.then((code) => {

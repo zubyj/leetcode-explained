@@ -11,7 +11,8 @@ function getCode() {
     let textArray = []
 
     // Add the test cases & examples
-    const examples = document.getElementsByClassName('xFUwe')[0];
+    const examples = document.getElementsByClassName('dEI87')[0];
+    console.log('examples', examples);
     if (examples && examples.children) {
         textArray.push('\nHeres the description, examples, and constraints for the problem\n');
         for (const child of examples.children) {

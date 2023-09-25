@@ -135,6 +135,7 @@ function hideContent() {
     let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
     if (codeContainer) codeContainer.style.display = 'none';
 
+
     let navContainer = document.getElementsByClassName('nav-container')[0] as HTMLDivElement;
     navContainer.style.display = 'flex';
 
@@ -208,8 +209,10 @@ function titleToGitHubFormat(title: string, frontend_id: number): string {
 }
 
 // Function to fetch the code from GitHub and insert it into the solutions tab
-// (Note: This is a mockup; actual implementation would require making an API request)
 async function addCodeSolution(title: string, frontend_id: number, language: string) {
+    let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
+    if (codeContainer) return; // If the code container already exists, don't add it again
+
     // Convert frontend_id and title to the GitHub-compatible format
     const formattedTitle = titleToGitHubFormat(title, frontend_id);
     const filePath = `${language}/${formattedTitle}.${language === 'python' ? 'py' : 'py'}`; // Change 'other_extension' accordingly
@@ -225,6 +228,18 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
         // Decode the Base64 encoded content
         const code = atob(data.content);
 
+        // Create copy button
+        const container = document.createElement('div');
+        container.style.width = '100%';
+        container.style.display = 'flex';
+        container.style.flexDirection = 'column';
+
+
+        // Create code container
+        let codeContainer = document.createElement('div');
+        codeContainer.style.display = 'flex';
+        codeContainer.style.flexDirection = 'column';
+
         // Create an HTML element to hold the code
         const codeElement = document.createElement('pre');
         codeElement.classList.add('code-container');
@@ -236,13 +251,13 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
         codeElement.style.width = '95%';
         codeElement.style.marginLeft = '2.5%';
         codeElement.style.padding = '10px';
+        container.append(codeElement);
 
         // Insert the code element into the solutions tab
         const SOLUTIONS_TAB_INDEX = 0;
         const searchBar = document.querySelectorAll('div.flex.items-center.justify-between')[1].parentElement;
         // append as second child of solutionstab
-        searchBar?.insertBefore(codeElement, searchBar.children[SOLUTIONS_TAB_INDEX + 1]);
-
+        searchBar?.insertBefore(container, searchBar.children[SOLUTIONS_TAB_INDEX + 1]);
     } catch (error) {
         console.error('Failed to fetch code:', error);
     }

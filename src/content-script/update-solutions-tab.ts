@@ -20,7 +20,7 @@ function createStyledButton(text: string): HTMLButtonElement {
     button.textContent = text;
     button.style.border = '1px solid white';
     button.style.width = '100px';
-    button.style.padding = '5px';
+    button.style.padding = '3px';
     button.style.margin = '0px 20px';
     button.style.borderRadius = '5px';
     button.style.fontSize = '12px';
@@ -122,19 +122,8 @@ function updateVideo(iframe: HTMLIFrameElement, videoUrl: string) {
 }
 
 function hideContent() {
-    // let solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
-    // let children = solutionsTab.children;
-    // for (var child of children) {
-    //     if (!child.classList.contains('nav-container') &&
-    //         !child.classList.contains('video-container') &&
-    //         !child.classList.contains('code-container')) {
-    //         child.style.display = 'none';
-    //     }
-    // }
-
     let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
     if (codeContainer) codeContainer.style.display = 'none';
-
 
     let navContainer = document.getElementsByClassName('nav-container')[0] as HTMLDivElement;
     navContainer.style.display = 'flex';
@@ -229,11 +218,6 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
         // Decode the Base64 encoded content
         const code = atob(data.content);
 
-        // Create code container
-        let codeContainer = document.createElement('div');
-        codeContainer.style.display = 'flex';
-        codeContainer.style.flexDirection = 'column';
-
         // Create an HTML element to hold the code
         const codeElement = document.createElement('pre');
         codeElement.classList.add('code-container');
@@ -247,12 +231,9 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
         codeElement.style.padding = '10px';
 
         // Insert the code element into the solutions tab
-        const SOLUTIONS_TAB_INDEX = 0;
-        const searchBar = document.querySelectorAll('div.flex.items-center.justify-between')[2].parentElement;
+        const searchBar = document.querySelectorAll('div.flex.items-center.justify-between')[1].parentElement;
         console.log('search bar', searchBar);
-        searchBar?.appendChild(codeElement);
-        let numChildren = searchBar?.children.length || 0;
-        searchBar?.insertBefore(codeElement, searchBar.children[numChildren - 2]);
+        searchBar?.append(codeElement);
     } catch (error) {
         console.error('Failed to fetch code:', error);
     }

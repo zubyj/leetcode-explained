@@ -233,7 +233,7 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
         // Insert the code element into the solutions tab
         const searchBar = document.querySelectorAll('div.flex.items-center.justify-between')[1].parentElement;
         console.log('search bar', searchBar);
-        searchBar?.append(codeElement);
+        searchBar?.insertBefore(codeElement, searchBar.children[1])
     } catch (error) {
         console.error('Failed to fetch code:', error);
     }
@@ -252,18 +252,13 @@ chrome.runtime.onMessage.addListener((request) => {
             // Check if the nav container already exists before adding
             if (!document.querySelector('.nav-container')) {
                 let navContainer = createNavContainer();
-                searchBar?.append(navContainer);
+                searchBar?.insertBefore(navContainer, searchBar.firstChild)
             }
 
             // Check if the video container already exists before adding
             if (!document.querySelector('.video-container')) {
                 let videoContainer = createVideoContainer(problem);
-                if (searchBar) searchBar.insertBefore(videoContainer, searchBar.firstChild);
-
-                let navContainer = document.querySelector('.nav-container');
-                if (searchBar && navContainer) {
-                    searchBar.append(videoContainer);
-                }
+                if (searchBar) searchBar.insertBefore(videoContainer, searchBar.children[1]);
             }
 
             // // Add code solution (since your addCodeSolution function already checks for the existence of the element, you don't need to check here)

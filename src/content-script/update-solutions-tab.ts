@@ -61,7 +61,6 @@ function createVideoContainer(problem: any) {
 
     iframe.classList.add('youtube-video');
     let src = problem.videos[0].embedded_url;
-    console.log('src', src);
     iframe.src = src;
     iframe.allowFullscreen = true;
 
@@ -109,12 +108,15 @@ function createVideoContainer(problem: any) {
         channelElement.textContent = problem.videos[currentVideoIndex].channel; // Update channel name
     });
 
-
     controlsContainer.append(prevButton, channelElement, nextButton);
     container.append(controlsContainer);
     container.append(iframe);
 
     return container;
+}
+
+function updateVideo(iframe: HTMLIFrameElement, videoUrl: string) {
+    iframe.src = videoUrl;
 }
 
 function createCodeContainer() {
@@ -133,13 +135,11 @@ function createCodeContainer() {
     return codeElement;
 }
 
-function updateVideo(iframe: HTMLIFrameElement, videoUrl: string) {
-    iframe.src = videoUrl;
-}
-
 function hideContent() {
     let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
     if (codeContainer) codeContainer.style.display = 'none';
+    let languageButtonsContainer = document.getElementsByClassName('language-buttons-container')[0] as HTMLDivElement;
+    if (languageButtonsContainer) languageButtonsContainer.style.display = 'none';
 
     let navContainer = document.getElementsByClassName('nav-container')[0] as HTMLDivElement;
     navContainer.style.display = 'flex';
@@ -147,6 +147,7 @@ function hideContent() {
     let videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
     videoContainer.style.paddingBottom = '0%';
     videoContainer.style.display = 'none';
+
 }
 
 function createNavContainer() {
@@ -166,7 +167,6 @@ function createNavContainer() {
     const discussionButton = createStyledButton('Discussion');
     const videoButton = createStyledButton('Video');
     const codeButton = createStyledButton('Code');
-
 
     discussionButton.addEventListener('click', () => {
         hideContent();
@@ -199,6 +199,10 @@ function createNavContainer() {
         videoContainer.style.paddingBottom = '0%';
         let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
         codeContainer.style.display = 'flex';
+
+        let languageButtonsContainer = document.getElementsByClassName('language-buttons-container')[0] as HTMLDivElement;
+        languageButtonsContainer.classList.add('language-buttons-container');
+        languageButtonsContainer.style.display = 'flex';
     });
 
     controlsContainer.append(videoButton)
@@ -297,17 +301,13 @@ chrome.runtime.onMessage.addListener((request) => {
                         codeContainer.textContent = code;
                     }
                 });
-                // // Insert the code element into the solutions tab
-                // const searchBar = document.querySelectorAll('div.flex.items-center.justify-between')[1].parentElement;
-                // console.log('search bar', searchBar);
-                // searchBar?.insertBefore(codeElement, searchBar.children[1])
             }
-
 
             // Check if the language buttons container already exists before adding
             if (!document.querySelector('.language-buttons-container')) {
                 let languageButtonsContainer = createLanguageButtons(problem);
                 languageButtonsContainer.classList.add('language-buttons-container');
+                languageButtonsContainer.style.display = 'none';
                 if (searchBar) searchBar.insertBefore(languageButtonsContainer, searchBar.children[1]);  // Or choose a different position
             }
 

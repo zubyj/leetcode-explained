@@ -243,6 +243,10 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
 
 chrome.runtime.onMessage.addListener((request) => {
     const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
+
+    const searchBar = document.querySelectorAll('div.flex.items-center.justify-between')[1];
+    console.log('search bar', searchBar);
+
     if (request.action === 'updateSolutions') {
 
         const title = request.title.split('-')[0].trim();

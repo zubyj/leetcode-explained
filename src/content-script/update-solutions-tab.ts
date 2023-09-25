@@ -229,6 +229,9 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
         codeElement.style.border = '1px solid grey';
         codeElement.style.paddingLeft = '5px';
         codeElement.style.marginTop = '20px';
+        codeElement.style.width = '95%';
+        codeElement.style.marginLeft = '2.5%';
+        codeElement.style.padding = '10px';
 
         // Insert the code element into the solutions tab
         const SOLUTIONS_TAB_INDEX = 0;
@@ -242,9 +245,8 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
 }
 
 chrome.runtime.onMessage.addListener((request) => {
-    const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
 
-    const searchBar = document.querySelectorAll('div.flex.items-center.justify-between')[1];
+    const searchBar = document.querySelectorAll('div.flex.items-center.justify-between')[1].parentElement;
     console.log('search bar', searchBar);
 
     if (request.action === 'updateSolutions') {
@@ -256,22 +258,25 @@ chrome.runtime.onMessage.addListener((request) => {
             // Check if the video container already exists before adding
             if (!document.querySelector('.video-container')) {
                 let videoContainer = createVideoContainer(problem);
-                if (solutionsTab) {
-                    solutionsTab.insertBefore(videoContainer, solutionsTab.firstChild);
-                }
+                searchBar?.insertBefore(videoContainer, searchBar.firstChild)
+                // append video container before search bar
+
+                // if (solutionsTab) {
+                //     solutionsTab.insertBefore(videoContainer, solutionsTab.firstChild);
+                // }
             }
 
             // Check if the nav container already exists before adding
-            if (!document.querySelector('.nav-container')) {
-                let navContainer = createNavContainer();
-                if (solutionsTab) {
-                    let videoContainer = document.querySelector('.video-container');
-                    solutionsTab.insertBefore(navContainer, videoContainer);
-                }
-            }
+            // if (!document.querySelector('.nav-container')) {
+            //     let navContainer = createNavContainer();
+            //     if (solutionsTab) {
+            //         let videoContainer = document.querySelector('.video-container');
+            //         solutionsTab.insertBefore(navContainer, videoContainer);
+            //     }
+            // }
 
-            // Add code solution (since your addCodeSolution function already checks for the existence of the element, you don't need to check here)
-            addCodeSolution(problem.title, problem.frontend_id, 'python');
+            // // Add code solution (since your addCodeSolution function already checks for the existence of the element, you don't need to check here)
+            // addCodeSolution(problem.title, problem.frontend_id, 'python');
         });
     }
 });

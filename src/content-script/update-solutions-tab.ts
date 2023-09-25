@@ -122,15 +122,15 @@ function updateVideo(iframe: HTMLIFrameElement, videoUrl: string) {
 }
 
 function hideContent() {
-    let solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
-    let children = solutionsTab.children;
-    for (var child of children) {
-        if (!child.classList.contains('nav-container') &&
-            !child.classList.contains('video-container') &&
-            !child.classList.contains('code-container')) {
-            child.style.display = 'none';
-        }
-    }
+    // let solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
+    // let children = solutionsTab.children;
+    // for (var child of children) {
+    //     if (!child.classList.contains('nav-container') &&
+    //         !child.classList.contains('video-container') &&
+    //         !child.classList.contains('code-container')) {
+    //         child.style.display = 'none';
+    //     }
+    // }
 
     let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
     if (codeContainer) codeContainer.style.display = 'none';
@@ -164,10 +164,14 @@ function createNavContainer() {
     const videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
 
     discussionButton.addEventListener('click', () => {
-        hideContent();  // First hide everything.
+        hideContent();
         let solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
         let children = solutionsTab.children;
+        let index = 0
         for (var child of children) {
+            // skip the first two children
+            if (index < 3) continue;
+            index++;
             let classList = child.classList;
             if (!classList.contains('nav-container') &&
                 !classList.contains('video-container') &&
@@ -235,9 +239,9 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
 
         // Insert the code element into the solutions tab
         const SOLUTIONS_TAB_INDEX = 0;
-        const solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[SOLUTIONS_TAB_INDEX];
+        const searchBar = document.querySelectorAll('div.flex.items-center.justify-between')[1].parentElement;
         // append as second child of solutionstab
-        solutionsTab.appendChild(codeElement);
+        searchBar?.insertBefore(codeElement, searchBar.children[SOLUTIONS_TAB_INDEX + 1]);
 
     } catch (error) {
         console.error('Failed to fetch code:', error);
@@ -258,25 +262,24 @@ chrome.runtime.onMessage.addListener((request) => {
             // Check if the video container already exists before adding
             if (!document.querySelector('.video-container')) {
                 let videoContainer = createVideoContainer(problem);
-                searchBar?.insertBefore(videoContainer, searchBar.firstChild)
-                // append video container before search bar
+                if (searchBar) searchBar.insertBefore(videoContainer, searchBar.firstChild);
 
-                // if (solutionsTab) {
-                //     solutionsTab.insertBefore(videoContainer, solutionsTab.firstChild);
-                // }
+
+                let navContainer = document.querySelector('.nav-container');
+                if (searchBar && navContainer) {
+                    searchBar?.insertBefore(videoContainer, navContainer);
+                }
             }
 
             // Check if the nav container already exists before adding
-            // if (!document.querySelector('.nav-container')) {
-            //     let navContainer = createNavContainer();
-            //     if (solutionsTab) {
-            //         let videoContainer = document.querySelector('.video-container');
-            //         solutionsTab.insertBefore(navContainer, videoContainer);
-            //     }
-            // }
+            if (!document.querySelector('.nav-container')) {
+                let navContainer = createNavContainer();
+                let videoContainer = document.querySelector('.video-container');
+                searchBar?.insertBefore(navContainer, videoContainer);
+            }
 
             // // Add code solution (since your addCodeSolution function already checks for the existence of the element, you don't need to check here)
-            // addCodeSolution(problem.title, problem.frontend_id, 'python');
+            addCodeSolution(problem.title, problem.frontend_id, 'python');
         });
     }
 });

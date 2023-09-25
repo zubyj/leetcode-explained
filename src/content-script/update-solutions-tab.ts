@@ -117,6 +117,20 @@ function createVideoContainer(problem: any) {
     return container;
 }
 
+function createCodeContainer() {
+    // Create an HTML element to hold the code
+    const codeElement = document.createElement('pre');
+    codeElement.classList.add('code-container');
+    codeElement.style.display = 'none';
+    codeElement.style.border = '1px solid grey';
+    codeElement.style.paddingLeft = '5px';
+    codeElement.style.marginTop = '20px';
+    codeElement.style.width = '95%';
+    codeElement.style.marginLeft = '2.5%';
+    codeElement.style.padding = '10px';
+    return codeElement;
+}
+
 function updateVideo(iframe: HTMLIFrameElement, videoUrl: string) {
     iframe.src = videoUrl;
 }
@@ -199,17 +213,13 @@ function titleToGitHubFormat(title: string, frontend_id: number): string {
 }
 
 // Function to fetch the code from GitHub and insert it into the solutions tab
-async function addCodeSolution(title: string, frontend_id: number, language: string) {
-    let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
-    if (codeContainer) return; // If the code container already exists, don't add it again
-
+async function getCodeSolution(title: string, frontend_id: number, language: string,) {
     // Convert frontend_id and title to the GitHub-compatible format
     const formattedTitle = titleToGitHubFormat(title, frontend_id);
-    const filePath = `${language}/${formattedTitle}.${language === 'python' ? 'py' : 'py'}`; // Change 'other_extension' accordingly
+    const filePath = `${language}/${formattedTitle}.${language === 'python' ? 'py' : 'java'}`; // Change 'other_extension' accordingly
 
     // Construct the URL to fetch the file content from GitHub
     const url = `https://api.github.com/repos/neetcode-gh/leetcode/contents/${filePath}`;
-
     try {
         // Make the API call to fetch the code from GitHub
         const response = await fetch(url);
@@ -217,26 +227,39 @@ async function addCodeSolution(title: string, frontend_id: number, language: str
 
         // Decode the Base64 encoded content
         const code = atob(data.content);
-
-        // Create an HTML element to hold the code
-        const codeElement = document.createElement('pre');
-        codeElement.classList.add('code-container');
-        codeElement.textContent = code;
-        codeElement.style.display = 'none';
-        codeElement.style.border = '1px solid grey';
-        codeElement.style.paddingLeft = '5px';
-        codeElement.style.marginTop = '20px';
-        codeElement.style.width = '95%';
-        codeElement.style.marginLeft = '2.5%';
-        codeElement.style.padding = '10px';
-
-        // Insert the code element into the solutions tab
-        const searchBar = document.querySelectorAll('div.flex.items-center.justify-between')[1].parentElement;
-        console.log('search bar', searchBar);
-        searchBar?.insertBefore(codeElement, searchBar.children[1])
+        return code;
     } catch (error) {
         console.error('Failed to fetch code:', error);
     }
+}
+
+function createLanguageButtons(problem: any) {
+    const container = createStyledElement('div', {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        paddingTop: '10px',
+        boxSizing: 'border-box',
+        color: '#fff',
+    });
+
+    // For each language, create a button and set up its event listener
+    problem.languages.forEach((language: string) => {
+        const langButton = createStyledButton(language.charAt(0).toUpperCase() + language.slice(1)); // Convert first letter to uppercase
+        langButton.addEventListener('click', () => {
+            let code = getCodeSolution(problem.title, problem.frontend_id, language);
+            code.then((code) => {
+                let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
+                if (codeContainer) {
+                    codeContainer.style.display = 'flex';
+                    codeContainer.textContent = code;
+                }
+            });
+        });
+        container.append(langButton);
+    });
+    return container;
 }
 
 chrome.runtime.onMessage.addListener((request) => {
@@ -261,8 +284,31 @@ chrome.runtime.onMessage.addListener((request) => {
                 if (searchBar) searchBar.insertBefore(videoContainer, searchBar.children[1]);
             }
 
-            // // Add code solution (since your addCodeSolution function already checks for the existence of the element, you don't need to check here)
-            addCodeSolution(problem.title, problem.frontend_id, 'python');
+            // Check if the code container already exists before adding
+            if (!document.querySelector('.code-container')) {
+                let codeContainer = createCodeContainer();
+                if (searchBar) searchBar.insertBefore(codeContainer, searchBar.children[1]);
+                let code = getCodeSolution(problem.title, problem.frontend_id, 'python');
+                code.then((code) => {
+                    let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
+                    if (codeContainer) {
+                        codeContainer.textContent = code;
+                    }
+                });
+                // // Insert the code element into the solutions tab
+                // const searchBar = document.querySelectorAll('div.flex.items-center.justify-between')[1].parentElement;
+                // console.log('search bar', searchBar);
+                // searchBar?.insertBefore(codeElement, searchBar.children[1])
+            }
+
+
+            // Check if the language buttons container already exists before adding
+            if (!document.querySelector('.language-buttons-container')) {
+                let languageButtonsContainer = createLanguageButtons(problem);
+                languageButtonsContainer.classList.add('language-buttons-container');
+                if (searchBar) searchBar.insertBefore(languageButtonsContainer, searchBar.children[1]);  // Or choose a different position
+            }
+
         });
     }
 });

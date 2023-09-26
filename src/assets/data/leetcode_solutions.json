@@ -52,7 +52,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -107,7 +109,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -162,7 +166,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -217,7 +223,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -272,7 +280,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -318,7 +328,8 @@
                 }
             ],
             "languages": [
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -373,7 +384,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -479,7 +492,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -534,7 +549,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -589,7 +606,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -640,7 +659,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -695,7 +716,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -750,7 +773,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -805,7 +830,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -911,7 +938,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -962,7 +991,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1017,7 +1048,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1072,7 +1105,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1127,7 +1162,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1182,7 +1219,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1237,7 +1276,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1292,7 +1333,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -1347,7 +1389,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1402,7 +1446,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1457,7 +1503,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1483,7 +1531,9 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1721,7 +1771,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1755,7 +1807,9 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1810,7 +1864,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1865,7 +1921,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2025,7 +2083,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2080,7 +2140,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2135,7 +2197,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2190,7 +2254,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2245,7 +2311,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2351,7 +2419,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2406,7 +2476,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2504,7 +2576,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2559,7 +2633,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2614,7 +2690,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2669,7 +2747,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2707,7 +2787,9 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2762,7 +2844,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2817,7 +2901,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2868,7 +2954,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2923,7 +3011,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2978,7 +3068,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3021,7 +3113,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3065,6 +3159,9 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -3149,7 +3246,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -3204,7 +3302,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3259,7 +3359,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -3314,7 +3415,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -3408,7 +3510,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3463,7 +3567,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -3572,7 +3677,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3627,7 +3734,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3678,7 +3787,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript"
             ]
         },
         {
@@ -3733,7 +3843,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3788,7 +3900,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3843,7 +3957,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3898,7 +4014,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3953,7 +4071,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4059,7 +4179,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4110,7 +4232,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4148,7 +4272,9 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4296,7 +4422,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4351,7 +4479,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4523,7 +4653,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4609,7 +4741,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4664,7 +4798,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4719,7 +4855,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4771,6 +4909,9 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -4821,7 +4962,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4949,7 +5092,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5004,7 +5149,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5110,7 +5257,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5219,7 +5368,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5273,7 +5424,8 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -5328,7 +5480,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5383,7 +5537,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5514,7 +5670,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript"
             ]
         },
         {
@@ -5616,7 +5773,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5656,6 +5815,9 @@
                     "name": "Bloomberg",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -5710,7 +5872,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript"
             ]
         },
         {
@@ -5855,7 +6018,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5886,7 +6051,11 @@
                     "channel": "Algorithms Made Easy"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript",
+                "cpp"
+            ]
         },
         {
             "title": "Populating Next Right Pointers in Each Node II",
@@ -5916,7 +6085,10 @@
                     "channel": "Shruti Mehrotra - Cracking Interviews"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Pascal's Triangle",
@@ -5970,7 +6142,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6052,7 +6226,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -6107,7 +6282,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6162,7 +6339,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6260,7 +6439,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6315,7 +6496,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6417,7 +6600,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6472,7 +6657,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6518,7 +6705,8 @@
                 }
             ],
             "languages": [
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -6569,7 +6757,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6624,7 +6814,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6714,7 +6906,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6769,7 +6963,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6862,7 +7058,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6952,7 +7150,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7007,7 +7207,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7113,7 +7315,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7207,7 +7411,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7249,7 +7455,8 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -7347,7 +7554,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7385,7 +7594,8 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -7440,7 +7650,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -7494,7 +7705,9 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7549,7 +7762,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7651,7 +7866,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7706,7 +7923,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7796,7 +8015,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -8002,7 +8223,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -8100,7 +8323,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -8302,7 +8527,9 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -8400,7 +8627,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -8567,7 +8796,8 @@
                 }
             ],
             "languages": [
-                "java"
+                "java",
+                "javascript"
             ]
         },
         {
@@ -8769,7 +8999,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9019,7 +9251,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9125,7 +9359,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9180,7 +9416,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9235,7 +9473,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9462,7 +9702,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9517,7 +9759,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9572,7 +9816,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9662,7 +9908,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9713,7 +9961,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9811,7 +10061,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9862,7 +10114,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9913,7 +10167,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9947,7 +10203,9 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10002,7 +10260,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10057,7 +10317,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10091,7 +10353,9 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10146,7 +10410,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10189,7 +10455,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10283,7 +10551,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10373,7 +10643,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10475,7 +10747,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10577,7 +10851,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -10745,7 +11020,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10800,7 +11077,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10988,7 +11267,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -11089,7 +11370,8 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "javascript"
             ]
         },
         {
@@ -11183,7 +11465,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -11238,7 +11522,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -11293,7 +11579,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -11387,7 +11674,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -11442,7 +11731,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -11591,7 +11882,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -11977,7 +12270,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -12032,7 +12327,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -12355,7 +12652,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -12424,7 +12723,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -12623,7 +12924,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -12674,7 +12977,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -12752,7 +13057,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -13066,6 +13373,9 @@
                     "name": "Apple",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -13115,7 +13425,8 @@
                 }
             ],
             "languages": [
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -13153,7 +13464,8 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -13286,7 +13598,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -13435,7 +13749,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -13490,7 +13806,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -13631,7 +13949,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -13805,7 +14125,9 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -13895,7 +14217,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -14011,7 +14335,9 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -14124,7 +14450,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -14178,7 +14506,9 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -14367,7 +14697,9 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -14508,7 +14840,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -14934,7 +15268,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -14989,7 +15325,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -15205,7 +15543,9 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -15330,7 +15670,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -15602,7 +15944,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -15769,7 +16113,8 @@
                 }
             ],
             "languages": [
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -15805,6 +16150,9 @@
                     "name": "Facebook",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -15855,7 +16203,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -15992,7 +16342,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -16220,6 +16572,9 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -16352,7 +16707,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -16832,7 +17189,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -16980,7 +17339,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -17109,7 +17470,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -17233,7 +17596,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -17378,7 +17742,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -17661,6 +18027,9 @@
                     "name": "Oracle",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -17875,7 +18244,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -18181,6 +18552,9 @@
                     "name": "Snapchat",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -18305,7 +18679,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -18628,7 +19004,8 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "javascript"
             ]
         },
         {
@@ -18890,7 +19267,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -18941,7 +19320,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -19226,7 +19607,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -19416,7 +19799,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -19557,7 +19942,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -19657,7 +20044,9 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -19974,7 +20363,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -20072,7 +20463,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -20334,7 +20726,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript"
             ]
         },
         {
@@ -20486,6 +20879,9 @@
                     "name": "LinkedIn",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -20602,7 +20998,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -20903,6 +21301,9 @@
                     "name": "Microsoft",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -20941,7 +21342,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -20979,7 +21382,8 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -21718,7 +22122,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -21791,7 +22197,9 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -22218,7 +22626,8 @@
             ],
             "companies": [],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -22421,6 +22830,9 @@
                     "name": "Facebook",
                     "score": 18
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -22543,7 +22955,9 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -22733,7 +23147,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -23182,7 +23598,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -23288,6 +23706,9 @@
                     "name": "Bloomberg",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -23380,7 +23801,9 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -23517,7 +23940,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -23895,7 +24320,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -24062,7 +24489,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -24325,7 +24754,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -24497,7 +24928,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -25552,7 +25985,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -25953,7 +26388,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -26090,7 +26527,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -26639,7 +27078,8 @@
                 }
             ],
             "languages": [
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -27002,7 +27442,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -27409,7 +27851,8 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "javascript"
             ]
         },
         {
@@ -27677,7 +28120,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -27833,7 +28278,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript"
             ]
         },
         {
@@ -28191,7 +28637,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -28285,7 +28733,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -28354,7 +28804,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -28432,7 +28884,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -28869,7 +29323,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -29581,7 +30037,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -29837,7 +30295,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -29921,7 +30381,9 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -29951,7 +30413,8 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -29992,7 +30455,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -30016,6 +30480,9 @@
                     "name": "Amazon",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -30051,7 +30518,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -30080,6 +30548,9 @@
                     "name": "Bloomberg",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -30304,7 +30775,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -30375,7 +30847,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -30567,7 +31040,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -30679,6 +31153,9 @@
                     "name": "Goldman Sachs",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -30715,7 +31192,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -30914,7 +31392,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.51413,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Minimum Distance Between BST Nodes",
@@ -31464,7 +31945,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.45523,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Ambiguous Coordinates",
@@ -31527,7 +32011,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -31642,7 +32127,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -31966,7 +32452,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -31985,7 +32472,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -31996,7 +32484,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.60694,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Shifting Letters",
@@ -32060,7 +32551,8 @@
             "videos": [],
             "companies": [],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -32369,7 +32861,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -32479,6 +32972,9 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -32523,7 +33019,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.49059,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Random Pick with Weight",
@@ -32556,7 +33055,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -32810,7 +33310,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -33047,6 +33548,9 @@
                     "name": "Adobe",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -33062,7 +33566,10 @@
                     "channel": "NeetCode"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Smallest Range II",
@@ -33175,7 +33682,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -33257,6 +33765,9 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -33464,7 +33975,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -33521,7 +34033,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -33583,7 +34096,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -33617,6 +34131,9 @@
                     "name": "tiktok",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -33775,7 +34292,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -34225,7 +34743,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.57803,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Minimum Cost For Tickets",
@@ -34482,6 +35003,9 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -34590,7 +35114,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -35265,7 +35790,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.73456,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Matrix Cells in Distance Order",
@@ -35280,6 +35808,9 @@
                     "name": "Yahoo",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -35638,7 +36169,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.305,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Single-Row Keyboard",
@@ -35713,6 +36247,9 @@
                     "name": "Salesforce",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -35851,7 +36388,8 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "javascript"
             ]
         },
         {
@@ -35922,7 +36460,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -36035,7 +36574,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.61856,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Product Sales Analysis I",
@@ -36134,7 +36676,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.6499,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Project Employees II",
@@ -36479,7 +37024,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -36495,6 +37041,9 @@
                     "name": "Airbnb",
                     "score": 7
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -36736,7 +37285,8 @@
             "videos": [],
             "companies": [],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -36794,7 +37344,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.60713,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Highest Grade For Each Student",
@@ -36872,7 +37425,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -37076,6 +37630,9 @@
                     "name": "Amazon",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -37402,7 +37959,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -37882,7 +38440,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -37957,7 +38516,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.68393,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Minimum Absolute Difference",
@@ -38415,7 +38977,8 @@
             "videos": [],
             "companies": [],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -39080,6 +39643,9 @@
                     "name": "Apple",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -39656,6 +40222,9 @@
                     "name": "LinkedIn",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -39724,7 +40293,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -39831,7 +40401,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -39906,7 +40477,8 @@
             "videos": [],
             "companies": [],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -39981,7 +40553,8 @@
             "videos": [],
             "companies": [],
             "languages": [
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -40171,6 +40744,9 @@
                     "name": "Cruise Automation",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -40500,7 +41076,8 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -40702,6 +41279,9 @@
                     "name": "Bloomberg",
                     "score": 64
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -40734,7 +41314,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -40826,7 +41407,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.86045,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "String Matching in an Array",
@@ -41290,7 +41874,8 @@
                 }
             ],
             "languages": [
-                "java"
+                "java",
+                "javascript"
             ]
         },
         {
@@ -41316,7 +41901,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.69585,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Number of Students Doing Homework at a Given Time",
@@ -41412,6 +42000,9 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -41618,6 +42209,9 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -41691,7 +42285,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -42174,6 +42769,9 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -42234,7 +42832,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.49613,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Water Bottles",
@@ -42528,7 +43129,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.48304,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Find Users With Valid E-Mails",
@@ -42590,7 +43194,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.42126,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Minimum Cost to Cut a Stick",
@@ -42655,7 +43262,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.59122,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Minimum Number of Days to Eat N Oranges",
@@ -42687,6 +43297,9 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -42736,7 +43349,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.70995,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Most Visited Sector in a Circular Track",
@@ -42798,7 +43414,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.60131,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "The Most Similar Path in a Graph",
@@ -42897,6 +43516,9 @@
                     "name": "Apple",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -42972,7 +43594,8 @@
             "videos": [],
             "companies": [],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -43033,6 +43656,9 @@
                     "name": "Bloomberg",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -43072,6 +43698,9 @@
                     "name": "Amazon",
                     "score": 12
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -43249,7 +43878,8 @@
             "videos": [],
             "companies": [],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -43394,7 +44024,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.37352,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Bank Account Summary II",
@@ -43792,6 +44425,9 @@
                     "name": "Pure Storage",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -43844,7 +44480,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -43971,7 +44608,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.48641,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Lowest Common Ancestor of a Binary Tree II",
@@ -44210,7 +44850,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.72394,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Goal Parser Interpretation",
@@ -44293,6 +44936,9 @@
                     "name": "Flipkart",
                     "score": 7
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -44649,6 +45295,9 @@
                     "name": "Robinhood",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -44743,7 +45392,8 @@
             "videos": [],
             "companies": [],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -44819,7 +45469,8 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -44871,7 +45522,8 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -44900,7 +45552,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -44934,7 +45587,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.35513,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Find Kth Largest XOR Coordinate Value",
@@ -45095,6 +45751,9 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -45365,7 +46024,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -45464,7 +46124,8 @@
             ],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -45503,7 +46164,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.79012,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Check if Binary String Has at Most One Segment of Ones",
@@ -45518,6 +46182,9 @@
                     "name": "Cisco",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -45533,6 +46200,9 @@
                     "name": "Twitter",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -45578,6 +46248,9 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -45645,6 +46318,9 @@
                     "name": "JPMorgan",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -45732,7 +46408,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -45746,7 +46423,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -45820,7 +46498,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.32134,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Maximize the Beauty of the Garden",
@@ -45999,6 +46680,9 @@
                     "name": "Microsoft",
                     "score": 45
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -46108,7 +46792,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -46176,7 +46861,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -46210,7 +46896,10 @@
                     "channel": "NeetCode"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Longest Substring Of All Vowels in Order",
@@ -46232,7 +46921,8 @@
             "videos": [],
             "companies": [],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -46459,7 +47149,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -46478,7 +47169,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -46668,7 +47360,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -46682,7 +47375,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -46803,7 +47497,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -46855,7 +47550,8 @@
             ],
             "companies": [],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -46866,7 +47562,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.31398,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Product of Two Run-Length Encoded Arrays",
@@ -46980,7 +47679,10 @@
                     "channel": "NeetCode"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Maximum Number of Removable Characters",
@@ -47221,7 +47923,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.51126,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Build Array from Permutation",
@@ -47796,7 +48501,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.55234,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "All the Pairs With the Maximum Number of Common Followers",
@@ -47993,7 +48701,10 @@
                     "channel": "NeetCode"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Find the Kth Largest Integer in the Array",
@@ -48233,7 +48944,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -49271,7 +49983,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -49292,7 +50005,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.4856,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Paths in Maze That Lead to Same Room",
@@ -49492,7 +50208,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.62554,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Maximum Twin Sum of a Linked List",
@@ -49511,6 +50230,9 @@
                     "name": "Amazon",
                     "score": 23
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -49653,7 +50375,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.37308,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "K Highest Ranked Items Within a Price Range",
@@ -50258,7 +50983,8 @@
                 }
             ],
             "languages": [
-                "python"
+                "python",
+                "cpp"
             ]
         },
         {
@@ -50429,7 +51155,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.62359,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Count Hills and Valleys in an Array",
@@ -50542,7 +51271,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.50675,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Sum of Scores of Built Strings",
@@ -50574,7 +51306,8 @@
             "videos": [],
             "companies": [],
             "languages": [
-                "java"
+                "java",
+                "javascript"
             ]
         },
         {
@@ -50797,7 +51530,8 @@
             "companies": [],
             "languages": [
                 "python",
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -51213,7 +51947,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.41845,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Naming a Company",
@@ -51584,7 +52321,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.73973,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Design a Food Rating System",
@@ -51776,7 +52516,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.75396,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Count Number of Bad Pairs",
@@ -52003,7 +52746,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.60447,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Max Sum of a Pair With Equal Sum of Digits",
@@ -52114,7 +52860,8 @@
             "videos": [],
             "companies": [],
             "languages": [
-                "java"
+                "java",
+                "cpp"
             ]
         },
         {
@@ -52199,7 +52946,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.87403,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Length of the Longest Alphabetical Continuous Substring",
@@ -52335,7 +53085,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.57025,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Minimize Maximum Value in a Grid",
@@ -52684,7 +53437,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.5927,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Most Popular Video Creator",
@@ -52885,7 +53641,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.55942,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Split Message Based on Limit",
@@ -52925,7 +53684,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.70421,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Closest Nodes Queries in a Binary Search Tree",
@@ -53224,7 +53986,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.32386,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Cycle Length Queries in a Tree",
@@ -53769,7 +54534,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.75016,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Rearrange Array to Maximize Prefix Score",
@@ -53798,7 +54566,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.38086,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Count the Number of K-Big Indices",
@@ -54121,7 +54892,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.72931,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Find the String with LCP",

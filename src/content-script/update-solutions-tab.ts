@@ -157,8 +157,10 @@ function createNavContainer() {
         alignItems: 'center',
         width: '100%',
         paddingTop: '10px',
+        paddingBottom: '20px',
         boxSizing: 'border-box',
         color: '#fff',
+        borderBottom: '1px solid white'
     });
 
     controlsContainer.classList.add('nav-container');
@@ -220,9 +222,18 @@ function titleToGitHubFormat(title: string, frontend_id: number): string {
 
 // Function to fetch the code from GitHub and insert it into the solutions tab
 async function getCodeSolution(title: string, frontend_id: number, language: string,) {
+
+    // map the language names to their extensions
+    const languageMap = {
+        'python': 'py',
+        'java': 'java',
+        'javascript': 'js',
+        'cpp': 'cpp',
+    }
+
     // Convert frontend_id and title to the GitHub-compatible format
     const formattedTitle = titleToGitHubFormat(title, frontend_id);
-    const filePath = `${language}/${formattedTitle}.${language === 'python' ? 'py' : 'java'}`; // Change 'other_extension' accordingly
+    const filePath = `${language}/${formattedTitle}.${languageMap[language]}`; // Change 'other_extension' accordingly
 
     // Construct the URL to fetch the file content from GitHub
     const url = `https://api.github.com/repos/neetcode-gh/leetcode/contents/${filePath}`;
@@ -255,10 +266,15 @@ function createLanguageButtons(problem: any) {
         color: '#fff',
     });
 
+
+
     // For each language, create a button and set up its event listener
     problem.languages.forEach((language: string) => {
-        const langButton = createStyledButton(language.charAt(0).toUpperCase() + language.slice(1)); // Convert first letter to uppercase
-        langButton.style.margin = '0px 10px';
+        // Create the button using the utility function
+        const buttonLabel = (language === "cpp") ? "C++" : (language.charAt(0).toUpperCase() + language.slice(1));
+        const langButton = createStyledButton(buttonLabel);
+        langButton.style.margin = '0';
+        langButton.style.width = '80px';
         langButton.addEventListener('click', () => {
             let code = getCodeSolution(problem.title, problem.frontend_id, language);
             code.then((code) => {

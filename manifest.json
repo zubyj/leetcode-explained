@@ -35,5 +35,15 @@
                 "https://leetcode.com/problems/*"
             ]
         }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "src/assets/images/copy-icon.png"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
     ]
 }

@@ -266,14 +266,12 @@ function createLanguageButtons(problem: any) {
         color: '#fff',
     });
 
-
-
     // For each language, create a button and set up its event listener
     problem.languages.forEach((language: string) => {
         // Create the button using the utility function
         const buttonLabel = (language === "cpp") ? "C++" : (language.charAt(0).toUpperCase() + language.slice(1));
         const langButton = createStyledButton(buttonLabel);
-        langButton.style.margin = '0';
+        langButton.style.margin = '3px';
         langButton.style.width = '80px';
         langButton.addEventListener('click', () => {
             let code = getCodeSolution(problem.title, problem.frontend_id, language);
@@ -282,6 +280,7 @@ function createLanguageButtons(problem: any) {
                 if (codeContainer) {
                     codeContainer.style.display = 'flex';
                     codeContainer.textContent = code;
+                    addCopyIconToElement(codeContainer);
                 }
             });
         });
@@ -289,6 +288,40 @@ function createLanguageButtons(problem: any) {
     });
     return container;
 }
+
+function addCopyIconToElement(element: HTMLElement) {
+    const icon = document.createElement('img');
+    icon.src = chrome.runtime.getURL("src/assets/images/copy-icon.png");
+    icon.style.width = '30px';
+    icon.style.height = '30px';
+    icon.style.padding = '5px';
+    icon.style.borderRadius = '5px';
+    icon.style.border = '1px solid white';
+    icon.style.cursor = 'pointer';
+    icon.style.marginRight = '10px';
+    // on hover, change background color
+    icon.addEventListener('mouseover', () => {
+        icon.style.backgroundColor = 'black';
+    });
+    icon.addEventListener('mouseout', () => {
+        icon.style.backgroundColor = 'transparent';
+    });
+
+    // On click event if you want to copy something when the icon is clicked
+    icon.addEventListener('click', () => {
+        // Logic to copy whatever you want to clipboard
+        let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
+        const textToCopy = codeContainer.textContent || "";
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            console.log("Text copied to clipboard");
+        }).catch(err => {
+            console.error("Could not copy text: ", err);
+        });
+    });
+
+    element.insertBefore(icon, element.firstChild);
+}
+
 
 chrome.runtime.onMessage.addListener((request) => {
 
@@ -321,6 +354,7 @@ chrome.runtime.onMessage.addListener((request) => {
                     let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
                     if (codeContainer) {
                         codeContainer.textContent = code;
+                        addCopyIconToElement(codeContainer);
                     }
                 });
             }

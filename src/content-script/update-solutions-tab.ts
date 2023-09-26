@@ -272,7 +272,18 @@ function createLanguageButtons(problem: any) {
         const buttonLabel = (language === "cpp") ? "C++" : (language.charAt(0).toUpperCase() + language.slice(1));
         const langButton = createStyledButton(buttonLabel);
         langButton.style.margin = '3px';
-        langButton.style.width = '80px';
+        langButton.style.width = '100px'; // Increase width to accommodate the icon
+
+        // Create an img element for the language icon
+        const langIcon = document.createElement('img');
+        langIcon.src = chrome.runtime.getURL(`src/assets/images/languages/${language}.svg`);
+        langIcon.style.width = '20px';
+        langIcon.style.height = '20px';
+        langIcon.style.marginRight = '8px';
+
+        // Add the icon to the beginning of the button
+        langButton.insertBefore(langIcon, langButton.firstChild);
+
         langButton.addEventListener('click', () => {
             let code = getCodeSolution(problem.title, problem.frontend_id, language);
             code.then((code) => {
@@ -288,6 +299,7 @@ function createLanguageButtons(problem: any) {
     });
     return container;
 }
+
 
 function addCopyIconToElement(element: HTMLElement) {
     const icon = document.createElement('img');

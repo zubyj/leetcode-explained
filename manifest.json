@@ -39,7 +39,8 @@
     "web_accessible_resources": [
         {
             "resources": [
-                "src/assets/images/copy-icon.png"
+                "src/assets/images/copy-icon.png",
+                "src/assets/images/languages/*"
             ],
             "matches": [
                 "<all_urls>"

@@ -18,7 +18,7 @@ function createStyledElement(tagName: string, styles: { [key: string]: string })
 function createStyledButton(text: string): HTMLButtonElement {
     const button = document.createElement('button');
     button.textContent = text;
-    button.style.border = '1px solid white';
+    button.style.border = '1px solid grey';
     button.style.width = '100px';
     button.style.padding = '3px';
     button.style.margin = '0px 20px';
@@ -32,7 +32,7 @@ function createStyledButton(text: string): HTMLButtonElement {
     button.addEventListener('mouseout', () => {
         button.style.backgroundColor = 'transparent';
         button.style.color = 'white';
-        button.style.border = '1px solid white';
+        button.style.border = '1px solid grey';
     });
     return button;
 }
@@ -160,7 +160,6 @@ function createNavContainer() {
         paddingBottom: '20px',
         boxSizing: 'border-box',
         color: '#fff',
-        borderBottom: '1px solid white'
     });
 
     controlsContainer.classList.add('nav-container');
@@ -257,32 +256,40 @@ async function getCodeSolution(title: string, frontend_id: number, language: str
 
 function createLanguageButtons(problem: any) {
     const container = createStyledElement('div', {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
         paddingTop: '20px',
-        boxSizing: 'border-box',
-        color: '#fff',
+        marginLeft: '20px',
     });
 
     // For each language, create a button and set up its event listener
     problem.languages.forEach((language: string) => {
         // Create the button using the utility function
         const buttonLabel = (language === "cpp") ? "C++" : (language.charAt(0).toUpperCase() + language.slice(1));
-        const langButton = createStyledButton(buttonLabel);
-        langButton.style.margin = '3px';
-        langButton.style.width = '100px'; // Increase width to accommodate the icon
+        const langButton = document.createElement('button');
+        langButton.style.border = '1px solid grey';
+        langButton.style.width = '110px';
+        langButton.style.display = 'flex';
+        langButton.style.flexDirection = 'row';
+        langButton.style.padding = '3px';
+        langButton.style.margin = '0px 5px';
+        langButton.addEventListener('mouseover', () => {
+            langButton.style.borderColor = 'lightgreen';
+        });
+        langButton.addEventListener('mouseout', () => {
+            langButton.style.borderColor = 'grey';
+        });
 
-        // Create an img element for the language icon
+        // Get the icon for the language
         const langIcon = document.createElement('img');
         langIcon.src = chrome.runtime.getURL(`src/assets/images/languages/${language}.svg`);
         langIcon.style.width = '20px';
         langIcon.style.height = '20px';
-        langIcon.style.marginRight = '8px';
 
-        // Add the icon to the beginning of the button
-        langButton.insertBefore(langIcon, langButton.firstChild);
+        langButton.appendChild(langIcon);
+        let langName = document.createElement('span');
+        langName.textContent = buttonLabel;
+        langName.style.fontSize = '12px';
+        langName.style.paddingLeft = '15px';
+        langButton.appendChild(langName);
 
         langButton.addEventListener('click', () => {
             let code = getCodeSolution(problem.title, problem.frontend_id, language);
@@ -308,15 +315,15 @@ function addCopyIconToElement(element: HTMLElement) {
     icon.style.height = '30px';
     icon.style.padding = '5px';
     icon.style.borderRadius = '5px';
-    icon.style.border = '1px solid white';
+    icon.style.border = '1px solid grey';
     icon.style.cursor = 'pointer';
-    icon.style.marginRight = '10px';
+    icon.style.marginRight = '20px';
     // on hover, change background color
     icon.addEventListener('mouseover', () => {
-        icon.style.backgroundColor = 'black';
+        icon.style.borderColor = 'lightgreen';
     });
     icon.addEventListener('mouseout', () => {
-        icon.style.backgroundColor = 'transparent';
+        icon.style.borderColor = 'grey';
     });
 
     // On click event if you want to copy something when the icon is clicked
@@ -326,6 +333,13 @@ function addCopyIconToElement(element: HTMLElement) {
         const textToCopy = codeContainer.textContent || "";
         navigator.clipboard.writeText(textToCopy).then(() => {
             console.log("Text copied to clipboard");
+
+            // Change the icon to a checkmark to indicate that the text has been copied
+            icon.src = chrome.runtime.getURL("src/assets/images/check-icon.png");
+            // After 2 seconds, change the icon back to the copy icon
+            setTimeout(() => {
+                icon.src = chrome.runtime.getURL("src/assets/images/copy-icon.png");
+            }, 1000);
         }).catch(err => {
             console.error("Could not copy text: ", err);
         });

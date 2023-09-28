@@ -329,8 +329,6 @@ function addCopyIconToElement(element: HTMLElement) {
         let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
         const textToCopy = codeContainer.textContent || "";
         navigator.clipboard.writeText(textToCopy).then(() => {
-            console.log("Text copied to clipboard");
-
             // Change the icon to a checkmark to indicate that the text has been copied
             icon.src = chrome.runtime.getURL("src/assets/images/check-icon.png");
             // After 2 seconds, change the icon back to the copy icon

@@ -3,7 +3,6 @@ function showExamples() {
     chrome.storage.local.get(['showExamples'], (result) => {
         const showExamples = result.showExamples;
         const examples = document.querySelectorAll('div.flex.h-full.w-full')[0];
-        console.log('examples', examples);
         if (!examples) return;
         let preTags = examples.getElementsByTagName('pre');
         if (preTags) {
@@ -69,7 +68,6 @@ function showRating(problemTitle: string) {
                 if (difficultyContainer) {
                     // insert the rating element after the first child of the difficulty container
                     let parent = difficultyContainer.parentElement;
-                    console.log('parent', parent);
                     parent?.insertBefore(ratingElement, parent.firstChild);
                 }
             });

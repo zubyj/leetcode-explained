@@ -13,7 +13,6 @@ function getCode() {
     // Add the test cases & examples
     const examples = document.querySelectorAll('div.flex.h-full.w-full')[0];
 
-    console.log('examples', examples);
     if (examples && examples.children) {
         textArray.push('\nHeres the description, examples, and constraints for the problem\n');
         for (const child of examples.children) {

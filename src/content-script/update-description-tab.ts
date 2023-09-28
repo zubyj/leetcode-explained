@@ -2,7 +2,8 @@
 function showExamples() {
     chrome.storage.local.get(['showExamples'], (result) => {
         const showExamples = result.showExamples;
-        let examples = document.getElementsByClassName('xFUwe')[0];
+        const examples = document.querySelectorAll('div.flex.h-full.w-full')[0];
+        console.log('examples', examples);
         if (!examples) return;
         let preTags = examples.getElementsByTagName('pre');
         if (preTags) {
@@ -17,14 +18,14 @@ function showExamples() {
 function showDifficulty() {
     chrome.storage.local.get(['showDifficulty'], (result) => {
         const showDifficulty = result.showDifficulty;
-        const difficultyContainer = document.querySelectorAll('div.mt-3.flex')[0];
+        const difficultyContainer = document.querySelectorAll('div.relative.inline-flex')[0];
         if (!difficultyContainer) return;
         if (showDifficulty) {
             // hide the first child of the difficulty container
-            difficultyContainer.children[0].style.display = 'block';
+            difficultyContainer.style.display = 'block';
         }
         else {
-            difficultyContainer.children[0].style.display = 'none';
+            difficultyContainer.style.display = 'none';
         }
     });
 }
@@ -56,13 +57,20 @@ function showRating(problemTitle: string) {
                     ratingElement.id = 'rating';
                     ratingElement.textContent = problem.rating;
                     ratingElement.style.fontSize = '12px';
+                    ratingElement.style.backgroundColor = '#3D3D3C';
+                    ratingElement.style.borderRadius = '10px';
+                    ratingElement.style.width = '50px';
+                    ratingElement.style.textAlign = 'center';
+                    ratingElement.style.paddingTop = '2px';
                     ratingElement.style.color = 'lightcyan';
                 }
 
-                const difficultyContainer = document.querySelectorAll('div.mt-3.flex')[0];
+                const difficultyContainer = document.querySelectorAll('div.relative.inline-flex')[0];
                 if (difficultyContainer) {
                     // insert the rating element after the first child of the difficulty container
-                    difficultyContainer.insertBefore(ratingElement, difficultyContainer.children[0].nextSibling);
+                    let parent = difficultyContainer.parentElement;
+                    console.log('parent', parent);
+                    parent?.insertBefore(ratingElement, parent.firstChild);
                 }
             });
         }

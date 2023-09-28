@@ -238,9 +238,6 @@ async function getCodeSolution(title: string, frontend_id: number, language: str
     const url = `https://api.github.com/repos/neetcode-gh/leetcode/contents/${filePath}`;
 
     let codeElement = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
-    if (codeElement) {
-        codeElement.textContent = 'Loading...';
-    }
     try {
         // Make the API call to fetch the code from GitHub
         const response = await fetch(url);

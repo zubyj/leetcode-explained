@@ -4,7 +4,7 @@
 ![Version](https://img.shields.io/chrome-web-store/v/cofoinjfjcpgcjiinjhcpomcjoalijbe) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A free, open source browser extension that adds video solutions, company tags, and GPT code analysis into each Leetcode problem
+A free, open source browser extension that adds solution code, video explanations, and GPT code analysis into each Leetcode problem
 
 [<img src="https://user-images.githubusercontent.com/3750161/214147732-c75e96a4-48a4-4b64-b407-c2402e899a75.PNG" height="40" alt="Chrome">](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
 [<img src="https://user-images.githubusercontent.com/3750161/214148610-acdef778-753e-470e-8765-6cc97bca85ed.png" height="40" alt="Firefox">](https://addons.mozilla.org/en-US/firefox/addon/leetcode-explained/)
@@ -13,24 +13,17 @@ A free, open source browser extension that adds video solutions, company tags, a
 
 1️⃣ Solution videos: Adds the top 5 youtube solution videos into each [problem](https://leetcode.com/problems/two-sum/solutions)
 
-2️⃣ Company tags: Adds the top 5 companies that ask each [problem](https://leetcode.com/problems/two-sum/description)
-
-3️⃣ Problems by company
-Click a company tag to view every question that company has asked in the past 6 months, 1 year, 2 years, and all time. Sort by the date, acceptance rating, difficulty, and more.
-
-4️⃣ Complexity Analysis
+2️⃣ Complexity Analysis
 Reads your code and gets the time & space complexity using GPT
 
-5️⃣ Code Generation
+3️⃣ Code Generation
 Reads your code, fixes bugs, and generates the optimal solution code for the given problem using GPT. For more accurate results, open the description tab so GPT can read the problem's description and constraints.
 
-6️⃣ Elo ratings
+4️⃣ Elo ratings
 Adds difficulty ratings into weekly/biweekly contest problems (~1500 added)
 
-7️⃣ Hard Mode
+5️⃣ Hard Mode
 Hide the Leetcode problem examples to simulate a real coding interview environment. Available through the extension's settings.
-
-To activate features 4️⃣ and 5️⃣, log into ChatGPT in your browser and pin the extension
 
 ### ⚙️ Installation
 
@@ -63,8 +56,6 @@ We welcome contributions! Please see the [CONTRIBUTING.md](docs/CONTRIBUTING.md)
 ### Screenshots
 
 <img src="src/assets/images/screenshots/add-video.png" alt="Add Video" width="600"/>
-<img src="src/assets/images/screenshots/problems-by-company.png" alt="Problems by Company" width="600" />
-<img src="src/assets/images/screenshots/get-company-tags.png" alt="Company Tags" width="600"/>
 <img src="src/assets/images/screenshots/get-complexity.png" alt="Code Complexity" width="600"/>
 <img src="src/assets/images/screenshots/fix-code.png" alt="Fix Code" width="600"/>
 
@@ -92,7 +83,3 @@ If you like the extension, please leave a review in the Reviews tab. For questio
 Check out these cool datasets used in Leetcode Explained
 
 [Problem elo ratings](https://github.com/zerotrac/leetcode_problem_rating) 
-
-[Company tags](https://github.com/hxu296/leetcode-company-wise-problems-2022)
-
-[Problem frequency by company](https://github.com/krishnadey30/LeetCode-Questions-CompanyWise/tree/master)

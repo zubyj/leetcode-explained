@@ -1,7 +1,6 @@
 /*
     Manages the settings page which is opened when the user clicks on the settings icon in the popup
     The user can toggle the following settings:
-        - Show company tags
         - Show examples
         - Show difficulty
         - The user can also change the font size of the description
@@ -14,10 +13,6 @@ homeButton.onclick = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    chrome.storage.local.get(['showCompanyTags'], (result) => {
-        const showCompanyTagsIcon = document.getElementById('show-company-tags-icon');
-        if (showCompanyTagsIcon) showCompanyTagsIcon.textContent = result.showCompanyTags ? '✅' : '❌';
-    });
     chrome.storage.local.get(['showExamples'], (result) => {
         const showExamplesIcon = document.getElementById('show-examples-icon');
         if (showExamplesIcon) showExamplesIcon.textContent = result.showExamples ? '✅' : '❌';
@@ -44,20 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         chrome.storage.local.set({ fontSize: selectedFontSize });
         document.documentElement.style.setProperty('--dynamic-font-size', `${selectedFontSize}px`);
     };
-
-    const showCompanyTagsBtn = document.getElementById('show-company-tags-btn');
-    showCompanyTagsBtn && showCompanyTagsBtn.addEventListener('click', function () {
-        chrome.storage.local.get(['showCompanyTags'], (result) => {
-            const showCompanyTags = !result.showCompanyTags;
-            chrome.storage.local.set({ showCompanyTags: showCompanyTags }, () => {
-                const showCompanyTagsIcon = document.getElementById('show-company-tags-icon');
-                showCompanyTagsIcon && (showCompanyTagsIcon.textContent = showCompanyTags ? '✅' : '❌');
-                chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                    chrome.tabs.sendMessage(tabs[0].id || 0, { action: 'updateDescription', title: tabs[0].title || 'title' });
-                });
-            });
-        });
-    });
 
     let showExamplesBtn = document.getElementById('show-examples-btn');
     showExamplesBtn && showExamplesBtn.addEventListener('click', function () {

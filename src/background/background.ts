@@ -13,23 +13,10 @@ chrome.runtime.onInstalled.addListener(() => {
             console.error(error);
         });
 
-    // Load company-freq JSON file into storage
-    const companyProblems = chrome.runtime.getURL('src/assets/data/problems_by_company.json');
-    fetch(companyProblems)
-        .then((response) => response.json())
-        .then((data) => {
-            chrome.storage.local.set({ companyProblems: data });
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-
     // Default settings
     chrome.storage.local.set({ fontSize: 14 });
-    chrome.storage.local.set({ showCompanyTags: true });
     chrome.storage.local.set({ showExamples: true });
     chrome.storage.local.set({ showDifficulty: true });
-    chrome.storage.local.set({ clickedCompany: 'Amazon' });
     chrome.storage.local.set({ showRating: true });
 });
 
@@ -59,28 +46,6 @@ chrome.runtime.onMessage.addListener(
     },
 );
 
-chrome.runtime.onMessage.addListener((request) => {
-    if (request.action === 'openCompanyPage') {
-        chrome.storage.local.set({ clickedCompany: request.company });
-        chrome.tabs.create({
-            url: chrome.runtime.getURL('src/problems-by-company/company.html'),
-            active: true,
-        }, function (tab) {
-            // Keep a reference to the listener so it can be removed later
-            const listener = function (tabId: number, changedProps: any) {
-                // When the tab is done loading
-                if (tabId == tab.id && changedProps.status == 'complete') {
-                    chrome.tabs.sendMessage(tabId, request);
-                    // Remove the listener once the tab is loaded
-                    chrome.tabs.onUpdated.removeListener(listener);
-                }
-            };
-            // Attach the listener
-            chrome.tabs.onUpdated.addListener(listener);
-        });
-    }
-});
-
 chrome.runtime.onMessage.addListener((request: any) => {
     if (request.type === 'OPEN_LOGIN_PAGE') {
         chrome.tabs.create({ url: 'https://chat.openai.com' });
@@ -96,7 +61,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
-// If the user is on a Leetcode problem page, show the solution video or company tags.
+// If the user is on a Leetcode problem page, show the solution video
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     // If descriptions tab is opened or updated, update the description
     let urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?/;

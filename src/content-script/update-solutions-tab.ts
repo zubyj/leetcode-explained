@@ -19,6 +19,7 @@ function createStyledButton(text: string): HTMLButtonElement {
     const button = document.createElement('button');
     button.textContent = text;
     button.style.border = '1px solid grey';
+    button.style.backgroundColor = '#222';
     button.style.width = '100px';
     button.style.padding = '3px';
     button.style.margin = '0px 20px';
@@ -30,7 +31,7 @@ function createStyledButton(text: string): HTMLButtonElement {
         button.style.border = '1px solid lightgreen';
     });
     button.addEventListener('mouseout', () => {
-        button.style.backgroundColor = 'transparent';
+        button.style.backgroundColor = '#222';
         button.style.color = 'white';
         button.style.border = '1px solid grey';
     });

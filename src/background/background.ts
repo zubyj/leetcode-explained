@@ -20,32 +20,6 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.local.set({ showRating: true });
 });
 
-chrome.runtime.onMessage.addListener(
-    function (request, _, sendResponse) {
-        if (request.action == 'openSolutionVideo') {
-            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                let url = tabs[0].url;
-                if (url) {
-                    // Remove /description/ if it exists
-                    url = url.replace(/\/description\//, '/');
-                    // Ensure the URL ends with /
-                    if (!url.endsWith('/')) {
-                        url += '/';
-                    }
-                    // Append solutions/
-                    const newUrl = url + 'solutions/';
-                    if (tabs.length > 0 && tabs[0].id) {
-                        const tabId = tabs[0].id;
-                        const updateProperties = { url: newUrl };
-                        chrome.tabs.update(tabId, updateProperties);
-                    }
-                }
-            });
-            sendResponse({ result: 'Success' });
-        }
-    },
-);
-
 chrome.runtime.onMessage.addListener((request: any) => {
     if (request.type === 'OPEN_LOGIN_PAGE') {
         chrome.tabs.create({ url: 'https://chat.openai.com' });

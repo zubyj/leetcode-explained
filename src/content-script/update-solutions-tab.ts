@@ -1,7 +1,3 @@
-/*
-    Adds the top 5 youtube solution videos into the solutions tab of a Leetcode problem page.
-*/
-
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 const SOLUTIONS_TAB_INDEX = 0;
 
@@ -85,14 +81,14 @@ function createVideoContainer(problem: any) {
     nextButton.style.fontSize = '20px';
 
     const channelElement = createStyledElement('div', {
-        fontSize: '15px',
+        fontSize: '12px',
         textAlign: 'center',
         width: '200px',
     });
     let currentVideoIndex = 0;
     channelElement.classList.add('channel');
     channelElement.textContent = problem.videos[currentVideoIndex].channel;;
-    channelElement.style.fontWeight = '600';
+    channelElement.style.fontWeight = '400';
     channelElement.style.color = 'lightcyan';
     channelElement.style.textShadow = '0 0 5px #000000';
     channelElement.style.fontFamily = 'Menlo, Monaco, Consolas, "Courier New", monospace';
@@ -148,7 +144,6 @@ function hideContent() {
     let videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
     videoContainer.style.paddingBottom = '0%';
     videoContainer.style.display = 'none';
-
 }
 
 function createNavContainer() {
@@ -172,20 +167,6 @@ function createNavContainer() {
 
     discussionButton.addEventListener('click', () => {
         hideContent();
-        // let solutionsTab = document.querySelectorAll('div.relative.flex.h-full.w-full')[0];
-        // let children = solutionsTab.children;
-        // let index = 0
-        // for (var child of children) {
-        //     // skip the first two children
-        //     if (index < 3) continue;
-        //     index++;
-        //     let classList = child.classList;
-        //     if (!classList.contains('nav-container') &&
-        //         !classList.contains('video-container') &&
-        //         !classList.contains('code-container')) {
-        //         child.style.display = 'block';  // Show original discussion content.
-        //     }
-        // }
     });
 
     videoButton.addEventListener('click', () => {
@@ -207,9 +188,7 @@ function createNavContainer() {
         languageButtonsContainer.style.display = 'flex';
     });
 
-    controlsContainer.append(videoButton)
-    controlsContainer.append(codeButton);
-    controlsContainer.append(discussionButton);
+    controlsContainer.append(videoButton, codeButton, discussionButton);
     return controlsContainer;
 }
 
@@ -238,7 +217,6 @@ async function getCodeSolution(title: string, frontend_id: number, language: str
     // Construct the URL to fetch the file content from GitHub
     const url = `https://api.github.com/repos/neetcode-gh/leetcode/contents/${filePath}`;
 
-    let codeElement = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
     try {
         // Make the API call to fetch the code from GitHub
         const response = await fetch(url);
@@ -346,18 +324,19 @@ function addCopyIconToElement(element: HTMLElement) {
 
 
 chrome.runtime.onMessage.addListener((request) => {
-
-    // getting the discussion tab so we can insert the content before it.
-    const searchBar = document.querySelectorAll('div.flex.items-center.justify-between')[1].parentElement;
+    // get discussion tab so we can insert the content before it
 
     if (request.action === 'updateSolutions') {
+    const searchBar = document.querySelectorAll('div.flex.items-center.justify-between')[1].parentElement;
+        console.log('update solutions requested');
+
         const title = request.title.split('-')[0].trim();
         chrome.storage.local.get(['leetcodeProblems'], (result) => {
             const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
 
             // Check if the nav container already exists before adding
             if (!document.querySelector('.nav-container')) {
-                let navContainer = createNavContainer();
+                let navContainer = createNavContainer(); 
                 searchBar?.insertBefore(navContainer, searchBar.firstChild)
             }
 
@@ -388,7 +367,6 @@ chrome.runtime.onMessage.addListener((request) => {
                 languageButtonsContainer.style.display = 'none';
                 if (searchBar) searchBar.insertBefore(languageButtonsContainer, searchBar.children[1]);  // Or choose a different position
             }
-
         });
     }
 });

@@ -351,7 +351,7 @@ chrome.runtime.onMessage.addListener((request) => {
             // Check if the code container already exists before adding
             if (!document.querySelector('.code-container')) {
                 let codeContainer = createCodeContainer();
-                if (searchBar) searchBar.insertBefore(codeContainer, searchBar.children[1]);
+                if (searchBar) searchBar.insertBefore(codeContainer, searchBar.children[2]);
                 let code = getCodeSolution(problem.title, problem.frontend_id, 'python');
                 code.then((code) => {
                     let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;

@@ -82,9 +82,125 @@ function showRating(problemTitle: string) {
     });
 }
 
+// show the company tags if the user has enabled it in the settings
+function showCompanyTags(problemTitle: string) {
+    chrome.storage.local.get(['showCompanyTags'], (result) => {
+        const showCompanyTags = result.showCompanyTags;
+        let companyTagContainer = document.getElementById('companyTagContainer');
+
+        if (!showCompanyTags) {
+            if (companyTagContainer) {
+                companyTagContainer.style.display = 'none';
+            }
+            return;
+        }
+
+        if (companyTagContainer) {
+            while (companyTagContainer.firstChild) {
+                companyTagContainer.firstChild.remove();
+            }
+        } else {
+            companyTagContainer = document.createElement('div');
+            companyTagContainer.id = 'companyTagContainer';
+            companyTagContainer.style.display = 'flex';
+            companyTagContainer.style.flexDirection = 'row';
+            companyTagContainer.style.marginBottom = '20px';
+            companyTagContainer.style.gap = '5px';
+
+            const description = document.getElementsByClassName('elfjS')[0];
+            if (description) {
+                description.insertBefore(companyTagContainer, description.firstChild);
+            }
+        }
+
+        // Load new tags
+        loadCompanyTags(problemTitle, companyTagContainer);
+    });
+}
+
+// loads and creates company tags for the problem from the local storage
+function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement) {
+    companyTagContainer.id = 'companyTagContainer';
+    companyTagContainer.style.display = 'flex';
+    companyTagContainer.style.flexDirection = 'row';
+    companyTagContainer.style.marginTop = '10px';
+    companyTagContainer.style.gap = '5px';
+
+    const description = document.getElementsByClassName('elfjS')[0];
+    
+    if (!description) {
+        return;
+    }
+    description.insertBefore(companyTagContainer, description.firstChild);
+
+    interface problem {
+        title: string;
+        companies: Array<{
+            name: string;
+            score: number;
+        }>;
+    }
+
+    chrome.storage.local.get(['leetcodeProblems'], (result) => {
+        const problem = result.leetcodeProblems.questions.find((problem: problem) => problem.title === problemTitle);
+        if (problem.companies && problem.companies.length > 0) {
+            const topCompanies = problem.companies.slice(0, 5);
+            // create a button for each company
+            topCompanies.forEach((company: { name: string; score: number; }) => {
+                const button = document.createElement('button');
+                // opens the company page when the button is clicked
+                button.onclick = () => {
+                    chrome.runtime.sendMessage({
+                        action: 'openCompanyPage', company: company.name,
+                    });
+                };
+                button.onmouseover = () => {
+                    button.style.color = 'orange';
+                };
+                button.onmouseout = () => {
+                    button.style.color = 'white';
+                };
+                button.style.display = 'flex';
+                button.style.alignItems = 'center';
+                button.style.justifyContent = 'center';
+
+                const icon = document.createElement('img');
+                icon.src = `https://logo.clearbit.com/${company.name.toLowerCase().replace(/\s/g, '')}.com`;
+                icon.style.height = '12px';
+                icon.style.width = '12px';
+                icon.style.marginRight = '5px';
+                button.appendChild(icon);
+
+                button.style.color = '#fff';
+                button.style.minWidth = '100px';
+                button.style.height = '25px';
+                button.style.padding = '1px';
+                button.style.backgroundColor = '#373737';
+                button.style.borderRadius = '10px';
+                button.style.fontSize = '10px';
+
+                const companyName = document.createTextNode(`${company.name}`);
+                button.appendChild(companyName);
+
+                const score = document.createElement('span');
+                score.textContent = ` ${company.score}`;
+                score.style.fontSize = '12px';
+                score.style.fontWeight = 'bold';
+                score.style.fontFamily = 'monospace';
+                score.style.marginLeft = '5px';
+                button.appendChild(score);
+                companyTagContainer.appendChild(button);
+            });
+        }
+    });
+    if (description) description.insertBefore(companyTagContainer, description.firstChild);
+    return companyTagContainer;
+}
+
 chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'updateDescription') {
         showExamples();
+        showCompanyTags(request.title.split('-')[0].trim());
         showDifficulty();
         showRating(request.title.split('-')[0].trim());
     }

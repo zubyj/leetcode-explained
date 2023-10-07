@@ -1,5 +1,6 @@
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 const SOLUTIONS_TAB_INDEX = 0;
+ 
 
 function createStyledElement(tagName: string, styles: { [key: string]: string }) {
     const element = document.createElement(tagName);
@@ -327,11 +328,12 @@ chrome.runtime.onMessage.addListener((request) => {
     // get discussion tab so we can insert the content before it
 
     if (request.action === 'updateSolutions') {
-    const searchBar = document.querySelectorAll('div.flex.items-center.justify-between')[1].parentElement;
+
+        chrome.storage.local.get(['leetcodeProblems'], (result) => {
+        const searchBar = document.querySelectorAll('input.block')[0].parentElement?.parentElement?.parentElement;
         console.log('update solutions requested');
 
         const title = request.title.split('-')[0].trim();
-        chrome.storage.local.get(['leetcodeProblems'], (result) => {
             const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
 
             // Check if the nav container already exists before adding
@@ -367,8 +369,8 @@ chrome.runtime.onMessage.addListener((request) => {
                 languageButtonsContainer.style.display = 'none';
                 if (searchBar) searchBar.insertBefore(languageButtonsContainer, searchBar.children[1]);  // Or choose a different position
             }
+            hideContent();
         });
     }
 });
-
 

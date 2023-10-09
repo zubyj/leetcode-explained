@@ -131,8 +131,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
     if (!description) {
         return;
     }
-    description.insertBefore(companyTagContainer, description.firstChild);
-
+    
     interface problem {
         title: string;
         companies: Array<{

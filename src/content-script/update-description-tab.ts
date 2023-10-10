@@ -136,7 +136,6 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
         title: string;
         companies: Array<{
             name: string;
-            score: number;
         }>;
     }
 
@@ -145,7 +144,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
         if (problem.companies && problem.companies.length > 0) {
             const topCompanies = problem.companies.slice(0, 5);
             // create a button for each company
-            topCompanies.forEach((company: { name: string; score: number; }) => {
+            topCompanies.forEach((company: { name: string; }) => {
                 const button = document.createElement('button');
                 // opens the company page when the button is clicked
                 button.onclick = () => {
@@ -180,14 +179,6 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
 
                 const companyName = document.createTextNode(`${company.name}`);
                 button.appendChild(companyName);
-
-                const score = document.createElement('span');
-                score.textContent = ` ${company.score}`;
-                score.style.fontSize = '12px';
-                score.style.fontWeight = 'bold';
-                score.style.fontFamily = 'monospace';
-                score.style.marginLeft = '5px';
-                button.appendChild(score);
                 companyTagContainer.appendChild(button);
             });
         }

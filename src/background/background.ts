@@ -1,9 +1,9 @@
 import { getChatGPTAccessToken } from './chatgpt/chatgpt.js';
 
-// Load JSON & default settings on install
+// Load problem data & default settings on install
 chrome.runtime.onInstalled.addListener(() => {
     // Load JSON file into storage
-    const leetcodeProblems = chrome.runtime.getURL('src/assets/data/leetcode_solutions.json');
+    const leetcodeProblems = chrome.runtime.getURL('src/assets/data/problem_data.json');
     fetch(leetcodeProblems)
         .then((response) => response.json())
         .then((data) => {
@@ -29,7 +29,7 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.local.set({ showExamples: true });
     chrome.storage.local.set({ showDifficulty: true });
     chrome.storage.local.set({ showRating: true });
-    chrome.storage.local.set({showCompanyTags: true });
+    chrome.storage.local.set({ showCompanyTags: true });
 });
 
 chrome.runtime.onMessage.addListener((request) => {
@@ -39,12 +39,10 @@ chrome.runtime.onMessage.addListener((request) => {
             url: chrome.runtime.getURL('src/problems-by-company/company.html'),
             active: true,
         }, function (tab) {
-            // Keep a reference to the listener so it can be removed later
+            // Remove the listener once the tab is loaded
             const listener = function (tabId: number, changedProps: any) {
-                // When the tab is done loading
                 if (tabId == tab.id && changedProps.status == 'complete') {
                     chrome.tabs.sendMessage(tabId, request);
-                    // Remove the listener once the tab is loaded
                     chrome.tabs.onUpdated.removeListener(listener);
                 }
             };

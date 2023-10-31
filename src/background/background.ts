@@ -2,7 +2,7 @@ import { getChatGPTAccessToken } from './chatgpt/chatgpt.js';
 
 // Load problem data & default settings on install
 chrome.runtime.onInstalled.addListener(() => {
-    // Load JSON file into storage
+    // Load JSON file of problem data into storage
     const leetcodeProblems = chrome.runtime.getURL('src/assets/data/problem_data.json');
     fetch(leetcodeProblems)
         .then((response) => response.json())
@@ -13,7 +13,7 @@ chrome.runtime.onInstalled.addListener(() => {
             console.error(error);
         });
 
-    // Load company-freq JSON file into storage
+    // Load problems by company JSON file into storage
     const companyProblems = chrome.runtime.getURL('src/assets/data/problems_by_company.json');
     fetch(companyProblems)
         .then((response) => response.json())
@@ -24,7 +24,7 @@ chrome.runtime.onInstalled.addListener(() => {
             console.error(error);
         });
 
-    // Default settings
+    // Load default settings
     chrome.storage.local.set({ fontSize: 14 });
     chrome.storage.local.set({ showExamples: true });
     chrome.storage.local.set({ showDifficulty: true });
@@ -92,6 +92,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     // If problem tab is opened or updated, update the current problem title
     urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
     if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
+        console.log('problem tab opened');
         setTimeout(() => {
             chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title || 'title' });
         }, 1000);

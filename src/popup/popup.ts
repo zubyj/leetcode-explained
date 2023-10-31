@@ -47,7 +47,9 @@ const fixCodeContainer = elements['fixCodeContainer'];
 function disableAllButtons(disabled: boolean): void {
     const buttons = document.querySelectorAll('button');
     buttons.forEach((button) => {
-        button.disabled = disabled;
+        if (button.id !== 'open-settings-btn') {
+            button.disabled = disabled;
+        }
     });
 }
 

@@ -1,6 +1,5 @@
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 const SOLUTIONS_TAB_INDEX = 0;
- 
 
 function createStyledElement(tagName: string, styles: { [key: string]: string }) {
     const element = document.createElement(tagName);
@@ -326,19 +325,17 @@ function addCopyIconToElement(element: HTMLElement) {
 
 chrome.runtime.onMessage.addListener((request) => {
     // get discussion tab so we can insert the content before it
-
     if (request.action === 'updateSolutions') {
-
         chrome.storage.local.get(['leetcodeProblems'], (result) => {
-        const searchBar = document.querySelectorAll('input.block')[0].parentElement?.parentElement?.parentElement;
-        console.log('update solutions requested');
+            const searchBar = document.querySelectorAll('input.block')[0].parentElement?.parentElement?.parentElement;
+            console.log('update solutions requested');
 
-        const title = request.title.split('-')[0].trim();
+            const title = request.title.split('-')[0].trim();
             const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
 
             // Check if the nav container already exists before adding
             if (!document.querySelector('.nav-container')) {
-                let navContainer = createNavContainer(); 
+                let navContainer = createNavContainer();
                 searchBar?.insertBefore(navContainer, searchBar.firstChild)
             }
 
@@ -363,12 +360,12 @@ chrome.runtime.onMessage.addListener((request) => {
             }
 
             // Check if the language buttons container already exists before adding
-            if (!document.querySelector('.language-buttons-container')) {
-                let languageButtonsContainer = createLanguageButtons(problem);
-                languageButtonsContainer.classList.add('language-buttons-container');
-                languageButtonsContainer.style.display = 'none';
-                if (searchBar) searchBar.insertBefore(languageButtonsContainer, searchBar.children[1]);  // Or choose a different position
-            }
+            // if (!document.querySelector('.language-buttons-container')) {
+            let languageButtonsContainer = createLanguageButtons(problem);
+            languageButtonsContainer.classList.add('language-buttons-container');
+            languageButtonsContainer.style.display = 'none';
+            if (searchBar) searchBar.insertBefore(languageButtonsContainer, searchBar.children[1]);  // Or choose a different position
+            // }
             hideContent();
         });
     }

@@ -67,34 +67,51 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
-// If the user is on a Leetcode problem page, show the solution video
+// When the chrome tab is created, I want you to update the current problem title in storage
+chrome.tabs.onCreated.addListener((tab) => {
+    if (tab.url) {
+        let problemUrl = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
+        if (tab.url.match(problemUrl)) {
+            chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title });
+        }
+    }
+});
+
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    // If descriptions tab is opened or updated, update the description
-    let urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?/;
-    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
-        setTimeout(() => {
-            chrome.tabs.get(tabId, (updatedTab) => {
-                chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: updatedTab.title || 'title' });
-            });
-        }, 1000);
-    }
+    if (changeInfo.status === 'complete' && tab.url) {
+        let problemUrl = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
+        if (tab.url.match(problemUrl)) {
+            chrome.storage.local.get(['currentLeetCodeProblemTitle', 'descriptionTabUpdated', 'solutionsTabUpdated'], (result) => {
+                let lastTitle = result.currentLeetCodeProblemTitle || '';
+                console.log('lastTitle: ' + lastTitle, 'tab.title: ' + tab.title);
+                let descriptionTabUpdated = result.descriptionTabUpdated || false;
+                let solutionsTabUpdated = result.solutionsTabUpdated || false;
+                if (tab.title !== lastTitle) {
+                    console.log('Title changed from ' + lastTitle + ' to ' + tab.title);
+                    chrome.storage.local.set({
+                        'currentLeetCodeProblemTitle': tab.title,
+                        'descriptionTabUpdated': false,
+                        'solutionsTabUpdated': false
+                    });
+                    // If the title has changed, we reset both flags
+                    descriptionTabUpdated = false;
+                    solutionsTabUpdated = false;
+                }
 
-    // If solutions tab is opened or updated, add the video
-    urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/;
-    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
-        setTimeout(() => {
-            chrome.tabs.get(tabId, (updatedTab) => {
-                chrome.tabs.sendMessage(tabId, { action: 'updateSolutions', title: updatedTab.title || 'title' });
-            });
-        }, 1000);
-    }
+                let descriptionUrl = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?/;
+                if (!descriptionTabUpdated && tab.url.match(descriptionUrl)) {
+                    chrome.storage.local.set({ 'descriptionTabUpdated': true });
+                    // No need for a timeout if the tab is already loaded completely.
+                    chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: tab.title || 'title' });
+                }
 
-    // If problem tab is opened or updated, update the current problem title
-    urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
-    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
-        console.log('problem tab opened');
-        setTimeout(() => {
-            chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title || 'title' });
-        }, 1000);
+                let solutionsUrl = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/;
+                if (tab.url.match(solutionsUrl)) {
+                    chrome.storage.local.set({ 'solutionsTabUpdated': true });
+                    // No need for a timeout if the tab is already loaded completely.
+                    chrome.tabs.sendMessage(tabId, { action: 'updateSolutions', title: tab.title || 'title' });
+                }
+            });
+        }
     }
 });

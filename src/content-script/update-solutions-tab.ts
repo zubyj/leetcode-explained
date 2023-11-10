@@ -22,18 +22,16 @@ function createStyledButton(text: string, isActive: boolean = false): HTMLButton
     button.style.margin = '0px 20px';
     button.style.borderRadius = '5px';
     button.style.fontSize = '12px';
-    // on button hover, change background color
+    // on hover, change background color
     button.addEventListener('mouseover', () => {
         button.style.color = 'lightgreen';
     });
     button.addEventListener('mouseout', () => {
         button.style.backgroundColor = '#222';
         button.style.color = 'white';
-        // });
     });
     return button;
 }
-
 
 function createVideoContainer(problem: any) {
     const container = createStyledElement('div', {
@@ -308,9 +306,9 @@ function addCopyIconToElement(element: HTMLElement) {
     icon.addEventListener('mouseover', () => {
         icon.style.borderColor = 'lightgreen';
     });
-    // icon.addEventListener('mouseout', () => {
-    //     icon.style.borderColor = 'grey';
-    // });
+    icon.addEventListener('mouseout', () => {
+        icon.style.borderColor = 'grey';
+    });
 
     // On click event if you want to copy something when the icon is clicked
     icon.addEventListener('click', () => {

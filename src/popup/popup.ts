@@ -45,12 +45,15 @@ const fixCodeContainer = elements['fixCodeContainer'];
 
 /* Helper functions */
 function disableAllButtons(disabled: boolean): void {
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach((button) => {
-        if (button.id !== 'open-settings-btn') {
-            button.disabled = disabled;
-        }
-    });
+    // let fixCodeButton = elements['fixCodeBtn'];
+    // let getComplexityButton = elements['getComplexityBtn'];
+
+    // // Use the arguments to determine if a specific button should be disabled
+    // fixCodeButton && (fixCodeButton.disabled = disabled);
+    // getComplexityButton && (getComplexityButton.disabled = disabled);
+
+    // If you have other buttons you want to disable, add them here
+    // If not, you can remove the rest of the code or comment it out
 }
 
 function clearResponse(): void {
@@ -260,6 +263,10 @@ async function main(): Promise<void> {
         }
     });
 
+    elements['openSettingsBtn'] && (elements['openSettingsBtn'].onclick = () => {
+        window.location.href = 'settings.html';
+    });
+
     try {
         const accessToken = await getChatGPTAccessToken();
         if (accessToken) {
@@ -274,9 +281,6 @@ async function main(): Promise<void> {
         else {
             displayLoginMessage();
         }
-        elements['openSettingsBtn'] && (elements['openSettingsBtn'].onclick = () => {
-            window.location.href = 'settings.html';
-        });
     }
     catch (error) {
         handleError(error as Error);

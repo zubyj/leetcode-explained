@@ -316,7 +316,7 @@ function handleError(error: Error): void {
 
 function displayLoginMessage(): void {
     elements['loginBtn'] && elements['loginBtn'].classList.remove('hidden');
-    infoMessage && (infoMessage.textContent = 'Log into ChatGPT in your browser to get started');
+    infoMessage && (infoMessage.textContent = 'Log into ChatGPT in your browser to use these features');
 }
 
 function displayErrorMessage(error: string): void {

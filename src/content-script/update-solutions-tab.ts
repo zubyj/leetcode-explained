@@ -291,7 +291,6 @@ function createLanguageButtons(problem: any) {
     return container;
 }
 
-
 function addCopyIconToElement(element: HTMLElement) {
     const icon = document.createElement('img');
     icon.src = chrome.runtime.getURL("src/assets/images/copy-icon.png");
@@ -368,14 +367,13 @@ chrome.runtime.onMessage.addListener((request) => {
             }
 
             // Check if the language buttons container already exists before adding
-            // if (!document.querySelector('.language-buttons-container')) {
-            let languageButtonsContainer = createLanguageButtons(problem);
-            languageButtonsContainer.classList.add('language-buttons-container');
-            languageButtonsContainer.style.display = 'none';
-            if (searchBar) searchBar.insertBefore(languageButtonsContainer, searchBar.children[1]);  // Or choose a different position
-            // }
+            if (!document.querySelector('.language-buttons-container')) {
+                let languageButtonsContainer = createLanguageButtons(problem);
+                languageButtonsContainer.classList.add('language-buttons-container');
+                languageButtonsContainer.style.display = 'none';
+                if (searchBar) searchBar.insertBefore(languageButtonsContainer, searchBar.children[1]);  // Or choose a different position
+            }
             hideContent();
         });
     }
 });
-

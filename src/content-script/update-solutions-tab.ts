@@ -11,10 +11,11 @@ function createStyledElement(tagName: string, styles: { [key: string]: string })
     return element;
 }
 
-function createStyledButton(text: string): HTMLButtonElement {
+function createStyledButton(text: string, isActive: boolean = false): HTMLButtonElement {
     const button = document.createElement('button');
     button.textContent = text;
     button.style.border = '1px solid grey';
+    button.style.borderColor = isActive ? 'lightgreen' : 'grey';
     button.style.backgroundColor = '#222';
     button.style.width = '100px';
     button.style.padding = '3px';
@@ -24,15 +25,15 @@ function createStyledButton(text: string): HTMLButtonElement {
     // on button hover, change background color
     button.addEventListener('mouseover', () => {
         button.style.color = 'lightgreen';
-        button.style.border = '1px solid lightgreen';
     });
     button.addEventListener('mouseout', () => {
         button.style.backgroundColor = '#222';
         button.style.color = 'white';
-        button.style.border = '1px solid grey';
+        // });
     });
     return button;
 }
+
 
 function createVideoContainer(problem: any) {
     const container = createStyledElement('div', {
@@ -160,13 +161,15 @@ function createNavContainer() {
 
     controlsContainer.classList.add('nav-container');
 
-    // Create the buttons using the utility function
-    const discussionButton = createStyledButton('Discussion');
+    const discussionButton = createStyledButton('Discussion', true);
     const videoButton = createStyledButton('Video');
     const codeButton = createStyledButton('Code');
 
     discussionButton.addEventListener('click', () => {
         hideContent();
+        videoButton.style.borderColor = 'grey';
+        discussionButton.style.borderColor = 'lightgreen';
+        codeButton.style.borderColor = 'grey';
     });
 
     videoButton.addEventListener('click', () => {
@@ -174,6 +177,10 @@ function createNavContainer() {
         let videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
         videoContainer.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
         videoContainer.style.display = 'flex';
+
+        videoButton.style.borderColor = 'lightgreen';
+        discussionButton.style.borderColor = 'grey';
+        codeButton.style.borderColor = 'grey';
     });
 
     codeButton.addEventListener('click', () => {
@@ -182,13 +189,16 @@ function createNavContainer() {
         videoContainer.style.paddingBottom = '0%';
         let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
         codeContainer.style.display = 'flex';
-
         let languageButtonsContainer = document.getElementsByClassName('language-buttons-container')[0] as HTMLDivElement;
         languageButtonsContainer.classList.add('language-buttons-container');
         languageButtonsContainer.style.display = 'flex';
+
+        codeButton.style.borderColor = 'lightgreen';
+        discussionButton.style.borderColor = 'grey';
+        videoButton.style.borderColor = 'grey';
     });
 
-    controlsContainer.append(videoButton, codeButton, discussionButton);
+    controlsContainer.append(discussionButton, codeButton, videoButton);
     return controlsContainer;
 }
 
@@ -298,9 +308,9 @@ function addCopyIconToElement(element: HTMLElement) {
     icon.addEventListener('mouseover', () => {
         icon.style.borderColor = 'lightgreen';
     });
-    icon.addEventListener('mouseout', () => {
-        icon.style.borderColor = 'grey';
-    });
+    // icon.addEventListener('mouseout', () => {
+    //     icon.style.borderColor = 'grey';
+    // });
 
     // On click event if you want to copy something when the icon is clicked
     icon.addEventListener('click', () => {

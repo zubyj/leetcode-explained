@@ -45,15 +45,12 @@ const fixCodeContainer = elements['fixCodeContainer'];
 
 /* Helper functions */
 function disableAllButtons(disabled: boolean): void {
-    // let fixCodeButton = elements['fixCodeBtn'];
-    // let getComplexityButton = elements['getComplexityBtn'];
+    let fixCodeButton = elements['fixCodeBtn'];
+    let getComplexityButton = elements['getComplexityBtn'];
 
-    // // Use the arguments to determine if a specific button should be disabled
-    // fixCodeButton && (fixCodeButton.disabled = disabled);
-    // getComplexityButton && (getComplexityButton.disabled = disabled);
-
-    // If you have other buttons you want to disable, add them here
-    // If not, you can remove the rest of the code or comment it out
+    // Use the arguments to determine if a specific button should be disabled
+    fixCodeButton && (fixCodeButton.disabled = disabled);
+    getComplexityButton && (getComplexityButton.disabled = disabled);
 }
 
 function clearResponse(): void {
@@ -320,7 +317,7 @@ function handleError(error: Error): void {
 
 function displayLoginMessage(): void {
     elements['loginBtn'] && elements['loginBtn'].classList.remove('hidden');
-    infoMessage && (infoMessage.textContent = 'Log into ChatGPT in your browser to use these features');
+    infoMessage && (infoMessage.textContent = 'Log onto ChatGPT in your browser to use features above');
 }
 
 function displayErrorMessage(error: string): void {

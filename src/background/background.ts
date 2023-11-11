@@ -67,27 +67,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
-// When the chrome tab is created, I want you to update the current problem title in storage
-chrome.tabs.onCreated.addListener((tab) => {
-    if (tab.url) {
-        let problemUrl = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
-        if (tab.url.match(problemUrl)) {
-            chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title });
-        }
-    }
-});
-
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status === 'complete' && tab.url) {
         let problemUrl = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
         if (tab.url.match(problemUrl)) {
             chrome.storage.local.get(['currentLeetCodeProblemTitle', 'descriptionTabUpdated', 'solutionsTabUpdated'], (result) => {
                 let lastTitle = result.currentLeetCodeProblemTitle || '';
-                console.log('lastTitle: ' + lastTitle, 'tab.title: ' + tab.title);
                 let descriptionTabUpdated = result.descriptionTabUpdated || false;
                 let solutionsTabUpdated = result.solutionsTabUpdated || false;
                 if (tab.title !== lastTitle) {
-                    console.log('Title changed from ' + lastTitle + ' to ' + tab.title);
                     chrome.storage.local.set({
                         'currentLeetCodeProblemTitle': tab.title,
                         'descriptionTabUpdated': false,
@@ -101,7 +89,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                 let descriptionUrl = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?/;
                 if (!descriptionTabUpdated && tab.url.match(descriptionUrl)) {
                     chrome.storage.local.set({ 'descriptionTabUpdated': true });
-                    // No need for a timeout if the tab is already loaded completely.
                     chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: tab.title || 'title' });
                 }
 

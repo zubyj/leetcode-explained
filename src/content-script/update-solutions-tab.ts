@@ -373,7 +373,7 @@ chrome.runtime.onMessage.addListener((request) => {
                 languageButtonsContainer.style.display = 'none';
                 if (searchBar) searchBar.insertBefore(languageButtonsContainer, searchBar.children[1]);  // Or choose a different position
             }
-            hideContent();
+            // hideContent();
         });
     }
 });

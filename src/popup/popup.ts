@@ -289,6 +289,8 @@ function initCopyButton(): void {
     if (!copyButton) return;
     copyButton.onclick = async () => {
         setInfoMessage('Copied Code', 3000);
+        // change icon to check-icon.png
+        copyButton
         if (fixCodeResponse && fixCodeResponse.textContent) {
             await navigator.clipboard.writeText(fixCodeResponse.textContent);
         }

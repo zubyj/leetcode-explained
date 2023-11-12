@@ -21,7 +21,6 @@ function createStyledButton(text: string, isActive: boolean = false): HTMLButton
     button.style.margin = '0px 20px';
     button.style.borderRadius = '5px';
     button.style.fontSize = '12px';
-    // on hover, change background color
     button.addEventListener('mouseover', () => {
         button.style.color = 'lightgreen';
     });
@@ -35,9 +34,9 @@ function createStyledButton(text: string, isActive: boolean = false): HTMLButton
 function createVideoContainer(problem: any) {
     const container = createStyledElement('div', {
         position: 'relative',
-        display: 'flex',
+        display: 'none',
         justifyContent: 'center',
-        paddingBottom: `${VIDEO_ASPECT_RATIO}%`,
+        paddingBottom: `0px`,
         marginBottom: '60px',
         transition: 'padding-bottom 0.3s ease-out',
     });
@@ -144,7 +143,7 @@ function hideContent() {
     videoContainer.style.display = 'none';
 }
 
-function createNavContainer() {
+function createNavContainer(problem: any) {
     const controlsContainer = createStyledElement('div', {
         display: 'flex',
         justifyContent: 'center',
@@ -155,12 +154,12 @@ function createNavContainer() {
         boxSizing: 'border-box',
         color: '#fff',
     });
-
     controlsContainer.classList.add('nav-container');
 
+    // Add discussion button    
     const discussionButton = createStyledButton('Discussion', true);
-    const videoButton = createStyledButton('Video');
     const codeButton = createStyledButton('Code');
+    const videoButton = createStyledButton('Video');
 
     discussionButton.addEventListener('click', () => {
         hideContent();
@@ -168,34 +167,39 @@ function createNavContainer() {
         discussionButton.style.borderColor = 'lightgreen';
         codeButton.style.borderColor = 'grey';
     });
+    controlsContainer.append(discussionButton);
 
-    videoButton.addEventListener('click', () => {
-        hideContent();
-        let videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
-        videoContainer.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
-        videoContainer.style.display = 'flex';
+    if (problem.videos && problem.videos.length > 0) {
+        videoButton.addEventListener('click', () => {
+            hideContent();
+            let videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
+            videoContainer.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
+            videoContainer.style.display = 'flex';
 
-        videoButton.style.borderColor = 'lightgreen';
-        discussionButton.style.borderColor = 'grey';
-        codeButton.style.borderColor = 'grey';
-    });
+            videoButton.style.borderColor = 'lightgreen';
+            discussionButton.style.borderColor = 'grey';
+            codeButton.style.borderColor = 'grey';
+        });
+        controlsContainer.append(videoButton);
+    }
+    if (problem.languages && problem.languages.length > 0) {
+        codeButton.addEventListener('click', () => {
+            hideContent();
+            let videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
+            videoContainer.style.paddingBottom = '0%';
+            let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
+            codeContainer.style.display = 'flex';
+            let languageButtonsContainer = document.getElementsByClassName('language-buttons-container')[0] as HTMLDivElement;
+            languageButtonsContainer.classList.add('language-buttons-container');
+            languageButtonsContainer.style.display = 'flex';
 
-    codeButton.addEventListener('click', () => {
-        hideContent();
-        let videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
-        videoContainer.style.paddingBottom = '0%';
-        let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
-        codeContainer.style.display = 'flex';
-        let languageButtonsContainer = document.getElementsByClassName('language-buttons-container')[0] as HTMLDivElement;
-        languageButtonsContainer.classList.add('language-buttons-container');
-        languageButtonsContainer.style.display = 'flex';
+            codeButton.style.borderColor = 'lightgreen';
+            discussionButton.style.borderColor = 'grey';
+            videoButton.style.borderColor = 'grey';
+        });
+        controlsContainer.append(codeButton);
+    }
 
-        codeButton.style.borderColor = 'lightgreen';
-        discussionButton.style.borderColor = 'grey';
-        videoButton.style.borderColor = 'grey';
-    });
-
-    controlsContainer.append(discussionButton, codeButton, videoButton);
     return controlsContainer;
 }
 
@@ -328,31 +332,28 @@ function addCopyIconToElement(element: HTMLElement) {
     element.insertBefore(icon, element.firstChild);
 }
 
-
 chrome.runtime.onMessage.addListener((request) => {
     // get discussion tab so we can insert the content before it
     if (request.action === 'updateSolutions') {
         chrome.storage.local.get(['leetcodeProblems'], (result) => {
             const searchBar = document.querySelectorAll('input.block')[0].parentElement?.parentElement?.parentElement;
-            console.log('update solutions requested');
-
             const title = request.title.split('-')[0].trim();
             const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
 
             // Check if the nav container already exists before adding
             if (!document.querySelector('.nav-container')) {
-                let navContainer = createNavContainer();
+                let navContainer = createNavContainer(problem);
                 searchBar?.insertBefore(navContainer, searchBar.firstChild)
             }
 
             // Check if the video container already exists before adding
-            if (!document.querySelector('.video-container')) {
+            if (!document.querySelector('.video-container') && problem.videos.length > 0) {
                 let videoContainer = createVideoContainer(problem);
                 if (searchBar) searchBar.insertBefore(videoContainer, searchBar.children[1]);
             }
 
             // Check if the code container already exists before adding
-            if (!document.querySelector('.code-container')) {
+            if (!document.querySelector('.code-container') && problem.languages.length > 0) {
                 let codeContainer = createCodeContainer();
                 if (searchBar) searchBar.insertBefore(codeContainer, searchBar.children[2]);
                 let code = getCodeSolution(problem.title, problem.frontend_id, 'python');

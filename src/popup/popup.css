@@ -128,7 +128,8 @@ a:hover {
 }
 
 .settings-btn {
-    width: 250px;
+    width: 220px;
+    height: 35px;
     display: flex;
     justify-content: start;
 }
@@ -157,11 +158,6 @@ a:hover {
 
 .select {
     text-align: center;
-}
-
-.select:hover {
-    background-color: black;
-    color: #f0f0f0;
 }
 
 #show-examples-icon {

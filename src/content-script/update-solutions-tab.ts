@@ -1,5 +1,4 @@
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
-const SOLUTIONS_TAB_INDEX = 0;
 
 function createStyledElement(tagName: string, styles: { [key: string]: string }) {
     const element = document.createElement(tagName);
@@ -373,7 +372,6 @@ chrome.runtime.onMessage.addListener((request) => {
                 languageButtonsContainer.style.display = 'none';
                 if (searchBar) searchBar.insertBefore(languageButtonsContainer, searchBar.children[1]);  // Or choose a different position
             }
-            // hideContent();
         });
     }
 });

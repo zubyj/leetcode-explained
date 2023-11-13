@@ -44,7 +44,7 @@ a:hover {
 
 .title {
     font-weight: 500;
-    font-size: var(--dynamic-font-size * 2, 28px);
+    font-size: var(--dynamic-font-size * 2, 25px);
     color: lightcyan;
 }
 
@@ -71,8 +71,8 @@ a:hover {
     transition-duration: 0.4s;
     align-items: center;
     margin-bottom: 20px;
-    width: 200px;
-    height: 50px;
+    width: 180px;
+    height: 40px;
     margin: 10px;
 }
 
@@ -110,11 +110,11 @@ a:hover {
     border: 2px solid lightgray;
     border-radius: 10px;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 5px;
 }
 
 .code-btn:hover {
-    border: 2px solid lightgreen;
+    border-color: lightgreen;
 }
 
 #clear-code-btn {
@@ -128,7 +128,8 @@ a:hover {
 }
 
 .settings-btn {
-    width: 250px;
+    width: 220px;
+    height: 35px;
     display: flex;
     justify-content: start;
 }
@@ -136,7 +137,6 @@ a:hover {
 .settings-btn span {
     margin-left: 20px;
     margin-right: 25px;
-
 }
 
 #settings-menu {
@@ -159,13 +159,7 @@ a:hover {
     text-align: center;
 }
 
-.select:hover {
-    background-color: black;
-    color: #f0f0f0;
-}
-
-#show-examples-icon,
-#show-company-tags-icon {
+#show-examples-icon {
     padding-right: 5px;
 }
 

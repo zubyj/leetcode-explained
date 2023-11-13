@@ -49,6 +49,12 @@
                     "name": "Microsoft",
                     "score": 39
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -100,6 +106,12 @@
                     "name": "Bloomberg",
                     "score": 16
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -151,6 +163,12 @@
                     "name": "Apple",
                     "score": 16
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -202,6 +220,12 @@
                     "name": "Apple",
                     "score": 15
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -253,6 +277,12 @@
                     "name": "Facebook",
                     "score": 7
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -296,6 +326,10 @@
                     "name": "Paypal",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "java",
+                "cpp"
             ]
         },
         {
@@ -347,6 +381,12 @@
                     "name": "Facebook",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -449,6 +489,12 @@
                     "name": "Adobe",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -500,6 +546,12 @@
                     "name": "Nvidia",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -551,6 +603,12 @@
                     "name": "Google",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -598,6 +656,12 @@
                     "name": "Capital One",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -649,6 +713,12 @@
                     "name": "Bloomberg",
                     "score": 10
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -700,6 +770,12 @@
                     "name": "Amazon",
                     "score": 9
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -751,6 +827,12 @@
                     "name": "Adobe",
                     "score": 9
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -853,6 +935,12 @@
                     "name": "Apple",
                     "score": 7
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -900,6 +988,12 @@
                     "name": "Adobe",
                     "score": 24
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -951,6 +1045,12 @@
                     "name": "Bloomberg",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1002,6 +1102,12 @@
                     "name": "Bloomberg",
                     "score": 14
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1053,6 +1159,12 @@
                     "name": "Oracle",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1104,6 +1216,12 @@
                     "name": "Adobe",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1155,6 +1273,12 @@
                     "name": "Google",
                     "score": 8
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1206,6 +1330,11 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -1257,6 +1386,12 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1308,6 +1443,12 @@
                     "name": "LinkedIn",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1359,6 +1500,12 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1381,7 +1528,13 @@
                     "channel": "Tech Adora by Nivedita"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
+            ]
         },
         {
             "title": "Divide Two Integers",
@@ -1615,6 +1768,12 @@
                     "name": "Apple",
                     "score": 7
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1645,7 +1804,13 @@
                     "channel": "Nikhil Lohia"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
+            ]
         },
         {
             "title": "Search Insert Position",
@@ -1696,6 +1861,12 @@
                     "name": "Bloomberg",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1747,6 +1918,12 @@
                     "name": "Apple",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1798,6 +1975,9 @@
                     "name": "DoorDash",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -1900,6 +2080,12 @@
                     "name": "Apple",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -1951,6 +2137,12 @@
                     "name": "Oracle",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2002,6 +2194,12 @@
                     "name": "Facebook",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2053,6 +2251,12 @@
                     "name": "Microsoft",
                     "score": 9
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2104,6 +2308,12 @@
                     "name": "Two Sigma",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2206,6 +2416,12 @@
                     "name": "DoorDash",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2257,6 +2473,12 @@
                     "name": "Microsoft",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2296,6 +2518,10 @@
                     "name": "Microsoft",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -2347,6 +2573,12 @@
                     "name": "Apple",
                     "score": 8
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2398,6 +2630,12 @@
                     "name": "JPMorgan",
                     "score": 8
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2449,6 +2687,12 @@
                     "name": "Google",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2500,6 +2744,12 @@
                     "name": "Bloomberg",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2535,6 +2785,11 @@
                     "name": "Zenefits",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "python",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2586,6 +2841,12 @@
                     "name": "Adobe",
                     "score": 12
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2637,6 +2898,12 @@
                     "name": "Google",
                     "score": 8
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2684,6 +2951,12 @@
                     "name": "Flipkart",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2735,6 +3008,12 @@
                     "name": "Salesforce",
                     "score": 19
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2786,6 +3065,12 @@
                     "name": "Robinhood",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2825,6 +3110,12 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -2868,6 +3159,9 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -2907,6 +3201,9 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -2946,6 +3243,11 @@
                     "name": "Bloomberg",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -2997,6 +3299,12 @@
                     "name": "Apple",
                     "score": 7
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3048,6 +3356,11 @@
                     "name": "Google",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -3099,6 +3412,11 @@
                     "name": "Oracle",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -3189,6 +3507,12 @@
                     "name": "Apple",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3240,6 +3564,11 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -3291,6 +3620,9 @@
                     "name": "Facebook",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -3342,6 +3674,12 @@
                     "name": "Adobe",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3393,6 +3731,12 @@
                     "name": "Google",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3440,6 +3784,11 @@
                     "name": "Apple",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript"
             ]
         },
         {
@@ -3491,6 +3840,12 @@
                     "name": "Apple",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3542,6 +3897,12 @@
                     "name": "Bloomberg",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3593,6 +3954,12 @@
                     "name": "Apple",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3644,6 +4011,12 @@
                     "name": "Salesforce",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3695,6 +4068,12 @@
                     "name": "Microsoft",
                     "score": 7
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3742,6 +4121,10 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -3793,6 +4176,12 @@
                     "name": "Microsoft",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3840,6 +4229,12 @@
                     "name": "Microsoft",
                     "score": 16
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3875,6 +4270,11 @@
                     "name": "Adobe",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -3922,6 +4322,9 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -4016,6 +4419,12 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4067,6 +4476,12 @@
                     "name": "Uber",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4145,6 +4560,10 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -4231,6 +4650,12 @@
                     "name": "LinkedIn",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4313,6 +4738,12 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4364,6 +4795,12 @@
                     "name": "Facebook",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4415,6 +4852,12 @@
                     "name": "Apple",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4466,6 +4909,9 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -4513,6 +4959,12 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4583,6 +5035,9 @@
                     "name": "Amazon",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -4634,6 +5089,12 @@
                     "name": "Bloomberg",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4685,6 +5146,12 @@
                     "name": "Adobe",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4787,6 +5254,12 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4838,6 +5311,9 @@
                     "name": "Microsoft",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -4889,6 +5365,12 @@
                     "name": "Bloomberg",
                     "score": 6
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -4940,6 +5422,10 @@
                     "name": "Google",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "cpp"
             ]
         },
         {
@@ -4991,6 +5477,12 @@
                     "name": "Microsoft",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5042,6 +5534,12 @@
                     "name": "Uber",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5077,6 +5575,9 @@
                     "name": "Shopee",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -5112,6 +5613,9 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -5163,6 +5667,11 @@
                     "name": "Oracle",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript"
             ]
         },
         {
@@ -5261,6 +5770,12 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5300,6 +5815,9 @@
                     "name": "Bloomberg",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -5351,6 +5869,11 @@
                     "name": "Walmart Global Tech",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript"
             ]
         },
         {
@@ -5492,6 +6015,12 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5522,7 +6051,11 @@
                     "channel": "Algorithms Made Easy"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript",
+                "cpp"
+            ]
         },
         {
             "title": "Populating Next Right Pointers in Each Node II",
@@ -5552,7 +6085,10 @@
                     "channel": "Shruti Mehrotra - Cracking Interviews"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Pascal's Triangle",
@@ -5603,6 +6139,12 @@
                     "name": "Snapchat",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5642,6 +6184,10 @@
                     "name": "Goldman Sachs",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -5677,6 +6223,11 @@
                     "name": "Microsoft",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -5728,6 +6279,12 @@
                     "name": "Google",
                     "score": 12
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5779,6 +6336,12 @@
                     "name": "Bloomberg",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5873,6 +6436,12 @@
                     "name": "Google",
                     "score": 6
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -5924,6 +6493,12 @@
                     "name": "Adobe",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6022,6 +6597,12 @@
                     "name": "Qualtrics",
                     "score": 6
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6073,6 +6654,12 @@
                     "name": "Spotify",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6116,6 +6703,10 @@
                     "name": "Amazon",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "java",
+                "cpp"
             ]
         },
         {
@@ -6163,6 +6754,12 @@
                     "name": "tiktok",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6214,6 +6811,12 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6300,6 +6903,12 @@
                     "name": "Microsoft",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6351,6 +6960,12 @@
                     "name": "tiktok",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6386,6 +7001,9 @@
                     "name": "Amazon",
                     "score": 8
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -6437,6 +7055,12 @@
                     "name": "Adobe",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6523,6 +7147,12 @@
                     "name": "Google",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6574,6 +7204,12 @@
                     "name": "Microsoft",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6676,6 +7312,12 @@
                     "name": "Visa",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6766,6 +7408,12 @@
                     "name": "Bloomberg",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6805,6 +7453,10 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "cpp"
             ]
         },
         {
@@ -6844,6 +7496,10 @@
                     "name": "TuSimple",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -6895,6 +7551,12 @@
                     "name": "Bloomberg",
                     "score": 19
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -6930,6 +7592,10 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "cpp"
             ]
         },
         {
@@ -6981,6 +7647,11 @@
                     "name": "Apple",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -7032,6 +7703,11 @@
                     "name": "Sprinklr",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7083,6 +7759,12 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7181,6 +7863,12 @@
                     "name": "Infosys",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7232,6 +7920,12 @@
                     "name": "Goldman Sachs",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7318,6 +8012,12 @@
                     "name": "Google",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7520,6 +8220,12 @@
                     "name": "Adobe",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7614,6 +8320,12 @@
                     "name": "Snapchat",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -7812,7 +8524,13 @@
                     "channel": "Prakash Shukla"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
+            ]
         },
         {
             "title": "Excel Sheet Column Title",
@@ -7851,6 +8569,10 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -7902,6 +8624,12 @@
                     "name": "Google",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -8066,6 +8794,10 @@
                     "name": "Salesforce",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "java",
+                "javascript"
             ]
         },
         {
@@ -8264,6 +8996,12 @@
                     "name": "Apple",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -8510,6 +9248,12 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -8612,6 +9356,12 @@
                     "name": "Yahoo",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -8663,6 +9413,12 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -8714,6 +9470,12 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -8937,6 +9699,12 @@
                     "name": "Microsoft",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -8988,6 +9756,12 @@
                     "name": "Oracle",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9039,6 +9813,12 @@
                     "name": "Google",
                     "score": 21
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9125,6 +9905,12 @@
                     "name": "Paypal",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9172,6 +9958,12 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9266,6 +10058,12 @@
                     "name": "Google",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9313,6 +10111,12 @@
                     "name": "Facebook",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9360,6 +10164,12 @@
                     "name": "Google",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9390,7 +10200,13 @@
                     "channel": "Fisher Coder"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
+            ]
         },
         {
             "title": "Minimum Size Subarray Sum",
@@ -9441,6 +10257,12 @@
                     "name": "Goldman Sachs",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9492,6 +10314,12 @@
                     "name": "Facebook",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9522,7 +10350,13 @@
                     "channel": "AlgoJS"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
+            ]
         },
         {
             "title": "Word Search II",
@@ -9573,6 +10407,12 @@
                     "name": "Facebook",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9612,6 +10452,12 @@
                     "name": "Amazon",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9702,6 +10548,12 @@
                     "name": "Google",
                     "score": 8
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9788,6 +10640,12 @@
                     "name": "Microsoft",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9886,6 +10744,12 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -9984,6 +10848,11 @@
                     "name": "IBM",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -10148,6 +11017,12 @@
                     "name": "Amazon",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10199,6 +11074,12 @@
                     "name": "Apple",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10383,6 +11264,12 @@
                     "name": "LinkedIn",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10481,6 +11368,10 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "javascript"
             ]
         },
         {
@@ -10571,6 +11462,12 @@
                     "name": "Bloomberg",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10622,6 +11519,12 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10673,6 +11576,11 @@
                     "name": "Google",
                     "score": 8
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -10763,6 +11671,12 @@
                     "name": "Apple",
                     "score": 10
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10814,6 +11728,12 @@
                     "name": "Uber",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -10959,6 +11879,12 @@
                     "name": "Microsoft",
                     "score": 6
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -11341,6 +12267,12 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -11392,6 +12324,12 @@
                     "name": "Microsoft",
                     "score": 14
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -11711,6 +12649,12 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -11776,6 +12720,12 @@
                     "name": "Facebook",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -11971,6 +12921,12 @@
                     "name": "Apple",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -12018,6 +12974,12 @@
                     "name": "Bloomberg",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -12092,6 +13054,12 @@
                     "name": "LinkedIn",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -12405,6 +13373,9 @@
                     "name": "Apple",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -12452,6 +13423,10 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "java",
+                "cpp"
             ]
         },
         {
@@ -12487,6 +13462,10 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "cpp"
             ]
         },
         {
@@ -12616,6 +13595,12 @@
                     "name": "Yandex",
                     "score": 6
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -12761,6 +13746,12 @@
                     "name": "Amazon",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -12812,6 +13803,12 @@
                     "name": "Apple",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -12949,6 +13946,12 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -13119,7 +14122,13 @@
                     "channel": "Timothy H Chang"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
+            ]
         },
         {
             "title": "Best Meeting Point",
@@ -13205,6 +14214,12 @@
                     "name": "Uber",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -13317,7 +14332,13 @@
                     "channel": "Nick White"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
+            ]
         },
         {
             "title": "Remove Invalid Parentheses",
@@ -13426,6 +14447,12 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -13477,6 +14504,11 @@
                     "name": "Samsung",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -13594,6 +14626,9 @@
                     "name": "Amazon",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -13659,7 +14694,13 @@
                     "channel": "Hua Hua"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
+            ]
         },
         {
             "title": "Minimum Height Trees",
@@ -13796,6 +14837,12 @@
                     "name": "Uber",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -14218,6 +15265,12 @@
                     "name": "Bloomberg",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -14269,6 +15322,12 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -14481,7 +15540,13 @@
                     "channel": "Hua Hua"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
+            ]
         },
         {
             "title": "Patching Array",
@@ -14602,6 +15667,12 @@
                     "name": "Twitter",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -14684,6 +15755,9 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -14817,6 +15891,9 @@
                     "name": "Adobe",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -14864,6 +15941,12 @@
                     "name": "JPMorgan",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -15028,6 +16111,10 @@
                     "name": "Two Sigma",
                     "score": "Wix"
                 }
+            ],
+            "languages": [
+                "java",
+                "cpp"
             ]
         },
         {
@@ -15063,6 +16150,9 @@
                     "name": "Facebook",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -15110,6 +16200,12 @@
                     "name": "tcs",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -15243,6 +16339,12 @@
                     "name": "Oracle",
                     "score": 7
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -15470,6 +16572,9 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -15599,6 +16704,12 @@
                     "name": "Walmart Global Tech",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -16075,6 +17186,12 @@
                     "name": "Google",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -16219,6 +17336,12 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -16344,6 +17467,12 @@
                     "name": "Bloomberg",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -16379,6 +17508,9 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -16461,6 +17593,11 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -16602,6 +17739,12 @@
                     "name": "Microsoft",
                     "score": 12
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -16735,6 +17878,9 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -16881,6 +18027,9 @@
                     "name": "Oracle",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -17092,6 +18241,12 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -17182,6 +18337,10 @@
                     "name": "Facebook",
                     "score": 11
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -17393,6 +18552,9 @@
                     "name": "Snapchat",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -17514,6 +18676,12 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -17834,6 +19002,10 @@
                     "name": "ByteDance",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "javascript"
             ]
         },
         {
@@ -18092,6 +19264,12 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -18139,6 +19317,12 @@
                     "name": "Salesforce",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -18420,6 +19604,12 @@
                     "name": "Adobe",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -18606,6 +19796,12 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -18743,6 +19939,12 @@
                     "name": "Adobe",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -18839,7 +20041,13 @@
                     "channel": "Programming Tutorials"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
+            ]
         },
         {
             "title": "Find All Duplicates in an Array",
@@ -19152,6 +20360,12 @@
                     "name": "Apple",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -19246,6 +20460,11 @@
                     "name": "LinkedIn",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -19504,6 +20723,11 @@
                     "name": "Amazon",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript"
             ]
         },
         {
@@ -19655,6 +20879,9 @@
                     "name": "LinkedIn",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -19768,6 +20995,12 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -20068,6 +21301,9 @@
                     "name": "Microsoft",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -20103,6 +21339,12 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -20138,6 +21380,10 @@
                     "name": "Apple",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "cpp"
             ]
         },
         {
@@ -20873,6 +22119,12 @@
                     "name": "Bloomberg",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -20942,7 +22194,13 @@
                     "channel": "take U forward"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
+            ]
         },
         {
             "title": "Diagonal Traverse",
@@ -21120,6 +22378,9 @@
                     "name": "Uber",
                     "score": 5
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -21363,7 +22624,11 @@
                     "channel": "Eric Programming"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "cpp"
+            ]
         },
         {
             "title": "Count Subarrays With More Ones Than Zeros",
@@ -21488,6 +22753,9 @@
                     "name": "Yahoo",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -21562,6 +22830,9 @@
                     "name": "Facebook",
                     "score": 18
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -21613,6 +22884,9 @@
                     "name": "Bloomberg",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -21678,7 +22952,13 @@
                     "channel": "The Code Mate"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
+            ]
         },
         {
             "title": "Widest Pair of Indices With Equal Range Sum",
@@ -21864,6 +23144,12 @@
                     "name": "Apple",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -22309,6 +23595,12 @@
                     "name": "Bloomberg",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -22414,6 +23706,9 @@
                     "name": "Bloomberg",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -22504,6 +23799,11 @@
                     "name": "Apple",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -22637,6 +23937,12 @@
                     "name": "Microsoft",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -23011,6 +24317,12 @@
                     "name": "Grab",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -23174,6 +24486,12 @@
                     "name": "Oracle",
                     "score": 7
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -23433,6 +24751,12 @@
                     "name": "Amazon",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -23601,6 +24925,12 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -24652,6 +25982,12 @@
                     "name": "Yahoo",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -24687,6 +26023,10 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -25045,6 +26385,12 @@
                     "name": "Uber",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -25178,6 +26524,12 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -25724,6 +27076,10 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "java",
+                "cpp"
             ]
         },
         {
@@ -26083,6 +27439,12 @@
                     "name": "Expedia",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -26487,6 +27849,10 @@
                     "name": "Uber",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "javascript"
             ]
         },
         {
@@ -26639,6 +28005,9 @@
                     "name": "Bloomberg",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -26748,6 +28117,12 @@
                     "name": "Bloomberg",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -26900,6 +28275,11 @@
                     "name": "Yahoo",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript"
             ]
         },
         {
@@ -27052,6 +28432,9 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -27251,6 +28634,12 @@
                     "name": "Yahoo",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -27341,6 +28730,12 @@
                     "name": "Bloomberg",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -27406,6 +28801,12 @@
                     "name": "Uber",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -27480,6 +28881,12 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -27913,6 +29320,12 @@
                     "name": "Qualtrics",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -28037,6 +29450,10 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -28171,6 +29588,9 @@
                     "name": "Goldman Sachs",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -28486,6 +29906,10 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -28610,6 +30034,12 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -28653,6 +30083,9 @@
                     "name": "Apple",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -28766,6 +30199,10 @@
                     "name": "Google",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -28855,6 +30292,12 @@
                     "name": "Lyft",
                     "score": 4
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -28935,6 +30378,12 @@
                     "name": "Uber",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "javascript",
+                "cpp"
             ]
         },
         {
@@ -28962,6 +30411,10 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "cpp"
             ]
         },
         {
@@ -28999,6 +30452,11 @@
                     "name": "Facebook",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -29022,6 +30480,9 @@
                     "name": "Amazon",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -29054,7 +30515,12 @@
             "difficulty_lvl": 3,
             "acceptance": 0.41069,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Min Cost Climbing Stairs",
@@ -29082,6 +30548,9 @@
                     "name": "Bloomberg",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -29142,7 +30611,11 @@
             "difficulty_lvl": 2,
             "acceptance": 0.54295,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java"
+            ]
         },
         {
             "title": "Open the Lock",
@@ -29299,7 +30772,12 @@
             "difficulty_lvl": 3,
             "acceptance": 0.6061,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "N-ary Tree Level Order Traversal",
@@ -29366,6 +30844,11 @@
                     "name": "Amazon",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -29554,6 +31037,11 @@
                     "name": "Uber",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -29564,7 +31052,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.52776,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Max Chunks To Make Sorted",
@@ -29631,6 +31122,9 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -29659,6 +31153,9 @@
                     "name": "Goldman Sachs",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -29669,7 +31166,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.49165,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Search in a Sorted Array of Unknown Size",
@@ -29689,7 +31189,12 @@
             "difficulty_lvl": 3,
             "acceptance": 0.64274,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Minimize Max Distance to Gas Station",
@@ -29874,6 +31379,9 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -29884,7 +31392,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.51413,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Minimum Distance Between BST Nodes",
@@ -29943,7 +31454,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.52503,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Cheapest Flights Within K Stops",
@@ -30431,7 +31945,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.45523,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Ambiguous Coordinates",
@@ -30491,7 +32008,12 @@
             "difficulty_lvl": 2,
             "acceptance": 0.27677,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Short Encoding of Words",
@@ -30589,7 +32111,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.46357,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Most Profit Assigning Work",
@@ -30599,7 +32124,12 @@
             "difficulty_lvl": 2,
             "acceptance": 0.45154,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Making A Large Island",
@@ -30725,7 +32255,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.53869,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python"
+            ]
         },
         {
             "title": "Sum of Distances in Tree",
@@ -30735,7 +32268,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.5913,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Image Overlap",
@@ -30913,7 +32449,12 @@
             "difficulty_lvl": 2,
             "acceptance": 0.40174,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Hand of Straights",
@@ -30928,7 +32469,12 @@
                     "channel": "NeetCode"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Shortest Path Visiting All Nodes",
@@ -30938,7 +32484,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.60694,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Shifting Letters",
@@ -31000,7 +32549,11 @@
             "difficulty_lvl": 2,
             "acceptance": 0.58678,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "cpp"
+            ]
         },
         {
             "title": "Peak Index in a Mountain Array",
@@ -31204,7 +32757,11 @@
             "difficulty_lvl": 3,
             "acceptance": 0.33524,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java"
+            ]
         },
         {
             "title": "Shortest Path to Get All Keys",
@@ -31301,6 +32858,11 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -31336,6 +32898,9 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -31407,6 +32972,9 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -31427,6 +32995,10 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -31447,7 +33019,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.49059,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Random Pick with Weight",
@@ -31477,6 +33052,11 @@
                     "name": "LinkedIn",
                     "score": 8
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -31573,7 +33153,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.50077,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python"
+            ]
         },
         {
             "title": "Projection Area of 3D Shapes",
@@ -31602,6 +33185,9 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -31721,6 +33307,11 @@
                     "name": "Facebook",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -31772,6 +33363,9 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -31954,6 +33548,9 @@
                     "name": "Adobe",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -31969,7 +33566,10 @@
                     "channel": "NeetCode"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Smallest Range II",
@@ -31979,7 +33579,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.35547,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python"
+            ]
         },
         {
             "title": "Online Election",
@@ -32048,7 +33651,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.4848,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Word Subsets",
@@ -32073,6 +33679,11 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -32154,6 +33765,9 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -32358,7 +33972,12 @@
             "difficulty_lvl": 3,
             "acceptance": 0.62665,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Reorder Data in Log Files",
@@ -32411,7 +34030,12 @@
             "difficulty_lvl": 3,
             "acceptance": 0.4335,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Valid Mountain Array",
@@ -32426,6 +34050,9 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -32466,6 +34093,11 @@
                     "name": "Google",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -32499,6 +34131,9 @@
                     "name": "tiktok",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -32529,7 +34164,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.35104,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Reveal Cards In Increasing Order",
@@ -32651,6 +34289,11 @@
                     "name": "SAP",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -32821,7 +34464,11 @@
             "difficulty_lvl": 2,
             "acceptance": 0.50159,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java"
+            ]
         },
         {
             "title": "Equal Rational Numbers",
@@ -33001,7 +34648,10 @@
                     "channel": "NeetCodeIO"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Distribute Coins in Binary Tree",
@@ -33093,7 +34743,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.57803,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Minimum Cost For Tickets",
@@ -33174,6 +34827,10 @@
                     "name": "Uber",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -33346,6 +35003,9 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -33451,6 +35111,11 @@
                     "name": "ByteDance",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -33495,7 +35160,10 @@
                     "channel": "NeetCode"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python"
+            ]
         },
         {
             "title": "Construct Binary Search Tree from Preorder Traversal",
@@ -34085,7 +35753,11 @@
             "difficulty_lvl": 2,
             "acceptance": 0.65623,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java"
+            ]
         },
         {
             "title": "Maximum Difference Between Node and Ancestor",
@@ -34118,7 +35790,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.73456,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Matrix Cells in Distance Order",
@@ -34133,6 +35808,9 @@
                     "name": "Yahoo",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -34491,7 +36169,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.305,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Single-Row Keyboard",
@@ -34566,6 +36247,9 @@
                     "name": "Salesforce",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -34702,6 +36386,10 @@
                     "name": "Salesforce",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "python",
+                "javascript"
             ]
         },
         {
@@ -34769,6 +36457,11 @@
                     "name": "Walmart Global Tech",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -34881,7 +36574,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.61856,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Product Sales Analysis I",
@@ -34911,7 +36607,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.45249,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Occurrences After Bigram",
@@ -34964,6 +36663,9 @@
                     "name": "Google",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -34974,7 +36676,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.6499,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Project Employees II",
@@ -35316,7 +37021,12 @@
             "difficulty_lvl": 2,
             "acceptance": 0.69565,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Smallest Common Region",
@@ -35331,6 +37041,9 @@
                     "name": "Airbnb",
                     "score": 7
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -35570,7 +37283,11 @@
             "difficulty_lvl": 2,
             "acceptance": 0.72703,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "cpp"
+            ]
         },
         {
             "title": "Mean of Array After Removing Some Elements",
@@ -35627,7 +37344,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.60713,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Highest Grade For Each Student",
@@ -35702,7 +37422,12 @@
             "difficulty_lvl": 3,
             "acceptance": 0.56749,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Element Appearing More Than 25% In Sorted Array",
@@ -35905,6 +37630,9 @@
                     "name": "Amazon",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -35940,7 +37668,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.50174,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python"
+            ]
         },
         {
             "title": "Stone Game II",
@@ -36225,6 +37956,11 @@
                     "name": "ZScaler",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -36294,7 +38030,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.58111,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Market Analysis II",
@@ -36378,6 +38117,9 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -36695,7 +38437,12 @@
             "difficulty_lvl": 2,
             "acceptance": 0.23646,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Critical Connections in a Network",
@@ -36769,7 +38516,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.68393,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Minimum Absolute Difference",
@@ -37225,7 +38975,11 @@
             "difficulty_lvl": 3,
             "acceptance": 0.48711,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "cpp"
+            ]
         },
         {
             "title": "Maximum Equal Frequency",
@@ -37402,7 +39156,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.69142,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Maximum Length of a Concatenated String with Unique Characters",
@@ -37681,7 +39438,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.56356,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python"
+            ]
         },
         {
             "title": "Maximum Font to Fit a Sentence in a Screen",
@@ -37844,6 +39604,9 @@
                     "name": "Microsoft",
                     "score": 6
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -37880,6 +39643,9 @@
                     "name": "Apple",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -38456,6 +40222,9 @@
                     "name": "LinkedIn",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -38521,6 +40290,11 @@
                     "name": "HRT",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -38624,7 +40398,12 @@
             "difficulty_lvl": 2,
             "acceptance": 0.57077,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Minimum Difficulty of a Job Schedule",
@@ -38696,7 +40475,11 @@
             "difficulty_lvl": 3,
             "acceptance": 0.62338,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "cpp"
+            ]
         },
         {
             "title": "List the Products Ordered in a Period",
@@ -38706,7 +40489,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.7285,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python"
+            ]
         },
         {
             "title": "The K Weakest Rows in a Matrix",
@@ -38765,7 +40551,11 @@
             "difficulty_lvl": 3,
             "acceptance": 0.62592,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Number of Transactions per Visit",
@@ -38864,6 +40654,10 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -38950,6 +40744,9 @@
                     "name": "Cruise Automation",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -39148,6 +40945,9 @@
                     "name": "Google",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -39274,6 +41074,10 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "cpp"
             ]
         },
         {
@@ -39475,6 +41279,9 @@
                     "name": "Bloomberg",
                     "score": 64
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -39504,6 +41311,11 @@
                     "name": "JPMorgan",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -39595,7 +41407,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.86045,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "String Matching in an Array",
@@ -40057,6 +41872,10 @@
                     "name": "Google",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "java",
+                "javascript"
             ]
         },
         {
@@ -40082,7 +41901,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.69585,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Number of Students Doing Homework at a Given Time",
@@ -40178,6 +42000,9 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -40384,6 +42209,9 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -40454,6 +42282,11 @@
                     "name": "Netsuite",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -40511,6 +42344,10 @@
                     "name": "Microsoft",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -40932,6 +42769,9 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -40992,7 +42832,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.49613,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Water Bottles",
@@ -41084,7 +42927,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.33634,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Minimum Insertions to Balance a Parentheses String",
@@ -41283,7 +43129,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.48304,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Find Users With Valid E-Mails",
@@ -41345,7 +43194,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.42126,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Minimum Cost to Cut a Stick",
@@ -41410,7 +43262,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.59122,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Minimum Number of Days to Eat N Oranges",
@@ -41442,6 +43297,9 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -41491,7 +43349,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.70995,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Most Visited Sector in a Circular Track",
@@ -41553,7 +43414,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.60131,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "The Most Similar Path in a Graph",
@@ -41652,6 +43516,9 @@
                     "name": "Apple",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -41725,7 +43592,11 @@
             "difficulty_lvl": 2,
             "acceptance": 0.63157,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "cpp"
+            ]
         },
         {
             "title": "Remove Max Number of Edges to Keep Graph Fully Traversable",
@@ -41785,6 +43656,9 @@
                     "name": "Bloomberg",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -41824,6 +43698,9 @@
                     "name": "Amazon",
                     "score": 12
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -41999,7 +43876,11 @@
             "difficulty_lvl": 2,
             "acceptance": 0.43621,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "cpp"
+            ]
         },
         {
             "title": "Throne Inheritance",
@@ -42143,7 +44024,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.37352,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Bank Account Summary II",
@@ -42541,6 +44425,9 @@
                     "name": "Pure Storage",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -42590,6 +44477,11 @@
                     "name": "Amazon",
                     "score": 7
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -42716,7 +44608,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.48641,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Lowest Common Ancestor of a Binary Tree II",
@@ -42955,7 +44850,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.72394,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Goal Parser Interpretation",
@@ -43010,6 +44908,9 @@
                     "name": "Google",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -43035,6 +44936,9 @@
                     "name": "Flipkart",
                     "score": 7
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -43273,7 +45177,11 @@
             "difficulty_lvl": 2,
             "acceptance": 0.50061,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java"
+            ]
         },
         {
             "title": "Determine if String Halves Are Alike",
@@ -43387,6 +45295,9 @@
                     "name": "Robinhood",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -43436,6 +45347,10 @@
                     "name": "Duolingo",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -43475,7 +45390,11 @@
             "difficulty_lvl": 2,
             "acceptance": 0.63054,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "cpp"
+            ]
         },
         {
             "title": "Decode XORed Array",
@@ -43548,6 +45467,10 @@
                     "name": "Google",
                     "score": "Directi"
                 }
+            ],
+            "languages": [
+                "python",
+                "cpp"
             ]
         },
         {
@@ -43597,6 +45520,10 @@
                     "name": "Adobe",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "cpp"
             ]
         },
         {
@@ -43622,7 +45549,12 @@
             "difficulty_lvl": 3,
             "acceptance": 0.63518,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Biggest Window Between Visits",
@@ -43655,7 +45587,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.35513,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Find Kth Largest XOR Coordinate Value",
@@ -43816,6 +45751,9 @@
                     "name": "Amazon",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -43939,6 +45877,9 @@
                     "name": "DoorDash",
                     "score": 3
                 }
+            ],
+            "languages": [
+                "python"
             ]
         },
         {
@@ -44080,6 +46021,11 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -44175,6 +46121,11 @@
                     "name": "Twitter",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
             ]
         },
         {
@@ -44213,7 +46164,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.79012,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Check if Binary String Has at Most One Segment of Ones",
@@ -44228,6 +46182,9 @@
                     "name": "Cisco",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -44243,6 +46200,9 @@
                     "name": "Twitter",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -44288,6 +46248,9 @@
                     "name": "Facebook",
                     "score": 2
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -44355,6 +46318,9 @@
                     "name": "JPMorgan",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "cpp"
             ]
         },
         {
@@ -44439,7 +46405,12 @@
             "difficulty_lvl": 2,
             "acceptance": 0.40208,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Maximum Number of Consecutive Values You Can Make",
@@ -44449,7 +46420,12 @@
             "difficulty_lvl": 2,
             "acceptance": 0.56587,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Shortest Path in a Hidden Grid",
@@ -44522,7 +46498,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.32134,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Maximize the Beauty of the Garden",
@@ -44701,6 +46680,9 @@
                     "name": "Microsoft",
                     "score": 45
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -44807,7 +46789,12 @@
             "difficulty_lvl": 1,
             "acceptance": 0.58533,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Minimum Path Cost in a Hidden Grid",
@@ -44871,7 +46858,12 @@
             "difficulty_lvl": 3,
             "acceptance": 0.60834,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Find Interview Candidates",
@@ -44904,7 +46896,10 @@
                     "channel": "NeetCode"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Longest Substring Of All Vowels in Order",
@@ -44924,7 +46919,11 @@
             "difficulty_lvl": 3,
             "acceptance": 0.35882,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "cpp"
+            ]
         },
         {
             "title": "Maximum Number of Accepted Invitations",
@@ -45082,6 +47081,10 @@
                     "name": "Facebook",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "python",
+                "java"
             ]
         },
         {
@@ -45143,7 +47146,12 @@
             "difficulty_lvl": 2,
             "acceptance": 0.53361,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Maximum Subarray Min-Product",
@@ -45158,7 +47166,12 @@
                     "channel": "NeetCode"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Largest Color Value in a Directed Graph",
@@ -45344,7 +47357,12 @@
                     "channel": "NeetCode"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Stone Game VIII",
@@ -45354,7 +47372,12 @@
             "difficulty_lvl": 3,
             "acceptance": 0.52473,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Distinct Numbers in Each Subarray",
@@ -45471,7 +47494,12 @@
             "difficulty_lvl": 3,
             "acceptance": 0.37583,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Orders With Maximum Quantity Above Average",
@@ -45520,7 +47548,11 @@
                     "channel": "NeetCode"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "cpp"
+            ]
         },
         {
             "title": "Minimum Space Wasted From Packaging",
@@ -45530,7 +47562,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.31398,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Product of Two Run-Length Encoded Arrays",
@@ -45644,7 +47679,10 @@
                     "channel": "NeetCode"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Maximum Number of Removable Characters",
@@ -45885,7 +47923,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.51126,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Build Array from Permutation",
@@ -46460,7 +48501,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.55234,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "All the Pairs With the Maximum Number of Common Followers",
@@ -46657,7 +48701,10 @@
                     "channel": "NeetCode"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Find the Kth Largest Integer in the Array",
@@ -46894,7 +48941,12 @@
                     "channel": "NeetCode"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Smallest Missing Genetic Value in Each Subtree",
@@ -47928,7 +49980,12 @@
             "difficulty_lvl": 1,
             "acceptance": 0.58074,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Delete the Middle Node of a Linked List",
@@ -47948,7 +50005,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.4856,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Paths in Maze That Lead to Same Room",
@@ -48148,7 +50208,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.62554,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Maximum Twin Sum of a Linked List",
@@ -48167,6 +50230,9 @@
                     "name": "Amazon",
                     "score": 23
                 }
+            ],
+            "languages": [
+                "javascript"
             ]
         },
         {
@@ -48309,7 +50375,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.37308,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "K Highest Ranked Items Within a Price Range",
@@ -48912,6 +50981,10 @@
                     "name": "Arista Networks",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "python",
+                "cpp"
             ]
         },
         {
@@ -48972,7 +51045,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.72386,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Replace Non-Coprime Numbers in Array",
@@ -49005,7 +51081,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.3375,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Minimum Operations to Halve Array Sum",
@@ -49020,6 +51099,9 @@
                     "name": "Microsoft",
                     "score": 1
                 }
+            ],
+            "languages": [
+                "java"
             ]
         },
         {
@@ -49073,7 +51155,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.62359,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Count Hills and Valleys in an Array",
@@ -49186,7 +51271,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.50675,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Sum of Scores of Built Strings",
@@ -49216,7 +51304,11 @@
             "difficulty_lvl": 2,
             "acceptance": 0.65956,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java",
+                "javascript"
+            ]
         },
         {
             "title": "Maximum Product After K Increments",
@@ -49435,7 +51527,12 @@
             "difficulty_lvl": 2,
             "acceptance": 0.47146,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": " Check if There Is a Valid Parentheses String Path",
@@ -49850,7 +51947,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.41845,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Naming a Company",
@@ -49865,7 +51965,11 @@
                     "channel": "NeetCodeIO"
                 }
             ],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "python",
+                "java"
+            ]
         },
         {
             "title": "Strong Password Checker II",
@@ -50017,7 +52121,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.72028,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Decode the Message",
@@ -50214,7 +52321,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.73973,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Design a Food Rating System",
@@ -50406,7 +52516,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.75396,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Count Number of Bad Pairs",
@@ -50633,7 +52746,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.60447,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Max Sum of a Pair With Equal Sum of Digits",
@@ -50681,7 +52797,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.33377,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Longest Nice Subarray",
@@ -50739,7 +52858,11 @@
             "difficulty_lvl": 2,
             "acceptance": 0.47003,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java",
+                "cpp"
+            ]
         },
         {
             "title": "Compute the Rank as a Percentage",
@@ -50823,7 +52946,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.87403,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Length of the Longest Alphabetical Continuous Substring",
@@ -50959,7 +53085,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.57025,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Minimize Maximum Value in a Grid",
@@ -51308,7 +53437,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.5927,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Most Popular Video Creator",
@@ -51328,7 +53460,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.37013,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Height of Binary Tree After Subtree Removal Queries",
@@ -51506,7 +53641,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.55942,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Split Message Based on Limit",
@@ -51546,7 +53684,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.70421,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Closest Nodes Queries in a Binary Search Tree",
@@ -51845,7 +53986,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.32386,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Cycle Length Queries in a Tree",
@@ -52032,7 +54176,10 @@
             "difficulty_lvl": 2,
             "acceptance": 0.44467,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "java"
+            ]
         },
         {
             "title": "Time Taken to Cross the Door",
@@ -52387,7 +54534,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.75016,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "javascript"
+            ]
         },
         {
             "title": "Rearrange Array to Maximize Prefix Score",
@@ -52416,7 +54566,10 @@
             "difficulty_lvl": 3,
             "acceptance": 0.38086,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Count the Number of K-Big Indices",
@@ -52739,7 +54892,10 @@
             "difficulty_lvl": 1,
             "acceptance": 0.72931,
             "videos": [],
-            "companies": []
+            "companies": [],
+            "languages": [
+                "cpp"
+            ]
         },
         {
             "title": "Find the String with LCP",

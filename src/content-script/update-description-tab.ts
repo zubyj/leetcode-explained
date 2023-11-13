@@ -1,14 +1,8 @@
-
-/*
-    Adds & hides content from the description tab based on the user's settings
-    This includes hiding the company tags, examples, and difficulty of the problem.
-*/
-
 // shows the examples if the user has enabled it in the settings
 function showExamples() {
     chrome.storage.local.get(['showExamples'], (result) => {
         const showExamples = result.showExamples;
-        let examples = document.getElementsByClassName('xFUwe')[0];
+        const examples = document.querySelectorAll('div.flex.h-full.w-full')[0];
         if (!examples) return;
         let preTags = examples.getElementsByTagName('pre');
         if (preTags) {
@@ -23,14 +17,14 @@ function showExamples() {
 function showDifficulty() {
     chrome.storage.local.get(['showDifficulty'], (result) => {
         const showDifficulty = result.showDifficulty;
-        const difficultyContainer = document.querySelectorAll('div.mt-3.flex')[0];
+        const difficultyContainer = document.querySelectorAll('div.relative.inline-flex')[0];
         if (!difficultyContainer) return;
         if (showDifficulty) {
             // hide the first child of the difficulty container
-            difficultyContainer.children[0].style.display = 'block';
+            difficultyContainer.style.display = 'block';
         }
         else {
-            difficultyContainer.children[0].style.display = 'none';
+            difficultyContainer.style.display = 'none';
         }
     });
 }
@@ -62,13 +56,19 @@ function showRating(problemTitle: string) {
                     ratingElement.id = 'rating';
                     ratingElement.textContent = problem.rating;
                     ratingElement.style.fontSize = '12px';
+                    ratingElement.style.backgroundColor = '#3D3D3C';
+                    ratingElement.style.borderRadius = '10px';
+                    ratingElement.style.width = '50px';
+                    ratingElement.style.textAlign = 'center';
+                    ratingElement.style.paddingTop = '2px';
                     ratingElement.style.color = 'lightcyan';
                 }
 
-                const difficultyContainer = document.querySelectorAll('div.mt-3.flex')[0];
+                const difficultyContainer = document.querySelectorAll('div.relative.inline-flex')[0];
                 if (difficultyContainer) {
                     // insert the rating element after the first child of the difficulty container
-                    difficultyContainer.insertBefore(ratingElement, difficultyContainer.children[0].nextSibling);
+                    let parent = difficultyContainer.parentElement;
+                    parent?.insertBefore(ratingElement, parent.firstChild);
                 }
             });
         }
@@ -81,7 +81,6 @@ function showRating(problemTitle: string) {
         }
     });
 }
-
 
 // show the company tags if the user has enabled it in the settings
 function showCompanyTags(problemTitle: string) {
@@ -105,11 +104,12 @@ function showCompanyTags(problemTitle: string) {
             companyTagContainer.id = 'companyTagContainer';
             companyTagContainer.style.display = 'flex';
             companyTagContainer.style.flexDirection = 'row';
-            companyTagContainer.style.marginTop = '10px';
+            companyTagContainer.style.marginBottom = '20px';
             companyTagContainer.style.gap = '5px';
-            const descriptionBtns = document.querySelectorAll('div.mt-3.flex')[0];
-            if (descriptionBtns) {
-                descriptionBtns.parentElement?.appendChild(companyTagContainer);
+
+            const description = document.getElementsByClassName('elfjS')[0];
+            if (description) {
+                description.insertBefore(companyTagContainer, description.firstChild);
             }
         }
 
@@ -126,17 +126,16 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
     companyTagContainer.style.marginTop = '10px';
     companyTagContainer.style.gap = '5px';
 
-    const descriptionBtns = document.querySelectorAll('div.mt-3.flex')[0];
-    if (!descriptionBtns) {
+    const description = document.getElementsByClassName('elfjS')[0];
+    
+    if (!description) {
         return;
     }
-    descriptionBtns.parentElement?.appendChild(companyTagContainer);
-
+    
     interface problem {
         title: string;
         companies: Array<{
             name: string;
-            score: number;
         }>;
     }
 
@@ -145,7 +144,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
         if (problem.companies && problem.companies.length > 0) {
             const topCompanies = problem.companies.slice(0, 5);
             // create a button for each company
-            topCompanies.forEach((company: { name: string; score: number; }) => {
+            topCompanies.forEach((company: { name: string; }) => {
                 const button = document.createElement('button');
                 // opens the company page when the button is clicked
                 button.onclick = () => {
@@ -180,19 +179,11 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
 
                 const companyName = document.createTextNode(`${company.name}`);
                 button.appendChild(companyName);
-
-                const score = document.createElement('span');
-                score.textContent = ` ${company.score}`;
-                score.style.fontSize = '12px';
-                score.style.fontWeight = 'bold';
-                score.style.fontFamily = 'monospace';
-                score.style.marginLeft = '5px';
-                button.appendChild(score);
                 companyTagContainer.appendChild(button);
             });
         }
     });
-    if (descriptionBtns.parentElement) descriptionBtns.parentElement.appendChild(companyTagContainer);
+    if (description) description.insertBefore(companyTagContainer, description.firstChild);
     return companyTagContainer;
 }
 

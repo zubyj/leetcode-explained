@@ -1,9 +1,9 @@
 import { getChatGPTAccessToken } from './chatgpt/chatgpt.js';
 
-// Load JSON & default settings on install
+// Load problem data & default settings on install
 chrome.runtime.onInstalled.addListener(() => {
-    // Load JSON file into storage
-    const leetcodeProblems = chrome.runtime.getURL('src/assets/data/leetcode_solutions.json');
+    // Load JSON file of problem data into storage
+    const leetcodeProblems = chrome.runtime.getURL('src/assets/data/problem_data.json');
     fetch(leetcodeProblems)
         .then((response) => response.json())
         .then((data) => {
@@ -13,7 +13,7 @@ chrome.runtime.onInstalled.addListener(() => {
             console.error(error);
         });
 
-    // Load company-freq JSON file into storage
+    // Load problems by company JSON file into storage
     const companyProblems = chrome.runtime.getURL('src/assets/data/problems_by_company.json');
     fetch(companyProblems)
         .then((response) => response.json())
@@ -24,40 +24,13 @@ chrome.runtime.onInstalled.addListener(() => {
             console.error(error);
         });
 
-    // Default settings
+    // Load default settings
     chrome.storage.local.set({ fontSize: 14 });
-    chrome.storage.local.set({ showCompanyTags: true });
     chrome.storage.local.set({ showExamples: true });
     chrome.storage.local.set({ showDifficulty: true });
-    chrome.storage.local.set({ clickedCompany: 'Amazon' });
     chrome.storage.local.set({ showRating: true });
+    chrome.storage.local.set({ showCompanyTags: true });
 });
-
-chrome.runtime.onMessage.addListener(
-    function (request, _, sendResponse) {
-        if (request.action == 'openSolutionVideo') {
-            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                let url = tabs[0].url;
-                if (url) {
-                    // Remove /description/ if it exists
-                    url = url.replace(/\/description\//, '/');
-                    // Ensure the URL ends with /
-                    if (!url.endsWith('/')) {
-                        url += '/';
-                    }
-                    // Append solutions/
-                    const newUrl = url + 'solutions/';
-                    if (tabs.length > 0 && tabs[0].id) {
-                        const tabId = tabs[0].id;
-                        const updateProperties = { url: newUrl };
-                        chrome.tabs.update(tabId, updateProperties);
-                    }
-                }
-            });
-            sendResponse({ result: 'Success' });
-        }
-    },
-);
 
 chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'openCompanyPage') {
@@ -66,12 +39,10 @@ chrome.runtime.onMessage.addListener((request) => {
             url: chrome.runtime.getURL('src/problems-by-company/company.html'),
             active: true,
         }, function (tab) {
-            // Keep a reference to the listener so it can be removed later
+            // Remove the listener once the tab is loaded
             const listener = function (tabId: number, changedProps: any) {
-                // When the tab is done loading
                 if (tabId == tab.id && changedProps.status == 'complete') {
                     chrome.tabs.sendMessage(tabId, request);
-                    // Remove the listener once the tab is loaded
                     chrome.tabs.onUpdated.removeListener(listener);
                 }
             };
@@ -96,33 +67,38 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
-// If the user is on a Leetcode problem page, show the solution video or company tags.
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    // If descriptions tab is opened or updated, update the description
-    let urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?/;
-    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
-        setTimeout(() => {
-            chrome.tabs.get(tabId, (updatedTab) => {
-                chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: updatedTab.title || 'title' });
-            });
-        }, 1000);
-    }
+    if (changeInfo.status === 'complete' && tab.url) {
+        let problemUrl = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
+        if (tab.url.match(problemUrl)) {
+            chrome.storage.local.get(['currentLeetCodeProblemTitle', 'descriptionTabUpdated', 'solutionsTabUpdated'], (result) => {
+                let lastTitle = result.currentLeetCodeProblemTitle || '';
+                let descriptionTabUpdated = result.descriptionTabUpdated || false;
+                let solutionsTabUpdated = result.solutionsTabUpdated || false;
+                if (tab.title !== lastTitle) {
+                    chrome.storage.local.set({
+                        'currentLeetCodeProblemTitle': tab.title,
+                        'descriptionTabUpdated': false,
+                        'solutionsTabUpdated': false
+                    });
+                    // If the title has changed, we reset both flags
+                    descriptionTabUpdated = false;
+                    solutionsTabUpdated = false;
+                }
 
-    // If solutions tab is opened or updated, add the video
-    urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/;
-    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
-        setTimeout(() => {
-            chrome.tabs.get(tabId, (updatedTab) => {
-                chrome.tabs.sendMessage(tabId, { action: 'addVideo', title: updatedTab.title || 'title' });
-            });
-        }, 1000);
-    }
+                let descriptionUrl = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?/;
+                if (!descriptionTabUpdated && tab.url.match(descriptionUrl)) {
+                    chrome.storage.local.set({ 'descriptionTabUpdated': true });
+                    chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: tab.title || 'title' });
+                }
 
-    // If problem tab is opened or updated, update the current problem title
-    urlPattern = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
-    if (changeInfo.status === 'complete' && tab.url && tab.url.match(urlPattern)) {
-        setTimeout(() => {
-            chrome.storage.local.set({ 'currentLeetCodeProblemTitle': tab.title || 'title' });
-        }, 1000);
+                let solutionsUrl = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/;
+                if (tab.url.match(solutionsUrl)) {
+                    chrome.storage.local.set({ 'solutionsTabUpdated': true });
+                    // No need for a timeout if the tab is already loaded completely.
+                    chrome.tabs.sendMessage(tabId, { action: 'updateSolutions', title: tab.title || 'title' });
+                }
+            });
+        }
     }
 });

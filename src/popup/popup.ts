@@ -45,10 +45,12 @@ const fixCodeContainer = elements['fixCodeContainer'];
 
 /* Helper functions */
 function disableAllButtons(disabled: boolean): void {
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach((button) => {
-        button.disabled = disabled;
-    });
+    let fixCodeButton = elements['fixCodeBtn'];
+    let getComplexityButton = elements['getComplexityBtn'];
+
+    // Use the arguments to determine if a specific button should be disabled
+    fixCodeButton && (fixCodeButton.disabled = disabled);
+    getComplexityButton && (getComplexityButton.disabled = disabled);
 }
 
 function clearResponse(): void {
@@ -258,6 +260,10 @@ async function main(): Promise<void> {
         }
     });
 
+    elements['openSettingsBtn'] && (elements['openSettingsBtn'].onclick = () => {
+        window.location.href = 'settings.html';
+    });
+
     try {
         const accessToken = await getChatGPTAccessToken();
         if (accessToken) {
@@ -272,9 +278,6 @@ async function main(): Promise<void> {
         else {
             displayLoginMessage();
         }
-        elements['openSettingsBtn'] && (elements['openSettingsBtn'].onclick = () => {
-            window.location.href = 'settings.html';
-        });
     }
     catch (error) {
         handleError(error as Error);
@@ -286,6 +289,8 @@ function initCopyButton(): void {
     if (!copyButton) return;
     copyButton.onclick = async () => {
         setInfoMessage('Copied Code', 3000);
+        // change icon to check-icon.png
+        copyButton
         if (fixCodeResponse && fixCodeResponse.textContent) {
             await navigator.clipboard.writeText(fixCodeResponse.textContent);
         }
@@ -314,7 +319,7 @@ function handleError(error: Error): void {
 
 function displayLoginMessage(): void {
     elements['loginBtn'] && elements['loginBtn'].classList.remove('hidden');
-    infoMessage && (infoMessage.textContent = 'Log into ChatGPT in your browser to get started');
+    infoMessage && (infoMessage.textContent = 'Log onto ChatGPT in your browser to use features above');
 }
 
 function displayErrorMessage(error: string): void {

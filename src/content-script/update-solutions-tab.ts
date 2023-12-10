@@ -1,5 +1,7 @@
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 
+
+// Utility function to create an HTML element with the given tag name and styles
 function createStyledElement(tagName: string, styles: { [key: string]: string }) {
     const element = document.createElement(tagName);
     for (const [key, value] of Object.entries(styles)) {
@@ -10,6 +12,7 @@ function createStyledElement(tagName: string, styles: { [key: string]: string })
     return element;
 }
 
+// Utility function to create a styled button
 function createStyledButton(text: string, isActive: boolean = false): HTMLButtonElement {
     const button = document.createElement('button');
     button.textContent = text;
@@ -31,6 +34,7 @@ function createStyledButton(text: string, isActive: boolean = false): HTMLButton
     return button;
 }
 
+// Function to create the video container
 function createVideoContainer(problem: any) {
     const container = createStyledElement('div', {
         position: 'relative',
@@ -125,7 +129,9 @@ function createCodeContainer() {
     codeElement.style.fontSize = '12px';
     codeElement.style.marginLeft = '2.5%';
     codeElement.style.padding = '10px';
-    codeElement.style.height = '100%';
+    codeElement.style.maxHeight = '400px';  // Set a fixed height
+    codeElement.style.overflowY = 'auto'; // Enable vertical scrolling
+    // codeElement.style.height = '100%';
     return codeElement;
 }
 

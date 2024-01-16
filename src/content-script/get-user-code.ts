@@ -1,36 +1,33 @@
 /** 
  * 
- * 1. Read the code from the code editor
- * 2. Read the test cases & examples from the problem page
- * 3. Send the code & test cases to the background script
+ * Reads the user's code and examples from leetcode.com
  * 
  *  */
 
-// Read the users code and examples from the Leetcode problem page
 function getCode() {
-    let textArray = []
+    let collectedData = []
 
-    // Add the test cases & examples
-    const examples = document.querySelectorAll('div.flex.h-full.w-full')[0];
-
+    // Gets the problem description, examples, and constraints
+    const examples = document.getElementsByClassName('elfjS')[0];
     if (examples && examples.children) {
-        textArray.push('\nHeres the description, examples, and constraints for the problem\n');
+        collectedData.push('\nHeres the description, examples, and constraints for the problem\n');
         for (const child of examples.children) {
             let text = child.textContent;
-            if (text) textArray.push(text);
+            if (text) collectedData.push(text);
         }
     }
 
     // Get the function definition and users code from the code editor
     const codeEditor = document.getElementsByClassName('view-line');
     if (codeEditor) {
-        textArray.push("heres the function definition and the users code which might be not present or might be incorrect.\n");
+        collectedData.push("heres the function definition and the users code which might be not present or might be incorrect.\n");
         for (const viewLine of codeEditor) {
             let text = viewLine.textContent;
-            if (text) textArray.push(text);
+            if (text) collectedData.push(text);
         }
     }
-    return textArray;
+
+    return collectedData;
 }
 
 // On get user code request, read & send the code as a response

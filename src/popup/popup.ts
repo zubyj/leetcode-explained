@@ -22,6 +22,7 @@ const selectors: { [key: string]: string } = {
     clearCodeBtn: 'clear-code-btn',
     openSettingsBtn: 'open-settings-btn',
     loginBtn: 'login-btn',
+
 };
 
 /* Chrome storage keys */
@@ -90,7 +91,7 @@ async function getCodeFromActiveTab(): Promise<string | null> {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             chrome.tabs.sendMessage(
                 tabs[0].id as number,
-                { type: 'getCode' },
+                { type: 'getProblem' },
                 (response) => {
                     if (chrome.runtime.lastError) {
                         resolve(null);
@@ -298,7 +299,6 @@ function initCopyButton(): void {
     copyButton.classList.remove('hidden');
 }
 
-// init clear code button
 function initClearButton(): void {
     const clearButton = elements['clearCodeBtn'];
     clearButton && (clearButton.onclick = async () => {

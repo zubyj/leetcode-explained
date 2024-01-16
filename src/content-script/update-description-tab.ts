@@ -113,7 +113,6 @@ function showCompanyTags(problemTitle: string) {
             }
         }
 
-        // Load new tags
         loadCompanyTags(problemTitle, companyTagContainer);
     });
 }
@@ -127,11 +126,11 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
     companyTagContainer.style.gap = '5px';
 
     const description = document.getElementsByClassName('elfjS')[0];
-    
+
     if (!description) {
         return;
     }
-    
+
     interface problem {
         title: string;
         companies: Array<{

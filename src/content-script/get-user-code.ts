@@ -4,7 +4,7 @@
  * 
  *  */
 
-function getCode() {
+function getProblem() {
     let collectedData = []
 
     // Gets the problem description, examples, and constraints
@@ -32,8 +32,8 @@ function getCode() {
 
 // On get user code request, read & send the code as a response
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.type === 'getCode') {
-        sendResponse({ data: getCode() });
+    if (request.type === 'getProblem') {
+        sendResponse({ data: getProblem() });
     }
     if (request.type === 'getCodeComplexity') {
         sendResponse({ data: getCodeComplexity() })

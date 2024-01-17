@@ -1,6 +1,5 @@
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 
-
 // Utility function to create an HTML element with the given tag name and styles
 function createStyledElement(tagName: string, styles: { [key: string]: string }) {
     const element = document.createElement(tagName);
@@ -216,8 +215,17 @@ function titleToGitHubFormat(title: string, frontend_id: number): string {
     return `${idStr}-${formattedTitle}`;
 }
 
-// Function to fetch the code from GitHub and insert it into the solutions tab
+// Fetches the solution code from Neetcode's github repo
 async function getCodeSolution(title: string, frontend_id: number, language: string,) {
+
+    // Create a new Date object to get the current time
+    var currentTime = new Date();
+
+    // Format the current time as a string
+    var currentTimeStr = currentTime.toLocaleString();
+
+    // Print the string with the current time
+    console.log(`console.log('getting the code solution at ${currentTimeStr}');`);
 
     // map the language names to their extensions
     const languageMap = {
@@ -362,14 +370,14 @@ chrome.runtime.onMessage.addListener((request) => {
             if (!document.querySelector('.code-container') && problem.languages.length > 0) {
                 let codeContainer = createCodeContainer();
                 if (searchBar) searchBar.insertBefore(codeContainer, searchBar.children[2]);
-                let code = getCodeSolution(problem.title, problem.frontend_id, 'python');
-                code.then((code) => {
-                    let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
-                    if (codeContainer) {
-                        codeContainer.textContent = code;
-                        addCopyIconToElement(codeContainer);
-                    }
-                });
+                // let code = getCodeSolution(problem.title, problem.frontend_id, 'python');
+                // code.then((code) => {
+                //     let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
+                //     if (codeContainer) {
+                //         codeContainer.textContent = code;
+                //         addCopyIconToElement(codeContainer);
+                //     }
+                // });
             }
 
             // Check if the language buttons container already exists before adding

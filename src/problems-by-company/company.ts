@@ -1,7 +1,5 @@
-// Create a new variable to store all solutions
-const allSolutions = [] as { id: number, title: string, url: string }[];
-const solutions = [] as { id: number, title: string, url: string }[];
-
+const allSolutions = [] as { id: number, rank: number, title: string, difficulty: string, url: string, acceptance: string }[];
+const solutions = [] as { id: number, rank: number, title: string, difficulty: string, url: string, acceptance: string }[];
 let companyName = 'Amazon';
 const companies = [
     'Amazon', 'Apple', 'Facebook', 'Google', 'Microsoft', 'Netflix'
@@ -18,6 +16,7 @@ async function main() {
 
     document.getElementById('#')?.addEventListener('click', () => sortBy('#'));
     document.getElementById('Difficulty')?.addEventListener('click', () => sortBy('Difficulty'));
+    document.getElementById('Rank')?.addEventListener('click', () => sortBy('Rank'));
     document.getElementById('Title')?.addEventListener('click', () => sortBy('Title'));
     document.getElementById('Acceptance')?.addEventListener('click', () => sortBy('Acceptance'));
 
@@ -94,6 +93,7 @@ function addCompanyProblems(sortMethod: string) {
                 // Populate allSolutions instead of solutions
                 allSolutions.push({
                     id: problem.id,
+                    rank: problem.rank,
                     title: problem.title,
                     url: `https://leetcode.com/problems/${problem.title.replace(/\s/g, '-')}/`,
                     difficulty: correspondingLeetcodeProblem?.difficulty_lvl, // Use the defined variable
@@ -121,15 +121,16 @@ function rebuildTable() {
 
     solutions.forEach((solution) => {
         const row = table.insertRow(-1);
+
+        // Add problem id
         row.insertCell(0).innerText = solution.id.toString();
 
-        // Get the difficulty level
+        // Add problem difficulty
         const difficulty = solution.difficulty;
         const difficultyCell = row.insertCell(1);
         let difficultyText = '';
         let color = '';
 
-        // Define the difficulty text and background color
         if (difficulty === 1) {
             difficultyText = 'Easy';
             color = 'lightgreen';
@@ -147,12 +148,17 @@ function rebuildTable() {
         difficultyCell.style.fontSize = '12px';
         difficultyCell.style.borderRadius = '5px'; // Apply border radius
 
+        // Add problem title
         row.insertCell(2).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
 
         // Add acceptance rating
         const acceptanceCell = row.insertCell(3);
         acceptanceCell.innerText = (solution.acceptance ? (solution.acceptance * 100).toFixed(2) + '%' : 'N/A'); // New column for acceptance
         acceptanceCell.style.fontSize = '12px';
+
+        // Add problem rank
+        const rankCell = row.insertCell(4);
+        rankCell.innerText = solution.rank.toString();
     });
 }
 
@@ -213,6 +219,7 @@ const sortOrders = {
     'Difficulty': false,
     'Title': false,
     'Acceptance': false,
+    'Rank': false,
 };
 
 function sortBy(column: string) {
@@ -233,6 +240,9 @@ function sortBy(column: string) {
         case 'Difficulty':
             solutions.sort((a, b) => (sortOrders[column] ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)));
             solutions.sort((a, b) => (sortOrders[column] ? a.difficulty - b.difficulty : b.difficulty - a.difficulty));
+            break;
+        case 'Rank':
+            solutions.sort((a, b) => (sortOrders[column] ? a.rank - b.rank : b.rank - a.rank));
             break;
         case 'Title':
             solutions.sort((a, b) => (sortOrders[column] ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)));

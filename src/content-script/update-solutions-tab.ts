@@ -217,16 +217,6 @@ function titleToGitHubFormat(title: string, frontend_id: number): string {
 
 // Fetches the solution code from Neetcode's github repo
 async function getCodeSolution(title: string, frontend_id: number, language: string,) {
-
-    // Create a new Date object to get the current time
-    var currentTime = new Date();
-
-    // Format the current time as a string
-    var currentTimeStr = currentTime.toLocaleString();
-
-    // Print the string with the current time
-    console.log(`console.log('getting the code solution at ${currentTimeStr}');`);
-
     // map the language names to their extensions
     const languageMap = {
         'python': 'py',

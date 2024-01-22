@@ -128,6 +128,7 @@ function processCode(
 
     let prompt = '';
     if (action === 'analyze') {
+        // Prompt for getting code complexity
         prompt = `
         As an experienced software engineer, please analyze the code complexity of the Leetcode
         problem titled ${problemTitle} and the accompanying code below. The output (return value) of 
@@ -140,7 +141,7 @@ function processCode(
     }
     else if (action === 'fix') {
 
-        // The prompt for fixing the users code 
+        // Prompt for generating solution code
         prompt = `
         As a coding professional, I need your expertise with a specific LeetCode problem named ${problemTitle}.
         Please follow the instructions:

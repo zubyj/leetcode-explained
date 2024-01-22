@@ -6,6 +6,8 @@ const companies = [
 ];
 
 async function main() {
+
+    // 
     chrome.storage.local.get('clickedCompany', function (data: { [key: string]: any; }) {
         companyName = data.clickedCompany;
         const title: HTMLElement | null = document.getElementById('title');

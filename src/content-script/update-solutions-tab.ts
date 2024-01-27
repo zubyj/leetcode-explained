@@ -346,7 +346,8 @@ chrome.runtime.onMessage.addListener((request) => {
             const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
 
             // If no solution code or videos exist, dont do anything.
-            if (!problem.videos && !problem.languages) {
+            if (!problem.videos && !problem.languages) return;
+            if (problem.videos.length == 0 && problem.languages.length == 0) {
                 return;
             }
 

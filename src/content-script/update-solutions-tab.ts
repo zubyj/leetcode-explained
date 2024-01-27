@@ -141,15 +141,18 @@ function hideContent() {
     if (languageButtonsContainer) languageButtonsContainer.style.display = 'none';
 
     let navContainer = document.getElementsByClassName('nav-container')[0] as HTMLDivElement;
-    navContainer.style.display = 'flex';
+    if (navContainer) navContainer.style.display = 'flex';
 
     let videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
-    videoContainer.style.paddingBottom = '0%';
-    videoContainer.style.display = 'none';
+    if (videoContainer) {
+        videoContainer.style.paddingBottom = '0%';
+        videoContainer.style.display = 'none';
+    }
 }
 
 function createNavContainer(problem: any) {
-    const controlsContainer = createStyledElement('div', {
+
+    const navContainer = createStyledElement('div', {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -159,7 +162,7 @@ function createNavContainer(problem: any) {
         boxSizing: 'border-box',
         color: '#fff',
     });
-    controlsContainer.classList.add('nav-container');
+    navContainer.classList.add('nav-container');
 
     // Add discussion button    
     const discussionButton = createStyledButton('Discussion', true);
@@ -172,7 +175,7 @@ function createNavContainer(problem: any) {
         discussionButton.style.borderColor = 'lightgreen';
         codeButton.style.borderColor = 'grey';
     });
-    controlsContainer.append(discussionButton);
+    navContainer.append(discussionButton);
 
     if (problem.videos && problem.videos.length > 0) {
         videoButton.addEventListener('click', () => {
@@ -185,13 +188,11 @@ function createNavContainer(problem: any) {
             discussionButton.style.borderColor = 'grey';
             codeButton.style.borderColor = 'grey';
         });
-        controlsContainer.append(videoButton);
+        navContainer.append(videoButton);
     }
     if (problem.languages && problem.languages.length > 0) {
         codeButton.addEventListener('click', () => {
             hideContent();
-            let videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
-            videoContainer.style.paddingBottom = '0%';
             let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
             codeContainer.style.display = 'flex';
             let languageButtonsContainer = document.getElementsByClassName('language-buttons-container')[0] as HTMLDivElement;
@@ -202,10 +203,10 @@ function createNavContainer(problem: any) {
             discussionButton.style.borderColor = 'grey';
             videoButton.style.borderColor = 'grey';
         });
-        controlsContainer.append(codeButton);
+        navContainer.append(codeButton);
     }
 
-    return controlsContainer;
+    return navContainer;
 }
 
 // Convert problem title to GitHub-compatible string
@@ -344,6 +345,13 @@ chrome.runtime.onMessage.addListener((request) => {
             const title = request.title.split('-')[0].trim();
             const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
 
+            // If no solution code or videos exist, dont do anything.
+            if (!problem.videos && !problem.languages) {
+                return;
+            }
+
+            if (searchBar) console.log(searchBar.children);
+
             // Check if the nav container already exists before adding
             if (!document.querySelector('.nav-container')) {
                 let navContainer = createNavContainer(problem);
@@ -359,7 +367,7 @@ chrome.runtime.onMessage.addListener((request) => {
             // Check if the code container already exists before adding
             if (!document.querySelector('.code-container') && problem.languages.length > 0) {
                 let codeContainer = createCodeContainer();
-                if (searchBar) searchBar.insertBefore(codeContainer, searchBar.children[2]);
+                if (searchBar) searchBar.insertBefore(codeContainer, searchBar.children[1]);
                 // let code = getCodeSolution(problem.title, problem.frontend_id, 'python');
                 // code.then((code) => {
                 //     let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;

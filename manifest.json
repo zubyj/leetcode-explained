@@ -17,7 +17,8 @@
         "tabs"
     ],
     "host_permissions": [
-        "https://chat.openai.com/api/auth/session"
+        "https://chat.openai.com/api/auth/session",
+        "https://chatgpt.com/api/auth/session"
     ],
     "background": {
         "service_worker": "dist/background/background.js",

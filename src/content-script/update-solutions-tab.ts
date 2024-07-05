@@ -85,11 +85,12 @@ function createVideoContainer(problem: any) {
     });
     let currentVideoIndex = 0;
     channelElement.classList.add('channel');
+    channelElement.id = 'channel';
     channelElement.textContent = problem.videos[currentVideoIndex].channel;;
     channelElement.style.fontWeight = '400';
-    channelElement.style.color = 'lightcyan';
-    channelElement.style.textShadow = '0 0 5px #000000';
-    channelElement.style.fontFamily = 'Menlo, Monaco, Consolas, "Courier New", monospace';
+    chrome.storage.local.get(['isDarkTheme'], (result) => {
+        channelElement.style.color = result.isDarkTheme ? 'lightcyan' : '#333';
+    })
 
     prevButton.addEventListener('click', () => {
         currentVideoIndex = (currentVideoIndex - 1 + problem.videos.length) % problem.videos.length;
@@ -126,9 +127,8 @@ function createCodeContainer() {
     codeElement.style.fontSize = '12px';
     codeElement.style.marginLeft = '2.5%';
     codeElement.style.padding = '10px';
-    codeElement.style.maxHeight = '400px';  // Set a fixed height
-    codeElement.style.overflowY = 'auto'; // Enable vertical scrolling
-    // codeElement.style.height = '100%';
+    codeElement.style.maxHeight = '400px';
+    codeElement.style.overflowY = 'auto';
     return codeElement;
 }
 
@@ -353,10 +353,14 @@ chrome.runtime.onMessage.addListener((request) => {
             if (searchBar) console.log(searchBar.children);
 
             // Check if the nav container already exists before adding
-            if (!document.querySelector('.nav-container')) {
-                let navContainer = createNavContainer(problem);
-                searchBar?.insertBefore(navContainer, searchBar.firstChild)
+            let existingNavContainer = document.querySelector('.nav-container');
+            if (existingNavContainer) {
+                existingNavContainer.remove();
             }
+
+            // Create a new nav container (ensure that the 'createNavContainer' function is defined correctly and accessible)
+            const newNavContainer = createNavContainer(problem);
+            searchBar?.insertBefore(newNavContainer, searchBar.firstChild)
 
             // Check if the video container already exists before adding
             if (!document.querySelector('.video-container') && problem.videos.length > 0) {

@@ -17,8 +17,14 @@ homeButton.onclick = () => {
 document.addEventListener('DOMContentLoaded', () => {
 
     initializeTheme();
-    document.getElementById('enable-dark-theme-btn')?.addEventListener('click', toggleTheme);
+    document.getElementById('enable-dark-theme-btn')?.addEventListener('click', () => {
+        toggleTheme();
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(tabs[0].id || 0, { action: 'updateDescription', title: tabs[0].title || 'title' });
+            chrome.tabs.sendMessage(tabs[0].id || 0, { action: 'updateSolutions', title: tabs[0].title || 'title' });
 
+        });
+    });
     chrome.storage.local.get(['showCompanyTags'], (result) => {
         const showCompanyTagsIcon = document.getElementById('show-company-tags-icon');
         if (showCompanyTagsIcon) showCompanyTagsIcon.textContent = result.showCompanyTags ? '✅' : '❌';

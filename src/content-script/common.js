@@ -7,6 +7,7 @@ function applyButtonTheme(button, isDarkTheme) {
     button.onmouseout = () => {
         button.style.color = isDarkTheme ? '#fff' : '#333';
     };
+    document.getElementById('channel')?.style.color = isDarkTheme ? 'lightcyan' : '#333';
 
 }
 

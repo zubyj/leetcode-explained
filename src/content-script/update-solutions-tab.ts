@@ -350,8 +350,6 @@ chrome.runtime.onMessage.addListener((request) => {
                 return;
             }
 
-            if (searchBar) console.log(searchBar.children);
-
             // Check if the nav container already exists before adding
             let existingNavContainer = document.querySelector('.nav-container');
             if (existingNavContainer) {

@@ -62,6 +62,7 @@ function addNavbarLinks() {
         button.style.backgroundColor = '#373737';
         button.style.borderRadius = '10px';
         button.style.fontSize = '12px';
+        button.style.margin = '0 10px';
 
         const companyName = document.createTextNode(`${company}`);
         button.appendChild(companyName);

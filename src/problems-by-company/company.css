@@ -1,15 +1,13 @@
 body {
     background-color: #202020;
     color: #f0f0f0;
-    font-size: 14px;
     font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
 }
 
 h1 {
@@ -17,30 +15,36 @@ h1 {
     color: lightcyan;
 }
 
-#navbar {
+nav {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-#navbar button {
-    margin: 10px;
+
+button,
+.row input {
+    background-color: #373737;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
 }
 
-#navbar a:hover {
+button:hover,
+a:hover {
     background-color: #424242;
     cursor: pointer;
 }
 
 table {
-    border-collapse: collapse;
+    width: 700px;
     margin: auto;
-    width: 500px;
+    border-collapse: collapse;
 }
 
-table,
 th,
 td {
     border: 1px solid #FFFFFF;
@@ -49,70 +53,15 @@ td {
 }
 
 th {
-    font-size: 14px;
     background-color: #424242;
-}
-
-td {
-    font-size: 14px;
+    color: lightcyan;
 }
 
 a {
     color: lightgoldenrodyellow;
     text-decoration: none;
-    font-weight: 400;
 }
 
 a:hover {
     color: lightgreen;
-}
-
-.header {
-    color: lightcyan;
-
-}
-
-.header:hover {
-    color: lightgreen;
-    cursor: pointer;
-    background-color: #202020;
-}
-
-#score {
-    color: lightgreen;
-    font-weight: bold;
-}
-
-select {
-    background-color: #373737;
-    color: #fff;
-    padding: 5px;
-}
-
-#dateSelect {
-    color: #fff;
-    background-color: #373737;
-    border: '2px solid white';
-    width: 150px;
-    height: 35px;
-    margin-left: 10px;
-    border-radius: 5px;
-}
-
-#companySearch {
-    color: #fff;
-    background-color: #373737;
-    border: '2px solid white';
-    width: 250px;
-    height: 30px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-#Title {
-    min-width: 300px;
-}
-
-#Frequency {
-    min-width: 150px;
 }

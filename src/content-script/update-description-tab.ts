@@ -173,13 +173,6 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
                 chrome.storage.local.get(['isDarkTheme'], (result) => {
                     const isDark = result.isDarkTheme;
                     applyButtonTheme(button, isDark);
-                    button.onmouseover = () => {
-                        button.style.color = isDark ? 'orange' : 'blue';
-                    };
-                    button.onmouseout = () => {
-                        button.style.color = isDark ? '#fff' : '#333';
-                    };
-
                 });
 
                 const companyName = document.createTextNode(`${company.name}`);

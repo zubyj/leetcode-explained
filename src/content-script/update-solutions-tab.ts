@@ -15,21 +15,19 @@ function createStyledElement(tagName: string, styles: { [key: string]: string })
 function createStyledButton(text: string, isActive: boolean = false): HTMLButtonElement {
     const button = document.createElement('button');
     button.textContent = text;
-    button.style.border = '1px solid grey';
-    button.style.borderColor = isActive ? 'lightgreen' : 'grey';
-    button.style.backgroundColor = '#222';
+    button.style.border = '2px solid grey';
     button.style.width = '100px';
     button.style.padding = '3px';
     button.style.margin = '0px 20px';
     button.style.borderRadius = '5px';
+    if (isActive) button.style.borderColor = 'lightgreen';
     button.style.fontSize = '12px';
-    button.addEventListener('mouseover', () => {
-        button.style.color = 'lightgreen';
-    });
-    button.addEventListener('mouseout', () => {
-        button.style.backgroundColor = '#222';
-        button.style.color = 'white';
-    });
+    chrome.storage.local.get(['isDarkTheme'], (result) => {
+        const isDark = result.isDarkTheme;
+        applyButtonTheme(button, isDark);
+
+    })
+
     return button;
 }
 
@@ -149,6 +147,7 @@ function hideContent() {
         videoContainer.style.display = 'none';
     }
 }
+
 
 function createNavContainer(problem: any) {
 

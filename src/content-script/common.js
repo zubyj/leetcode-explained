@@ -1,6 +1,12 @@
 function applyButtonTheme(button, isDarkTheme) {
-    button.style.backgroundColor = isDarkTheme ? '#333' : '#f9f9f9';
+    button.style.backgroundColor = isDarkTheme ? '#333' : '#efefef';
     button.style.color = isDarkTheme ? '#fff' : '#333';
+    button.onmouseover = () => {
+        button.style.color = isDarkTheme ? 'orange' : 'green';
+    };
+    button.onmouseout = () => {
+        button.style.color = isDarkTheme ? '#fff' : '#333';
+    };
 
 }
 

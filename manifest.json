@@ -30,7 +30,8 @@
                 "dist/content-script/get-gpt-access-token.js",
                 "dist/content-script/get-user-code.js",
                 "dist/content-script/update-solutions-tab.js",
-                "dist/content-script/update-description-tab.js"
+                "dist/content-script/update-description-tab.js",
+                "dist/content-script/common.js"
             ],
             "matches": [
                 "https://leetcode.com/problems/*"

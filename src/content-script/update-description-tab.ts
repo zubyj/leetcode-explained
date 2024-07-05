@@ -1,5 +1,3 @@
-// Setting the theme
-
 
 // shows the examples if the user has enabled it in the settings
 function showExamples() {
@@ -154,12 +152,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
                         action: 'openCompanyPage', company: company.name,
                     });
                 };
-                button.onmouseover = () => {
-                    button.style.color = 'orange';
-                };
-                button.onmouseout = () => {
-                    button.style.color = 'white';
-                };
+
                 button.style.display = 'flex';
                 button.style.alignItems = 'center';
                 button.style.justifyContent = 'center';
@@ -171,13 +164,23 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
                 icon.style.marginRight = '5px';
                 button.appendChild(icon);
 
-                button.style.color = '#fff';
                 button.style.minWidth = '100px';
                 button.style.height = '25px';
                 button.style.padding = '1px';
-                button.style.backgroundColor = '#373737';
                 button.style.borderRadius = '10px';
                 button.style.fontSize = '10px';
+
+                chrome.storage.local.get(['isDarkTheme'], (result) => {
+                    const isDark = result.isDarkTheme;
+                    applyButtonTheme(button, isDark);
+                    button.onmouseover = () => {
+                        button.style.color = isDark ? 'orange' : 'blue';
+                    };
+                    button.onmouseout = () => {
+                        button.style.color = isDark ? '#fff' : '#333';
+                    };
+
+                });
 
                 const companyName = document.createTextNode(`${company.name}`);
                 button.appendChild(companyName);

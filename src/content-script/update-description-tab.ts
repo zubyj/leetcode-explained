@@ -1,3 +1,6 @@
+// Setting the theme
+
+
 // shows the examples if the user has enabled it in the settings
 function showExamples() {
     chrome.storage.local.get(['showExamples'], (result) => {

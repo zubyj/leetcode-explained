@@ -21,6 +21,7 @@ export function toggleTheme(): void {
 function updateThemeUI(theme: string) {
     const themeIcon = document.getElementById('theme-icon');
     const themeText = document.getElementById('theme-text');
+    if (!themeIcon || !themeText) return;
     if (theme === 'dark') {
         themeIcon.textContent = '🌙';
         themeText.textContent = 'Dark Mode';

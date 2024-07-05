@@ -7,12 +7,18 @@
     The Leetcode problem's descriptions tab will be updated with the new settings
 */
 
+import { initializeTheme, toggleTheme } from "../utils/theme.js";
+
 const homeButton = document.getElementById('home-button') as HTMLButtonElement;
 homeButton.onclick = () => {
     window.location.href = 'popup.html';
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    initializeTheme();
+    document.getElementById('enable-dark-theme-btn')?.addEventListener('click', toggleTheme);
+
     chrome.storage.local.get(['showCompanyTags'], (result) => {
         const showCompanyTagsIcon = document.getElementById('show-company-tags-icon');
         if (showCompanyTagsIcon) showCompanyTagsIcon.textContent = result.showCompanyTags ? '✅' : '❌';

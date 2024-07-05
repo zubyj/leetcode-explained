@@ -9,6 +9,8 @@ import {
     ChatGPTProvider,
 } from '../background/chatgpt/chatgpt.js';
 
+import { initializeTheme, toggleTheme } from '../utils/theme.js';
+
 /* Element selectors */
 const selectors: { [key: string]: string } = {
     fixCodeBtn: 'fix-code-btn',
@@ -38,6 +40,7 @@ const elements: { [key: string]: HTMLElement | null } = {};
 for (const key in selectors) {
     if (key) elements[key] = document.getElementById(selectors[key]);
 }
+
 
 const analyzeCodeResponse = elements['analyzeCodeResponse'];
 const fixCodeResponse = elements['fixCodeResponse'];
@@ -198,6 +201,9 @@ function processCode(
 }
 
 async function main(): Promise<void> {
+
+    initializeTheme();
+
     await Promise.all([
         getFromStorage(storageKeys.analyzeCodeResponse),
         getFromStorage(storageKeys.fixCodeResponse),

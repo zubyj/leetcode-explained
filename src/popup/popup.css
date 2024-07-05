@@ -1,14 +1,29 @@
+:root {
+    --background-color: #fff;
+    --color: #000;
+    --border-color: #222;
+    --link-color: black;
+}
+
+[data-theme="dark"] {
+    --background-color: #333;
+    --color: #fff;
+    --border-color: lightgrey;
+    --link-color: lightgreen;
+}
+
+
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #202020;
-    color: #f0f0f0;
+    color: var(--color);
+    background-color: var(--background-color);
+    font-size: var(--dynamic-font-size, 14px);
     font-family: 'Roboto', sans-serif;
     padding: 20px;
     width: 400px;
-    font-size: var(--dynamic-font-size, 14px);
 }
 
 .material-button,
@@ -18,7 +33,7 @@ body {
 }
 
 a {
-    color: lightgreen;
+    color: var(--link-color);
     text-decoration: none;
 }
 
@@ -45,7 +60,7 @@ a:hover {
 .title {
     font-weight: 500;
     font-size: var(--dynamic-font-size * 2, 25px);
-    color: lightcyan;
+    color: var(--color);
 }
 
 .nav-button {
@@ -62,8 +77,8 @@ a:hover {
 }
 
 .material-button {
-    color: white;
-    background-color: #202020;
+    color: var(--color);
+    background-color: var(--background-color);
     border: 2px solid lightgray;
     text-decoration: none;
     cursor: pointer;
@@ -77,8 +92,8 @@ a:hover {
 }
 
 .material-button:hover {
-    color: lightgreen;
-    border: 2px solid lightgreen;
+    color: var(--link-color);
+    border: 2px solid var(--link-color);
 }
 
 .button-icon {
@@ -89,6 +104,7 @@ a:hover {
     text-align: center;
     font-weight: 400;
     color: lightcyan;
+    color: var(--color);
 }
 
 /* GPT Response */
@@ -107,14 +123,14 @@ a:hover {
     display: flex;
     align-items: center;
     background-color: #222;
-    border: 2px solid lightgray;
+    border: 2px solid var(--border-color);
     border-radius: 10px;
     cursor: pointer;
     padding: 5px;
 }
 
 .code-btn:hover {
-    border-color: lightgreen;
+    border-color: var(--border-color);
 }
 
 #clear-code-btn {

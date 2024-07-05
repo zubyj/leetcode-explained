@@ -30,6 +30,7 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.local.set({ showDifficulty: true });
     chrome.storage.local.set({ showRating: true });
     chrome.storage.local.set({ showCompanyTags: true });
+    chrome.storage.local.set({ isDarkTheme: true });
 });
 
 chrome.runtime.onMessage.addListener((request) => {

@@ -11,7 +11,8 @@ body {
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 25px;
+    padding: 10px;
     color: lightcyan;
 }
 
@@ -29,7 +30,8 @@ button,
     color: #fff;
     border: none;
     padding: 10px;
-    width: 100%;
+    min-width: 400px;
+    max-width: 100%;
     border-radius: 5px;
 }
 

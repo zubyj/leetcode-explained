@@ -11,7 +11,7 @@ async function main() {
     chrome.storage.local.get('clickedCompany', function (data: { [key: string]: any; }) {
         companyName = data.clickedCompany;
         const title: HTMLElement | null = document.getElementById('title');
-        if (title) title.textContent = companyName;
+        if (title) title.textContent = 'Top 50 ' + companyName + ' Questions';
         document.title = companyName + ' Questions';
         addCompanyProblems('#'); // Change this line to sort by frequency by default
     });

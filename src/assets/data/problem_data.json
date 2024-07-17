@@ -2448,6 +2448,10 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/WD-vqCYm5hc",
                     "channel": "Algorithms Made Easy"
+                },
+                {
+                    "embedded_url": "https://www.youtube.com/embed/FZe0UqISmUw",
+                    "channel": "NeetCodeIO"
                 }
             ],
             "companies": [
@@ -7242,6 +7246,10 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/8DV-cXg6Rh0",
                     "channel": "Cracking FAANG"
+                },
+                {
+                    "embedded_url": "https://www.youtube.com/embed/QgLKdluDo08",
+                    "channel": "NeetCodeIO"
                 }
             ],
             "companies": [
@@ -12603,6 +12611,10 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/LxcX_NVHep4",
                     "channel": "\u8d3e\u8003\u535a"
+                },
+                {
+                    "embedded_url": "https://www.youtube.com/embed/faoVORjd-T8",
+                    "channel": "NeetCodeIO"
                 }
             ],
             "companies": [
@@ -14740,6 +14752,10 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/pUtxTz134qM",
                     "channel": "\u5c71\u666f\u57ce\u4e00\u59d0"
+                },
+                {
+                    "embedded_url": "https://www.youtube.com/embed/wQGQnyv_9hI",
+                    "channel": "NeetCodeIO"
                 }
             ],
             "companies": [
@@ -18964,6 +18980,10 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/noaGOtGmCzs",
                     "channel": "Naresh Gupta"
+                },
+                {
+                    "embedded_url": "https://www.youtube.com/embed/_g9jrLuAphs",
+                    "channel": "NeetCodeIO"
                 }
             ],
             "companies": [
@@ -22814,6 +22834,10 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/ZOWEOfhZ0L0",
                     "channel": "Roel Van de Paar"
+                },
+                {
+                    "embedded_url": "https://www.youtube.com/embed/NOgnlTXidSs",
+                    "channel": "NeetCodeIO"
                 }
             ],
             "companies": [
@@ -24273,6 +24297,10 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/zd20HrEb5dg",
                     "channel": "Huifeng Guan"
+                },
+                {
+                    "embedded_url": "https://www.youtube.com/embed/BPIJ5ROX0i4",
+                    "channel": "NeetCodeIO"
                 }
             ],
             "companies": [
@@ -26937,6 +26965,10 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/QJVpQ8ZYD6I",
                     "channel": "code Explainer"
+                },
+                {
+                    "embedded_url": "https://www.youtube.com/embed/B0UrG_X2faA",
+                    "channel": "NeetCodeIO"
                 }
             ],
             "companies": [
@@ -30157,6 +30189,10 @@
                 {
                     "embedded_url": "https://www.youtube.com/embed/1rp7kIKlajI",
                     "channel": "WorkWithGoogler"
+                },
+                {
+                    "embedded_url": "https://www.youtube.com/embed/iuK05gGBzJc",
+                    "channel": "NeetCodeIO"
                 }
             ],
             "companies": []
@@ -32738,7 +32774,12 @@
             "rating": 2260,
             "difficulty_lvl": 3,
             "acceptance": 0.5263,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/f879mUH6vJk",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -32800,7 +32841,12 @@
             "rating": 1818,
             "difficulty_lvl": 2,
             "acceptance": 0.74853,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/FbhzRA5den8",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Amazon",
@@ -34230,7 +34276,12 @@
             "rating": 1448,
             "difficulty_lvl": 2,
             "acceptance": 0.51663,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/XPPs2Wj2YSk",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -34299,7 +34350,12 @@
             "rating": 1686,
             "difficulty_lvl": 2,
             "acceptance": 0.77848,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/i2QrUdwWlak",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Adobe",
@@ -34692,7 +34748,12 @@
             "rating": 1676,
             "difficulty_lvl": 2,
             "acceptance": 0.53991,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/bcXy-T4Sc3E",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Twilio",
@@ -34804,7 +34865,12 @@
             "rating": 1709,
             "difficulty_lvl": 2,
             "acceptance": 0.72342,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/YfdfIOeV_RU",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Microsoft",
@@ -34991,7 +35057,12 @@
             "rating": 1429,
             "difficulty_lvl": 2,
             "acceptance": 0.50597,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/UvdWfxQ_ZDs",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Apple",
@@ -35125,7 +35196,12 @@
             "rating": 1835,
             "difficulty_lvl": 3,
             "acceptance": 0.51318,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/Fv3M9uO5ovU",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -35218,7 +35294,12 @@
             "rating": 1280,
             "difficulty_lvl": 1,
             "acceptance": 0.68518,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/QEESBA2Q_88",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Amazon",
@@ -36569,7 +36650,12 @@
             "rating": 1303,
             "difficulty_lvl": 1,
             "acceptance": 0.75855,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/mQAoeYaE3Xk",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Goldman Sachs",
@@ -36593,7 +36679,12 @@
             "rating": 1418,
             "difficulty_lvl": 2,
             "acceptance": 0.57155,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/pXFbNuEIn8Q",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -37454,7 +37545,12 @@
             "rating": 1511,
             "difficulty_lvl": 2,
             "acceptance": 0.69184,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/UhKu0q1yXHY",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Facebook",
@@ -37592,7 +37688,12 @@
             "rating": 1189,
             "difficulty_lvl": 1,
             "acceptance": 0.68685,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/OPvcR1e4lfg",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Google",
@@ -37682,7 +37783,12 @@
             "rating": 1697,
             "difficulty_lvl": 3,
             "acceptance": 0.58158,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/_b8sptrsFEM",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Roblox",
@@ -38645,7 +38751,12 @@
             "rating": 1486,
             "difficulty_lvl": 2,
             "acceptance": 0.65961,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/n_pCJmg-RyU",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Microsoft",
@@ -38959,7 +39070,12 @@
             "frontend_id": 1208,
             "difficulty_lvl": 2,
             "acceptance": 0.49473,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/3lsT1Le526U",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [],
             "rating": 1497
         },
@@ -39070,7 +39186,12 @@
             "rating": 1663,
             "difficulty_lvl": 2,
             "acceptance": 0.63646,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/I1wllM_pozY",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "tiktok",
@@ -39537,7 +39658,12 @@
             "rating": 1624,
             "difficulty_lvl": 2,
             "acceptance": 0.62597,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/4zNK0rhFfcA",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -39547,7 +39673,12 @@
             "rating": 1657,
             "difficulty_lvl": 2,
             "acceptance": 0.66022,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/mgQ4O9iUEbg",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Facebook",
@@ -39681,7 +39812,12 @@
             "rating": 1882,
             "difficulty_lvl": 3,
             "acceptance": 0.72433,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/1cV8Hq9IAk4",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -40618,7 +40754,12 @@
             "rating": 1407,
             "difficulty_lvl": 2,
             "acceptance": 0.7443,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/FqAoYAwbwV8",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Amazon",
@@ -41685,7 +41826,12 @@
             "rating": 1397,
             "difficulty_lvl": 2,
             "acceptance": 0.52729,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/qxt7_HD8Cag",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -42078,7 +42224,12 @@
             "frontend_id": 1438,
             "difficulty_lvl": 2,
             "acceptance": 0.48688,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/V-ecDfY5xEw",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Uber",
@@ -42145,7 +42296,12 @@
             "rating": 1525,
             "difficulty_lvl": 2,
             "acceptance": 0.76448,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/e4Yx9KjqzQ8",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -42853,7 +43009,12 @@
             "rating": 1653,
             "difficulty_lvl": 2,
             "acceptance": 0.54667,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/S6cUjbQuTnE",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -43216,7 +43377,12 @@
             "rating": 1245,
             "difficulty_lvl": 1,
             "acceptance": 0.60428,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/V4d6xym5efE",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "IBM",
@@ -43536,7 +43702,12 @@
             "frontend_id": 1544,
             "difficulty_lvl": 1,
             "acceptance": 0.63142,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/10tBWNjzvtw",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Adobe",
@@ -44250,7 +44421,12 @@
             "rating": 1297,
             "difficulty_lvl": 1,
             "acceptance": 0.64645,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/Ur3saIXP7ro",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Mercari",
@@ -44367,7 +44543,12 @@
             "frontend_id": 1608,
             "difficulty_lvl": 1,
             "acceptance": 0.60225,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/Z51jYCeBLVI",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Google",
@@ -45347,7 +45528,12 @@
             "rating": 1404,
             "difficulty_lvl": 1,
             "acceptance": 0.69724,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/d_cvtFwnOZg",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Flipkart",
@@ -45367,7 +45553,12 @@
             "rating": 1436,
             "difficulty_lvl": 2,
             "acceptance": 0.62935,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/2fN7uIgCIBA",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -45551,7 +45742,12 @@
             "rating": 1868,
             "difficulty_lvl": 2,
             "acceptance": 0.46354,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/r_3a0oG1VcY",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Google",
@@ -47105,7 +47301,12 @@
             "frontend_id": 1823,
             "difficulty_lvl": 2,
             "acceptance": 0.7805,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/PBBQgW_75e0",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Goldman Sachs",
@@ -49710,7 +49911,12 @@
             "rating": 1357,
             "difficulty_lvl": 1,
             "acceptance": 0.81573,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/wS7Ag33hf8E",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -50147,7 +50353,12 @@
             "rating": 1311,
             "difficulty_lvl": 2,
             "acceptance": 0.57262,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/UddDgt52h9g",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Info Edge",
@@ -50292,7 +50503,12 @@
             "rating": 1325,
             "difficulty_lvl": 1,
             "acceptance": 0.62501,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/cVmS9N6kf2Y",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Twitter",
@@ -50556,7 +50772,12 @@
             "rating": 1805,
             "difficulty_lvl": 2,
             "acceptance": 0.4856,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/JegJNGcwtFg",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [],
             "languages": []
         },
@@ -51534,7 +51755,12 @@
             "rating": 1333,
             "difficulty_lvl": 2,
             "acceptance": 0.85986,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/jrSav7fulJY",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [
                 {
                     "name": "Microsoft",
@@ -51615,7 +51841,12 @@
             "rating": 1644,
             "difficulty_lvl": 2,
             "acceptance": 0.72386,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/yWkrFfqO7NA",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": [],
             "languages": []
         },
@@ -52423,7 +52654,12 @@
             "rating": 1496,
             "difficulty_lvl": 2,
             "acceptance": 0.60751,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/NIhXLEiQAPM",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -52805,7 +53041,12 @@
             "rating": 1304,
             "difficulty_lvl": 1,
             "acceptance": 0.78007,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/9a_cP54jn8Q",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -53085,7 +53326,12 @@
             "rating": 1835,
             "difficulty_lvl": 2,
             "acceptance": 0.37535,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/gR1E2oLQYSY",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -53186,7 +53432,12 @@
             "rating": 1331,
             "difficulty_lvl": 1,
             "acceptance": 0.82904,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/wdTRu9sarFA",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -54394,7 +54645,12 @@
             "rating": 1455,
             "difficulty_lvl": 2,
             "acceptance": 0.66506,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/y783sRTezDg",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {
@@ -55466,7 +55722,12 @@
             "rating": 2023,
             "difficulty_lvl": 2,
             "acceptance": 0.30067,
-            "videos": [],
+            "videos": [
+                {
+                    "embedded_url": "https://www.youtube.com/embed/Dle_SpjHTio",
+                    "channel": "NeetCodeIO"
+                }
+            ],
             "companies": []
         },
         {

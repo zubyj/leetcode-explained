@@ -23,10 +23,10 @@ function updateThemeUI(theme: string) {
     const themeText = document.getElementById('theme-text');
     if (!themeIcon || !themeText) return;
     if (theme === 'dark') {
-        themeIcon.textContent = '🌙';
-        themeText.textContent = 'Dark Mode';
-    } else {
         themeIcon.textContent = '☀️';
         themeText.textContent = 'Light Mode';
+    } else {
+        themeIcon.textContent = '🌙';
+        themeText.textContent = 'Dark Mode';
     }
 }

@@ -67,3 +67,9 @@ a {
 a:hover {
     color: lightgreen;
 }
+
+.header:hover {
+    border: 1px solid orange;
+    cursor: pointer;
+    color: orange;
+}

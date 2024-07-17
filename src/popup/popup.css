@@ -77,8 +77,10 @@ a:hover {
 }
 
 .material-button {
-    color: var(--color);
-    background-color: var(--background-color);
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    transition: background-color 0.3s, color 0.3s;
+    /* Smooth transition for theme change */
     border: 2px solid lightgray;
     text-decoration: none;
     cursor: pointer;

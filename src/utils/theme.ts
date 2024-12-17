@@ -1,6 +1,10 @@
 export function initializeTheme(): void {
     chrome.storage.local.get(['isDarkTheme'], (result) => {
         const theme = result.isDarkTheme ? 'dark' : 'light';
+        const current_Time=new Date().getHours();
+        const isDarkTheme=current_Time>=16 || current_Time<6;//i want the extension to change theme automatically to stay consistent with me laptop 
+        //avg sunsets across India seems to be about 4PM since its dec. 
+        //i dont know much about Typescript sorry if i am polluting the code base in anyway (apologies init)
         document.documentElement.setAttribute('data-theme', theme);
         updateThemeUI(theme); // Make sure this function adjusts the UI correctly
     });

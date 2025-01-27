@@ -1,13 +1,11 @@
 const allSolutions = [] as { id: number, rank: number, title: string, difficulty: string, url: string, acceptance: string }[];
 const solutions = [] as { id: number, rank: number, title: string, difficulty: string, url: string, acceptance: string }[];
 let companyName = 'Amazon';
-const companies = [
+const companies: string[] = [
     'Amazon', 'Apple', 'Facebook', 'Google', 'Microsoft',
 ];
 
 async function main() {
-
-    // 
     chrome.storage.local.get('clickedCompany', function (data: { [key: string]: any; }) {
         companyName = data.clickedCompany;
         const title: HTMLElement | null = document.getElementById('title');
@@ -26,11 +24,10 @@ async function main() {
     await addCompaniesToSelect();
 }
 
-
 function addNavbarLinks() {
     const navbar = document.getElementById('navbar');
     companies.forEach((company) => {
-        const button = document.createElement('button');
+        const button = document.createElement('button') as HTMLElement;
 
         button.onclick = () => {
             chrome.storage.local.set({ clickedCompany: company }, () => {
@@ -78,6 +75,8 @@ interface Question {
     title: string;
     frontend_id: number;
     companies?: Company[];
+    difficulty_lvl?: string;  // Make sure to define this
+    acceptance?: string;  // Same for acceptance
 }
 
 interface LeetcodeProblems {
@@ -89,33 +88,26 @@ function addCompanyProblems(sortMethod: string) {
         const companyProblems = data.companyProblems[companyName];
         const leetcodeProblems = data.leetcodeProblems.questions;
 
-        // Check if companyProblems is an array before proceeding
         if (Array.isArray(companyProblems)) {
             companyProblems.forEach((problem) => {
-                const correspondingLeetcodeProblem = leetcodeProblems.find(q => q.frontend_id === problem.id); // Find the corresponding problem
-                // Populate allSolutions instead of solutions
+                const correspondingLeetcodeProblem = leetcodeProblems.find((q: Question) => q.frontend_id === problem.id);
                 allSolutions.push({
                     id: problem.id,
                     rank: problem.rank,
                     title: problem.title,
                     url: `https://leetcode.com/problems/${problem.title.replace(/\s/g, '-')}/`,
-                    difficulty: correspondingLeetcodeProblem?.difficulty_lvl, // Use the defined variable
-                    acceptance: correspondingLeetcodeProblem?.acceptance, // Use the defined variable
+                    difficulty: correspondingLeetcodeProblem ? String(correspondingLeetcodeProblem.difficulty_lvl) : 'N/A',
+                    acceptance: correspondingLeetcodeProblem ? String(correspondingLeetcodeProblem.acceptance) : 'N/A',
                 });
             });
         }
 
-        // Initialize solutions with all problems initially
         solutions.length = 0;
         solutions.push(...allSolutions);
-
-        // Rebuild the table with sorted solutions
         rebuildTable();
     });
 }
 
-
-// Function to rebuild the table with sorted solutions
 function rebuildTable() {
     const table = document.getElementById('solutionTable') as HTMLTableElement;
     while (table.rows.length > 1) {
@@ -124,23 +116,20 @@ function rebuildTable() {
 
     solutions.forEach((solution) => {
         const row = table.insertRow(-1);
-
-        // Add problem id
         row.insertCell(0).innerText = solution.id.toString();
 
-        // Add problem difficulty
         const difficulty = solution.difficulty;
         const difficultyCell = row.insertCell(1);
         let difficultyText = '';
         let color = '';
 
-        if (difficulty === 1) {
+        if (difficulty === '1') {
             difficultyText = 'Easy';
             color = 'lightgreen';
-        } else if (difficulty === 2) {
+        } else if (difficulty === '2') {
             difficultyText = 'Medium';
             color = 'orange';
-        } else {
+        } else if (difficulty === '3') {
             difficultyText = 'Hard';
             color = 'red';
         }
@@ -149,17 +138,14 @@ function rebuildTable() {
         difficultyCell.style.color = color;
         difficultyCell.style.fontWeight = 'bold';
         difficultyCell.style.fontSize = '12px';
-        difficultyCell.style.borderRadius = '5px'; // Apply border radius
+        difficultyCell.style.borderRadius = '5px';
 
-        // Add problem title
         row.insertCell(2).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
 
-        // Add acceptance rating
         const acceptanceCell = row.insertCell(3);
-        acceptanceCell.innerText = (solution.acceptance ? (solution.acceptance * 100).toFixed(2) + '%' : 'N/A'); // New column for acceptance
+        acceptanceCell.innerText = solution.acceptance ? (parseFloat(solution.acceptance) * 100).toFixed(2) + '%' : 'N/A';
         acceptanceCell.style.fontSize = '12px';
 
-        // Add problem rank
         const rankCell = row.insertCell(4);
         rankCell.innerText = solution.rank.toString();
     });
@@ -168,27 +154,25 @@ function rebuildTable() {
 async function addCompaniesToSelect() {
     const companySearch = document.getElementById('companySearch') as HTMLInputElement;
     const companyList = document.getElementById('companyList') as HTMLDataListElement;
-    let companies = [];
+    let companies: string[] = [];
 
-    const data = await new Promise<{ companyProblems: any }>((resolve) => {
+    // Define the type explicitly
+    const data = await new Promise<{ companyProblems: { [key: string]: any } }>((resolve) => {
         chrome.storage.local.get('companyProblems', function (data) {
-            resolve(data);
+            resolve({ companyProblems: data.companyProblems });
         });
     });
 
     const companyProblems = data.companyProblems;
-    // Add all the keys to the set
     Object.keys(companyProblems).forEach((company) => {
         if (company) {
             companies.push(company);
         }
     });
 
-    // Event when the "Enter" key is pressed or an option is selected from the dropdown
     const handleSelection = () => {
         const inputValue = companySearch.value;
-        // Find the selected company in a case-insensitive manner
-        const selectedCompany = Array.from(companies).find(
+        const selectedCompany = companies.find(
             (company) => company.toLowerCase() === inputValue.toLowerCase()
         );
         if (selectedCompany) {
@@ -216,8 +200,7 @@ async function addCompaniesToSelect() {
 }
 
 
-// Keep track of the sorting order for each column
-const sortOrders = {
+const sortOrders: { [key: string]: boolean } = {
     '#': false,
     'Difficulty': false,
     'Title': false,
@@ -226,23 +209,18 @@ const sortOrders = {
 };
 
 function sortBy(column: string) {
-    // Toggle the sort order for the selected column
     sortOrders[column] = !sortOrders[column];
-
-    // Clear the existing table
     const table = document.getElementById('solutionTable') as HTMLTableElement;
     while (table.rows.length > 1) {
         table.deleteRow(1);
     }
 
-    // Sort the solutions based on the selected column
     switch (column) {
         case '#':
             solutions.sort((a, b) => (sortOrders[column] ? a.id - b.id : b.id - a.id));
             break;
         case 'Difficulty':
-            solutions.sort((a, b) => (sortOrders[column] ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)));
-            solutions.sort((a, b) => (sortOrders[column] ? a.difficulty - b.difficulty : b.difficulty - a.difficulty));
+            solutions.sort((a, b) => (sortOrders[column] ? a.difficulty.localeCompare(b.difficulty) : b.difficulty.localeCompare(a.difficulty)));
             break;
         case 'Rank':
             solutions.sort((a, b) => (sortOrders[column] ? a.rank - b.rank : b.rank - a.rank));
@@ -251,14 +229,11 @@ function sortBy(column: string) {
             solutions.sort((a, b) => (sortOrders[column] ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)));
             break;
         case 'Acceptance':
-            solutions.sort((a, b) => (sortOrders[column] ? b.acceptance - a.acceptance : a.acceptance - b.acceptance));
+            solutions.sort((a, b) => (sortOrders[column] ? parseFloat(a.acceptance) - parseFloat(b.acceptance) : parseFloat(b.acceptance) - parseFloat(a.acceptance)));
             break;
-        // Add other cases if needed
     }
 
-    // Rebuild the table with sorted solutions
     rebuildTable();
 }
 
-/* Run the script */
 main();

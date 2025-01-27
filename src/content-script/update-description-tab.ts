@@ -1,4 +1,3 @@
-
 // shows the examples if the user has enabled it in the settings
 function showExamples() {
     chrome.storage.local.get(['showExamples'], (result) => {
@@ -14,11 +13,18 @@ function showExamples() {
     });
 }
 
+// Define the Problem interface
+interface Problem {
+    title: string;
+    rating?: string;
+    // Add other properties as needed
+}
+
 // show the leetcode difficulty if the user has enabled it in the settings
 function showDifficulty() {
     chrome.storage.local.get(['showDifficulty'], (result) => {
         const showDifficulty = result.showDifficulty;
-        const difficultyContainer = document.querySelectorAll('div.relative.inline-flex')[0];
+        const difficultyContainer = document.querySelectorAll('div.relative.inline-flex')[0] as HTMLDivElement;
         if (!difficultyContainer) return;
         if (showDifficulty) {
             // hide the first child of the difficulty container
@@ -36,7 +42,7 @@ function showRating(problemTitle: string) {
         const showRating = result.showRating;
         if (showRating) {
             chrome.storage.local.get(['leetcodeProblems'], (result) => {
-                const problem = result.leetcodeProblems.questions.find((problem: problem) => problem.title === problemTitle);
+                const problem = result.leetcodeProblems.questions.find((problem: Problem) => problem.title === problemTitle);
 
                 let ratingElement = document.getElementById('rating');
 
@@ -65,7 +71,7 @@ function showRating(problemTitle: string) {
                     ratingElement.style.color = 'lightcyan';
                 }
 
-                const difficultyContainer = document.querySelectorAll('div.relative.inline-flex')[0];
+                const difficultyContainer = document.querySelectorAll('div.relative.inline-flex')[0] as HTMLDivElement;
                 if (difficultyContainer) {
                     // insert the rating element after the first child of the difficulty container
                     let parent = difficultyContainer.parentElement;

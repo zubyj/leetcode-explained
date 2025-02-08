@@ -6,12 +6,11 @@
 }
 
 [data-theme="dark"] {
-    --background-color: #333;
+    --background-color: #282828;
     --color: #fff;
     --border-color: lightgrey;
     --link-color: lightgreen;
 }
-
 
 body {
     display: flex;
@@ -22,7 +21,7 @@ body {
     background-color: var(--background-color);
     font-size: var(--dynamic-font-size, 14px);
     font-family: 'Roboto', sans-serif;
-    padding: 20px;
+    padding: 0 20px;
     width: 400px;
 }
 
@@ -50,17 +49,38 @@ a:hover {
     justify-content: center;
 }
 
-/* Title & Settings Button */
+/* Navigation Tabs */
 .navbar {
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.navbar button:hover {
+    color: var(--link-color);
+}
+
+.tab {
+    background: none;
+    border: none;
+    font-size: var(--dynamic-font-size * 2, 10px);
+    padding: 8px 16px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s;
+    color: var(--color);
+}
+
+.tab.active {
+    border-bottom: 3px solid var(--link-color, green);
 }
 
 .title {
     font-weight: 500;
-    font-size: var(--dynamic-font-size * 2, 25px);
     color: var(--color);
+    font-size: var(--dynamic-font-size, 10px);
 }
 
 .nav-button {

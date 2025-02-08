@@ -9,7 +9,7 @@
 
 import { initializeTheme, toggleTheme } from "../utils/theme.js";
 
-const homeButton = document.getElementById('home-button') as HTMLButtonElement;
+const homeButton = document.getElementById('open-home-btn') as HTMLButtonElement;
 homeButton.onclick = () => {
     window.location.href = 'popup.html';
 };

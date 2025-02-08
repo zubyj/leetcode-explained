@@ -70,8 +70,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status === 'complete' && tab.url) {
+        const url = tab.url;
         let problemUrl = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
-        if (tab.url.match(problemUrl)) {
+        if (url.match(problemUrl)) {
             chrome.storage.local.get(['currentLeetCodeProblemTitle', 'descriptionTabUpdated', 'solutionsTabUpdated'], (result) => {
                 let lastTitle = result.currentLeetCodeProblemTitle || '';
                 let descriptionTabUpdated = result.descriptionTabUpdated || false;
@@ -88,18 +89,18 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                 }
 
                 let descriptionUrl = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?/;
-                if (!descriptionTabUpdated && tab.url.match(descriptionUrl)) {
+                if (!descriptionTabUpdated && url.match(descriptionUrl)) {
                     chrome.storage.local.set({ 'descriptionTabUpdated': true });
                     chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: tab.title || 'title' });
                 }
 
                 let solutionsUrl = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/;
-                if (tab.url.match(solutionsUrl)) {
+                if (url.match(solutionsUrl)) {
                     chrome.storage.local.set({ 'solutionsTabUpdated': true });
-                    // No need for a timeout if the tab is already loaded completely.
                     chrome.tabs.sendMessage(tabId, { action: 'updateSolutions', title: tab.title || 'title' });
                 }
             });
         }
     }
 });
+

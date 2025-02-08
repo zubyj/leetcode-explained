@@ -30,6 +30,26 @@ function getProblem() {
     return collectedData;
 }
 
+function getCodeComplexity() {
+    const codeEditor = document.querySelector('[data-track-load="code_editor"]');
+    if (!codeEditor) {
+        return {
+            code: '',
+            language: '',
+            error: 'Code editor not found'
+        };
+    }
+
+    const code = (codeEditor as HTMLElement).innerText;
+    const languageSelect = document.querySelector('[data-cy="lang-select"]') as HTMLElement;
+    const language = languageSelect ? languageSelect.innerText : '';
+
+    return {
+        code: code,
+        language: language
+    };
+}
+
 // On get user code request, read & send the code as a response
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.type === 'getProblem') {

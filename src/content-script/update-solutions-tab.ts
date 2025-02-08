@@ -215,19 +215,28 @@ function titleToGitHubFormat(title: string, frontend_id: number): string {
     return `${idStr}-${formattedTitle}`;
 }
 
+// Define the language map type
+type SupportedLanguage = 'python' | 'java' | 'javascript' | 'cpp';
+
 // Fetches the solution code from Neetcode's github repo
-async function getCodeSolution(title: string, frontend_id: number, language: string,) {
+async function getCodeSolution(title: string, frontend_id: number, language: string): Promise<string | null> {
     // map the language names to their extensions
-    const languageMap = {
+    const languageMap: Record<SupportedLanguage, string> = {
         'python': 'py',
         'java': 'java',
         'javascript': 'js',
         'cpp': 'cpp',
+    };
+
+    // Type guard to check if the language is supported
+    if (!isLanguageSupported(language)) {
+        console.error('Unsupported language:', language);
+        return null;
     }
 
     // Convert frontend_id and title to the GitHub-compatible format
     const formattedTitle = titleToGitHubFormat(title, frontend_id);
-    const filePath = `${language}/${formattedTitle}.${languageMap[language]}`; // Change 'other_extension' accordingly
+    const filePath = `${language}/${formattedTitle}.${languageMap[language as SupportedLanguage]}`;
 
     // Construct the URL to fetch the file content from GitHub
     const url = `https://api.github.com/repos/neetcode-gh/leetcode/contents/${filePath}`;
@@ -242,7 +251,13 @@ async function getCodeSolution(title: string, frontend_id: number, language: str
         return code;
     } catch (error) {
         console.error('Failed to fetch code:', error);
+        return null;
     }
+}
+
+// Type guard function to check if a language is supported
+function isLanguageSupported(language: string): language is SupportedLanguage {
+    return ['python', 'java', 'javascript', 'cpp'].includes(language);
 }
 
 function createLanguageButtons(problem: any) {
@@ -282,20 +297,22 @@ function createLanguageButtons(problem: any) {
         langName.style.paddingLeft = '15px';
         langButton.appendChild(langName);
 
-        langButton.addEventListener('click', () => {
-            let code = getCodeSolution(problem.title, problem.frontend_id, language);
-            code.then((code) => {
-                let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
-                if (codeContainer) {
-                    codeContainer.style.display = 'flex';
-                    codeContainer.textContent = code;
-                    addCopyIconToElement(codeContainer);
-                }
-            });
+        langButton.addEventListener('click', async () => {
+            const code = await getCodeSolution(problem.title, problem.frontend_id, language);
+            let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
+            if (codeContainer && code) {
+                codeContainer.style.display = 'flex';
+                codeContainer.textContent = code;
+                addCopyIconToElement(codeContainer);
+            } else if (codeContainer) {
+                codeContainer.style.display = 'flex';
+                codeContainer.textContent = 'Code not available';
+            }
         });
         container.append(langButton);
     });
     return container;
+    
 }
 
 function addCopyIconToElement(element: HTMLElement) {
@@ -370,14 +387,6 @@ chrome.runtime.onMessage.addListener((request) => {
             if (!document.querySelector('.code-container') && problem.languages.length > 0) {
                 let codeContainer = createCodeContainer();
                 if (searchBar) searchBar.insertBefore(codeContainer, searchBar.children[1]);
-                // let code = getCodeSolution(problem.title, problem.frontend_id, 'python');
-                // code.then((code) => {
-                //     let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
-                //     if (codeContainer) {
-                //         codeContainer.textContent = code;
-                //         addCopyIconToElement(codeContainer);
-                //     }
-                // });
             }
 
             // Check if the language buttons container already exists before adding

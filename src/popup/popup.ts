@@ -49,8 +49,8 @@ const fixCodeContainer = elements['fixCodeContainer'];
 
 /* Helper functions */
 function disableAllButtons(disabled: boolean): void {
-    let fixCodeButton = elements['fixCodeBtn'];
-    let getComplexityButton = elements['getComplexityBtn'];
+    let fixCodeButton = elements['fixCodeBtn'] as HTMLButtonElement;
+    let getComplexityButton = elements['getComplexityBtn'] as HTMLButtonElement;
 
     // Use the arguments to determine if a specific button should be disabled
     fixCodeButton && (fixCodeButton.disabled = disabled);

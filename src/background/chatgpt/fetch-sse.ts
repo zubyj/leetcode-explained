@@ -8,20 +8,44 @@ import { streamAsyncIterable } from './stream-async-iterable.js';
 
 export async function fetchSSE(
     resource: string,
-    options: RequestInit & { onMessage: (message: string) => void }) {
+    options: {
+        onMessage: (message: string) => void;
+        method?: string;
+        headers?: Record<string, string>;
+        body?: string;
+    }
+): Promise<void> {
     const { onMessage, ...fetchOptions } = options;
     const resp = await fetch(resource, fetchOptions);
     if (!resp.ok) {
-        const error = await resp.json().catch(() => ({}));
-        throw new Error(!isEmpty(error) ? JSON.stringify(error) : `${resp.status} ${resp.statusText}`);
+        throw new Error(`HTTP error! status: ${resp.status}`);
     }
-    const parser = createParser((event) => {
-        if (event.type === 'event') {
-            onMessage(event.data);
+    const reader = resp.body?.getReader();
+    if (!reader) {
+        throw new Error('Response body is not readable');
+    }
+
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+            const trimmedLine = line.trim();
+            if (trimmedLine === '') continue;
+            if (trimmedLine === 'data: [DONE]') {
+                onMessage('[DONE]');
+                return;
+            }
+            if (trimmedLine.startsWith('data: ')) {
+                onMessage(trimmedLine.slice(6));
+            }
         }
-    });
-    for await (const chunk of streamAsyncIterable(resp.body || new ReadableStream())) {
-        const str = new TextDecoder().decode(chunk);
-        parser.feed(str);
     }
 }

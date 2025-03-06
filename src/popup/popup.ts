@@ -4,12 +4,17 @@ Creates the GPT buttons, sets the prompts, and displays the responses.
 The user can also copy the code to their clipboard, clear the code, and open the settings page.
 */
 
-import {
-    getChatGPTAccessToken,
-    ChatGPTProvider,
-} from '../background/chatgpt/chatgpt.js';
+import { initializeTheme } from '../utils/theme.js';
+import { OpenRouterProvider } from '../background/openrouter/openrouter.js';
+import { ChatGPTProvider } from '../background/chatgpt/chatgpt.js';
 
-import { initializeTheme, toggleTheme } from '../utils/theme.js';
+// Add interface for ChatGPTProvider at the top level
+interface AIProvider {
+    generateAnswer(params: {
+        prompt: string,
+        onEvent: (arg: { type: string, data?: { text: string } }) => void
+    }): Promise<void>;
+}
 
 /* Element selectors */
 const selectors: { [key: string]: string } = {
@@ -75,7 +80,7 @@ function setInfoMessage(message: string, duration: number) {
     }, duration);
 }
 
-function initActionButton(buttonId: string, action: string, chatGPTProvider: ChatGPTProvider): void {
+function initActionButton(buttonId: string, action: string, chatGPTProvider: AIProvider): void {
     const actionButton = document.getElementById(buttonId);
     if (!actionButton) return;
     actionButton.onclick = async () => {
@@ -120,7 +125,7 @@ function formatResponseText(text: string): string {
 }
 
 function processCode(
-    chatGPTProvider: ChatGPTProvider,
+    chatGPTProvider: AIProvider,
     codeText: string,
     action: string,
 ): void {
@@ -200,64 +205,30 @@ function processCode(
     });
 }
 
-async function main(): Promise<void> {
-
-    initializeTheme();
-
-    await Promise.all([
+async function loadStoredData(): Promise<void> {
+    const [analyzeCodeResponseStored, fixCodeResponseStored, lastAction] = await Promise.all([
         getFromStorage(storageKeys.analyzeCodeResponse),
         getFromStorage(storageKeys.fixCodeResponse),
         getFromStorage(storageKeys.lastAction),
-        getFromStorage(storageKeys.language),
-    ]);
+    ]) as [string, string, string];
 
-    // Load font size from storage
-    let fontSizeElement = document.documentElement; // Or any specific element you want to change the font size of
-    chrome.storage.local.get('fontSize', function (data) {
-        if (data.fontSize) {
-            fontSizeElement.style.setProperty('--dynamic-font-size', `${data.fontSize}px`);
-            if (parseInt(data.fontSize) >= 18) {
-                const width = (parseInt(data.fontSize) * 24 + 200);
-                document.body.style.width = `${width + 20} px`;
-                fixCodeContainer && (fixCodeContainer.style.maxWidth = `${width} px`);
-                analyzeCodeResponse && (analyzeCodeResponse.style.maxWidth = `${width}px`);
-            }
+    if (analyzeCodeResponseStored && lastAction === 'analyze') {
+        analyzeCodeResponse && (analyzeCodeResponse.innerHTML = analyzeCodeResponseStored);
+        analyzeCodeResponse?.classList.remove('hidden');
+    }
 
-            const sizes = document.getElementsByClassName('material-button');
-            for (let i = 0; i < sizes.length; i++) {
-                (sizes[i] as HTMLElement).style.width = `${data.fontSize * 13} px`;
-            }
-        }
-    });
+    if (fixCodeResponseStored && lastAction === 'fix') {
+        fixCodeResponse && (fixCodeResponse.textContent = fixCodeResponseStored);
+        fixCodeContainer?.classList.remove('hidden');
+        (window as any).Prism.highlightAll();
+    }
+}
 
-    chrome.storage.local.get('analyzeCodeResponse', function (data) {
-        if (data.analyzeCodeResponse) {
-            analyzeCodeResponse && (analyzeCodeResponse.innerHTML = data.analyzeCodeResponse);
-            (window as any).Prism.highlightAll();
-        }
-    });
+async function main(): Promise<void> {
+    initializeTheme();
+    await loadStoredData();
 
-    chrome.storage.local.get('fixCodeResponse', function (data) {
-        if (data.fixCodeResponse) {
-            fixCodeResponse && (fixCodeResponse.textContent = data.fixCodeResponse);
-            (window as any).Prism.highlightAll();
-        }
-    });
-
-    chrome.storage.local.get('lastAction', function (data) {
-        if (data.lastAction) {
-            if (data.lastAction === 'analyze') {
-                analyzeCodeResponse && analyzeCodeResponse.classList.remove('hidden');
-                fixCodeContainer && fixCodeContainer.classList.add('hidden');
-            }
-            else if (data.lastAction === 'fix') {
-                analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
-                fixCodeContainer && fixCodeContainer.classList.remove('hidden');
-            }
-        }
-    });
-
-    // get name of current tab and set info message to it if its a leetcode problem
+    // get name of current tab and set info message
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const tab = tabs[0];
         if (tab.url && tab.url.includes('leetcode.com/problems')) {
@@ -273,23 +244,37 @@ async function main(): Promise<void> {
     });
 
     try {
-        const accessToken = await getChatGPTAccessToken();
-        if (accessToken) {
-            const chatGPTProvider = new ChatGPTProvider(accessToken);
-            initActionButton('get-complexity-btn', 'analyze', chatGPTProvider);
-            initActionButton('fix-code-btn', 'fix', chatGPTProvider);
-            initCopyButton();
-            initClearButton();
-            elements['getComplexityBtn'] && elements['getComplexityBtn'].classList.remove('hidden');
-            elements['fixCodeBtn'] && elements['fixCodeBtn'].classList.remove('hidden');
+        // Get OpenRouter API key from storage
+        const data = await chrome.storage.local.get('openRouterApiKey');
+        if (!data.openRouterApiKey) {
+            displayApiKeyMessage();
+            return;
         }
-        else {
-            displayLoginMessage();
+
+        // Verify API key is not empty string
+        if (data.openRouterApiKey.trim() === '') {
+            displayApiKeyMessage();
+            return;
         }
-    }
-    catch (error) {
+
+        const openRouterProvider = new OpenRouterProvider(data.openRouterApiKey);
+        initActionButton('get-complexity-btn', 'analyze', openRouterProvider);
+        initActionButton('fix-code-btn', 'fix', openRouterProvider);
+        initCopyButton();
+        initClearButton();
+        elements['getComplexityBtn']?.classList.remove('hidden');
+        elements['fixCodeBtn']?.classList.remove('hidden');
+    } catch (error) {
         handleError(error as Error);
     }
+}
+
+function displayApiKeyMessage(): void {
+    elements['loginBtn']?.classList.remove('hidden');
+    if (infoMessage) {
+        infoMessage.textContent = 'Please add your OpenRouter API key in settings';
+    }
+    disableAllButtons(true);
 }
 
 function initCopyButton(): void {
@@ -348,9 +333,9 @@ chrome.runtime.onMessage.addListener((message) => {
 });
 
 /* Utility functions */
-function getFromStorage(key: string) {
+function getFromStorage(key: string): Promise<string> {
     return new Promise((resolve) => {
-        chrome.storage.local.get(key, (data) => resolve(data[key]));
+        chrome.storage.local.get(key, (data) => resolve(data[key] || ''));
     });
 }
 

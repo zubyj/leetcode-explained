@@ -114,4 +114,33 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    // Add API key handling
+    const apiKeyInput = document.getElementById('api-key-input') as HTMLInputElement;
+    const saveApiKeyBtn = document.getElementById('save-api-key-btn') as HTMLButtonElement;
+
+    // Load existing API key if any
+    chrome.storage.local.get(['openRouterApiKey'], (result) => {
+        if (result.openRouterApiKey) {
+            apiKeyInput.value = result.openRouterApiKey;
+        }
+    });
+
+    // Save API key when button is clicked
+    saveApiKeyBtn?.addEventListener('click', () => {
+        const apiKey = apiKeyInput.value.trim();
+        if (apiKey) {
+            chrome.storage.local.set({ openRouterApiKey: apiKey }, () => {
+                // Show success message
+                const message = document.getElementById('api-key-message');
+                if (message) {
+                    message.textContent = 'API key saved successfully!';
+                    message.style.color = 'lightgreen';
+                    setTimeout(() => {
+                        message.textContent = '';
+                    }, 3000);
+                }
+            });
+        }
+    });
 });

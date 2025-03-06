@@ -24,6 +24,13 @@ chrome.runtime.onInstalled.addListener(() => {
             console.error(error);
         });
 
+    // Initialize OpenRouter API key as empty if not set
+    chrome.storage.local.get(['openRouterApiKey'], (result) => {
+        if (!result.openRouterApiKey) {
+            chrome.storage.local.set({ openRouterApiKey: '' });
+        }
+    });
+
     // Load default settings
     chrome.storage.local.set({ fontSize: 14 });
     chrome.storage.local.set({ showExamples: true });

@@ -124,6 +124,14 @@ function formatResponseText(text: string): string {
         .replace(/space/gi, '<span style="color: lightgreen;">space complexity</span>');
 }
 
+function stripMarkdownCodeBlock(text: string): string {
+    // Remove any text between the first set of ```
+    text = text.replace(/```[^\n]*\n/, '');
+    // Remove trailing ```
+    text = text.replace(/```$/, '');
+    return text;
+}
+
 function processCode(
     chatGPTProvider: AIProvider,
     codeText: string,
@@ -148,19 +156,18 @@ function processCode(
         if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
     }
     else if (action === 'fix') {
-
         // Prompt for generating solution code
         prompt = `
-        As a coding professional, I need your expertise with a specific LeetCode problem named ${problemTitle}.
-        Please follow the instructions:
-        1. If no code is provided: Generate an efficient and accurate solution for the problem.
-        2. If code is provided and contains errors: Identify the issues, correct them, and optimize the code if possible.
-        3. If the provided code is already correct and optimized: Simply return it as-is.
-        IMPORTANT: Your response should only include the function definition and code solution in plain text format (no backticks, code blocks, or additional formatting).
-        Do not explain your solution or provide any additional information other than the code.
-        Here's the problem description and code:\n
+        You are a LeetCode solution generator. STRICTLY follow these rules for the Leetcode problem "${problemTitle}":
+        
+        - Provide ONLY raw solution code with NO markdown (Do NOT include "\`\`\`" or the language name).
+        - Include ONLY the exact solution class and function definition LeetCode expects.
+        - NO explanations, comments, markdown formatting, examples, or test cases.
+        - The solution MUST be directly copy-pastable into LeetCode's editor WITHOUT modification.
+        
+        Problem and initial code structure:
         ${codeText}
-        `
+        `;
         if (infoMessage) infoMessage.textContent = 'Generating solution code ...';
         analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer && fixCodeContainer.classList.remove('hidden');
@@ -174,9 +181,8 @@ function processCode(
                 if (event.type === 'answer' && event.data) {
                     if (action === 'fix' && fixCodeResponse) {
                         response += event.data.text;
-                        fixCodeResponse.textContent = response;
+                        fixCodeResponse.textContent = stripMarkdownCodeBlock(response); // Strip markdown code blocks
                         (window as any).Prism.highlightAll();
-
                     }
                     else if (action === 'analyze' && analyzeCodeResponse) {
                         response += formatResponseText(event.data.text); // Use the helper function here

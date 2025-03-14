@@ -9,7 +9,7 @@ export class OpenRouterProvider implements AIProvider {
     private readonly apiKey: string;
     private readonly model: string;
 
-    constructor(apiKey: string, model: string = 'openai/gpt-3.5-turbo') {
+    constructor(apiKey: string, model: string = 'qwen/qwen-2-7b-instruct') {
         this.apiKey = apiKey;
         this.model = model;
     }

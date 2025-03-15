@@ -4,6 +4,33 @@
  * 
  *  */
 
+function getTestCases() {
+    const testCases: string[] = [];
+    const testCaseContainer = document.querySelector('div.space-y-4');
+
+    if (testCaseContainer) {
+        // Get all input fields
+        const inputs = testCaseContainer.querySelectorAll('[data-e2e-locator="console-testcase-input"]');
+        const labels = testCaseContainer.querySelectorAll('.text-xs.font-medium');
+
+        // Combine labels with their values
+        labels.forEach((label, index) => {
+            const inputValue = inputs[index]?.textContent?.trim() || '';
+            if (label.textContent && inputValue) {
+                testCases.push(`${label.textContent} ${inputValue}`);
+            }
+        });
+    }
+
+    // Also try to get other test cases if they exist
+    const testCaseButtons = document.querySelectorAll('[data-e2e-locator="console-testcase-button"]');
+    if (testCaseButtons.length > 1) {
+        testCases.push("\nNote: There are multiple test cases available.");
+    }
+
+    return testCases;
+}
+
 function getProblem() {
     let collectedData = []
 
@@ -20,10 +47,28 @@ function getProblem() {
     // Get the function definition and users code from the code editor
     const codeEditor = document.getElementsByClassName('view-line');
     if (codeEditor) {
-        collectedData.push("heres the function definition and the users code which might be not present or might be incorrect.\n");
+        collectedData.push("\n--- Function Definition and Current Code ---\n");
         for (const viewLine of codeEditor) {
             let text = viewLine.textContent;
             if (text) collectedData.push(text);
+        }
+    }
+
+    // Get test cases with improved selector
+    const testCases = getTestCases();
+    if (testCases.length > 0) {
+        console.log('Test Cases:', testCases);
+        collectedData.push("\n--- Test Cases ---\n" + testCases.join('\n'));
+    }
+
+    // Get any error messages from the output panel with improved selector
+    const errorPanel = document.querySelector('div.font-menlo.whitespace-pre-wrap.break-all.text-xs.text-red-60');
+    if (errorPanel) {
+        const errorText = errorPanel.textContent?.trim();
+        if (errorText) {
+            console.log('Error from LeetCode:', errorText);
+            collectedData.push("\n--- LeetCode Error Message ---\n" + errorText);
+            collectedData.push("\nPlease fix the above error in the code.");
         }
     }
 

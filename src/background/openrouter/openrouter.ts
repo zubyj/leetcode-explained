@@ -9,7 +9,7 @@ export class OpenRouterProvider implements AIProvider {
     private readonly apiKey: string;
     private readonly model: string;
 
-    constructor(apiKey: string, model: string = 'qwen/qwen-2-7b-instruct') {
+    constructor(apiKey: string, model: string = 'amazon/nova-micro-v1') {
         this.apiKey = apiKey;
         this.model = model;
     }

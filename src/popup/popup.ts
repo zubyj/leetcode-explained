@@ -86,6 +86,7 @@ function initActionButton(buttonId: string, action: string, chatGPTProvider: AIP
     actionButton.onclick = async () => {
         const codeText = await getCodeFromActiveTab();
         if (codeText) {
+            console.log(codeText);
             processCode(chatGPTProvider, codeText, action);
         } else {
             const errorMessage = "Cannot read from page. Please open a Leetcode problem and refresh the page.";
@@ -156,16 +157,19 @@ function processCode(
         if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
     }
     else if (action === 'fix') {
-        // Prompt for generating solution code
+        console.log("Full context being sent to GPT:", codeText); // Debug log
+
         prompt = `
-        You are a LeetCode solution generator. STRICTLY follow these rules for the Leetcode problem "${problemTitle}":
+        You are a LeetCode solution generator. Fix the code for "${problemTitle}".
+        If there's an error message, fix the specific issue mentioned in the error.
         
-        - Provide ONLY raw solution code with NO markdown (Do NOT include "\`\`\`" or the language name).
-        - Include ONLY the exact solution class and function definition LeetCode expects.
-        - NO explanations, comments, markdown formatting, examples, or test cases.
-        - The solution MUST be directly copy-pastable into LeetCode's editor WITHOUT modification.
+        RULES:
+        - Provide ONLY raw solution code with NO markdown (Do NOT include "\`\`\`" or the language name)
+        - Include ONLY the exact solution class and function definition LeetCode expects
+        - NO explanations, comments, markdown formatting, examples, or test cases
+        - The solution MUST be directly copy-pastable into LeetCode's editor
         
-        Problem and initial code structure:
+        Problem details and code:
         ${codeText}
         `;
         if (infoMessage) infoMessage.textContent = 'Generating solution code ...';

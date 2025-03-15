@@ -4,31 +4,44 @@
  * 
  *  */
 
-function getTestCases() {
-    const testCases: string[] = [];
+function getConsoleData() {
+    const results: string[] = [];
     const testCaseContainer = document.querySelector('div.space-y-4');
 
+    // Get test cases
     if (testCaseContainer) {
-        // Get all input fields
         const inputs = testCaseContainer.querySelectorAll('[data-e2e-locator="console-testcase-input"]');
         const labels = testCaseContainer.querySelectorAll('.text-xs.font-medium');
 
-        // Combine labels with their values
         labels.forEach((label, index) => {
             const inputValue = inputs[index]?.textContent?.trim() || '';
             if (label.textContent && inputValue) {
-                testCases.push(`${label.textContent} ${inputValue}`);
+                results.push(`${label.textContent} ${inputValue}`);
             }
         });
     }
 
-    // Also try to get other test cases if they exist
-    const testCaseButtons = document.querySelectorAll('[data-e2e-locator="console-testcase-button"]');
-    if (testCaseButtons.length > 1) {
-        testCases.push("\nNote: There are multiple test cases available.");
+    // Get output and expected output
+    const containers = document.querySelectorAll('div.flex.h-full.w-full.flex-col.space-y-2');
+    for (const container of containers) {
+        const label = container.querySelector('div.flex.text-xs.font-medium');
+        const valueDiv = container.querySelector('div.font-menlo.relative.mx-3.whitespace-pre-wrap');
+        const value = valueDiv?.textContent?.trim() || '';
+
+        if (label?.textContent?.includes('Output') && value) {
+            results.push(`Current Output: ${value}`);
+        } else if (label?.textContent?.includes('Expected') && value) {
+            results.push(`Expected Output: ${value}`);
+        }
     }
 
-    return testCases;
+    // Check for multiple test cases
+    const testCaseButtons = document.querySelectorAll('[data-e2e-locator="console-testcase-button"]');
+    if (testCaseButtons.length > 1) {
+        results.push("\nNote: There are multiple test cases available.");
+    }
+
+    return results;
 }
 
 function getProblem() {
@@ -54,11 +67,11 @@ function getProblem() {
         }
     }
 
-    // Get test cases with improved selector
-    const testCases = getTestCases();
-    if (testCases.length > 0) {
-        console.log('Test Cases:', testCases);
-        collectedData.push("\n--- Test Cases ---\n" + testCases.join('\n'));
+    // Get test cases, output, and expected output
+    const consoleData = getConsoleData();
+    if (consoleData.length > 0) {
+        console.log('Console Data:', consoleData);
+        collectedData.push("\n--- Test Cases and Results ---\n" + consoleData.join('\n'));
     }
 
     // Get any error messages from the output panel with improved selector

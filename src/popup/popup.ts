@@ -157,19 +157,16 @@ function processCode(
         if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
     }
     else if (action === 'fix') {
-        console.log("Full context being sent to GPT:", codeText); // Debug log
-
+        // Prompt for generating solution code
         prompt = `
-        You are a LeetCode solution generator. Fix the code for "${problemTitle}".
-        If there's an error message, fix the specific issue mentioned in the error.
+        You are a LeetCode solution generator. STRICTLY follow these rules for the Leetcode problem "${problemTitle}":
         
-        RULES:
-        - Provide ONLY raw solution code with NO markdown (Do NOT include "\`\`\`" or the language name)
-        - Include ONLY the exact solution class and function definition LeetCode expects
-        - NO explanations, comments, markdown formatting, examples, or test cases
-        - The solution MUST be directly copy-pastable into LeetCode's editor
+        - Provide ONLY raw solution code with NO markdown (Do NOT include "\`\`\`" or the language name).
+        - Include ONLY the exact solution class and function definition LeetCode expects.
+        - NO explanations, comments, markdown formatting, examples, or test cases.
+        - The solution MUST be directly copy-pastable into LeetCode's editor WITHOUT modification.
         
-        Problem details and code:
+        Problem and initial code structure:
         ${codeText}
         `;
         if (infoMessage) infoMessage.textContent = 'Generating solution code ...';

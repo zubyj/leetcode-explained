@@ -115,32 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add API key handling
+    // Remove API key related code
     const apiKeyInput = document.getElementById('api-key-input') as HTMLInputElement;
-    const saveApiKeyBtn = document.getElementById('save-api-key-btn') as HTMLButtonElement;
+    const saveApiKeyBtn = document.getElementById('save-api-key-btn');
 
-    // Load existing API key if any
-    chrome.storage.local.get(['openRouterApiKey'], (result) => {
-        if (result.openRouterApiKey) {
-            apiKeyInput.value = result.openRouterApiKey;
-        }
-    });
+    if (apiKeyInput) apiKeyInput.remove();
+    if (saveApiKeyBtn) saveApiKeyBtn.remove();
 
-    // Save API key when button is clicked
-    saveApiKeyBtn?.addEventListener('click', () => {
-        const apiKey = apiKeyInput.value.trim();
-        if (apiKey) {
-            chrome.storage.local.set({ openRouterApiKey: apiKey }, () => {
-                // Show success message
-                const message = document.getElementById('api-key-message');
-                if (message) {
-                    message.textContent = 'API key saved successfully!';
-                    message.style.color = 'lightgreen';
-                    setTimeout(() => {
-                        message.textContent = '';
-                    }, 3000);
-                }
-            });
-        }
-    });
+    const apiKeyMessage = document.getElementById('api-key-message');
+    if (apiKeyMessage) apiKeyMessage.remove();
 });

@@ -6,48 +6,49 @@ export interface AIProvider {
 }
 
 export class OpenRouterProvider implements AIProvider {
-    private readonly apiKey: string;
+    private readonly apiUrl: string;
     private readonly model: string;
 
     constructor(apiKey: string, model: string = 'amazon/nova-micro-v1') {
-        this.apiKey = apiKey;
+        this.apiUrl = 'https://api.leetcodeapp.com';
         this.model = model;
     }
 
     async generateAnswer(params: { prompt: string, onEvent: (arg: { type: string, data?: { text: string } }) => void }) {
         try {
-            const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+            const response = await fetch(`${this.apiUrl}/api/generate`, {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${this.apiKey}`,
-                    'HTTP-Referer': 'https://github.com/zubyj/leetcode-explained',
-                    'X-Title': 'Leetcode Explained'
+                    'Origin': 'chrome-extension://hkbmmebmjcgpkfmlpjhghcpbokomngga'
                 },
                 body: JSON.stringify({
+                    prompt: params.prompt,
                     model: this.model,
-                    messages: [{
-                        role: 'user',
-                        content: params.prompt
-                    }],
-                    stream: false
+                    action: 'fix' // You may want to pass this as a parameter
                 })
             });
 
             if (!response.ok) {
-                throw new Error(`OpenRouter API error: ${response.status}`);
+                const errorData = await response.json();
+                throw new Error(`Backend API error: ${response.status} - ${errorData.message || 'Unknown error'}`);
             }
 
             const data = await response.json();
-            if (data.choices && data.choices[0]) {
+            if (data.data && data.data.text) {
                 params.onEvent({
                     type: 'answer',
-                    data: { text: data.choices[0].message.content }
+                    data: { text: data.data.text }
                 });
                 params.onEvent({ type: 'done' });
             }
         } catch (error) {
-            console.error('OpenRouter API error:', error);
+            console.error('Backend API error:', error);
+            params.onEvent({
+                type: 'error',
+                data: { text: error.message }
+            });
             throw error;
         }
     }

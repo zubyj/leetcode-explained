@@ -17,9 +17,7 @@
         "tabs"
     ],
     "host_permissions": [
-        "https://chat.openai.com/api/auth/session",
-        "https://chatgpt.com/api/auth/session",
-        "https://openrouter.ai/*"
+        "https://api.leetcodeapp.com/*"
     ],
     "background": {
         "service_worker": "dist/background/background.js",

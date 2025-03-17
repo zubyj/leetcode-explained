@@ -1,5 +1,3 @@
-import { getChatGPTAccessToken } from './chatgpt/chatgpt.js';
-
 // Helper function to get or create user ID
 function getRandomToken(): string {
     const randomPool = new Uint8Array(32);
@@ -73,15 +71,6 @@ chrome.runtime.onMessage.addListener((request) => {
 chrome.runtime.onMessage.addListener((request: any) => {
     if (request.type === 'OPEN_LOGIN_PAGE') {
         chrome.tabs.create({ url: 'https://chat.openai.com' });
-    }
-});
-
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.type === 'GET_CHATGPT_ACCESS_TOKEN') {
-        getChatGPTAccessToken().then((accessToken) => {
-            sendResponse({ accessToken: accessToken });
-        });
-        return true;
     }
 });
 

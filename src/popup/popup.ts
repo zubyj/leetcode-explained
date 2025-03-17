@@ -6,9 +6,8 @@ The user can also copy the code to their clipboard, clear the code, and open the
 
 import { initializeTheme } from '../utils/theme.js';
 import { OpenRouterProvider } from '../background/openrouter/openrouter.js';
-import { ChatGPTProvider } from '../background/chatgpt/chatgpt.js';
 
-// Add interface for ChatGPTProvider at the top level
+// Add interface for AIProvider at the top level
 interface AIProvider {
     generateAnswer(params: {
         prompt: string,
@@ -80,14 +79,14 @@ function setInfoMessage(message: string, duration: number) {
     }, duration);
 }
 
-function initActionButton(buttonId: string, action: string, chatGPTProvider: AIProvider): void {
+function initActionButton(buttonId: string, action: string, aiProvider: AIProvider): void {
     const actionButton = document.getElementById(buttonId);
     if (!actionButton) return;
     actionButton.onclick = async () => {
         const codeText = await getCodeFromActiveTab();
         if (codeText) {
             console.log(codeText);
-            processCode(chatGPTProvider, codeText, action);
+            processCode(aiProvider, codeText, action);
         } else {
             const errorMessage = "Cannot read from page. Please open a Leetcode problem and refresh the page.";
             setInfoMessage(errorMessage, 5000);
@@ -134,7 +133,7 @@ function stripMarkdownCodeBlock(text: string): string {
 }
 
 function processCode(
-    chatGPTProvider: AIProvider,
+    aiProvider: AIProvider,
     codeText: string,
     action: 'analyze' | 'fix',
 ): void {
@@ -176,7 +175,7 @@ function processCode(
 
     let response = '';
     Promise.race([
-        chatGPTProvider.generateAnswer({
+        aiProvider.generateAnswer({
             prompt: prompt,
             action: action,
             onEvent: (event: { type: string; data?: { text: string } }) => {
@@ -252,20 +251,7 @@ async function main(): Promise<void> {
     });
 
     try {
-        // Get OpenRouter API key from storage
-        const data = await chrome.storage.local.get('openRouterApiKey');
-        if (!data.openRouterApiKey) {
-            displayApiKeyMessage();
-            return;
-        }
-
-        // Verify API key is not empty string
-        if (data.openRouterApiKey.trim() === '') {
-            displayApiKeyMessage();
-            return;
-        }
-
-        const openRouterProvider = new OpenRouterProvider(data.openRouterApiKey);
+        const openRouterProvider = new OpenRouterProvider();
         initActionButton('get-complexity-btn', 'analyze', openRouterProvider);
         initActionButton('fix-code-btn', 'fix', openRouterProvider);
         initCopyButton();
@@ -273,17 +259,11 @@ async function main(): Promise<void> {
         elements['getComplexityBtn']?.classList.remove('hidden');
         elements['fixCodeBtn']?.classList.remove('hidden');
     } catch (error) {
-        handleError(error as Error);
+        console.log(error);
     }
 }
 
-function displayApiKeyMessage(): void {
-    elements['loginBtn']?.classList.remove('hidden');
-    if (infoMessage) {
-        infoMessage.textContent = 'Please add your OpenRouter API key in settings';
-    }
-    disableAllButtons(true);
-}
+// Remove displayApiKeyMessage function since it's no longer needed
 
 function initCopyButton(): void {
     const copyButton = elements['copyCodeBtn'];
@@ -307,29 +287,6 @@ function initClearButton(): void {
     });
 }
 
-/* Error handling functions */
-function handleError(error: Error): void {
-    if (error.message === 'UNAUTHORIZED' || error.message === 'CLOUDFLARE') {
-        displayLoginMessage();
-    } else {
-        console.error('Error:', error);
-        displayErrorMessage(error.message);
-    }
-}
-
-function displayLoginMessage(): void {
-    elements['loginBtn'] && elements['loginBtn'].classList.remove('hidden');
-    infoMessage && (infoMessage.textContent = 'Log onto ChatGPT in your browser to use features above');
-}
-
-function displayErrorMessage(error: string): void {
-    infoMessage && (infoMessage.textContent = error);
-}
-
-/* Event listeners */
-elements['loginBtn'] && (elements['loginBtn'].onclick = () => {
-    chrome.runtime.sendMessage({ type: 'OPEN_LOGIN_PAGE' });
-});
 
 chrome.runtime.onMessage.addListener((message) => {
     if (message.action === 'setTabInfo') {

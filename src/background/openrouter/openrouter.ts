@@ -1,7 +1,7 @@
 export interface AIProvider {
     generateAnswer(params: {
         prompt: string,
-        action: 'analyze' | 'fix',
+        action: string,
         onEvent: (arg: { type: string, data?: { text: string } }) => void
     }): Promise<void>;
 }
@@ -9,9 +9,8 @@ export interface AIProvider {
 export class OpenRouterProvider implements AIProvider {
     private readonly apiUrl: string;
     private readonly model: string;
-    private readonly version: string = '1.0.0'; // Add version tracking
 
-    constructor(apiKey: string, model: string = 'amazon/nova-micro-v1') {
+    constructor(model: string = 'amazon/nova-micro-v1') {
         this.apiUrl = 'https://api.leetcodeapp.com';
         this.model = model;
     }
@@ -30,6 +29,10 @@ export class OpenRouterProvider implements AIProvider {
             const titleResult = await chrome.storage.local.get('currentLeetCodeProblemTitle');
             const problemTitle = titleResult.currentLeetCodeProblemTitle?.split('-')[0].trim() || '';
 
+            // Get extension version from manifest
+            const manifest = chrome.runtime.getManifest();
+            const version = manifest.version;
+
             const response = await fetch(`${this.apiUrl}/api/generate`, {
                 method: 'POST',
                 credentials: 'include',
@@ -41,7 +44,7 @@ export class OpenRouterProvider implements AIProvider {
                     prompt: params.prompt,
                     model: this.model,
                     userId: userId,
-                    version: this.version,
+                    version: version,
                     problemTitle: problemTitle,
                     action: params.action
                 })

@@ -136,7 +136,7 @@ function stripMarkdownCodeBlock(text: string): string {
 function processCode(
     chatGPTProvider: AIProvider,
     codeText: string,
-    action: string,
+    action: 'analyze' | 'fix',
 ): void {
     disableAllButtons(true);
     clearResponse();
@@ -178,6 +178,7 @@ function processCode(
     Promise.race([
         chatGPTProvider.generateAnswer({
             prompt: prompt,
+            action: action,
             onEvent: (event: { type: string; data?: { text: string } }) => {
                 if (event.type === 'answer' && event.data) {
                     if (action === 'fix' && fixCodeResponse) {

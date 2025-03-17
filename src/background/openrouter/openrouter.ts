@@ -1,6 +1,7 @@
 export interface AIProvider {
     generateAnswer(params: {
         prompt: string,
+        action: 'analyze' | 'fix',
         onEvent: (arg: { type: string, data?: { text: string } }) => void
     }): Promise<void>;
 }
@@ -8,14 +9,27 @@ export interface AIProvider {
 export class OpenRouterProvider implements AIProvider {
     private readonly apiUrl: string;
     private readonly model: string;
+    private readonly version: string = '1.0.0'; // Add version tracking
 
     constructor(apiKey: string, model: string = 'amazon/nova-micro-v1') {
         this.apiUrl = 'https://api.leetcodeapp.com';
         this.model = model;
     }
 
-    async generateAnswer(params: { prompt: string, onEvent: (arg: { type: string, data?: { text: string } }) => void }) {
+    async generateAnswer(params: {
+        prompt: string,
+        action: 'analyze' | 'fix',
+        onEvent: (arg: { type: string, data?: { text: string } }) => void
+    }) {
         try {
+            // Get the userId from chrome.storage.sync
+            const userIdResult = await chrome.storage.sync.get('userId');
+            const userId = userIdResult.userId;
+
+            // Get problem title from storage instead of querying tabs
+            const titleResult = await chrome.storage.local.get('currentLeetCodeProblemTitle');
+            const problemTitle = titleResult.currentLeetCodeProblemTitle?.split('-')[0].trim() || '';
+
             const response = await fetch(`${this.apiUrl}/api/generate`, {
                 method: 'POST',
                 credentials: 'include',
@@ -26,7 +40,10 @@ export class OpenRouterProvider implements AIProvider {
                 body: JSON.stringify({
                     prompt: params.prompt,
                     model: this.model,
-                    action: 'fix' // You may want to pass this as a parameter
+                    userId: userId,
+                    version: this.version,
+                    problemTitle: problemTitle,
+                    action: params.action
                 })
             });
 

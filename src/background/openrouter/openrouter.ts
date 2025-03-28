@@ -1,14 +1,8 @@
-export interface AIProvider {
-    generateAnswer(params: {
-        prompt: string,
-        action: string,
-        onEvent: (arg: { type: string, data?: { text: string } }) => void
-    }): Promise<void>;
-}
-
 export class OpenRouterProvider implements AIProvider {
     private readonly apiUrl: string;
     private readonly model: string;
+
+    private readonly authToken = 'leetSauce420';
 
     constructor(model: string = 'amazon/nova-micro-v1') {
         this.apiUrl = 'https://api.leetcodeapp.com';
@@ -17,7 +11,7 @@ export class OpenRouterProvider implements AIProvider {
 
     async generateAnswer(params: {
         prompt: string,
-        action: 'analyze' | 'fix',
+        action: string,
         onEvent: (arg: { type: string, data?: { text: string } }) => void
     }) {
         try {
@@ -38,6 +32,7 @@ export class OpenRouterProvider implements AIProvider {
                 credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + this.authToken,
                     'Origin': 'chrome-extension://hkbmmebmjcgpkfmlpjhghcpbokomngga'
                 },
                 body: JSON.stringify({
@@ -52,7 +47,34 @@ export class OpenRouterProvider implements AIProvider {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(`Backend API error: ${response.status} - ${errorData.message || 'Unknown error'}`);
+                let errorMessage = 'Unknown error';
+                
+                if (errorData.code && errorData.message) {
+                    switch (errorData.code) {
+                        case 'AUTH_TOKEN_MISSING':
+                            errorMessage = 'Authentication token is missing';
+                            break;
+                        case 'AUTH_TOKEN_INVALID':
+                            errorMessage = 'Authentication token is invalid';
+                            break;
+                        case 'VALIDATION_ERROR':
+                            errorMessage = 'Invalid request: ' + errorData.message;
+                            break;
+                        case 'API_ERROR':
+                            errorMessage = 'API Error: ' + errorData.message;
+                            break;
+                        case 'NETWORK_ERROR':
+                            errorMessage = 'Network error occurred';
+                            break;
+                        case 'SERVER_ERROR':
+                            errorMessage = 'Server error: ' + errorData.message;
+                            break;
+                        default:
+                            errorMessage = errorData.message || 'An unexpected error occurred';
+                    }
+                }
+
+                throw new Error(`${errorMessage} (${response.status})`);
             }
 
             const data = await response.json();
@@ -72,4 +94,4 @@ export class OpenRouterProvider implements AIProvider {
             throw error;
         }
     }
-}
+} 

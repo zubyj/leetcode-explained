@@ -70,15 +70,6 @@ function clearResponse(): void {
     chrome.storage.local.set({ 'analyzeCodeResponse': '' });
 }
 
-function setInfoMessage(message: string, duration: number) {
-    if (!infoMessage) return;
-    const oldMessage = infoMessage.textContent;
-    infoMessage.textContent = message;
-    setTimeout(() => {
-        infoMessage.textContent = oldMessage;
-    }, duration);
-}
-
 function initActionButton(buttonId: string, action: string, aiProvider: AIProvider): void {
     const actionButton = document.getElementById(buttonId);
     if (!actionButton) return;
@@ -132,6 +123,22 @@ function stripMarkdownCodeBlock(text: string): string {
     return text;
 }
 
+function setInfoMessage(message: string, duration: number, isError: boolean = false) {
+    if (!infoMessage) return;
+    const oldMessage = infoMessage.textContent;
+    infoMessage.textContent = message;
+    
+    // Add error styling if it's an error
+    if (isError) {
+        infoMessage.style.color = '#ff4444';
+    }
+    
+    setTimeout(() => {
+        infoMessage.textContent = oldMessage;
+        infoMessage.style.color = ''; // Reset color
+    }, duration);
+}
+
 function processCode(
     aiProvider: AIProvider,
     codeText: string,
@@ -144,30 +151,13 @@ function processCode(
 
     let prompt = '';
     if (action === 'analyze') {
-        // Prompt for getting code complexity
-        prompt = `
-        As an experienced software engineer, please analyze the code complexity of the Leetcode
-        problem titled ${problemTitle} and the accompanying code below. The output (return value) of 
-        the function should not be factored into the time and space complexity of the function.
-        Return the time and space complexity of the function in big O notation. Your analysis should be direct and concise
-        with no more than two sentences. The problem description and code are provided below\n. ${codeText}`;
+        // ... existing prompt setup ...
         if (infoMessage) infoMessage.textContent = 'Analyzing code complexity ...';
         if (analyzeCodeResponse) analyzeCodeResponse.classList.remove('hidden');
         if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
     }
     else if (action === 'fix') {
-        // Prompt for generating solution code
-        prompt = `
-        You are a LeetCode solution generator. STRICTLY follow these rules for the Leetcode problem "${problemTitle}":
-        
-        - Provide ONLY raw solution code with NO markdown (Do NOT include "\`\`\`" or the language name).
-        - Include ONLY the exact solution class and function definition LeetCode expects.
-        - NO explanations, comments, markdown formatting, examples, or test cases.
-        - The solution MUST be directly copy-pastable into LeetCode's editor WITHOUT modification.
-        
-        Problem and initial code structure:
-        ${codeText}
-        `;
+        // ... existing prompt setup ...
         if (infoMessage) infoMessage.textContent = 'Generating solution code ...';
         analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer && fixCodeContainer.classList.remove('hidden');
@@ -179,14 +169,21 @@ function processCode(
             prompt: prompt,
             action: action,
             onEvent: (event: { type: string; data?: { text: string } }) => {
+                if (event.type === 'error' && event.data) {
+                    // Handle error events
+                    setInfoMessage(event.data.text, 5000, true);
+                    disableAllButtons(false);
+                    return;
+                }
+                
                 if (event.type === 'answer' && event.data) {
                     if (action === 'fix' && fixCodeResponse) {
                         response += event.data.text;
-                        fixCodeResponse.textContent = stripMarkdownCodeBlock(response); // Strip markdown code blocks
+                        fixCodeResponse.textContent = stripMarkdownCodeBlock(response);
                         (window as any).Prism.highlightAll();
                     }
                     else if (action === 'analyze' && analyzeCodeResponse) {
-                        response += formatResponseText(event.data.text); // Use the helper function here
+                        response += formatResponseText(event.data.text);
                         analyzeCodeResponse.innerHTML = response;
                     }
                 }
@@ -206,11 +203,11 @@ function processCode(
         }),
         timeout(20000)
     ]).catch((error) => {
-        infoMessage && (infoMessage.textContent = 'The request timed out. Please try again.');
+        setInfoMessage(error.message, 5000, true);
         console.error(error);
         disableAllButtons(false);
     });
-}
+} 
 
 async function loadStoredData(): Promise<void> {
     const [analyzeCodeResponseStored, fixCodeResponseStored, lastAction] = await Promise.all([

@@ -114,14 +114,4 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
-
-    // Remove API key related code
-    const apiKeyInput = document.getElementById('api-key-input') as HTMLInputElement;
-    const saveApiKeyBtn = document.getElementById('save-api-key-btn');
-
-    if (apiKeyInput) apiKeyInput.remove();
-    if (saveApiKeyBtn) saveApiKeyBtn.remove();
-
-    const apiKeyMessage = document.getElementById('api-key-message');
-    if (apiKeyMessage) apiKeyMessage.remove();
 });

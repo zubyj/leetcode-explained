@@ -23,7 +23,7 @@ function getConsoleData() {
 
     // Get output and expected output
     const containers = document.querySelectorAll('div.flex.h-full.w-full.flex-col.space-y-2');
-    for (const container of containers) {
+    Array.from(containers).forEach(container => {
         const label = container.querySelector('div.flex.text-xs.font-medium');
         const valueDiv = container.querySelector('div.font-menlo.relative.mx-3.whitespace-pre-wrap');
         const value = valueDiv?.textContent?.trim() || '';
@@ -33,7 +33,7 @@ function getConsoleData() {
         } else if (label?.textContent?.includes('Expected') && value) {
             results.push(`Expected Output: ${value}`);
         }
-    }
+    });
 
     // Check for multiple test cases
     const testCaseButtons = document.querySelectorAll('[data-e2e-locator="console-testcase-button"]');
@@ -51,20 +51,20 @@ function getProblem() {
     const examples = document.getElementsByClassName('elfjS')[0];
     if (examples && examples.children) {
         collectedData.push('\nHeres the description, examples, and constraints for the problem\n');
-        for (const child of examples.children) {
+        Array.from(examples.children).forEach(child => {
             let text = child.textContent;
             if (text) collectedData.push(text);
-        }
+        });
     }
 
     // Get the function definition and users code from the code editor
     const codeEditor = document.getElementsByClassName('view-line');
     if (codeEditor) {
         collectedData.push("\n--- Function Definition and Current Code ---\n");
-        for (const viewLine of codeEditor) {
+        Array.from(codeEditor).forEach(viewLine => {
             let text = viewLine.textContent;
             if (text) collectedData.push(text);
-        }
+        });
     }
 
     // Get test cases, output, and expected output

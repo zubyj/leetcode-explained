@@ -90,7 +90,6 @@ a:hover {
     margin-bottom: 0;
 }
 
-/* GPT Buttons */
 .button-container {
     display: flex;
     flex-direction: row;
@@ -129,7 +128,6 @@ a:hover {
     color: var(--color);
 }
 
-/* GPT Response */
 .response-container {
     min-height: 150px;
     max-width: 400px;

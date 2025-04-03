@@ -1,6 +1,6 @@
 /*
 Contains the logic behind the popup window that appears when the extension icon is clicked.
-Creates the GPT buttons, sets the prompts, and displays the responses.
+Creates the AI buttons, sets the prompts, and displays the responses.
 The user can also copy the code to their clipboard, clear the code, and open the settings page.
 */
 
@@ -11,7 +11,8 @@ import { OpenRouterProvider } from '../background/openrouter/openrouter.js';
 interface AIProvider {
     generateAnswer(params: {
         prompt: string,
-        onEvent: (arg: { type: string, data?: { text: string } }) => void
+        onEvent: (arg: { type: string, data?: { text: string } }) => void,
+        action: 'analyze' | 'fix'
     }): Promise<void>;
 }
 
@@ -27,7 +28,6 @@ const selectors: { [key: string]: string } = {
     copyCodeBtn: 'copy-code-btn',
     clearCodeBtn: 'clear-code-btn',
     openSettingsBtn: 'open-settings-btn',
-    loginBtn: 'login-btn',
 
 };
 
@@ -70,7 +70,7 @@ function clearResponse(): void {
     chrome.storage.local.set({ 'analyzeCodeResponse': '' });
 }
 
-function initActionButton(buttonId: string, action: string, aiProvider: AIProvider): void {
+function initActionButton(buttonId: string, action: 'analyze' | 'fix', aiProvider: AIProvider): void {
     const actionButton = document.getElementById(buttonId);
     if (!actionButton) return;
     actionButton.onclick = async () => {

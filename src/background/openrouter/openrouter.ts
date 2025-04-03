@@ -1,4 +1,4 @@
-export class OpenRouterProvider implements AIProvider {
+export class OpenRouterProvider {
     private readonly apiUrl: string;
     private readonly model: string;
 
@@ -89,7 +89,7 @@ export class OpenRouterProvider implements AIProvider {
             console.error('Backend API error:', error);
             params.onEvent({
                 type: 'error',
-                data: { text: error.message }
+                data: { text: (error as Error).message }
             });
             throw error;
         }

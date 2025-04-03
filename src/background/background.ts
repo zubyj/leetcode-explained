@@ -68,12 +68,6 @@ chrome.runtime.onMessage.addListener((request) => {
     }
 });
 
-chrome.runtime.onMessage.addListener((request: any) => {
-    if (request.type === 'OPEN_LOGIN_PAGE') {
-        chrome.tabs.create({ url: 'https://chat.openai.com' });
-    }
-});
-
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status === 'complete' && tab.url) {
         const url = tab.url;

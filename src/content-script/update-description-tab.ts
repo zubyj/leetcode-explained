@@ -6,9 +6,9 @@ function showExamples() {
         if (!examples) return;
         let preTags = examples.getElementsByTagName('pre');
         if (preTags) {
-            for (let tag of preTags) {
+            Array.from(preTags).forEach(tag => {
                 tag.style.display = showExamples ? 'block' : 'none';
-            }
+            });
         }
     });
 }

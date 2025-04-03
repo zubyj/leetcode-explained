@@ -151,13 +151,30 @@ function processCode(
 
     let prompt = '';
     if (action === 'analyze') {
-        // ... existing prompt setup ...
+        prompt = `
+        As an experienced software engineer, please analyze the code complexity of the Leetcode
+        problem titled ${problemTitle} and the accompanying code below. The output (return value) of 
+        the function should not be factored into the time and space complexity of the function.
+        Return the time and space complexity of the function in big O notation. Your analysis should be direct and concise
+        with no more than two sentences. The problem description and code are provided below\n. ${codeText}`;
         if (infoMessage) infoMessage.textContent = 'Analyzing code complexity ...';
+
         if (analyzeCodeResponse) analyzeCodeResponse.classList.remove('hidden');
         if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
     }
     else if (action === 'fix') {
-        // ... existing prompt setup ...
+        // ... existing prompt setup ..        // Prompt for generating solution code
+        prompt = `
+        As a coding professional, I need your expertise with a specific LeetCode problem named ${problemTitle}.
+        Please follow the instructions:
+        1. If no code is provided: Generate an efficient and accurate solution for the problem.
+        2. If code is provided and contains errors: Identify the issues, correct them, and optimize the code if possible.
+        3. If the provided code is already correct and optimized: Simply return it as-is.
+        IMPORTANT: Your response should only include the function definition and code solution in plain text format (no backticks, code blocks, or additional formatting).
+        Do not explain your solution or provide any additional information other than the code.
+        Here's the problem description and code:\n
+        ${codeText}.`;
+
         if (infoMessage) infoMessage.textContent = 'Generating solution code ...';
         analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer && fixCodeContainer.classList.remove('hidden');

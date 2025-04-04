@@ -17,8 +17,7 @@
         "tabs"
     ],
     "host_permissions": [
-        "https://chat.openai.com/api/auth/session",
-        "https://chatgpt.com/api/auth/session"
+        "https://api.leetcodeapp.com/*"
     ],
     "background": {
         "service_worker": "dist/background/background.js",
@@ -27,7 +26,6 @@
     "content_scripts": [
         {
             "js": [
-                "dist/content-script/get-gpt-access-token.js",
                 "dist/content-script/get-user-code.js",
                 "dist/content-script/update-solutions-tab.js",
                 "dist/content-script/update-description-tab.js",

@@ -1,15 +1,20 @@
 /*
 Contains the logic behind the popup window that appears when the extension icon is clicked.
-Creates the GPT buttons, sets the prompts, and displays the responses.
+Creates the AI buttons, sets the prompts, and displays the responses.
 The user can also copy the code to their clipboard, clear the code, and open the settings page.
 */
 
-import {
-    getChatGPTAccessToken,
-    ChatGPTProvider,
-} from '../background/chatgpt/chatgpt.js';
+import { initializeTheme } from '../utils/theme.js';
+import { OpenRouterProvider } from '../background/openrouter/openrouter.js';
 
-import { initializeTheme, toggleTheme } from '../utils/theme.js';
+// Add interface for AIProvider at the top level
+interface AIProvider {
+    generateAnswer(params: {
+        prompt: string,
+        onEvent: (arg: { type: string, data?: { text: string } }) => void,
+        action: 'analyze' | 'fix'
+    }): Promise<void>;
+}
 
 /* Element selectors */
 const selectors: { [key: string]: string } = {
@@ -23,7 +28,6 @@ const selectors: { [key: string]: string } = {
     copyCodeBtn: 'copy-code-btn',
     clearCodeBtn: 'clear-code-btn',
     openSettingsBtn: 'open-settings-btn',
-    loginBtn: 'login-btn',
 
 };
 
@@ -66,22 +70,14 @@ function clearResponse(): void {
     chrome.storage.local.set({ 'analyzeCodeResponse': '' });
 }
 
-function setInfoMessage(message: string, duration: number) {
-    if (!infoMessage) return;
-    const oldMessage = infoMessage.textContent;
-    infoMessage.textContent = message;
-    setTimeout(() => {
-        infoMessage.textContent = oldMessage;
-    }, duration);
-}
-
-function initActionButton(buttonId: string, action: string, chatGPTProvider: ChatGPTProvider): void {
+function initActionButton(buttonId: string, action: 'analyze' | 'fix', aiProvider: AIProvider): void {
     const actionButton = document.getElementById(buttonId);
     if (!actionButton) return;
     actionButton.onclick = async () => {
         const codeText = await getCodeFromActiveTab();
         if (codeText) {
-            processCode(chatGPTProvider, codeText, action);
+            console.log(codeText);
+            processCode(aiProvider, codeText, action);
         } else {
             const errorMessage = "Cannot read from page. Please open a Leetcode problem and refresh the page.";
             setInfoMessage(errorMessage, 5000);
@@ -119,10 +115,34 @@ function formatResponseText(text: string): string {
         .replace(/space/gi, '<span style="color: lightgreen;">space complexity</span>');
 }
 
+function stripMarkdownCodeBlock(text: string): string {
+    // Remove any text between the first set of ```
+    text = text.replace(/```[^\n]*\n/, '');
+    // Remove trailing ```
+    text = text.replace(/```$/, '');
+    return text;
+}
+
+function setInfoMessage(message: string, duration: number, isError: boolean = false) {
+    if (!infoMessage) return;
+    const oldMessage = infoMessage.textContent;
+    infoMessage.textContent = message;
+    
+    // Add error styling if it's an error
+    if (isError) {
+        infoMessage.style.color = '#ff4444';
+    }
+    
+    setTimeout(() => {
+        infoMessage.textContent = oldMessage;
+        infoMessage.style.color = ''; // Reset color
+    }, duration);
+}
+
 function processCode(
-    chatGPTProvider: ChatGPTProvider,
+    aiProvider: AIProvider,
     codeText: string,
-    action: string,
+    action: 'analyze' | 'fix',
 ): void {
     disableAllButtons(true);
     clearResponse();
@@ -131,7 +151,6 @@ function processCode(
 
     let prompt = '';
     if (action === 'analyze') {
-        // Prompt for getting code complexity
         prompt = `
         As an experienced software engineer, please analyze the code complexity of the Leetcode
         problem titled ${problemTitle} and the accompanying code below. The output (return value) of 
@@ -139,12 +158,12 @@ function processCode(
         Return the time and space complexity of the function in big O notation. Your analysis should be direct and concise
         with no more than two sentences. The problem description and code are provided below\n. ${codeText}`;
         if (infoMessage) infoMessage.textContent = 'Analyzing code complexity ...';
+
         if (analyzeCodeResponse) analyzeCodeResponse.classList.remove('hidden');
         if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
     }
     else if (action === 'fix') {
-
-        // Prompt for generating solution code
+        // ... existing prompt setup ..        // Prompt for generating solution code
         prompt = `
         As a coding professional, I need your expertise with a specific LeetCode problem named ${problemTitle}.
         Please follow the instructions:
@@ -154,8 +173,8 @@ function processCode(
         IMPORTANT: Your response should only include the function definition and code solution in plain text format (no backticks, code blocks, or additional formatting).
         Do not explain your solution or provide any additional information other than the code.
         Here's the problem description and code:\n
-        ${codeText}
-        `
+        ${codeText}.`;
+
         if (infoMessage) infoMessage.textContent = 'Generating solution code ...';
         analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
         fixCodeContainer && fixCodeContainer.classList.remove('hidden');
@@ -163,18 +182,25 @@ function processCode(
 
     let response = '';
     Promise.race([
-        chatGPTProvider.generateAnswer({
+        aiProvider.generateAnswer({
             prompt: prompt,
+            action: action,
             onEvent: (event: { type: string; data?: { text: string } }) => {
+                if (event.type === 'error' && event.data) {
+                    // Handle error events
+                    setInfoMessage(event.data.text, 5000, true);
+                    disableAllButtons(false);
+                    return;
+                }
+                
                 if (event.type === 'answer' && event.data) {
                     if (action === 'fix' && fixCodeResponse) {
                         response += event.data.text;
-                        fixCodeResponse.textContent = response;
+                        fixCodeResponse.textContent = stripMarkdownCodeBlock(response);
                         (window as any).Prism.highlightAll();
-
                     }
                     else if (action === 'analyze' && analyzeCodeResponse) {
-                        response += formatResponseText(event.data.text); // Use the helper function here
+                        response += formatResponseText(event.data.text);
                         analyzeCodeResponse.innerHTML = response;
                     }
                 }
@@ -194,70 +220,37 @@ function processCode(
         }),
         timeout(20000)
     ]).catch((error) => {
-        infoMessage && (infoMessage.textContent = 'The request timed out. Please try again.');
+        setInfoMessage(error.message, 5000, true);
         console.error(error);
         disableAllButtons(false);
     });
-}
+} 
 
-async function main(): Promise<void> {
-
-    initializeTheme();
-
-    await Promise.all([
+async function loadStoredData(): Promise<void> {
+    const [analyzeCodeResponseStored, fixCodeResponseStored, lastAction] = await Promise.all([
         getFromStorage(storageKeys.analyzeCodeResponse),
         getFromStorage(storageKeys.fixCodeResponse),
         getFromStorage(storageKeys.lastAction),
-        getFromStorage(storageKeys.language),
-    ]);
+    ]) as [string, string, string];
 
-    // Load font size from storage
-    let fontSizeElement = document.documentElement; // Or any specific element you want to change the font size of
-    chrome.storage.local.get('fontSize', function (data) {
-        if (data.fontSize) {
-            fontSizeElement.style.setProperty('--dynamic-font-size', `${data.fontSize}px`);
-            if (parseInt(data.fontSize) >= 18) {
-                const width = (parseInt(data.fontSize) * 24 + 200);
-                document.body.style.width = `${width + 20} px`;
-                fixCodeContainer && (fixCodeContainer.style.maxWidth = `${width} px`);
-                analyzeCodeResponse && (analyzeCodeResponse.style.maxWidth = `${width}px`);
-            }
+    if (analyzeCodeResponseStored && lastAction === 'analyze') {
+        analyzeCodeResponse && (analyzeCodeResponse.innerHTML = analyzeCodeResponseStored);
+        analyzeCodeResponse?.classList.remove('hidden');
+    }
 
-            const sizes = document.getElementsByClassName('material-button');
-            for (let i = 0; i < sizes.length; i++) {
-                (sizes[i] as HTMLElement).style.width = `${data.fontSize * 13} px`;
-            }
-        }
-    });
+    if (fixCodeResponseStored && lastAction === 'fix') {
+        fixCodeResponse && (fixCodeResponse.textContent = fixCodeResponseStored);
+        fixCodeContainer?.classList.remove('hidden');
+        (window as any).Prism.highlightAll();
+    }
+}
 
-    chrome.storage.local.get('analyzeCodeResponse', function (data) {
-        if (data.analyzeCodeResponse) {
-            analyzeCodeResponse && (analyzeCodeResponse.innerHTML = data.analyzeCodeResponse);
-            (window as any).Prism.highlightAll();
-        }
-    });
+async function main(): Promise<void> {
+    initializeTheme();
+    initializeScaleFactor();
+    await loadStoredData();
 
-    chrome.storage.local.get('fixCodeResponse', function (data) {
-        if (data.fixCodeResponse) {
-            fixCodeResponse && (fixCodeResponse.textContent = data.fixCodeResponse);
-            (window as any).Prism.highlightAll();
-        }
-    });
-
-    chrome.storage.local.get('lastAction', function (data) {
-        if (data.lastAction) {
-            if (data.lastAction === 'analyze') {
-                analyzeCodeResponse && analyzeCodeResponse.classList.remove('hidden');
-                fixCodeContainer && fixCodeContainer.classList.add('hidden');
-            }
-            else if (data.lastAction === 'fix') {
-                analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
-                fixCodeContainer && fixCodeContainer.classList.remove('hidden');
-            }
-        }
-    });
-
-    // get name of current tab and set info message to it if its a leetcode problem
+    // get name of current tab and set info message
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const tab = tabs[0];
         if (tab.url && tab.url.includes('leetcode.com/problems')) {
@@ -273,32 +266,58 @@ async function main(): Promise<void> {
     });
 
     try {
-        const accessToken = await getChatGPTAccessToken();
-        if (accessToken) {
-            const chatGPTProvider = new ChatGPTProvider(accessToken);
-            initActionButton('get-complexity-btn', 'analyze', chatGPTProvider);
-            initActionButton('fix-code-btn', 'fix', chatGPTProvider);
-            initCopyButton();
-            initClearButton();
-            elements['getComplexityBtn'] && elements['getComplexityBtn'].classList.remove('hidden');
-            elements['fixCodeBtn'] && elements['fixCodeBtn'].classList.remove('hidden');
-        }
-        else {
-            displayLoginMessage();
-        }
-    }
-    catch (error) {
-        handleError(error as Error);
+        const openRouterProvider = new OpenRouterProvider();
+        initActionButton('get-complexity-btn', 'analyze', openRouterProvider);
+        initActionButton('fix-code-btn', 'fix', openRouterProvider);
+        initCopyButton();
+        initClearButton();
+        elements['getComplexityBtn']?.classList.remove('hidden');
+        elements['fixCodeBtn']?.classList.remove('hidden');
+    } catch (error) {
+        console.log(error);
     }
 }
+
+// Function to initialize scale factor based on saved font size
+function initializeScaleFactor(): void {
+    chrome.storage.local.get('fontSize', function (data) {
+        if (data.fontSize) {
+            let scaleFactor: number;
+            
+            switch (data.fontSize) {
+                case '12':
+                    scaleFactor = 0.9;
+                    break;
+                case '16':
+                    scaleFactor = 1.1;
+                    break;
+                default: // 14px is the default
+                    scaleFactor = 1.0;
+                    break;
+            }
+            
+            document.documentElement.style.setProperty('--scale-factor', scaleFactor.toString());
+        }
+    });
+}
+
+// Remove displayApiKeyMessage function since it's no longer needed
 
 function initCopyButton(): void {
     const copyButton = elements['copyCodeBtn'];
     if (!copyButton) return;
     copyButton.onclick = async () => {
-        setInfoMessage('Copied Code', 3000);
-        // change icon to check-icon.png
-        copyButton
+        setInfoMessage('Copied Code', 1000);
+        // Change icon to check-icon.png
+        const copyButtonImg = copyButton.querySelector('img');
+        if (copyButtonImg) {
+            copyButtonImg.src = '../assets/images/check-icon.png';
+            // After 1 second, change the icon back to the copy icon
+            setTimeout(() => {
+                copyButtonImg.src = '../assets/images/copy-icon.png';
+            }, 1000);
+        }
+        
         if (fixCodeResponse && fixCodeResponse.textContent) {
             await navigator.clipboard.writeText(fixCodeResponse.textContent);
         }
@@ -314,29 +333,6 @@ function initClearButton(): void {
     });
 }
 
-/* Error handling functions */
-function handleError(error: Error): void {
-    if (error.message === 'UNAUTHORIZED' || error.message === 'CLOUDFLARE') {
-        displayLoginMessage();
-    } else {
-        console.error('Error:', error);
-        displayErrorMessage(error.message);
-    }
-}
-
-function displayLoginMessage(): void {
-    elements['loginBtn'] && elements['loginBtn'].classList.remove('hidden');
-    infoMessage && (infoMessage.textContent = 'Log onto ChatGPT in your browser to use features above');
-}
-
-function displayErrorMessage(error: string): void {
-    infoMessage && (infoMessage.textContent = error);
-}
-
-/* Event listeners */
-elements['loginBtn'] && (elements['loginBtn'].onclick = () => {
-    chrome.runtime.sendMessage({ type: 'OPEN_LOGIN_PAGE' });
-});
 
 chrome.runtime.onMessage.addListener((message) => {
     if (message.action === 'setTabInfo') {
@@ -348,9 +344,9 @@ chrome.runtime.onMessage.addListener((message) => {
 });
 
 /* Utility functions */
-function getFromStorage(key: string) {
+function getFromStorage(key: string): Promise<string> {
     return new Promise((resolve) => {
-        chrome.storage.local.get(key, (data) => resolve(data[key]));
+        chrome.storage.local.get(key, (data) => resolve(data[key] || ''));
     });
 }
 

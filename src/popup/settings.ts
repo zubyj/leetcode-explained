@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             chrome.tabs.sendMessage(tabs[0].id || 0, { action: 'updateDescription', title: tabs[0].title || 'title' });
             chrome.tabs.sendMessage(tabs[0].id || 0, { action: 'updateSolutions', title: tabs[0].title || 'title' });
-
         });
     });
     chrome.storage.local.get(['showCompanyTags'], (result) => {
@@ -42,19 +41,39 @@ document.addEventListener('DOMContentLoaded', () => {
         if (showRatingIcon) showRatingIcon.textContent = result.showRating ? '✅' : '❌';
     });
 
-    // Get font fize and check if it is already set in local storage
+    // Get font size and set the scale factor
     const fontSizeSelect = document.getElementById('font-size-select') as HTMLSelectElement;
     chrome.storage.local.get('fontSize', function (data) {
         if (data.fontSize) {
             fontSizeSelect.value = data.fontSize;
-            document.documentElement.style.setProperty('--dynamic-font-size', `${data.fontSize}px`);
+            updateScaleFactor(data.fontSize);
         }
     });
+    
     fontSizeSelect.onchange = function (event: Event) {
         const selectedFontSize = (event.target as HTMLInputElement).value;
         chrome.storage.local.set({ fontSize: selectedFontSize });
-        document.documentElement.style.setProperty('--dynamic-font-size', `${selectedFontSize}px`);
+        updateScaleFactor(selectedFontSize);
     };
+
+    // Function to update scale factor based on font size
+    function updateScaleFactor(fontSize: string) {
+        let scaleFactor: number;
+        
+        switch (fontSize) {
+            case '12':
+                scaleFactor = 0.9;
+                break;
+            case '16':
+                scaleFactor = 1.1;
+                break;
+            default: // 14px is the default
+                scaleFactor = 1.0;
+                break;
+        }
+        
+        document.documentElement.style.setProperty('--scale-factor', scaleFactor.toString());
+    }
 
     const showCompanyTagsBtn = document.getElementById('show-company-tags-btn');
     showCompanyTagsBtn && showCompanyTagsBtn.addEventListener('click', function () {

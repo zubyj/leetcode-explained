@@ -1,7 +1,22 @@
-import { getChatGPTAccessToken } from './chatgpt/chatgpt.js';
+// Helper function to get or create user ID
+function getRandomToken(): string {
+    const randomPool = new Uint8Array(32);
+    crypto.getRandomValues(randomPool);
+    return Array.from(randomPool)
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+}
 
 // Load problem data & default settings on install
 chrome.runtime.onInstalled.addListener(() => {
+    // Generate and store user ID if it doesn't exist
+    chrome.storage.sync.get('userId', function (items) {
+        if (!items.userId) {
+            const userId = getRandomToken();
+            chrome.storage.sync.set({ userId: userId });
+        }
+    });
+
     // Load JSON file of problem data into storage
     const leetcodeProblems = chrome.runtime.getURL('src/assets/data/problem_data.json');
     fetch(leetcodeProblems)
@@ -50,21 +65,6 @@ chrome.runtime.onMessage.addListener((request) => {
             // Attach the listener
             chrome.tabs.onUpdated.addListener(listener);
         });
-    }
-});
-
-chrome.runtime.onMessage.addListener((request: any) => {
-    if (request.type === 'OPEN_LOGIN_PAGE') {
-        chrome.tabs.create({ url: 'https://chat.openai.com' });
-    }
-});
-
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.type === 'GET_CHATGPT_ACCESS_TOKEN') {
-        getChatGPTAccessToken().then((accessToken) => {
-            sendResponse({ accessToken: accessToken });
-        });
-        return true;
     }
 });
 

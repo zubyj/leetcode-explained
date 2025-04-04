@@ -40,7 +40,7 @@ body {
     background-color: var(--background-color);
     font-size: calc(var(--font-size-base) * var(--scale-factor));
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, sans-serif;
-    padding: 0 calc(20px * var(--scale-factor));
+    padding: calc(25px * var(--scale-factor)) calc(20px * var(--scale-factor));
     width: calc(400px * var(--scale-factor));
     margin: 0;
     line-height: 1.5;
@@ -298,8 +298,9 @@ pre[class*="language-"] {
 }
 
 #clear-code-btn {
-    margin-left: calc(10px * var(--scale-factor));
+    margin-left: calc(5px * var(--scale-factor));
 }
+
 
 /* Settings */
 #settings-icon {
@@ -326,6 +327,7 @@ pre[class*="language-"] {
 
 #settings-menu {
     text-align: center;
+    padding: calc(15px * var(--scale-factor)) 0;
 }
 
 .video-container {

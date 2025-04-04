@@ -307,9 +307,17 @@ function initCopyButton(): void {
     const copyButton = elements['copyCodeBtn'];
     if (!copyButton) return;
     copyButton.onclick = async () => {
-        setInfoMessage('Copied Code', 3000);
-        // change icon to check-icon.png
-        copyButton
+        setInfoMessage('Copied Code', 1000);
+        // Change icon to check-icon.png
+        const copyButtonImg = copyButton.querySelector('img');
+        if (copyButtonImg) {
+            copyButtonImg.src = '../assets/images/check-icon.png';
+            // After 1 second, change the icon back to the copy icon
+            setTimeout(() => {
+                copyButtonImg.src = '../assets/images/copy-icon.png';
+            }, 1000);
+        }
+        
         if (fixCodeResponse && fixCodeResponse.textContent) {
             await navigator.clipboard.writeText(fixCodeResponse.textContent);
         }

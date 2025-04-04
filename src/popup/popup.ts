@@ -247,6 +247,7 @@ async function loadStoredData(): Promise<void> {
 
 async function main(): Promise<void> {
     initializeTheme();
+    initializeScaleFactor();
     await loadStoredData();
 
     // get name of current tab and set info message
@@ -275,6 +276,29 @@ async function main(): Promise<void> {
     } catch (error) {
         console.log(error);
     }
+}
+
+// Function to initialize scale factor based on saved font size
+function initializeScaleFactor(): void {
+    chrome.storage.local.get('fontSize', function (data) {
+        if (data.fontSize) {
+            let scaleFactor: number;
+            
+            switch (data.fontSize) {
+                case '12':
+                    scaleFactor = 0.9;
+                    break;
+                case '16':
+                    scaleFactor = 1.1;
+                    break;
+                default: // 14px is the default
+                    scaleFactor = 1.0;
+                    break;
+            }
+            
+            document.documentElement.style.setProperty('--scale-factor', scaleFactor.toString());
+        }
+    });
 }
 
 // Remove displayApiKeyMessage function since it's no longer needed

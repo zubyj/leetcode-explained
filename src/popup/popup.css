@@ -3,6 +3,14 @@
     --color: #000;
     --border-color: #222;
     --link-color: black;
+    --font-size-base: 14px;
+    --scale-factor: 1;
+    --button-height: calc(40px * var(--scale-factor));
+    --button-width: calc(180px * var(--scale-factor));
+    --button-padding: calc(8px * var(--scale-factor));
+    --element-spacing: calc(10px * var(--scale-factor));
+    --border-radius: calc(4px * var(--scale-factor));
+    --icon-size: calc(20px * var(--scale-factor));
 }
 
 [data-theme="dark"] {
@@ -19,16 +27,16 @@ body {
     align-items: center;
     color: var(--color);
     background-color: var(--background-color);
-    font-size: var(--dynamic-font-size, 14px);
+    font-size: calc(var(--font-size-base) * var(--scale-factor));
     font-family: 'Roboto', sans-serif;
-    padding: 0 20px;
-    width: 400px;
+    padding: 0 calc(20px * var(--scale-factor));
+    width: calc(400px * var(--scale-factor));
 }
 
 .material-button,
 .button,
 #info-message {
-    font-size: var(--dynamic-font-size, 14px);
+    font-size: calc(var(--font-size-base) * var(--scale-factor));
 }
 
 a {
@@ -53,9 +61,9 @@ a:hover {
 .navbar {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: calc(20px * var(--scale-factor));
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: calc(30px * var(--scale-factor));
 }
 
 .navbar button:hover {
@@ -65,26 +73,20 @@ a:hover {
 .tab {
     background: none;
     border: none;
-    font-size: var(--dynamic-font-size * 2, 10px);
-    padding: 8px 16px;
+    font-size: calc(var(--font-size-base) * 0.9 * var(--scale-factor));
+    padding: calc(4px * var(--scale-factor)) calc(8px * var(--scale-factor));
     cursor: pointer;
-    border-bottom: 3px solid transparent;
+    border-bottom: calc(2px * var(--scale-factor)) solid transparent;
     transition: 0.3s;
     color: var(--color);
 }
 
 .tab.active {
-    border-bottom: 3px solid var(--link-color, green);
-}
-
-.title {
-    font-weight: 500;
-    color: var(--color);
-    font-size: var(--dynamic-font-size, 10px);
+    border-bottom: calc(2px * var(--scale-factor)) solid var(--link-color, green);
 }
 
 .nav-button {
-    margin-left: 20px;
+    margin-left: calc(15px * var(--scale-factor));
     cursor: pointer;
     padding: 0;
     margin-bottom: 0;
@@ -93,60 +95,65 @@ a:hover {
 .button-container {
     display: flex;
     flex-direction: row;
+    margin-top: calc(10px * var(--scale-factor));
 }
 
 .material-button {
     background-color: var(--button-bg-color);
     color: var(--button-text-color);
     transition: background-color 0.3s, color 0.3s;
-    /* Smooth transition for theme change */
-    border: 2px solid lightgray;
+    border: calc(2px * var(--scale-factor)) solid lightgray;
     text-decoration: none;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     transition-duration: 0.4s;
     align-items: center;
-    margin-bottom: 20px;
-    width: 180px;
-    height: 40px;
-    margin: 10px;
+    margin-bottom: var(--element-spacing);
+    width: var(--button-width);
+    height: var(--button-height);
+    margin: var(--element-spacing);
+    display: flex;
+    justify-content: center;
 }
 
 .material-button:hover {
     color: var(--link-color);
-    border: 2px solid var(--link-color);
+    border: calc(2px * var(--scale-factor)) solid var(--link-color);
 }
 
 .button-icon {
-    padding-right: 15px;
+    padding-right: calc(15px * var(--scale-factor));
+    height: calc(20px * var(--scale-factor));
+    width: auto;
 }
 
 #info-message {
     text-align: center;
     font-weight: 400;
-    color: lightcyan;
     color: var(--color);
+    margin: calc(10px * var(--scale-factor)) 0;
 }
 
 .response-container {
-    min-height: 150px;
-    max-width: 400px;
+    min-height: calc(150px * var(--scale-factor));
+    max-width: calc(400px * var(--scale-factor));
     padding-top: 0;
-    margin: 0
+    margin: 0;
+    font-size: calc(var(--font-size-base) * var(--scale-factor));
 }
 
 #analyze-code-response {
-    padding: 15px;
+    padding: calc(15px * var(--scale-factor));
 }
 
 .code-btn {
     display: flex;
     align-items: center;
     background-color: #222;
-    border: 2px solid var(--border-color);
-    border-radius: 10px;
+    border: calc(2px * var(--scale-factor)) solid var(--border-color);
+    border-radius: calc(10px * var(--scale-factor));
     cursor: pointer;
-    padding: 5px;
+    padding: calc(5px * var(--scale-factor));
 }
 
 .code-btn:hover {
@@ -154,25 +161,27 @@ a:hover {
 }
 
 #clear-code-btn {
-    margin-left: 10px;
+    margin-left: calc(10px * var(--scale-factor));
 }
 
 /* Settings */
 #settings-icon {
-    width: 30px;
-    height: 30px;
+    width: calc(30px * var(--scale-factor));
+    height: calc(30px * var(--scale-factor));
 }
 
 .settings-btn {
-    width: 220px;
-    height: 35px;
+    width: calc(220px * var(--scale-factor));
+    height: calc(35px * var(--scale-factor));
     display: flex;
     justify-content: start;
+    align-items: center;
+    font-size: calc(var(--font-size-base) * var(--scale-factor));
 }
 
 .settings-btn span {
-    margin-left: 20px;
-    margin-right: 25px;
+    margin-left: calc(20px * var(--scale-factor));
+    margin-right: calc(25px * var(--scale-factor));
 }
 
 #settings-menu {
@@ -184,7 +193,7 @@ a:hover {
 }
 
 #toggle-video {
-    margin-bottom: 20px;
+    margin-bottom: calc(20px * var(--scale-factor));
 }
 
 #toggle-video:hover {
@@ -193,18 +202,20 @@ a:hover {
 
 .select {
     text-align: center;
+    padding: calc(5px * var(--scale-factor));
 }
 
 #show-examples-icon {
-    padding-right: 5px;
+    padding-right: calc(5px * var(--scale-factor));
 }
 
 #review {
-    padding-top: 10px;
+    padding-top: calc(10px * var(--scale-factor));
+    font-size: calc(var(--font-size-base) * 0.9 * var(--scale-factor));
 }
 
 .help-text {
-    font-size: 12px;
+    font-size: calc(12px * var(--scale-factor));
     color: var(--secondary-text-color);
 }
 

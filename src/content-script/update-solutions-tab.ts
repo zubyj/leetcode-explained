@@ -1,16 +1,5 @@
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 
-// Utility function to create an HTML element with the given tag name and styles
-function createStyledElement(tagName: string, styles: { [key: string]: string }) {
-    const element = document.createElement(tagName);
-    for (const [key, value] of Object.entries(styles)) {
-        if (typeof element.style[key as any] !== 'undefined') {
-            (element.style as any)[key] = value;
-        }
-    }
-    return element;
-}
-
 // Utility function to create a styled button
 function createStyledButton(text: string, isActive: boolean = false): HTMLButtonElement {
     const button = document.createElement('button');

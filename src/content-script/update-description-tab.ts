@@ -246,7 +246,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
     return companyTagContainer;
 }
 
-chrome.runtime.onMessage.addListener((request) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'updateDescription') {
         // Detect theme on first load of a problem page
         detectAndSyncTheme();
@@ -254,5 +254,13 @@ chrome.runtime.onMessage.addListener((request) => {
         showCompanyTags(request.title.split('-')[0].trim());
         showDifficulty();
         showRating(request.title.split('-')[0].trim());
+    } else if (request.action === 'getTheme') {
+        // Return the current LeetCode theme
+        const htmlElement = document.documentElement;
+        const leetcodeTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+        sendResponse({ theme: leetcodeTheme });
     }
+    
+    // Return true to indicate we will send a response asynchronously (needed for sendResponse)
+    return true;
 });

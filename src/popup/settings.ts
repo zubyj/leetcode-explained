@@ -25,16 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Initialize theme mode indicator
-    chrome.storage.local.get(['themeMode'], (result) => {
-        const themeMode = result.themeMode || 'manual';
-        const themeModeIndicator = document.getElementById('theme-mode-indicator');
-        if (themeModeIndicator) {
-            themeModeIndicator.textContent = themeMode === 'auto' ? 'Auto' : 'Manual';
-            themeModeIndicator.style.color = themeMode === 'auto' ? '#4caf50' : '#ff9800';
-        }
-    });
-    
     chrome.storage.local.get(['showCompanyTags'], (result) => {
         const showCompanyTagsIcon = document.getElementById('show-company-tags-icon');
         if (showCompanyTagsIcon) showCompanyTagsIcon.textContent = result.showCompanyTags ? '✅' : '❌';

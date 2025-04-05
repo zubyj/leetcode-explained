@@ -23,7 +23,9 @@ export function toggleTheme(): void {
             } else {
                 // Light -> Auto
                 newMode = 'auto';
-                // Theme will be determined by LeetCode in content script
+                // When switching to auto mode, try to detect theme immediately
+                tryDetectThemeInPopup();
+                return; // Exit early as tryDetectThemeInPopup will handle the rest
             }
         } else {
             // Auto -> Dark
@@ -41,6 +43,49 @@ export function toggleTheme(): void {
 
         updateThemeUI(newTheme, newMode);
     });
+}
+
+// Try to detect theme in popup or settings page by sending a message to the active tab
+function tryDetectThemeInPopup(): void {
+    // Send a message to the active tab to get the LeetCode theme
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs[0] && tabs[0].id) {
+            chrome.tabs.sendMessage(
+                tabs[0].id,
+                { action: 'getTheme' },
+                (response) => {
+                    if (chrome.runtime.lastError) {
+                        // If there's an error (e.g., no content script running), default to dark
+                        applyTheme('dark', 'auto');
+                    } else if (response && response.theme) {
+                        // If we received a theme from the content script, use it
+                        applyTheme(response.theme, 'auto');
+                    } else {
+                        // Default to dark if we can't detect
+                        applyTheme('dark', 'auto');
+                    }
+                }
+            );
+        } else {
+            // No active tab, default to dark
+            applyTheme('dark', 'auto');
+        }
+    });
+}
+
+// Apply the detected theme to the current page
+function applyTheme(theme: string, mode: string): void {
+    // Update UI
+    document.documentElement.setAttribute('data-theme', theme);
+    
+    // Save settings
+    chrome.storage.local.set({ 
+        isDarkTheme: theme === 'dark',
+        themeMode: mode
+    });
+    
+    // Update UI elements
+    updateThemeUI(theme, mode);
 }
 
 // This function is no longer needed as toggleTheme now handles mode switching
@@ -66,7 +111,6 @@ export function toggleThemeMode(): void {
 function updateThemeUI(theme: string, mode: string = 'manual') {
     const themeIcon = document.getElementById('theme-icon');
     const themeText = document.getElementById('theme-text');
-    const modeIndicator = document.getElementById('theme-mode-indicator');
     
     if (!themeIcon || !themeText) return;
     
@@ -79,11 +123,5 @@ function updateThemeUI(theme: string, mode: string = 'manual') {
     } else {
         themeIcon.textContent = '🌙';
         themeText.textContent = 'Dark Mode';
-    }
-    
-    // Update mode indicator if it exists
-    if (modeIndicator) {
-        modeIndicator.textContent = mode === 'auto' ? 'Auto' : 'Manual';
-        modeIndicator.style.color = mode === 'auto' ? '#4caf50' : '#ff9800';
     }
 }

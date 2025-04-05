@@ -2,7 +2,12 @@ export function initializeTheme(): void {
     chrome.storage.local.get(['isDarkTheme', 'themeMode'], (result) => {
         const theme = result.isDarkTheme ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', theme);
-        updateThemeUI(theme, result.themeMode || 'manual'); // Pass theme mode to update UI
+        updateThemeUI(theme, result.themeMode || 'manual');
+        
+        // If auto mode is enabled, check active tab for LeetCode's theme
+        if (result.themeMode === 'auto') {
+            tryDetectThemeInPopup();
+        }
     });
 }
 

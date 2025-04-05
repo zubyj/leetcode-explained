@@ -250,7 +250,7 @@ async function main(): Promise<void> {
     initializeScaleFactor();
     await loadStoredData();
 
-    // get name of current tab and set info message
+    // get name of current tab and set info message, also check theme if in auto mode
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const tab = tabs[0];
         if (tab.url && tab.url.includes('leetcode.com/problems')) {
@@ -258,6 +258,26 @@ async function main(): Promise<void> {
             if (tab.title && infoMessage) {
                 infoMessage.textContent = tab.title.split('-')[0];
             }
+            
+            // Check if we're in auto mode and need to sync theme
+            chrome.storage.local.get(['themeMode'], (result) => {
+                if (result.themeMode === 'auto') {
+                    // Send a message to detect theme
+                    chrome.tabs.sendMessage(
+                        tab.id as number,
+                        { action: 'getTheme' },
+                        (response) => {
+                            if (!chrome.runtime.lastError && response && response.theme) {
+                                // Apply detected theme
+                                document.documentElement.setAttribute('data-theme', response.theme);
+                                chrome.storage.local.set({ 
+                                    isDarkTheme: response.theme === 'dark'
+                                });
+                            }
+                        }
+                    );
+                }
+            });
         }
     });
 

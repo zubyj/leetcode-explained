@@ -17,6 +17,37 @@ homeButton.onclick = () => {
 document.addEventListener('DOMContentLoaded', () => {
 
     initializeTheme();
+    
+    // Check active tab for theme if in auto mode
+    chrome.storage.local.get(['themeMode'], (result) => {
+        if (result.themeMode === 'auto') {
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                if (tabs[0] && tabs[0].id && tabs[0].url && tabs[0].url.includes('leetcode.com/problems')) {
+                    chrome.tabs.sendMessage(
+                        tabs[0].id,
+                        { action: 'getTheme' },
+                        (response) => {
+                            if (!chrome.runtime.lastError && response && response.theme) {
+                                // Apply detected theme
+                                document.documentElement.setAttribute('data-theme', response.theme);
+                                chrome.storage.local.set({ 
+                                    isDarkTheme: response.theme === 'dark'
+                                });
+                                // Update UI
+                                const themeIcon = document.getElementById('theme-icon');
+                                const themeText = document.getElementById('theme-text');
+                                if (themeIcon && themeText) {
+                                    themeIcon.textContent = '🔄';
+                                    themeText.textContent = 'Auto Theme';
+                                }
+                            }
+                        }
+                    );
+                }
+            });
+        }
+    });
+    
     document.getElementById('enable-dark-theme-btn')?.addEventListener('click', () => {
         toggleTheme();
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

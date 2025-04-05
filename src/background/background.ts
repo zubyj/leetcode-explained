@@ -45,7 +45,9 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.local.set({ showDifficulty: true });
     chrome.storage.local.set({ showRating: true });
     chrome.storage.local.set({ showCompanyTags: true });
-    chrome.storage.local.set({ isDarkTheme: true });
+    // Set default theme to auto mode - isDarkTheme will be determined by LeetCode's theme
+    chrome.storage.local.set({ isDarkTheme: false }); // Default value, will be updated by auto-detection
+    chrome.storage.local.set({ themeMode: 'auto' });
 });
 
 chrome.runtime.onMessage.addListener((request) => {

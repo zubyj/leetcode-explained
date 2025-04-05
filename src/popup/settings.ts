@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 const themeText = document.getElementById('theme-text');
                                 if (themeIcon && themeText) {
                                     themeIcon.textContent = '🔄';
-                                    themeText.textContent = 'Auto Theme';
+                                    themeText.textContent = 'Auto';
                                 }
                             }
                         }

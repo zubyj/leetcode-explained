@@ -22,18 +22,18 @@ export function toggleTheme(): void {
         
         if (currentMode === 'manual') {
             if (currentTheme === 'dark') {
-                // Dark -> Light
+                // If we're in dark mode, switch to light mode
                 newTheme = 'light';
                 newMode = 'manual';
             } else {
-                // Light -> Auto
+                // If we're in light mode, switch to auto mode
                 newMode = 'auto';
                 // When switching to auto mode, try to detect theme immediately
                 tryDetectThemeInPopup();
                 return; // Exit early as tryDetectThemeInPopup will handle the rest
             }
         } else {
-            // Auto -> Dark
+            // If we're in auto mode, switch to dark mode
             newTheme = 'dark';
             newMode = 'manual';
         }
@@ -120,13 +120,16 @@ function updateThemeUI(theme: string, mode: string = 'manual') {
     if (!themeIcon || !themeText) return;
     
     if (mode === 'auto') {
+        // Show that auto theme is enabled
         themeIcon.textContent = '🔄';
-        themeText.textContent = 'Auto Theme';
+        themeText.textContent = 'Auto';
     } else if (theme === 'dark') {
-        themeIcon.textContent = '☀️';
-        themeText.textContent = 'Light Mode';
-    } else {
+        // Show that dark theme is enabled
         themeIcon.textContent = '🌙';
-        themeText.textContent = 'Dark Mode';
+        themeText.textContent = 'Dark';
+    } else {
+        // Show that light theme is enabled
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Light';
     }
 }

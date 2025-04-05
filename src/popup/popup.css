@@ -330,6 +330,10 @@ pre[class*="language-"] {
     padding: calc(15px * var(--scale-factor)) 0;
 }
 
+#theme-text {
+    font-weight: 600;
+}
+
 .video-container {
     display: none;
     border-radius: var(--border-radius);

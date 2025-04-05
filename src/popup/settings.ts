@@ -46,14 +46,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const fontSizeSelect = document.getElementById('font-size-select') as HTMLSelectElement;
     chrome.storage.local.get('fontSize', function (data) {
         if (data.fontSize) {
-            fontSizeSelect.value = data.fontSize;
-            updateScaleFactor(data.fontSize);
+            fontSizeSelect.value = data.fontSize.toString();
+            updateScaleFactor(data.fontSize.toString());
+        } else {
+            // Default to small if not set
+            fontSizeSelect.value = '12';
+            updateScaleFactor('12');
+            chrome.storage.local.set({ fontSize: 12 });
         }
     });
     
     fontSizeSelect.onchange = function (event: Event) {
         const selectedFontSize = (event.target as HTMLInputElement).value;
-        chrome.storage.local.set({ fontSize: selectedFontSize });
+        chrome.storage.local.set({ fontSize: parseInt(selectedFontSize) });
         updateScaleFactor(selectedFontSize);
     };
 

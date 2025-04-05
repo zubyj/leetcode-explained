@@ -283,8 +283,9 @@ function initializeScaleFactor(): void {
     chrome.storage.local.get('fontSize', function (data) {
         if (data.fontSize) {
             let scaleFactor: number;
+            const fontSize = data.fontSize.toString();
             
-            switch (data.fontSize) {
+            switch (fontSize) {
                 case '12':
                     scaleFactor = 0.9;
                     break;
@@ -297,6 +298,10 @@ function initializeScaleFactor(): void {
             }
             
             document.documentElement.style.setProperty('--scale-factor', scaleFactor.toString());
+        } else {
+            // Default to small if not set
+            document.documentElement.style.setProperty('--scale-factor', '0.9');
+            chrome.storage.local.set({ fontSize: 12 });
         }
     });
 }

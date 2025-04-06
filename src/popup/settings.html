@@ -5,34 +5,7 @@
     <title>Settings</title>
     <link rel="stylesheet" href="./popup.css">
     <!-- Preload theme handler script before anything else -->
-    <script>
-        // Check localStorage first for faster loading
-        const isDark = localStorage.getItem('leetcode-explained-theme') === 'dark';
-        
-        // Set initial theme attribute
-        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-        
-        // Add initial dark theme styles if needed
-        if (isDark) {
-            const style = document.createElement('style');
-            style.id = 'preload-dark-theme';
-            style.innerHTML = `
-                html, body {
-                    background-color: #202124 !important;
-                    color: #e8eaed !important;
-                }
-                pre, code, .response-container {
-                    background-color: #303134 !important;
-                    color: #e8eaed !important;
-                    border-color: #5f6368 !important;
-                }
-                a {
-                    color: #8ab4f8 !important;
-                }
-            `;
-            document.head.appendChild(style);
-        }
-    </script>
+    <script src="./theme-handler.js"></script>
     <style>
         /* Prevent any visible transition on initial load */
         * {
@@ -97,18 +70,7 @@
     </div>
     
     <!-- Enable transitions after load -->
-    <script>
-        // Enable smooth transitions after initial rendering
-        window.addEventListener('load', function() {
-            // Short delay to ensure everything is rendered first
-            setTimeout(function() {
-                // Remove the inline style forcing no transitions
-                const style = document.createElement('style');
-                style.innerHTML = '* { transition: color 0.3s, background-color 0.3s, border-color 0.3s !important; }';
-                document.head.appendChild(style);
-            }, 100);
-        });
-    </script>
+    <script src="./transition-handler.js"></script>
 </body>
 
 </html>

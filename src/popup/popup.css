@@ -8,6 +8,8 @@
     --transition-speed: 0.2s;
     --border-color: black;
     --link-color: #303134;
+    --text-color: black;
+
 }
 
 /* Dark theme */
@@ -67,17 +69,18 @@ body {
 /* Common button styles */
 .material-button, .code-btn {
     background-color: var(--button-bg-color);
-    color: var(--button-text-color);
+    color: var(--text-color);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     cursor: pointer;
-    font-weight: var(--font-weight);
     font-size: var(--base-font-size);
-    transition: background-color var(--transition-speed) ease;
+    transition: all var(--transition-speed) ease;
 }
 
 .material-button:hover, .code-btn:hover {
     background-color: var(--button-hover-bg);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Links */
@@ -103,18 +106,26 @@ a {
 }
 
 .tab {
+    background: transparent;
     border: none;
     font-size: var(--base-font-size);
     padding: calc(var(--spacing) * 0.6) var(--spacing);
     cursor: pointer;
+    color: var(--text-color);
+    transition: color var(--transition-speed) ease, border-bottom var(--transition-speed) ease;
+}
+
+.tab:hover {
+    color: var(--link-color);
 }
 
 .tab.active {
     border-bottom: 2px solid var(--link-color);
     color: var(--link-color);
+    background: transparent;
 }
 
-/* Main content */
+/* Main content on popup and settings*/
 .main-content {
     padding: var(--spacing);
     margin-top: calc(var(--button-height) + 5px);
@@ -155,7 +166,6 @@ a {
     padding: var(--spacing);
     margin-bottom: var(--spacing);
     font-size: var(--base-font-size);
-    font-weight: var(--font-weight);
     color: var(--color);
     border-radius: 8px;
     background-color: var(--info-message-bg);
@@ -235,7 +245,6 @@ a {
 
 .settings-row label {
     margin-bottom: 5px;
-    font-weight: var(--font-weight);
 }
 
 .settings-btn {
@@ -250,11 +259,6 @@ a {
     margin-right: var(--spacing);
 }
 
-#theme-text {
-    font-weight: var(--font-weight);
-}
-
-/* Dropdown select */
 .select {
     text-align: center !important;
     padding: 5px 10px;
@@ -264,7 +268,6 @@ a {
     background-position: right 0.7em top 50%;
     background-size: 0.65em auto;
     padding-right: 20px;
-    font-weight: 600;
     font-size: var(--base-font-size);
 }
 
@@ -273,7 +276,6 @@ a {
     padding-top: var(--spacing);
     font-size: var(--base-font-size);
     opacity: 0.8;
-    font-weight: 500;
     display: inline-block;
 }
 

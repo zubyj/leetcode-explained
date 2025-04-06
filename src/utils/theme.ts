@@ -28,10 +28,6 @@ const THEME_STYLES = {
             background-color: #303134 !important;
             color: #e8eaed !important;
             border-color: #5f6368 !important;
-            font-weight: 550 !important;
-        }
-        .select {
-            font-weight: 550 !important;
         }
     `,
     light: `
@@ -40,10 +36,8 @@ const THEME_STYLES = {
             color: #000 !important;
         }
         .material-button, button, select, input {
-            background-color: #f8f9fa !important;
-            color: #3c4043 !important;
+            color:#1a1a1a !important;
             border-color: #e0e0e0 !important;
-            font-weight: 550 !important;
         }
         a {
             color: #4285f4 !important;
@@ -56,9 +50,6 @@ const THEME_STYLES = {
             background-color: #f8f9fa !important;
             color: #000 !important;
             border-color: #e0e0e0 !important;
-        }
-        .select {
-            font-weight: 550 !important;
         }
     `
 };

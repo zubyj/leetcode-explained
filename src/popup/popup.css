@@ -108,6 +108,7 @@ a {
 .tab {
     background: transparent;
     border: none;
+    border-radius: 5px;
     font-size: var(--base-font-size);
     padding: calc(var(--spacing) * 0.6) var(--spacing);
     cursor: pointer;

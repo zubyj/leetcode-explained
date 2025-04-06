@@ -300,28 +300,34 @@ async function main(): Promise<void> {
 
 // Function to initialize scale factor based on saved font size
 function initializeScaleFactor(): void {
-    chrome.storage.local.get('fontSize', function (data) {
-        if (data.fontSize) {
-            let scaleFactor: number;
-            const fontSize = data.fontSize.toString();
-            
-            switch (fontSize) {
-                case '12':
-                    scaleFactor = 0.9;
+    // Get font size and set the scale factor
+    chrome.storage.local.get('fontSize', function(data) {
+        const fontSize = data.fontSize;
+        let scaleFactor: number;
+        const body = document.body;
+        
+        // Remove all display size classes
+        body.classList.remove('small-display', 'medium-display', 'large-display');
+        
+        if (fontSize) {
+            switch (fontSize.toString()) {
+                case '12': // Small
+                    scaleFactor = 0.85;
+                    body.classList.add('small-display');
                     break;
-                case '16':
+                case '14': // Medium
                     scaleFactor = 1.1;
+                    body.classList.add('medium-display');
                     break;
-                default: // 14px is the default
+                case '16': // Large
+                    scaleFactor = 1.3;
+                    body.classList.add('large-display');
+                    break;
+                default:
                     scaleFactor = 1.0;
                     break;
             }
-            
             document.documentElement.style.setProperty('--scale-factor', scaleFactor.toString());
-        } else {
-            // Default to small if not set
-            document.documentElement.style.setProperty('--scale-factor', '0.9');
-            chrome.storage.local.set({ fontSize: 12 });
         }
     });
 }

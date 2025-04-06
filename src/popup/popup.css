@@ -21,6 +21,27 @@
     --transition-speed: 0.2s;
 }
 
+/* Width adjustments for different display settings */
+/* Default width for the body when scale factor is 1 */
+body {
+    width: 450px;
+}
+
+/* Small display size (corresponds to 12px font size) */
+.small-display {
+    width: 400px;
+}
+
+/* Medium display size (corresponds to 14px font size) */
+.medium-display {
+    width: 500px;
+}
+
+/* Large display size (corresponds to 16px font size) */
+.large-display {
+    width: 600px;
+}
+
 [data-theme="dark"] {
     --background-color: #202124;
     --color: #e8eaed;
@@ -42,8 +63,7 @@ body {
     background-color: var(--background-color);
     font-size: calc(var(--font-size-base) * var(--scale-factor));
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, sans-serif;
-    padding: calc(25px * var(--scale-factor)) calc(20px * var(--scale-factor));
-    width: 400px;
+    padding: calc(65px * var(--scale-factor)) calc(20px * var(--scale-factor)) calc(25px * var(--scale-factor));
     height: 500px;
     margin: 0;
     line-height: 1.5;
@@ -107,18 +127,20 @@ a:hover:after {
     gap: calc(20px * var(--scale-factor));
     width: 100%;
     margin-bottom: calc(30px * var(--scale-factor));
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: calc(45px * var(--scale-factor));
+    align-items: center;
+    z-index: 10;
+    background-color: var(--background-color);
+    padding-top: calc(10px * var(--scale-factor));
+    border-bottom: 1px solid var(--border-color);
 }
 
 .navbar:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background-color: var(--border-color);
-    opacity: 0.5;
+    content: none;
 }
 
 .navbar button:hover {
@@ -137,6 +159,7 @@ a:hover:after {
     position: relative;
     font-weight: 500;
     z-index: 1;
+    background: transparent;
 }
 
 .tab.active {
@@ -201,7 +224,7 @@ a:hover:after {
 
 .response-container {
     min-height: calc(150px * var(--scale-factor));
-    max-width: calc(400px * var(--scale-factor));
+    width: 90%;
     padding-top: 0;
     margin: 0;
     font-size: calc(var(--font-size-base) * var(--scale-factor));

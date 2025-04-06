@@ -96,15 +96,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to update scale factor based on font size
     function updateScaleFactor(fontSize: string) {
         let scaleFactor: number;
+        const body = document.body;
+        
+        // Remove all display size classes
+        body.classList.remove('small-display', 'medium-display', 'large-display');
         
         switch (fontSize) {
-            case '12':
-                scaleFactor = 0.9;
+            case '12': // Small
+                scaleFactor = 0.85;
+                body.classList.add('small-display');
                 break;
-            case '16':
+            case '14': // Medium
                 scaleFactor = 1.1;
+                body.classList.add('medium-display');
                 break;
-            default: // 14px is the default
+            case '16': // Large
+                scaleFactor = 1.3;
+                body.classList.add('large-display');
+                break;
+            default:
                 scaleFactor = 1.0;
                 break;
         }

@@ -50,16 +50,24 @@
     
     <div class="main-content settings-content">
         <div class="settings-container">
-            <label for="font-size-select">Display Size</label>
-            <select name="fontSize" id="font-size-select" class="material-button select settings-btn">
-                <option value="12">Small</option>
-                <option value="14">Medium</option>
-                <option value="16">Large</option>
-            </select>
-            <button id="enable-dark-theme-btn" class="material-button settings-btn">
-                <span id="theme-icon"></span>
-                <span>Theme: </span><span id="theme-text">Dark</span>
-            </button>
+            <div class="settings-row">
+                <label for="font-size-select">Display Size</label>
+                <select name="fontSize" id="font-size-select" class="material-button select settings-btn">
+                    <option value="12">Small</option>
+                    <option value="14">Medium</option>
+                    <option value="16">Large</option>
+                </select>
+            </div>
+            
+            <div class="settings-row">
+                <label for="theme-select">Theme</label>
+                <select id="theme-select" class="material-button select settings-btn">
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </div>
+            
             <button id="show-company-tags-btn" class="material-button settings-btn">
                 <span id="show-company-tags-icon"></span> Show Company Tags
             </button>

@@ -15,7 +15,7 @@
     --border-color: #5f6368;
     --link-color: #8ab4f8;
     --button-bg-color: #303134;
-    --button-hover-bg: #3c4043
+    --button-hover-bg: #3c4043;
     --text-color: #e8eaed;
     --code-bg-color: #303134;
     --info-message-bg: rgba(48, 49, 52, 0.5);
@@ -43,7 +43,7 @@
 
 .large-display {
     width: 600px;
-    --base-font-size: px;
+    --base-font-size: 16px;
     --button-height: 50px; 
     --button-width: 210px;
     --settings-width: 240px;
@@ -70,7 +70,7 @@ body {
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     cursor: pointer;
-    font-weight: 550;
+    font-weight: 600;
     font-size: var(--base-font-size);
     transition: background-color var(--transition-speed) ease;
 }
@@ -226,6 +226,18 @@ a {
     padding: var(--spacing) 0 calc(var(--spacing) * 3);
 }
 
+.settings-row {
+    display: flex;
+    flex-direction: column;
+    width: var(--settings-width);
+    margin: calc(var(--spacing) * 0.6) 0;
+}
+
+.settings-row label {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
 .settings-btn {
     width: var(--settings-width) !important;
     margin: calc(var(--spacing) * 0.6) 0;
@@ -252,7 +264,7 @@ a {
     background-position: right 0.7em top 50%;
     background-size: 0.65em auto;
     padding-right: 20px;
-    font-weight: 500;
+    font-weight: 600;
     font-size: var(--base-font-size);
 }
 

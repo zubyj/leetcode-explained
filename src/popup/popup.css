@@ -117,7 +117,7 @@ a {
 /* Main content */
 .main-content {
     padding: var(--spacing);
-    margin-top: calc(var(--button-height) + 20px);
+    margin-top: calc(var(--button-height) + 5px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -231,7 +231,6 @@ a {
     margin: calc(var(--spacing) * 0.6) 0;
     display: flex;
     justify-content: flex-start;
-    padding-left: 15px;
     font-size: var(--base-font-size);
 }
 
@@ -258,18 +257,14 @@ a {
 }
 
 /* Footer elements */
-#review {
+#review a{
     padding-top: var(--spacing);
     font-size: var(--base-font-size);
     opacity: 0.8;
     font-weight: 500;
-}
-
-#review a {
     display: inline-block;
-    transition: transform var(--transition-speed) ease;
 }
 
 #review a:hover {
-    transform: translateY(-2px);
+    opacity: 1;
 }

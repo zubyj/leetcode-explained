@@ -31,6 +31,8 @@
     --button-text-color: #e8eaed;
 }
 
+/* Transitions are now managed by script (see HTML files) */
+
 body {
     display: flex;
     flex-direction: column;
@@ -41,7 +43,8 @@ body {
     font-size: calc(var(--font-size-base) * var(--scale-factor));
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, sans-serif;
     padding: calc(25px * var(--scale-factor)) calc(20px * var(--scale-factor));
-    width: calc(400px * var(--scale-factor));
+    width: 400px;
+    height: 500px;
     margin: 0;
     line-height: 1.5;
     letter-spacing: 0.01em;

@@ -65,35 +65,41 @@
         <button id="open-settings-btn" class="tab">Settings</button>
     </div>
 
-    <div class="button-container">
-        <button id="fix-code-btn" class="material-button button">
-            <image src="../assets/images/solution-icon.png" class="button-icon" alt="Fix" />
-            Solution Code
-        </button>
-        <button id="get-complexity-btn" class="material-button button">
-            <image src="../assets/images/code-icon.png" class="button-icon" alt="Analyze" />Code Complexity
-        </button>
-    </div>
-    
-    <!-- Info/Error Message-->
-    <p id="info-message">
-        Open a <a href="https://leetcode.com/problems/two-sum/" target="_blank">Leetcode problem </a>to get started
-    </p>
-    
-    <!-- AI Response Containers -->
-    <div id="analyze-code-response" class="response-container hidden"></div>
-    
-    <pre class="response-container hidden" id="fix-code-container">
+    <div class="main-content">
         <div class="button-container">
-            <button id="copy-code-btn" class="code-btn">
-                <img src="../assets/images/copy-icon.png" alt="Copy" />
+            <button id="fix-code-btn" class="material-button button">
+                <image src="../assets/images/solution-icon.png" class="button-icon" alt="Fix" />
+                Solution Code
             </button>
-            <button id="clear-code-btn" class="code-btn">
-                <img src="../assets/images/clear-icon.png" alt="Clear" />
+            <button id="get-complexity-btn" class="material-button button">
+                <image src="../assets/images/code-icon.png" class="button-icon" alt="Analyze" />Code Complexity
             </button>
         </div>
-        <code class="language-python" id="fix-code-response"></code>
-    </pre>
+        
+        <!-- Info/Error Message-->
+        <p id="info-message">
+            Open a <a href="https://leetcode.com/problems/two-sum/" target="_blank">Leetcode problem </a>to get started
+        </p>
+        
+        <!-- Response Area Container -->
+        <div class="response-area">
+            <!-- AI Response Containers -->
+            <div id="analyze-code-response" class="response-container hidden"></div>
+            
+            <pre class="response-container hidden" id="fix-code-container">
+                <div class="button-container">
+                    <button id="copy-code-btn" class="code-btn">
+                        <img src="../assets/images/copy-icon.png" alt="Copy" />
+                    </button>
+                    <button id="clear-code-btn" class="code-btn">
+                        <img src="../assets/images/clear-icon.png" alt="Clear" />
+                    </button>
+                </div>
+                <code class="language-python" id="fix-code-response"></code>
+            </pre>
+        </div>
+    </div>
+    
     <script src="prism.js"></script>
     <!-- Enable transitions after load -->
     <script>

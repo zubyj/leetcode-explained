@@ -66,6 +66,7 @@ function clearResponse(): void {
     if (fixCodeResponse) fixCodeResponse.textContent = '';
     if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
     if (analyzeCodeResponse) analyzeCodeResponse.classList.add('hidden');
+    
     chrome.storage.local.set({ 'fixCodeResponse': '' });
     chrome.storage.local.set({ 'analyzeCodeResponse': '' });
 }
@@ -163,21 +164,19 @@ function processCode(
         if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
     }
     else if (action === 'fix') {
-        // ... existing prompt setup ..        // Prompt for generating solution code
         prompt = `
-        As a coding professional, I need your expertise with a specific LeetCode problem named ${problemTitle}.
-        Please follow the instructions:
-        1. If no code is provided: Generate an efficient and accurate solution for the problem.
-        2. If code is provided and contains errors: Identify the issues, correct them, and optimize the code if possible.
-        3. If the provided code is already correct and optimized: Simply return it as-is.
-        IMPORTANT: Your response should only include the function definition and code solution in plain text format (no backticks, code blocks, or additional formatting).
-        Do not explain your solution or provide any additional information other than the code.
-        Here's the problem description and code:\n
-        ${codeText}.`;
+        As an experienced software engineer, analyze and provide a clear and concise solution for the
+        Leetcode problem: ${problemTitle}. Prioritize a clean and efficient solution.
+        Format your response in the following way:
+        - Keep the explanation minimal and straightforward
+        - Show code only without excessive comments
+        - Ensure the solution is correct for all edge cases
 
-        if (infoMessage) infoMessage.textContent = 'Generating solution code ...';
-        analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
-        fixCodeContainer && fixCodeContainer.classList.remove('hidden');
+        Here's the problem details: ${codeText}`;
+        if (infoMessage) infoMessage.textContent = 'Getting solution code ...';
+
+        if (fixCodeContainer) fixCodeContainer.classList.remove('hidden');
+        if (analyzeCodeResponse) analyzeCodeResponse.classList.add('hidden');
     }
 
     let response = '';

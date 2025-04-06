@@ -4,6 +4,14 @@
 <head>
     <title>Settings</title>
     <link rel="stylesheet" href="./popup.css">
+    <!-- Preload theme handler script before anything else -->
+    <script src="./theme-handler.js"></script>
+    <style>
+        /* Prevent any visible transition on initial load */
+        * {
+            transition: none !important;
+        }
+    </style>
     <script type="module" src="../../dist/popup/settings.js"></script>
 </head>
 
@@ -12,41 +20,54 @@
         <button id="open-home-btn" class="tab ">Home</button>
         <button id="open-settings-btn" class="tab active">Settings</button>
     </div>
-    <label for="font-size-select">Display Size</label>
-    <select name="fontSize" id="font-size-select" class="material-button select settings-btn">
-        <option value="12">Small</option>
-        <option value="14">Medium</option>
-        <option value="16">Large</option>
-    </select>
-    <button id="enable-dark-theme-btn" class="material-button settings-btn">
-        <span id="theme-icon"></span>
-        <span>Display</span><span id="theme-text">Dark</span>
-    </button>
-    <button id="show-company-tags-btn" class="material-button settings-btn">
-        <span id="show-company-tags-icon"> </span> Show Company Tags
-    </button>
-    <button id="show-examples-btn" class="material-button settings-btn">
-        <span id="show-examples-icon"> </span> Show Examples
-    </button>
-    <button id="show-difficulty-btn" class="material-button settings-btn">
-        <span id="show-difficulty-icon"> </span> Show Difficulty
-    </button>
-    <button id="show-rating-btn" class="material-button settings-btn">
-        <span id="show-rating-icon"> </span> Show Rating
-    </button>
-    <div id="review">
-        Leave us a
-        <a target="_blank"
-            href="https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe">
-            review
-        </a>
+    <div class="main-content settings-content">
+        <div class="settings-container">
+            <div class="settings-row">
+                <label for="font-size-select">Display Size</label>
+                <select name="fontSize" id="font-size-select" class="material-button select settings-btn">
+                    <option value="12">Small</option>
+                    <option value="14">Medium</option>
+                    <option value="16">Large</option>
+                </select>
+            </div>
+            <div class="settings-row">
+                <label for="theme-select">Theme</label>
+                <select id="theme-select" class="material-button select settings-btn">
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </div>
+            <button id="show-company-tags-btn" class="material-button settings-btn">
+                <span id="show-company-tags-icon"></span> Show Company Tags
+            </button>
+            <button id="show-examples-btn" class="material-button settings-btn">
+                <span id="show-examples-icon"></span>Show Examples
+            </button>
+            <button id="show-difficulty-btn" class="material-button settings-btn">
+                <span id="show-difficulty-icon"></span> Show Difficulty
+            </button>
+            <button id="show-rating-btn" class="material-button settings-btn">
+                <span id="show-rating-icon"></span> Show Rating
+            </button>
+            <div id="review">
+                Leave us a
+                <a target="_blank"
+                    href="https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe">
+                    review
+                </a>
+            </div>
+            <div id="review">
+                View the
+                <a target="_blank" href="https://github.com/zubyj/leetcode-explained">
+                    source code
+                </a>
+            </div>
+        </div>
     </div>
-    <div id="review">
-        View the
-        <a target="_blank" href="https://github.com/zubyj/leetcode-explained">
-            source code
-        </a>
-    </div>
+    
+    <!-- Enable transitions after load -->
+    <script src="./transition-handler.js"></script>
 </body>
 
 </html>

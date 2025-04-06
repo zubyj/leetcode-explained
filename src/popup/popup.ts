@@ -66,6 +66,7 @@ function clearResponse(): void {
     if (fixCodeResponse) fixCodeResponse.textContent = '';
     if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
     if (analyzeCodeResponse) analyzeCodeResponse.classList.add('hidden');
+    
     chrome.storage.local.set({ 'fixCodeResponse': '' });
     chrome.storage.local.set({ 'analyzeCodeResponse': '' });
 }
@@ -163,21 +164,19 @@ function processCode(
         if (fixCodeContainer) fixCodeContainer.classList.add('hidden');
     }
     else if (action === 'fix') {
-        // ... existing prompt setup ..        // Prompt for generating solution code
         prompt = `
-        As a coding professional, I need your expertise with a specific LeetCode problem named ${problemTitle}.
-        Please follow the instructions:
-        1. If no code is provided: Generate an efficient and accurate solution for the problem.
-        2. If code is provided and contains errors: Identify the issues, correct them, and optimize the code if possible.
-        3. If the provided code is already correct and optimized: Simply return it as-is.
-        IMPORTANT: Your response should only include the function definition and code solution in plain text format (no backticks, code blocks, or additional formatting).
-        Do not explain your solution or provide any additional information other than the code.
-        Here's the problem description and code:\n
-        ${codeText}.`;
+        As an experienced software engineer, analyze and provide a clear and concise solution for the
+        Leetcode problem: ${problemTitle}. Prioritize a clean and efficient solution.
+        Format your response in the following way:
+        - Keep the explanation minimal and straightforward
+        - Show code only without excessive comments
+        - Ensure the solution is correct for all edge cases
 
-        if (infoMessage) infoMessage.textContent = 'Generating solution code ...';
-        analyzeCodeResponse && analyzeCodeResponse.classList.add('hidden');
-        fixCodeContainer && fixCodeContainer.classList.remove('hidden');
+        Here's the problem details: ${codeText}`;
+        if (infoMessage) infoMessage.textContent = 'Getting solution code ...';
+
+        if (fixCodeContainer) fixCodeContainer.classList.remove('hidden');
+        if (analyzeCodeResponse) analyzeCodeResponse.classList.add('hidden');
     }
 
     let response = '';
@@ -300,28 +299,34 @@ async function main(): Promise<void> {
 
 // Function to initialize scale factor based on saved font size
 function initializeScaleFactor(): void {
-    chrome.storage.local.get('fontSize', function (data) {
-        if (data.fontSize) {
-            let scaleFactor: number;
-            const fontSize = data.fontSize.toString();
-            
-            switch (fontSize) {
-                case '12':
-                    scaleFactor = 0.9;
+    // Get font size and set the scale factor
+    chrome.storage.local.get('fontSize', function(data) {
+        const fontSize = data.fontSize;
+        let scaleFactor: number;
+        const body = document.body;
+        
+        // Remove all display size classes
+        body.classList.remove('small-display', 'medium-display', 'large-display');
+        
+        if (fontSize) {
+            switch (fontSize.toString()) {
+                case '12': // Small
+                    scaleFactor = 0.85;
+                    body.classList.add('small-display');
                     break;
-                case '16':
+                case '14': // Medium
                     scaleFactor = 1.1;
+                    body.classList.add('medium-display');
                     break;
-                default: // 14px is the default
+                case '16': // Large
+                    scaleFactor = 1.3;
+                    body.classList.add('large-display');
+                    break;
+                default:
                     scaleFactor = 1.0;
                     break;
             }
-            
             document.documentElement.style.setProperty('--scale-factor', scaleFactor.toString());
-        } else {
-            // Default to small if not set
-            document.documentElement.style.setProperty('--scale-factor', '0.9');
-            chrome.storage.local.set({ fontSize: 12 });
         }
     });
 }

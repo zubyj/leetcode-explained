@@ -7,72 +7,46 @@
     The Leetcode problem's descriptions tab will be updated with the new settings
 */
 
-import { initializeTheme, toggleTheme } from "../utils/theme.js";
+import { initializeTheme, setTheme } from "../utils/theme.js";
 
 const homeButton = document.getElementById('open-home-btn') as HTMLButtonElement;
 homeButton.onclick = () => {
-    window.location.href = 'popup.html';
+    // Preserve theme settings when navigating between pages
+    chrome.storage.local.get(['isDarkTheme', 'themeMode'], (result) => {
+        // Save current theme state to localStorage to ensure it persists
+        if (result.isDarkTheme !== undefined) {
+            localStorage.setItem('leetcode-explained-theme', result.isDarkTheme ? 'dark' : 'light');
+        }
+        // Navigate to home page
+        window.location.href = 'popup.html';
+    });
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-
+    // Initialize theme settings
     initializeTheme();
     
-    // Check active tab for theme if in auto mode
-    chrome.storage.local.get(['themeMode'], (result) => {
-        if (result.themeMode === 'auto') {
+    // Set up theme dropdown
+    const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
+    if (themeSelect) {
+        // Set up change listener
+        themeSelect.addEventListener('change', () => {
+            const selectedValue = themeSelect.value as 'dark' | 'light' | 'auto';
+            console.log('Theme dropdown changed to:', selectedValue);
+            
+            // Apply the selected theme
+            setTheme(selectedValue);
+            
+            // Update LeetCode problem if active
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                if (tabs[0] && tabs[0].id && tabs[0].url && tabs[0].url.includes('leetcode.com/problems')) {
-                    chrome.tabs.sendMessage(
-                        tabs[0].id,
-                        { action: 'getTheme' },
-                        (response) => {
-                            if (!chrome.runtime.lastError && response && response.theme) {
-                                // Apply detected theme
-                                document.documentElement.setAttribute('data-theme', response.theme);
-                                chrome.storage.local.set({ 
-                                    isDarkTheme: response.theme === 'dark'
-                                });
-                                // Update UI
-                                const themeIcon = document.getElementById('theme-icon');
-                                const themeText = document.getElementById('theme-text');
-                                if (themeIcon && themeText) {
-                                    themeIcon.textContent = '🔄';
-                                    themeText.textContent = 'Auto';
-                                }
-                            }
-                        }
-                    );
+                if (tabs[0] && tabs[0].id) {
+                    chrome.tabs.sendMessage(tabs[0].id, { action: 'updateDescription', title: tabs[0].title || 'title' });
+                    chrome.tabs.sendMessage(tabs[0].id, { action: 'updateSolutions', title: tabs[0].title || 'title' });
                 }
             });
-        }
-    });
-    
-    document.getElementById('enable-dark-theme-btn')?.addEventListener('click', () => {
-        toggleTheme();
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-            chrome.tabs.sendMessage(tabs[0].id || 0, { action: 'updateDescription', title: tabs[0].title || 'title' });
-            chrome.tabs.sendMessage(tabs[0].id || 0, { action: 'updateSolutions', title: tabs[0].title || 'title' });
         });
-    });
+    }
     
-    chrome.storage.local.get(['showCompanyTags'], (result) => {
-        const showCompanyTagsIcon = document.getElementById('show-company-tags-icon');
-        if (showCompanyTagsIcon) showCompanyTagsIcon.textContent = result.showCompanyTags ? '✅' : '❌';
-    });
-    chrome.storage.local.get(['showExamples'], (result) => {
-        const showExamplesIcon = document.getElementById('show-examples-icon');
-        if (showExamplesIcon) showExamplesIcon.textContent = result.showExamples ? '✅' : '❌';
-    });
-    chrome.storage.local.get(['showDifficulty'], (result) => {
-        const showDifficultyIcon = document.getElementById('show-difficulty-icon');
-        if (showDifficultyIcon) showDifficultyIcon.textContent = result.showDifficulty ? '✅' : '❌';
-    });
-    chrome.storage.local.get(['showRating'], (result) => {
-        const showRatingIcon = document.getElementById('show-rating-icon');
-        if (showRatingIcon) showRatingIcon.textContent = result.showRating ? '✅' : '❌';
-    });
-
     // Get font size and set the scale factor
     const fontSizeSelect = document.getElementById('font-size-select') as HTMLSelectElement;
     chrome.storage.local.get('fontSize', function (data) {
@@ -96,15 +70,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to update scale factor based on font size
     function updateScaleFactor(fontSize: string) {
         let scaleFactor: number;
+        const body = document.body;
+        
+        // Remove all display size classes
+        body.classList.remove('small-display', 'medium-display', 'large-display');
         
         switch (fontSize) {
-            case '12':
-                scaleFactor = 0.9;
+            case '12': // Small
+                scaleFactor = 0.85;
+                body.classList.add('small-display');
                 break;
-            case '16':
+            case '14': // Medium
                 scaleFactor = 1.1;
+                body.classList.add('medium-display');
                 break;
-            default: // 14px is the default
+            case '16': // Large
+                scaleFactor = 1.3;
+                body.classList.add('large-display');
+                break;
+            default:
                 scaleFactor = 1.0;
                 break;
         }
@@ -112,6 +96,28 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.style.setProperty('--scale-factor', scaleFactor.toString());
     }
 
+    // Initialize settings toggles
+    chrome.storage.local.get(['showCompanyTags'], (result) => {
+        const showCompanyTagsIcon = document.getElementById('show-company-tags-icon');
+        if (showCompanyTagsIcon) showCompanyTagsIcon.textContent = result.showCompanyTags ? '✅' : '❌';
+    });
+    
+    chrome.storage.local.get(['showExamples'], (result) => {
+        const showExamplesIcon = document.getElementById('show-examples-icon');
+        if (showExamplesIcon) showExamplesIcon.textContent = result.showExamples ? '✅' : '❌';
+    });
+    
+    chrome.storage.local.get(['showDifficulty'], (result) => {
+        const showDifficultyIcon = document.getElementById('show-difficulty-icon');
+        if (showDifficultyIcon) showDifficultyIcon.textContent = result.showDifficulty ? '✅' : '❌';
+    });
+    
+    chrome.storage.local.get(['showRating'], (result) => {
+        const showRatingIcon = document.getElementById('show-rating-icon');
+        if (showRatingIcon) showRatingIcon.textContent = result.showRating ? '✅' : '❌';
+    });
+
+    // Set up toggle event handlers
     const showCompanyTagsBtn = document.getElementById('show-company-tags-btn');
     showCompanyTagsBtn && showCompanyTagsBtn.addEventListener('click', function () {
         chrome.storage.local.get(['showCompanyTags'], (result) => {

@@ -41,7 +41,9 @@
             "resources": [
                 "src/assets/images/copy-icon.png",
                 "src/assets/images/check-icon.png",
-                "src/assets/images/languages/*"
+                "src/assets/images/languages/*",
+                "src/popup/theme-handler.js",
+                "src/popup/transition-handler.js"
             ],
             "matches": [
                 "<all_urls>"

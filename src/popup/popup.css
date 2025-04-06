@@ -7,6 +7,7 @@
     --spacing: 10px;
     --transition-speed: 0.2s;
     --border-color: black;
+    --link-color: #303134;
 }
 
 /* Dark theme */
@@ -70,7 +71,7 @@ body {
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     cursor: pointer;
-    font-weight: 600;
+    font-weight: var(--font-weight);
     font-size: var(--base-font-size);
     transition: background-color var(--transition-speed) ease;
 }
@@ -83,7 +84,6 @@ body {
 a {
     color: var(--link-color);
     text-decoration: none;
-    font-weight: 500;
     position: relative;
 }
 
@@ -155,7 +155,7 @@ a {
     padding: var(--spacing);
     margin-bottom: var(--spacing);
     font-size: var(--base-font-size);
-    font-weight: 500;
+    font-weight: var(--font-weight);
     color: var(--color);
     border-radius: 8px;
     background-color: var(--info-message-bg);
@@ -235,7 +235,7 @@ a {
 
 .settings-row label {
     margin-bottom: 5px;
-    font-weight: 600;
+    font-weight: var(--font-weight);
 }
 
 .settings-btn {
@@ -251,7 +251,7 @@ a {
 }
 
 #theme-text {
-    font-weight: 600;
+    font-weight: var(--font-weight);
 }
 
 /* Dropdown select */

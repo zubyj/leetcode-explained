@@ -17,6 +17,37 @@ homeButton.onclick = () => {
 document.addEventListener('DOMContentLoaded', () => {
 
     initializeTheme();
+    
+    // Check active tab for theme if in auto mode
+    chrome.storage.local.get(['themeMode'], (result) => {
+        if (result.themeMode === 'auto') {
+            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                if (tabs[0] && tabs[0].id && tabs[0].url && tabs[0].url.includes('leetcode.com/problems')) {
+                    chrome.tabs.sendMessage(
+                        tabs[0].id,
+                        { action: 'getTheme' },
+                        (response) => {
+                            if (!chrome.runtime.lastError && response && response.theme) {
+                                // Apply detected theme
+                                document.documentElement.setAttribute('data-theme', response.theme);
+                                chrome.storage.local.set({ 
+                                    isDarkTheme: response.theme === 'dark'
+                                });
+                                // Update UI
+                                const themeIcon = document.getElementById('theme-icon');
+                                const themeText = document.getElementById('theme-text');
+                                if (themeIcon && themeText) {
+                                    themeIcon.textContent = '🔄';
+                                    themeText.textContent = 'Auto';
+                                }
+                            }
+                        }
+                    );
+                }
+            });
+        }
+    });
+    
     document.getElementById('enable-dark-theme-btn')?.addEventListener('click', () => {
         toggleTheme();
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -24,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chrome.tabs.sendMessage(tabs[0].id || 0, { action: 'updateSolutions', title: tabs[0].title || 'title' });
         });
     });
+    
     chrome.storage.local.get(['showCompanyTags'], (result) => {
         const showCompanyTagsIcon = document.getElementById('show-company-tags-icon');
         if (showCompanyTagsIcon) showCompanyTagsIcon.textContent = result.showCompanyTags ? '✅' : '❌';
@@ -45,14 +77,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const fontSizeSelect = document.getElementById('font-size-select') as HTMLSelectElement;
     chrome.storage.local.get('fontSize', function (data) {
         if (data.fontSize) {
-            fontSizeSelect.value = data.fontSize;
-            updateScaleFactor(data.fontSize);
+            fontSizeSelect.value = data.fontSize.toString();
+            updateScaleFactor(data.fontSize.toString());
+        } else {
+            // Default to small if not set
+            fontSizeSelect.value = '12';
+            updateScaleFactor('12');
+            chrome.storage.local.set({ fontSize: 12 });
         }
     });
     
     fontSizeSelect.onchange = function (event: Event) {
         const selectedFontSize = (event.target as HTMLInputElement).value;
-        chrome.storage.local.set({ fontSize: selectedFontSize });
+        chrome.storage.local.set({ fontSize: parseInt(selectedFontSize) });
         updateScaleFactor(selectedFontSize);
     };
 

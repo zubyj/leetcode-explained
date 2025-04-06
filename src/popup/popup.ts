@@ -250,7 +250,7 @@ async function main(): Promise<void> {
     initializeScaleFactor();
     await loadStoredData();
 
-    // get name of current tab and set info message
+    // get name of current tab and set info message, also check theme if in auto mode
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const tab = tabs[0];
         if (tab.url && tab.url.includes('leetcode.com/problems')) {
@@ -258,6 +258,26 @@ async function main(): Promise<void> {
             if (tab.title && infoMessage) {
                 infoMessage.textContent = tab.title.split('-')[0];
             }
+            
+            // Check if we're in auto mode and need to sync theme
+            chrome.storage.local.get(['themeMode'], (result) => {
+                if (result.themeMode === 'auto') {
+                    // Send a message to detect theme
+                    chrome.tabs.sendMessage(
+                        tab.id as number,
+                        { action: 'getTheme' },
+                        (response) => {
+                            if (!chrome.runtime.lastError && response && response.theme) {
+                                // Apply detected theme
+                                document.documentElement.setAttribute('data-theme', response.theme);
+                                chrome.storage.local.set({ 
+                                    isDarkTheme: response.theme === 'dark'
+                                });
+                            }
+                        }
+                    );
+                }
+            });
         }
     });
 
@@ -283,8 +303,9 @@ function initializeScaleFactor(): void {
     chrome.storage.local.get('fontSize', function (data) {
         if (data.fontSize) {
             let scaleFactor: number;
+            const fontSize = data.fontSize.toString();
             
-            switch (data.fontSize) {
+            switch (fontSize) {
                 case '12':
                     scaleFactor = 0.9;
                     break;
@@ -297,6 +318,10 @@ function initializeScaleFactor(): void {
             }
             
             document.documentElement.style.setProperty('--scale-factor', scaleFactor.toString());
+        } else {
+            // Default to small if not set
+            document.documentElement.style.setProperty('--scale-factor', '0.9');
+            chrome.storage.local.set({ fontSize: 12 });
         }
     });
 }

@@ -20,6 +20,61 @@ interface Problem {
     // Add other properties as needed
 }
 
+// Detect LeetCode's theme and set extension theme accordingly
+function detectAndSyncTheme() {
+    chrome.storage.local.get(['themeMode'], (result) => {
+        // Only sync theme if in auto mode
+        if (result.themeMode !== 'auto') {
+            return;
+        }
+        
+        // Get the current LeetCode theme from HTML tag
+        const htmlElement = document.documentElement;
+        const leetcodeTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+        
+        // Set the extension theme based on LeetCode's theme
+        chrome.storage.local.set({ 
+            isDarkTheme: leetcodeTheme === 'dark'
+        });
+        
+        console.log(`Theme auto-detected: ${leetcodeTheme}`);
+        
+        // Set up observer for future theme changes
+        observeThemeChanges();
+    });
+}
+
+// Observe theme changes in LeetCode and update extension theme
+function observeThemeChanges() {
+    chrome.storage.local.get(['themeMode'], (result) => {
+        // Only observe changes if theme mode is set to 'auto'
+        if (result.themeMode !== 'auto') {
+            return;
+        }
+        
+        const htmlElement = document.documentElement;
+        
+        // Create a new observer
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    const leetcodeTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+                    chrome.storage.local.set({ 
+                        isDarkTheme: leetcodeTheme === 'dark'
+                    });
+                    console.log(`Theme changed to: ${leetcodeTheme}`);
+                }
+            });
+        });
+        
+        // Start observing
+        observer.observe(htmlElement, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+    });
+}
+
 // show the leetcode difficulty if the user has enabled it in the settings
 function showDifficulty() {
     chrome.storage.local.get(['showDifficulty'], (result) => {
@@ -191,11 +246,21 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
     return companyTagContainer;
 }
 
-chrome.runtime.onMessage.addListener((request) => {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'updateDescription') {
+        // Detect theme on first load of a problem page
+        detectAndSyncTheme();
         showExamples();
         showCompanyTags(request.title.split('-')[0].trim());
         showDifficulty();
         showRating(request.title.split('-')[0].trim());
+    } else if (request.action === 'getTheme') {
+        // Return the current LeetCode theme
+        const htmlElement = document.documentElement;
+        const leetcodeTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+        sendResponse({ theme: leetcodeTheme });
     }
+    
+    // Return true to indicate we will send a response asynchronously (needed for sendResponse)
+    return true;
 });

@@ -269,8 +269,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
             button.classList.add('company-tag');
             button.onclick = () => {
                 chrome.runtime.sendMessage({
-                    action: 'openCompanyPage',
-                    company: company.name,
+                    action: 'openCompanyPage', company: company.name,
                 });
             };
 
@@ -283,6 +282,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
             button.style.letterSpacing = '.5px';
             button.style.transition = 'all 0.2s ease';
             button.style.cursor = 'pointer';
+            
 
             chrome.storage.local.get(['isDarkTheme'], (result) => {
                 const isDark = result.isDarkTheme;

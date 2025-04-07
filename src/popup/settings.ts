@@ -37,10 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Apply the selected theme
             setTheme(selectedValue);
             
-            // Update LeetCode problem if active
+            // Update LeetCode problem if active - only update solutions tab
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 if (tabs[0] && tabs[0].id) {
-                    chrome.tabs.sendMessage(tabs[0].id, { action: 'updateDescription', title: tabs[0].title || 'title' });
                     chrome.tabs.sendMessage(tabs[0].id, { action: 'updateSolutions', title: tabs[0].title || 'title' });
                 }
             });

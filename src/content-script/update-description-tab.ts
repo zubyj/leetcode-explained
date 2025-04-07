@@ -147,10 +147,24 @@ function showCompanyTags(problemTitle: string) {
         const showCompanyTags = result.showCompanyTags;
         let companyTagContainer = document.getElementById('companyTagContainer');
 
+        // First handle visibility
         if (!showCompanyTags) {
             if (companyTagContainer) {
                 companyTagContainer.style.display = 'none';
             }
+            return;
+        } else if (companyTagContainer && companyTagContainer instanceof HTMLElement) {
+            companyTagContainer.style.display = 'flex';
+            // If container exists and is visible, just update styles
+            chrome.storage.local.get(['isDarkTheme'], (result) => {
+                const isDark = result.isDarkTheme;
+                const tags = companyTagContainer.querySelectorAll('.company-tag');
+                tags.forEach(tag => {
+                    if (tag instanceof HTMLElement) {
+                        updateCompanyTagStyle(tag, isDark);
+                    }
+                });
+            });
             return;
         }
 

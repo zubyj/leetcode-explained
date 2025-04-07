@@ -14,7 +14,8 @@
     },
     "permissions": [
         "storage",
-        "tabs"
+        "tabs",
+        "webNavigation"
     ],
     "host_permissions": [
         "https://api.leetcodeapp.com/*"

@@ -543,6 +543,19 @@ chrome.runtime.onMessage.addListener((request) => {
                 return;
             }
 
+            // If forceUpdate is true or this is not a video update, remove existing containers
+            if (request.forceUpdate) {
+                const existingContainers = [
+                    '.nav-container',
+                    '.video-container',
+                    '.code-container',
+                    '.language-buttons-container'
+                ].forEach(selector => {
+                    const element = document.querySelector(selector);
+                    if (element) element.remove();
+                });
+            }
+
             // Only create nav container if it doesn't exist or if this is not a video update
             let existingNavContainer = document.querySelector('.nav-container');
             if (!existingNavContainer) {

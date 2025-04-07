@@ -195,6 +195,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
         const topCompanies = problem.companies.slice(0, 5);
         topCompanies.forEach((company: { name: string; }) => {
             const button = document.createElement('button');
+            button.classList.add('company-tag');
             button.onclick = () => {
                 chrome.runtime.sendMessage({
                     action: 'openCompanyPage',
@@ -214,18 +215,7 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
 
             chrome.storage.local.get(['isDarkTheme'], (result) => {
                 const isDark = result.isDarkTheme;
-                button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
-                button.style.color = isDark ? '#fff' : '#1a1a1a';
-                button.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
-
-                button.addEventListener('mouseenter', () => {
-                    button.style.backgroundColor = isDark ? '#424242' : '#e6e6e6';
-                    button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)';
-                });
-                button.addEventListener('mouseleave', () => {
-                    button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
-                    button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
-                });
+                updateCompanyTagStyle(button, isDark);
             });
 
             const icon = document.createElement('img');
@@ -244,6 +234,69 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
     return companyTagContainer;
 }
 
+function updateCompanyTagStyle(button: HTMLElement, isDark: boolean) {
+    button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+    button.style.color = isDark ? '#fff' : '#1a1a1a';
+    button.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+
+    // Remove existing listeners
+    const oldMouseEnter = button.onmouseenter;
+    const oldMouseLeave = button.onmouseleave;
+    if (oldMouseEnter) button.removeEventListener('mouseenter', oldMouseEnter);
+    if (oldMouseLeave) button.removeEventListener('mouseleave', oldMouseLeave);
+
+    // Add new theme-aware listeners
+    button.addEventListener('mouseenter', () => {
+        button.style.backgroundColor = isDark ? '#424242' : '#e6e6e6';
+        button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)';
+    });
+    button.addEventListener('mouseleave', () => {
+        button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+        button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+    });
+}
+
+function updateThemeForCompanyTags(isDark: boolean) {
+    const companyTags = document.querySelectorAll('.company-tag');
+    companyTags.forEach((tag) => {
+        if (tag instanceof HTMLElement) {
+            updateCompanyTagStyle(tag, isDark);
+        }
+    });
+}
+
+function setupDescriptionThemeListener() {
+    // Listen for LeetCode's theme changes
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.target instanceof HTMLElement && mutation.target.tagName === 'BODY') {
+                chrome.storage.local.get(['themeMode'], (result) => {
+                    // Only sync theme if in auto mode
+                    if (result.themeMode === 'auto') {
+                        const isDark = document.body.classList.contains('dark');
+                        // Update our extension's theme setting
+                        chrome.storage.local.set({ isDarkTheme: isDark });
+                        updateThemeForCompanyTags(isDark);
+                    }
+                });
+            }
+        });
+    });
+
+    // Start observing the body element for class changes
+    observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class']
+    });
+
+    // Also listen for our extension's theme changes
+    chrome.storage.onChanged.addListener((changes) => {
+        if (changes.isDarkTheme) {
+            updateThemeForCompanyTags(changes.isDarkTheme.newValue);
+        }
+    });
+}
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'updateDescription') {
         // Detect theme on first load of a problem page
@@ -252,6 +305,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         showCompanyTags(request.title.split('-')[0].trim());
         showDifficulty();
         showRating(request.title.split('-')[0].trim());
+
+        // Add theme change listener after creating company tags
+        setupDescriptionThemeListener();
     } else if (request.action === 'getTheme') {
         // Return the current LeetCode theme
         const htmlElement = document.documentElement;
@@ -262,3 +318,4 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // Return true to indicate we will send a response asynchronously (needed for sendResponse)
     return true;
 });
+

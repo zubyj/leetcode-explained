@@ -448,20 +448,75 @@ function updateThemeForElement(element: HTMLElement, isDark: boolean) {
 }
 
 function setupThemeChangeListener() {
+    // Listen for our extension's theme changes
     chrome.storage.onChanged.addListener((changes) => {
         if (changes.isDarkTheme) {
             const isDark = changes.isDarkTheme.newValue;
-            const elements = [
-                '.code-container',
-                '.video-container',
-                '.language-buttons-container'
-            ].map(selector => document.querySelector(selector) as HTMLElement);
+            updateAllElements(isDark);
+        }
+    });
 
-            elements.forEach(element => {
-                if (element) {
-                    updateThemeForElement(element, isDark);
-                }
-            });
+    // Listen for LeetCode's theme changes
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.target instanceof HTMLElement && mutation.target.tagName === 'BODY') {
+                chrome.storage.local.get(['themeMode'], (result) => {
+                    // Only sync theme if in auto mode
+                    if (result.themeMode === 'auto') {
+                        const isDark = document.body.classList.contains('dark');
+                        // Update our extension's theme setting
+                        chrome.storage.local.set({ isDarkTheme: isDark });
+                        updateAllElements(isDark);
+                    }
+                });
+            }
+        });
+    });
+
+    // Start observing the body element for class changes
+    observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class']
+    });
+}
+
+function updateAllElements(isDark: boolean) {
+    const elements = [
+        '.code-container',
+        '.video-container',
+        '.language-buttons-container',
+        '.nav-container'
+    ].map(selector => document.querySelector(selector) as HTMLElement);
+
+    elements.forEach(element => {
+        if (element) {
+            if (element.classList.contains('nav-container')) {
+                // Update nav container buttons
+                const buttons = element.querySelectorAll('button');
+                buttons.forEach(button => {
+                    button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+                    button.style.color = isDark ? '#fff' : '#1a1a1a';
+                    button.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+                    
+                    // Remove existing listeners
+                    const oldMouseEnter = button.onmouseenter;
+                    const oldMouseLeave = button.onmouseleave;
+                    if (oldMouseEnter) button.removeEventListener('mouseenter', oldMouseEnter);
+                    if (oldMouseLeave) button.removeEventListener('mouseleave', oldMouseLeave);
+                    
+                    // Add new theme-aware listeners
+                    button.addEventListener('mouseenter', () => {
+                        button.style.backgroundColor = isDark ? '#424242' : '#e6e6e6';
+                        button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)';
+                    });
+                    button.addEventListener('mouseleave', () => {
+                        button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+                        button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+                    });
+                });
+            } else {
+                updateThemeForElement(element, isDark);
+            }
         }
     });
 }

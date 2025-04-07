@@ -4,7 +4,7 @@ const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 function createStyledButton(text: string, isActive: boolean = false): HTMLButtonElement {
     const button = document.createElement('button');
     button.textContent = text;
-    
+
     chrome.storage.local.get(['isDarkTheme'], (result) => {
         const isDark = result.isDarkTheme;
         button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
@@ -543,15 +543,12 @@ chrome.runtime.onMessage.addListener((request) => {
                 return;
             }
 
-            // Check if the nav container already exists before adding
+            // Only create nav container if it doesn't exist or if this is not a video update
             let existingNavContainer = document.querySelector('.nav-container');
-            if (existingNavContainer) {
-                existingNavContainer.remove();
+            if (!existingNavContainer) {
+                const newNavContainer = createNavContainer(problem);
+                searchBar?.insertBefore(newNavContainer, searchBar.firstChild);
             }
-
-            // Create a new nav container (ensure that the 'createNavContainer' function is defined correctly and accessible)
-            const newNavContainer = createNavContainer(problem);
-            searchBar?.insertBefore(newNavContainer, searchBar.firstChild)
 
             // Check if the video container already exists before adding
             if (!document.querySelector('.video-container') && problem.videos.length > 0) {

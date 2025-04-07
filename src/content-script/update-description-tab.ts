@@ -158,12 +158,14 @@ function showCompanyTags(problemTitle: string) {
             // If container exists and is visible, just update styles
             chrome.storage.local.get(['isDarkTheme'], (result) => {
                 const isDark = result.isDarkTheme;
-                const tags = companyTagContainer.querySelectorAll('.company-tag');
-                tags.forEach(tag => {
-                    if (tag instanceof HTMLElement) {
-                        updateCompanyTagStyle(tag, isDark);
-                    }
-                });
+                const tags = companyTagContainer?.querySelectorAll('.company-tag');
+                if (tags) {
+                    tags.forEach(tag => {
+                        if (tag instanceof HTMLElement) {
+                            updateCompanyTagStyle(tag, isDark);
+                        }
+                    });
+                }
             });
             return;
         }
@@ -174,6 +176,11 @@ function showCompanyTags(problemTitle: string) {
         let retryCount = 0;
 
         const tryInsertCompanyTags = () => {
+            // First check if container already exists to prevent duplicates
+            if (document.getElementById('companyTagContainer')) {
+                return;
+            }
+
             const description = document.getElementsByClassName('elfjS')[0];
             
             if (!description && retryCount < maxRetries) {
@@ -190,6 +197,12 @@ function showCompanyTags(problemTitle: string) {
                 
                 // If still not found, set up a MutationObserver to watch for DOM changes
                 const observer = new MutationObserver((mutations, obs) => {
+                    // Check if container already exists
+                    if (document.getElementById('companyTagContainer')) {
+                        obs.disconnect();
+                        return;
+                    }
+
                     const description = document.getElementsByClassName('elfjS')[0];
                     if (description) {
                         obs.disconnect(); // Stop observing once we find the element
@@ -210,26 +223,23 @@ function showCompanyTags(problemTitle: string) {
         };
 
         const insertCompanyTags = (description: Element) => {
-            // Check if container already exists
-            if (companyTagContainer) {
-                // Clear existing tags
-                while (companyTagContainer.firstChild) {
-                    companyTagContainer.firstChild.remove();
-                }
-            } else {
-                // Create new container
-                companyTagContainer = document.createElement('div');
-                companyTagContainer.id = 'companyTagContainer';
-                companyTagContainer.style.display = 'flex';
-                companyTagContainer.style.flexDirection = 'row';
-                companyTagContainer.style.marginBottom = '20px';
-                companyTagContainer.style.gap = '5px';
-
-                description.insertBefore(companyTagContainer, description.firstChild);
+            // Double check for existing container before inserting
+            if (document.getElementById('companyTagContainer')) {
+                return;
             }
 
+            // Create new container
+            const newCompanyTagContainer = document.createElement('div');
+            newCompanyTagContainer.id = 'companyTagContainer';
+            newCompanyTagContainer.style.display = 'flex';
+            newCompanyTagContainer.style.flexDirection = 'row';
+            newCompanyTagContainer.style.marginBottom = '20px';
+            newCompanyTagContainer.style.gap = '5px';
+
+            description.insertBefore(newCompanyTagContainer, description.firstChild);
+
             // Load and inject company tags
-            loadCompanyTags(problemTitle, companyTagContainer);
+            loadCompanyTags(problemTitle, newCompanyTagContainer);
         };
 
         // Start the retry process

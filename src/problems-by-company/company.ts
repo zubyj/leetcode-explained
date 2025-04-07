@@ -143,7 +143,8 @@ function rebuildTable() {
         row.insertCell(2).innerHTML = `<a href="${solution.url}" target="_blank">${solution.title}</a>`;
 
         const acceptanceCell = row.insertCell(3);
-        acceptanceCell.innerText = solution.acceptance ? (parseFloat(solution.acceptance) * 100).toFixed(2) + '%' : 'N/A';
+        const acceptanceRate = solution.acceptance ? (parseFloat(solution.acceptance) * 100).toFixed(2) : 'N/A';
+        acceptanceCell.setAttribute('data-acceptance', acceptanceRate.toString());
         acceptanceCell.style.fontSize = '12px';
 
         const rankCell = row.insertCell(4);

@@ -17,7 +17,9 @@ function showExamples() {
 interface Problem {
     title: string;
     rating?: string;
-    // Add other properties as needed
+    companies?: Array<{
+        name: string;
+    }>;
 }
 
 // Detect LeetCode's theme and set extension theme accordingly
@@ -95,52 +97,47 @@ function showDifficulty() {
 function showRating(problemTitle: string) {
     chrome.storage.local.get(['showRating'], (result) => {
         const showRating = result.showRating;
-        if (showRating) {
-            chrome.storage.local.get(['leetcodeProblems'], (result) => {
-                const problem = result.leetcodeProblems.questions.find((problem: Problem) => problem.title === problemTitle);
-
-                let ratingElement = document.getElementById('rating');
-
-                if (!problem || !problem.rating) {
-                    if (ratingElement) {
-                        ratingElement.style.display = 'none';
-                        ratingElement.remove();
-                    }
-                    return;
-                }
-
-                if (ratingElement) {
-                    // update the existing rating element
-                    ratingElement.textContent = problem.rating;
-                } else {
-                    // create a new rating element
-                    ratingElement = document.createElement('div');
-                    ratingElement.id = 'rating';
-                    ratingElement.textContent = problem.rating;
-                    ratingElement.style.fontSize = '12px';
-                    ratingElement.style.backgroundColor = '#3D3D3C';
-                    ratingElement.style.borderRadius = '10px';
-                    ratingElement.style.width = '50px';
-                    ratingElement.style.textAlign = 'center';
-                    ratingElement.style.paddingTop = '2px';
-                    ratingElement.style.color = 'lightcyan';
-                }
-
-                const difficultyContainer = document.querySelectorAll('div.relative.inline-flex')[0] as HTMLDivElement;
-                if (difficultyContainer) {
-                    // insert the rating element after the first child of the difficulty container
-                    let parent = difficultyContainer.parentElement;
-                    parent?.insertBefore(ratingElement, parent.firstChild);
-                }
-            });
-        }
-        else {
+        if (!showRating) {
             const ratingElement = document.getElementById('rating');
             if (ratingElement) {
-                ratingElement.style.display = 'none';
                 ratingElement.remove();
             }
+            return;
         }
+
+        chrome.storage.local.get(['leetcodeProblems'], (result) => {
+            const problem = result.leetcodeProblems.questions.find((problem: Problem) => problem.title === problemTitle);
+            if (!problem?.rating) return;
+
+            let ratingElement = document.getElementById('rating');
+            if (!ratingElement) {
+                ratingElement = document.createElement('div');
+                ratingElement.id = 'rating';
+            }
+
+            ratingElement.textContent = problem.rating;
+            ratingElement.style.fontSize = '11px';
+            ratingElement.style.letterSpacing = '.5px';
+            ratingElement.style.borderRadius = '6px';
+            ratingElement.style.width = '60px';
+            ratingElement.style.textAlign = 'center';
+            ratingElement.style.padding = '4px 8px';
+            ratingElement.style.transition = 'all 0.2s ease';
+
+            chrome.storage.local.get(['isDarkTheme'], (result) => {
+                const isDark = result.isDarkTheme;
+                if (ratingElement) {
+                    ratingElement.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+                    ratingElement.style.color = isDark ? '#40a9ff' : '#1a1a1a';
+                    ratingElement.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+                }
+            });
+
+            const difficultyContainer = document.querySelectorAll('div.relative.inline-flex')[0] as HTMLDivElement;
+            if (difficultyContainer?.parentElement && ratingElement) {
+                difficultyContainer.parentElement.insertBefore(ratingElement, difficultyContainer.parentElement.firstChild);
+            }
+        });
     });
 }
 
@@ -184,65 +181,66 @@ function loadCompanyTags(problemTitle: string, companyTagContainer: HTMLElement)
     companyTagContainer.id = 'companyTagContainer';
     companyTagContainer.style.display = 'flex';
     companyTagContainer.style.flexDirection = 'row';
-    companyTagContainer.style.marginTop = '10px';
-    companyTagContainer.style.gap = '5px';
+    companyTagContainer.style.marginTop = '16px';
+    companyTagContainer.style.gap = '8px';
+    companyTagContainer.style.flexWrap = 'wrap';
 
     const description = document.getElementsByClassName('elfjS')[0];
-
-    if (!description) {
-        return;
-    }
-
-    interface problem {
-        title: string;
-        companies: Array<{
-            name: string;
-        }>;
-    }
+    if (!description) return;
 
     chrome.storage.local.get(['leetcodeProblems'], (result) => {
-        const problem = result.leetcodeProblems.questions.find((problem: problem) => problem.title === problemTitle);
-        if (problem.companies && problem.companies.length > 0) {
-            const topCompanies = problem.companies.slice(0, 5);
-            // create a button for each company
-            topCompanies.forEach((company: { name: string; }) => {
-                const button = document.createElement('button');
-                // opens the company page when the button is clicked
-                button.onclick = () => {
-                    chrome.runtime.sendMessage({
-                        action: 'openCompanyPage', company: company.name,
-                    });
-                };
+        const problem = result.leetcodeProblems.questions.find((p: Problem) => p.title === problemTitle);
+        if (!problem?.companies?.length) return;
 
-                button.style.display = 'flex';
-                button.style.alignItems = 'center';
-                button.style.justifyContent = 'center';
-
-                const icon = document.createElement('img');
-                icon.src = `https://logo.clearbit.com/${company.name.toLowerCase().replace(/\s/g, '')}.com`;
-                icon.style.height = '12px';
-                icon.style.width = '12px';
-                icon.style.marginRight = '5px';
-                button.appendChild(icon);
-
-                button.style.minWidth = '100px';
-                button.style.height = '25px';
-                button.style.padding = '1px';
-                button.style.borderRadius = '10px';
-                button.style.fontSize = '10px';
-
-                chrome.storage.local.get(['isDarkTheme'], (result) => {
-                    const isDark = result.isDarkTheme;
-                    applyButtonTheme(button, isDark);
+        const topCompanies = problem.companies.slice(0, 5);
+        topCompanies.forEach((company: { name: string; }) => {
+            const button = document.createElement('button');
+            button.onclick = () => {
+                chrome.runtime.sendMessage({
+                    action: 'openCompanyPage',
+                    company: company.name,
                 });
+            };
 
-                const companyName = document.createTextNode(`${company.name}`);
-                button.appendChild(companyName);
-                companyTagContainer.appendChild(button);
+            button.style.display = 'flex';
+            button.style.alignItems = 'center';
+            button.style.gap = '8px';
+            button.style.padding = '6px 12px';
+            button.style.borderRadius = '6px';
+            button.style.fontSize = '11px';
+            button.style.letterSpacing = '.5px';
+            button.style.transition = 'all 0.2s ease';
+            button.style.cursor = 'pointer';
+
+            chrome.storage.local.get(['isDarkTheme'], (result) => {
+                const isDark = result.isDarkTheme;
+                button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+                button.style.color = isDark ? '#fff' : '#1a1a1a';
+                button.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+
+                button.addEventListener('mouseenter', () => {
+                    button.style.backgroundColor = isDark ? '#424242' : '#e6e6e6';
+                    button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)';
+                });
+                button.addEventListener('mouseleave', () => {
+                    button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+                    button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+                });
             });
-        }
+
+            const icon = document.createElement('img');
+            icon.src = `https://logo.clearbit.com/${company.name.toLowerCase().replace(/\s/g, '')}.com`;
+            icon.style.width = '14px';
+            icon.style.height = '14px';
+            button.appendChild(icon);
+
+            const companyName = document.createTextNode(company.name);
+            button.appendChild(companyName);
+            companyTagContainer.appendChild(button);
+        });
     });
-    if (description) description.insertBefore(companyTagContainer, description.firstChild);
+
+    description.insertBefore(companyTagContainer, description.firstChild);
     return companyTagContainer;
 }
 

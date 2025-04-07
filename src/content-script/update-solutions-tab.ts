@@ -4,19 +4,31 @@ const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 function createStyledButton(text: string, isActive: boolean = false): HTMLButtonElement {
     const button = document.createElement('button');
     button.textContent = text;
-    button.style.border = '2px solid grey';
-    button.style.width = '100px';
-    button.style.padding = '3px';
-    button.style.margin = '0px 20px';
-    button.style.borderRadius = '5px';
-    if (isActive) button.style.borderColor = 'lightgreen';
-    button.style.fontSize = '12px';
+    
     chrome.storage.local.get(['isDarkTheme'], (result) => {
         const isDark = result.isDarkTheme;
-        applyButtonTheme(button, isDark);
+        button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+        button.style.color = isDark ? '#fff' : '#1a1a1a';
+        button.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
 
-    })
 
+        // on hover just make the background a few shades darker or lighter
+        button.addEventListener('mouseenter', () => {
+            button.style.backgroundColor = isDark ? '#424242' : '#e6e6e6';
+        });
+        button.addEventListener('mouseleave', () => {
+            button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+        });
+    });
+
+    button.style.width = '120px';
+    button.style.padding = '4px 8px';
+    button.style.margin = '0 8px';
+    button.style.borderRadius = '6px';
+    button.style.fontSize = '11px';
+    button.style.transition = 'all 0.2s ease';
+    button.style.letterSpacing = '0.5px';
+    
     return button;
 }
 
@@ -26,27 +38,16 @@ function createVideoContainer(problem: any) {
         position: 'relative',
         display: 'none',
         justifyContent: 'center',
-        paddingBottom: `0px`,
-        marginBottom: '60px',
-        transition: 'padding-bottom 0.3s ease-out',
+        paddingBottom: `${VIDEO_ASPECT_RATIO}%`,
+        marginBottom: '32px',
+        transition: 'all 0.3s ease-out',
+        borderRadius: '8px',
+        overflow: 'hidden',
+        width: '100%',
+        maxWidth: '800px',
+        margin: '0 auto',
     });
     container.classList.add('video-container');
-
-    const iframe = createStyledElement('iframe', {
-        display: 'flex',
-        justifyContent: 'center',
-        position: 'absolute',
-        width: '95%',
-        height: '95%',
-        border: '1px solid grey',
-        paddingBottom: '20px',
-        marginTop: '50px',
-    }) as HTMLIFrameElement;
-
-    iframe.classList.add('youtube-video');
-    let src = problem.videos[0].embedded_url;
-    iframe.src = src;
-    iframe.allowFullscreen = true;
 
     const controlsContainer = createStyledElement('div', {
         display: 'flex',
@@ -54,49 +55,96 @@ function createVideoContainer(problem: any) {
         alignItems: 'center',
         position: 'absolute',
         width: '100%',
-        paddingTop: '10px',
-        marginBottom: '50px',
+        maxWidth: '800px',
+        padding: '16px',
+        marginBottom: '32px',
         boxSizing: 'border-box',
-        color: '#fff',
+        height: '48px',
+        borderRadius: '6px',
+        zIndex: '1',
+    });
+
+    chrome.storage.local.get(['isDarkTheme'], (result) => {
+        const isDark = result.isDarkTheme;
+        controlsContainer.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+        controlsContainer.style.color = isDark ? '#fff' : '#1a1a1a';
+        controlsContainer.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
     });
 
     const prevButton = document.createElement('button');
     prevButton.textContent = '⬅️';
     prevButton.style.fontSize = '20px';
+    prevButton.style.padding = '8px 16px';
+    prevButton.style.border = 'none';
+    prevButton.style.backgroundColor = 'transparent';
+    prevButton.style.transition = 'all 0.2s ease';
+    prevButton.style.cursor = 'pointer';
+
     const nextButton = document.createElement('button');
     nextButton.textContent = '➡️';
     nextButton.style.fontSize = '20px';
+    nextButton.style.padding = '8px 16px';
+    nextButton.style.border = 'none';
+    nextButton.style.backgroundColor = 'transparent';
+    nextButton.style.transition = 'all 0.2s ease';
+    nextButton.style.cursor = 'pointer';
 
     const channelElement = createStyledElement('div', {
-        fontSize: '12px',
+        fontSize: '13px',
+        letterSpacing: '.5px',
         textAlign: 'center',
-        width: '200px',
+        minWidth: '200px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     });
+
+    chrome.storage.local.get(['isDarkTheme'], (result) => {
+        const isDark = result.isDarkTheme;
+        // channel element is white on dark mode and black on light mode
+        channelElement.style.color = isDark ? '#fff' : '#1a1a1a';
+    });
+
     let currentVideoIndex = 0;
     channelElement.classList.add('channel');
     channelElement.id = 'channel';
-    channelElement.textContent = problem.videos[currentVideoIndex].channel;;
-    channelElement.style.fontWeight = '400';
-    chrome.storage.local.get(['isDarkTheme'], (result) => {
-        channelElement.style.color = result.isDarkTheme ? 'lightcyan' : '#333';
-    })
+    channelElement.textContent = problem.videos[currentVideoIndex].channel;
 
     prevButton.addEventListener('click', () => {
         currentVideoIndex = (currentVideoIndex - 1 + problem.videos.length) % problem.videos.length;
         updateVideo(iframe, problem.videos[currentVideoIndex].embedded_url);
-        channelElement.textContent = problem.videos[currentVideoIndex].channel; // Update channel name
+        channelElement.textContent = problem.videos[currentVideoIndex].channel;
     });
 
     nextButton.addEventListener('click', () => {
         currentVideoIndex = (currentVideoIndex + 1) % problem.videos.length;
         updateVideo(iframe, problem.videos[currentVideoIndex].embedded_url);
-        channelElement.textContent = problem.videos[currentVideoIndex].channel; // Update channel name
+        channelElement.textContent = problem.videos[currentVideoIndex].channel;
     });
 
     controlsContainer.append(prevButton, channelElement, nextButton);
     container.append(controlsContainer);
-    container.append(iframe);
 
+    const iframe = createStyledElement('iframe', {
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        borderRadius: '8px',
+        marginTop: '50px',
+    }) as HTMLIFrameElement;
+
+    chrome.storage.local.get(['isDarkTheme'], (result) => {
+        const isDark = result.isDarkTheme;
+        iframe.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+    });
+
+    iframe.classList.add('youtube-video');
+    iframe.src = problem.videos[0].embedded_url;
+    iframe.allowFullscreen = true;
+
+    container.append(iframe);
     return container;
 }
 
@@ -105,94 +153,86 @@ function updateVideo(iframe: HTMLIFrameElement, videoUrl: string) {
 }
 
 function createCodeContainer() {
-    // Create an HTML element to hold the code
     const codeElement = document.createElement('pre');
     codeElement.classList.add('code-container');
     codeElement.style.display = 'none';
-    codeElement.style.border = '1px solid grey';
-    codeElement.style.paddingLeft = '5px';
-    codeElement.style.marginTop = '20px';
+    codeElement.style.borderRadius = '8px';
+    codeElement.style.padding = '16px';
+    codeElement.style.marginTop = '24px';
     codeElement.style.width = '95%';
-    codeElement.style.fontSize = '12px';
+    codeElement.style.fontSize = '14px';
     codeElement.style.marginLeft = '2.5%';
-    codeElement.style.padding = '10px';
-    codeElement.style.maxHeight = '400px';
+    codeElement.style.maxHeight = '500px';
     codeElement.style.overflowY = 'auto';
+    codeElement.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+
+    chrome.storage.local.get(['isDarkTheme'], (result) => {
+        const isDark = result.isDarkTheme;
+        codeElement.style.backgroundColor = isDark ? '#2d2d2d' : '#f7f9fa';
+        codeElement.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+        codeElement.style.color = isDark ? '#fff' : '#1a1a1a';
+    });
+
     return codeElement;
 }
 
 function hideContent() {
-    let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
-    if (codeContainer) codeContainer.style.display = 'none';
-    let languageButtonsContainer = document.getElementsByClassName('language-buttons-container')[0] as HTMLDivElement;
-    if (languageButtonsContainer) languageButtonsContainer.style.display = 'none';
+    const elements = [
+        '.code-container',
+        '.language-buttons-container',
+        '.video-container'
+    ].map(selector => document.querySelector(selector) as HTMLElement);
 
-    let navContainer = document.getElementsByClassName('nav-container')[0] as HTMLDivElement;
-    if (navContainer) navContainer.style.display = 'flex';
-
-    let videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
-    if (videoContainer) {
-        videoContainer.style.paddingBottom = '0%';
-        videoContainer.style.display = 'none';
-    }
+    elements.forEach(element => {
+        if (element) {
+            if (element.classList.contains('video-container')) {
+                element.style.paddingBottom = '0';
+            }
+            element.style.display = 'none';
+        }
+    });
 }
 
-
 function createNavContainer(problem: any) {
-
     const navContainer = createStyledElement('div', {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        gap: '8px',
+        padding: '16px',
         width: '100%',
-        paddingTop: '10px',
-        paddingBottom: '20px',
-        boxSizing: 'border-box',
-        color: '#fff',
+        maxWidth: '800px',
+        margin: '0 auto',
     });
     navContainer.classList.add('nav-container');
 
-    // Add discussion button    
-    const discussionButton = createStyledButton('Discussion', true);
-    const codeButton = createStyledButton('Code');
-    const videoButton = createStyledButton('Video');
+    const buttons = [
+        { text: 'Discussion', show: true },
+        { text: 'Video', show: problem.videos?.length > 0 },
+        { text: 'Code', show: problem.languages?.length > 0 }
+    ];
 
-    discussionButton.addEventListener('click', () => {
-        hideContent();
-        videoButton.style.borderColor = 'grey';
-        discussionButton.style.borderColor = 'lightgreen';
-        codeButton.style.borderColor = 'grey';
+    const activeButton = buttons[0];
+    buttons.forEach(({ text, show }) => {
+        if (!show) return;
+        
+        const button = createStyledButton(text, text === activeButton.text);
+        button.addEventListener('click', () => {
+            hideContent();
+            if (text === 'Video') {
+                const videoContainer = document.querySelector('.video-container') as HTMLElement;
+                if (videoContainer) {
+                    videoContainer.style.display = 'flex';
+                    videoContainer.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
+                }
+            } else if (text === 'Code') {
+                const elements = ['.code-container', '.language-buttons-container']
+                    .map(selector => document.querySelector(selector) as HTMLElement);
+                elements.forEach(el => el && (el.style.display = 'flex'));
+            }
+        });
+        navContainer.append(button);
     });
-    navContainer.append(discussionButton);
-
-    if (problem.videos && problem.videos.length > 0) {
-        videoButton.addEventListener('click', () => {
-            hideContent();
-            let videoContainer = document.querySelector('div.video-container') as HTMLDivElement;
-            videoContainer.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
-            videoContainer.style.display = 'flex';
-
-            videoButton.style.borderColor = 'lightgreen';
-            discussionButton.style.borderColor = 'grey';
-            codeButton.style.borderColor = 'grey';
-        });
-        navContainer.append(videoButton);
-    }
-    if (problem.languages && problem.languages.length > 0) {
-        codeButton.addEventListener('click', () => {
-            hideContent();
-            let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
-            codeContainer.style.display = 'flex';
-            let languageButtonsContainer = document.getElementsByClassName('language-buttons-container')[0] as HTMLDivElement;
-            languageButtonsContainer.classList.add('language-buttons-container');
-            languageButtonsContainer.style.display = 'flex';
-
-            codeButton.style.borderColor = 'lightgreen';
-            discussionButton.style.borderColor = 'grey';
-            videoButton.style.borderColor = 'grey';
-        });
-        navContainer.append(codeButton);
-    }
 
     return navContainer;
 }
@@ -253,37 +293,39 @@ function createLanguageButtons(problem: any) {
     const container = createStyledElement('div', {
         paddingTop: '20px',
         marginLeft: '20px',
+        display: 'flex',
+        gap: '8px',
+        flexWrap: 'wrap',
     });
+    container.classList.add('language-buttons-container');
 
-    // For each language, create a button and set up its event listener
     problem.languages.forEach((language: string) => {
-        // Create the button using the utility function
-        const buttonLabel = (language === "cpp") ? "C++" : (language.charAt(0).toUpperCase() + language.slice(1));
         const langButton = document.createElement('button');
-        langButton.style.border = '1px solid grey';
-        langButton.style.width = '110px';
         langButton.style.display = 'flex';
-        langButton.style.flexDirection = 'row';
-        langButton.style.padding = '3px';
-        langButton.style.margin = '0px 5px';
-        langButton.addEventListener('mouseover', () => {
-            langButton.style.borderColor = 'lightgreen';
-        });
-        langButton.addEventListener('mouseout', () => {
-            langButton.style.borderColor = 'grey';
+        langButton.style.alignItems = 'center';
+        langButton.style.gap = '8px';
+        langButton.style.padding = '6px 12px';
+        langButton.style.borderRadius = '6px';
+        langButton.style.fontSize = '11px';
+        langButton.style.letterSpacing = '.5px';
+        langButton.style.transition = 'all 0.2s ease';
+        langButton.style.cursor = 'pointer';
+
+        chrome.storage.local.get(['isDarkTheme'], (result) => {
+            const isDark = result.isDarkTheme;
+            langButton.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+            langButton.style.color = isDark ? '#fff' : '#1a1a1a';
+            langButton.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
         });
 
-        // Get the icon for the language
         const langIcon = document.createElement('img');
         langIcon.src = chrome.runtime.getURL(`src/assets/images/languages/${language}.svg`);
-        langIcon.style.width = '20px';
-        langIcon.style.height = '20px';
-
+        langIcon.style.width = '14px';
+        langIcon.style.height = '14px';
         langButton.appendChild(langIcon);
-        let langName = document.createElement('span');
-        langName.textContent = buttonLabel;
-        langName.style.fontSize = '12px';
-        langName.style.paddingLeft = '15px';
+
+        const langName = document.createElement('span');
+        langName.textContent = (language === "cpp") ? "C++" : (language.charAt(0).toUpperCase() + language.slice(1));
         langButton.appendChild(langName);
 
         langButton.addEventListener('click', async () => {
@@ -292,6 +334,14 @@ function createLanguageButtons(problem: any) {
             if (codeContainer && code) {
                 codeContainer.style.display = 'flex';
                 codeContainer.textContent = code;
+                
+                chrome.storage.local.get(['isDarkTheme'], (result) => {
+                    const isDark = result.isDarkTheme;
+                    codeContainer.style.backgroundColor = isDark ? '#2d2d2d' : '#f7f9fa';
+                    codeContainer.style.color = isDark ? '#fff' : '#1a1a1a';
+                    codeContainer.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+                });
+
                 addCopyIconToElement(codeContainer);
             } else if (codeContainer) {
                 codeContainer.style.display = 'flex';
@@ -301,7 +351,6 @@ function createLanguageButtons(problem: any) {
         container.append(langButton);
     });
     return container;
-    
 }
 
 function addCopyIconToElement(element: HTMLElement) {
@@ -311,20 +360,24 @@ function addCopyIconToElement(element: HTMLElement) {
     icon.style.height = '30px';
     icon.style.padding = '5px';
     icon.style.borderRadius = '5px';
-    icon.style.border = '1px solid grey';
     icon.style.cursor = 'pointer';
     icon.style.marginRight = '20px';
-    // on hover, change background color
-    icon.addEventListener('mouseover', () => {
-        icon.style.borderColor = 'lightgreen';
-    });
-    icon.addEventListener('mouseout', () => {
-        icon.style.borderColor = 'grey';
+    icon.style.transition = 'all 0.2s ease';
+
+    chrome.storage.local.get(['isDarkTheme'], (result) => {
+        const isDark = result.isDarkTheme;
+        icon.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+        
+        icon.addEventListener('mouseover', () => {
+            icon.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)';
+        });
+        icon.addEventListener('mouseout', () => {
+            icon.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+        });
     });
 
     // On click event if you want to copy something when the icon is clicked
     icon.addEventListener('click', () => {
-        // Logic to copy whatever you want to clipboard
         let codeContainer = document.getElementsByClassName('code-container')[0] as HTMLDivElement;
         const textToCopy = codeContainer.textContent || "";
         navigator.clipboard.writeText(textToCopy).then(() => {
@@ -340,6 +393,77 @@ function addCopyIconToElement(element: HTMLElement) {
     });
 
     element.insertBefore(icon, element.firstChild);
+}
+
+function updateThemeForElement(element: HTMLElement, isDark: boolean) {
+    if (!element) return;
+
+    switch (element.className) {
+        case 'code-container':
+            element.style.backgroundColor = isDark ? '#2d2d2d' : '#f7f9fa';
+            element.style.color = isDark ? '#fff' : '#1a1a1a';
+            element.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+            break;
+        case 'video-container':
+            const controls = element.querySelector('div') as HTMLElement;
+            if (controls) {
+                controls.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+                controls.style.color = isDark ? '#fff' : '#1a1a1a';
+                controls.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+            }
+            const channelElement = element.querySelector('#channel') as HTMLElement;
+            if (channelElement) {
+                channelElement.style.color = isDark ? '#fff' : '#1a1a1a';
+            }
+            const iframe = element.querySelector('iframe') as HTMLElement;
+            if (iframe) {
+                iframe.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+            }
+            break;
+        case 'language-buttons-container':
+            const buttons = element.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+                button.style.color = isDark ? '#fff' : '#1a1a1a';
+                button.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+                
+                // Remove existing listeners
+                const oldMouseEnter = button.onmouseenter;
+                const oldMouseLeave = button.onmouseleave;
+                if (oldMouseEnter) button.removeEventListener('mouseenter', oldMouseEnter);
+                if (oldMouseLeave) button.removeEventListener('mouseleave', oldMouseLeave);
+                
+                // Add new theme-aware listeners
+                button.addEventListener('mouseenter', () => {
+                    button.style.backgroundColor = isDark ? '#424242' : '#e6e6e6';
+                    button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)';
+                });
+                button.addEventListener('mouseleave', () => {
+                    button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+                    button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+                });
+            });
+            break;
+    }
+}
+
+function setupThemeChangeListener() {
+    chrome.storage.onChanged.addListener((changes) => {
+        if (changes.isDarkTheme) {
+            const isDark = changes.isDarkTheme.newValue;
+            const elements = [
+                '.code-container',
+                '.video-container',
+                '.language-buttons-container'
+            ].map(selector => document.querySelector(selector) as HTMLElement);
+
+            elements.forEach(element => {
+                if (element) {
+                    updateThemeForElement(element, isDark);
+                }
+            });
+        }
+    });
 }
 
 chrome.runtime.onMessage.addListener((request) => {
@@ -385,6 +509,9 @@ chrome.runtime.onMessage.addListener((request) => {
                 languageButtonsContainer.style.display = 'none';
                 if (searchBar) searchBar.insertBefore(languageButtonsContainer, searchBar.children[1]);  // Or choose a different position
             }
+
+            // Add theme change listener after creating containers
+            setupThemeChangeListener();
         });
     }
 });

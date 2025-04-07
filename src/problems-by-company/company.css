@@ -1,75 +1,189 @@
 body {
     background-color: #202020;
     color: #f0f0f0;
-    font-family: 'Roboto', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     margin: 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
 }
 
 h1 {
-    font-size: 25px;
-    padding: 10px;
-    color: lightcyan;
+    font-size: 24px;
+    font-weight: 500;
+    padding: 16px;
+    color: #69c0ff;
+    margin-bottom: 24px;
+    text-align: center;
 }
 
 nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 800px;
 }
-
 
 button,
 .row input {
     background-color: #373737;
     color: #fff;
-    border: none;
-    padding: 10px;
-    min-width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 16px;
+    min-width: 120px;
     max-width: 100%;
-    border-radius: 5px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.2s ease;
 }
 
-button:hover,
-a:hover {
+nav button {
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+button:hover {
     background-color: #424242;
+    border-color: rgba(255, 255, 255, 0.2);
     cursor: pointer;
+    transform: translateY(-1px);
+    color: #ffd700;
 }
 
 table {
-    width: 700px;
-    margin: auto;
-    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 th,
 td {
-    border: 1px solid #FFFFFF;
-    padding: 10px;
-    text-align: center;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 th {
     background-color: #424242;
-    color: lightcyan;
+    color: #40a9ff;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+td {
+    font-size: 14px;
+}
+
+tr:last-child td {
+    border-bottom: none;
 }
 
 a {
-    color: lightgoldenrodyellow;
+    color: #40a9ff;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 a:hover {
-    color: lightgreen;
+    color: #69c0ff;
+    background-color: transparent;
+}
+
+.header {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
 }
 
 .header:hover {
-    border: 1px solid orange;
-    cursor: pointer;
-    color: orange;
+    color: #69c0ff;
+}
+
+.row {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 24px;
+}
+
+.row input {
+    width: 100%;
+    height: 32px;
+    background-color: #373737;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.row input:focus {
+    outline: none;
+    border-color: #40a9ff;
+    box-shadow: 0 0 0 2px rgba(64, 169, 255, 0.2);
+}
+
+/* Add smooth transitions for interactive elements */
+button,
+a,
+.header,
+input {
+    transition: all 0.2s ease;
+}
+
+/* Acceptance rate colors - smooth gradient */
+td[data-acceptance] {
+    position: relative;
+}
+
+td[data-acceptance]::after {
+    content: attr(data-acceptance) '%';
+    font-weight: 500;
+}
+
+/* Create a smooth gradient from red to yellow to green */
+td[data-acceptance^="9"] { color: #52c41a; }
+td[data-acceptance^="8"] { color: #73d13d; }
+td[data-acceptance^="7"] { color: #95de64; }
+td[data-acceptance^="6"] { color: #b7eb8f; }
+td[data-acceptance^="5"] { color: #fadb14; }
+td[data-acceptance^="4"] { color: #ffa940; }
+td[data-acceptance^="3"] { color: #ff7a45; }
+td[data-acceptance^="2"] { color: #ff4d4f; }
+td[data-acceptance^="1"] { color: #f5222d; }
+td[data-acceptance^="0"] { color: #cf1322; }
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 16px;
+    }
+    
+    table {
+        font-size: 14px;
+    }
+    
+    th,
+    td {
+        padding: 8px 12px;
+    }
+    
+    button {
+        min-width: 100px;
+    }
 }

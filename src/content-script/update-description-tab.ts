@@ -154,25 +154,72 @@ function showCompanyTags(problemTitle: string) {
             return;
         }
 
-        if (companyTagContainer) {
-            while (companyTagContainer.firstChild) {
-                companyTagContainer.firstChild.remove();
-            }
-        } else {
-            companyTagContainer = document.createElement('div');
-            companyTagContainer.id = 'companyTagContainer';
-            companyTagContainer.style.display = 'flex';
-            companyTagContainer.style.flexDirection = 'row';
-            companyTagContainer.style.marginBottom = '20px';
-            companyTagContainer.style.gap = '5px';
+        // Try to find the description element with retries
+        const maxRetries = 10;
+        const baseDelay = 300;
+        let retryCount = 0;
 
+        const tryInsertCompanyTags = () => {
             const description = document.getElementsByClassName('elfjS')[0];
-            if (description) {
+            
+            if (!description && retryCount < maxRetries) {
+                // Use exponential backoff for retry delay
+                const delay = baseDelay * Math.pow(1.5, retryCount);
+                retryCount++;
+                console.log(`Attempt ${retryCount}: Waiting for description element to load... Retrying in ${delay}ms`);
+                setTimeout(tryInsertCompanyTags, delay);
+                return;
+            }
+
+            if (!description) {
+                console.log('Failed to find description element after all retries');
+                
+                // If still not found, set up a MutationObserver to watch for DOM changes
+                const observer = new MutationObserver((mutations, obs) => {
+                    const description = document.getElementsByClassName('elfjS')[0];
+                    if (description) {
+                        obs.disconnect(); // Stop observing once we find the element
+                        insertCompanyTags(description);
+                    }
+                });
+                
+                // Start observing the document with the configured parameters
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+                
+                return;
+            }
+
+            insertCompanyTags(description);
+        };
+
+        const insertCompanyTags = (description: Element) => {
+            // Check if container already exists
+            if (companyTagContainer) {
+                // Clear existing tags
+                while (companyTagContainer.firstChild) {
+                    companyTagContainer.firstChild.remove();
+                }
+            } else {
+                // Create new container
+                companyTagContainer = document.createElement('div');
+                companyTagContainer.id = 'companyTagContainer';
+                companyTagContainer.style.display = 'flex';
+                companyTagContainer.style.flexDirection = 'row';
+                companyTagContainer.style.marginBottom = '20px';
+                companyTagContainer.style.gap = '5px';
+
                 description.insertBefore(companyTagContainer, description.firstChild);
             }
-        }
 
-        loadCompanyTags(problemTitle, companyTagContainer);
+            // Load and inject company tags
+            loadCompanyTags(problemTitle, companyTagContainer);
+        };
+
+        // Start the retry process
+        tryInsertCompanyTags();
     });
 }
 
@@ -318,4 +365,42 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // Return true to indicate we will send a response asynchronously (needed for sendResponse)
     return true;
 });
+
+// Self-initialization function that runs when the content script loads
+function initializeContentScript() {
+    // Wait for the DOM to be fully loaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', onDOMReady);
+    } else {
+        onDOMReady();
+    }
+
+    function onDOMReady() {
+        // Check if we're on a LeetCode problem page
+        const isProblemPage = /^https:\/\/leetcode\.com\/problems\/.*\/?/.test(window.location.href);
+        
+        if (isProblemPage) {
+            console.log('LeetCode problem page detected, initializing content script...');
+            
+            // Extract the problem title from the page title
+            const pageTitle = document.title;
+            const problemTitle = pageTitle.split('-')[0].trim();
+            
+            // Detect theme on first load of a problem page
+            detectAndSyncTheme();
+            showExamples();
+            showCompanyTags(problemTitle);
+            showDifficulty();
+            showRating(problemTitle);
+            
+            // Add theme change listener after creating company tags
+            setupDescriptionThemeListener();
+            
+            console.log('Content script initialized for problem:', problemTitle);
+        }
+    }
+}
+
+// Run the initialization
+initializeContentScript();
 

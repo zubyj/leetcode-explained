@@ -316,6 +316,14 @@ function createLanguageButtons(problem: any) {
             langButton.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
             langButton.style.color = isDark ? '#fff' : '#1a1a1a';
             langButton.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+
+            // on hover just make the background a few shades darker or lighter
+            langButton.addEventListener('mouseenter', () => {
+                langButton.style.backgroundColor = isDark ? '#424242' : '#e6e6e6';
+            });
+            langButton.addEventListener('mouseleave', () => {
+                langButton.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+            });
         });
 
         const langIcon = document.createElement('img');

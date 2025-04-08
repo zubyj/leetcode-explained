@@ -9,7 +9,7 @@
     --border-color: black;
     --link-color: #303134;
     --text-color: black;
-
+    --button-hover-bg: #e6e6e6;
 }
 
 /* Dark theme */
@@ -115,13 +115,12 @@ a {
 }
 
 .tab:hover {
-    color: var(--link-color);
+    background-color: var(--button-hover-bg) !important;
 }
 
 .tab.active {
     border-bottom: 2px solid var(--link-color);
     color: var(--link-color);
-    background: transparent;
 }
 
 /* Main content on popup and settings*/

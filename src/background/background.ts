@@ -75,44 +75,48 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         const url = tab.url;
         let problemUrl = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
         
-        // Only proceed if this is a leetcode problem page
+        // Check if this is a leetcode problem page
         if (url.match(problemUrl)) {
             // Extract the problem path from the URL
             const problemPath = url.match(/\/problems\/([^/]+)/)?.[1];
             
-            chrome.storage.local.get(['currentLeetCodeProblem', 'currentLeetCodeProblemTitle', 'descriptionTabUpdated', 'solutionsTabUpdated'], (result) => {
-                let lastProblem = result.currentLeetCodeProblem || '';
-                let lastTitle = result.currentLeetCodeProblemTitle || '';
-                let descriptionTabUpdated = result.descriptionTabUpdated || false;
-                let solutionsTabUpdated = result.solutionsTabUpdated || false;
-            
-                // Only reset if we've switched to a different problem
-                if (problemPath && problemPath !== lastProblem) {
-                    console.log('Problem changed from', lastProblem, 'to', problemPath);
-                    chrome.storage.local.set({
-                        'currentLeetCodeProblem': problemPath,
-                        'currentLeetCodeProblemTitle': tab.title,
-                        'descriptionTabUpdated': false,
-                        'solutionsTabUpdated': false
-                    });
-                    descriptionTabUpdated = false;
-                    solutionsTabUpdated = false;
-                }
+            // Handle both page refresh (complete status) and dynamic updates
+            if (changeInfo.status === 'complete' || changeInfo.url) {
+                console.log('Tab updated or refreshed:', url);
+                chrome.storage.local.get(['currentLeetCodeProblem', 'currentLeetCodeProblemTitle', 'descriptionTabUpdated', 'solutionsTabUpdated'], (result) => {
+                    let lastProblem = result.currentLeetCodeProblem || '';
+                    let lastTitle = result.currentLeetCodeProblemTitle || '';
+                    let descriptionTabUpdated = result.descriptionTabUpdated || false;
+                    let solutionsTabUpdated = result.solutionsTabUpdated || false;
+                
+                    // Reset flags on problem change or page refresh
+                    if (problemPath && (problemPath !== lastProblem || changeInfo.status === 'complete')) {
+                        console.log('Problem changed or page refreshed:', problemPath);
+                        chrome.storage.local.set({
+                            'currentLeetCodeProblem': problemPath,
+                            'currentLeetCodeProblemTitle': tab.title,
+                            'descriptionTabUpdated': false,
+                            'solutionsTabUpdated': false
+                        });
+                        descriptionTabUpdated = false;
+                        solutionsTabUpdated = false;
+                    }
 
-                // If the description tab has not been updated and the url matches the description page, we update the flag
-                let descriptionUrl = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?$/;
-                if (!descriptionTabUpdated && url.match(descriptionUrl)) {
-                    chrome.storage.local.set({ 'descriptionTabUpdated': true });
-                    chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: tab.title || 'title' });
-                }
+                    // If the description tab has not been updated and the url matches the description page, we update the flag
+                    let descriptionUrl = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?$/;
+                    if (!descriptionTabUpdated && url.match(descriptionUrl)) {
+                        chrome.storage.local.set({ 'descriptionTabUpdated': true });
+                        chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: tab.title || 'title' });
+                    }
 
-                // If the solutions tab has not been updated and the url matches the solutions page, we update the flag
-                let solutionsUrl = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?$/;
-                if (!solutionsTabUpdated && url.match(solutionsUrl)) {
-                    chrome.storage.local.set({ 'solutionsTabUpdated': true });
-                    chrome.tabs.sendMessage(tabId, { action: 'updateSolutions', title: tab.title || 'title' });
-                }
-            });
+                    // If the solutions tab has not been updated and the url matches the solutions page, we update the flag
+                    let solutionsUrl = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?$/;
+                    if (!solutionsTabUpdated && url.match(solutionsUrl)) {
+                        chrome.storage.local.set({ 'solutionsTabUpdated': true });
+                        chrome.tabs.sendMessage(tabId, { action: 'updateSolutions', title: tab.title || 'title' });
+                    }
+                });
+            }
         }
     }
 });

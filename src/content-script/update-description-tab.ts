@@ -371,6 +371,7 @@ function setupDescriptionThemeListener() {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'updateDescription') {
         // Detect theme on first load of a problem page
+        console.log('Updating description tab...');
         detectAndSyncTheme();
         showExamples();
         showCompanyTags(request.title.split('-')[0].trim());
@@ -400,8 +401,8 @@ function initializeContentScript() {
     }
 
     function onDOMReady() {
-        // Check if we're on a LeetCode problem page
-        const isProblemPage = /^https:\/\/leetcode\.com\/problems\/.*\/?/.test(window.location.href);
+        // Check if we're on a LeetCode problem's description page
+        const isProblemPage = /^https:\/\/leetcode\.com\/problems\/.*\/description\/?/.test(window.location.href);
         
         if (isProblemPage) {
             console.log('LeetCode problem page detected, initializing content script...');
@@ -420,7 +421,7 @@ function initializeContentScript() {
             // Add theme change listener after creating company tags
             setupDescriptionThemeListener();
             
-            console.log('Content script initialized for problem:', problemTitle);
+            console.log('Description tab content script initialized for problem:', problemTitle);
         }
     }
 }

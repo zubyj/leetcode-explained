@@ -538,49 +538,44 @@ chrome.runtime.onMessage.addListener((request) => {
             const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
 
             // If no solution code or videos exist, dont do anything.
-            if (!problem.videos && !problem.languages) return;
-            if (problem.videos.length == 0 && problem.languages.length == 0) {
+            if (!problem?.videos && !problem?.languages) return;
+            if (problem.videos?.length == 0 && problem.languages?.length == 0) {
                 return;
             }
 
-            // If forceUpdate is true or this is not a video update, remove existing containers
-            if (request.forceUpdate) {
-                const existingContainers = [
-                    '.nav-container',
-                    '.video-container',
-                    '.code-container',
-                    '.language-buttons-container'
-                ].forEach(selector => {
-                    const element = document.querySelector(selector);
-                    if (element) element.remove();
-                });
-            }
+            // Always remove existing containers when updating solutions
+            const existingContainers = [
+                '.nav-container',
+                '.video-container',
+                '.code-container',
+                '.language-buttons-container'
+            ].forEach(selector => {
+                const element = document.querySelector(selector);
+                if (element) element.remove();
+            });
 
-            // Only create nav container if it doesn't exist or if this is not a video update
-            let existingNavContainer = document.querySelector('.nav-container');
-            if (!existingNavContainer) {
-                const newNavContainer = createNavContainer(problem);
-                searchBar?.insertBefore(newNavContainer, searchBar.firstChild);
-            }
+            // Create new nav container
+            const newNavContainer = createNavContainer(problem);
+            searchBar?.insertBefore(newNavContainer, searchBar.firstChild);
 
-            // Check if the video container already exists before adding
-            if (!document.querySelector('.video-container') && problem.videos.length > 0) {
+            // Add video container if videos exist
+            if (problem.videos?.length > 0) {
                 let videoContainer = createVideoContainer(problem);
                 if (searchBar) searchBar.insertBefore(videoContainer, searchBar.children[1]);
             }
 
-            // Check if the code container already exists before adding
-            if (!document.querySelector('.code-container') && problem.languages.length > 0) {
+            // Add code container if languages exist
+            if (problem.languages?.length > 0) {
                 let codeContainer = createCodeContainer();
                 if (searchBar) searchBar.insertBefore(codeContainer, searchBar.children[1]);
             }
 
-            // Check if the language buttons container already exists before adding
-            if (!document.querySelector('.language-buttons-container')) {
+            // Add language buttons container if languages exist
+            if (problem.languages?.length > 0) {
                 let languageButtonsContainer = createLanguageButtons(problem);
                 languageButtonsContainer.classList.add('language-buttons-container');
                 languageButtonsContainer.style.display = 'none';
-                if (searchBar) searchBar.insertBefore(languageButtonsContainer, searchBar.children[1]);  // Or choose a different position
+                if (searchBar) searchBar.insertBefore(languageButtonsContainer, searchBar.children[1]);
             }
 
             // Add theme change listener after creating containers

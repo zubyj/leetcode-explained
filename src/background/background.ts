@@ -70,6 +70,12 @@ chrome.runtime.onMessage.addListener((request) => {
     }
 });
 
+// Keep track of the last state to avoid duplicate updates
+let lastState = {
+    problemPath: '',
+    view: '' // 'problem' or 'solutions'
+};
+
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (tab.url) {
         const url = tab.url;
@@ -80,9 +86,25 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             // Extract the problem path from the URL
             const problemPath = url.match(/\/problems\/([^/]+)/)?.[1];
             
-            // Handle both page refresh (complete status) and dynamic updates
-            if (changeInfo.status === 'complete' || changeInfo.url) {
-                console.log('Tab updated or refreshed:', url);
+            // Determine the current view - now only distinguishing between problem view and solutions
+            let currentView = url.includes('/solutions') ? 'solutions' : 'problem';
+
+            // Handle page refreshes and initial loads
+            const isPageRefresh = changeInfo.status === 'complete';
+            const isProblemChange = problemPath !== lastState.problemPath;
+            const isViewChange = currentView !== lastState.view;
+
+            if (isProblemChange || isViewChange || isPageRefresh) {
+                console.log(`State change detected - ${
+                    isProblemChange ? 'New Problem' : 
+                    isViewChange ? 'View Changed' : 
+                    'Page Refresh'
+                }`);
+                
+                // Update last state
+                lastState.problemPath = problemPath || '';
+                lastState.view = currentView;
+
                 chrome.storage.local.get(['currentLeetCodeProblem', 'currentLeetCodeProblemTitle', 'descriptionTabUpdated', 'solutionsTabUpdated'], (result) => {
                     let lastProblem = result.currentLeetCodeProblem || '';
                     let lastTitle = result.currentLeetCodeProblemTitle || '';
@@ -90,8 +112,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                     let solutionsTabUpdated = result.solutionsTabUpdated || false;
                 
                     // Reset flags on problem change or page refresh
-                    if (problemPath && (problemPath !== lastProblem || changeInfo.status === 'complete')) {
-                        console.log('Problem changed or page refreshed:', problemPath);
+                    if (isProblemChange || isPageRefresh) {
+                        console.log('Updating problem state:', problemPath);
                         chrome.storage.local.set({
                             'currentLeetCodeProblem': problemPath,
                             'currentLeetCodeProblemTitle': tab.title,
@@ -102,16 +124,14 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                         solutionsTabUpdated = false;
                     }
 
-                    // If the description tab has not been updated and the url matches the description page, we update the flag
-                    let descriptionUrl = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?$/;
-                    if (!descriptionTabUpdated && url.match(descriptionUrl)) {
+                    // Only update description if we're in problem view and not updated
+                    if (!descriptionTabUpdated && currentView === 'problem') {
                         chrome.storage.local.set({ 'descriptionTabUpdated': true });
                         chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: tab.title || 'title' });
                     }
 
-                    // If the solutions tab has not been updated and the url matches the solutions page, we update the flag
-                    let solutionsUrl = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?$/;
-                    if (!solutionsTabUpdated && url.match(solutionsUrl)) {
+                    // Only update solutions if we're in solutions view and not updated
+                    if (!solutionsTabUpdated && currentView === 'solutions') {
                         chrome.storage.local.set({ 'solutionsTabUpdated': true });
                         chrome.tabs.sendMessage(tabId, { action: 'updateSolutions', title: tab.title || 'title' });
                     }

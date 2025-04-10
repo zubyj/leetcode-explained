@@ -73,7 +73,8 @@ chrome.runtime.onMessage.addListener((request) => {
 // Keep track of the last state to avoid duplicate updates
 let lastState = {
     problemPath: '',
-    view: '' // 'problem' or 'solutions'
+    view: '', // 'problem' or 'solutions'
+    lastPathname: '' // Track full pathname to detect real navigation
 };
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -85,25 +86,33 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         if (url.match(problemUrl)) {
             // Extract the problem path from the URL
             const problemPath = url.match(/\/problems\/([^/]+)/)?.[1];
+            const pathname = new URL(url).pathname;
             
             // Determine the current view - now only distinguishing between problem view and solutions
             let currentView = url.includes('/solutions') ? 'solutions' : 'problem';
 
-            // Handle page refreshes and initial loads
-            const isPageRefresh = changeInfo.status === 'complete';
+            // Only trigger updates on actual page loads or problem changes
+            const isPageLoad = changeInfo.status === 'complete' && !changeInfo.url;
             const isProblemChange = problemPath !== lastState.problemPath;
             const isViewChange = currentView !== lastState.view;
+            const isRealNavigation = pathname !== lastState.lastPathname && 
+                                   !pathname.includes('playground') && 
+                                   !pathname.includes('editor') &&
+                                   !pathname.includes('interpret-solution') &&
+                                   !pathname.includes('submissions');
 
-            if (isProblemChange || isViewChange || isPageRefresh) {
+            // Only update if there's a real navigation or problem change
+            if ((isProblemChange || (isViewChange && isRealNavigation) || isPageLoad) && problemPath) {
                 console.log(`State change detected - ${
                     isProblemChange ? 'New Problem' : 
                     isViewChange ? 'View Changed' : 
-                    'Page Refresh'
+                    'Page Load'
                 }`);
                 
                 // Update last state
-                lastState.problemPath = problemPath || '';
+                lastState.problemPath = problemPath;
                 lastState.view = currentView;
+                lastState.lastPathname = pathname;
 
                 chrome.storage.local.get(['currentLeetCodeProblem', 'currentLeetCodeProblemTitle', 'descriptionTabUpdated', 'solutionsTabUpdated'], (result) => {
                     let lastProblem = result.currentLeetCodeProblem || '';
@@ -111,8 +120,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                     let descriptionTabUpdated = result.descriptionTabUpdated || false;
                     let solutionsTabUpdated = result.solutionsTabUpdated || false;
                 
-                    // Reset flags on problem change or page refresh
-                    if (isProblemChange || isPageRefresh) {
+                    // Reset flags on problem change or page load
+                    if (isProblemChange || (isPageLoad && !descriptionTabUpdated && !solutionsTabUpdated)) {
                         console.log('Updating problem state:', problemPath);
                         chrome.storage.local.set({
                             'currentLeetCodeProblem': problemPath,

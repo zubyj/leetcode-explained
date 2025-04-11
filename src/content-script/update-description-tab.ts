@@ -373,7 +373,12 @@ function setupDescriptionThemeListener() {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'updateDescription') {
-        // Detect theme on first load of a problem page
+        // Only detect theme on first load, problem change, or refresh
+        if (!request.isProblemChange && !request.isRefresh) {
+            console.log('Skipping theme detection for internal navigation');
+            return;
+        }
+
         console.log('Updating description tab...');
         detectAndSyncTheme();
         showExamples();

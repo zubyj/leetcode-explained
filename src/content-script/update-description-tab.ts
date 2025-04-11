@@ -144,29 +144,7 @@ function showRating(problemTitle: string) {
 // show the company tags if the user has enabled it in the settings
 function showCompanyTags(problemTitle: string) {
     chrome.storage.local.get(['showCompanyTags'], (result) => {
-        const showCompanyTags = result.showCompanyTags;
-        let companyTagContainer = document.getElementById('companyTagContainer');
-
-        // First handle visibility
-        if (!showCompanyTags) {
-            if (companyTagContainer) {
-                companyTagContainer.style.display = 'none';
-            }
-            return;
-        } else if (companyTagContainer && companyTagContainer instanceof HTMLElement) {
-            companyTagContainer.style.display = 'flex';
-            // If container exists and is visible, just update styles
-            chrome.storage.local.get(['isDarkTheme'], (result) => {
-                const isDark = result.isDarkTheme;
-                const tags = companyTagContainer?.querySelectorAll('.company-tag');
-                if (tags) {
-                    tags.forEach(tag => {
-                        if (tag instanceof HTMLElement) {
-                            updateCompanyTagStyle(tag, isDark);
-                        }
-                    });
-                }
-            });
+        if (!result.showCompanyTags) {
             return;
         }
 
@@ -174,6 +152,26 @@ function showCompanyTags(problemTitle: string) {
         const maxRetries = 10;
         const baseDelay = 300;
         let retryCount = 0;
+
+        const insertCompanyTags = (description: Element) => {
+            // Double check for existing container before inserting
+            if (document.getElementById('companyTagContainer')) {
+                return;
+            }
+
+            // Create new container
+            const newCompanyTagContainer = document.createElement('div');
+            newCompanyTagContainer.id = 'companyTagContainer';
+            newCompanyTagContainer.style.display = 'flex';
+            newCompanyTagContainer.style.flexDirection = 'row';
+            newCompanyTagContainer.style.marginBottom = '20px';
+            newCompanyTagContainer.style.gap = '5px';
+
+            description.insertBefore(newCompanyTagContainer, description.firstChild);
+
+            // Load and inject company tags
+            loadCompanyTags(problemTitle, newCompanyTagContainer);
+        };
 
         const tryInsertCompanyTags = () => {
             // First check if container already exists to prevent duplicates
@@ -219,30 +217,11 @@ function showCompanyTags(problemTitle: string) {
                 return;
             }
 
+            // If we found the description element, insert the company tags
             insertCompanyTags(description);
         };
 
-        const insertCompanyTags = (description: Element) => {
-            // Double check for existing container before inserting
-            if (document.getElementById('companyTagContainer')) {
-                return;
-            }
-
-            // Create new container
-            const newCompanyTagContainer = document.createElement('div');
-            newCompanyTagContainer.id = 'companyTagContainer';
-            newCompanyTagContainer.style.display = 'flex';
-            newCompanyTagContainer.style.flexDirection = 'row';
-            newCompanyTagContainer.style.marginBottom = '20px';
-            newCompanyTagContainer.style.gap = '5px';
-
-            description.insertBefore(newCompanyTagContainer, description.firstChild);
-
-            // Load and inject company tags
-            loadCompanyTags(problemTitle, newCompanyTagContainer);
-        };
-
-        // Start the retry process
+        // Start the process
         tryInsertCompanyTags();
     });
 }
@@ -401,31 +380,41 @@ function initializeContentScript() {
     }
 
     function onDOMReady() {
-        // Check if we're on a LeetCode problem's description page
-        const isProblemPage = /^https:\/\/leetcode\.com\/problems\/.*\/description\/?/.test(window.location.href);
+        // Set up theme detection and synchronization
+        setupDescriptionThemeListener();
         
-        if (isProblemPage) {
-            console.log('LeetCode problem page detected, initializing content script...');
-            
-            // Extract the problem title from the page title
-            const pageTitle = document.title;
-            const problemTitle = pageTitle.split('-')[0].trim();
-            
-            // Detect theme on first load of a problem page
-            detectAndSyncTheme();
-            showExamples();
-            showCompanyTags(problemTitle);
-            showDifficulty();
-            showRating(problemTitle);
-            
-            // Add theme change listener after creating company tags
-            setupDescriptionThemeListener();
-            
-            console.log('Description tab content script initialized for problem:', problemTitle);
+        // Get the problem title from the page
+        const problemTitle = document.title.replace(' - LeetCode', '');
+        
+        // Apply all enhancements
+        showDifficulty();
+        showRating(problemTitle);
+        showCompanyTags(problemTitle);
+        showExamples();
+        
+        // Set up a MutationObserver to detect tab changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                    // Check if we're on the description tab
+                    const descriptionTab = document.querySelector('[data-cy="description-tab"]');
+                    if (descriptionTab && descriptionTab.classList.contains('active')) {
+                        // Re-apply company tags when switching to description tab
+                        const problemTitle = document.title.replace(' - LeetCode', '');
+                        showCompanyTags(problemTitle);
+                    }
+                }
+            });
+        });
+        
+        // Start observing the tab container
+        const tabContainer = document.querySelector('[role="tablist"]');
+        if (tabContainer) {
+            observer.observe(tabContainer, { childList: true, subtree: true });
         }
     }
 }
 
-// Run the initialization
+// Initialize the content script
 initializeContentScript();
 

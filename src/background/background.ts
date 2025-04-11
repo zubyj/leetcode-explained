@@ -155,14 +155,14 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                     let descriptionTabUpdated = result.descriptionTabUpdated || false;
                     let solutionsTabUpdated = result.solutionsTabUpdated || false;
 
-                    // Only update description if we're in problem view and not updated
-                    if (!descriptionTabUpdated && currentView === 'problem') {
+                    // Always update description tab when in problem view
+                    if (currentView === 'problem') {
                         chrome.storage.local.set({ 'descriptionTabUpdated': true });
                         chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: tab.title || 'title' });
                     }
 
-                    // Only update solutions if we're in solutions view and not updated or if view just changed to solutions
-                    if ((!solutionsTabUpdated || (isViewChange && currentView === 'solutions')) && currentView === 'solutions') {
+                    // Always update solutions tab when in solutions view
+                    if (currentView === 'solutions') {
                         chrome.storage.local.set({ 'solutionsTabUpdated': true });
                         chrome.tabs.sendMessage(tabId, { action: 'updateSolutions', title: tab.title || 'title' });
                     }

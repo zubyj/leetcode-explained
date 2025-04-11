@@ -1,5 +1,11 @@
 // shows the examples if the user has enabled it in the settings
 function showExamples() {
+    // Check if we're on the description tab before proceeding
+    const isDescriptionPage = !window.location.href.includes('/solutions');
+    if (!isDescriptionPage) {
+        return;
+    }
+
     chrome.storage.local.get(['showExamples'], (result) => {
         const showExamples = result.showExamples;
         const examples = document.querySelectorAll('div.flex.h-full.w-full')[0];
@@ -79,6 +85,12 @@ function observeThemeChanges() {
 
 // show the leetcode difficulty if the user has enabled it in the settings
 function showDifficulty() {
+    // Check if we're on the description tab before proceeding
+    const isDescriptionPage = !window.location.href.includes('/solutions');
+    if (!isDescriptionPage) {
+        return;
+    }
+
     chrome.storage.local.get(['showDifficulty'], (result) => {
         const showDifficulty = result.showDifficulty;
         const difficultyContainer = document.querySelectorAll('div.relative.inline-flex')[0] as HTMLDivElement;
@@ -95,6 +107,12 @@ function showDifficulty() {
 
 // show the leetcode problem rating if the user has enabled it in the settings
 function showRating(problemTitle: string) {
+    // Check if we're on the description tab before proceeding
+    const isDescriptionPage = !window.location.href.includes('/solutions');
+    if (!isDescriptionPage) {
+        return;
+    }
+
     chrome.storage.local.get(['showRating'], (result) => {
         const showRating = result.showRating;
         if (!showRating) {
@@ -145,6 +163,12 @@ function showRating(problemTitle: string) {
 function showCompanyTags(problemTitle: string) {
     chrome.storage.local.get(['showCompanyTags'], (result) => {
         if (!result.showCompanyTags) {
+            return;
+        }
+
+        // Check if we're on the description tab before proceeding
+        const isDescriptionPage = !window.location.href.includes('/solutions');
+        if (!isDescriptionPage) {
             return;
         }
 

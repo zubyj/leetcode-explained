@@ -1,9 +1,24 @@
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 
+// Create a wrapper for all our custom content
+function createCustomContentWrapper() {
+    const wrapper = createStyledElement('div', {
+        width: '100%',
+        maxWidth: '800px',
+        margin: '0 auto 32px auto',
+        position: 'relative',
+        zIndex: '1'
+    });
+    wrapper.classList.add('leetcode-explained-wrapper');
+    return wrapper;
+}
+
 // Utility function to create a styled button
 function createStyledButton(text: string, isActive: boolean = false): HTMLButtonElement {
     const button = document.createElement('button');
     button.textContent = text;
+    button.classList.add('nav-button');
+    if (isActive) button.classList.add('active');
 
     chrome.storage.local.get(['isDarkTheme'], (result) => {
         const isDark = result.isDarkTheme;
@@ -11,13 +26,15 @@ function createStyledButton(text: string, isActive: boolean = false): HTMLButton
         button.style.color = isDark ? '#fff' : '#1a1a1a';
         button.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
 
-
-        // on hover just make the background a few shades darker or lighter
         button.addEventListener('mouseenter', () => {
-            button.style.backgroundColor = isDark ? '#424242' : '#e6e6e6';
+            if (!button.classList.contains('active')) {
+                button.style.backgroundColor = isDark ? '#424242' : '#e6e6e6';
+            }
         });
         button.addEventListener('mouseleave', () => {
-            button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+            if (!button.classList.contains('active')) {
+                button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+            }
         });
     });
 
@@ -28,6 +45,7 @@ function createStyledButton(text: string, isActive: boolean = false): HTMLButton
     button.style.fontSize = '11px';
     button.style.transition = 'all 0.2s ease';
     button.style.letterSpacing = '0.5px';
+    button.style.cursor = 'pointer';
     
     return button;
 }
@@ -47,7 +65,7 @@ function createVideoContainer(problem: any) {
         maxWidth: '800px',
         margin: '0 auto',
     });
-    container.classList.add('video-container');
+    container.classList.add('video-container', 'content-section');
 
     const controlsContainer = createStyledElement('div', {
         display: 'flex',
@@ -101,7 +119,6 @@ function createVideoContainer(problem: any) {
 
     chrome.storage.local.get(['isDarkTheme'], (result) => {
         const isDark = result.isDarkTheme;
-        // channel element is white on dark mode and black on light mode
         channelElement.style.color = isDark ? '#fff' : '#1a1a1a';
     });
 
@@ -153,17 +170,26 @@ function updateVideo(iframe: HTMLIFrameElement, videoUrl: string) {
 }
 
 function createCodeContainer() {
+    const container = createStyledElement('div', {
+        display: 'none',
+        width: '100%',
+        maxWidth: '800px',
+        margin: '0 auto',
+        position: 'relative'
+    });
+    container.classList.add('code-section', 'content-section');
+
     const codeElement = document.createElement('pre');
     codeElement.classList.add('code-container');
-    codeElement.style.display = 'none';
+    codeElement.style.display = 'block';
     codeElement.style.borderRadius = '8px';
     codeElement.style.padding = '16px';
     codeElement.style.marginTop = '24px';
-    codeElement.style.width = '95%';
+    codeElement.style.width = '100%';
     codeElement.style.fontSize = '14px';
-    codeElement.style.marginLeft = '2.5%';
     codeElement.style.maxHeight = '500px';
     codeElement.style.overflowY = 'auto';
+    codeElement.style.boxSizing = 'border-box';
     codeElement.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
 
     chrome.storage.local.get(['isDarkTheme'], (result) => {
@@ -173,24 +199,52 @@ function createCodeContainer() {
         codeElement.style.color = isDark ? '#fff' : '#1a1a1a';
     });
 
-    return codeElement;
+    container.appendChild(codeElement);
+    return container;
 }
 
-function hideContent() {
-    const elements = [
-        '.code-container',
-        '.language-buttons-container',
-        '.video-container'
-    ].map(selector => document.querySelector(selector) as HTMLElement);
+function showContent(type: 'Discussion' | 'Video' | 'Code') {
+    // Hide all content sections first
+    const contentSections = document.querySelectorAll('.content-section');
+    contentSections.forEach(section => {
+        (section as HTMLElement).style.display = 'none';
+    });
 
-    elements.forEach(element => {
-        if (element) {
-            if (element.classList.contains('video-container')) {
-                element.style.paddingBottom = '0';
+    // Show the selected content
+    switch (type) {
+        case 'Video':
+            const videoContainer = document.querySelector('.video-container') as HTMLElement;
+            if (videoContainer) {
+                videoContainer.style.display = 'flex';
+                videoContainer.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
             }
-            element.style.display = 'none';
+            break;
+        case 'Code':
+            const codeSection = document.querySelector('.code-section') as HTMLElement;
+            const languageButtons = document.querySelector('.language-buttons-container') as HTMLElement;
+            if (codeSection) codeSection.style.display = 'block';
+            if (languageButtons) languageButtons.style.display = 'flex';
+            break;
+        case 'Discussion':
+            // No need to do anything as the discussion is the default content
+            break;
+    }
+
+    // Update button states
+    const buttons = document.querySelectorAll('.nav-button');
+    buttons.forEach(button => {
+        if (button.textContent === type) {
+            button.classList.add('active');
+        } else {
+            button.classList.remove('active');
         }
     });
+
+    // Show/hide the discussion section
+    const discussionSection = document.querySelector('.discuss-markdown') as HTMLElement;
+    if (discussionSection) {
+        discussionSection.style.display = type === 'Discussion' ? 'block' : 'none';
+    }
 }
 
 function createNavContainer(problem: any) {
@@ -212,24 +266,12 @@ function createNavContainer(problem: any) {
         { text: 'Code', show: problem.languages?.length > 0 }
     ];
 
-    const activeButton = buttons[0];
-    buttons.forEach(({ text, show }) => {
+    buttons.forEach(({ text, show }, index) => {
         if (!show) return;
         
-        const button = createStyledButton(text, text === activeButton.text);
+        const button = createStyledButton(text, index === 0);
         button.addEventListener('click', () => {
-            hideContent();
-            if (text === 'Video') {
-                const videoContainer = document.querySelector('.video-container') as HTMLElement;
-                if (videoContainer) {
-                    videoContainer.style.display = 'flex';
-                    videoContainer.style.paddingBottom = `${VIDEO_ASPECT_RATIO}%`;
-                }
-            } else if (text === 'Code') {
-                const elements = ['.code-container', '.language-buttons-container']
-                    .map(selector => document.querySelector(selector) as HTMLElement);
-                elements.forEach(el => el && (el.style.display = 'flex'));
-            }
+            showContent(text as 'Discussion' | 'Video' | 'Code');
         });
         navContainer.append(button);
     });
@@ -530,55 +572,53 @@ function updateAllElements(isDark: boolean) {
 }
 
 chrome.runtime.onMessage.addListener((request) => {
-    // get discussion tab so we can insert the content before it
     if (request.action === 'updateSolutions') {
         chrome.storage.local.get(['leetcodeProblems'], (result) => {
-            const searchBar = document.querySelectorAll('input.block')[0].parentElement?.parentElement?.parentElement;
+            const searchBar = document.querySelectorAll('input.block')[0]?.parentElement?.parentElement?.parentElement;
+            if (!searchBar) return;
+
             const title = request.title.split('-')[0].trim();
             const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
 
-            // If no solution code or videos exist, dont do anything.
+            // If no solution code or videos exist, don't do anything
             if (!problem?.videos && !problem?.languages) return;
-            if (problem.videos?.length == 0 && problem.languages?.length == 0) {
-                return;
-            }
+            if (problem.videos?.length === 0 && problem.languages?.length === 0) return;
 
-            // Always remove existing containers when updating solutions
-            const existingContainers = [
-                '.nav-container',
-                '.video-container',
-                '.code-container',
-                '.language-buttons-container'
-            ].forEach(selector => {
-                const element = document.querySelector(selector);
-                if (element) element.remove();
-            });
+            // Remove any existing containers
+            const existingWrapper = document.querySelector('.leetcode-explained-wrapper');
+            if (existingWrapper) existingWrapper.remove();
 
-            // Create new nav container
-            const newNavContainer = createNavContainer(problem);
-            searchBar?.insertBefore(newNavContainer, searchBar.firstChild);
+            // Create wrapper for all our custom content
+            const wrapper = createCustomContentWrapper();
+            
+            // Create and add nav container
+            const navContainer = createNavContainer(problem);
+            wrapper.appendChild(navContainer);
 
             // Add video container if videos exist
             if (problem.videos?.length > 0) {
-                let videoContainer = createVideoContainer(problem);
-                if (searchBar) searchBar.insertBefore(videoContainer, searchBar.children[1]);
+                const videoContainer = createVideoContainer(problem);
+                wrapper.appendChild(videoContainer);
             }
 
-            // Add code container if languages exist
+            // Add code container and language buttons if languages exist
             if (problem.languages?.length > 0) {
-                let codeContainer = createCodeContainer();
-                if (searchBar) searchBar.insertBefore(codeContainer, searchBar.children[1]);
-            }
-
-            // Add language buttons container if languages exist
-            if (problem.languages?.length > 0) {
-                let languageButtonsContainer = createLanguageButtons(problem);
+                const codeContainer = createCodeContainer();
+                const languageButtonsContainer = createLanguageButtons(problem);
                 languageButtonsContainer.classList.add('language-buttons-container');
                 languageButtonsContainer.style.display = 'none';
-                if (searchBar) searchBar.insertBefore(languageButtonsContainer, searchBar.children[1]);
+                
+                wrapper.appendChild(languageButtonsContainer);
+                wrapper.appendChild(codeContainer);
             }
 
-            // Add theme change listener after creating containers
+            // Insert the wrapper at the top of the solutions tab
+            searchBar.insertBefore(wrapper, searchBar.firstChild);
+
+            // Show discussion by default
+            showContent('Discussion');
+
+            // Set up theme change listener
             setupThemeChangeListener();
         });
     }

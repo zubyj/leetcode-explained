@@ -574,6 +574,18 @@ function updateAllElements(isDark: boolean) {
                         button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
                     });
                 });
+            } else if (element.classList.contains('video-container')) {
+                // Update only the controls container and channel element colors
+                const controls = element.querySelector('div') as HTMLElement;
+                if (controls) {
+                    controls.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+                    controls.style.color = isDark ? '#fff' : '#1a1a1a';
+                    controls.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+                }
+                const channelElement = element.querySelector('#channel') as HTMLElement;
+                if (channelElement) {
+                    channelElement.style.color = isDark ? '#fff' : '#1a1a1a';
+                }
             } else {
                 updateThemeForElement(element, isDark);
             }
@@ -695,7 +707,7 @@ function insertContent(searchBar: Element, title: string, result: any) {
 }
 
 // Self-initialization function that runs when the content script loads
-function initializeContentScript() {
+function initializeSolutionsTab() {
     // Wait for the DOM to be fully loaded
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', onDOMReady);
@@ -704,25 +716,23 @@ function initializeContentScript() {
     }
 
     function onDOMReady() {
-        // Check if we're on a LeetCode problem's solutions page
-        const isSolutionsPage = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/.test(window.location.href);
+        // Get the problem title from the page
+        const problemTitle = document.title.replace(' - LeetCode', '');
         
-        if (isSolutionsPage) {
-            console.log('LeetCode solutions page detected, initializing content script...');
-            
-            // Extract the problem title from the page title
-            const pageTitle = document.title;
-            
-            // Update the solutions tab
-            updateSolutionsTab(pageTitle);
-            
-            console.log('Solutions tab content script initialized for problem:', pageTitle);
-        }
+        // Find the search bar to insert our content before it
+        const searchBar = document.querySelector('div[class*="search"]');
+        if (!searchBar) return;
+
+        // Load problem data and insert content
+        chrome.storage.local.get(['leetcodeProblems'], (result) => {
+            if (!result.leetcodeProblems) return;
+            insertContent(searchBar, problemTitle, result);
+        });
     }
 }
 
-// Run the initialization
-initializeContentScript();
+// Initialize the content script
+initializeSolutionsTab();
 
 chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'updateSolutions') {

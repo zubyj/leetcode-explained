@@ -371,7 +371,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 // Self-initialization function that runs when the content script loads
-function initializeContentScript() {
+function initializeDescriptionTab() {
     // Wait for the DOM to be fully loaded
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', onDOMReady);
@@ -416,5 +416,5 @@ function initializeContentScript() {
 }
 
 // Initialize the content script
-initializeContentScript();
+initializeDescriptionTab();
 

@@ -571,55 +571,133 @@ function updateAllElements(isDark: boolean) {
     });
 }
 
+// Function to update the solutions tab content
+function updateSolutionsTab(title: string) {
+    chrome.storage.local.get(['leetcodeProblems'], (result) => {
+        // Try to find the search bar with retries
+        const maxRetries = 10;
+        const baseDelay = 300;
+        let retryCount = 0;
+
+        const tryInsertContent = () => {
+            const searchBar = document.querySelectorAll('input.block')[0]?.parentElement?.parentElement?.parentElement;
+            
+            if (!searchBar && retryCount < maxRetries) {
+                // Use exponential backoff for retry delay
+                const delay = baseDelay * Math.pow(1.5, retryCount);
+                retryCount++;
+                console.log(`Attempt ${retryCount}: Waiting for search bar element to load... Retrying in ${delay}ms`);
+                setTimeout(tryInsertContent, delay);
+                return;
+            }
+
+            if (!searchBar) {
+                console.log('Failed to find search bar element after all retries');
+                
+                // If still not found, set up a MutationObserver to watch for DOM changes
+                const observer = new MutationObserver((mutations, obs) => {
+                    const searchBar = document.querySelectorAll('input.block')[0]?.parentElement?.parentElement?.parentElement;
+                    if (searchBar) {
+                        obs.disconnect(); // Stop observing once we find the element
+                        insertContent(searchBar, title, result);
+                    }
+                });
+                
+                // Start observing the document with the configured parameters
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+                
+                return;
+            }
+
+            insertContent(searchBar, title, result);
+        };
+
+        tryInsertContent();
+    });
+}
+
+// Helper function to insert the content
+function insertContent(searchBar: Element, title: string, result: any) {
+    const problemTitle = title.split('-')[0].trim();
+    const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === problemTitle);
+
+    // If no solution code or videos exist, don't do anything
+    if (!problem?.videos && !problem?.languages) return;
+    if (problem.videos?.length === 0 && problem.languages?.length === 0) return;
+
+    // Remove any existing containers
+    const existingWrapper = document.querySelector('.leetcode-explained-wrapper');
+    if (existingWrapper) existingWrapper.remove();
+
+    // Create wrapper for all our custom content
+    const wrapper = createCustomContentWrapper();
+    
+    // Create and add nav container
+    const navContainer = createNavContainer(problem);
+    wrapper.appendChild(navContainer);
+
+    // Add video container if videos exist
+    if (problem.videos?.length > 0) {
+        const videoContainer = createVideoContainer(problem);
+        wrapper.appendChild(videoContainer);
+    }
+
+    // Add code container and language buttons if languages exist
+    if (problem.languages?.length > 0) {
+        const codeContainer = createCodeContainer();
+        const languageButtonsContainer = createLanguageButtons(problem);
+        languageButtonsContainer.classList.add('language-buttons-container');
+        languageButtonsContainer.style.display = 'none';
+        
+        wrapper.appendChild(languageButtonsContainer);
+        wrapper.appendChild(codeContainer);
+    }
+
+    // Insert the wrapper at the top of the solutions tab
+    searchBar.insertBefore(wrapper, searchBar.firstChild);
+
+    // Show discussion by default
+    showContent('Discussion');
+
+    // Set up theme change listener
+    setupThemeChangeListener();
+}
+
+// Self-initialization function that runs when the content script loads
+function initializeContentScript() {
+    // Wait for the DOM to be fully loaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', onDOMReady);
+    } else {
+        onDOMReady();
+    }
+
+    function onDOMReady() {
+        // Check if we're on a LeetCode problem's solutions page
+        const isSolutionsPage = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/.test(window.location.href);
+        
+        if (isSolutionsPage) {
+            console.log('LeetCode solutions page detected, initializing content script...');
+            
+            // Extract the problem title from the page title
+            const pageTitle = document.title;
+            
+            // Update the solutions tab
+            updateSolutionsTab(pageTitle);
+            
+            console.log('Solutions tab content script initialized for problem:', pageTitle);
+        }
+    }
+}
+
+// Run the initialization
+initializeContentScript();
+
 chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'updateSolutions') {
-        chrome.storage.local.get(['leetcodeProblems'], (result) => {
-            const searchBar = document.querySelectorAll('input.block')[0]?.parentElement?.parentElement?.parentElement;
-            if (!searchBar) return;
-
-            const title = request.title.split('-')[0].trim();
-            const problem = result.leetcodeProblems.questions.find((problem: { title: string }) => problem.title === title);
-
-            // If no solution code or videos exist, don't do anything
-            if (!problem?.videos && !problem?.languages) return;
-            if (problem.videos?.length === 0 && problem.languages?.length === 0) return;
-
-            // Remove any existing containers
-            const existingWrapper = document.querySelector('.leetcode-explained-wrapper');
-            if (existingWrapper) existingWrapper.remove();
-
-            // Create wrapper for all our custom content
-            const wrapper = createCustomContentWrapper();
-            
-            // Create and add nav container
-            const navContainer = createNavContainer(problem);
-            wrapper.appendChild(navContainer);
-
-            // Add video container if videos exist
-            if (problem.videos?.length > 0) {
-                const videoContainer = createVideoContainer(problem);
-                wrapper.appendChild(videoContainer);
-            }
-
-            // Add code container and language buttons if languages exist
-            if (problem.languages?.length > 0) {
-                const codeContainer = createCodeContainer();
-                const languageButtonsContainer = createLanguageButtons(problem);
-                languageButtonsContainer.classList.add('language-buttons-container');
-                languageButtonsContainer.style.display = 'none';
-                
-                wrapper.appendChild(languageButtonsContainer);
-                wrapper.appendChild(codeContainer);
-            }
-
-            // Insert the wrapper at the top of the solutions tab
-            searchBar.insertBefore(wrapper, searchBar.firstChild);
-
-            // Show discussion by default
-            showContent('Discussion');
-
-            // Set up theme change listener
-            setupThemeChangeListener();
-        });
+        updateSolutionsTab(request.title);
     }
 });

@@ -210,6 +210,12 @@ function showContent(type: 'Discussion' | 'Video' | 'Code') {
         (section as HTMLElement).style.display = 'none';
     });
 
+    // Get the language buttons container
+    const languageButtons = document.querySelector('.language-buttons-container') as HTMLElement;
+    if (languageButtons) {
+        languageButtons.style.display = 'none'; // Hide by default
+    }
+
     // Show the selected content
     switch (type) {
         case 'Video':
@@ -221,9 +227,13 @@ function showContent(type: 'Discussion' | 'Video' | 'Code') {
             break;
         case 'Code':
             const codeSection = document.querySelector('.code-section') as HTMLElement;
-            const languageButtons = document.querySelector('.language-buttons-container') as HTMLElement;
-            if (codeSection) codeSection.style.display = 'block';
-            if (languageButtons) languageButtons.style.display = 'flex';
+            if (codeSection) {
+                codeSection.style.display = 'block';
+                // Only show language buttons when code section is active
+                if (languageButtons) {
+                    languageButtons.style.display = 'flex';
+                }
+            }
             break;
         case 'Discussion':
             // No need to do anything as the discussion is the default content
@@ -584,11 +594,21 @@ function updateSolutionsTab(title: string) {
         let retryCount = 0;
 
         const tryInsertContent = () => {
-            // First check if we already have a wrapper to prevent duplicates
+            // Check if we already have a wrapper and if it's for the same problem
             const existingWrapper = document.querySelector('.leetcode-explained-wrapper');
             if (existingWrapper) {
-                console.log('Content already exists, skipping insertion');
-                return;
+                const currentTitle = document.title.split('-')[0].trim();
+                const wrapperTitle = existingWrapper.getAttribute('data-problem-title');
+                
+                // If it's the same problem, preserve the state
+                if (wrapperTitle === currentTitle) {
+                    console.log('Content for same problem exists, preserving state');
+                    return;
+                }
+                
+                // If it's a different problem, remove the old wrapper
+                console.log('Different problem detected, updating content');
+                existingWrapper.remove();
             }
 
             const searchBar = document.querySelectorAll('input.block')[0]?.parentElement?.parentElement?.parentElement;
@@ -607,12 +627,6 @@ function updateSolutionsTab(title: string) {
                 
                 // If still not found, set up a MutationObserver to watch for DOM changes
                 const observer = new MutationObserver((mutations, obs) => {
-                    // Check again for existing wrapper before proceeding
-                    if (document.querySelector('.leetcode-explained-wrapper')) {
-                        obs.disconnect();
-                        return;
-                    }
-
                     const searchBar = document.querySelectorAll('input.block')[0]?.parentElement?.parentElement?.parentElement;
                     if (searchBar) {
                         obs.disconnect(); // Stop observing once we find the element
@@ -645,12 +659,9 @@ function insertContent(searchBar: Element, title: string, result: any) {
     if (!problem?.videos && !problem?.languages) return;
     if (problem.videos?.length === 0 && problem.languages?.length === 0) return;
 
-    // Remove any existing containers
-    const existingWrapper = document.querySelector('.leetcode-explained-wrapper');
-    if (existingWrapper) existingWrapper.remove();
-
     // Create wrapper for all our custom content
     const wrapper = createCustomContentWrapper();
+    wrapper.setAttribute('data-problem-title', problemTitle);
     
     // Create and add nav container
     const navContainer = createNavContainer(problem);

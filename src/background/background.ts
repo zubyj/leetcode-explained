@@ -70,39 +70,104 @@ chrome.runtime.onMessage.addListener((request) => {
     }
 });
 
+// Keep track of the last state to avoid duplicate updates
+let lastState = {
+    problemPath: '',
+    view: '', // 'problem' or 'solutions'
+    lastPathname: '', // Track full pathname to detect real navigation
+    lastUrl: '', // Track full URL to detect refreshes
+    lastUpdateTime: 0 // Track time of last update to prevent rapid re-triggers
+};
+
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    if (changeInfo.status === 'complete' && tab.url) {
+    if (tab.url) {
         const url = tab.url;
         let problemUrl = /^https:\/\/leetcode\.com\/problems\/.*\/?/;
+        
+        // Check if this is a leetcode problem page
         if (url.match(problemUrl)) {
-            chrome.storage.local.get(['currentLeetCodeProblemTitle', 'descriptionTabUpdated', 'solutionsTabUpdated'], (result) => {
-                let lastTitle = result.currentLeetCodeProblemTitle || '';
-                let descriptionTabUpdated = result.descriptionTabUpdated || false;
-                let solutionsTabUpdated = result.solutionsTabUpdated || false;
-                if (tab.title !== lastTitle) {
+            // Extract the problem path from the URL
+            const problemPath = url.match(/\/problems\/([^/]+)/)?.[1];
+            const pathname = new URL(url).pathname;
+            
+            // Determine the current view - now only distinguishing between problem view and solutions
+            let currentView = url.includes('/solutions') ? 'solutions' : 'problem';
+
+            // Only trigger updates on actual page loads or problem changes
+            const isPageLoad = changeInfo.status === 'complete';
+            const isProblemChange = problemPath !== lastState.problemPath;
+            const isViewChange = currentView !== lastState.view;
+            
+            // Check if this is a video navigation within solutions
+            const isInternalSolutionsNavigation = 
+                currentView === 'solutions' && 
+                lastState.view === 'solutions' && 
+                problemPath === lastState.problemPath;
+            
+            // Detect actual page refresh vs internal navigation
+            const isActualRefresh = 
+                url === lastState.lastUrl && 
+                isPageLoad && 
+                changeInfo.url === undefined && 
+                !isInternalSolutionsNavigation &&
+                Date.now() - lastState.lastUpdateTime > 1000;
+            
+            const isRealNavigation = 
+                !isInternalSolutionsNavigation &&
+                ((pathname !== lastState.lastPathname || isViewChange) && 
+                !pathname.includes('playground') && 
+                !pathname.includes('editor') &&
+                !pathname.includes('interpret-solution') &&
+                !pathname.includes('submissions'));
+
+            // Update last URL and time
+            if (!isInternalSolutionsNavigation) {
+                lastState.lastUrl = url;
+            }
+            
+            // Only update if there's a real navigation, problem change, or actual refresh
+            if ((isProblemChange || (isViewChange && isRealNavigation) || isActualRefresh) && problemPath) {
+                console.log(`State change detected - ${
+                    isProblemChange ? 'New Problem' : 
+                    isViewChange ? 'View Changed' : 
+                    isActualRefresh ? 'Page Refresh' :
+                    'Page Load'
+                }`);
+                
+                // Update last state
+                lastState.problemPath = problemPath;
+                lastState.view = currentView;
+                lastState.lastPathname = pathname;
+                lastState.lastUpdateTime = Date.now();
+
+                // Reset flags only on problem change or actual refresh
+                if (isProblemChange || isActualRefresh) {
                     chrome.storage.local.set({
+                        'currentLeetCodeProblem': problemPath,
                         'currentLeetCodeProblemTitle': tab.title,
                         'descriptionTabUpdated': false,
                         'solutionsTabUpdated': false
                     });
-                    // If the title has changed, we reset both flags
-                    descriptionTabUpdated = false;
-                    solutionsTabUpdated = false;
                 }
 
-                let descriptionUrl = /^https:\/\/leetcode\.com\/problems\/.*\/(description\/)?/;
-                if (!descriptionTabUpdated && url.match(descriptionUrl)) {
-                    chrome.storage.local.set({ 'descriptionTabUpdated': true });
-                    chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: tab.title || 'title' });
-                }
+                // Get current state
+                chrome.storage.local.get(['descriptionTabUpdated', 'solutionsTabUpdated'], (result) => {
+                    let descriptionTabUpdated = result.descriptionTabUpdated || false;
+                    let solutionsTabUpdated = result.solutionsTabUpdated || false;
 
-                let solutionsUrl = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/;
-                if (url.match(solutionsUrl)) {
-                    chrome.storage.local.set({ 'solutionsTabUpdated': true });
-                    chrome.tabs.sendMessage(tabId, { action: 'updateSolutions', title: tab.title || 'title' });
-                }
-            });
+                    // Always update description tab when in problem view
+                    if (currentView === 'problem') {
+                        chrome.storage.local.set({ 'descriptionTabUpdated': true });
+                        chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: tab.title || 'title' });
+                    }
+
+                    // Always update solutions tab when in solutions view
+                    if (currentView === 'solutions') {
+                        chrome.storage.local.set({ 'solutionsTabUpdated': true });
+                        chrome.tabs.sendMessage(tabId, { action: 'updateSolutions', title: tab.title || 'title' });
+                    }
+                });
+            }
         }
     }
 });
-

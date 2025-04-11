@@ -14,7 +14,8 @@
     },
     "permissions": [
         "storage",
-        "tabs"
+        "tabs",
+        "webNavigation"
     ],
     "host_permissions": [
         "https://api.leetcodeapp.com/*"
@@ -33,7 +34,8 @@
             ],
             "matches": [
                 "https://leetcode.com/problems/*"
-            ]
+            ],
+            "run_at": "document_end"
         }
     ],
     "web_accessible_resources": [

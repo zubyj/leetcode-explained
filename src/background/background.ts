@@ -73,10 +73,11 @@ chrome.runtime.onMessage.addListener((request) => {
 // Keep track of the last state to avoid duplicate updates
 let lastState = {
     problemPath: '',
-    view: '', // 'problem' or 'solutions'
+    view: '', // 'problem' or 'solutions' or 'description'
     lastPathname: '', // Track full pathname to detect real navigation
     lastUrl: '', // Track full URL to detect refreshes
-    lastUpdateTime: 0 // Track time of last update to prevent rapid re-triggers
+    lastUpdateTime: 0, // Track time of last update to prevent rapid re-triggers
+    lastTabId: 0 // Track the last tab ID to help distinguish between refreshes and switches
 };
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -86,12 +87,19 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         
         // Check if this is a leetcode problem page
         if (url.match(problemUrl)) {
-            // Extract the problem path from the URL
-            const problemPath = url.match(/\/problems\/([^/]+)/)?.[1];
+            // Extract the problem path from the URL and ensure it exists
+            const problemPathMatch = url.match(/\/problems\/([^/]+)/);
+            if (!problemPathMatch?.[1]) return;
+            const problemPath = problemPathMatch[1];
             const pathname = new URL(url).pathname;
             
-            // Determine the current view - now only distinguishing between problem view and solutions
-            let currentView = url.includes('/solutions') ? 'solutions' : 'problem';
+            // More precise view detection
+            let currentView = 'problem'; // default to problem view
+            if (url.includes('/solutions')) {
+                currentView = 'solutions';
+            } else if (url.includes('/description')) {
+                currentView = 'description';
+            }
 
             // Only trigger updates on actual page loads or problem changes
             const isPageLoad = changeInfo.status === 'complete';
@@ -103,42 +111,56 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                 currentView === 'solutions' && 
                 lastState.view === 'solutions' && 
                 problemPath === lastState.problemPath;
+
+            // Check if this is a navigation between description and editor
+            const isDescriptionEditorSwitch = 
+                !isInternalSolutionsNavigation &&
+                problemPath === lastState.problemPath &&
+                ((currentView === 'problem' && lastState.view === 'description') ||
+                 (currentView === 'description' && lastState.view === 'problem'));
             
-            // Detect actual page refresh vs internal navigation
+            // Detect actual page refresh with improved conditions
             const isActualRefresh = 
                 url === lastState.lastUrl && 
                 isPageLoad && 
                 changeInfo.url === undefined && 
                 !isInternalSolutionsNavigation &&
+                !isDescriptionEditorSwitch &&
+                currentView === lastState.view &&
+                tabId === lastState.lastTabId &&  // Same tab for refresh
                 Date.now() - lastState.lastUpdateTime > 1000;
             
             const isRealNavigation = 
                 !isInternalSolutionsNavigation &&
+                !isDescriptionEditorSwitch &&
                 ((pathname !== lastState.lastPathname || isViewChange) && 
                 !pathname.includes('playground') && 
                 !pathname.includes('editor') &&
                 !pathname.includes('interpret-solution') &&
                 !pathname.includes('submissions'));
 
-            // Update last URL and time
-            if (!isInternalSolutionsNavigation) {
-                lastState.lastUrl = url;
-            }
-            
-            // Only update if there's a real navigation, problem change, or actual refresh
-            if ((isProblemChange || (isViewChange && isRealNavigation) || isActualRefresh) && problemPath) {
-                console.log(`State change detected - ${
-                    isProblemChange ? 'New Problem' : 
-                    isViewChange ? 'View Changed' : 
-                    isActualRefresh ? 'Page Refresh' :
-                    'Page Load'
-                }`);
+            // Update state tracking
+            const shouldUpdateState = 
+                isProblemChange || 
+                isViewChange || 
+                isActualRefresh || 
+                tabId !== lastState.lastTabId;
+
+            if (shouldUpdateState) {
+                // Log the actual type of change
+                const changeType = isProblemChange ? 'New Problem' : 
+                                 isViewChange ? 'View Changed' :
+                                 isActualRefresh ? 'Page Refresh' :
+                                 'Page Load';
+                console.log(`State change detected - ${changeType}`);
                 
                 // Update last state
                 lastState.problemPath = problemPath;
                 lastState.view = currentView;
                 lastState.lastPathname = pathname;
+                lastState.lastUrl = url;
                 lastState.lastUpdateTime = Date.now();
+                lastState.lastTabId = tabId;
 
                 // Reset flags only on problem change or actual refresh
                 if (isProblemChange || isActualRefresh) {
@@ -155,14 +177,22 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                     let descriptionTabUpdated = result.descriptionTabUpdated || false;
                     let solutionsTabUpdated = result.solutionsTabUpdated || false;
 
-                    // Always update description tab when in problem view
-                    if (currentView === 'problem') {
+                    // Only update description tab when needed
+                    if ((currentView === 'problem' || currentView === 'description') && 
+                        (!descriptionTabUpdated || isProblemChange || isActualRefresh) &&
+                        !isDescriptionEditorSwitch) {
                         chrome.storage.local.set({ 'descriptionTabUpdated': true });
-                        chrome.tabs.sendMessage(tabId, { action: 'updateDescription', title: tab.title || 'title' });
+                        chrome.tabs.sendMessage(tabId, { 
+                            action: 'updateDescription', 
+                            title: tab.title || 'title',
+                            isRefresh: isActualRefresh,
+                            isProblemChange: isProblemChange,
+                            isViewChange: isViewChange
+                        });
                     }
 
                     // Always update solutions tab when in solutions view
-                    if (currentView === 'solutions') {
+                    if (currentView === 'solutions' && !solutionsTabUpdated) {
                         chrome.storage.local.set({ 'solutionsTabUpdated': true });
                         chrome.tabs.sendMessage(tabId, { action: 'updateSolutions', title: tab.title || 'title' });
                     }

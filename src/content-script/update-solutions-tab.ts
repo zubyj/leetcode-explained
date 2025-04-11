@@ -573,6 +573,10 @@ function updateAllElements(isDark: boolean) {
 
 // Function to update the solutions tab content
 function updateSolutionsTab(title: string) {
+    // Check if we're actually on the solutions tab before proceeding
+    const isSolutionsPage = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/.test(window.location.href);
+    if (!isSolutionsPage) return;
+
     chrome.storage.local.get(['leetcodeProblems'], (result) => {
         // Try to find the search bar with retries
         const maxRetries = 10;
@@ -580,6 +584,13 @@ function updateSolutionsTab(title: string) {
         let retryCount = 0;
 
         const tryInsertContent = () => {
+            // First check if we already have a wrapper to prevent duplicates
+            const existingWrapper = document.querySelector('.leetcode-explained-wrapper');
+            if (existingWrapper) {
+                console.log('Content already exists, skipping insertion');
+                return;
+            }
+
             const searchBar = document.querySelectorAll('input.block')[0]?.parentElement?.parentElement?.parentElement;
             
             if (!searchBar && retryCount < maxRetries) {
@@ -596,6 +607,12 @@ function updateSolutionsTab(title: string) {
                 
                 // If still not found, set up a MutationObserver to watch for DOM changes
                 const observer = new MutationObserver((mutations, obs) => {
+                    // Check again for existing wrapper before proceeding
+                    if (document.querySelector('.leetcode-explained-wrapper')) {
+                        obs.disconnect();
+                        return;
+                    }
+
                     const searchBar = document.querySelectorAll('input.block')[0]?.parentElement?.parentElement?.parentElement;
                     if (searchBar) {
                         obs.disconnect(); // Stop observing once we find the element

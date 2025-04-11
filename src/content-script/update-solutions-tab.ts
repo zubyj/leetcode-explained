@@ -599,6 +599,22 @@ function updateSolutionsTab(title: string) {
     const isSolutionsPage = /^https:\/\/leetcode\.com\/problems\/.*\/solutions\/?/.test(window.location.href);
     if (!isSolutionsPage) return;
 
+    // Check if we already have content for this problem
+    const existingWrapper = document.querySelector('.leetcode-explained-wrapper') as HTMLElement;
+    if (existingWrapper) {
+        const currentTitle = document.title.split('-')[0].trim();
+        const wrapperTitle = existingWrapper.getAttribute('data-problem-title');
+        
+        // If it's the same problem and the wrapper is in the DOM, preserve state
+        if (wrapperTitle === currentTitle && document.contains(existingWrapper)) {
+            console.log('Content exists for current problem, preserving state');
+            return;
+        }
+
+        // If it's a different problem or wrapper is detached, remove it
+        existingWrapper.remove();
+    }
+
     chrome.storage.local.get(['leetcodeProblems'], (result) => {
         // Try to find the search bar with retries
         const maxRetries = 10;
@@ -606,23 +622,6 @@ function updateSolutionsTab(title: string) {
         let retryCount = 0;
 
         const tryInsertContent = () => {
-            // Check if we already have a wrapper and if it's for the same problem
-            const existingWrapper = document.querySelector('.leetcode-explained-wrapper');
-            if (existingWrapper) {
-                const currentTitle = document.title.split('-')[0].trim();
-                const wrapperTitle = existingWrapper.getAttribute('data-problem-title');
-                
-                // If it's the same problem, preserve the state
-                if (wrapperTitle === currentTitle) {
-                    console.log('Content for same problem exists, preserving state');
-                    return;
-                }
-                
-                // If it's a different problem, remove the old wrapper
-                console.log('Different problem detected, updating content');
-                existingWrapper.remove();
-            }
-
             const searchBar = document.querySelectorAll('input.block')[0]?.parentElement?.parentElement?.parentElement;
             
             if (!searchBar && retryCount < maxRetries) {
@@ -642,7 +641,11 @@ function updateSolutionsTab(title: string) {
                     const searchBar = document.querySelectorAll('input.block')[0]?.parentElement?.parentElement?.parentElement;
                     if (searchBar) {
                         obs.disconnect(); // Stop observing once we find the element
-                        insertContent(searchBar, title, result);
+                        // Only insert if we don't already have content for this problem
+                        const existingWrapper = document.querySelector('.leetcode-explained-wrapper');
+                        if (!existingWrapper || !document.contains(existingWrapper)) {
+                            insertContent(searchBar, title, result);
+                        }
                     }
                 });
                 
@@ -655,7 +658,11 @@ function updateSolutionsTab(title: string) {
                 return;
             }
 
-            insertContent(searchBar, title, result);
+            // Only insert if we don't already have content for this problem
+            const existingWrapper = document.querySelector('.leetcode-explained-wrapper');
+            if (!existingWrapper || !document.contains(existingWrapper)) {
+                insertContent(searchBar, title, result);
+            }
         };
 
         tryInsertContent();
@@ -708,32 +715,52 @@ function insertContent(searchBar: Element, title: string, result: any) {
 
 // Self-initialization function that runs when the content script loads
 function initializeSolutionsTab() {
-    // Wait for the DOM to be fully loaded
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', onDOMReady);
-    } else {
-        onDOMReady();
-    }
-
-    function onDOMReady() {
+    // Function to initialize content
+    const initialize = () => {
         // Get the problem title from the page
         const problemTitle = document.title.replace(' - LeetCode', '');
         
-        // Find the search bar to insert our content before it
-        const searchBar = document.querySelector('div[class*="search"]');
-        if (!searchBar) return;
+        // Only update if we don't have content or if it's detached from DOM
+        const existingWrapper = document.querySelector('.leetcode-explained-wrapper');
+        if (!existingWrapper || !document.contains(existingWrapper)) {
+            updateSolutionsTab(problemTitle);
+        }
+    };
 
-        // Load problem data and insert content
-        chrome.storage.local.get(['leetcodeProblems'], (result) => {
-            if (!result.leetcodeProblems) return;
-            insertContent(searchBar, problemTitle, result);
-        });
+    // Set up page refresh detection using both URL and history state changes
+    let lastUrl = location.href;
+    let lastState = history.state;
+    
+    const observer = new MutationObserver(() => {
+        const currentUrl = location.href;
+        const currentState = history.state;
+        
+        // Check if this is a real navigation or just a tab switch
+        if (currentUrl !== lastUrl || JSON.stringify(currentState) !== JSON.stringify(lastState)) {
+            lastUrl = currentUrl;
+            lastState = currentState;
+            
+            if (currentUrl.includes('/solutions')) {
+                initialize();
+            }
+        }
+    });
+
+    // Start observing URL changes
+    observer.observe(document, { subtree: true, childList: true });
+
+    // Initial load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initialize);
+    } else {
+        initialize();
     }
 }
 
 // Initialize the content script
 initializeSolutionsTab();
 
+// Listen for messages from background script
 chrome.runtime.onMessage.addListener((request) => {
     if (request.action === 'updateSolutions') {
         updateSolutionsTab(request.title);

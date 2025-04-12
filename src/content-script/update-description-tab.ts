@@ -209,7 +209,7 @@ function showCompanyTags(problemTitle: string) {
                 // Use exponential backoff for retry delay
                 const delay = baseDelay * Math.pow(1.5, retryCount);
                 retryCount++;
-                console.log(`Attempt ${retryCount}: Waiting for description element to load... Retrying in ${delay}ms`);
+                //console.log(`Attempt ${retryCount}: Waiting for description element to load... Retrying in ${delay}ms`);
                 setTimeout(tryInsertCompanyTags, delay);
                 return;
             }

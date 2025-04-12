@@ -79,7 +79,7 @@ function getProblem() {
     if (errorPanel) {
         const errorText = errorPanel.textContent?.trim();
         if (errorText) {
-            console.log('Error from LeetCode:', errorText);
+            //console.log('Error from LeetCode:', errorText);
             collectedData.push("\n--- LeetCode Error Message ---\n" + errorText);
             collectedData.push("\nPlease fix the above error in the code.");
         }

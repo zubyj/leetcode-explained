@@ -22,27 +22,36 @@ function createStyledButton(text: string, isActive: boolean = false): HTMLButton
 
     chrome.storage.local.get(['isDarkTheme'], (result) => {
         const isDark = result.isDarkTheme;
-        button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
-        button.style.color = isDark ? '#fff' : '#1a1a1a';
-        button.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+        button.style.backgroundColor = isDark ? '#2d2d2d' : '#f3f4f5';
+        button.style.color = isDark ? '#e6e6e6' : '#2d2d2d';
+        button.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)'}`;
+        button.style.fontWeight = '500';
 
         button.addEventListener('mouseenter', () => {
             if (!button.classList.contains('active')) {
-                button.style.backgroundColor = isDark ? '#424242' : '#e6e6e6';
+                button.style.backgroundColor = isDark ? '#3d3d3d' : '#e6e6e6';
+                button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
             }
         });
         button.addEventListener('mouseleave', () => {
             if (!button.classList.contains('active')) {
-                button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+                button.style.backgroundColor = isDark ? '#2d2d2d' : '#f3f4f5';
+                button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)';
             }
         });
+
+        if (isActive) {
+            button.style.backgroundColor = isDark ? '#404040' : '#e0e0e0';
+            button.style.color = isDark ? '#ffffff' : '#000000';
+            button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)';
+        }
     });
 
     button.style.width = '120px';
     button.style.padding = '4px 8px';
     button.style.margin = '0 8px';
     button.style.borderRadius = '6px';
-    button.style.fontSize = '11px';
+    button.style.fontSize = '12px';
     button.style.transition = 'all 0.2s ease';
     button.style.letterSpacing = '0.5px';
     button.style.cursor = 'pointer';
@@ -358,23 +367,26 @@ function createLanguageButtons(problem: any) {
         langButton.style.gap = '8px';
         langButton.style.padding = '6px 12px';
         langButton.style.borderRadius = '6px';
-        langButton.style.fontSize = '11px';
+        langButton.style.fontSize = '12px';
         langButton.style.letterSpacing = '.5px';
         langButton.style.transition = 'all 0.2s ease';
         langButton.style.cursor = 'pointer';
+        langButton.style.fontWeight = '500';
 
         chrome.storage.local.get(['isDarkTheme'], (result) => {
             const isDark = result.isDarkTheme;
-            langButton.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
-            langButton.style.color = isDark ? '#fff' : '#1a1a1a';
-            langButton.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+            langButton.style.backgroundColor = isDark ? '#2d2d2d' : '#f3f4f5';
+            langButton.style.color = isDark ? '#e6e6e6' : '#2d2d2d';
+            langButton.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)'}`;
 
             // on hover just make the background a few shades darker or lighter
             langButton.addEventListener('mouseenter', () => {
-                langButton.style.backgroundColor = isDark ? '#424242' : '#e6e6e6';
+                langButton.style.backgroundColor = isDark ? '#3d3d3d' : '#e6e6e6';
+                langButton.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
             });
             langButton.addEventListener('mouseleave', () => {
-                langButton.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+                langButton.style.backgroundColor = isDark ? '#2d2d2d' : '#f3f4f5';
+                langButton.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)';
             });
         });
 

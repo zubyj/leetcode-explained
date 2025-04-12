@@ -66,8 +66,6 @@ button:hover {
     background-color: var(--button-hover-bg);
     border-color: var(--button-hover-border);
     cursor: pointer;
-    transform: translateY(-1px);
-    color: var(--link-color);
 }
 
 table {

@@ -412,36 +412,91 @@ function initializeDescriptionTab() {
         // Set up theme detection and synchronization
         setupDescriptionThemeListener();
         
-        // Get the problem title from the page
-        const problemTitle = document.title.replace(' - LeetCode', '');
+        // Initial load of enhancements
+        updatePageContent();
         
-        // Apply all enhancements
-        showDifficulty();
-        showRating(problemTitle);
-        showCompanyTags(problemTitle);
-        showExamples();
-        
-        // Set up a MutationObserver to detect tab changes
+        // Set up URL change detection using History API
+        const originalPushState = history.pushState;
+        const originalReplaceState = history.replaceState;
+
+        history.pushState = function(data: any, unused: string, url?: string | URL) {
+            originalPushState.call(this, data, unused, url);
+            handleUrlChange();
+        };
+
+        history.replaceState = function(data: any, unused: string, url?: string | URL) {
+            originalReplaceState.call(this, data, unused, url);
+            handleUrlChange();
+        };
+
+        window.addEventListener('popstate', handleUrlChange);
+
+        // Set up a MutationObserver to detect tab and content changes
         const observer = new MutationObserver((mutations) => {
+            let shouldUpdate = false;
+            
             mutations.forEach((mutation) => {
-                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                    // Check if we're on the description tab
-                    const descriptionTab = document.querySelector('[data-cy="description-tab"]');
-                    if (descriptionTab && descriptionTab.classList.contains('active')) {
-                        // Re-apply company tags when switching to description tab
-                        const problemTitle = document.title.replace(' - LeetCode', '');
-                        showCompanyTags(problemTitle);
+                // Check for tab changes
+                if (mutation.target instanceof HTMLElement) {
+                    const isTabChange = mutation.target.getAttribute('role') === 'tab' ||
+                                      mutation.target.closest('[role="tab"]');
+                    if (isTabChange) {
+                        shouldUpdate = true;
                     }
                 }
+                
+                // Check for content changes in the main container
+                if (mutation.type === 'childList' && 
+                    ((mutation.target instanceof HTMLElement && mutation.target.classList?.contains('elfjS')) || 
+                     mutation.addedNodes.length > 0)) {
+                    shouldUpdate = true;
+                }
             });
+
+            if (shouldUpdate) {
+                // Small delay to ensure DOM is fully updated
+                setTimeout(updatePageContent, 100);
+            }
         });
         
-        // Start observing the tab container
-        const tabContainer = document.querySelector('[role="tablist"]');
-        if (tabContainer) {
-            observer.observe(tabContainer, { childList: true, subtree: true });
-        }
+        // Observe both the tab container and the main content area
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['class', 'data-cy']
+        });
     }
+}
+
+// Update all page content
+function updatePageContent() {
+    const problemTitle = document.title.replace(' - LeetCode', '').split('-')[0].trim();
+    const isDescriptionTab = isOnDescriptionTab();
+    
+    if (isDescriptionTab) {
+        showCompanyTags(problemTitle);
+        showDifficulty();
+        showRating(problemTitle);
+        showExamples();
+    }
+}
+
+// Check if we're on the description tab
+function isOnDescriptionTab() {
+    // Check multiple conditions to determine if we're on the description tab
+    const descriptionTab = document.querySelector('[data-cy="description-tab"]');
+    const isDescriptionActive = descriptionTab?.classList.contains('active');
+    const notOnSolutions = !window.location.href.includes('/solutions');
+    const hasDescriptionContent = !!document.getElementsByClassName('elfjS')[0];
+    
+    return (isDescriptionActive || notOnSolutions) && hasDescriptionContent;
+}
+
+// Handle URL changes
+function handleUrlChange() {
+    // Small delay to ensure DOM is updated
+    setTimeout(updatePageContent, 200);
 }
 
 // Initialize the content script

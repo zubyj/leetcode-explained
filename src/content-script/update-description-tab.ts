@@ -45,7 +45,7 @@ function detectAndSyncTheme() {
             isDarkTheme: leetcodeTheme === 'dark'
         });
         
-        console.log(`Theme auto-detected: ${leetcodeTheme}`);
+        //console.log(`Theme auto-detected: ${leetcodeTheme}`);
         
         // Set up observer for future theme changes
         observeThemeChanges();
@@ -70,7 +70,7 @@ function observeThemeChanges() {
                     chrome.storage.local.set({ 
                         isDarkTheme: leetcodeTheme === 'dark'
                     });
-                    console.log(`Theme changed to: ${leetcodeTheme}`);
+                    //console.log(`Theme changed to: ${leetcodeTheme}`);
                 }
             });
         });
@@ -215,7 +215,7 @@ function showCompanyTags(problemTitle: string) {
             }
 
             if (!description) {
-                console.log('Failed to find description element after all retries');
+                //console.log('Failed to find description element after all retries');
                 
                 // If still not found, set up a MutationObserver to watch for DOM changes
                 const observer = new MutationObserver((mutations, obs) => {
@@ -375,7 +375,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'updateDescription') {
         // Only detect theme on first load, problem change, or refresh
         if (!request.isProblemChange && !request.isRefresh) {
-            console.log('Skipping theme detection for internal navigation');
+            //console.log('Skipping theme detection for internal navigation');
             return;
         }
 

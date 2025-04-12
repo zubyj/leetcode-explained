@@ -152,7 +152,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                                  isViewChange ? 'View Changed' :
                                  isActualRefresh ? 'Page Refresh' :
                                  'Page Load';
-                console.log(`State change detected - ${changeType}`);
+                //console.log(`State change detected - ${changeType}`);
                 
                 // Update last state
                 lastState.problemPath = problemPath;

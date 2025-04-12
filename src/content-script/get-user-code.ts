@@ -70,7 +70,7 @@ function getProblem() {
     // Get test cases, output, and expected output
     const consoleData = getConsoleData();
     if (consoleData.length > 0) {
-        console.log('Console Data:', consoleData);
+        //console.log('Console Data:', consoleData);
         collectedData.push("\n--- Test Cases and Results ---\n" + consoleData.join('\n'));
     }
 

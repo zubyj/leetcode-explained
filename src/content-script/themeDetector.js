@@ -82,7 +82,6 @@ function isColorDark(color) {
     // Extract RGB values
     const rgb = color.match(/\d+/g);
     if (!rgb || rgb.length < 3) {
-        console.log('Could not extract RGB values from color:', color);
         return true; // Default to dark if can't extract
     }
 
@@ -93,7 +92,6 @@ function isColorDark(color) {
     
     // Weighted luminance formula (human eye is more sensitive to green)
     const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-    console.log(`Color luminance: ${luminance} (< 0.5 is dark)`);
     
     // Return true for dark colors (lower luminance)
     return luminance < 0.5;

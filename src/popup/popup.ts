@@ -293,7 +293,7 @@ async function main(): Promise<void> {
         elements['getComplexityBtn']?.classList.remove('hidden');
         elements['fixCodeBtn']?.classList.remove('hidden');
     } catch (error) {
-        console.log(error);
+        console.error('Failed to initialize popup:', error);
     }
 }
 

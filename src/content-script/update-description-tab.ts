@@ -209,13 +209,11 @@ function showCompanyTags(problemTitle: string) {
                 // Use exponential backoff for retry delay
                 const delay = baseDelay * Math.pow(1.5, retryCount);
                 retryCount++;
-                //console.log(`Attempt ${retryCount}: Waiting for description element to load... Retrying in ${delay}ms`);
                 setTimeout(tryInsertCompanyTags, delay);
                 return;
             }
 
             if (!description) {
-                //console.log('Failed to find description element after all retries');
                 
                 // If still not found, set up a MutationObserver to watch for DOM changes
                 const observer = new MutationObserver((mutations, obs) => {
@@ -375,7 +373,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'updateDescription') {
         // Only detect theme on first load, problem change, or refresh
         if (!request.isProblemChange && !request.isRefresh) {
-            //console.log('Skipping theme detection for internal navigation');
             return;
         }
 

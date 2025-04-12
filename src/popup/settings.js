@@ -28,17 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Helper function to send messages safely to content script
     function safelySendMessage(message) {
-        //console.log('Sending message to content script:', message);
         chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
             if (!tabs || !tabs[0] || !tabs[0].id) {
-                //console.log('No active tab found');
                 return;
             }
             
             try {
                 chrome.tabs.sendMessage(tabs[0].id, message, response => {
                     if (chrome.runtime.lastError) {
-                        console.log('Error sending message:', chrome.runtime.lastError.message);
+                        console.error('Error sending message:', chrome.runtime.lastError.message);
                         // Attempt to inject the content script if it's not already injected
                         chrome.scripting.executeScript({
                             target: { tabId: tabs[0].id },
@@ -49,12 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                 chrome.tabs.sendMessage(tabs[0].id, message);
                             }, 100);
                         }).catch(err => {
-                            console.log('Error injecting content script:', err);
+                            console.error('Error injecting content script:', err);
                         });
                     } 
                 });
             } catch (error) {
-                console.log('Error sending message:', error);
+                console.error('Error sending message:', error);
             }
         });
     }

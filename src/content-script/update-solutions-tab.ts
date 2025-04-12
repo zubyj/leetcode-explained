@@ -673,7 +673,6 @@ function updateSolutionsTab(title: string) {
         
         // If it's the same problem and the wrapper is in the DOM, preserve state
         if (wrapperTitle === currentTitle && document.contains(existingWrapper)) {
-            //console.log('Content exists for current problem, preserving state');
             return;
         }
 
@@ -694,13 +693,11 @@ function updateSolutionsTab(title: string) {
                 // Use exponential backoff for retry delay
                 const delay = baseDelay * Math.pow(1.5, retryCount);
                 retryCount++;
-                //console.log(`Attempt ${retryCount}: Waiting for search bar element to load... Retrying in ${delay}ms`);
                 setTimeout(tryInsertContent, delay);
                 return;
             }
 
             if (!searchBar) {
-                //console.log('Failed to find search bar element after all retries');
                 
                 // If still not found, set up a MutationObserver to watch for DOM changes
                 const observer = new MutationObserver((mutations, obs) => {

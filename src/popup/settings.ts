@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Set up change listener
         themeSelect.addEventListener('change', () => {
             const selectedValue = themeSelect.value as 'dark' | 'light' | 'auto';
-            console.log('Theme dropdown changed to:', selectedValue);
             
             // Apply the selected theme
             setTheme(selectedValue);

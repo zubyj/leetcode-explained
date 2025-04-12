@@ -56,14 +56,10 @@ const THEME_STYLES = {
 
 // Initialize theme on load
 export function initializeTheme(): void {
-    //console.log('Initializing theme...');
-    
     // Get saved theme settings
     chrome.storage.local.get(['isDarkTheme', 'themeMode', 'lastDetectedTheme'], (result) => {
         let theme: ThemeName = result.isDarkTheme ? 'dark' : 'light';
         const mode: ThemeMode = result.themeMode === 'auto' ? 'auto' : 'manual';
-        
-        //console.log(`Theme settings: Theme=${theme}, Mode=${mode}`);
         
         // For auto mode, use last detected theme if available
         if (mode === 'auto' && result.lastDetectedTheme) {
@@ -82,8 +78,6 @@ export function initializeTheme(): void {
 
 // Set theme based on dropdown selection
 export function setTheme(theme: ThemeName | 'auto'): void {
-    //console.log(`Setting theme to: ${theme}`);
-    
     if (theme === 'auto') {
         // Enable auto mode but keep current theme until detection
         chrome.storage.local.get(['isDarkTheme'], (result) => {
@@ -103,8 +97,6 @@ export function setTheme(theme: ThemeName | 'auto'): void {
 
 // Apply a theme to the current page
 function applyTheme(theme: ThemeName, mode: ThemeMode): void {
-    //console.log(`Applying theme: ${theme}, mode: ${mode}`);
-    
     // Set data attribute for CSS variables
     document.documentElement.setAttribute('data-theme', theme);
     
@@ -174,8 +166,6 @@ function updateThemeUI(theme: ThemeName, mode: ThemeMode): void {
 
 // Detect theme from active LeetCode page
 function detectThemeFromPage(): void {
-    //console.log('Detecting theme from active tab...');
-    
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         if (tabs[0]?.id) {
             chrome.tabs.sendMessage(
@@ -183,13 +173,11 @@ function detectThemeFromPage(): void {
                 { action: 'getTheme' },
                 (response) => {
                     if (chrome.runtime.lastError) {
-                        //console.log('Error detecting theme:', chrome.runtime.lastError);
+                        console.error('Error detecting theme:', chrome.runtime.lastError);
                         return;
                     }
                     
                     if (response?.theme) {
-                        //console.log('Detected theme:', response.theme);
-                        
                         // Apply the detected theme
                         applyTheme(response.theme, 'auto');
                     }

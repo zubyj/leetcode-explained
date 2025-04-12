@@ -25,7 +25,7 @@ chrome.runtime.onInstalled.addListener(() => {
             chrome.storage.local.set({ leetcodeProblems: data });
         })
         .catch((error) => {
-            console.error(error);
+            console.error('Failed to load problem data:', error);
         });
 
     // Load problems by company JSON file into storage
@@ -36,7 +36,7 @@ chrome.runtime.onInstalled.addListener(() => {
             chrome.storage.local.set({ companyProblems: data });
         })
         .catch((error) => {
-            console.error(error);
+            console.error('Failed to load company problems:', error);
         });
 
     // Load default settings
@@ -152,7 +152,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                                  isViewChange ? 'View Changed' :
                                  isActualRefresh ? 'Page Refresh' :
                                  'Page Load';
-                //console.log(`State change detected - ${changeType}`);
                 
                 // Update last state
                 lastState.problemPath = problemPath;

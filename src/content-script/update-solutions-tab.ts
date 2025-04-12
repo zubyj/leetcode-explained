@@ -20,32 +20,85 @@ function createStyledButton(text: string, isActive: boolean = false): HTMLButton
     button.classList.add('nav-button');
     if (isActive) button.classList.add('active');
 
-    chrome.storage.local.get(['isDarkTheme'], (result) => {
-        const isDark = result.isDarkTheme;
-        button.style.backgroundColor = isDark ? '#2d2d2d' : '#f3f4f5';
-        button.style.color = isDark ? '#e6e6e6' : '#2d2d2d';
-        button.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)'}`;
-        button.style.fontWeight = '500';
+    const updateButtonStyles = (isDark: boolean, isButtonActive: boolean) => {
+        // Light theme colors
+        const lightTheme = {
+            base: '#f3f4f5',
+            active: '#e0e0e0',
+            hover: '#e6e6e6',
+            border: 'rgba(0, 0, 0, 0.15)',
+            activeBorder: '#f3f4f5',
+            hoverBorder: 'rgba(0, 0, 0, 0.25)',
+            text: '#2d2d2d'
+        };
 
+        // Dark theme colors
+        const darkTheme = {
+            base: '#2d2d2d',
+            active: '#404040',
+            hover: '#3d3d3d',
+            border: 'rgba(255, 255, 255, 0.15)',
+            activeBorder: '#2d2d2d',
+            hoverBorder: 'rgba(255, 255, 255, 0.25)',
+            text: '#e6e6e6'
+        };
+
+        const theme = isDark ? darkTheme : lightTheme;
+
+        button.style.backgroundColor = isButtonActive ? theme.active : theme.base;
+        button.style.color = theme.text;
+        button.style.border = `1px solid ${isButtonActive ? theme.activeBorder : theme.border}`;
+        button.style.boxShadow = isButtonActive ? `0 0 0 1px ${theme.activeBorder}` : 'none';
+
+        // Remove existing listeners
+        const oldMouseEnter = button.onmouseenter;
+        const oldMouseLeave = button.onmouseleave;
+        if (oldMouseEnter) button.removeEventListener('mouseenter', oldMouseEnter);
+        if (oldMouseLeave) button.removeEventListener('mouseleave', oldMouseLeave);
+
+        // Add new theme-aware listeners
         button.addEventListener('mouseenter', () => {
             if (!button.classList.contains('active')) {
-                button.style.backgroundColor = isDark ? '#3d3d3d' : '#e6e6e6';
-                button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
-            }
-        });
-        button.addEventListener('mouseleave', () => {
-            if (!button.classList.contains('active')) {
-                button.style.backgroundColor = isDark ? '#2d2d2d' : '#f3f4f5';
-                button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)';
+                button.style.backgroundColor = theme.hover;
+                button.style.borderColor = theme.hoverBorder;
             }
         });
 
-        if (isActive) {
-            button.style.backgroundColor = isDark ? '#404040' : '#e0e0e0';
-            button.style.color = isDark ? '#ffffff' : '#000000';
-            button.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)';
+        button.addEventListener('mouseleave', () => {
+            if (!button.classList.contains('active')) {
+                button.style.backgroundColor = theme.base;
+                button.style.borderColor = theme.border;
+            } else {
+                button.style.backgroundColor = theme.active;
+                button.style.borderColor = theme.activeBorder;
+            }
+        });
+    };
+
+    // Initial style setup
+    chrome.storage.local.get(['isDarkTheme'], (result) => {
+        updateButtonStyles(result.isDarkTheme, isActive);
+    });
+
+    // Listen for theme changes
+    chrome.storage.onChanged.addListener((changes) => {
+        if (changes.isDarkTheme) {
+            updateButtonStyles(changes.isDarkTheme.newValue, button.classList.contains('active'));
         }
     });
+
+    // Update styles when active state changes
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                chrome.storage.local.get(['isDarkTheme'], (result) => {
+                    updateButtonStyles(result.isDarkTheme, button.classList.contains('active'));
+                });
+            }
+        });
+    });
+
+    observer.observe(button, { attributes: true });
 
     button.style.width = '120px';
     button.style.padding = '4px 8px';
@@ -252,7 +305,8 @@ function showContent(type: 'Discussion' | 'Video' | 'Code') {
     // Update button states
     const buttons = document.querySelectorAll('.nav-button');
     buttons.forEach(button => {
-        if (button.textContent === type) {
+        const isActive = button.textContent === type;
+        if (isActive) {
             button.classList.add('active');
         } else {
             button.classList.remove('active');

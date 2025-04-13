@@ -288,7 +288,6 @@ a {
     width: var(--settings-width);
     text-align: left;
     letter-spacing: 1px;
-    font-weight: 550;
 }
 
 #footer a{

@@ -36,7 +36,7 @@
 
 /* Display size variations */
 .small-display {
-    width: 350px;
+    width: 400px;
     --base-font-size: 12px;
     --button-height: 40px;
     --button-width: 170px;
@@ -67,7 +67,6 @@
 
 /* Base styles */
 body {
-    min-width: 500px;
     margin: 0;
     padding: 0;
     font-family: 'Roboto', -apple-system, sans-serif;

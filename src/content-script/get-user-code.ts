@@ -70,7 +70,7 @@ function getProblem() {
     // Get test cases, output, and expected output
     const consoleData = getConsoleData();
     if (consoleData.length > 0) {
-        console.log('Console Data:', consoleData);
+        //console.log('Console Data:', consoleData);
         collectedData.push("\n--- Test Cases and Results ---\n" + consoleData.join('\n'));
     }
 
@@ -79,7 +79,7 @@ function getProblem() {
     if (errorPanel) {
         const errorText = errorPanel.textContent?.trim();
         if (errorText) {
-            console.log('Error from LeetCode:', errorText);
+            //console.log('Error from LeetCode:', errorText);
             collectedData.push("\n--- LeetCode Error Message ---\n" + errorText);
             collectedData.push("\nPlease fix the above error in the code.");
         }

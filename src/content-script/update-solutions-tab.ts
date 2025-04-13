@@ -20,29 +20,91 @@ function createStyledButton(text: string, isActive: boolean = false): HTMLButton
     button.classList.add('nav-button');
     if (isActive) button.classList.add('active');
 
-    chrome.storage.local.get(['isDarkTheme'], (result) => {
-        const isDark = result.isDarkTheme;
-        button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
-        button.style.color = isDark ? '#fff' : '#1a1a1a';
-        button.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+    const updateButtonStyles = (isDark: boolean, isButtonActive: boolean) => {
+        // Light theme colors
+        const lightTheme = {
+            base: '#f3f4f5',
+            active: '#e0e0e0',
+            hover: '#e6e6e6',
+            border: 'rgba(0, 0, 0, 0.15)',
+            activeBorder: '#f3f4f5',
+            hoverBorder: 'rgba(0, 0, 0, 0.25)',
+            text: '#2d2d2d'
+        };
 
+        // Dark theme colors
+        const darkTheme = {
+            base: '#2d2d2d',
+            active: '#404040',
+            hover: '#3d3d3d',
+            border: 'rgba(255, 255, 255, 0.15)',
+            activeBorder: '#2d2d2d',
+            hoverBorder: 'rgba(255, 255, 255, 0.25)',
+            text: '#e6e6e6'
+        };
+
+        const theme = isDark ? darkTheme : lightTheme;
+
+        button.style.backgroundColor = isButtonActive ? theme.active : theme.base;
+        button.style.color = theme.text;
+        button.style.border = `1px solid ${isButtonActive ? theme.activeBorder : theme.border}`;
+        button.style.boxShadow = isButtonActive ? `0 0 0 1px ${theme.activeBorder}` : 'none';
+
+        // Remove existing listeners
+        const oldMouseEnter = button.onmouseenter;
+        const oldMouseLeave = button.onmouseleave;
+        if (oldMouseEnter) button.removeEventListener('mouseenter', oldMouseEnter);
+        if (oldMouseLeave) button.removeEventListener('mouseleave', oldMouseLeave);
+
+        // Add new theme-aware listeners
         button.addEventListener('mouseenter', () => {
             if (!button.classList.contains('active')) {
-                button.style.backgroundColor = isDark ? '#424242' : '#e6e6e6';
+                button.style.backgroundColor = theme.hover;
+                button.style.borderColor = theme.hoverBorder;
             }
         });
+
         button.addEventListener('mouseleave', () => {
             if (!button.classList.contains('active')) {
-                button.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+                button.style.backgroundColor = theme.base;
+                button.style.borderColor = theme.border;
+            } else {
+                button.style.backgroundColor = theme.active;
+                button.style.borderColor = theme.activeBorder;
+            }
+        });
+    };
+
+    // Initial style setup
+    chrome.storage.local.get(['isDarkTheme'], (result) => {
+        updateButtonStyles(result.isDarkTheme, isActive);
+    });
+
+    // Listen for theme changes
+    chrome.storage.onChanged.addListener((changes) => {
+        if (changes.isDarkTheme) {
+            updateButtonStyles(changes.isDarkTheme.newValue, button.classList.contains('active'));
+        }
+    });
+
+    // Update styles when active state changes
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                chrome.storage.local.get(['isDarkTheme'], (result) => {
+                    updateButtonStyles(result.isDarkTheme, button.classList.contains('active'));
+                });
             }
         });
     });
+
+    observer.observe(button, { attributes: true });
 
     button.style.width = '120px';
     button.style.padding = '4px 8px';
     button.style.margin = '0 8px';
     button.style.borderRadius = '6px';
-    button.style.fontSize = '11px';
+    button.style.fontSize = '12px';
     button.style.transition = 'all 0.2s ease';
     button.style.letterSpacing = '0.5px';
     button.style.cursor = 'pointer';
@@ -243,7 +305,8 @@ function showContent(type: 'Discussion' | 'Video' | 'Code') {
     // Update button states
     const buttons = document.querySelectorAll('.nav-button');
     buttons.forEach(button => {
-        if (button.textContent === type) {
+        const isActive = button.textContent === type;
+        if (isActive) {
             button.classList.add('active');
         } else {
             button.classList.remove('active');
@@ -358,23 +421,26 @@ function createLanguageButtons(problem: any) {
         langButton.style.gap = '8px';
         langButton.style.padding = '6px 12px';
         langButton.style.borderRadius = '6px';
-        langButton.style.fontSize = '11px';
+        langButton.style.fontSize = '12px';
         langButton.style.letterSpacing = '.5px';
         langButton.style.transition = 'all 0.2s ease';
         langButton.style.cursor = 'pointer';
+        langButton.style.fontWeight = '500';
 
         chrome.storage.local.get(['isDarkTheme'], (result) => {
             const isDark = result.isDarkTheme;
-            langButton.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
-            langButton.style.color = isDark ? '#fff' : '#1a1a1a';
-            langButton.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
+            langButton.style.backgroundColor = isDark ? '#2d2d2d' : '#f3f4f5';
+            langButton.style.color = isDark ? '#e6e6e6' : '#2d2d2d';
+            langButton.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)'}`;
 
             // on hover just make the background a few shades darker or lighter
             langButton.addEventListener('mouseenter', () => {
-                langButton.style.backgroundColor = isDark ? '#424242' : '#e6e6e6';
+                langButton.style.backgroundColor = isDark ? '#3d3d3d' : '#e6e6e6';
+                langButton.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.25)';
             });
             langButton.addEventListener('mouseleave', () => {
-                langButton.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+                langButton.style.backgroundColor = isDark ? '#2d2d2d' : '#f3f4f5';
+                langButton.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.15)';
             });
         });
 
@@ -607,7 +673,6 @@ function updateSolutionsTab(title: string) {
         
         // If it's the same problem and the wrapper is in the DOM, preserve state
         if (wrapperTitle === currentTitle && document.contains(existingWrapper)) {
-            console.log('Content exists for current problem, preserving state');
             return;
         }
 
@@ -628,13 +693,11 @@ function updateSolutionsTab(title: string) {
                 // Use exponential backoff for retry delay
                 const delay = baseDelay * Math.pow(1.5, retryCount);
                 retryCount++;
-                console.log(`Attempt ${retryCount}: Waiting for search bar element to load... Retrying in ${delay}ms`);
                 setTimeout(tryInsertContent, delay);
                 return;
             }
 
             if (!searchBar) {
-                console.log('Failed to find search bar element after all retries');
                 
                 // If still not found, set up a MutationObserver to watch for DOM changes
                 const observer = new MutationObserver((mutations, obs) => {

@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Set up change listener
         themeSelect.addEventListener('change', () => {
             const selectedValue = themeSelect.value as 'dark' | 'light' | 'auto';
-            console.log('Theme dropdown changed to:', selectedValue);
             
             // Apply the selected theme
             setTheme(selectedValue);
@@ -116,6 +115,45 @@ document.addEventListener('DOMContentLoaded', () => {
         if (showRatingIcon) showRatingIcon.textContent = result.showRating ? '✅' : '❌';
     });
 
+    // Helper function to send messages safely to content script
+    function safelySendMessage(message: any) {
+        chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+            const tabId = tabs[0]?.id;
+            if (!tabs || !tabs[0] || typeof tabId === 'undefined') {
+                return;
+            }
+            
+            try {
+                // Send message to background script for settings updates
+                if (message.action === 'updateDescription') {
+                    chrome.runtime.sendMessage({ action: 'settingsUpdate' });
+                    return;
+                }
+
+                // For other messages, send directly to content script
+                chrome.tabs.sendMessage(tabId, message, response => {
+                    if (chrome.runtime.lastError) {
+                        console.error('Error sending message:', chrome.runtime.lastError.message);
+                        // Attempt to inject the content script if it's not already injected
+                        chrome.scripting.executeScript({
+                            target: { tabId },
+                            files: ['dist/content-script/update-description-tab.js']
+                        }).then(() => {
+                            // Try sending the message again after injecting the script
+                            setTimeout(() => {
+                                chrome.tabs.sendMessage(tabId, message);
+                            }, 100);
+                        }).catch(err => {
+                            console.error('Error injecting content script:', err);
+                        });
+                    }
+                });
+            } catch (error) {
+                console.error('Error sending message:', error);
+            }
+        });
+    }
+
     // Set up toggle event handlers
     const showCompanyTagsBtn = document.getElementById('show-company-tags-btn');
     showCompanyTagsBtn && showCompanyTagsBtn.addEventListener('click', function () {
@@ -124,9 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chrome.storage.local.set({ showCompanyTags: showCompanyTags }, () => {
                 const showCompanyTagsIcon = document.getElementById('show-company-tags-icon');
                 showCompanyTagsIcon && (showCompanyTagsIcon.textContent = showCompanyTags ? '✅' : '❌');
-                chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                    chrome.tabs.sendMessage(tabs[0].id || 0, { action: 'updateDescription', title: tabs[0].title || 'title' });
-                });
+                safelySendMessage({ action: 'updateDescription', title: document.title || 'title' });
             });
         });
     });
@@ -138,10 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chrome.storage.local.set({ showExamples: showExamples }, () => {
                 const showExamplesIcon = document.getElementById('show-examples-icon');
                 showExamplesIcon && (showExamplesIcon.textContent = showExamples ? '✅' : '❌');
-            });
-            // Manually trigger the update description after toggling
-            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                chrome.tabs.sendMessage(tabs[0].id || 0, { action: 'updateDescription', title: tabs[0].title || 'title' });
+                safelySendMessage({ action: 'updateDescription', title: document.title || 'title' });
             });
         });
     });
@@ -153,10 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chrome.storage.local.set({ showDifficulty: showDifficulty }, () => {
                 const showDifficultyIcon = document.getElementById('show-difficulty-icon');
                 if (showDifficultyIcon) showDifficultyIcon.textContent = showDifficulty ? '✅' : '❌';
-            });
-            // Manually trigger the update description after toggling
-            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                chrome.tabs.sendMessage(tabs[0].id || 0, { action: 'updateDescription', title: tabs[0].title || 'title' });
+                safelySendMessage({ action: 'updateDescription', title: document.title || 'title' });
             });
         });
     });
@@ -168,10 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chrome.storage.local.set({ showRating: showRating }, () => {
                 const showRatingIcon = document.getElementById('show-rating-icon');
                 if (showRatingIcon) showRatingIcon.textContent = showRating ? '✅' : '❌';
-            });
-            // Manually trigger the update description after toggling
-            chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                chrome.tabs.sendMessage(tabs[0].id || 0, { action: 'updateDescription', title: tabs[0].title || 'title' });
+                safelySendMessage({ action: 'updateDescription', title: document.title || 'title' });
             });
         });
     });

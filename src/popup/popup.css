@@ -6,22 +6,32 @@
     --icon-size: 16px;
     --spacing: 10px;
     --transition-speed: 0.2s;
-    --border-color: black;
+    --border-color: rgba(0, 0, 0, 0.15);
     --link-color: #303134;
-    --text-color: black;
+    --text-color: #2d2d2d;
+    --button-bg-color: #f3f4f5;
     --button-hover-bg: #e6e6e6;
+    --button-hover-border: rgba(0, 0, 0, 0.25);
 }
 
 /* Dark theme */
 [data-theme="dark"] {
     --background-color: #202124;
-    --border-color: #5f6368;
+    --border-color: rgba(255, 255, 255, 0.15);
     --link-color: #8ab4f8;
-    --button-bg-color: #303134;
-    --button-hover-bg: #424242;
-    --text-color: #e8eaed;
+    --button-bg-color: #2d2d2d;
+    --button-hover-bg: #3d3d3d;
+    --text-color: #e6e6e6;
     --code-bg-color: #303134;
     --info-message-bg: rgba(48, 49, 52, 0.5);
+    --button-hover-border: rgba(255, 255, 255, 0.25);
+    --active-text: #ffffff;
+    --active-bg: #404040;
+}
+
+[data-theme="light"] {
+    --active-text: #000000;
+    --active-bg: #e0e0e0;
 }
 
 /* Display size variations */
@@ -73,11 +83,13 @@ body {
     border-radius: var(--border-radius);
     cursor: pointer;
     font-size: var(--base-font-size);
+    letter-spacing: 0.5px;
     transition: all var(--transition-speed) ease;
 }
 
 .material-button:hover, .code-btn:hover {
     background-color: var(--button-hover-bg) !important;
+    border-color: var(--button-hover-border);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -104,23 +116,24 @@ a {
 }
 
 .tab {
-    background: transparent;
-    border: none;
+    background: transparent !important;
+    border: 1px solid transparent;
     border-radius: 5px;
     font-size: var(--base-font-size);
+    font-weight: 500;
     padding: calc(var(--spacing) * 0.6) var(--spacing);
     cursor: pointer;
     color: var(--text-color);
-    transition: color var(--transition-speed) ease, border-bottom var(--transition-speed) ease;
+    letter-spacing: 0.5px;
+    transition: all var(--transition-speed) ease;
 }
 
 .tab:hover {
-    background-color: var(--button-hover-bg) !important;
+    border: 1px solid var(--button-hover-bg) !important;
 }
 
 .tab.active {
-    border-bottom: 2px solid var(--link-color);
-    color: var(--link-color);
+    background-color: var(--active-bg) !important;
 }
 
 /* Main content on popup and settings*/
@@ -167,6 +180,7 @@ a {
     color: var(--color);
     border-radius: 8px;
     background-color: var(--info-message-bg);
+    letter-spacing: .5px;
 }
 
 /* Response containers */

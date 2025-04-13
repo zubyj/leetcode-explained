@@ -35,11 +35,12 @@ function addNavbarLinks() {
             });
         };
         button.onmouseover = () => {
-            button.style.color = 'orange';
+            button.style.backgroundColor = '#404040';
             button.style.cursor = 'pointer';
         };
         button.onmouseout = () => {
-            button.style.color = 'white';
+            button.style.backgroundColor = '#373737';
+            button.style.color = '#fff';
         };
         button.style.display = 'flex';
         button.style.alignItems = 'center';

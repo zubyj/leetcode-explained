@@ -25,7 +25,7 @@ chrome.runtime.onInstalled.addListener(() => {
             chrome.storage.local.set({ leetcodeProblems: data });
         })
         .catch((error) => {
-            console.error(error);
+            console.error('Failed to load problem data:', error);
         });
 
     // Load problems by company JSON file into storage
@@ -36,7 +36,7 @@ chrome.runtime.onInstalled.addListener(() => {
             chrome.storage.local.set({ companyProblems: data });
         })
         .catch((error) => {
-            console.error(error);
+            console.error('Failed to load company problems:', error);
         });
 
     // Load default settings
@@ -51,6 +51,22 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.runtime.onMessage.addListener((request) => {
+    // Direct path for settings updates
+    if (request.action === 'settingsUpdate') {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            const tab = tabs[0];
+            if (tab?.id && tab.url?.includes('leetcode.com/problems/')) {
+                chrome.tabs.sendMessage(tab.id, { 
+                    action: 'updateDescription', 
+                    title: tab.title || 'title',
+                    isSettingsUpdate: true
+                });
+            }
+        });
+        return;
+    }
+
+    // Existing message handlers
     if (request.action === 'openCompanyPage') {
         chrome.storage.local.set({ clickedCompany: request.company });
         chrome.tabs.create({
@@ -152,7 +168,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                                  isViewChange ? 'View Changed' :
                                  isActualRefresh ? 'Page Refresh' :
                                  'Page Load';
-                console.log(`State change detected - ${changeType}`);
                 
                 // Update last state
                 lastState.problemPath = problemPath;

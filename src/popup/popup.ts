@@ -77,7 +77,7 @@ function initActionButton(buttonId: string, action: 'analyze' | 'fix', aiProvide
     actionButton.onclick = async () => {
         const codeText = await getCodeFromActiveTab();
         if (codeText) {
-            console.log(codeText);
+            //console.log(codeText);
             processCode(aiProvider, codeText, action);
         } else {
             const errorMessage = "Cannot read from page. Please open a Leetcode problem and refresh the page.";
@@ -293,7 +293,7 @@ async function main(): Promise<void> {
         elements['getComplexityBtn']?.classList.remove('hidden');
         elements['fixCodeBtn']?.classList.remove('hidden');
     } catch (error) {
-        console.log(error);
+        console.error('Failed to initialize popup:', error);
     }
 }
 

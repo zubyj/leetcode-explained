@@ -105,7 +105,7 @@ function showDifficulty() {
     });
 }
 
-// show the leetcode problem rating if the user has enabled it in the settings
+// show the leetcode problem rating
 function showRating(problemTitle: string) {
     // Check if we're on the description tab before proceeding
     const isDescriptionPage = !window.location.href.includes('/solutions');
@@ -113,49 +113,38 @@ function showRating(problemTitle: string) {
         return;
     }
 
-    chrome.storage.local.get(['showRating'], (result) => {
-        const showRating = result.showRating;
-        if (!showRating) {
-            const ratingElement = document.getElementById('rating');
-            if (ratingElement) {
-                ratingElement.remove();
-            }
-            return;
+    chrome.storage.local.get(['leetcodeProblems'], (result) => {
+        const problem = result.leetcodeProblems.questions.find((problem: Problem) => problem.title === problemTitle);
+        if (!problem?.rating) return;
+
+        let ratingElement = document.getElementById('rating');
+        if (!ratingElement) {
+            ratingElement = document.createElement('div');
+            ratingElement.id = 'rating';
         }
 
-        chrome.storage.local.get(['leetcodeProblems'], (result) => {
-            const problem = result.leetcodeProblems.questions.find((problem: Problem) => problem.title === problemTitle);
-            if (!problem?.rating) return;
+        ratingElement.textContent = problem.rating;
+        ratingElement.style.fontSize = '11px';
+        ratingElement.style.letterSpacing = '.5px';
+        ratingElement.style.borderRadius = '6px';
+        ratingElement.style.width = '60px';
+        ratingElement.style.textAlign = 'center';
+        ratingElement.style.padding = '4px 8px';
+        ratingElement.style.transition = 'all 0.2s ease';
 
-            let ratingElement = document.getElementById('rating');
-            if (!ratingElement) {
-                ratingElement = document.createElement('div');
-                ratingElement.id = 'rating';
-            }
-
-            ratingElement.textContent = problem.rating;
-            ratingElement.style.fontSize = '11px';
-            ratingElement.style.letterSpacing = '.5px';
-            ratingElement.style.borderRadius = '6px';
-            ratingElement.style.width = '60px';
-            ratingElement.style.textAlign = 'center';
-            ratingElement.style.padding = '4px 8px';
-            ratingElement.style.transition = 'all 0.2s ease';
-
-            chrome.storage.local.get(['isDarkTheme'], (result) => {
-                const isDark = result.isDarkTheme;
-                if (ratingElement) {
-                    ratingElement.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
-                    ratingElement.style.color = isDark ? '#40a9ff' : '#1a1a1a';
-                    ratingElement.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
-                }
-            });
-
-            const difficultyContainer = document.querySelectorAll('div.relative.inline-flex')[0] as HTMLDivElement;
-            if (difficultyContainer?.parentElement && ratingElement) {
-                difficultyContainer.parentElement.insertBefore(ratingElement, difficultyContainer.parentElement.firstChild);
+        chrome.storage.local.get(['isDarkTheme'], (result) => {
+            const isDark = result.isDarkTheme;
+            if (ratingElement) {
+                ratingElement.style.backgroundColor = isDark ? '#373737' : '#f3f4f5';
+                ratingElement.style.color = isDark ? '#40a9ff' : '#1a1a1a';
+                ratingElement.style.border = `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`;
             }
         });
+
+        const difficultyContainer = document.querySelectorAll('div.relative.inline-flex')[0] as HTMLDivElement;
+        if (difficultyContainer?.parentElement && ratingElement) {
+            difficultyContainer.parentElement.insertBefore(ratingElement, difficultyContainer.parentElement.firstChild);
+        }
     });
 }
 

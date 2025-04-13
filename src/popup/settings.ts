@@ -109,11 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const showDifficultyIcon = document.getElementById('show-difficulty-icon');
         if (showDifficultyIcon) showDifficultyIcon.textContent = result.showDifficulty ? '✅' : '❌';
     });
-    
-    chrome.storage.local.get(['showRating'], (result) => {
-        const showRatingIcon = document.getElementById('show-rating-icon');
-        if (showRatingIcon) showRatingIcon.textContent = result.showRating ? '✅' : '❌';
-    });
 
     // Helper function to send messages safely to content script
     function safelySendMessage(message: any) {
@@ -186,18 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
             chrome.storage.local.set({ showDifficulty: showDifficulty }, () => {
                 const showDifficultyIcon = document.getElementById('show-difficulty-icon');
                 if (showDifficultyIcon) showDifficultyIcon.textContent = showDifficulty ? '✅' : '❌';
-                safelySendMessage({ action: 'updateDescription', title: document.title || 'title' });
-            });
-        });
-    });
-
-    const showRatingBtn = document.getElementById('show-rating-btn');
-    showRatingBtn && showRatingBtn.addEventListener('click', function () {
-        chrome.storage.local.get(['showRating'], (result) => {
-            const showRating = !result.showRating;
-            chrome.storage.local.set({ showRating: showRating }, () => {
-                const showRatingIcon = document.getElementById('show-rating-icon');
-                if (showRatingIcon) showRatingIcon.textContent = showRating ? '✅' : '❌';
                 safelySendMessage({ action: 'updateDescription', title: document.title || 'title' });
             });
         });

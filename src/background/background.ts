@@ -40,10 +40,9 @@ chrome.runtime.onInstalled.addListener(() => {
         });
 
     // Load default settings
-    chrome.storage.local.set({ fontSize: 12 }); // Default to small display size
+    chrome.storage.local.set({ fontSize: 14 });
     chrome.storage.local.set({ showExamples: true });
     chrome.storage.local.set({ showDifficulty: true });
-    chrome.storage.local.set({ showRating: true });
     chrome.storage.local.set({ showCompanyTags: true });
     // Set default theme to auto mode and default to dark
     chrome.storage.local.set({ isDarkTheme: true }); // Default to dark theme

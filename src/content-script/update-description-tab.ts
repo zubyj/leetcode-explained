@@ -371,9 +371,16 @@ function setupDescriptionThemeListener() {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'updateDescription') {
+        // For settings updates, bypass the state checks
+        if (request.isSettingsUpdate) {
+            console.log('Updating description tab due to settings change...');
+            updatePageContent();
+            return true;
+        }
+
         // Only detect theme on first load, problem change, or refresh
         if (!request.isProblemChange && !request.isRefresh) {
-            return;
+            return true;
         }
 
         console.log('Updating description tab...');

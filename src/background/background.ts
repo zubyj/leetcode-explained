@@ -51,6 +51,22 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.runtime.onMessage.addListener((request) => {
+    // Direct path for settings updates
+    if (request.action === 'settingsUpdate') {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            const tab = tabs[0];
+            if (tab?.id && tab.url?.includes('leetcode.com/problems/')) {
+                chrome.tabs.sendMessage(tab.id, { 
+                    action: 'updateDescription', 
+                    title: tab.title || 'title',
+                    isSettingsUpdate: true
+                });
+            }
+        });
+        return;
+    }
+
+    // Existing message handlers
     if (request.action === 'openCompanyPage') {
         chrome.storage.local.set({ clickedCompany: request.company });
         chrome.tabs.create({

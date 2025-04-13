@@ -284,6 +284,11 @@ a {
 }
 
 /* Footer elements */
+#review {
+    width: var(--settings-width);
+    text-align: left;
+}
+
 #review a{
     padding-top: var(--spacing);
     font-size: var(--base-font-size);

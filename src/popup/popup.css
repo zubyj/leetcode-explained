@@ -284,18 +284,20 @@ a {
 }
 
 /* Footer elements */
-#review {
+#footer {
     width: var(--settings-width);
     text-align: left;
+    letter-spacing: 1px;
+    font-weight: 550;
 }
 
-#review a{
+#footer a{
     padding-top: var(--spacing);
     font-size: var(--base-font-size);
     opacity: 0.8;
     display: inline-block;
 }
 
-#review a:hover {
+#footer a:hover {
     opacity: 1;
 }

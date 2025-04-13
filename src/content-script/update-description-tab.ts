@@ -367,7 +367,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'updateDescription') {
         // For settings updates, bypass the state checks
         if (request.isSettingsUpdate) {
-            console.log('Updating description tab due to settings change...');
+            // console.log('Updating description tab due to settings change...');
             updatePageContent();
             return true;
         }
@@ -377,7 +377,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             return true;
         }
 
-        console.log('Updating description tab...');
+        // console.log('Updating description tab...');
         detectAndSyncTheme();
         showExamples();
         showCompanyTags(request.title.split('-')[0].trim());

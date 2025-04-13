@@ -24,11 +24,9 @@ const selectors: { [key: string]: string } = {
     analyzeCodeResponse: 'analyze-code-response',
     fixCodeResponse: 'fix-code-response',
     fixCodeContainer: 'fix-code-container',
-    codeBtnContainer: 'code-btn-container',
     copyCodeBtn: 'copy-code-btn',
     clearCodeBtn: 'clear-code-btn',
     openSettingsBtn: 'open-settings-btn',
-
 };
 
 /* Chrome storage keys */

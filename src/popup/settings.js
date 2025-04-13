@@ -94,18 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const showRatingBtn = document.getElementById('show-rating-btn');
-    showRatingBtn && showRatingBtn.addEventListener('click', function() {
-        chrome.storage.local.get(['showRating'], (result) => {
-            const showRating = !result.showRating;
-            chrome.storage.local.set({ showRating: showRating }, () => {
-                const showRatingIcon = document.getElementById('show-rating-icon');
-                if (showRatingIcon) showRatingIcon.textContent = showRating ? '✅' : '❌';
-                safelySendMessage({ action: 'updateDescription', title: document.title || 'title' });
-            });
-        });
-    });
-
     // Font size handler (simplified for this fix)
     fontSizeSelect && fontSizeSelect.addEventListener('change', function() {
         const fontSize = this.value;

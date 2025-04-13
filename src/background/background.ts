@@ -40,7 +40,7 @@ chrome.runtime.onInstalled.addListener(() => {
         });
 
     // Load default settings
-    chrome.storage.local.set({ fontSize: 14 });
+    chrome.storage.local.set({ fontSize: 12 });
     chrome.storage.local.set({ showExamples: true });
     chrome.storage.local.set({ showDifficulty: true });
     chrome.storage.local.set({ showCompanyTags: true });

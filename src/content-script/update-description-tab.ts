@@ -162,13 +162,18 @@ function showRating(problemTitle: string) {
 // show the company tags if the user has enabled it in the settings
 function showCompanyTags(problemTitle: string) {
     chrome.storage.local.get(['showCompanyTags'], (result) => {
-        if (!result.showCompanyTags) {
-            return;
-        }
-
         // Check if we're on the description tab before proceeding
         const isDescriptionPage = !window.location.href.includes('/solutions');
         if (!isDescriptionPage) {
+            return;
+        }
+
+        // Remove existing container if setting is disabled
+        const existingContainer = document.getElementById('companyTagContainer');
+        if (!result.showCompanyTags) {
+            if (existingContainer) {
+                existingContainer.remove();
+            }
             return;
         }
 

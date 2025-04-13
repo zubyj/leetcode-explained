@@ -36,7 +36,8 @@
 
 /* Display size variations */
 .small-display {
-    width: 400px;
+    width: 500px;
+    height: 600px;
     --base-font-size: 12px;
     --button-height: 40px;
     --button-width: 170px;
@@ -44,7 +45,8 @@
 }
 
 .medium-display {
-    width: 500px;
+    width: 600px;
+    height: 700px;
     --base-font-size: 14px;
     --button-height: 45px;
     --button-width: 190px;
@@ -54,7 +56,8 @@
 }
 
 .large-display {
-    width: 600px;
+    width: 700px;
+    height: 800px;
     --base-font-size: 16px;
     --button-height: 50px; 
     --button-width: 210px;
@@ -197,7 +200,7 @@ a {
     border: 1px solid var(--border-color);
     padding: var(--spacing);
     margin-bottom: var(--spacing);
-    max-height: 350px;
+    max-height: 500px;
     overflow-y: auto;
     box-sizing: border-box;
     font-size: var(--base-font-size);
@@ -211,6 +214,13 @@ a {
 #fix-code-container {
     position: relative;
     padding-top: 40px; /* Space for buttons */
+}
+
+#fix-code-container code {
+    padding-left: 0 !important; /* Remove left padding to fix indentation */
+    text-indent: 0 !important; /* Ensure no text indentation */
+    display: block;
+    white-space: pre;
 }
 
 /* Code action buttons */

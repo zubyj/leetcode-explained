@@ -98,7 +98,7 @@ async function getCodeFromActiveTab(): Promise<string | null> {
                     }
                 },
             );
-        });
+        }); 
     });
 }
 
@@ -109,9 +109,14 @@ function timeout(ms: number): Promise<never> {
 }
 
 function formatResponseText(text: string): string {
+    // Get the current theme from the document attribute
+    const isDarkTheme = document.documentElement.getAttribute('data-theme') === 'dark';
+    const complexityColor = isDarkTheme ? '#1abc9c' : '#0057b8'; // teal vs rich blue
+    
     return text
-        .replace(/time/gi, '<span style="color: lightgreen;">time complexity</span>')
-        .replace(/space/gi, '<span style="color: lightgreen;">space complexity</span>');
+        .replace(/time/gi, `<span style="color: ${complexityColor}; font-weight: bold;">time complexity</span>`)
+        .replace(/space/gi, `<span style="color: ${complexityColor}; font-weight: bold;">space complexity</span>`)
+        .replace(/O\([^)]+\)/g, `<span style="color: ${complexityColor}; font-weight: bold;">$&</span>`);
 }
 
 function stripMarkdownCodeBlock(text: string): string {

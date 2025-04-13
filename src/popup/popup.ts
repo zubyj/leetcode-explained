@@ -358,7 +358,7 @@ function initCopyButton(): void {
 function initClearButton(): void {
     const clearButton = elements['clearCodeBtn'];
     clearButton && (clearButton.onclick = async () => {
-        setInfoMessage('Cleared Response', 3000);
+        setInfoMessage('Cleared Response', 2000);
         clearResponse();
     });
 }

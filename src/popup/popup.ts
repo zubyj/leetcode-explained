@@ -163,14 +163,15 @@ function processCode(
     }
     else if (action === 'fix') {
         prompt = `
-        As an experienced software engineer, analyze and provide a clear and concise solution for the
-        Leetcode problem: ${problemTitle}. Prioritize a clean and efficient solution.
-        Format your response in the following way:
-        - Keep the explanation minimal and straightforward
-        - Show code only without excessive comments
-        - Ensure the solution is correct for all edge cases
-
-        Here's the problem details: ${codeText}`;
+        As a coding professional, I need your expertise with a specific LeetCode problem named ${problemTitle}.
+        Please follow the instructions:
+        1. If no code is provided: Generate an efficient and accurate solution for the problem.
+        2. If code is provided and contains errors: Identify the issues, correct them, and optimize the code if possible.
+        3. If the provided code is already correct and optimized: Simply return it as-is.
+        IMPORTANT: Your response should only include the function definition and code solution in plain text format (no backticks, code blocks, or additional formatting).
+        Do not explain your solution or provide any additional information other than the code.
+        Here's the problem description, restraints, examples, and code:\n
+        ${codeText}`
         if (infoMessage) infoMessage.textContent = 'Getting solution code ...';
 
         if (fixCodeContainer) fixCodeContainer.classList.remove('hidden');

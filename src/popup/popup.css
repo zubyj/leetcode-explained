@@ -205,6 +205,7 @@ a {
 
 #analyze-code-response {
     white-space: pre-wrap;
+    letter-spacing: 1px;
 }
 
 #fix-code-container {

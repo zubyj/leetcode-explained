@@ -36,8 +36,7 @@
 
 /* Display size variations */
 .small-display {
-    width: 500px;
-    height: 600px;
+    width: 350px;
     --base-font-size: 12px;
     --button-height: 40px;
     --button-width: 170px;
@@ -45,8 +44,7 @@
 }
 
 .medium-display {
-    width: 600px;
-    height: 700px;
+    width: 550px;
     --base-font-size: 14px;
     --button-height: 45px;
     --button-width: 190px;
@@ -57,7 +55,8 @@
 
 .large-display {
     width: 700px;
-    height: 800px;
+    min-height: auto;
+    max-height: 1500px;
     --base-font-size: 16px;
     --button-height: 50px; 
     --button-width: 210px;
@@ -68,7 +67,7 @@
 
 /* Base styles */
 body {
-    min-width: 400px;
+    min-width: 500px;
     margin: 0;
     padding: 0;
     font-family: 'Roboto', -apple-system, sans-serif;
@@ -193,14 +192,12 @@ a {
 }
 
 .response-container {
-    width: 100%;
     background-color: var(--code-bg-color);
     color: var(--text-color);
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     padding: var(--spacing);
     margin-bottom: var(--spacing);
-    max-height: 500px;
     overflow-y: auto;
     box-sizing: border-box;
     font-size: var(--base-font-size);

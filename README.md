@@ -1,85 +1,97 @@
-# Leetcode Explained 
+# Leetcode Explained
+
 ![Downloads](https://img.shields.io/chrome-web-store/users/cofoinjfjcpgcjiinjhcpomcjoalijbe)
 ![Rating](https://img.shields.io/chrome-web-store/rating/cofoinjfjcpgcjiinjhcpomcjoalijbe)
-![Version](https://img.shields.io/chrome-web-store/v/cofoinjfjcpgcjiinjhcpomcjoalijbe) 
+![Version](https://img.shields.io/chrome-web-store/v/cofoinjfjcpgcjiinjhcpomcjoalijbe)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A free, open source browser extension that enhances Leetcode problems with code solutions, video explanations, and GPT code analysis.
+**Enhance Leetcode with AI-generated solutions, video explanations, and smart features.**  
+100% free and open source.
 
 [<img src="https://user-images.githubusercontent.com/3750161/214147732-c75e96a4-48a4-4b64-b407-c2402e899a75.PNG" height="40" alt="Chrome">](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
 [<img src="https://user-images.githubusercontent.com/3750161/214148610-acdef778-753e-470e-8765-6cc97bca85ed.png" height="40" alt="Firefox">](https://addons.mozilla.org/en-US/firefox/addon/leetcode-explained/)
-[<img src="https://user-images.githubusercontent.com/3750161/233201810-d1026855-0482-44c8-b1ec-c7247134473e.png" height="40" alt="Chrome">](https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe)
-### Features
 
-1️⃣ Solution videos: Adds the top 5 youtube solution videos into each [problem](https://leetcode.com/problems/two-sum/solutions)
+---
 
-2️⃣ Complexity Analysis
-Reads your code and gets the time & space complexity using GPT
+## 🚀 Key Features
 
-3️⃣ Code Generation
-Reads your code, fixes bugs, and generates the optimal solution code for the given problem using GPT. For more accurate results, open the description tab so GPT can read the problem's description and constraints.
+- **Code Solutions**  
+  Ready-to-use solutions in Python, Java, C++, and JavaScript.
 
-4️⃣ Elo ratings
-Adds difficulty ratings into weekly/biweekly contest problems (~1500 added)
+- **Video Explanations**  
+  Top 5 YouTube videos from popular coding channels.
 
-5️⃣ Hard Mode
-Hide the Leetcode problem examples to simulate a real coding interview environment. Available through the extension's settings.
+- **Company Tags**  
+  See which companies frequently ask each question.
 
-### ⚙️ Installation
+- **AI Assistant**
 
+  - Generate optimized solutions using problem description and examples
+  - Get time & space complexity analysis of your code
+  - Powered by Amazon's Nova Micro v1 (better model coming soon!)
+  - No API key required
 
-1. ``` git clone https://github.com/zubyj/leetcode-explained.git ```
-2. ``` cd leetcode-explained ```
-3. ``` npm install && tsc```
-4. Open Google Chrome and navigate to ```chrome://extensions``` in the search bar.
-5. Enable "Developer mode" (top right corner).
-6. Click on "Load unpacked" and navigate to the extension directory, then click "Select".
-7. Pin the extension. You should now see the extension icon next to the address bar.
+- **Interview Mode**  
+  Hide examples and difficulty to simulate real interviews.
 
-Now you can test the latest dev version and contribute new features! After you make changes, remember to run tsc to compile the TS files into javascript.
-### 📚 Tutorial
+- **Problem Ratings**
+  - Numerical difficulty scores (1000–3000) for ~25% of problems
+  - Auto theme matching with Leetcode's light/dark mode
 
-For solution videos open a Leetcode problem's
-[solutions tab](https://leetcode.com/problems/two-sum/solutions)
+---
 
- If you pin the extension in the toolbar & login into ChatGPT in your browser, you can use the following 2 GPT buttons:
+## ⚙️ Installation (Developer Mode)
 
-- Get your code complexity using ChatGPT
-- Fix bugs in your code and return the optimal solution
+1. Clone the repo
+   ```bash
+   git clone https://github.com/zubyj/leetcode-explained.git
+   cd leetcode-explained
+   npm install && tsc
+   ```
+2. Open Chrome and go to `chrome://extensions`
+3. Enable "Developer mode"
+4. Click "Load unpacked" and select the extension folder
+5. Pin the extension to your toolbar
 
-Please ensure your Leetcode solution is open so the extension can read your code from the page.
+Now you're ready to test features and contribute!
 
-### Contributing
+## 🧠 How to Use
 
-We welcome contributions! Please see the [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details on how to contribute to the project.
+1. Open any Leetcode problem
+2. Go to the Description or Solutions tab to see:
 
-### Screenshots
+   - Code solutions + videos
+   - Company tags
+   - Problem ratings
 
-<img src="src/assets/images/screenshots/add-video.png" alt="Add Video" width="600"/>
+3. For AI features (requires pinned extension):
+   - Click "Analyze Code" for time/space complexity
+   - Click "Fix Code" for AI-generated solutions
+
+## 🤝 Contributing
+
+We welcome contributions! See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines.
+
+## 🔐 Privacy
+
+- All data stored locally in your browser
+- No personal data collection
+
+## 📬 Support
+
+- Email: zubydevelops@gmail.com
+- GitHub: github.com/zubyj/leetcode-explained
+
+## 📄 License
+
+Licensed under the MIT License.
+
+## 📚 References
+
+[Problem Elo Ratings](https://github.com/zerotrac/leetcode_problem_rating)
+
+## 📸 Screenshots
+
+<img src="src/assets/images/screenshots/add-video.png" alt="Video Explanations" width="600"/>
 <img src="src/assets/images/screenshots/get-complexity.png" alt="Code Complexity" width="600"/>
 <img src="src/assets/images/screenshots/fix-code.png" alt="Fix Code" width="600"/>
-
-
-### Code of Conduct
-
-We aim to foster an inclusive and respectful environment. Please read the [CODE_OF_CONDUCT.md](docs/CODE_OF_CONDUCT.md) for more information.
-
-### License
-
-Leetcode Explained is [MIT licensed](docs/LICENSE).
-
-### Support
-
-If you encounter any issues or have any questions, please open an issue on this repository.
-
-### Privacy
-
-This extension doesn't collect any personal data. All the code analysis and generation happens on your local machine.
-
-If you like the extension, please leave a review in the Reviews tab. For questions or bugs, feel free to open an issue on Github.
-
-### References
-
-Check out these cool datasets used in Leetcode Explained
-
-[Problem elo ratings](https://github.com/zerotrac/leetcode_problem_rating) 

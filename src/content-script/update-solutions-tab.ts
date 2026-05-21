@@ -1,5 +1,54 @@
 const VIDEO_ASPECT_RATIO = 56.25; // 16:9 aspect ratio
 
+// Module-scope singletons for long-lived observers/listeners.
+// Each must be disconnected/removed before being re-created. Previously these were
+// recreated on every problem switch (and in createStyledButton, on every button!),
+// so storage listeners and observers piled up forever and kept detached buttons alive.
+let solutionsThemeBodyObserver: MutationObserver | null = null;
+let solutionsThemeStorageListener: ((changes: { [k: string]: chrome.storage.StorageChange }) => void) | null = null;
+let navButtonsStorageListener: ((changes: { [k: string]: chrome.storage.StorageChange }) => void) | null = null;
+let urlChangeObserver: MutationObserver | null = null;
+let pendingInitialize: number | null = null;
+
+// Single listener that restyles all .nav-button elements on theme change.
+// Replaces a per-button chrome.storage.onChanged listener that leaked one entry
+// per button created (multiple per problem switch).
+function ensureNavButtonsStorageListener() {
+    if (navButtonsStorageListener) return;
+    navButtonsStorageListener = (changes) => {
+        if (!changes.isDarkTheme) return;
+        const isDark: boolean = changes.isDarkTheme.newValue;
+        document.querySelectorAll<HTMLButtonElement>('.nav-button').forEach((btn) => {
+            applyNavButtonTheme(btn, isDark, btn.classList.contains('active'));
+        });
+    };
+    chrome.storage.onChanged.addListener(navButtonsStorageListener);
+}
+
+function applyNavButtonTheme(button: HTMLButtonElement, isDark: boolean, isActive: boolean) {
+    const lightTheme = {
+        base: '#f3f4f5', active: '#e0e0e0', hover: '#e6e6e6',
+        border: 'rgba(0, 0, 0, 0.15)', activeBorder: '#f3f4f5',
+        hoverBorder: 'rgba(0, 0, 0, 0.25)', text: '#2d2d2d',
+    };
+    const darkTheme = {
+        base: '#2d2d2d', active: '#404040', hover: '#3d3d3d',
+        border: 'rgba(255, 255, 255, 0.15)', activeBorder: '#2d2d2d',
+        hoverBorder: 'rgba(255, 255, 255, 0.25)', text: '#e6e6e6',
+    };
+    const theme = isDark ? darkTheme : lightTheme;
+    button.style.backgroundColor = isActive ? theme.active : theme.base;
+    button.style.color = theme.text;
+    button.style.border = `1px solid ${isActive ? theme.activeBorder : theme.border}`;
+    button.style.boxShadow = isActive ? `0 0 0 1px ${theme.activeBorder}` : 'none';
+    button.dataset.hoverBg = theme.hover;
+    button.dataset.hoverBorder = theme.hoverBorder;
+    button.dataset.baseBg = theme.base;
+    button.dataset.baseBorder = theme.border;
+    button.dataset.activeBg = theme.active;
+    button.dataset.activeBorder = theme.activeBorder;
+}
+
 // Create a wrapper for all our custom content
 function createCustomContentWrapper() {
     const wrapper = createStyledElement('div', {
@@ -20,85 +69,25 @@ function createStyledButton(text: string, isActive: boolean = false): HTMLButton
     button.classList.add('nav-button');
     if (isActive) button.classList.add('active');
 
-    const updateButtonStyles = (isDark: boolean, isButtonActive: boolean) => {
-        // Light theme colors
-        const lightTheme = {
-            base: '#f3f4f5',
-            active: '#e0e0e0',
-            hover: '#e6e6e6',
-            border: 'rgba(0, 0, 0, 0.15)',
-            activeBorder: '#f3f4f5',
-            hoverBorder: 'rgba(0, 0, 0, 0.25)',
-            text: '#2d2d2d'
-        };
-
-        // Dark theme colors
-        const darkTheme = {
-            base: '#2d2d2d',
-            active: '#404040',
-            hover: '#3d3d3d',
-            border: 'rgba(255, 255, 255, 0.15)',
-            activeBorder: '#2d2d2d',
-            hoverBorder: 'rgba(255, 255, 255, 0.25)',
-            text: '#e6e6e6'
-        };
-
-        const theme = isDark ? darkTheme : lightTheme;
-
-        button.style.backgroundColor = isButtonActive ? theme.active : theme.base;
-        button.style.color = theme.text;
-        button.style.border = `1px solid ${isButtonActive ? theme.activeBorder : theme.border}`;
-        button.style.boxShadow = isButtonActive ? `0 0 0 1px ${theme.activeBorder}` : 'none';
-
-        // Remove existing listeners
-        const oldMouseEnter = button.onmouseenter;
-        const oldMouseLeave = button.onmouseleave;
-        if (oldMouseEnter) button.removeEventListener('mouseenter', oldMouseEnter);
-        if (oldMouseLeave) button.removeEventListener('mouseleave', oldMouseLeave);
-
-        // Add new theme-aware listeners
-        button.addEventListener('mouseenter', () => {
-            if (!button.classList.contains('active')) {
-                button.style.backgroundColor = theme.hover;
-                button.style.borderColor = theme.hoverBorder;
-            }
-        });
-
-        button.addEventListener('mouseleave', () => {
-            if (!button.classList.contains('active')) {
-                button.style.backgroundColor = theme.base;
-                button.style.borderColor = theme.border;
-            } else {
-                button.style.backgroundColor = theme.active;
-                button.style.borderColor = theme.activeBorder;
-            }
-        });
-    };
-
-    // Initial style setup
     chrome.storage.local.get(['isDarkTheme'], (result) => {
-        updateButtonStyles(result.isDarkTheme, isActive);
+        applyNavButtonTheme(button, !!result.isDarkTheme, isActive);
     });
 
-    // Listen for theme changes
-    chrome.storage.onChanged.addListener((changes) => {
-        if (changes.isDarkTheme) {
-            updateButtonStyles(changes.isDarkTheme.newValue, button.classList.contains('active'));
+    // Hover handlers read theme values from data-* attrs set by applyNavButtonTheme,
+    // so they stay correct after a theme change without re-attaching listeners.
+    button.addEventListener('mouseenter', () => {
+        if (!button.classList.contains('active')) {
+            button.style.backgroundColor = button.dataset.hoverBg || '';
+            button.style.borderColor = button.dataset.hoverBorder || '';
         }
     });
-
-    // Update styles when active state changes
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                chrome.storage.local.get(['isDarkTheme'], (result) => {
-                    updateButtonStyles(result.isDarkTheme, button.classList.contains('active'));
-                });
-            }
-        });
+    button.addEventListener('mouseleave', () => {
+        const active = button.classList.contains('active');
+        button.style.backgroundColor = (active ? button.dataset.activeBg : button.dataset.baseBg) || '';
+        button.style.borderColor = (active ? button.dataset.activeBorder : button.dataset.baseBorder) || '';
     });
 
-    observer.observe(button, { attributes: true });
+    ensureNavButtonsStorageListener();
 
     button.style.width = '120px';
     button.style.padding = '4px 8px';
@@ -108,8 +97,19 @@ function createStyledButton(text: string, isActive: boolean = false): HTMLButton
     button.style.transition = 'all 0.2s ease';
     button.style.letterSpacing = '0.5px';
     button.style.cursor = 'pointer';
-    
+
     return button;
+}
+
+// Called from showContent() so we don't need a per-button MutationObserver to
+// react to .active class changes.
+function refreshNavButtonStyles() {
+    chrome.storage.local.get(['isDarkTheme'], (result) => {
+        const isDark = !!result.isDarkTheme;
+        document.querySelectorAll<HTMLButtonElement>('.nav-button').forEach((btn) => {
+            applyNavButtonTheme(btn, isDark, btn.classList.contains('active'));
+        });
+    });
 }
 
 // Function to create the video container
@@ -312,6 +312,7 @@ function showContent(type: 'Discussion' | 'Video' | 'Code') {
             button.classList.remove('active');
         }
     });
+    refreshNavButtonStyles();
 
     // Show/hide the discussion section
     const discussionSection = document.querySelector('.discuss-markdown') as HTMLElement;
@@ -574,23 +575,26 @@ function updateThemeForElement(element: HTMLElement, isDark: boolean) {
 }
 
 function setupThemeChangeListener() {
-    // Listen for our extension's theme changes
-    chrome.storage.onChanged.addListener((changes) => {
-        if (changes.isDarkTheme) {
-            const isDark = changes.isDarkTheme.newValue;
-            updateAllElements(isDark);
-        }
-    });
+    if (solutionsThemeStorageListener) {
+        chrome.storage.onChanged.removeListener(solutionsThemeStorageListener);
+    }
+    if (solutionsThemeBodyObserver) {
+        solutionsThemeBodyObserver.disconnect();
+    }
 
-    // Listen for LeetCode's theme changes
-    const observer = new MutationObserver((mutations) => {
+    solutionsThemeStorageListener = (changes) => {
+        if (changes.isDarkTheme) {
+            updateAllElements(changes.isDarkTheme.newValue);
+        }
+    };
+    chrome.storage.onChanged.addListener(solutionsThemeStorageListener);
+
+    solutionsThemeBodyObserver = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             if (mutation.target instanceof HTMLElement && mutation.target.tagName === 'BODY') {
                 chrome.storage.local.get(['themeMode'], (result) => {
-                    // Only sync theme if in auto mode
                     if (result.themeMode === 'auto') {
                         const isDark = document.body.classList.contains('dark');
-                        // Update our extension's theme setting
                         chrome.storage.local.set({ isDarkTheme: isDark });
                         updateAllElements(isDark);
                     }
@@ -599,8 +603,7 @@ function setupThemeChangeListener() {
         });
     });
 
-    // Start observing the body element for class changes
-    observer.observe(document.body, {
+    solutionsThemeBodyObserver.observe(document.body, {
         attributes: true,
         attributeFilter: ['class']
     });
@@ -793,24 +796,34 @@ function initializeSolutionsTab() {
     // Set up page refresh detection using both URL and history state changes
     let lastUrl = location.href;
     let lastState = history.state;
-    
-    const observer = new MutationObserver(() => {
+
+    if (urlChangeObserver) {
+        urlChangeObserver.disconnect();
+    }
+
+    urlChangeObserver = new MutationObserver(() => {
         const currentUrl = location.href;
         const currentState = history.state;
-        
-        // Check if this is a real navigation or just a tab switch
+
         if (currentUrl !== lastUrl || JSON.stringify(currentState) !== JSON.stringify(lastState)) {
             lastUrl = currentUrl;
             lastState = currentState;
-            
+
             if (currentUrl.includes('/solutions')) {
-                initialize();
+                // Coalesce: this observer fires for every DOM mutation, so without
+                // debouncing we'd call initialize() dozens of times per navigation.
+                if (pendingInitialize !== null) {
+                    clearTimeout(pendingInitialize);
+                }
+                pendingInitialize = window.setTimeout(() => {
+                    pendingInitialize = null;
+                    initialize();
+                }, 100);
             }
         }
     });
 
-    // Start observing URL changes
-    observer.observe(document, { subtree: true, childList: true });
+    urlChangeObserver.observe(document, { subtree: true, childList: true });
 
     // Initial load
     if (document.readyState === 'loading') {

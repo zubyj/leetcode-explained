@@ -1,3 +1,12 @@
+// Module-scope singletons for long-lived observers/listeners.
+// Each must be disconnected/removed before being re-created, otherwise they pile
+// up on every problem change and document.body mutation and leak indefinitely.
+let themeChangeObserver: MutationObserver | null = null;
+let descriptionThemeBodyObserver: MutationObserver | null = null;
+let descriptionThemeStorageListener: ((changes: { [k: string]: chrome.storage.StorageChange }) => void) | null = null;
+let pageContentObserver: MutationObserver | null = null;
+let pendingPageContentUpdate: number | null = null;
+
 // shows the examples if the user has enabled it in the settings
 function showExamples() {
     // Check if we're on the description tab before proceeding
@@ -61,22 +70,23 @@ function observeThemeChanges() {
         }
         
         const htmlElement = document.documentElement;
-        
-        // Create a new observer
-        const observer = new MutationObserver((mutations) => {
+
+        if (themeChangeObserver) {
+            themeChangeObserver.disconnect();
+        }
+
+        themeChangeObserver = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.attributeName === 'class') {
                     const leetcodeTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
-                    chrome.storage.local.set({ 
+                    chrome.storage.local.set({
                         isDarkTheme: leetcodeTheme === 'dark'
                     });
-                    //console.log(`Theme changed to: ${leetcodeTheme}`);
                 }
             });
         });
-        
-        // Start observing
-        observer.observe(htmlElement, {
+
+        themeChangeObserver.observe(htmlElement, {
             attributes: true,
             attributeFilter: ['class']
         });
@@ -332,15 +342,19 @@ function updateThemeForCompanyTags(isDark: boolean) {
 }
 
 function setupDescriptionThemeListener() {
-    // Listen for LeetCode's theme changes
-    const observer = new MutationObserver((mutations) => {
+    if (descriptionThemeBodyObserver) {
+        descriptionThemeBodyObserver.disconnect();
+    }
+    if (descriptionThemeStorageListener) {
+        chrome.storage.onChanged.removeListener(descriptionThemeStorageListener);
+    }
+
+    descriptionThemeBodyObserver = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             if (mutation.target instanceof HTMLElement && mutation.target.tagName === 'BODY') {
                 chrome.storage.local.get(['themeMode'], (result) => {
-                    // Only sync theme if in auto mode
                     if (result.themeMode === 'auto') {
                         const isDark = document.body.classList.contains('dark');
-                        // Update our extension's theme setting
                         chrome.storage.local.set({ isDarkTheme: isDark });
                         updateThemeForCompanyTags(isDark);
                     }
@@ -349,18 +363,17 @@ function setupDescriptionThemeListener() {
         });
     });
 
-    // Start observing the body element for class changes
-    observer.observe(document.body, {
+    descriptionThemeBodyObserver.observe(document.body, {
         attributes: true,
         attributeFilter: ['class']
     });
 
-    // Also listen for our extension's theme changes
-    chrome.storage.onChanged.addListener((changes) => {
+    descriptionThemeStorageListener = (changes) => {
         if (changes.isDarkTheme) {
             updateThemeForCompanyTags(changes.isDarkTheme.newValue);
         }
-    });
+    };
+    chrome.storage.onChanged.addListener(descriptionThemeStorageListener);
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -377,15 +390,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             return true;
         }
 
-        // console.log('Updating description tab...');
         detectAndSyncTheme();
         showExamples();
         showCompanyTags(request.title.split('-')[0].trim());
         showDifficulty();
         showRating(request.title.split('-')[0].trim());
-
-        // Add theme change listener after creating company tags
-        setupDescriptionThemeListener();
     } else if (request.action === 'getTheme') {
         // Return the current LeetCode theme
         const htmlElement = document.documentElement;
@@ -429,36 +438,46 @@ function initializeDescriptionTab() {
 
         window.addEventListener('popstate', handleUrlChange);
 
-        // Set up a MutationObserver to detect tab and content changes
-        const observer = new MutationObserver((mutations) => {
+        if (pageContentObserver) {
+            pageContentObserver.disconnect();
+        }
+
+        pageContentObserver = new MutationObserver((mutations) => {
             let shouldUpdate = false;
-            
-            mutations.forEach((mutation) => {
-                // Check for tab changes
+
+            for (const mutation of mutations) {
                 if (mutation.target instanceof HTMLElement) {
                     const isTabChange = mutation.target.getAttribute('role') === 'tab' ||
                                       mutation.target.closest('[role="tab"]');
                     if (isTabChange) {
                         shouldUpdate = true;
+                        break;
                     }
                 }
-                
-                // Check for content changes in the main container
-                if (mutation.type === 'childList' && 
-                    ((mutation.target instanceof HTMLElement && mutation.target.classList?.contains('elfjS')) || 
+
+                if (mutation.type === 'childList' &&
+                    ((mutation.target instanceof HTMLElement && mutation.target.classList?.contains('elfjS')) ||
                      mutation.addedNodes.length > 0)) {
                     shouldUpdate = true;
+                    break;
                 }
-            });
+            }
 
             if (shouldUpdate) {
-                // Small delay to ensure DOM is fully updated
-                setTimeout(updatePageContent, 100);
+                // Coalesce: a single React render fires many mutations, but we only need
+                // to run updatePageContent once. Without this, hundreds of pending timers
+                // would queue up per second on a noisy LeetCode page.
+                if (pendingPageContentUpdate !== null) {
+                    clearTimeout(pendingPageContentUpdate);
+                }
+                pendingPageContentUpdate = window.setTimeout(() => {
+                    pendingPageContentUpdate = null;
+                    updatePageContent();
+                }, 100);
             }
         });
-        
-        // Observe both the tab container and the main content area
-        observer.observe(document.body, {
+
+        pageContentObserver.observe(document.body, {
             childList: true,
             subtree: true,
             attributes: true,

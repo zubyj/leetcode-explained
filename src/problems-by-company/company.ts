@@ -20,7 +20,7 @@ interface Question {
     acceptance?: number;
 }
 
-const FEATURED_COMPANIES = ['Amazon', 'Apple', 'Facebook', 'Google', 'Microsoft'];
+const FEATURED_COMPANIES = ['Amazon', 'Apple', 'Meta', 'Google', 'Microsoft'];
 
 const solutions: Solution[] = [];
 let companyName = 'Amazon';

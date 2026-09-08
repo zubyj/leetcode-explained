@@ -35,9 +35,11 @@ class FallbackProvider implements AIProvider {
         onEvent: (arg: { type: string; data?: { text: string } }) => void;
     }): Promise<void> {
         if (!(await this.primaryAvailable())) {
+            params.onEvent({ type: 'provider', data: { text: 'fallback' } });
             await this.fallback.generateAnswer(params);
             return;
         }
+        params.onEvent({ type: 'provider', data: { text: 'chatgpt' } });
 
         let primaryEmittedAnswer = false;
         try {
@@ -54,6 +56,7 @@ class FallbackProvider implements AIProvider {
         } catch (primaryErr) {
             if (primaryEmittedAnswer) throw primaryErr;
             console.warn('ChatGPT relay failed, falling back:', primaryErr);
+            params.onEvent({ type: 'provider', data: { text: 'fallback' } });
             await this.fallback.generateAnswer(params);
         }
     }
@@ -67,7 +70,9 @@ class FallbackProvider implements AIProvider {
 
 const homeView = document.getElementById('home-view') as HTMLElement;
 const settingsView = document.getElementById('settings-view') as HTMLElement;
-const infoMessage = document.getElementById('info-message') as HTMLElement;
+const problemTitleEl = document.getElementById('problem-title') as HTMLElement;
+const contextDot = document.getElementById('context-dot') as HTMLElement;
+const statusLine = document.getElementById('status') as HTMLElement;
 const analyzeResponse = document.getElementById('analyze-code-response') as HTMLElement;
 const fixCodeContainer = document.getElementById('fix-code-container') as HTMLElement;
 const fixCodeResponse = document.getElementById('fix-code-response') as HTMLElement;
@@ -81,14 +86,26 @@ function setButtonsDisabled(disabled: boolean) {
     complexityButton.disabled = disabled;
 }
 
-function setInfoMessage(message: string, durationMs: number, isError = false) {
-    const previous = infoMessage.textContent;
-    infoMessage.textContent = message;
-    infoMessage.classList.toggle('error', isError);
-    setTimeout(() => {
-        infoMessage.textContent = previous;
-        infoMessage.classList.remove('error');
-    }, durationMs);
+const PROVIDER_LABELS: Record<string, [string, string]> = {
+    chatgpt: ['via your ChatGPT account', 'Answered by chatgpt.com using your logged-in session.'],
+    fallback: ['via free hosted model', 'ChatGPT was unavailable (off in settings, or not logged in), so a free hosted model answered instead.'],
+};
+
+let statusTimer: number | null = null;
+
+function setStatus(message: string, state: 'busy' | 'done' | 'error', tooltip = '', clearAfterMs = 0) {
+    if (statusTimer !== null) clearTimeout(statusTimer);
+    statusLine.textContent = message;
+    statusLine.title = tooltip;
+    statusLine.className = `status ${state}`;
+    if (clearAfterMs) {
+        statusTimer = window.setTimeout(() => statusLine.classList.add('hidden'), clearAfterMs);
+    }
+}
+
+function clearStatus() {
+    if (statusTimer !== null) clearTimeout(statusTimer);
+    statusLine.classList.add('hidden');
 }
 
 function clearResponses() {
@@ -161,21 +178,26 @@ function runAction(provider: AIProvider, action: Action, codeText: string[]) {
     clearResponses();
 
     if (action === 'analyze') {
-        infoMessage.textContent = 'Analyzing code complexity ...';
+        setStatus('Analyzing complexity', 'busy');
         analyzeResponse.classList.remove('hidden');
     } else {
-        infoMessage.textContent = 'Getting solution code ...';
+        setStatus('Writing solution', 'busy');
         fixCodeContainer.classList.remove('hidden');
     }
 
     let response = '';
+    let answeredBy = 'fallback';
     Promise.race([
         provider.generateAnswer({
             prompt: buildPrompt(action, codeText),
             action,
             onEvent: (event) => {
+                if (event.type === 'provider' && event.data) {
+                    answeredBy = event.data.text;
+                    return;
+                }
                 if (event.type === 'error' && event.data) {
-                    setInfoMessage(event.data.text, 5000, true);
+                    setStatus(event.data.text, 'error');
                     setButtonsDisabled(false);
                     return;
                 }
@@ -191,7 +213,8 @@ function runAction(provider: AIProvider, action: Action, codeText: string[]) {
                 }
                 if (event.type === 'done') {
                     setButtonsDisabled(false);
-                    infoMessage.textContent = problemTitle;
+                    const [label, tooltip] = PROVIDER_LABELS[answeredBy] || PROVIDER_LABELS.fallback;
+                    setStatus(`Done, ${label}`, 'done', tooltip);
                     chrome.storage.local.set({ lastAction: action });
                     if (action === 'fix') {
                         chrome.storage.local.set({ fixCodeResponse: fixCodeResponse.textContent });
@@ -204,7 +227,7 @@ function runAction(provider: AIProvider, action: Action, codeText: string[]) {
         }),
         timeout(150000),
     ]).catch((error) => {
-        setInfoMessage(error.message, 5000, true);
+        setStatus(error.message, 'error');
         setButtonsDisabled(false);
     });
 }
@@ -215,7 +238,7 @@ function initActionButton(button: HTMLButtonElement, action: Action, provider: A
         if (codeText) {
             runAction(provider, action, codeText);
         } else {
-            setInfoMessage('Cannot read from page. Please open a Leetcode problem and refresh the page.', 5000, true);
+            setStatus('Cannot read the page. Open a LeetCode problem and refresh it.', 'error');
         }
     };
 }
@@ -329,8 +352,12 @@ async function main() {
         const tab = tabs[0];
         if (tab?.url?.includes('leetcode.com/problems') && tab.title) {
             problemTitle = tab.title.split('-')[0].trim();
-            infoMessage.textContent = problemTitle;
+            problemTitleEl.textContent = problemTitle;
+            problemTitleEl.classList.remove('empty');
+            contextDot.classList.add('live');
             chrome.storage.local.set({ currentLeetCodeProblemTitle: tab.title });
+        } else {
+            problemTitleEl.classList.add('empty');
         }
     });
 
@@ -342,14 +369,14 @@ async function main() {
     copyButton.onclick = async () => {
         if (fixCodeResponse.textContent) {
             await navigator.clipboard.writeText(fixCodeResponse.textContent);
-            setInfoMessage('Copied code', 1000);
+            setStatus('Copied to clipboard', 'done', '', 1500);
         }
     };
 
     const clearButton = document.getElementById('clear-code-btn') as HTMLButtonElement;
     clearButton.onclick = () => {
         clearResponses();
-        setInfoMessage('Cleared response', 1500);
+        clearStatus();
     };
 }
 

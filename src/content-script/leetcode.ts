@@ -253,14 +253,17 @@ async function buildExplainedPanel(title: string): Promise<HTMLElement> {
     }
 
     if (problem.companies?.length) {
-        panel.appendChild(buildPanelSection('Asked by', buildCompanyRow(problem.companies)));
+        panel.appendChild(buildPanelSection('Asked by', buildCompanyRow(problem.companies),
+            'Companies reported to ask this problem in interviews. Frequency data was collected in 2023, so it may be outdated. Click a company for its most-asked problems.'));
     }
     if (hasVideos) {
-        panel.appendChild(buildPanelSection('Video explanations', buildVideoSection(problem.videos as LceVideo[])));
+        panel.appendChild(buildPanelSection('Video explanations', buildVideoSection(problem.videos as LceVideo[]),
+            'The most popular YouTube walkthroughs for this problem, up to five per problem, from channels like NeetCode. Use the arrows to switch creators.'));
     }
     if (hasCode) {
         const code = buildCodeSection(problem);
-        panel.appendChild(buildPanelSection('Solution code', code));
+        panel.appendChild(buildPanelSection('Solution code', code,
+            'Reference solutions fetched live from the open-source NeetCode GitHub repo, in the languages it has for this problem.'));
         const preferred = code.querySelector(`.lce-chip[data-language="${editorLanguage()}"]`) || code.querySelector('.lce-chip');
         (preferred as HTMLButtonElement | null)?.click();
     }
@@ -279,12 +282,17 @@ function editorLanguage(): string {
     return '';
 }
 
-function buildPanelSection(heading: string, body: HTMLElement): HTMLElement {
+function buildPanelSection(heading: string, body: HTMLElement, tooltip: string): HTMLElement {
     const section = document.createElement('section');
     section.classList.add('lce-panel-section');
     const h = document.createElement('h3');
     h.classList.add('lce-panel-heading');
     h.textContent = heading;
+    const info = document.createElement('span');
+    info.classList.add('lce-info');
+    info.textContent = 'i';
+    info.title = tooltip;
+    h.appendChild(info);
     section.append(h, body);
     return section;
 }
@@ -317,7 +325,10 @@ function buildVideoSection(videos: LceVideo[]): HTMLElement {
 
     const channel = document.createElement('div');
     channel.classList.add('lce-channel');
-    channel.textContent = videos[0].channel;
+    const channelName = document.createElement('span');
+    const channelCount = document.createElement('span');
+    channelCount.classList.add('lce-channel-count');
+    channel.append(channelName, channelCount);
 
     const frame = document.createElement('div');
     frame.classList.add('lce-video-frame');
@@ -329,20 +340,27 @@ function buildVideoSection(videos: LceVideo[]): HTMLElement {
     const showVideo = (i: number) => {
         index = (i + videos.length) % videos.length;
         iframe.src = videos[index].embedded_url;
-        channel.textContent = videos[index].channel;
+        channelName.textContent = videos[index].channel;
+        channelCount.textContent = `${index + 1} / ${videos.length}`;
     };
 
-    const prev = document.createElement('button');
-    prev.textContent = '←';
+    const prev = arrowButton('M15 6l-6 6 6 6', 'Previous video');
     prev.onclick = () => showVideo(index - 1);
-    const next = document.createElement('button');
-    next.textContent = '→';
+    const next = arrowButton('M9 6l6 6-6 6', 'Next video');
     next.onclick = () => showVideo(index + 1);
 
     controls.append(prev, channel, next);
     section.append(controls, frame);
     showVideo(0);
     return section;
+}
+
+function arrowButton(path: string, label: string): HTMLButtonElement {
+    const button = document.createElement('button');
+    button.title = label;
+    button.setAttribute('aria-label', label);
+    button.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="${path}"/></svg>`;
+    return button;
 }
 
 function buildCodeSection(problem: LceProblem): HTMLElement {

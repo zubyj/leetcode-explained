@@ -50,6 +50,15 @@ h1 {
     letter-spacing: 0.3px;
 }
 
+.subtitle {
+    max-width: 560px;
+    margin: -6px 0 0;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
 .search {
     width: 280px;
     padding: 8px 14px;

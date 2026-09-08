@@ -14,69 +14,97 @@
     <header class="header">
         <div class="brand">
             <img src="../assets/images/logo/icon-32.png" alt="" class="brand-icon">
-            <span class="brand-name">Leetcode Explained</span>
+            <span class="brand-name">Leetcode <em>Explained</em></span>
         </div>
-        <button id="settings-toggle" class="icon-button" title="Settings">⚙</button>
+        <button id="settings-toggle" class="icon-button" title="Settings" aria-label="Settings">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+        </button>
     </header>
 
     <main id="home-view" class="view">
-        <p id="info-message" class="info-message">
-            Open a <a href="https://leetcode.com/problems/two-sum/" target="_blank">Leetcode problem</a> to get started
-        </p>
+        <div class="context">
+            <span id="context-dot" class="context-dot"></span>
+            <div class="context-text">
+                <span class="context-label">Current problem</span>
+                <span id="problem-title" class="context-title">Open a <a href="https://leetcode.com/problems/two-sum/" target="_blank">LeetCode problem</a> to get started</span>
+            </div>
+        </div>
 
         <div class="action-row">
-            <button id="fix-code-btn" class="action-button">
-                <img src="../assets/images/solution-icon.png" class="action-icon" alt="">
-                Solution Code
+            <button id="fix-code-btn" class="action-button primary">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4z"/><path d="M5 17l.8 2 2 .8-2 .8L5 22.5l-.8-2-2-.8 2-.8z"/></svg>
+                Solution code
             </button>
             <button id="get-complexity-btn" class="action-button">
-                <img src="../assets/images/code-icon.png" class="action-icon" alt="">
-                Code Complexity
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 6-8 3 3"/></svg>
+                Complexity
             </button>
         </div>
 
-        <div class="response-area">
-            <div id="analyze-code-response" class="response-container hidden"></div>
-            <pre id="fix-code-container" class="response-container code-response hidden"><div class="code-toolbar"><button id="copy-code-btn" class="icon-button" title="Copy code"><img src="../assets/images/copy-icon.png" alt="Copy"></button><button id="clear-code-btn" class="icon-button" title="Clear response"><img src="../assets/images/clear-icon.png" alt="Clear"></button></div><code id="fix-code-response" class="language-python"></code></pre>
-        </div>
+        <p id="status" class="status hidden"></p>
+
+        <section id="analyze-code-response" class="card callout hidden"></section>
+
+        <section id="fix-code-container" class="card hidden">
+            <div class="card-header">
+                <span class="card-title">Solution</span>
+                <div class="card-tools">
+                    <button id="copy-code-btn" class="icon-button" title="Copy code" aria-label="Copy code">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+                    </button>
+                    <button id="clear-code-btn" class="icon-button" title="Clear" aria-label="Clear">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>
+                    </button>
+                </div>
+            </div>
+            <pre class="code"><code id="fix-code-response" class="language-python"></code></pre>
+        </section>
     </main>
 
     <main id="settings-view" class="view hidden">
+        <h2 class="group-label">Display</h2>
         <div class="settings-row">
-            <label for="font-size-select">Display size</label>
+            <label for="font-size-select">Size</label>
             <select id="font-size-select" class="select">
-                <option value="12">Small</option>
-                <option value="14">Medium</option>
+                <option value="12">Compact</option>
+                <option value="14">Comfortable</option>
                 <option value="16">Large</option>
             </select>
         </div>
         <div class="settings-row">
             <label for="theme-select">Theme</label>
             <select id="theme-select" class="select">
-                <option value="auto">Auto</option>
+                <option value="auto">Match LeetCode</option>
                 <option value="dark">Dark</option>
                 <option value="light">Light</option>
             </select>
         </div>
-        <div class="settings-row toggle-row">
+
+        <h2 class="group-label">On the problem page</h2>
+        <div class="settings-row">
             <label for="show-company-tags-toggle">Company tags</label>
             <input type="checkbox" id="show-company-tags-toggle" class="toggle">
         </div>
-        <div class="settings-row toggle-row">
+        <div class="settings-row">
             <label for="show-examples-toggle">Examples</label>
             <input type="checkbox" id="show-examples-toggle" class="toggle">
         </div>
-        <div class="settings-row toggle-row">
+        <div class="settings-row">
             <label for="show-difficulty-toggle">Difficulty</label>
             <input type="checkbox" id="show-difficulty-toggle" class="toggle">
         </div>
-        <div class="settings-row toggle-row">
-            <label for="use-chatgpt-toggle" title="Answers come from your logged-in chatgpt.com session. When off, or when you are not logged in, a free hosted model is used instead.">Use my ChatGPT account</label>
+
+        <h2 class="group-label">AI</h2>
+        <div class="settings-row">
+            <label for="use-chatgpt-toggle">
+                Use my ChatGPT account
+                <span class="hint">Answers come from your chatgpt.com login. Off, or not logged in: a free hosted model is used.</span>
+            </label>
             <input type="checkbox" id="use-chatgpt-toggle" class="toggle">
         </div>
+
         <footer class="footer">
             <a target="_blank" href="https://github.com/zubyj/leetcode-explained">Source code</a>
-            <span>·</span>
             <a target="_blank" href="https://chrome.google.com/webstore/detail/leetcode-explained/cofoinjfjcpgcjiinjhcpomcjoalijbe">Leave a review</a>
         </footer>
     </main>

@@ -68,12 +68,31 @@ html.dark {
 }
 
 .lce-panel-heading {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     margin: 0 0 10px;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     color: var(--lce-text-muted);
+}
+
+.lce-info {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid var(--lce-border-strong);
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--lce-text-muted);
+    cursor: help;
 }
 
 .lce-empty {
@@ -89,12 +108,12 @@ html.dark {
 
 /* Video */
 .lce-video-controls {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 36px 1fr 36px;
     align-items: center;
-    gap: 12px;
     height: 40px;
     margin-bottom: 10px;
+    padding: 0 2px;
     border-radius: 8px;
     background: var(--lce-surface-raised);
     border: 1px solid var(--lce-border);
@@ -102,26 +121,43 @@ html.dark {
 }
 
 .lce-video-controls button {
-    padding: 4px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
     border: none;
-    background: transparent;
-    font-size: 16px;
-    cursor: pointer;
-    color: var(--lce-text-muted);
     border-radius: 6px;
+    background: transparent;
+    color: var(--lce-text);
+    cursor: pointer;
     transition: background 0.15s ease;
 }
 
 .lce-video-controls button:hover {
     background: var(--lce-chip-hover);
-    color: var(--lce-text);
+}
+
+.lce-video-controls svg {
+    width: 18px;
+    height: 18px;
 }
 
 .lce-channel {
-    min-width: 160px;
-    text-align: center;
-    font-size: 12.5px;
-    letter-spacing: 0.3px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.lce-channel-count {
+    font-size: 11.5px;
+    font-weight: 400;
+    color: var(--lce-text-muted);
 }
 
 .lce-video-frame {

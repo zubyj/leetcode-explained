@@ -30,7 +30,7 @@ function main() {
     chrome.storage.local.get('clickedCompany', (data) => {
         companyName = data.clickedCompany || 'Amazon';
         const title = document.getElementById('title');
-        if (title) title.textContent = `Top 50 ${companyName} Questions`;
+        if (title) title.textContent = `${companyName}: most-asked problems`;
         document.title = `${companyName} Questions`;
         loadCompanyProblems();
     });

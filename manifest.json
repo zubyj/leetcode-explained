@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Leetcode Explained",
-    "version": "3.1.0",
+    "version": "2.4.0",
     "description": "Enhances Leetcode problems with solution code, video explanations, and AI-powered code analysis.",
     "icons": {
         "16": "src/assets/images/logo/icon-16.png",

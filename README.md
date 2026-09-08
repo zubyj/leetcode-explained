@@ -28,8 +28,8 @@
 
   - Generate optimized solutions using problem description and examples
   - Get time & space complexity analysis of your code
-  - Powered by Amazon's Nova Micro v1 (better model coming soon!)
-  - No API key required
+  - Uses your logged-in ChatGPT account — no API key, no per-request cost
+  - Falls back to a free OpenRouter model if you're not logged in
 
 - **Interview Mode**  
   Hide examples and difficulty to simulate real interviews.

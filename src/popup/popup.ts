@@ -6,6 +6,7 @@ The user can also copy the code to their clipboard, clear the code, and open the
 
 import { initializeTheme } from '../utils/theme.js';
 import { OpenRouterProvider } from '../background/openrouter/openrouter.js';
+import { ChatGPTRelayProvider } from '../background/chatgpt-relay/chatgpt-relay.js';
 
 // Add interface for AIProvider at the top level
 interface AIProvider {
@@ -221,7 +222,7 @@ function processCode(
                 }
             },
         }),
-        timeout(20000)
+        timeout(150000)
     ]).catch((error) => {
         setInfoMessage(error.message, 5000, true);
         console.error(error);
@@ -289,15 +290,50 @@ async function main(): Promise<void> {
     });
 
     try {
-        const openRouterProvider = new OpenRouterProvider();
-        initActionButton('get-complexity-btn', 'analyze', openRouterProvider);
-        initActionButton('fix-code-btn', 'fix', openRouterProvider);
+        // Primary: drive a managed chatgpt.com tab — free for the user but
+        // requires them to be logged into ChatGPT in this browser.
+        // Fallback: OpenRouter free tier — works without login but lower quality.
+        const provider = new FallbackProvider(
+            new ChatGPTRelayProvider(),
+            new OpenRouterProvider()
+        );
+        initActionButton('get-complexity-btn', 'analyze', provider);
+        initActionButton('fix-code-btn', 'fix', provider);
         initCopyButton();
         initClearButton();
         elements['getComplexityBtn']?.classList.remove('hidden');
         elements['fixCodeBtn']?.classList.remove('hidden');
     } catch (error) {
         console.error('Failed to initialize popup:', error);
+    }
+}
+
+// Tries primary first; falls back to secondary only if primary fails BEFORE
+// emitting any answer chunks. Once tokens have streamed to the UI, a mid-stream
+// failure surfaces as an error rather than restarting from scratch with a
+// different model.
+class FallbackProvider {
+    constructor(private primary: AIProvider, private fallback: AIProvider) {}
+
+    async generateAnswer(params: {
+        prompt: string;
+        action: 'analyze' | 'fix';
+        onEvent: (arg: { type: string; data?: { text: string } }) => void;
+    }): Promise<void> {
+        let primaryEmittedAnswer = false;
+        try {
+            await this.primary.generateAnswer({
+                ...params,
+                onEvent: (evt) => {
+                    if (evt.type === 'answer') primaryEmittedAnswer = true;
+                    params.onEvent(evt);
+                },
+            });
+        } catch (primaryErr) {
+            if (primaryEmittedAnswer) throw primaryErr;
+            console.warn('ChatGPT relay failed, falling back:', primaryErr);
+            await this.fallback.generateAnswer(params);
+        }
     }
 }
 

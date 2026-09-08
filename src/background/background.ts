@@ -1,3 +1,7 @@
+import { initChatGPTRelay } from './chatgpt-relay/chatgpt-relay.js';
+
+initChatGPTRelay();
+
 // Helper function to get or create user ID
 function getRandomToken(): string {
     const randomPool = new Uint8Array(32);

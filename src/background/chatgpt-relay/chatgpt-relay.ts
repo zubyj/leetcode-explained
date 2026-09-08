@@ -13,6 +13,7 @@
 const STORAGE_KEY_TAB_ID = 'chatgptTabId';
 const CHATGPT_HOME_URL = 'https://chatgpt.com/';
 const TAB_LOAD_TIMEOUT_MS = 30000;
+const LOGIN_RETRY_DELAY_MS = 30 * 60 * 1000;
 
 // requestId → port. Used to route driver responses to the right popup/page.
 const activeRequests = new Map<string, chrome.runtime.Port>();
@@ -72,6 +73,7 @@ export function initChatGPTRelay() {
                 } else {
                     port.postMessage({ type: 'error', error: msg.error });
                     activeRequests.delete(msg.requestId);
+                    if (msg.code === 'NOT_LOGGED_IN') forgetChatGPTTab(sender.tab?.id);
                 }
             } catch {
                 activeRequests.delete(msg.requestId);
@@ -90,6 +92,18 @@ export function initChatGPTRelay() {
             }
         });
     });
+}
+
+/*
+ * No point keeping a chatgpt.com tab around that can't answer. Close it and
+ * tell the popup to skip the relay for a while so each click doesn't open a
+ * fresh tab that fails the same way.
+ */
+function forgetChatGPTTab(tabId: number | undefined) {
+    if (tabId !== undefined && ownedTabIds.has(tabId)) {
+        chrome.tabs.remove(tabId).catch(() => undefined);
+    }
+    chrome.storage.local.set({ chatgptUnavailableUntil: Date.now() + LOGIN_RETRY_DELAY_MS });
 }
 
 async function getOrCreateChatGPTTab(): Promise<number> {

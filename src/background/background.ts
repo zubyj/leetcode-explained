@@ -33,6 +33,7 @@ chrome.runtime.onInstalled.addListener(() => {
         showExamples: true,
         showDifficulty: true,
         showCompanyTags: true,
+        useChatGPT: true,
         themeMode: 'auto',
         isDarkTheme: true,
     });

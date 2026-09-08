@@ -21,6 +21,10 @@ interface AIProvider {
  * falls back to OpenRouter only if the relay fails before emitting any answer
  * chunks. Once tokens have streamed to the UI, a mid-stream failure surfaces
  * as an error rather than restarting with a different model.
+ *
+ * The relay is skipped entirely when the user turned it off in settings or
+ * when a recent attempt found no ChatGPT login, so we don't keep opening
+ * chatgpt.com tabs that immediately fail.
  */
 class FallbackProvider implements AIProvider {
     constructor(private primary: AIProvider, private fallback: AIProvider) { }
@@ -30,12 +34,20 @@ class FallbackProvider implements AIProvider {
         action: Action;
         onEvent: (arg: { type: string; data?: { text: string } }) => void;
     }): Promise<void> {
+        if (!(await this.primaryAvailable())) {
+            await this.fallback.generateAnswer(params);
+            return;
+        }
+
         let primaryEmittedAnswer = false;
         try {
             await this.primary.generateAnswer({
                 ...params,
                 onEvent: (evt) => {
                     if (evt.type === 'answer') primaryEmittedAnswer = true;
+                    // Errors before any output are handled by falling back, so
+                    // don't flash them in the UI.
+                    if (evt.type === 'error' && !primaryEmittedAnswer) return;
                     params.onEvent(evt);
                 },
             });
@@ -44,6 +56,12 @@ class FallbackProvider implements AIProvider {
             console.warn('ChatGPT relay failed, falling back:', primaryErr);
             await this.fallback.generateAnswer(params);
         }
+    }
+
+    private async primaryAvailable(): Promise<boolean> {
+        const { useChatGPT, chatgptUnavailableUntil } = await chrome.storage.local.get(['useChatGPT', 'chatgptUnavailableUntil']);
+        if (useChatGPT === false) return false;
+        return !(chatgptUnavailableUntil && Date.now() < chatgptUnavailableUntil);
     }
 }
 
@@ -279,6 +297,7 @@ const SETTING_TOGGLES: Array<[string, string]> = [
     ['show-company-tags-toggle', 'showCompanyTags'],
     ['show-examples-toggle', 'showExamples'],
     ['show-difficulty-toggle', 'showDifficulty'],
+    ['use-chatgpt-toggle', 'useChatGPT'],
 ];
 
 async function initSettingToggles() {

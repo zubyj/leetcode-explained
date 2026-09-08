@@ -73,6 +73,7 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
                 type: 'CHATGPT_ERROR',
                 requestId: msg.requestId,
                 error: err.message,
+                code: err instanceof NotLoggedInError ? 'NOT_LOGGED_IN' : undefined,
             });
         });
         sendResponse({ ok: true });
@@ -128,7 +129,13 @@ async function waitForLoggedIn() {
         'button[data-testid="login-button"], a[href*="/auth/login"]'
     );
     if (loginIndicator || location.pathname.includes('/auth/')) {
-        throw new Error('Not logged into ChatGPT. Please log in and try again.');
+        throw new NotLoggedInError();
+    }
+}
+
+class NotLoggedInError extends Error {
+    constructor() {
+        super('Not logged into ChatGPT. Please log in and try again.');
     }
 }
 

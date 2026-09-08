@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Progress report</title>
+    <link rel="stylesheet" href="./report.css">
+    <script src="../popup/theme-init.js"></script>
+    <script type="module" src="../../dist/progress/report.js"></script>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <img src="../assets/images/logo/icon-32.png" alt="" class="brand-icon">
+            <span class="brand-name">Leetcode <em>Explained</em></span>
+            <span class="brand-sub">Progress report</span>
+        </div>
+        <div class="topbar-tools">
+            <select id="range-select" class="select" title="Time range for the charts">
+                <option value="30">Last 30 days</option>
+                <option value="90" selected>Last 90 days</option>
+                <option value="365">Last year</option>
+                <option value="0">All time</option>
+            </select>
+            <button id="export-btn" class="button">Export JSON</button>
+            <button id="theme-btn" class="button" title="Toggle theme">Theme</button>
+        </div>
+    </header>
+
+    <main class="page">
+        <p id="empty-state" class="empty-state hidden">No submissions recorded yet. Solve something on LeetCode, or use "Import history" in the extension popup.</p>
+
+        <section class="tiles">
+            <div class="tile"><span id="t-solved" class="tile-value">0</span><span class="tile-label">Problems solved</span><span id="t-solved-sub" class="tile-sub"></span></div>
+            <div class="tile"><span id="t-streak" class="tile-value">0</span><span class="tile-label">Day streak</span><span id="t-streak-sub" class="tile-sub"></span></div>
+            <div class="tile"><span id="t-accept" class="tile-value">0%</span><span class="tile-label">Acceptance rate</span><span id="t-accept-sub" class="tile-sub"></span></div>
+            <div class="tile"><span id="t-active" class="tile-value">0</span><span class="tile-label">Active days</span><span id="t-active-sub" class="tile-sub"></span></div>
+        </section>
+
+        <section class="card">
+            <div class="card-header"><h2>Activity</h2><span id="heatmap-meta" class="card-meta"></span></div>
+            <div class="heatmap-wrap">
+                <div id="heatmap" class="heatmap"></div>
+                <div class="heatmap-legend"><span>Less</span><i data-level="0"></i><i data-level="1"></i><i data-level="2"></i><i data-level="3"></i><i data-level="4"></i><span>More</span></div>
+            </div>
+        </section>
+
+        <div class="grid-2">
+            <section class="card">
+                <div class="card-header"><h2>Solved per week</h2><span id="weekly-meta" class="card-meta"></span></div>
+                <div id="weekly-chart" class="bars"></div>
+            </section>
+            <section class="card">
+                <div class="card-header"><h2>By difficulty</h2><span id="difficulty-meta" class="card-meta"></span></div>
+                <div id="difficulty-list" class="hlist"></div>
+            </section>
+        </div>
+
+        <div class="grid-2">
+            <section class="card">
+                <div class="card-header"><h2>Languages</h2><span class="card-meta">accepted submissions</span></div>
+                <div id="language-list" class="hlist"></div>
+            </section>
+            <section class="card">
+                <div class="card-header"><h2>Topics</h2><span class="card-meta" title="Topic tags are captured for submissions recorded live; imported history has none.">solved, live-recorded only ⓘ</span></div>
+                <div id="topic-list" class="hlist"></div>
+            </section>
+        </div>
+
+        <div class="grid-2">
+            <section class="card">
+                <div class="card-header"><h2>Needs another look</h2><span class="card-meta" title="Most failed attempts in the range with no accepted submission since.">ⓘ</span></div>
+                <table id="retry-table" class="table"><thead><tr><th>Problem</th><th>Difficulty</th><th class="num">Failed</th><th>Last try</th></tr></thead><tbody></tbody></table>
+            </section>
+            <section class="card">
+                <div class="card-header"><h2>Recent activity</h2><span class="card-meta">last 25 submissions</span></div>
+                <table id="recent-table" class="table"><thead><tr><th>Problem</th><th>Result</th><th>Lang</th><th>When</th></tr></thead><tbody></tbody></table>
+            </section>
+        </div>
+
+        <p class="fineprint">Everything on this page is computed from submissions stored in this browser. Nothing is sent anywhere.</p>
+    </main>
+</body>
+
+</html>

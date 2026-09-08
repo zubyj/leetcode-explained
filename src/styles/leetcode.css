@@ -86,11 +86,23 @@ html.dark {
 .lce-panel-heading {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     margin: 0 0 10px;
     font-size: 14px;
     font-weight: 500;
     color: var(--lce-text);
+}
+
+.lce-panel-heading::before {
+    content: '';
+    width: 3px;
+    height: 14px;
+    border-radius: 2px;
+    background: var(--lce-accent);
+}
+
+.lce-video-controls button:hover {
+    color: var(--lce-accent);
 }
 
 .lce-info {
@@ -324,3 +336,47 @@ html.dark {
     line-height: 16px;
     font-weight: 500;
 }
+
+/* Syntax colors for the solution block (Prism tokens), tuned to LeetCode's editor */
+.lce-code-block {
+    --lce-tok-comment: #6a737d;
+    --lce-tok-keyword: #a626a4;
+    --lce-tok-string: #50a14f;
+    --lce-tok-number: #986801;
+    --lce-tok-function: #4078f2;
+    --lce-tok-class: #c18401;
+    --lce-tok-operator: #0184bc;
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+html.dark .lce-code-block {
+    --lce-tok-comment: #7f848e;
+    --lce-tok-keyword: #c678dd;
+    --lce-tok-string: #98c379;
+    --lce-tok-number: #d19a66;
+    --lce-tok-function: #61afef;
+    --lce-tok-class: #e5c07b;
+    --lce-tok-operator: #56b6c2;
+}
+
+.lce-code-block .token.comment,
+.lce-code-block .token.prolog,
+.lce-code-block .token.doctype,
+.lce-code-block .token.cdata { color: var(--lce-tok-comment); font-style: italic; }
+.lce-code-block .token.keyword,
+.lce-code-block .token.important { color: var(--lce-tok-keyword); }
+.lce-code-block .token.string,
+.lce-code-block .token.char,
+.lce-code-block .token.triple-quoted-string { color: var(--lce-tok-string); }
+.lce-code-block .token.number,
+.lce-code-block .token.boolean,
+.lce-code-block .token.constant { color: var(--lce-tok-number); }
+.lce-code-block .token.function,
+.lce-code-block .token.function-definition { color: var(--lce-tok-function); }
+.lce-code-block .token.class-name,
+.lce-code-block .token.builtin,
+.lce-code-block .token.decorator,
+.lce-code-block .token.annotation { color: var(--lce-tok-class); }
+.lce-code-block .token.operator,
+.lce-code-block .token.punctuation { color: var(--lce-tok-operator); opacity: 0.9; }
+.lce-code-block .token.punctuation { color: inherit; opacity: 0.7; }

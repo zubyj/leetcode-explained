@@ -119,11 +119,19 @@ function clearResponses() {
     chrome.storage.local.set({ analyzeCodeResponse: '', fixCodeResponse: '' });
 }
 
+/*
+ * Models wrap big-O in LaTeX (\(O(n)\), $O(n)$) and markdown; strip that and
+ * highlight the complexity terms. Escapes first so model output can't inject HTML.
+ */
 function formatAnalysis(text: string): string {
-    return text
-        .replace(/time/gi, '<span class="complexity">time complexity</span>')
-        .replace(/space/gi, '<span class="complexity">space complexity</span>')
-        .replace(/O\([^)]+\)/g, '<span class="complexity">$&</span>');
+    const escaped = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return escaped
+        .replace(/\\[()]/g, '')
+        .replace(/\$\$?/g, '')
+        .replace(/\*\*(.+?)\*\*/g, '$1')
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\b(time|space) complexity\b/gi, '<span class="complexity">$&</span>')
+        .replace(/\bO\([^)]*\)/g, '<span class="complexity">$&</span>');
 }
 
 function stripMarkdownCodeBlock(text: string): string {
@@ -376,13 +384,17 @@ async function initViews() {
             chrome.tabs.sendMessage(tab.id, { action: 'importHistory', maxPages: 50 }, async (response) => {
                 importButton.disabled = false;
                 if (chrome.runtime.lastError || !response || response.error) {
-                    importStatus.textContent = 'Import failed. Refresh the LeetCode tab and try again.';
+                    importStatus.textContent = 'Import failed. Reload the extension, refresh the LeetCode tab, and try again.';
                     return;
                 }
                 importStatus.textContent = `Imported ${response.imported} new of ${response.scanned} submissions.`;
                 renderProgress(await loadSubmissions());
             });
         });
+    };
+
+    (document.getElementById('open-report-btn') as HTMLButtonElement).onclick = () => {
+        chrome.tabs.create({ url: chrome.runtime.getURL('src/progress/report.html') });
     };
 
     const { lastView } = await chrome.storage.local.get('lastView');

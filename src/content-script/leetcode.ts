@@ -224,9 +224,16 @@ async function openExplainedPanel() {
     }
     panel.style.top = `${tabBar.offsetHeight}px`;
     panel.style.display = 'block';
+    requestAnimationFrame(() => loadVisibleIframes(panel as HTMLElement));
 
     container.classList.add('lce-explained-open');
     document.getElementById(EXPLAINED_TAB_ID)?.classList.replace('flexlayout__tab_button--unselected', 'flexlayout__tab_button--selected');
+}
+
+function loadVisibleIframes(root: HTMLElement) {
+    root.querySelectorAll<HTMLIFrameElement>('iframe[data-src]').forEach((frame) => {
+        if (frame.dataset.src && frame.src !== frame.dataset.src) frame.src = frame.dataset.src;
+    });
 }
 
 function closeExplainedPanel() {
@@ -340,7 +347,10 @@ function buildVideoSection(videos: LceVideo[]): HTMLElement {
     let index = 0;
     const showVideo = (i: number) => {
         index = (i + videos.length) % videos.length;
-        iframe.src = videos[index].embedded_url;
+        // Assigning src while hidden makes YouTube render a tiny blurry poster,
+        // so the URL is parked in data-src until the panel is on screen.
+        iframe.dataset.src = videos[index].embedded_url;
+        if (iframe.offsetWidth > 0) iframe.src = videos[index].embedded_url;
         channelName.textContent = videos[index].channel;
         channelCount.textContent = `${index + 1} / ${videos.length}`;
     };
@@ -411,6 +421,7 @@ function buildCodeSection(problem: LceProblem): HTMLElement {
             codeBlock.textContent = 'Loading ...';
             const code = await fetchSolutionCode(problem.title, problem.frontend_id, language);
             codeBlock.textContent = code || 'Code not available';
+            if (code) highlightCode(codeBlock, language);
         };
 
         langRow.appendChild(chip);
@@ -418,6 +429,14 @@ function buildCodeSection(problem: LceProblem): HTMLElement {
 
     section.append(langRow, scroll);
     return section;
+}
+
+/* Prism is loaded as a sibling content script in manual mode. */
+function highlightCode(block: HTMLElement, language: string) {
+    const prism = (window as any).Prism;
+    if (!prism?.languages?.[language]) return;
+    block.className = `lce-code-block language-${language}`;
+    prism.highlightElement(block);
 }
 
 /* Fetches the solution from NeetCode's GitHub repo. */

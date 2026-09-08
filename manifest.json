@@ -27,6 +27,9 @@
     "content_scripts": [
         {
             "js": [
+                "src/content-script/prism-config.js",
+                "src/popup/prism.js",
+                "src/content-script/prism-languages.js",
                 "dist/content-script/leetcode.js"
             ],
             "css": [

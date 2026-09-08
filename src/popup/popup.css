@@ -297,6 +297,14 @@ a {
     line-height: 1.6;
 }
 
+.callout code {
+    padding: 1px 4px;
+    border-radius: 4px;
+    background: var(--surface-2);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: calc(var(--base-font-size) - 0.5px);
+}
+
 .callout .complexity {
     padding: 1px 5px;
     border-radius: 4px;

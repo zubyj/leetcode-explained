@@ -22,7 +22,7 @@ interface LceProblem {
     rating?: string;
     videos?: LceVideo[];
     languages?: string[];
-    companies?: Array<{ name: string }>;
+    companies?: Array<{ name: string; score?: number; recent?: boolean }>;
 }
 
 interface LceSettings {
@@ -305,12 +305,18 @@ function buildPanelSection(heading: string, body: HTMLElement, tooltip: string):
     return section;
 }
 
-function buildCompanyRow(companies: Array<{ name: string }>): HTMLElement {
+function buildCompanyRow(companies: Array<{ name: string; score?: number; recent?: boolean }>): HTMLElement {
     const row = document.createElement('div');
     row.classList.add('lce-company-row');
     companies.slice(0, 8).forEach((company) => {
         const chip = document.createElement('button');
         chip.classList.add('lce-company-chip');
+        if (company.recent) {
+            chip.classList.add('recent');
+            chip.title = `${company.name} asked this in the last 6 months`;
+        } else {
+            chip.title = `${company.name} has asked this, but not in the last 6 months`;
+        }
         chip.onclick = () => {
             chrome.runtime.sendMessage({ action: 'openCompanyPage', company: company.name });
         };

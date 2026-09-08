@@ -133,3 +133,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+scripts/.videos_progress.json

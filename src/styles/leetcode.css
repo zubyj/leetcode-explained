@@ -317,6 +317,14 @@ html.dark {
     background: var(--lce-chip-hover);
 }
 
+.lce-company-chip.recent::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2ea043;
+}
+
 .lce-company-chip img {
     width: 14px;
     height: 14px;

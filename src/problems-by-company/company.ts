@@ -9,7 +9,8 @@ interface Solution {
     title: string;
     difficulty: string;
     url: string;
-    acceptance: string;
+    frequency: number;
+    recent: boolean;
 }
 
 interface Question {
@@ -35,7 +36,7 @@ function main() {
         loadCompanyProblems();
     });
 
-    ['#', 'Difficulty', 'Title', 'Acceptance', 'Rank'].forEach((column) => {
+    ['#', 'Difficulty', 'Title', 'Frequency', 'Recent'].forEach((column) => {
         document.getElementById(column)?.addEventListener('click', () => sortBy(column));
     });
 
@@ -71,15 +72,16 @@ function loadCompanyProblems() {
         if (!Array.isArray(companyProblems)) return;
 
         solutions.length = 0;
-        companyProblems.forEach((problem: { id: number; rank: number; title: string }) => {
+        companyProblems.forEach((problem: { id: number; rank: number; title: string; frequency?: number; recent?: boolean }) => {
             const question = questions.find((q) => q.frontend_id === problem.id);
             solutions.push({
                 id: problem.id,
                 rank: problem.rank,
                 title: problem.title,
-                url: `https://leetcode.com/problems/${problem.title.replace(/\s/g, '-')}/`,
+                url: `https://leetcode.com/problems/${problem.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}/`,
                 difficulty: question ? String(question.difficulty_lvl) : 'N/A',
-                acceptance: question ? String(question.acceptance) : 'N/A',
+                frequency: problem.frequency || 0,
+                recent: !!problem.recent,
             });
         });
         rebuildTable();
@@ -114,9 +116,10 @@ function rebuildTable() {
         link.textContent = solution.title;
         titleCell.appendChild(link);
 
-        const acceptance = parseFloat(solution.acceptance);
-        row.insertCell(3).innerText = isNaN(acceptance) ? 'N/A' : `${(acceptance * 100).toFixed(1)}%`;
-        row.insertCell(4).innerText = solution.rank.toString();
+        row.insertCell(3).innerText = solution.frequency.toFixed(0);
+        const recentCell = row.insertCell(4);
+        recentCell.innerText = solution.recent ? 'Yes' : '';
+        if (solution.recent) recentCell.classList.add('recent');
     });
 }
 
@@ -152,8 +155,8 @@ function sortBy(column: string) {
         '#': (a, b) => a.id - b.id,
         'Difficulty': (a, b) => a.difficulty.localeCompare(b.difficulty),
         'Title': (a, b) => a.title.localeCompare(b.title),
-        'Acceptance': (a, b) => parseFloat(a.acceptance) - parseFloat(b.acceptance),
-        'Rank': (a, b) => a.rank - b.rank,
+        'Frequency': (a, b) => a.frequency - b.frequency,
+        'Recent': (a, b) => Number(a.recent) - Number(b.recent),
     };
 
     const comparator = comparators[column];

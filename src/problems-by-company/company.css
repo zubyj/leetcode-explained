@@ -164,3 +164,8 @@ td a:hover {
     color: var(--hard);
     font-weight: 600;
 }
+
+td.recent {
+    color: var(--easy);
+    font-weight: 600;
+}

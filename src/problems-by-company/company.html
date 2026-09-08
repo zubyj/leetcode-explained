@@ -11,7 +11,7 @@
 <body>
     <header class="page-header">
         <h1 id="title">Problems by Company</h1>
-        <p class="subtitle">Interview frequency data collected in 2023 from community reports. It has not been refreshed since, so treat it as a rough guide rather than a current list.</p>
+        <p class="subtitle">Frequency is relative to the company's most-asked problem (100 = asked most). "Asked recently" means reported within the last six months. Data from the community-maintained liquidslr/leetcode-company-wise-problems dataset.</p>
         <input type="text" id="companySearch" list="companyList" placeholder="Search for a company" class="search">
         <datalist id="companyList"></datalist>
         <nav id="navbar" class="company-nav"></nav>
@@ -22,8 +22,8 @@
             <th id="#" class="header">#</th>
             <th id="Difficulty" class="header">Difficulty</th>
             <th id="Title" class="header">Title</th>
-            <th id="Acceptance" class="header">Acceptance</th>
-            <th id="Rank" class="header">Rank</th>
+            <th id="Frequency" class="header">Frequency</th>
+            <th id="Recent" class="header">Asked recently</th>
         </tr>
     </table>
     <script src="../../dist/problems-by-company/company.js"></script>

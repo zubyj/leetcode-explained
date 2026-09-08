@@ -8,6 +8,7 @@ import { computeStats, loadSubmissions, SubmissionRecord } from '../popup/progre
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 let allRecords: SubmissionRecord[] = [];
+let companyProblems: Record<string, Array<{ title: string }>> = {};
 
 function startOfDay(ms: number): number {
     const d = new Date(ms);
@@ -174,6 +175,33 @@ function renderBreakdowns(records: SubmissionRecord[]) {
     );
 }
 
+function renderCoverage(records: SubmissionRecord[]) {
+    const solved = new Set(records.filter((r) => r.accepted).map((r) => r.slug));
+    const entries: Array<[string, number]> = [];
+    Object.entries(companyProblems).forEach(([company, problems]) => {
+        const top = problems.slice(0, 50);
+        if (top.length < 20) return;
+        const done = top.filter((p) => solved.has(slugFor(p.title))).length;
+        if (done) entries.push([`${company} (${done}/${top.length})`, Math.round((done / top.length) * 100)]);
+    });
+    entries.sort((a, b) => b[1] - a[1]);
+    renderList('coverage-list', entries.slice(0, 8), 'Solve problems that companies ask to see coverage here.');
+    document.querySelectorAll('#coverage-list .hrow-value').forEach((v) => (v.textContent = `${v.textContent}%`));
+}
+
+function renderFailures(records: SubmissionRecord[]) {
+    const failed = records.filter((r) => !r.accepted);
+    const counts = new Map<string, number>();
+    failed.forEach((r) => counts.set(r.status, (counts.get(r.status) || 0) + 1));
+    renderList('fail-list', [...counts.entries()].sort((a, b) => b[1] - a[1]), 'No failed submissions in this range.');
+    const rate = records.length ? Math.round((failed.length / records.length) * 100) : 0;
+    setText('fail-meta', `${failed.length} failed (${rate}%)`);
+}
+
+function slugFor(title: string): string {
+    return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
 function renderTables(records: SubmissionRecord[]) {
     const stats = computeStats(records);
     const retryBody = document.querySelector('#retry-table tbody') as HTMLElement;
@@ -225,6 +253,8 @@ function render() {
     renderHeatmap(records, rangeDays);
     renderWeekly(records, rangeDays);
     renderBreakdowns(records);
+    renderCoverage(records);
+    renderFailures(records);
     renderTables(records);
 }
 
@@ -253,6 +283,7 @@ async function main() {
     };
 
     allRecords = await loadSubmissions();
+    companyProblems = (await chrome.storage.local.get('companyProblems')).companyProblems || {};
     render();
 
     chrome.storage.onChanged.addListener((changes) => {

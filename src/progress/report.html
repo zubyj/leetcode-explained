@@ -70,6 +70,17 @@
 
         <div class="grid-2">
             <section class="card">
+                <div class="card-header"><h2>Company coverage</h2><span class="card-meta" title="How many of each company's 50 most-asked problems you have solved. Company data is a LeetCode Premium feature; this comes from a community dataset.">of each company's top 50 ⓘ</span></div>
+                <div id="coverage-list" class="hlist"></div>
+            </section>
+            <section class="card">
+                <div class="card-header"><h2>How you fail</h2><span id="fail-meta" class="card-meta"></span></div>
+                <div id="fail-list" class="hlist"></div>
+            </section>
+        </div>
+
+        <div class="grid-2">
+            <section class="card">
                 <div class="card-header"><h2>Needs another look</h2><span class="card-meta" title="Most failed attempts in the range with no accepted submission since.">ⓘ</span></div>
                 <table id="retry-table" class="table"><thead><tr><th>Problem</th><th>Difficulty</th><th class="num">Failed</th><th>Last try</th></tr></thead><tbody></tbody></table>
             </section>

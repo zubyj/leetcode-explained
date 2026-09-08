@@ -65,9 +65,15 @@ function getStorage<T>(keys: string[]): Promise<T> {
     });
 }
 
+/* The dataset is ~3 MB; read it from storage once per page instead of per render. */
+let problemIndex: Map<string, LceProblem> | null = null;
+
 async function findProblemData(title: string): Promise<LceProblem | undefined> {
-    const { leetcodeProblems } = await getStorage<{ leetcodeProblems?: { questions: LceProblem[] } }>(['leetcodeProblems']);
-    return leetcodeProblems?.questions.find((q) => q.title === title);
+    if (!problemIndex) {
+        const { leetcodeProblems } = await getStorage<{ leetcodeProblems?: { questions: LceProblem[] } }>(['leetcodeProblems']);
+        problemIndex = new Map((leetcodeProblems?.questions || []).map((q) => [q.title, q]));
+    }
+    return problemIndex.get(title);
 }
 
 async function getSettings(): Promise<LceSettings> {

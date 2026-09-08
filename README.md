@@ -46,7 +46,7 @@
    ```bash
    git clone https://github.com/zubyj/leetcode-explained.git
    cd leetcode-explained
-   npm install && tsc
+   npm install && npx tsc
    ```
 2. Open Chrome and go to `chrome://extensions`
 3. Enable "Developer mode"
@@ -64,9 +64,26 @@ Now you're ready to test features and contribute!
    - Company tags
    - Problem ratings
 
-3. For AI features (requires pinned extension):
-   - Click "Analyze Code" for time/space complexity
-   - Click "Fix Code" for AI-generated solutions
+3. For AI features, click the extension icon:
+   - "Solution Code" generates or fixes a solution for the current problem
+   - "Code Complexity" gives the time/space complexity of your code
+
+## 🧱 Project Structure
+
+```
+manifest.json                       MV3 manifest (compiled JS is loaded from dist/)
+src/styles/leetcode.css             all in-page styling, dark mode keyed off LeetCode's html.dark
+src/content-script/leetcode.ts      everything injected into leetcode.com (description + solutions tabs, code reader)
+src/content-script/chatgpt/         drives a chatgpt.com tab to stream answers without an API key
+src/background/background.ts        install-time data seeding, settings fan-out, company page opener
+src/background/chatgpt-relay/       routes popup requests to the ChatGPT driver tab
+src/background/openrouter/          fallback provider via api.leetcodeapp.com
+src/popup/                          extension popup (home + settings views)
+src/problems-by-company/            "Top 50 problems for <company>" page
+src/assets/data/                    problem metadata (videos, companies, ratings, languages)
+```
+
+Build with `npx tsc`; there is no bundler. Content scripts are compiled as plain scripts, the popup and background are ES modules.
 
 ## 🤝 Contributing
 

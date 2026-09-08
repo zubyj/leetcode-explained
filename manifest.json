@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "Leetcode Explained",
-    "version": "2.3.0",
-    "description": "Enhances Leetcode problems with solution code, video explanations, and ChatGPT-powered code analysis.",
+    "version": "3.0.0",
+    "description": "Enhances Leetcode problems with solution code, video explanations, and AI-powered code analysis.",
     "icons": {
         "16": "src/assets/images/logo/icon-16.png",
         "32": "src/assets/images/logo/icon-32.png",
@@ -27,10 +27,10 @@
     "content_scripts": [
         {
             "js": [
-                "dist/content-script/get-user-code.js",
-                "dist/content-script/update-solutions-tab.js",
-                "dist/content-script/update-description-tab.js",
-                "dist/content-script/common.js"
+                "dist/content-script/leetcode.js"
+            ],
+            "css": [
+                "src/styles/leetcode.css"
             ],
             "matches": [
                 "https://leetcode.com/problems/*"
@@ -52,12 +52,10 @@
             "resources": [
                 "src/assets/images/copy-icon.png",
                 "src/assets/images/check-icon.png",
-                "src/assets/images/languages/*",
-                "src/popup/theme-handler.js",
-                "src/popup/transition-handler.js"
+                "src/assets/images/languages/*"
             ],
             "matches": [
-                "<all_urls>"
+                "https://leetcode.com/*"
             ]
         }
     ]

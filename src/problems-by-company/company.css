@@ -1,201 +1,157 @@
+:root {
+    --bg: #ffffff;
+    --surface: #f5f6f8;
+    --border: rgba(0, 0, 0, 0.12);
+    --border-strong: rgba(0, 0, 0, 0.25);
+    --text: #1f1f1f;
+    --text-muted: #5f6368;
+    --link: #0b57d0;
+    --accent: #ffa116;
+    --easy: #2e8b57;
+    --medium: #b8860b;
+    --hard: #c0392b;
+}
+
+[data-theme="dark"] {
+    --bg: #202124;
+    --surface: #2c2d31;
+    --border: rgba(255, 255, 255, 0.12);
+    --border-strong: rgba(255, 255, 255, 0.3);
+    --text: #e8eaed;
+    --text-muted: #9aa0a6;
+    --link: #8ab4f8;
+    --easy: #90ee90;
+    --medium: #ffa116;
+    --hard: #ff6b6b;
+}
+
 body {
-    background-color: #202020;
-    color: #f0f0f0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    margin: 0;
-    padding: 20px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+    max-width: 900px;
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.page-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    gap: 16px;
+    margin-bottom: 24px;
 }
 
 h1 {
-    font-size: 24px;
-    font-weight: 500;
-    padding: 16px;
-    color: #69c0ff;
-    margin-bottom: 24px;
-    text-align: center;
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
-nav {
+.search {
+    width: 280px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 13px;
+}
+
+.search:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.company-nav {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 32px;
     flex-wrap: wrap;
-    width: 100%;
-    max-width: 800px;
+    justify-content: center;
+    gap: 8px;
 }
 
-button,
-.row input {
-    background-color: #373737;
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 10px 16px;
-    min-width: 120px;
-    max-width: 100%;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: all 0.2s ease;
-}
-
-nav button {
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    text-transform: none;
-    display: flex;
+.company-nav button {
+    display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 16px;
-    min-width: 130px;
-    height: 40px;
-    background-color: var(--button-bg-color);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    font-size: 12px;
-    transition: all 0.2s ease;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 12.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
 }
 
-button:hover {
-    background-color: var(--button-hover-bg);
-    border-color: var(--button-hover-border);
-    cursor: pointer;
+.company-nav button:hover {
+    border-color: var(--border-strong);
+}
+
+.company-nav img {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
 }
 
 table {
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    border-collapse: separate;
-    border-spacing: 0;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-th,
-td {
-    padding: 12px 16px;
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 th {
-    background-color: var(--button-bg-color);
-    color: var(--link-color);
-    font-weight: 500;
-    font-size: 14px;
-    text-transform: none;
+    padding: 10px 14px;
+    text-align: left;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
     letter-spacing: 0.5px;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border-color);
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    user-select: none;
+}
+
+th:hover {
+    color: var(--text);
 }
 
 td {
-    font-size: 14px;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
 }
 
 tr:last-child td {
     border-bottom: none;
 }
 
-a {
-    color: #40a9ff;
+td a {
+    color: var(--link);
     text-decoration: none;
-    transition: color 0.2s ease;
 }
 
-a:hover {
-    color: #69c0ff;
-    background-color: transparent;
+td a:hover {
+    text-decoration: underline;
 }
 
-.header {
-    position: relative;
-    cursor: pointer;
-    user-select: none;
+.difficulty-easy {
+    color: var(--easy);
+    font-weight: 600;
 }
 
-.header:hover {
-    color: #69c0ff;
+.difficulty-medium {
+    color: var(--medium);
+    font-weight: 600;
 }
 
-.row {
-    width: 100%;
-    max-width: 800px;
-    margin-bottom: 24px;
-}
-
-.row input {
-    width: 100%;
-    height: 32px;
-    background-color: #373737;
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    padding: 8px 16px;
-    font-size: 14px;
-    transition: all 0.2s ease;
-}
-
-.row input:focus {
-    outline: none;
-    border-color: #40a9ff;
-    box-shadow: 0 0 0 2px rgba(64, 169, 255, 0.2);
-}
-
-/* Add smooth transitions for interactive elements */
-button,
-a,
-.header,
-input {
-    transition: all 0.2s ease;
-}
-
-/* Acceptance rate colors - smooth gradient */
-td[data-acceptance] {
-    position: relative;
-}
-
-td[data-acceptance]::after {
-    content: attr(data-acceptance) '%';
-    font-weight: 500;
-}
-
-/* Create a smooth gradient from red to yellow to green */
-td[data-acceptance^="9"] { color: #52c41a; }
-td[data-acceptance^="8"] { color: #73d13d; }
-td[data-acceptance^="7"] { color: #95de64; }
-td[data-acceptance^="6"] { color: #b7eb8f; }
-td[data-acceptance^="5"] { color: #fadb14; }
-td[data-acceptance^="4"] { color: #ffa940; }
-td[data-acceptance^="3"] { color: #ff7a45; }
-td[data-acceptance^="2"] { color: #ff4d4f; }
-td[data-acceptance^="1"] { color: #f5222d; }
-td[data-acceptance^="0"] { color: #cf1322; }
-
-/* Responsive design */
-@media (max-width: 768px) {
-    body {
-        padding: 16px;
-    }
-    
-    table {
-        font-size: 14px;
-    }
-    
-    th,
-    td {
-        padding: 8px 12px;
-    }
-    
-    button {
-        min-width: 100px;
-    }
+.difficulty-hard {
+    color: var(--hard);
+    font-weight: 600;
 }

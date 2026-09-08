@@ -41,6 +41,20 @@ html.dark {
     color: var(--lce-accent);
 }
 
+/* Orange label so the tab stands out from LeetCode's grey ones */
+#lce-explained-tab .medium {
+    color: var(--lce-accent) !important;
+    font-weight: 600 !important;
+}
+
+#lce-explained-tab.flexlayout__tab_button--unselected .medium {
+    opacity: 0.85;
+}
+
+#lce-explained-tab.flexlayout__tab_button--selected {
+    box-shadow: inset 0 -2px 0 var(--lce-accent);
+}
+
 /* While our tab is open, dim LeetCode's own selected tab so only ours reads as active */
 .lce-explained-open .flexlayout__tab_button--selected:not(#lce-explained-tab) {
     opacity: 0.6;

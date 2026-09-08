@@ -58,11 +58,13 @@ Now you're ready to test features and contribute!
 ## 🧠 How to Use
 
 1. Open any Leetcode problem
-2. Go to the Description or Solutions tab to see:
+2. Click the new **Explained** tab (next to Submissions) for:
 
-   - Code solutions + videos
-   - Company tags
-   - Problem ratings
+   - Video explanations
+   - Solution code in Python, Java, C++, and JavaScript
+   - Companies that ask the problem
+
+   The Description tab also gets company tags and a difficulty rating.
 
 3. For AI features, click the extension icon:
    - "Solution Code" generates or fixes a solution for the current problem

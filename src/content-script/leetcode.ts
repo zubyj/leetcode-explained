@@ -1,7 +1,7 @@
 /*
  * The only content script for leetcode.com. Handles:
- *   - description tab enhancements (company chips, rating badge, example/difficulty toggles)
- *   - solutions tab card (video carousel + solution code by language)
+ *   - an "Explained" tab in LeetCode's tab bar (videos, solution code, companies)
+ *   - description tab extras (company chips, rating badge, example/difficulty toggles)
  *   - reading the problem + user code for the AI popup
  *   - reporting LeetCode's theme to the popup
  *
@@ -46,10 +46,6 @@ const LANGUAGE_EXTENSIONS: Record<string, string> = {
 
 function problemTitleFromPage(): string {
     return document.title.replace(' - LeetCode', '').split('-')[0].trim();
-}
-
-function onSolutionsTab(): boolean {
-    return window.location.pathname.includes('/solutions');
 }
 
 function companyLogoUrl(company: string): string {
@@ -109,7 +105,7 @@ function waitForElement(selector: () => Element | null, timeoutMs = 10000): Prom
 /* ---------------- Description tab ---------------- */
 
 async function renderDescriptionExtras() {
-    if (onSolutionsTab()) return;
+    if (window.location.pathname.includes('/solutions')) return;
 
     const title = problemTitleFromPage();
     const settings = await getSettings();
@@ -156,17 +152,152 @@ async function renderCompanyChips(problem: LceProblem | undefined, show: boolean
     const description = await waitForElement(descriptionContainer);
     if (!description || document.getElementById('lce-company-row')) return;
 
-    const row = document.createElement('div');
+    const row = buildCompanyRow(problem.companies.slice(0, 5));
     row.id = 'lce-company-row';
-    row.classList.add('lce-company-row');
+    description.insertBefore(row, description.firstChild);
+}
 
-    problem.companies.slice(0, 5).forEach((company) => {
+/* ---------------- "Explained" tab ---------------- */
+
+/*
+ * A fifth tab next to Submissions in LeetCode's tab bar. Only the button is
+ * added at page load; the panel (videos, solution code, companies) is built
+ * the first time the tab is clicked. The button reuses flexlayout's own class
+ * names so it picks up LeetCode's styling and theme.
+ */
+const EXPLAINED_TAB_ID = 'lce-explained-tab';
+
+function tabBarContainer(): HTMLElement | null {
+    return document.querySelector('.flexlayout__tabset_tabbar_inner_tab_container');
+}
+
+function ensureExplainedTab() {
+    const container = tabBarContainer();
+    if (!container || document.getElementById(EXPLAINED_TAB_ID)) return;
+    if (!container.querySelector('.flexlayout__tab_button')) return;
+
+    const divider = document.createElement('div');
+    divider.className = 'flexlayout__tabset_tab_divider';
+
+    const button = document.createElement('div');
+    button.id = EXPLAINED_TAB_ID;
+    button.className = 'flexlayout__tab_button flexlayout__tab_button_top flexlayout__tab_button--unselected';
+
+    const content = document.createElement('div');
+    content.className = 'flexlayout__tab_button_content';
+    const inner = document.createElement('div');
+    inner.className = 'relative flex items-center gap-1 overflow-hidden text-sm capitalize';
+    const icon = document.createElement('span');
+    icon.className = 'lce-tab-icon';
+    icon.textContent = '◆';
+    const label = document.createElement('div');
+    label.className = 'medium whitespace-nowrap font-medium';
+    label.textContent = 'Explained';
+    inner.append(icon, label);
+    content.appendChild(inner);
+    button.appendChild(content);
+    button.onclick = openExplainedPanel;
+
+    container.append(divider, button);
+
+    if (!container.dataset.lceBound) {
+        container.dataset.lceBound = '1';
+        container.addEventListener('click', (event) => {
+            if (!(event.target as Element).closest(`#${EXPLAINED_TAB_ID}`)) closeExplainedPanel();
+        }, true);
+    }
+}
+
+async function openExplainedPanel() {
+    const container = tabBarContainer();
+    const tabset = container?.closest('.flexlayout__tabset') as HTMLElement | null;
+    const tabBar = tabset?.querySelector('.flexlayout__tabset_tabbar_outer') as HTMLElement | null;
+    if (!container || !tabset || !tabBar) return;
+
+    const title = problemTitleFromPage();
+    let panel = tabset.querySelector('.lce-panel') as HTMLElement | null;
+    if (!panel || panel.getAttribute('data-problem') !== title) {
+        panel?.remove();
+        panel = await buildExplainedPanel(title);
+        tabset.appendChild(panel);
+    }
+    panel.style.top = `${tabBar.offsetHeight}px`;
+    panel.style.display = 'block';
+
+    container.classList.add('lce-explained-open');
+    document.getElementById(EXPLAINED_TAB_ID)?.classList.replace('flexlayout__tab_button--unselected', 'flexlayout__tab_button--selected');
+}
+
+function closeExplainedPanel() {
+    const panel = document.querySelector('.lce-panel') as HTMLElement | null;
+    if (panel) panel.style.display = 'none';
+    tabBarContainer()?.classList.remove('lce-explained-open');
+    document.getElementById(EXPLAINED_TAB_ID)?.classList.replace('flexlayout__tab_button--selected', 'flexlayout__tab_button--unselected');
+}
+
+async function buildExplainedPanel(title: string): Promise<HTMLElement> {
+    const panel = document.createElement('div');
+    panel.classList.add('lce-panel');
+    panel.setAttribute('data-problem', title);
+
+    const problem = await findProblemData(title);
+    const hasVideos = !!problem?.videos?.length;
+    const hasCode = !!problem?.languages?.length;
+
+    if (!problem || (!hasVideos && !hasCode)) {
+        const empty = document.createElement('p');
+        empty.classList.add('lce-empty');
+        empty.textContent = 'No video explanations or solution code for this problem yet.';
+        panel.appendChild(empty);
+        return panel;
+    }
+
+    if (problem.companies?.length) {
+        panel.appendChild(buildPanelSection('Asked by', buildCompanyRow(problem.companies)));
+    }
+    if (hasVideos) {
+        panel.appendChild(buildPanelSection('Video explanations', buildVideoSection(problem.videos as LceVideo[])));
+    }
+    if (hasCode) {
+        const code = buildCodeSection(problem);
+        panel.appendChild(buildPanelSection('Solution code', code));
+        const preferred = code.querySelector(`.lce-chip[data-language="${editorLanguage()}"]`) || code.querySelector('.lce-chip');
+        (preferred as HTMLButtonElement | null)?.click();
+    }
+    return panel;
+}
+
+/* The language currently selected in LeetCode's editor, in our naming. */
+function editorLanguage(): string {
+    const pickers = Array.from(document.querySelectorAll('[data-cy="lang-select"], button[aria-haspopup="dialog"]'));
+    const picker = pickers.find((el) => /^(python3?|c\+\+|javascript|typescript|java)$/i.test((el.textContent || '').trim()));
+    const label = (picker?.textContent || '').trim().toLowerCase();
+    if (label.startsWith('python')) return 'python';
+    if (label.startsWith('c++')) return 'cpp';
+    if (label.startsWith('javascript') || label.startsWith('typescript')) return 'javascript';
+    if (label.startsWith('java')) return 'java';
+    return '';
+}
+
+function buildPanelSection(heading: string, body: HTMLElement): HTMLElement {
+    const section = document.createElement('section');
+    section.classList.add('lce-panel-section');
+    const h = document.createElement('h3');
+    h.classList.add('lce-panel-heading');
+    h.textContent = heading;
+    section.append(h, body);
+    return section;
+}
+
+function buildCompanyRow(companies: Array<{ name: string }>): HTMLElement {
+    const row = document.createElement('div');
+    row.classList.add('lce-company-row');
+    companies.slice(0, 8).forEach((company) => {
         const chip = document.createElement('button');
         chip.classList.add('lce-company-chip');
         chip.onclick = () => {
             chrome.runtime.sendMessage({ action: 'openCompanyPage', company: company.name });
         };
-
         const icon = document.createElement('img');
         icon.src = companyLogoUrl(company.name);
         icon.onerror = () => icon.remove();
@@ -174,96 +305,12 @@ async function renderCompanyChips(problem: LceProblem | undefined, show: boolean
         chip.appendChild(document.createTextNode(company.name));
         row.appendChild(chip);
     });
-
-    description.insertBefore(row, description.firstChild);
-}
-
-/* ---------------- Solutions tab ---------------- */
-
-async function renderSolutionsCard() {
-    if (!onSolutionsTab()) return;
-
-    const title = problemTitleFromPage();
-    const existing = document.querySelector('.lce-wrapper');
-    if (existing) {
-        if (existing.getAttribute('data-problem') === title && document.contains(existing)) return;
-        existing.remove();
-    }
-
-    const problem = await findProblemData(title);
-    const hasVideos = !!problem?.videos?.length;
-    const hasCode = !!problem?.languages?.length;
-    if (!problem || (!hasVideos && !hasCode)) return;
-
-    /*
-     * The solutions panel is a scroll container whose first child holds the
-     * search + filter bar. The card goes right after that block, above the
-     * list of posts.
-     */
-    const searchInput = await waitForElement(() => document.querySelector('input[placeholder^="Search content"], input.block'));
-    const scroller = searchInput?.closest('.overflow-auto');
-    if (!searchInput || !scroller || document.querySelector('.lce-wrapper')) return;
-    const filterBlock = Array.from(scroller.children).find((child) => child.contains(searchInput));
-    if (!filterBlock) return;
-
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('lce-wrapper');
-    wrapper.setAttribute('data-problem', title);
-
-    const sections: Record<string, HTMLElement> = {};
-    if (hasVideos) sections['Video'] = buildVideoSection(problem.videos as LceVideo[]);
-    if (hasCode) sections['Code'] = buildCodeSection(problem);
-
-    const { openSection } = await getStorage<{ openSection?: string }>(['openSection']);
-    wrapper.appendChild(buildNav(sections, openSection && sections[openSection] ? openSection : null));
-    Object.values(sections).forEach((section) => wrapper.appendChild(section));
-
-    scroller.insertBefore(wrapper, filterBlock.nextSibling);
-}
-
-/*
- * Video / Code act as toggles: clicking the open one collapses the card. The
- * choice is remembered across problems so the card opens the way it was left.
- */
-function buildNav(sections: Record<string, HTMLElement>, initiallyOpen: string | null): HTMLElement {
-    const nav = document.createElement('div');
-    nav.classList.add('lce-nav');
-
-    const label = document.createElement('span');
-    label.classList.add('lce-nav-label');
-    label.textContent = 'Leetcode Explained';
-    nav.appendChild(label);
-
-    let open: string | null = null;
-    const showSection = (name: string | null) => {
-        open = name;
-        Object.entries(sections).forEach(([key, section]) => {
-            section.style.display = key === open ? 'block' : 'none';
-        });
-        nav.querySelectorAll('.lce-nav-button').forEach((btn) => {
-            btn.classList.toggle('active', btn.textContent === open);
-        });
-    };
-
-    Object.keys(sections).forEach((name) => {
-        const button = document.createElement('button');
-        button.classList.add('lce-nav-button');
-        button.textContent = name;
-        button.onclick = () => {
-            showSection(open === name ? null : name);
-            chrome.storage.local.set({ openSection: open || '' });
-        };
-        nav.appendChild(button);
-    });
-
-    showSection(initiallyOpen);
-    return nav;
+    return row;
 }
 
 function buildVideoSection(videos: LceVideo[]): HTMLElement {
     const section = document.createElement('div');
     section.classList.add('lce-section');
-    section.style.display = 'none';
 
     const controls = document.createElement('div');
     controls.classList.add('lce-video-controls');
@@ -301,7 +348,6 @@ function buildVideoSection(videos: LceVideo[]): HTMLElement {
 function buildCodeSection(problem: LceProblem): HTMLElement {
     const section = document.createElement('div');
     section.classList.add('lce-section');
-    section.style.display = 'none';
 
     const langRow = document.createElement('div');
     langRow.classList.add('lce-lang-row');
@@ -333,6 +379,7 @@ function buildCodeSection(problem: LceProblem): HTMLElement {
     (problem.languages || []).forEach((language) => {
         const chip = document.createElement('button');
         chip.classList.add('lce-chip');
+        chip.dataset.language = language;
 
         const icon = document.createElement('img');
         icon.src = chrome.runtime.getURL(`src/assets/images/languages/${language}.svg`);
@@ -453,8 +500,8 @@ function scheduleRender() {
     if (lcePendingRender !== null) clearTimeout(lcePendingRender);
     lcePendingRender = window.setTimeout(() => {
         lcePendingRender = null;
+        ensureExplainedTab();
         renderDescriptionExtras();
-        renderSolutionsCard();
     }, 150);
 }
 
@@ -467,6 +514,7 @@ function watchNavigation() {
     const observer = new MutationObserver(() => {
         const path = location.pathname + '|' + document.title;
         if (path !== lceLastPath) {
+            if (lceLastPath) closeExplainedPanel();
             lceLastPath = path;
             scheduleRender();
         }

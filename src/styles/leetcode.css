@@ -17,6 +17,7 @@
     --lce-active-bg: #e0e1e3;
     --lce-code-bg: #f7f9fa;
     --lce-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --lce-panel-bg: #ffffff;
 }
 
 html.dark {
@@ -31,65 +32,59 @@ html.dark {
     --lce-active-bg: #454545;
     --lce-code-bg: #2d2d2d;
     --lce-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --lce-panel-bg: #262626;
 }
 
-/* Wrapper card on the solutions tab */
-.lce-wrapper {
-    flex-shrink: 0;
-    margin: 8px 12px 4px;
-    padding: 8px;
+/* "Explained" tab button (inside LeetCode's flexlayout tab bar) */
+.lce-tab-icon {
+    font-size: 10px;
+    color: var(--lce-accent);
+}
+
+/* While our tab is open, dim LeetCode's own selected tab so only ours reads as active */
+.lce-explained-open .flexlayout__tab_button--selected:not(#lce-explained-tab) {
+    opacity: 0.6;
+}
+
+/* Panel shown under the tab bar while the Explained tab is selected */
+.lce-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    display: none;
+    overflow: auto;
+    padding: 16px 20px 32px;
     box-sizing: border-box;
-    border: 1px solid var(--lce-border);
-    border-radius: 10px;
-    background: var(--lce-surface);
-    box-shadow: var(--lce-shadow);
-    font-size: 13px;
+    background: var(--lce-panel-bg);
     color: var(--lce-text);
+    font-size: 13px;
 }
 
-.lce-nav {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 2px 4px;
+.lce-panel-section {
+    max-width: 820px;
+    margin: 0 auto 24px;
 }
 
-.lce-nav-label {
-    flex: 1;
+.lce-panel-heading {
+    margin: 0 0 10px;
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
     color: var(--lce-text-muted);
 }
 
-.lce-nav-button {
-    min-width: 72px;
-    padding: 5px 12px;
-    border-radius: 6px;
-    border: 1px solid transparent;
-    background: transparent;
+.lce-empty {
+    margin: 32px auto;
+    max-width: 820px;
+    text-align: center;
     color: var(--lce-text-muted);
-    font-size: 12.5px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    cursor: pointer;
-    transition: background 0.15s ease, color 0.15s ease;
-}
-
-.lce-nav-button:hover {
-    background: var(--lce-chip-hover);
-    color: var(--lce-text);
-}
-
-.lce-nav-button.active {
-    background: var(--lce-active-bg);
-    color: var(--lce-text);
-    border-color: var(--lce-border);
 }
 
 .lce-section {
-    margin-top: 8px;
-    padding: 0 4px 4px;
+    margin: 0;
 }
 
 /* Video */
@@ -230,7 +225,7 @@ html.dark {
     position: relative;
 }
 
-/* Description tab: company chips + rating badge */
+/* Company chips + rating badge */
 .lce-company-row {
     display: flex;
     flex-direction: row;

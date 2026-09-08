@@ -28,7 +28,8 @@ chrome.runtime.onInstalled.addListener(() => {
             .catch((error) => console.error(`Failed to load ${key}:`, error));
     });
 
-    chrome.storage.local.set({
+    // Fill in defaults without clobbering settings existing users already chose.
+    const defaults = {
         fontSize: 12,
         showExamples: true,
         showDifficulty: true,
@@ -36,6 +37,13 @@ chrome.runtime.onInstalled.addListener(() => {
         useChatGPT: true,
         themeMode: 'auto',
         isDarkTheme: true,
+    };
+    chrome.storage.local.get(Object.keys(defaults), (existing) => {
+        const missing: Record<string, unknown> = {};
+        Object.entries(defaults).forEach(([key, value]) => {
+            if (existing[key] === undefined) missing[key] = value;
+        });
+        if (Object.keys(missing).length) chrome.storage.local.set(missing);
     });
 });
 

@@ -14,7 +14,8 @@
     },
     "permissions": [
         "storage",
-        "tabs"
+        "tabs",
+        "unlimitedStorage"
     ],
     "host_permissions": [
         "https://api.leetcodeapp.com/*",

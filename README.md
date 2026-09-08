@@ -66,7 +66,9 @@ Now you're ready to test features and contribute!
 
    The Description tab also gets company tags and a difficulty rating.
 
-3. For AI features, click the extension icon:
+3. Click the extension icon and open **Progress** to see problems solved today, this week, your streak, a 30-day activity grid, and the problems you keep failing. Every submission you make is recorded locally (nothing leaves your browser); "Import LeetCode history" pulls in your last 1,000 submissions.
+
+4. For AI features, click the extension icon:
    - "Solution Code" generates or fixes a solution for the current problem
    - "Code Complexity" gives the time/space complexity of your code
 
@@ -80,7 +82,8 @@ src/content-script/chatgpt/         drives a chatgpt.com tab to stream answers w
 src/background/background.ts        install-time data seeding, settings fan-out, company page opener
 src/background/chatgpt-relay/       routes popup requests to the ChatGPT driver tab
 src/background/openrouter/          fallback provider via api.leetcodeapp.com
-src/popup/                          extension popup (home + settings views)
+src/popup/                          extension popup (assistant, progress, and settings views)
+src/popup/progress.ts               stats over locally recorded submissions
 src/problems-by-company/            "Top 50 problems for <company>" page
 src/assets/data/                    problem metadata (videos, companies, ratings, languages)
 ```

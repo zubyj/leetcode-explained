@@ -21,6 +21,58 @@
         </button>
     </header>
 
+    <nav class="view-switch" role="tablist">
+        <button id="tab-assistant" class="view-tab active" role="tab">Assistant</button>
+        <button id="tab-progress" class="view-tab" role="tab">Progress</button>
+    </nav>
+
+    <main id="progress-view" class="view hidden">
+        <div class="tiles">
+            <div class="tile">
+                <span id="stat-today" class="tile-value">0</span>
+                <span class="tile-label">Solved today</span>
+            </div>
+            <div class="tile">
+                <span id="stat-week" class="tile-value">0</span>
+                <span class="tile-label">This week</span>
+            </div>
+            <div class="tile">
+                <span id="stat-streak" class="tile-value">0</span>
+                <span class="tile-label">Day streak</span>
+            </div>
+        </div>
+
+        <section class="card">
+            <div class="card-header">
+                <span class="card-title">Last 30 days</span>
+                <span id="stat-month" class="card-meta"></span>
+            </div>
+            <div id="activity-grid" class="activity-grid"></div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <span class="card-title">Solved all time</span>
+                <span id="stat-total" class="card-meta"></span>
+            </div>
+            <div id="difficulty-bars" class="difficulty-bars"></div>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+                <span class="card-title">Needs another look</span>
+                <span class="card-meta" title="Problems with the most failed attempts in the last 30 days that you have not solved since.">ⓘ</span>
+            </div>
+            <ul id="retry-list" class="retry-list"></ul>
+        </section>
+
+        <div class="import-row">
+            <button id="import-history-btn" class="action-button">Import LeetCode history</button>
+            <span id="import-status" class="import-status"></span>
+        </div>
+        <p class="fineprint">Submissions are recorded on this device only, from LeetCode pages you have open. Nothing is sent anywhere.</p>
+    </main>
+
     <main id="home-view" class="view">
         <div class="context">
             <span id="context-dot" class="context-dot"></span>

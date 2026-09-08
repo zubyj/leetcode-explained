@@ -5,6 +5,7 @@
 
 import { OpenRouterProvider } from '../background/openrouter/openrouter.js';
 import { ChatGPTRelayProvider } from '../background/chatgpt-relay/chatgpt-relay.js';
+import { loadSubmissions, renderProgress } from './progress.js';
 
 type Action = 'analyze' | 'fix';
 
@@ -69,7 +70,9 @@ class FallbackProvider implements AIProvider {
 }
 
 const homeView = document.getElementById('home-view') as HTMLElement;
+const progressView = document.getElementById('progress-view') as HTMLElement;
 const settingsView = document.getElementById('settings-view') as HTMLElement;
+const viewSwitch = document.querySelector('.view-switch') as HTMLElement;
 const problemTitleEl = document.getElementById('problem-title') as HTMLElement;
 const contextDot = document.getElementById('context-dot') as HTMLElement;
 const statusLine = document.getElementById('status') as HTMLElement;
@@ -336,15 +339,60 @@ async function initSettingToggles() {
     }
 }
 
+/* ---------------- Views ---------------- */
+
+type View = 'assistant' | 'progress' | 'settings';
+
+async function showView(view: View) {
+    homeView.classList.toggle('hidden', view !== 'assistant');
+    progressView.classList.toggle('hidden', view !== 'progress');
+    settingsView.classList.toggle('hidden', view !== 'settings');
+    viewSwitch.classList.toggle('hidden', view === 'settings');
+    document.getElementById('tab-assistant')?.classList.toggle('active', view === 'assistant');
+    document.getElementById('tab-progress')?.classList.toggle('active', view === 'progress');
+    if (view !== 'settings') chrome.storage.local.set({ lastView: view });
+    if (view === 'progress') renderProgress(await loadSubmissions());
+}
+
+async function initViews() {
+    const settingsToggle = document.getElementById('settings-toggle') as HTMLButtonElement;
+    settingsToggle.onclick = () => {
+        showView(settingsView.classList.contains('hidden') ? 'settings' : 'assistant');
+    };
+    (document.getElementById('tab-assistant') as HTMLButtonElement).onclick = () => showView('assistant');
+    (document.getElementById('tab-progress') as HTMLButtonElement).onclick = () => showView('progress');
+
+    const importButton = document.getElementById('import-history-btn') as HTMLButtonElement;
+    const importStatus = document.getElementById('import-status') as HTMLElement;
+    importButton.onclick = () => {
+        chrome.tabs.query({ url: 'https://leetcode.com/*' }, (tabs) => {
+            const tab = tabs.find((t) => t.active) || tabs[0];
+            if (!tab?.id) {
+                importStatus.textContent = 'Open a LeetCode tab first.';
+                return;
+            }
+            importButton.disabled = true;
+            importStatus.textContent = 'Importing your last 1,000 submissions ...';
+            chrome.tabs.sendMessage(tab.id, { action: 'importHistory', maxPages: 50 }, async (response) => {
+                importButton.disabled = false;
+                if (chrome.runtime.lastError || !response || response.error) {
+                    importStatus.textContent = 'Import failed. Refresh the LeetCode tab and try again.';
+                    return;
+                }
+                importStatus.textContent = `Imported ${response.imported} new of ${response.scanned} submissions.`;
+                renderProgress(await loadSubmissions());
+            });
+        });
+    };
+
+    const { lastView } = await chrome.storage.local.get('lastView');
+    await showView(lastView === 'progress' ? 'progress' : 'assistant');
+}
+
 /* ---------------- Init ---------------- */
 
 async function main() {
-    const settingsToggle = document.getElementById('settings-toggle') as HTMLButtonElement;
-    settingsToggle.onclick = () => {
-        const showSettings = settingsView.classList.contains('hidden');
-        settingsView.classList.toggle('hidden', !showSettings);
-        homeView.classList.toggle('hidden', showSettings);
-    };
+    initViews();
 
     await Promise.all([initTheme(), initFontSize(), initSettingToggles(), loadStoredResponses()]);
 

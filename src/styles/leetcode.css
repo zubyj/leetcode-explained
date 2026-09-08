@@ -5,33 +5,34 @@
  */
 
 :root {
+    /* Values mirror LeetCode's own light/dark tokens so our UI blends in. */
     --lce-surface: #f7f8fa;
     --lce-surface-raised: #ffffff;
     --lce-border: rgba(0, 0, 0, 0.1);
-    --lce-border-strong: rgba(0, 0, 0, 0.2);
+    --lce-border-strong: rgba(0, 0, 0, 0.22);
     --lce-text: #262626;
-    --lce-text-muted: #595959;
+    --lce-text-muted: rgba(0, 0, 0, 0.6);
     --lce-accent: #ffa116;
-    --lce-chip-bg: #f0f1f3;
-    --lce-chip-hover: #e6e7e9;
-    --lce-active-bg: #e0e1e3;
+    --lce-chip-bg: rgba(0, 0, 0, 0.06);
+    --lce-chip-hover: rgba(0, 0, 0, 0.1);
+    --lce-active-bg: rgba(0, 0, 0, 0.12);
     --lce-code-bg: #f7f9fa;
-    --lce-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --lce-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.1), 0px 0.5px 5px 0px rgba(0, 0, 0, 0.1);
     --lce-panel-bg: #ffffff;
 }
 
 html.dark {
-    --lce-surface: #282828;
-    --lce-surface-raised: #303030;
-    --lce-border: rgba(255, 255, 255, 0.1);
-    --lce-border-strong: rgba(255, 255, 255, 0.22);
-    --lce-text: #eff1f6;
-    --lce-text-muted: #b3b3b3;
-    --lce-chip-bg: #333333;
-    --lce-chip-hover: #3e3e3e;
-    --lce-active-bg: #454545;
-    --lce-code-bg: #2d2d2d;
-    --lce-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --lce-surface: #262626;
+    --lce-surface-raised: #323232;
+    --lce-border: rgba(255, 255, 255, 0.14);
+    --lce-border-strong: rgba(255, 255, 255, 0.3);
+    --lce-text: #f5f5f5;
+    --lce-text-muted: rgba(255, 255, 255, 0.6);
+    --lce-chip-bg: rgba(255, 255, 255, 0.1);
+    --lce-chip-hover: rgba(255, 255, 255, 0.14);
+    --lce-active-bg: rgba(255, 255, 255, 0.18);
+    --lce-code-bg: #1a1a1a;
+    --lce-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.1), 0px 0.5px 5px 0px rgba(0, 0, 0, 0.1);
     --lce-panel-bg: #262626;
 }
 
@@ -73,7 +74,8 @@ html.dark {
     box-sizing: border-box;
     background: var(--lce-panel-bg);
     color: var(--lce-text);
-    font-size: 13px;
+    font: inherit;
+    font-size: 14px;
 }
 
 .lce-panel-section {
@@ -86,11 +88,9 @@ html.dark {
     align-items: center;
     gap: 6px;
     margin: 0 0 10px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: var(--lce-text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--lce-text);
 }
 
 .lce-info {
@@ -163,13 +163,12 @@ html.dark {
     align-items: baseline;
     justify-content: center;
     gap: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.2px;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .lce-channel-count {
-    font-size: 11.5px;
+    font-size: 12px;
     font-weight: 400;
     color: var(--lce-text-muted);
 }
@@ -202,26 +201,27 @@ html.dark {
 .lce-chip {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    padding: 6px 12px;
-    border-radius: 999px;
-    border: 1px solid var(--lce-border);
+    gap: 6px;
+    height: 24px;
+    padding: 4px 8px;
+    border-radius: 9999px;
+    border: 1px solid transparent;
     background: var(--lce-chip-bg);
     color: var(--lce-text);
+    font: inherit;
     font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
+    line-height: 16px;
     cursor: pointer;
     transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .lce-chip:hover {
     background: var(--lce-chip-hover);
-    border-color: var(--lce-border-strong);
 }
 
 .lce-chip.active {
     border-color: var(--lce-accent);
+    color: var(--lce-accent);
 }
 
 .lce-chip img {
@@ -287,21 +287,22 @@ html.dark {
 .lce-company-chip {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    padding: 5px 11px;
-    border-radius: 999px;
-    border: 1px solid var(--lce-border);
+    gap: 6px;
+    height: 24px;
+    padding: 4px 8px;
+    border-radius: 9999px;
+    border: none;
     background: var(--lce-chip-bg);
     color: var(--lce-text);
-    font-size: 11.5px;
-    letter-spacing: 0.3px;
+    font: inherit;
+    font-size: 12px;
+    line-height: 16px;
     cursor: pointer;
-    transition: background 0.15s ease, border-color 0.15s ease;
+    transition: background 0.15s ease;
 }
 
 .lce-company-chip:hover {
     background: var(--lce-chip-hover);
-    border-color: var(--lce-border-strong);
 }
 
 .lce-company-chip img {
@@ -313,13 +314,13 @@ html.dark {
 .lce-rating {
     display: inline-flex;
     align-items: center;
-    padding: 3px 10px;
+    height: 24px;
+    padding: 4px 8px;
     margin-right: 8px;
-    border-radius: 999px;
-    border: 1px solid var(--lce-border);
+    border-radius: 9999px;
     background: var(--lce-chip-bg);
     color: var(--lce-accent);
-    font-size: 11.5px;
-    font-weight: 600;
-    letter-spacing: 0.4px;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
 }

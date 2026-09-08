@@ -434,3 +434,206 @@ pre#fix-code-container,
 .footer a:hover {
     color: var(--text);
 }
+
+/* View switch */
+.view-switch {
+    display: flex;
+    gap: 2px;
+    margin: 0 14px 8px;
+    padding: 3px;
+    border-radius: 9px;
+    background: var(--surface);
+}
+
+.view-tab {
+    flex: 1;
+    padding: 6px 0;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: var(--base-font-size);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.view-tab.active {
+    background: var(--bg);
+    color: var(--text);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="dark"] .view-tab.active {
+    background: var(--surface-2);
+}
+
+/* Progress: stat tiles */
+.tiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.tile {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.tile-value {
+    font-size: calc(var(--base-font-size) * 1.9);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    font-variant-numeric: tabular-nums;
+}
+
+.tile-label {
+    font-size: calc(var(--base-font-size) - 1.5px);
+    color: var(--text-muted);
+}
+
+.card-meta {
+    font-size: calc(var(--base-font-size) - 1px);
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Activity grid: one cell per day, single orange hue light to dark */
+.activity-grid {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    gap: 4px;
+    padding: 12px;
+}
+
+.activity-cell {
+    aspect-ratio: 1;
+    border-radius: 3px;
+    background: var(--surface-2);
+}
+
+.activity-cell[data-level="1"] { background: #ffd591; }
+.activity-cell[data-level="2"] { background: #ffb340; }
+.activity-cell[data-level="3"] { background: #f28c00; }
+.activity-cell[data-level="4"] { background: #b85e00; }
+
+[data-theme="dark"] .activity-cell[data-level="1"] { background: #5a3d12; }
+[data-theme="dark"] .activity-cell[data-level="2"] { background: #8f5d0e; }
+[data-theme="dark"] .activity-cell[data-level="3"] { background: #cf8412; }
+[data-theme="dark"] .activity-cell[data-level="4"] { background: #ffa116; }
+
+.activity-cell.today {
+    outline: 1.5px solid var(--text-muted);
+    outline-offset: 1px;
+}
+
+/* Difficulty split: three thin bars sharing one scale */
+.difficulty-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+}
+
+.difficulty-row {
+    display: grid;
+    grid-template-columns: 58px 1fr 34px;
+    align-items: center;
+    gap: 10px;
+}
+
+.difficulty-name {
+    font-size: calc(var(--base-font-size) - 1px);
+    color: var(--text-muted);
+}
+
+.difficulty-track {
+    height: 8px;
+    border-radius: 4px;
+    background: var(--surface-2);
+    overflow: hidden;
+}
+
+.difficulty-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--accent);
+    min-width: 2px;
+}
+
+.difficulty-count {
+    text-align: right;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Retry list */
+.retry-list {
+    margin: 0;
+    padding: 4px 0;
+    list-style: none;
+}
+
+.retry-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 7px 12px;
+}
+
+.retry-list li + li {
+    border-top: 1px solid var(--border);
+}
+
+.retry-list a {
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.retry-list a:hover {
+    color: var(--link);
+}
+
+.retry-attempts {
+    flex-shrink: 0;
+    font-size: calc(var(--base-font-size) - 1.5px);
+    color: var(--text-muted);
+}
+
+.empty-note {
+    padding: 12px;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.import-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.import-row .action-button {
+    flex: 0 0 auto;
+    padding: 0 14px;
+}
+
+.import-status {
+    font-size: calc(var(--base-font-size) - 1px);
+    color: var(--text-muted);
+}
+
+.fineprint {
+    margin: 0;
+    font-size: calc(var(--base-font-size) - 2px);
+    line-height: 1.4;
+    color: var(--text-faint);
+}

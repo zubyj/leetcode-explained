@@ -2,6 +2,7 @@
  * The only content script for leetcode.com. Handles:
  *   - an "Explained" tab in LeetCode's tab bar (videos, solution code, companies)
  *   - description tab extras (company chips, rating badge, example/difficulty toggles)
+ *   - recording every submission result locally (progress stats in the popup)
  *   - reading the problem + user code for the AI popup
  *   - reporting LeetCode's theme to the popup
  *
@@ -436,6 +437,163 @@ async function fetchSolutionCode(title: string, frontendId: number, language: st
     }
 }
 
+/* ---------------- Submission tracker ---------------- */
+
+/*
+ * Every submission lands on /problems/<slug>/submissions/<id>/, both fresh
+ * ones and old ones opened from the list. We look the id up through
+ * LeetCode's own GraphQL (same-origin, uses the user's cookies) and store the
+ * result locally, keyed by id, so replays are harmless. Fresh submissions are
+ * still being judged when the URL changes, so the lookup polls until a status
+ * code appears.
+ */
+interface SubmissionRecord {
+    id: number;
+    slug: string;
+    title: string;
+    difficulty: string;
+    tags: string[];
+    lang: string;
+    status: string;
+    accepted: boolean;
+    runtimeMs?: number;
+    memoryMb?: number;
+    runtimePct?: number;
+    memoryPct?: number;
+    at: number;
+}
+
+const STATUS_NAMES: Record<number, string> = {
+    10: 'Accepted',
+    11: 'Wrong Answer',
+    12: 'Memory Limit Exceeded',
+    13: 'Output Limit Exceeded',
+    14: 'Time Limit Exceeded',
+    15: 'Runtime Error',
+    20: 'Compile Error',
+};
+
+const DIFFICULTY_NAMES: Record<number, string> = { 1: 'Easy', 2: 'Medium', 3: 'Hard' };
+
+const trackedThisSession = new Set<number>();
+
+function csrfToken(): string {
+    return (document.cookie.match(/csrftoken=([^;]+)/) || [])[1] || '';
+}
+
+async function trackSubmissionFromUrl() {
+    const match = location.pathname.match(/^\/problems\/([^/]+)\/submissions\/(\d+)/);
+    if (!match) return;
+    const id = Number(match[2]);
+    if (trackedThisSession.has(id)) return;
+    trackedThisSession.add(id);
+
+    const stored = await getStorage<{ submissions?: Record<string, SubmissionRecord> }>(['submissions']);
+    if (stored.submissions?.[id]) return;
+
+    const record = await fetchSubmissionRecord(id, match[1]);
+    if (record) await saveSubmissions([record]);
+}
+
+async function fetchSubmissionRecord(id: number, slug: string): Promise<SubmissionRecord | null> {
+    const query = `query submissionDetails($submissionId: Int!) {
+        submissionDetails(submissionId: $submissionId) {
+            runtime memory statusCode timestamp runtimePercentile memoryPercentile
+            lang { name }
+            question { titleSlug title difficulty topicTags { name } }
+        }
+    }`;
+
+    for (let attempt = 0; attempt < 30; attempt++) {
+        try {
+            const response = await fetch('/graphql/', {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json', 'x-csrftoken': csrfToken() },
+                body: JSON.stringify({ query, variables: { submissionId: id } }),
+            });
+            const details = (await response.json())?.data?.submissionDetails;
+            if (details?.statusCode) {
+                return {
+                    id,
+                    slug: details.question?.titleSlug || slug,
+                    title: details.question?.title || slug,
+                    difficulty: details.question?.difficulty || '',
+                    tags: (details.question?.topicTags || []).map((t: { name: string }) => t.name),
+                    lang: details.lang?.name || '',
+                    status: STATUS_NAMES[details.statusCode] || `Status ${details.statusCode}`,
+                    accepted: details.statusCode === 10,
+                    runtimeMs: details.runtime ?? undefined,
+                    memoryMb: details.memory ? Math.round(details.memory / 10000) / 100 : undefined,
+                    runtimePct: details.runtimePercentile ?? undefined,
+                    memoryPct: details.memoryPercentile ?? undefined,
+                    at: (details.timestamp || Math.floor(Date.now() / 1000)) * 1000,
+                };
+            }
+        } catch {
+            // transient, retry below
+        }
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
+    return null;
+}
+
+async function saveSubmissions(records: SubmissionRecord[]): Promise<number> {
+    const stored = await getStorage<{ submissions?: Record<string, SubmissionRecord> }>(['submissions']);
+    const submissions = stored.submissions || {};
+    let added = 0;
+    records.forEach((record) => {
+        if (!submissions[record.id]) added++;
+        submissions[record.id] = record;
+    });
+    await new Promise<void>((resolve) => chrome.storage.local.set({ submissions }, resolve));
+    return added;
+}
+
+/*
+ * Pulls the user's recent submission history from LeetCode's list endpoint so
+ * the stats aren't empty on day one. Difficulty comes from our dataset since
+ * the list doesn't carry it; topic tags are left empty for imported rows.
+ */
+async function importSubmissionHistory(maxPages: number): Promise<{ imported: number; scanned: number }> {
+    const { leetcodeProblems } = await getStorage<{ leetcodeProblems?: { questions: Array<{ title: string; difficulty_lvl?: number }> } }>(['leetcodeProblems']);
+    const difficultyByTitle = new Map<string, string>();
+    (leetcodeProblems?.questions || []).forEach((q) => {
+        if (q.difficulty_lvl) difficultyByTitle.set(q.title, DIFFICULTY_NAMES[q.difficulty_lvl] || '');
+    });
+
+    const records: SubmissionRecord[] = [];
+    let offset = 0;
+    let lastKey = '';
+    for (let page = 0; page < maxPages; page++) {
+        const response = await fetch(`/api/submissions/?offset=${offset}&limit=20&lastkey=${encodeURIComponent(lastKey)}`, { credentials: 'include' });
+        if (!response.ok) break;
+        const data = await response.json();
+        (data.submissions_dump || []).forEach((s: any) => {
+            records.push({
+                id: s.id,
+                slug: s.title_slug,
+                title: s.title,
+                difficulty: difficultyByTitle.get(s.title) || '',
+                tags: [],
+                lang: s.lang || '',
+                status: s.status_display || STATUS_NAMES[s.status] || 'Unknown',
+                accepted: s.status === 10,
+                runtimeMs: parseInt(s.runtime) || undefined,
+                memoryMb: parseFloat(s.memory) || undefined,
+                at: (s.timestamp || 0) * 1000,
+            });
+        });
+        if (!data.has_next) break;
+        offset += 20;
+        lastKey = data.last_key || '';
+        await new Promise((resolve) => setTimeout(resolve, 250));
+    }
+
+    const imported = await saveSubmissions(records);
+    return { imported, scanned: records.length };
+}
+
 /* ---------------- Problem/code reader for the popup ---------------- */
 
 function readProblemForAI(): string[] {
@@ -507,6 +665,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse({ theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light' });
     } else if (request.action === 'settingsUpdate') {
         renderDescriptionExtras();
+    } else if (request.action === 'importHistory') {
+        importSubmissionHistory(request.maxPages || 50)
+            .then((result) => sendResponse(result))
+            .catch((error) => sendResponse({ error: (error as Error).message }));
     }
     return true;
 });
@@ -520,6 +682,7 @@ function scheduleRender() {
         lcePendingRender = null;
         ensureExplainedTab();
         renderDescriptionExtras();
+        trackSubmissionFromUrl();
     }, 150);
 }
 

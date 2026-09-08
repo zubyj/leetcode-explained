@@ -214,14 +214,18 @@ async function renderSolutionsCard() {
     if (hasVideos) sections['Video'] = buildVideoSection(problem.videos as LceVideo[]);
     if (hasCode) sections['Code'] = buildCodeSection(problem);
 
-    wrapper.appendChild(buildNav(sections));
+    const { openSection } = await getStorage<{ openSection?: string }>(['openSection']);
+    wrapper.appendChild(buildNav(sections, openSection && sections[openSection] ? openSection : null));
     Object.values(sections).forEach((section) => wrapper.appendChild(section));
 
     scroller.insertBefore(wrapper, filterBlock.nextSibling);
 }
 
-/* Video / Code act as toggles: clicking the open one collapses the card. */
-function buildNav(sections: Record<string, HTMLElement>): HTMLElement {
+/*
+ * Video / Code act as toggles: clicking the open one collapses the card. The
+ * choice is remembered across problems so the card opens the way it was left.
+ */
+function buildNav(sections: Record<string, HTMLElement>, initiallyOpen: string | null): HTMLElement {
     const nav = document.createElement('div');
     nav.classList.add('lce-nav');
 
@@ -231,8 +235,8 @@ function buildNav(sections: Record<string, HTMLElement>): HTMLElement {
     nav.appendChild(label);
 
     let open: string | null = null;
-    const toggleSection = (name: string) => {
-        open = open === name ? null : name;
+    const showSection = (name: string | null) => {
+        open = name;
         Object.entries(sections).forEach(([key, section]) => {
             section.style.display = key === open ? 'block' : 'none';
         });
@@ -245,10 +249,14 @@ function buildNav(sections: Record<string, HTMLElement>): HTMLElement {
         const button = document.createElement('button');
         button.classList.add('lce-nav-button');
         button.textContent = name;
-        button.onclick = () => toggleSection(name);
+        button.onclick = () => {
+            showSection(open === name ? null : name);
+            chrome.storage.local.set({ openSection: open || '' });
+        };
         nav.appendChild(button);
     });
 
+    showSection(initiallyOpen);
     return nav;
 }
 

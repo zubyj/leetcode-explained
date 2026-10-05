@@ -18,6 +18,7 @@ interface LceVideo {
 
 interface LceProblem {
     title: string;
+    slug?: string;
     frontend_id: number;
     rating?: string;
     videos?: LceVideo[];
@@ -45,8 +46,13 @@ const LANGUAGE_EXTENSIONS: Record<string, string> = {
     cpp: 'cpp',
 };
 
-function problemTitleFromPage(): string {
-    return document.title.replace(' - LeetCode', '').split('-')[0].trim();
+/*
+ * Problems are looked up by the URL slug (/problems/two-sum/...), not the page
+ * title: titles can contain " - " (e.g. "Two Sum II - Input Array Is Sorted"),
+ * get renamed, and lag behind the URL during SPA navigation.
+ */
+function problemSlugFromPage(): string {
+    return location.pathname.match(/^\/problems\/([^/]+)/)?.[1] || '';
 }
 
 function companyLogoUrl(company: string): string {
@@ -68,12 +74,12 @@ function getStorage<T>(keys: string[]): Promise<T> {
 /* The dataset is ~3 MB; read it from storage once per page instead of per render. */
 let problemIndex: Map<string, LceProblem> | null = null;
 
-async function findProblemData(title: string): Promise<LceProblem | undefined> {
+async function findProblemData(slug: string): Promise<LceProblem | undefined> {
     if (!problemIndex) {
         const { leetcodeProblems } = await getStorage<{ leetcodeProblems?: { questions: LceProblem[] } }>(['leetcodeProblems']);
-        problemIndex = new Map((leetcodeProblems?.questions || []).map((q) => [q.title, q]));
+        problemIndex = new Map((leetcodeProblems?.questions || []).filter((q) => q.slug).map((q) => [q.slug as string, q]));
     }
-    return problemIndex.get(title);
+    return problemIndex.get(slug);
 }
 
 async function getSettings(): Promise<LceSettings> {
@@ -114,9 +120,8 @@ function waitForElement(selector: () => Element | null, timeoutMs = 10000): Prom
 async function renderDescriptionExtras() {
     if (window.location.pathname.includes('/solutions')) return;
 
-    const title = problemTitleFromPage();
     const settings = await getSettings();
-    const problem = await findProblemData(title);
+    const problem = await findProblemData(problemSlugFromPage());
 
     toggleExamples(settings.showExamples);
     toggleDifficulty(settings.showDifficulty);
@@ -221,11 +226,11 @@ async function openExplainedPanel() {
     const tabBar = tabset?.querySelector('.flexlayout__tabset_tabbar_outer') as HTMLElement | null;
     if (!container || !tabset || !tabBar) return;
 
-    const title = problemTitleFromPage();
+    const slug = problemSlugFromPage();
     let panel = tabset.querySelector('.lce-panel') as HTMLElement | null;
-    if (!panel || panel.getAttribute('data-problem') !== title) {
+    if (!panel || panel.getAttribute('data-problem') !== slug) {
         panel?.remove();
-        panel = await buildExplainedPanel(title);
+        panel = await buildExplainedPanel(slug);
         tabset.appendChild(panel);
     }
     panel.style.top = `${tabBar.offsetHeight}px`;
@@ -249,12 +254,12 @@ function closeExplainedPanel() {
     document.getElementById(EXPLAINED_TAB_ID)?.classList.replace('flexlayout__tab_button--selected', 'flexlayout__tab_button--unselected');
 }
 
-async function buildExplainedPanel(title: string): Promise<HTMLElement> {
+async function buildExplainedPanel(slug: string): Promise<HTMLElement> {
     const panel = document.createElement('div');
     panel.classList.add('lce-panel');
-    panel.setAttribute('data-problem', title);
+    panel.setAttribute('data-problem', slug);
 
-    const problem = await findProblemData(title);
+    const problem = await findProblemData(slug);
     const hasVideos = !!problem?.videos?.length;
     const hasCode = !!problem?.languages?.length;
 
@@ -268,7 +273,7 @@ async function buildExplainedPanel(title: string): Promise<HTMLElement> {
 
     if (problem.companies?.length) {
         panel.appendChild(buildPanelSection('Asked by', buildCompanyRow(problem.companies),
-            'Companies reported to ask this problem in interviews. Frequency data was collected in 2023, so it may be outdated. Click a company for its most-asked problems.'));
+            'Companies reported to ask this problem in interviews, from the community-maintained liquidslr/leetcode-company-wise-problems dataset. A green dot means asked in the last 6 months. Click a company for its most-asked problems.'));
     }
     if (hasVideos) {
         panel.appendChild(buildPanelSection('Video explanations', buildVideoSection(problem.videos as LceVideo[]),
@@ -431,7 +436,7 @@ function buildCodeSection(problem: LceProblem): HTMLElement {
             langRow.querySelectorAll('.lce-chip').forEach((c) => c.classList.remove('active'));
             chip.classList.add('active');
             codeBlock.textContent = 'Loading ...';
-            const code = await fetchSolutionCode(problem.title, problem.frontend_id, language);
+            const code = await fetchSolutionCode(problem.slug || '', problem.frontend_id, language);
             codeBlock.textContent = code || 'Code not available';
             if (code) highlightCode(codeBlock, language);
         };
@@ -451,18 +456,29 @@ function highlightCode(block: HTMLElement, language: string) {
     prism.highlightElement(block);
 }
 
-/* Fetches the solution from NeetCode's GitHub repo. */
-async function fetchSolutionCode(title: string, frontendId: number, language: string): Promise<string | null> {
-    const extension = LANGUAGE_EXTENSIONS[language];
-    if (!extension) return null;
+const solutionCodeCache = new Map<string, string>();
 
-    const slug = `${frontendId.toString().padStart(4, '0')}-${title.toLowerCase().replace(/ /g, '-')}`;
-    const url = `https://api.github.com/repos/neetcode-gh/leetcode/contents/${language}/${slug}.${extension}`;
+/*
+ * Fetches the solution from NeetCode's GitHub repo, where files are named
+ * <4-digit frontend id>-<slug>.<ext> (e.g. python/0050-powx-n.py). Uses
+ * raw.githubusercontent.com rather than api.github.com, which caps
+ * unauthenticated clients at 60 requests/hour and returns base64 that atob()
+ * mangles for non-ASCII characters.
+ */
+async function fetchSolutionCode(slug: string, frontendId: number, language: string): Promise<string | null> {
+    const extension = LANGUAGE_EXTENSIONS[language];
+    if (!extension || !slug) return null;
+
+    const path = `${language}/${frontendId.toString().padStart(4, '0')}-${slug}.${extension}`;
+    const cached = solutionCodeCache.get(path);
+    if (cached !== undefined) return cached;
 
     try {
-        const response = await fetch(url);
-        const data = await response.json();
-        return atob(data.content);
+        const response = await fetch(`https://raw.githubusercontent.com/neetcode-gh/leetcode/main/${path}`);
+        if (!response.ok) return null;
+        const code = await response.text();
+        solutionCodeCache.set(path, code);
+        return code;
     } catch {
         return null;
     }
@@ -587,10 +603,10 @@ async function saveSubmissions(records: SubmissionRecord[]): Promise<number> {
  * the list doesn't carry it; topic tags are left empty for imported rows.
  */
 async function importSubmissionHistory(maxPages: number): Promise<{ imported: number; scanned: number }> {
-    const { leetcodeProblems } = await getStorage<{ leetcodeProblems?: { questions: Array<{ title: string; difficulty_lvl?: number }> } }>(['leetcodeProblems']);
-    const difficultyByTitle = new Map<string, string>();
+    const { leetcodeProblems } = await getStorage<{ leetcodeProblems?: { questions: Array<{ slug?: string; difficulty_lvl?: number }> } }>(['leetcodeProblems']);
+    const difficultyBySlug = new Map<string, string>();
     (leetcodeProblems?.questions || []).forEach((q) => {
-        if (q.difficulty_lvl) difficultyByTitle.set(q.title, DIFFICULTY_NAMES[q.difficulty_lvl] || '');
+        if (q.slug && q.difficulty_lvl) difficultyBySlug.set(q.slug, DIFFICULTY_NAMES[q.difficulty_lvl] || '');
     });
 
     const records: SubmissionRecord[] = [];
@@ -605,7 +621,7 @@ async function importSubmissionHistory(maxPages: number): Promise<{ imported: nu
                 id: s.id,
                 slug: s.title_slug,
                 title: s.title,
-                difficulty: difficultyByTitle.get(s.title) || '',
+                difficulty: difficultyBySlug.get(s.title_slug) || '',
                 tags: [],
                 lang: s.lang || '',
                 status: s.status_display || STATUS_NAMES[s.status] || 'Unknown',

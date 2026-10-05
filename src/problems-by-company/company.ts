@@ -15,6 +15,7 @@ interface Solution {
 
 interface Question {
     title: string;
+    slug?: string;
     frontend_id: number;
     difficulty_lvl?: number;
     acceptance?: number;
@@ -72,13 +73,14 @@ function loadCompanyProblems() {
         if (!Array.isArray(companyProblems)) return;
 
         solutions.length = 0;
-        companyProblems.forEach((problem: { id: number; rank: number; title: string; frequency?: number; recent?: boolean }) => {
-            const question = questions.find((q) => q.frontend_id === problem.id);
+        const questionBySlug = new Map(questions.filter((q) => q.slug).map((q) => [q.slug as string, q]));
+        companyProblems.forEach((problem: { id: number; slug?: string; rank: number; title: string; frequency?: number; recent?: boolean }) => {
+            const question = (problem.slug && questionBySlug.get(problem.slug)) || questions.find((q) => q.frontend_id === problem.id);
             solutions.push({
                 id: problem.id,
                 rank: problem.rank,
                 title: problem.title,
-                url: `https://leetcode.com/problems/${problem.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}/`,
+                url: `https://leetcode.com/problems/${problem.slug || problem.title.toLowerCase().replace(/[^a-z0-9 -]/g, '').trim().replace(/\s+/g, '-')}/`,
                 difficulty: question ? String(question.difficulty_lvl) : 'N/A',
                 frequency: problem.frequency || 0,
                 recent: !!problem.recent,

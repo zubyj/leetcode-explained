@@ -21,7 +21,7 @@ export class OpenRouterProvider {
 
             // Get problem title from storage instead of querying tabs
             const titleResult = await chrome.storage.local.get('currentLeetCodeProblemTitle');
-            const problemTitle = titleResult.currentLeetCodeProblemTitle?.split('-')[0].trim() || '';
+            const problemTitle = titleResult.currentLeetCodeProblemTitle?.replace(/ - LeetCode$/, '').trim() || '';
 
             // Get extension version from manifest
             const manifest = chrome.runtime.getManifest();

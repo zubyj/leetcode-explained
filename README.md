@@ -114,6 +114,9 @@ Licensed under the MIT License.
 
 ## 📸 Screenshots
 
-<img src="src/assets/images/screenshots/add-video.png" alt="Video Explanations" width="600"/>
+<img src="src/assets/images/screenshots/add-video.png" alt="Video explanations in the Explained tab" width="600"/>
+<img src="src/assets/images/screenshots/solution-code.png" alt="Solution code in Python, Java, C++ and JavaScript" width="600"/>
+<img src="src/assets/images/screenshots/get-company-tags.png" alt="Company tags with recency dots and difficulty rating" width="600"/>
+<img src="src/assets/images/screenshots/problems-by-company.png" alt="Most-asked problems by company" width="600"/>
 <img src="src/assets/images/screenshots/get-complexity.png" alt="Code Complexity" width="600"/>
 <img src="src/assets/images/screenshots/fix-code.png" alt="Fix Code" width="600"/>

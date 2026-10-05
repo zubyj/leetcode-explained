@@ -128,6 +128,16 @@ html.dark {
     color: var(--lce-text-muted);
 }
 
+.lce-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.lce-link:hover {
+    color: var(--lce-text);
+}
+
 .lce-section {
     margin: 0;
 }

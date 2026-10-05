@@ -203,13 +203,27 @@ function ensureExplainedTab() {
     inner.append(icon, label);
     content.appendChild(inner);
     button.appendChild(content);
-    button.onclick = openExplainedPanel;
+
+    /*
+     * flexlayout handles presses on the tab bar itself: pointerdown starts a tab
+     * drag and captures the pointer, so a `click` never reaches tab buttons, and
+     * a double-click maximizes the tabset (hiding the code editor). So we act on
+     * pointerdown and keep these events from reaching flexlayout's handlers.
+     */
+    button.addEventListener('pointerdown', (event) => {
+        event.stopPropagation();
+        if (event.button === 0) openExplainedPanel();
+    });
+    ['mousedown', 'click', 'dblclick'].forEach((type) => {
+        button.addEventListener(type, (event) => event.stopPropagation());
+    });
 
     container.append(divider, button);
 
     if (!container.dataset.lceBound) {
         container.dataset.lceBound = '1';
-        container.addEventListener('click', (event) => {
+        // pointerdown for the same reason: LeetCode's own tabs never receive `click`.
+        container.addEventListener('pointerdown', (event) => {
             if (!(event.target as Element).closest(`#${EXPLAINED_TAB_ID}`)) closeExplainedPanel();
         }, true);
     }
@@ -258,10 +272,10 @@ async function buildExplainedPanel(title: string): Promise<HTMLElement> {
     const hasVideos = !!problem?.videos?.length;
     const hasCode = !!problem?.languages?.length;
 
-    if (!problem || (!hasVideos && !hasCode)) {
+    if (!problem) {
         const empty = document.createElement('p');
         empty.classList.add('lce-empty');
-        empty.textContent = 'No video explanations or solution code for this problem yet.';
+        empty.textContent = 'No data for this problem yet.';
         panel.appendChild(empty);
         return panel;
     }
@@ -280,6 +294,20 @@ async function buildExplainedPanel(title: string): Promise<HTMLElement> {
             'Reference solutions fetched live from the open-source NeetCode GitHub repo, in the languages it has for this problem.'));
         const preferred = code.querySelector(`.lce-chip[data-language="${editorLanguage()}"]`) || code.querySelector('.lce-chip');
         (preferred as HTMLButtonElement | null)?.click();
+    }
+    if (!hasVideos) {
+        // Only ~860 problems have curated videos; point everything else at a YouTube search.
+        const note = document.createElement('p');
+        note.classList.add('lce-empty');
+        note.append(hasCode ? 'No curated video for this problem yet. ' : 'No curated video or solution code for this problem yet. ');
+        const link = document.createElement('a');
+        link.classList.add('lce-link');
+        link.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(`leetcode ${problem.frontend_id} ${problem.title}`)}`;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = 'Search YouTube';
+        note.appendChild(link);
+        panel.appendChild(note);
     }
     return panel;
 }

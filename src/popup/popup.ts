@@ -411,7 +411,7 @@ async function main() {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const tab = tabs[0];
         if (tab?.url?.includes('leetcode.com/problems') && tab.title) {
-            problemTitle = tab.title.split('-')[0].trim();
+            problemTitle = tab.title.replace(/ - LeetCode$/, '').trim();
             problemTitleEl.textContent = problemTitle;
             problemTitleEl.classList.remove('empty');
             contextDot.classList.add('live');
